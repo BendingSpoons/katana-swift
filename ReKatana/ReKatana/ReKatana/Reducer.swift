@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol Reducer {
+public protocol Reducer {
   associatedtype StateType: State
   static func reduce(action: Action, state: StateType?) -> StateType
 }

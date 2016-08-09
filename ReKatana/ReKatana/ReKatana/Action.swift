@@ -8,6 +8,16 @@
 
 import Foundation
 
-protocol Action {}
+public protocol Action {
+  static func actionName() -> String
+}
+
+public extension Action {
+  static func actionName() -> String {
+    return "\(Self.self)"
+  }
+}
+
+// NB: internal usage only
 struct InitAction: Action {}
 

@@ -8,4 +8,4 @@
 
 import Foundation
 
-protocol State: Equatable {}
+public protocol State: Equatable {}

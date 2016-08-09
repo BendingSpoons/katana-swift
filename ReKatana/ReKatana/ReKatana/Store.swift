@@ -8,12 +8,11 @@
 
 import Foundation
 
-typealias StoreListener<RootReducer: Reducer> = (store: Store<RootReducer>) -> Void
-typealias StoreUnsubscribe = () -> ()
-
-typealias StoreMiddleware<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
-typealias StoreDispatch = (_: Action) -> Void
-
+public typealias StoreListener<RootReducer: Reducer> = (store: Store<RootReducer>) -> Void
+public typealias StoreUnsubscribe = () -> ()
+public typealias StoreMiddleware<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
+public typealias StoreDispatch = (_: Action) -> Void
+public typealias StoreGetState<RootReducer: Reducer> = () -> RootReducer.StateType
 
 private func compose(_ middlewares: [(next: StoreDispatch) -> (action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
   guard middlewares.count > 0 else {
@@ -32,7 +31,7 @@ private func compose(_ middlewares: [(next: StoreDispatch) -> (action: Action) -
   })
 }
 
-class Store<RootReducer: Reducer> {
+public class Store<RootReducer: Reducer> {
   private var state: RootReducer.StateType
   private var listeners: [StoreListener<RootReducer>]
   private let middlewares: [StoreMiddleware<RootReducer>]
