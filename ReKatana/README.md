@@ -6,6 +6,7 @@ Redux Library For Katana
 - Add Saga System
 - Add Action Syatem
 - Documentation
+- Remove duplicated typealiases. They have been added because of [this](https://bugs.swift.org/browse/SR-1889) bug
 
 ### TODO from JS Experience
 - Analyze how we can automatize edge cases such as text input
