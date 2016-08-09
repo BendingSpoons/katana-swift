@@ -69,8 +69,9 @@ class StoreTests: XCTestCase {
     
     // state is ok
     let lastState = store.getState()
+    let titles = lastState.todo.todos.map { $0.title }
     XCTAssertEqual(lastState.todo.todos.count, 2)
-    XCTAssertEqual(lastState.todo.todos[0].title, "New Todo")
-    XCTAssertEqual(lastState.todo.todos[1].title, "Second Todo")
+    XCTAssertEqual(titles.contains("New Todo"), true)
+    XCTAssertEqual(titles.contains("Second Todo"), true)
   }
 }
