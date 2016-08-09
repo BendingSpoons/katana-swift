@@ -1,0 +1,475 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A10CD95D1D58B6850079B36F /* actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD95C1D58B6850079B36F /* actions.swift */; };
+		A10CD95F1D58B7180079B36F /* reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD95E1D58B7180079B36F /* reducers.swift */; };
+		A10CD9611D58B7DC0079B36F /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD9601D58B7DC0079B36F /* states.swift */; };
+		A12E6B141D58D0D200A3A488 /* CombinedReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12E6B131D58D0D200A3A488 /* CombinedReducerTests.swift */; };
+		A12E6B161D58DF1600A3A488 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12E6B151D58DF1600A3A488 /* Store.swift */; };
+		A12E6B181D58E15B00A3A488 /* storeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12E6B171D58E15B00A3A488 /* storeTests.swift */; };
+		A19D4E071D58B05800E232BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E061D58B05800E232BF /* AppDelegate.swift */; };
+		A19D4E091D58B05800E232BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E081D58B05800E232BF /* ViewController.swift */; };
+		A19D4E0C1D58B05800E232BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D4E0A1D58B05800E232BF /* Main.storyboard */; };
+		A19D4E0E1D58B05800E232BF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A19D4E0D1D58B05800E232BF /* Assets.xcassets */; };
+		A19D4E111D58B05800E232BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D4E0F1D58B05800E232BF /* LaunchScreen.storyboard */; };
+		A19D4E1F1D58B4DF00E232BF /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E1E1D58B4DF00E232BF /* ReducerTests.swift */; };
+		A19D4E281D58B50100E232BF /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E271D58B50100E232BF /* Action.swift */; };
+		A1E175ED1D58BB920012A468 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E175EC1D58BB920012A468 /* Reducer.swift */; };
+		A1E175EF1D58BC140012A468 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E175EE1D58BC140012A468 /* State.swift */; };
+		A1E686351D59C8A50036AFB4 /* middlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E686341D59C8A50036AFB4 /* middlewareTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A19D4E211D58B4DF00E232BF /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A19D4DFB1D58B05800E232BF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A19D4E021D58B05800E232BF;
+			remoteInfo = ReKatana;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		A10CD95C1D58B6850079B36F /* actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actions.swift; sourceTree = "<group>"; };
+		A10CD95E1D58B7180079B36F /* reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reducers.swift; sourceTree = "<group>"; };
+		A10CD9601D58B7DC0079B36F /* states.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = states.swift; sourceTree = "<group>"; };
+		A12E6B131D58D0D200A3A488 /* CombinedReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedReducerTests.swift; sourceTree = "<group>"; };
+		A12E6B151D58DF1600A3A488 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A12E6B171D58E15B00A3A488 /* storeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = storeTests.swift; sourceTree = "<group>"; };
+		A19D4E031D58B05800E232BF /* ReKatana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReKatana.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A19D4E061D58B05800E232BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A19D4E081D58B05800E232BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A19D4E0B1D58B05800E232BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		A19D4E0D1D58B05800E232BF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A19D4E101D58B05800E232BF /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A19D4E121D58B05800E232BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A19D4E1C1D58B4DF00E232BF /* ReKatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReKatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		A19D4E1E1D58B4DF00E232BF /* ReducerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
+		A19D4E201D58B4DF00E232BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A19D4E271D58B50100E232BF /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A1E175EC1D58BB920012A468 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		A1E175EE1D58BC140012A468 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		A1E686341D59C8A50036AFB4 /* middlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = middlewareTests.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A19D4E001D58B05800E232BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4E191D58B4DF00E232BF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A10CD95B1D58B6590079B36F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A10CD95C1D58B6850079B36F /* actions.swift */,
+				A10CD95E1D58B7180079B36F /* reducers.swift */,
+				A10CD9601D58B7DC0079B36F /* states.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A19D4DFA1D58B05800E232BF = {
+			isa = PBXGroup;
+			children = (
+				A19D4E051D58B05800E232BF /* ReKatana */,
+				A19D4E1D1D58B4DF00E232BF /* ReKatanaTests */,
+				A19D4E041D58B05800E232BF /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A19D4E041D58B05800E232BF /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A19D4E031D58B05800E232BF /* ReKatana.app */,
+				A19D4E1C1D58B4DF00E232BF /* ReKatanaTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A19D4E051D58B05800E232BF /* ReKatana */ = {
+			isa = PBXGroup;
+			children = (
+				A19D4E261D58B4EC00E232BF /* ReKatana */,
+				A19D4E061D58B05800E232BF /* AppDelegate.swift */,
+				A19D4E081D58B05800E232BF /* ViewController.swift */,
+				A19D4E0A1D58B05800E232BF /* Main.storyboard */,
+				A19D4E0D1D58B05800E232BF /* Assets.xcassets */,
+				A19D4E0F1D58B05800E232BF /* LaunchScreen.storyboard */,
+				A19D4E121D58B05800E232BF /* Info.plist */,
+			);
+			path = ReKatana;
+			sourceTree = "<group>";
+		};
+		A19D4E1D1D58B4DF00E232BF /* ReKatanaTests */ = {
+			isa = PBXGroup;
+			children = (
+				A10CD95B1D58B6590079B36F /* Models */,
+				A19D4E1E1D58B4DF00E232BF /* ReducerTests.swift */,
+				A12E6B131D58D0D200A3A488 /* CombinedReducerTests.swift */,
+				A19D4E201D58B4DF00E232BF /* Info.plist */,
+				A12E6B171D58E15B00A3A488 /* storeTests.swift */,
+				A1E686341D59C8A50036AFB4 /* middlewareTests.swift */,
+			);
+			path = ReKatanaTests;
+			sourceTree = "<group>";
+		};
+		A19D4E261D58B4EC00E232BF /* ReKatana */ = {
+			isa = PBXGroup;
+			children = (
+				A19D4E271D58B50100E232BF /* Action.swift */,
+				A1E175EC1D58BB920012A468 /* Reducer.swift */,
+				A1E175EE1D58BC140012A468 /* State.swift */,
+				A12E6B151D58DF1600A3A488 /* Store.swift */,
+			);
+			path = ReKatana;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A19D4E021D58B05800E232BF /* ReKatana */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A19D4E151D58B05800E232BF /* Build configuration list for PBXNativeTarget "ReKatana" */;
+			buildPhases = (
+				A19D4DFF1D58B05800E232BF /* Sources */,
+				A19D4E001D58B05800E232BF /* Frameworks */,
+				A19D4E011D58B05800E232BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReKatana;
+			productName = ReKatana;
+			productReference = A19D4E031D58B05800E232BF /* ReKatana.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A19D4E1B1D58B4DF00E232BF /* ReKatanaTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A19D4E231D58B4DF00E232BF /* Build configuration list for PBXNativeTarget "ReKatanaTests" */;
+			buildPhases = (
+				A19D4E181D58B4DF00E232BF /* Sources */,
+				A19D4E191D58B4DF00E232BF /* Frameworks */,
+				A19D4E1A1D58B4DF00E232BF /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A19D4E221D58B4DF00E232BF /* PBXTargetDependency */,
+			);
+			name = ReKatanaTests;
+			productName = ReKatanaTests;
+			productReference = A19D4E1C1D58B4DF00E232BF /* ReKatanaTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A19D4DFB1D58B05800E232BF /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = BendingSpoons;
+				TargetAttributes = {
+					A19D4E021D58B05800E232BF = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+					A19D4E1B1D58B4DF00E232BF = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+						TestTargetID = A19D4E021D58B05800E232BF;
+					};
+				};
+			};
+			buildConfigurationList = A19D4DFE1D58B05800E232BF /* Build configuration list for PBXProject "ReKatana" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A19D4DFA1D58B05800E232BF;
+			productRefGroup = A19D4E041D58B05800E232BF /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A19D4E021D58B05800E232BF /* ReKatana */,
+				A19D4E1B1D58B4DF00E232BF /* ReKatanaTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A19D4E011D58B05800E232BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19D4E111D58B05800E232BF /* LaunchScreen.storyboard in Resources */,
+				A19D4E0E1D58B05800E232BF /* Assets.xcassets in Resources */,
+				A19D4E0C1D58B05800E232BF /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4E1A1D58B4DF00E232BF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A19D4DFF1D58B05800E232BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19D4E091D58B05800E232BF /* ViewController.swift in Sources */,
+				A19D4E281D58B50100E232BF /* Action.swift in Sources */,
+				A1E175ED1D58BB920012A468 /* Reducer.swift in Sources */,
+				A12E6B161D58DF1600A3A488 /* Store.swift in Sources */,
+				A1E175EF1D58BC140012A468 /* State.swift in Sources */,
+				A19D4E071D58B05800E232BF /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A19D4E181D58B4DF00E232BF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A19D4E1F1D58B4DF00E232BF /* ReducerTests.swift in Sources */,
+				A10CD95D1D58B6850079B36F /* actions.swift in Sources */,
+				A12E6B141D58D0D200A3A488 /* CombinedReducerTests.swift in Sources */,
+				A12E6B181D58E15B00A3A488 /* storeTests.swift in Sources */,
+				A1E686351D59C8A50036AFB4 /* middlewareTests.swift in Sources */,
+				A10CD95F1D58B7180079B36F /* reducers.swift in Sources */,
+				A10CD9611D58B7DC0079B36F /* states.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A19D4E221D58B4DF00E232BF /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A19D4E021D58B05800E232BF /* ReKatana */;
+			targetProxy = A19D4E211D58B4DF00E232BF /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A19D4E0A1D58B05800E232BF /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A19D4E0B1D58B05800E232BF /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		A19D4E0F1D58B05800E232BF /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A19D4E101D58B05800E232BF /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A19D4E131D58B05800E232BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A19D4E141D58B05800E232BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A19D4E161D58B05800E232BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ReKatana/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BSP.ReKatana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A19D4E171D58B05800E232BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = ReKatana/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BSP.ReKatana;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		A19D4E241D58B4DF00E232BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ReKatanaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BSP.ReKatanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReKatana.app/ReKatana";
+			};
+			name = Debug;
+		};
+		A19D4E251D58B4DF00E232BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = ReKatanaTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BSP.ReKatanaTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReKatana.app/ReKatana";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A19D4DFE1D58B05800E232BF /* Build configuration list for PBXProject "ReKatana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19D4E131D58B05800E232BF /* Debug */,
+				A19D4E141D58B05800E232BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A19D4E151D58B05800E232BF /* Build configuration list for PBXNativeTarget "ReKatana" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19D4E161D58B05800E232BF /* Debug */,
+				A19D4E171D58B05800E232BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A19D4E231D58B4DF00E232BF /* Build configuration list for PBXNativeTarget "ReKatanaTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A19D4E241D58B4DF00E232BF /* Debug */,
+				A19D4E251D58B4DF00E232BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A19D4DFB1D58B05800E232BF /* Project object */;
+}
