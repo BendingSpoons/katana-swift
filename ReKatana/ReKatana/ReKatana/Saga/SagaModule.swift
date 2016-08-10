@@ -21,7 +21,7 @@ public struct SagaModule {
         return
       }
     
-      assertionFailure("This should not happen, it is most likely a bug in the library. Please open an issue")
+      preconditionFailure("This should not happen, it is most likely a bug in the library. Please open an issue")
     }
   }
 }
