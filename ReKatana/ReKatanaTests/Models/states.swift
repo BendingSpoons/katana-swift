@@ -26,7 +26,7 @@ struct User: Equatable {
   }
 }
 
-struct TodoState: State {
+struct TodoState: State, Equatable {
   let todos: [Todo]
   
   static func ==(lhs: TodoState, rhs: TodoState) -> Bool {
@@ -34,7 +34,7 @@ struct TodoState: State {
   }
 }
 
-struct UserState: State {
+struct UserState: State, Equatable {
   let users: [User]
 
   static func ==(lhs: UserState, rhs: UserState) -> Bool {
@@ -42,7 +42,7 @@ struct UserState: State {
   }
 }
 
-struct AppState: State {
+struct AppState: State, Equatable {
   let todo: TodoState
   let user: UserState
   
