@@ -20,9 +20,11 @@ struct SyncAction<Payload>: Action {
 
 struct SyncActionCreator<Payload> {
   let actionName: String
+  let actionType: Any.Type
   
   public init(withName name: String) {
     actionName = name
+    actionType = SyncAction<Payload>.self
   }
   
   func with(payload: Payload) -> SyncAction<Payload> {
