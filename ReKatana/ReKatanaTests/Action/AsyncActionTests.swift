@@ -12,24 +12,21 @@ import XCTest
 
 class AsyncActionTests: XCTestCase {
   func testActionCreation() {
-    let TestAction = AsyncActionCreator<(u: String, p: String), Int, Float>(withName: "TestAction")
-    let action = TestAction.with(payload: (u: "username", p: "password"))
-    
-    XCTAssertEqual(TestAction.actionName, "TestAction")
-    XCTAssertEqual(action.actionName, "TestAction")
-    XCTAssertEqual(action.payload?.u, "username")
-    XCTAssertEqual(action.payload?.p, "password")
+    let action = AsyncActions.LoginAction.with(payload: "token")
+
+    XCTAssertEqual(AsyncActions.LoginAction.actionName, "LoginAction")
+    XCTAssertEqual(action.actionName, AsyncActions.LoginAction.actionName)
+    XCTAssertEqual(action.payload, "token")
     XCTAssertEqual(action.completedPayload, nil)
     XCTAssertEqual(action.errorPayload, nil)
     XCTAssertEqual(action.state, AsyncActionState.Loading)
   }
   
   func testActionCompleted() {
-    let TestAction = AsyncActionCreator<String, Int, Float>(withName: "TestAction")
-    let action = TestAction.with(payload: "PAYLOAD")
+    let action = AsyncActions.LoginAction.with(payload: "token")
     let completedAction = action.completedAction(payload: 1)
     
-    XCTAssertEqual(completedAction.actionName, "TestAction")
+    XCTAssertEqual(completedAction.actionName, AsyncActions.LoginAction.actionName)
     XCTAssertEqual(completedAction.payload, nil)
     XCTAssertEqual(completedAction.completedPayload, 1)
     XCTAssertEqual(completedAction.errorPayload, nil)
@@ -37,11 +34,10 @@ class AsyncActionTests: XCTestCase {
   }
 
   func testActionError() {
-    let TestAction = AsyncActionCreator<String, Int, Float>(withName: "TestAction")
-    let action = TestAction.with(payload: "PAYLOAD")
+    let action = AsyncActions.LoginAction.with(payload: "token")
     let errorAction = action.errorAction(payload: 0.05)
     
-    XCTAssertEqual(errorAction.actionName, "TestAction")
+    XCTAssertEqual(errorAction.actionName, AsyncActions.LoginAction.actionName)
     XCTAssertEqual(errorAction.payload, nil)
     XCTAssertEqual(errorAction.completedPayload, nil)
     XCTAssertEqual(errorAction.errorPayload, 0.05)

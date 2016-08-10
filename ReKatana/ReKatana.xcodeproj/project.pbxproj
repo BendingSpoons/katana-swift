@@ -23,7 +23,11 @@
 		A12269131D5B5D10008D7E0C /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A122690F1D5B5D10008D7E0C /* MiddlewareTests.swift */; };
 		A12269141D5B5D10008D7E0C /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269101D5B5D10008D7E0C /* ReducerTests.swift */; };
 		A12269151D5B5D10008D7E0C /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269111D5B5D10008D7E0C /* StoreTests.swift */; };
+		A12269171D5B5D58008D7E0C /* ActionSagaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269161D5B5D58008D7E0C /* ActionSagaTests.swift */; };
 		A159AB841D5A307300FEE240 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159AB831D5A307300FEE240 /* SagaMiddleware.swift */; };
+		A1701CE81D5B68B70037B0F5 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1701CE71D5B68B70037B0F5 /* SagaModule+Action.swift */; };
+		A1701CEA1D5B748F0037B0F5 /* ActionSyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1701CE91D5B748F0037B0F5 /* ActionSyncReducer.swift */; };
+		A1701CED1D5B75040037B0F5 /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1701CEC1D5B75040037B0F5 /* actionActions.swift */; };
 		A19D4E071D58B05800E232BF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E061D58B05800E232BF /* AppDelegate.swift */; };
 		A19D4E091D58B05800E232BF /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D4E081D58B05800E232BF /* ViewController.swift */; };
 		A19D4E0C1D58B05800E232BF /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D4E0A1D58B05800E232BF /* Main.storyboard */; };
@@ -60,7 +64,11 @@
 		A122690F1D5B5D10008D7E0C /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		A12269101D5B5D10008D7E0C /* ReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
 		A12269111D5B5D10008D7E0C /* StoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
+		A12269161D5B5D58008D7E0C /* ActionSagaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSagaTests.swift; sourceTree = "<group>"; };
 		A159AB831D5A307300FEE240 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
+		A1701CE71D5B68B70037B0F5 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
+		A1701CE91D5B748F0037B0F5 /* ActionSyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSyncReducer.swift; sourceTree = "<group>"; };
+		A1701CEC1D5B75040037B0F5 /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A19D4E031D58B05800E232BF /* ReKatana.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReKatana.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A19D4E061D58B05800E232BF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A19D4E081D58B05800E232BF /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -107,6 +115,7 @@
 			children = (
 				A12268F61D5B569A008D7E0C /* AsyncAction.swift */,
 				A12268FA1D5B5BD8008D7E0C /* SyncAction.swift */,
+				A1701CE71D5B68B70037B0F5 /* SagaModule+Action.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -133,8 +142,11 @@
 		A12268FE1D5B5C8B008D7E0C /* Action */ = {
 			isa = PBXGroup;
 			children = (
+				A1701CEB1D5B74F80037B0F5 /* Models */,
 				A12269081D5B5CF2008D7E0C /* AsyncActionTests.swift */,
 				A12269091D5B5CF2008D7E0C /* SyncActionTests.swift */,
+				A12269161D5B5D58008D7E0C /* ActionSagaTests.swift */,
+				A1701CE91D5B748F0037B0F5 /* ActionSyncReducer.swift */,
 			);
 			path = Action;
 			sourceTree = "<group>";
@@ -148,6 +160,14 @@
 				A12269031D5B5CCF008D7E0C /* Store.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		A1701CEB1D5B74F80037B0F5 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1701CEC1D5B75040037B0F5 /* actionActions.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		A19D4DFA1D58B05800E232BF = {
@@ -322,6 +342,7 @@
 				A1CB4D9F1D5A246800D4BB61 /* sagaTypes.swift in Sources */,
 				A12269061D5B5CCF008D7E0C /* State.swift in Sources */,
 				A1CB4D9D1D5A245100D4BB61 /* SagaModule.swift in Sources */,
+				A1701CE81D5B68B70037B0F5 /* SagaModule+Action.swift in Sources */,
 				A159AB841D5A307300FEE240 /* SagaMiddleware.swift in Sources */,
 				A12269071D5B5CCF008D7E0C /* Store.swift in Sources */,
 				A12269051D5B5CCF008D7E0C /* Reducer.swift in Sources */,
@@ -339,8 +360,11 @@
 				A12269131D5B5D10008D7E0C /* MiddlewareTests.swift in Sources */,
 				A12269121D5B5D10008D7E0C /* CombinedReducerTests.swift in Sources */,
 				A12269151D5B5D10008D7E0C /* StoreTests.swift in Sources */,
+				A1701CED1D5B75040037B0F5 /* actionActions.swift in Sources */,
 				A12269141D5B5D10008D7E0C /* ReducerTests.swift in Sources */,
+				A12269171D5B5D58008D7E0C /* ActionSagaTests.swift in Sources */,
 				A122690A1D5B5CF2008D7E0C /* AsyncActionTests.swift in Sources */,
+				A1701CEA1D5B748F0037B0F5 /* ActionSyncReducer.swift in Sources */,
 				A10CD95D1D58B6850079B36F /* actions.swift in Sources */,
 				A122690D1D5B5CFA008D7E0C /* SagaTests.swift in Sources */,
 				A10CD95F1D58B7180079B36F /* reducers.swift in Sources */,

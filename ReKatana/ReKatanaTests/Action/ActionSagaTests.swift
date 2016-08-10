@@ -15,46 +15,37 @@ import XCTest
 class ActionSagaModuleTests: XCTestCase {
   func testCanAddASyncAction() {
     
-    typealias TestSyncActionType = SyncAction<Int>
-    let SyncAction = SyncActionCreator<Int>(withName: "TestSyncAction")
-    
-    let spySaga: Saga<TestSyncActionType, AppReducer> = { action, getState, dispatch in }
+    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer> = { action, getState, dispatch in }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forActionCreator: SyncAction)
+    module.addSaga(spySaga, forActionCreator: SyncActions.LogoutAction)
     
     XCTAssertEqual(module.sagas.count, 1)
-    XCTAssertEqual(module.sagas.keys.first, SyncAction.actionName)
+    XCTAssertEqual(module.sagas.keys.first, SyncActions.LogoutAction.actionName)
   }
 
 
   func testCanAddAsyncAction() {
-    typealias TestAsyncActionType = AsyncAction<Int, String, String>
-    let AsyncAction = AsyncActionCreator<Int, String, String>(withName: "TestAsyncAction")
-    
-    let spySaga: Saga<TestAsyncActionType, AppReducer> = { action, getState, dispatch in }
+    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer> = { action, getState, dispatch in }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forActionCreator: AsyncAction)
+    module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
     
     XCTAssertEqual(module.sagas.count, 1)
-    XCTAssertEqual(module.sagas.keys.first, AsyncAction.actionName)
+    XCTAssertEqual(module.sagas.keys.first, AsyncActions.LoginAction.actionName)
   }
   
   func testReceiveSyncAction() {
     var invoked: Bool = false
-    var invokedAction: TestSyncActionType?
+    var invokedAction: SyncActions.LogoutActionType?
     
-    typealias TestSyncActionType = SyncAction<String>
-    let SyncAction = SyncActionCreator<String>(withName: "TestSyncAction")
-    
-    let spySaga: Saga<TestSyncActionType, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer> = { action, getState, dispatch in
       invoked = true
       invokedAction = action
     }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forActionCreator: SyncAction)
+    module.addSaga(spySaga, forActionCreator: SyncActions.LogoutAction)
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -62,7 +53,7 @@ class ActionSagaModuleTests: XCTestCase {
         ])
       ])
     
-    let action = SyncAction.with(payload: "PAYLOAD")
+    let action = SyncActions.LogoutAction.with(payload: "PAYLOAD")
     store.dispatch(action)
     
     XCTAssertEqual(invoked, true)
@@ -72,18 +63,15 @@ class ActionSagaModuleTests: XCTestCase {
   
   func testReceiveAsyncAction() {
     var invoked: Bool = false
-    var invokedAction: TestAsyncActionType?
+    var invokedAction: AsyncActions.LoginActionType?
     
-    typealias TestAsyncActionType = AsyncAction<String, Int, Int>
-    let AsyncAction = AsyncActionCreator<String, Int, Int>(withName: "TestAsyncAction")
-    
-    let spySaga: Saga<TestAsyncActionType, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer> = { action, getState, dispatch in
       invoked = true
       invokedAction = action
     }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forActionCreator: AsyncAction)
+    module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -91,7 +79,7 @@ class ActionSagaModuleTests: XCTestCase {
         ])
       ])
     
-    let action = AsyncAction.with(payload: "PAYLOAD")
+    let action = AsyncActions.LoginAction.with(payload: "PAYLOAD")
     store.dispatch(action)
     
     XCTAssertEqual(invoked, true)

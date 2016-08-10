@@ -12,12 +12,10 @@ import XCTest
 
 class SyncActionTests: XCTestCase {
   func testActionCreation() {
-    let TestAction = SyncActionCreator<(u: String, p: String)>(withName: "TestAction")
-    let action = TestAction.with(payload: (u: "username", p: "password"))
+    let action = SyncActions.LogoutAction.with(payload: "Invalid Token")
     
-    XCTAssertEqual(TestAction.actionName, "TestAction")
-    XCTAssertEqual(action.actionName, "TestAction")
-    XCTAssertEqual(action.payload?.u, "username")
-    XCTAssertEqual(action.payload?.p, "password")
+    XCTAssertEqual(SyncActions.LogoutAction.actionName, "LogoutAction")
+    XCTAssertEqual(action.actionName, SyncActions.LogoutAction.actionName)
+    XCTAssertEqual(action.payload, "Invalid Token")
   }
 }
