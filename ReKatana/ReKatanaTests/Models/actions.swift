@@ -10,6 +10,7 @@ import Foundation
 @testable import ReKatana
 
 struct AddTodoAction: Action, Equatable {
+  let actionName = "AddTodo"
   let title: String
   
   static func ==(lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
@@ -18,9 +19,11 @@ struct AddTodoAction: Action, Equatable {
 }
 
 struct RemoveTodoAction: Action {
-    let id: String
+  let actionName = "RemoveTodo"
+  let id: String
 }
 
 
-struct ExternalAction: Action {}
-struct InitAction: Action {}
+struct ExternalAction: Action {
+  let actionName = "External"
+}

@@ -13,9 +13,9 @@ public struct SagaModule {
   
   mutating func addSaga<ManagedAction: Action, RootState>(
     _ saga: (action: ManagedAction, getState: () -> RootState, dispatch: StoreDispatch) -> Void,
-    forAction action: ManagedAction.Type
+    forActionNamed name: String
   ) {
-    sagas[action.actionName()] = { action, getState, dispatch in
+    sagas[name] = { action, getState, dispatch in
       if let a = action as? ManagedAction, let gS = getState as? () -> RootState {
         saga(action: a, getState: gS, dispatch: dispatch)
         return

@@ -15,7 +15,7 @@ private func handleAction<RootReducer: Reducer>(
   usingSagas sagas: [String: [AnySaga]],
   inStore store: Store<RootReducer>) -> Void {
   
-  let actionName = action.dynamicType.actionName()
+  let actionName = action.actionName
   let actionSagas = sagas[actionName]
   
   

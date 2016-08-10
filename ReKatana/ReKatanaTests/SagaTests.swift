@@ -21,7 +21,7 @@ class SagaTests: XCTestCase {
     }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forAction: AddTodoAction.self)
+    module.addSaga(spySaga, forActionNamed: "AddTodo")
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -47,7 +47,7 @@ class SagaTests: XCTestCase {
     }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forAction: AddTodoAction.self)
+    module.addSaga(spySaga, forActionNamed: "AddTodo")
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -73,7 +73,7 @@ class SagaTests: XCTestCase {
     }
     
     var module = SagaModule()
-    module.addSaga(doubleTodoSaga, forAction: AddTodoAction.self)
+    module.addSaga(doubleTodoSaga, forActionNamed: "AddTodo")
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -106,7 +106,7 @@ class SagaTests: XCTestCase {
     }
     
     var module = SagaModule()
-    module.addSaga(spySaga, forAction: AddTodoAction.self)
+    module.addSaga(spySaga, forActionNamed: "AddTodo")
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
@@ -138,10 +138,10 @@ class SagaTests: XCTestCase {
     }
     
     var moduleOne = SagaModule()
-    moduleOne.addSaga(sagaOne, forAction: AddTodoAction.self)
+    moduleOne.addSaga(sagaOne, forActionNamed: "AddTodo")
     
     var moduleTwo = SagaModule()
-    moduleTwo.addSaga(sagaTwo, forAction: RemoveTodoAction.self)
+    moduleTwo.addSaga(sagaTwo, forActionNamed: "RemoveTodo")
     
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
