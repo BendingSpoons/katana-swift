@@ -23,24 +23,26 @@ class AsyncActionTests: XCTestCase {
   }
   
   func testActionCompleted() {
+    let username = "username"
     let action = AsyncActions.LoginAction.with(payload: "token")
-    let completedAction = action.completedAction(payload: 1)
+    let completedAction = action.completedAction(payload: username)
     
     XCTAssertEqual(completedAction.actionName, AsyncActions.LoginAction.actionName)
     XCTAssertEqual(completedAction.payload, nil)
-    XCTAssertEqual(completedAction.completedPayload, 1)
+    XCTAssertEqual(completedAction.completedPayload, username)
     XCTAssertEqual(completedAction.errorPayload, nil)
     XCTAssertEqual(completedAction.state, AsyncActionState.Completed)
   }
 
   func testActionError() {
+    let error = "error"
     let action = AsyncActions.LoginAction.with(payload: "token")
-    let errorAction = action.errorAction(payload: 0.05)
+    let errorAction = action.errorAction(payload: error)
     
     XCTAssertEqual(errorAction.actionName, AsyncActions.LoginAction.actionName)
     XCTAssertEqual(errorAction.payload, nil)
     XCTAssertEqual(errorAction.completedPayload, nil)
-    XCTAssertEqual(errorAction.errorPayload, 0.05)
+    XCTAssertEqual(errorAction.errorPayload, error)
     XCTAssertEqual(errorAction.state, AsyncActionState.Error)
   }
 }

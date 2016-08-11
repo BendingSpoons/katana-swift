@@ -10,8 +10,8 @@ import Foundation
 @testable import ReKatana
 
 enum AsyncActions {
-  typealias LoginActionType = AsyncAction<String, Int, Float>
-  static let LoginAction = AsyncActionCreator<String, Int, Float>(withName: "LoginAction")
+  typealias LoginActionType = AsyncAction<String, String, String>
+  static let LoginAction = AsyncActionCreator<String, String, String>(withName: "LoginAction")
 }
 
 
