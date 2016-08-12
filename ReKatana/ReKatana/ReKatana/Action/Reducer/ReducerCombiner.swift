@@ -15,11 +15,7 @@ protocol ReducerCombiner: Reducer {
   // TODO: we are forced to make it settable from outside because of the extension
   // we should add something in the documentation that says that it should never be done
   // and of course we should try to avoid this issue in the first place
-  static var reducers: [String: AnyReducer.Type] { get set }
-  
-  static func addReducer<Payload>(_ reducer: AnyReducer.Type, forAction action: SyncActionCreator<Payload>) -> Void
-  
-  static func addReducer<Payload, CompletedPayload, ErrorPayload>(_ reducer: AnyReducer.Type, forAction action: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>) -> Void
+  static var reducers: [String: AnyReducer.Type] { get }
 }
 
 extension ReducerCombiner {
@@ -40,13 +36,5 @@ extension ReducerCombiner {
     }
     
     return s
-  }
-  
-  static func addReducer<Payload>(_ reducer: AnyReducer.Type, forAction action: SyncActionCreator<Payload>) -> Void {
-    self.reducers[action.actionName] = reducer
-  }
-  
-  static func addReducer<Payload, CompletedPayload, ErrorPayload>(_ reducer: AnyReducer.Type, forAction action: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>) -> Void {
-    self.reducers[action.actionName] = reducer
   }
 }
