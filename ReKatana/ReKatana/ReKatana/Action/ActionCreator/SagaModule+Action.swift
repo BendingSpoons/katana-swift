@@ -8,18 +8,28 @@
 
 import Foundation
 
-
 extension SagaModule {
-  mutating func addSaga<ManagedAction: Action, RootState, Payload>(
-    _ saga: (action: ManagedAction, getState: () -> RootState, dispatch: StoreDispatch) -> Void,
+  
+  mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload>(
+    _ saga: (
+      action: ManagedAction,
+      getState: () -> RootReducer.StateType,
+      dispatch: StoreDispatch,
+      providers: Providers
+    ) -> Void,
     forActionCreator actionCreator: SyncActionCreator<Payload>
-    ) -> Void {
+  ) -> Void {
     
     self.addSaga(saga, forActionNamed: actionCreator.actionName)
   }
   
-  mutating func addSaga<ManagedAction: Action, RootState, Payload, CompletedPayload, ErrorPayload>(
-    _ saga: (action: ManagedAction, getState: () -> RootState, dispatch: StoreDispatch) -> Void,
+  mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload, CompletedPayload, ErrorPayload>(
+    _ saga: (
+    action: ManagedAction,
+    getState: () -> RootReducer.StateType,
+    dispatch: StoreDispatch,
+    providers: Providers
+    ) -> Void,
     forActionCreator actionCreator: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>
     ) -> Void {
     

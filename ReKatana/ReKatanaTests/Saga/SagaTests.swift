@@ -15,7 +15,7 @@ class SagaTests: XCTestCase {
     var invoked: Bool = false
     var invokedAction: Any?
     
-    let spySaga: Saga<AddTodoAction, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       invoked = true
       invokedAction = action
     }
@@ -26,7 +26,7 @@ class SagaTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         module
-      ])
+      ], providersContainer: AppSagaProviderContainer.self)
     ])
     
     let action = AddTodoAction(title: "New Todo")
@@ -42,7 +42,7 @@ class SagaTests: XCTestCase {
   func testShouldNotInvokeSaga() {
     var invoked: Bool = false
     
-    let spySaga: Saga<AddTodoAction, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       invoked = true
     }
     
@@ -52,7 +52,7 @@ class SagaTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         module
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
 
     let action = RemoveTodoAction(id: "A")
@@ -64,7 +64,7 @@ class SagaTests: XCTestCase {
   func testShouldDispatch() {
     var invokations = 0
 
-    let doubleTodoSaga: Saga<AddTodoAction, AppReducer> = { action, getState, dispatch in
+    let doubleTodoSaga: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       invokations = invokations + 1
 
       if (action.title == "double") {
@@ -78,7 +78,7 @@ class SagaTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         module
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
   
     let action = AddTodoAction(title: "double")
@@ -97,7 +97,7 @@ class SagaTests: XCTestCase {
     var firstInvokationState: AppState?
     var secondInvokationState: AppState?
     
-    let spySaga: Saga<AddTodoAction, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       if firstInvokationState != nil {
         secondInvokationState = getState()
       } else {
@@ -111,7 +111,7 @@ class SagaTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         module
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
 
     let initialState = store.getState()
@@ -125,15 +125,14 @@ class SagaTests: XCTestCase {
   }
   
   func testShouldManageMultipleModules() {
-    
     var sagaOneInvoked: Bool = false
     var sagaTwoInvoked: Bool = false
     
-    let sagaOne: Saga<AddTodoAction, AppReducer> = { action, getState, dispatch in
+    let sagaOne: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       sagaOneInvoked = true
     }
     
-    let sagaTwo: Saga<RemoveTodoAction, AppReducer> = { action, getState, dispatch in
+    let sagaTwo: Saga<RemoveTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       sagaTwoInvoked = true
     }
     
@@ -146,7 +145,7 @@ class SagaTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         moduleOne, moduleTwo
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
     
     store.dispatch(AddTodoAction(title: "TITLE"))
@@ -154,5 +153,26 @@ class SagaTests: XCTestCase {
     
     XCTAssertEqual(sagaOneInvoked, true)
     XCTAssertEqual(sagaTwoInvoked, true)
+  }
+  
+  func testShouldAbleToUseProviders() {
+    var baseURL: String? = nil
+    
+    let spySaga: Saga<AddTodoAction, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
+      baseURL = providers.informationProvider?.getBaseURL()
+    }
+    
+    var module = SagaModule()
+    module.addSaga(spySaga, forActionNamed: "AddTodo")
+    
+    let store = Store(AppReducer.self, middlewares: [
+      SagaMiddleware.withSagaModules(
+        [module],
+        providersContainer: AppSagaProviderContainer.self)
+      ])
+    
+    store.dispatch(AddTodoAction(title: "TITLE"))
+    
+    XCTAssertEqual(baseURL, InformationProvider.getBaseURL())
   }
 }

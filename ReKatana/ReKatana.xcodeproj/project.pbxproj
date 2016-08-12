@@ -40,6 +40,8 @@
 		A19D4E111D58B05800E232BF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A19D4E0F1D58B05800E232BF /* LaunchScreen.storyboard */; };
 		A1CB4D9D1D5A245100D4BB61 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB4D9C1D5A245100D4BB61 /* SagaModule.swift */; };
 		A1CB4D9F1D5A246800D4BB61 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CB4D9E1D5A246800D4BB61 /* sagaTypes.swift */; };
+		A1E4EFB31D5CD717000C257B /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EFB21D5CD717000C257B /* SagaProvidersContainer.swift */; };
+		A1E4EFB61D5D0136000C257B /* sagaProviderContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1E4EFB51D5D0136000C257B /* sagaProviderContainers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +92,8 @@
 		A19D4E201D58B4DF00E232BF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A1CB4D9C1D5A245100D4BB61 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
 		A1CB4D9E1D5A246800D4BB61 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
+		A1E4EFB21D5CD717000C257B /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
+		A1E4EFB51D5D0136000C257B /* sagaProviderContainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaProviderContainers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,6 +147,7 @@
 		A12268FD1D5B5C7E008D7E0C /* Saga */ = {
 			isa = PBXGroup;
 			children = (
+				A1E4EFB41D5D011E000C257B /* Models */,
 				A122690C1D5B5CFA008D7E0C /* SagaTests.swift */,
 			);
 			path = Saga;
@@ -261,8 +266,17 @@
 				A1CB4D9C1D5A245100D4BB61 /* SagaModule.swift */,
 				A1CB4D9E1D5A246800D4BB61 /* sagaTypes.swift */,
 				A159AB831D5A307300FEE240 /* SagaMiddleware.swift */,
+				A1E4EFB21D5CD717000C257B /* SagaProvidersContainer.swift */,
 			);
 			path = Saga;
+			sourceTree = "<group>";
+		};
+		A1E4EFB41D5D011E000C257B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1E4EFB51D5D0136000C257B /* sagaProviderContainers.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -372,6 +386,7 @@
 				A174FCCD1D5C6AAC0057B710 /* SyncReducer.swift in Sources */,
 				A1CB4D9F1D5A246800D4BB61 /* sagaTypes.swift in Sources */,
 				A174FCC81D5C689A0057B710 /* SyncAction.swift in Sources */,
+				A1E4EFB31D5CD717000C257B /* SagaProvidersContainer.swift in Sources */,
 				A12269061D5B5CCF008D7E0C /* State.swift in Sources */,
 				A1CB4D9D1D5A245100D4BB61 /* SagaModule.swift in Sources */,
 				A174FCC71D5C689A0057B710 /* SagaModule+Action.swift in Sources */,
@@ -394,6 +409,7 @@
 				A174FCBF1D5C60A60057B710 /* actionStates.swift in Sources */,
 				A174FCC11D5C61F10057B710 /* actionReducers.swift in Sources */,
 				A12269131D5B5D10008D7E0C /* MiddlewareTests.swift in Sources */,
+				A1E4EFB61D5D0136000C257B /* sagaProviderContainers.swift in Sources */,
 				A12269121D5B5D10008D7E0C /* CombinedReducerTests.swift in Sources */,
 				A12269151D5B5D10008D7E0C /* StoreTests.swift in Sources */,
 				A1701CED1D5B75040037B0F5 /* actionActions.swift in Sources */,

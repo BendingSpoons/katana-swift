@@ -11,13 +11,21 @@ import Foundation
 public struct SagaModule {
   private(set) var sagas: [String: AnySaga] = [:]
   
-  mutating func addSaga<ManagedAction: Action, RootState>(
-    _ saga: (action: ManagedAction, getState: () -> RootState, dispatch: StoreDispatch) -> Void,
+  mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>>(
+    _ saga: (
+      action: ManagedAction,
+      getState: () -> RootReducer.StateType,
+      dispatch: StoreDispatch,
+      providers: Providers
+    ) -> Void,
     forActionNamed name: String
   ) {
-    sagas[name] = { action, getState, dispatch in
-      if let a = action as? ManagedAction, let gS = getState as? () -> RootState {
-        saga(action: a, getState: gS, dispatch: dispatch)
+    sagas[name] = { action, getState, dispatch, providers in
+      if  let a = action as? ManagedAction,
+          let gS = getState as? () -> RootReducer.StateType,
+          let p = providers as? Providers {
+
+        saga(action: a, getState: gS, dispatch: dispatch, providers: p)
         return
       }
     

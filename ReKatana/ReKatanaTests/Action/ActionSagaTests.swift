@@ -15,7 +15,7 @@ import XCTest
 class ActionSagaModuleTests: XCTestCase {
   func testCanAddASyncAction() {
     
-    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer> = { action, getState, dispatch in }
+    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in }
     
     var module = SagaModule()
     module.addSaga(spySaga, forActionCreator: SyncActions.LogoutAction)
@@ -24,9 +24,8 @@ class ActionSagaModuleTests: XCTestCase {
     XCTAssertEqual(module.sagas.keys.first, SyncActions.LogoutAction.actionName)
   }
 
-
   func testCanAddAsyncAction() {
-    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer> = { action, getState, dispatch in }
+    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in }
     
     var module = SagaModule()
     module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
@@ -39,18 +38,19 @@ class ActionSagaModuleTests: XCTestCase {
     var invoked: Bool = false
     var invokedAction: SyncActions.LogoutActionType?
     
-    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<SyncActions.LogoutActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       invoked = true
       invokedAction = action
     }
     
     var module = SagaModule()
+  
     module.addSaga(spySaga, forActionCreator: SyncActions.LogoutAction)
-    
+  
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
           module
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
     
     let action = SyncActions.LogoutAction.with(payload: "PAYLOAD")
@@ -65,7 +65,7 @@ class ActionSagaModuleTests: XCTestCase {
     var invoked: Bool = false
     var invokedAction: AsyncActions.LoginActionType?
     
-    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer> = { action, getState, dispatch in
+    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
       invoked = true
       invokedAction = action
     }
@@ -76,7 +76,7 @@ class ActionSagaModuleTests: XCTestCase {
     let store = Store(AppReducer.self, middlewares: [
       SagaMiddleware.withSagaModules([
         module
-        ])
+        ], providersContainer: AppSagaProviderContainer.self)
       ])
     
     let action = AsyncActions.LoginAction.with(payload: "PAYLOAD")
