@@ -88,4 +88,34 @@ class ActionSagaModuleTests: XCTestCase {
     XCTAssertEqual(invokedAction?.completedPayload, action.completedPayload)
     XCTAssertEqual(invokedAction?.errorPayload, action.errorPayload)
   }
+  
+  func testOnlyLoadingAsync() {
+    var invoked: Bool = false
+    var invokedCompleted: Bool = false
+
+    let spySaga: Saga<AsyncActions.LoginActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
+      if (action.state == .Loading) {
+        invoked = true
+        dispatch(action.completedAction(payload: "completed"))
+      
+      } else {
+        invokedCompleted = true
+      }
+    }
+    
+    var module = SagaModule()
+    module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
+    
+    let store = Store(AppReducer.self, middlewares: [
+      SagaMiddleware.withSagaModules([
+        module
+        ], providersContainer: AppSagaProviderContainer.self)
+      ])
+    
+    let action = AsyncActions.LoginAction.with(payload: "PAYLOAD")
+    store.dispatch(action)
+    
+    XCTAssertEqual(invoked, true)
+    XCTAssertEqual(invokedCompleted, false)
+  }
 }

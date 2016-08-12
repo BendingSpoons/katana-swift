@@ -13,7 +13,7 @@ import Foundation
 import XCTest
 @testable import ReKatana
 
-class ActionSyncReducer: XCTestCase {
+class ActionReducerTests: XCTestCase {
   func testSyncReducer() {
     let action = SyncActions.LogoutAction.with(payload: "Invalid token")
     let initialState = AuthenticationState(isAuthenticating: false, isAuthenticated: true, username: "username", token: "ABC")

@@ -25,6 +25,18 @@ extension SagaModule {
     forActionCreator actionCreator: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>
     ) -> Void {
     
-    self.addSaga(saga, forActionNamed: actionCreator.actionName)
+    /*
+      The original saga is wrapped in this closure because we want to really dispatch the saga only when
+      the state is loading. Here we implement this behaviour
+    */
+    let filteredSaga: Saga3<AsyncAction<Payload, CompletedPayload, ErrorPayload>, RootReducer, Providers> = {
+      action, getState, dispatch, providers in
+
+      if action.state == .Loading {
+        saga(action: action, getState: getState, dispatch: dispatch, providers: providers)
+      }
+    }
+    
+    self.addSaga(filteredSaga, forActionNamed: actionCreator.actionName)
   }
 }
