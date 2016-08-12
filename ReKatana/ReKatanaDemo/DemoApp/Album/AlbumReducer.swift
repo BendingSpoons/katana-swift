@@ -20,7 +20,7 @@ import Foundation
  */
 private enum AddAlbum: SyncReducer {
   static func reduceSync(action: AddAlbumActionType, state: AlbumListState) -> AlbumListState {
-    let newAlbum = Album(name: action.payload)
+    let newAlbum = Album(id: NSUUID().uuidString, name: action.payload)
     
     return AlbumListState(list: state.list + [newAlbum])
   }
@@ -37,7 +37,7 @@ enum AlbumListReducer: ReducerCombiner {
    They basically return the initial state when the state is not defined (usually, at the very beginning of the application)
   */
   static let initialState = AlbumListState(list: [
-    Album(name: "Default Album")
+    Album(id: NSUUID().uuidString, name: "Default Album")
   ])
 
   /*

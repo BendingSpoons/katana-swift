@@ -1,5 +1,5 @@
 //
-//  AlbumListState.swift
+//  AlbumModels.swift
 //  ReKatana
 //
 //  Created by Mauro Bolis on 12/08/16.
@@ -9,9 +9,13 @@
 import Foundation
 
 struct Album {
+  let id: String
   let name: String
+  let photos: [Photo] = []
 }
 
-struct AlbumListState: State {
-  let list: [Album]
+struct Photo {
+  let id: String
+  let name: String
+  let resolution: CGSize
 }
