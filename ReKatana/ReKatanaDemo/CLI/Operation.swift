@@ -19,7 +19,7 @@ enum Operation: Int {
 
 func askOperation() -> Operation {
   
-  let question = "What do you want to do?\n0) Create a new album\n1)List Albums"
+  let question = "What do you want to do?\n0) Create a new album\n1) List Albums"
   let error = "Invalid choice"
   
   return aksQuestion(question, error: error, until: {

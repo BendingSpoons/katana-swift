@@ -15,6 +15,6 @@ func listAlbums(store: Store<RootReducer>) {
   print("Album List:")
   
   albums.forEach { album in
-    print("- \(album.name)")
+    print("- \(album.name), \(album.photos.count) photo")
   }
 }
