@@ -35,9 +35,32 @@ import Foundation
  */
 
 // Let's create the store
+
+/*
+ First we create the saga middleware.
+ Here we add all the saga modules that are used in the application and we create the store middleware
+ that will fire the proper sagas actions are dispastched
+ 
+ Note: Here we are using SagaProvidersContainer as providersContainer.
+ We don't really need any provider (so far), so we just used the base, provided, class that is basically empty
+ */
 let sagaMiddleware = SagaMiddleware.withSagaModules([], providersContainer: SagaProvidersContainer<RootReducer>.self)
+
+/*
+ Here we create the store.
+ We need two things:
+ 1) The type of the root reducer
+ 2) the list of middlewares that will augment the store capabilities
+ 
+ As you will notice, most of the generic types/classes that are available in the library use the root reducer for specialization.
+ The root reducer, in fact, determinates the structure of the store' state since everything starts from it. Every reducer has an associated state type. And of course the root reducer has the root state associated. For this reason, by just specifying the root reducer, we are able to define the whole store behaviour (e.g., what is the state returned by get state, what is the model tree of the application and so on)
+ */
 let store = Store.init(RootReducer.self, middlewares: [sagaMiddleware])
 
+/*
+ Just logic here, nothing really related to the library.
+ We ask for an operation and we invoke the propert method to perform it
+*/
 repeat {
   let operation = askOperation()
   

@@ -8,6 +8,10 @@
 
 import Foundation
 
+/*
+ This is the root reducer of the application.
+ Since the root state is just a collection of state's slides, here we don't really do anything. The root state is created by composing the result of other reducers.
+ */
 enum RootReducer: Reducer {
   static func reduce(action: Action, state: RootState?) -> RootState {
     return RootState(
