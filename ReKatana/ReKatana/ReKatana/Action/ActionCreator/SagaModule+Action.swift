@@ -12,16 +12,16 @@ import Foundation
 public typealias Saga3<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (action: ManagedAction, getState: () -> RootReducer.StateType, dispatch: StoreDispatch, providers: Providers) -> Void
 
 extension SagaModule {
-  mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload>(
-    _ saga: Saga3<ManagedAction, RootReducer, Providers>,
+  mutating func addSaga<RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload>(
+    _ saga: Saga3<SyncAction<Payload>, RootReducer, Providers>,
     forActionCreator actionCreator: SyncActionCreator<Payload>
   ) -> Void {
-    
+
     self.addSaga(saga, forActionNamed: actionCreator.actionName)
   }
   
-  mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload, CompletedPayload, ErrorPayload>(
-    _ saga: Saga3<ManagedAction, RootReducer, Providers>,
+  mutating func addSaga<RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload, CompletedPayload, ErrorPayload>(
+    _ saga: Saga3<AsyncAction<Payload, CompletedPayload, ErrorPayload>, RootReducer, Providers>,
     forActionCreator actionCreator: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>
     ) -> Void {
     

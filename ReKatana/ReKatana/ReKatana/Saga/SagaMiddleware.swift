@@ -21,7 +21,6 @@ private func handleAction<RootReducer: Reducer>(
   let actionName = action.actionName
   let actionSagas = sagas[actionName]
   
-  
   actionSagas?.forEach { saga in
     saga(action: action, getState: store.getState, dispatch: store.dispatch, providers: providersContainer)
   }
