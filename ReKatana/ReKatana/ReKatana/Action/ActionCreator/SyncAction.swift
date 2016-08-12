@@ -9,7 +9,7 @@
 import Foundation
 
 struct SyncAction<Payload>: Action {
-  let payload: Payload?
+  let payload: Payload
   private(set) var actionName: String
   
   private init(actionName: String, payload: Payload) {
