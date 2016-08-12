@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: remove this as soon as the typealias bug has been fixed
 public typealias StoreMiddleware2<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
 
 private func handleAction<RootReducer: Reducer>(

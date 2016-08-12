@@ -8,6 +8,7 @@
 
 import Foundation
 
+// TODO: move these in a separate file as soon as the typealias bug has been fixed
 public typealias StoreListener<RootReducer: Reducer> = (store: Store<RootReducer>) -> Void
 public typealias StoreUnsubscribe = () -> ()
 public typealias StoreMiddleware<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void

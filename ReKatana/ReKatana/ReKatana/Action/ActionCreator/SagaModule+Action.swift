@@ -8,15 +8,12 @@
 
 import Foundation
 
+// TODO: remove this and use sagaTypes as soon as the typealias bug has been fixed
+public typealias Saga3<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (action: ManagedAction, getState: () -> RootReducer.StateType, dispatch: StoreDispatch, providers: Providers) -> Void
+
 extension SagaModule {
-  
   mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload>(
-    _ saga: (
-      action: ManagedAction,
-      getState: () -> RootReducer.StateType,
-      dispatch: StoreDispatch,
-      providers: Providers
-    ) -> Void,
+    _ saga: Saga3<ManagedAction, RootReducer, Providers>,
     forActionCreator actionCreator: SyncActionCreator<Payload>
   ) -> Void {
     
@@ -24,12 +21,7 @@ extension SagaModule {
   }
   
   mutating func addSaga<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload, CompletedPayload, ErrorPayload>(
-    _ saga: (
-    action: ManagedAction,
-    getState: () -> RootReducer.StateType,
-    dispatch: StoreDispatch,
-    providers: Providers
-    ) -> Void,
+    _ saga: Saga3<ManagedAction, RootReducer, Providers>,
     forActionCreator actionCreator: AsyncActionCreator<Payload, CompletedPayload, ErrorPayload>
     ) -> Void {
     
