@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1083E321D5DE1C000121211 /* createAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E2F1D5DE1C000121211 /* createAlbum.swift */; };
+		A1083E331D5DE1C000121211 /* helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E301D5DE1C000121211 /* helpers.swift */; };
+		A1083E341D5DE1C000121211 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E311D5DE1C000121211 /* Operation.swift */; };
+		A1083E361D5DE1E300121211 /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E351D5DE1E300121211 /* RootReducer.swift */; };
+		A1083E381D5DE1ED00121211 /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E371D5DE1ED00121211 /* RootState.swift */; };
+		A1083E3B1D5DE28E00121211 /* AlbumListState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E3A1D5DE28E00121211 /* AlbumListState.swift */; };
+		A1083E3D1D5DE29A00121211 /* AlbumListReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E3C1D5DE29A00121211 /* AlbumListReducer.swift */; };
+		A1083E3F1D5DE4DC00121211 /* AlbumListActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E3E1D5DE4DC00121211 /* AlbumListActions.swift */; };
+		A1083E411D5DE6D200121211 /* listAlbums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1083E401D5DE6D200121211 /* listAlbums.swift */; };
 		A10CD95D1D58B6850079B36F /* actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD95C1D58B6850079B36F /* actions.swift */; };
 		A10CD95F1D58B7180079B36F /* reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD95E1D58B7180079B36F /* reducers.swift */; };
 		A10CD9611D58B7DC0079B36F /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10CD9601D58B7DC0079B36F /* states.swift */; };
@@ -22,6 +31,21 @@
 		A12269141D5B5D10008D7E0C /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269101D5B5D10008D7E0C /* ReducerTests.swift */; };
 		A12269151D5B5D10008D7E0C /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269111D5B5D10008D7E0C /* StoreTests.swift */; };
 		A12269171D5B5D58008D7E0C /* ActionSagaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12269161D5B5D58008D7E0C /* ActionSagaTests.swift */; };
+		A1267B201D5DD7520007D0A5 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B1F1D5DD7520007D0A5 /* main.swift */; };
+		A1267B381D5DD7640007D0A5 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B271D5DD7640007D0A5 /* AsyncAction.swift */; };
+		A1267B391D5DD7640007D0A5 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B281D5DD7640007D0A5 /* SagaModule+Action.swift */; };
+		A1267B3A1D5DD7640007D0A5 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B291D5DD7640007D0A5 /* SyncAction.swift */; };
+		A1267B3B1D5DD7640007D0A5 /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B2B1D5DD7640007D0A5 /* AsyncReducer.swift */; };
+		A1267B3C1D5DD7640007D0A5 /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B2C1D5DD7640007D0A5 /* ReducerCombiner.swift */; };
+		A1267B3D1D5DD7640007D0A5 /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B2D1D5DD7640007D0A5 /* SyncReducer.swift */; };
+		A1267B3E1D5DD7640007D0A5 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B2F1D5DD7640007D0A5 /* Action.swift */; };
+		A1267B3F1D5DD7640007D0A5 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B301D5DD7640007D0A5 /* Reducer.swift */; };
+		A1267B401D5DD7640007D0A5 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B311D5DD7640007D0A5 /* State.swift */; };
+		A1267B411D5DD7640007D0A5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B321D5DD7640007D0A5 /* Store.swift */; };
+		A1267B421D5DD7640007D0A5 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B341D5DD7640007D0A5 /* SagaMiddleware.swift */; };
+		A1267B431D5DD7640007D0A5 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B351D5DD7640007D0A5 /* SagaModule.swift */; };
+		A1267B441D5DD7640007D0A5 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B361D5DD7640007D0A5 /* SagaProvidersContainer.swift */; };
+		A1267B451D5DD7640007D0A5 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1267B371D5DD7640007D0A5 /* sagaTypes.swift */; };
 		A159AB841D5A307300FEE240 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159AB831D5A307300FEE240 /* SagaMiddleware.swift */; };
 		A1701CEA1D5B748F0037B0F5 /* ActionSyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1701CE91D5B748F0037B0F5 /* ActionSyncReducer.swift */; };
 		A1701CED1D5B75040037B0F5 /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1701CEC1D5B75040037B0F5 /* actionActions.swift */; };
@@ -54,7 +78,28 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		A1267B1B1D5DD7520007D0A5 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		A1083E2F1D5DE1C000121211 /* createAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createAlbum.swift; sourceTree = "<group>"; };
+		A1083E301D5DE1C000121211 /* helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = helpers.swift; sourceTree = "<group>"; };
+		A1083E311D5DE1C000121211 /* Operation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
+		A1083E351D5DE1E300121211 /* RootReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
+		A1083E371D5DE1ED00121211 /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
+		A1083E3A1D5DE28E00121211 /* AlbumListState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListState.swift; sourceTree = "<group>"; };
+		A1083E3C1D5DE29A00121211 /* AlbumListReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListReducer.swift; sourceTree = "<group>"; };
+		A1083E3E1D5DE4DC00121211 /* AlbumListActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlbumListActions.swift; sourceTree = "<group>"; };
+		A1083E401D5DE6D200121211 /* listAlbums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = listAlbums.swift; sourceTree = "<group>"; };
 		A10CD95C1D58B6850079B36F /* actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actions.swift; sourceTree = "<group>"; };
 		A10CD95E1D58B7180079B36F /* reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reducers.swift; sourceTree = "<group>"; };
 		A10CD9601D58B7DC0079B36F /* states.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = states.swift; sourceTree = "<group>"; };
@@ -70,6 +115,22 @@
 		A12269101D5B5D10008D7E0C /* ReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
 		A12269111D5B5D10008D7E0C /* StoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		A12269161D5B5D58008D7E0C /* ActionSagaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSagaTests.swift; sourceTree = "<group>"; };
+		A1267B1D1D5DD7520007D0A5 /* ReKatanaDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReKatanaDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1267B1F1D5DD7520007D0A5 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		A1267B271D5DD7640007D0A5 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
+		A1267B281D5DD7640007D0A5 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
+		A1267B291D5DD7640007D0A5 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
+		A1267B2B1D5DD7640007D0A5 /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
+		A1267B2C1D5DD7640007D0A5 /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
+		A1267B2D1D5DD7640007D0A5 /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
+		A1267B2F1D5DD7640007D0A5 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A1267B301D5DD7640007D0A5 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		A1267B311D5DD7640007D0A5 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		A1267B321D5DD7640007D0A5 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A1267B341D5DD7640007D0A5 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
+		A1267B351D5DD7640007D0A5 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
+		A1267B361D5DD7640007D0A5 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
+		A1267B371D5DD7640007D0A5 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 		A159AB831D5A307300FEE240 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
 		A1701CE91D5B748F0037B0F5 /* ActionSyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSyncReducer.swift; sourceTree = "<group>"; };
 		A1701CEC1D5B75040037B0F5 /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
@@ -97,6 +158,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		A1267B1A1D5DD7520007D0A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A19D4E001D58B05800E232BF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -114,6 +182,36 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1083E2D1D5DE18500121211 /* Root */ = {
+			isa = PBXGroup;
+			children = (
+				A1083E351D5DE1E300121211 /* RootReducer.swift */,
+				A1083E371D5DE1ED00121211 /* RootState.swift */,
+			);
+			path = Root;
+			sourceTree = "<group>";
+		};
+		A1083E2E1D5DE1C000121211 /* CLI */ = {
+			isa = PBXGroup;
+			children = (
+				A1083E2F1D5DE1C000121211 /* createAlbum.swift */,
+				A1083E301D5DE1C000121211 /* helpers.swift */,
+				A1083E311D5DE1C000121211 /* Operation.swift */,
+				A1083E401D5DE6D200121211 /* listAlbums.swift */,
+			);
+			path = CLI;
+			sourceTree = "<group>";
+		};
+		A1083E391D5DE27800121211 /* AlbumList */ = {
+			isa = PBXGroup;
+			children = (
+				A1083E3A1D5DE28E00121211 /* AlbumListState.swift */,
+				A1083E3C1D5DE29A00121211 /* AlbumListReducer.swift */,
+				A1083E3E1D5DE4DC00121211 /* AlbumListActions.swift */,
+			);
+			path = AlbumList;
+			sourceTree = "<group>";
+		};
 		A10CD95B1D58B6590079B36F /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -176,6 +274,88 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
+		A1267B1E1D5DD7520007D0A5 /* ReKatanaDemo */ = {
+			isa = PBXGroup;
+			children = (
+				A1083E2E1D5DE1C000121211 /* CLI */,
+				A1267B461D5DDA300007D0A5 /* DemoApp */,
+				A1267B241D5DD7640007D0A5 /* ReKatana */,
+				A1267B1F1D5DD7520007D0A5 /* main.swift */,
+			);
+			path = ReKatanaDemo;
+			sourceTree = "<group>";
+		};
+		A1267B241D5DD7640007D0A5 /* ReKatana */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B251D5DD7640007D0A5 /* Action */,
+				A1267B2E1D5DD7640007D0A5 /* Core */,
+				A1267B331D5DD7640007D0A5 /* Saga */,
+			);
+			name = ReKatana;
+			path = ReKatana/ReKatana;
+			sourceTree = SOURCE_ROOT;
+		};
+		A1267B251D5DD7640007D0A5 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B261D5DD7640007D0A5 /* ActionCreator */,
+				A1267B2A1D5DD7640007D0A5 /* Reducer */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		A1267B261D5DD7640007D0A5 /* ActionCreator */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B271D5DD7640007D0A5 /* AsyncAction.swift */,
+				A1267B281D5DD7640007D0A5 /* SagaModule+Action.swift */,
+				A1267B291D5DD7640007D0A5 /* SyncAction.swift */,
+			);
+			path = ActionCreator;
+			sourceTree = "<group>";
+		};
+		A1267B2A1D5DD7640007D0A5 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B2B1D5DD7640007D0A5 /* AsyncReducer.swift */,
+				A1267B2C1D5DD7640007D0A5 /* ReducerCombiner.swift */,
+				A1267B2D1D5DD7640007D0A5 /* SyncReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		A1267B2E1D5DD7640007D0A5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B2F1D5DD7640007D0A5 /* Action.swift */,
+				A1267B301D5DD7640007D0A5 /* Reducer.swift */,
+				A1267B311D5DD7640007D0A5 /* State.swift */,
+				A1267B321D5DD7640007D0A5 /* Store.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A1267B331D5DD7640007D0A5 /* Saga */ = {
+			isa = PBXGroup;
+			children = (
+				A1267B341D5DD7640007D0A5 /* SagaMiddleware.swift */,
+				A1267B351D5DD7640007D0A5 /* SagaModule.swift */,
+				A1267B361D5DD7640007D0A5 /* SagaProvidersContainer.swift */,
+				A1267B371D5DD7640007D0A5 /* sagaTypes.swift */,
+			);
+			path = Saga;
+			sourceTree = "<group>";
+		};
+		A1267B461D5DDA300007D0A5 /* DemoApp */ = {
+			isa = PBXGroup;
+			children = (
+				A1083E391D5DE27800121211 /* AlbumList */,
+				A1083E2D1D5DE18500121211 /* Root */,
+			);
+			path = DemoApp;
+			sourceTree = "<group>";
+		};
 		A1701CEB1D5B74F80037B0F5 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -211,6 +391,7 @@
 			children = (
 				A19D4E051D58B05800E232BF /* ReKatana */,
 				A19D4E1D1D58B4DF00E232BF /* ReKatanaTests */,
+				A1267B1E1D5DD7520007D0A5 /* ReKatanaDemo */,
 				A19D4E041D58B05800E232BF /* Products */,
 			);
 			sourceTree = "<group>";
@@ -220,6 +401,7 @@
 			children = (
 				A19D4E031D58B05800E232BF /* ReKatana.app */,
 				A19D4E1C1D58B4DF00E232BF /* ReKatanaTests.xctest */,
+				A1267B1D1D5DD7520007D0A5 /* ReKatanaDemo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -282,6 +464,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A1267B1C1D5DD7520007D0A5 /* ReKatanaDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1267B231D5DD7520007D0A5 /* Build configuration list for PBXNativeTarget "ReKatanaDemo" */;
+			buildPhases = (
+				A1267B191D5DD7520007D0A5 /* Sources */,
+				A1267B1A1D5DD7520007D0A5 /* Frameworks */,
+				A1267B1B1D5DD7520007D0A5 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReKatanaDemo;
+			productName = ReKatanaDemo;
+			productReference = A1267B1D1D5DD7520007D0A5 /* ReKatanaDemo */;
+			productType = "com.apple.product-type.tool";
+		};
 		A19D4E021D58B05800E232BF /* ReKatana */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = A19D4E151D58B05800E232BF /* Build configuration list for PBXNativeTarget "ReKatana" */;
@@ -327,6 +526,10 @@
 				LastUpgradeCheck = 0800;
 				ORGANIZATIONNAME = BendingSpoons;
 				TargetAttributes = {
+					A1267B1C1D5DD7520007D0A5 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					A19D4E021D58B05800E232BF = {
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
@@ -353,6 +556,7 @@
 			targets = (
 				A19D4E021D58B05800E232BF /* ReKatana */,
 				A19D4E1B1D58B4DF00E232BF /* ReKatanaTests */,
+				A1267B1C1D5DD7520007D0A5 /* ReKatanaDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -378,6 +582,37 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A1267B191D5DD7520007D0A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1267B431D5DD7640007D0A5 /* SagaModule.swift in Sources */,
+				A1083E321D5DE1C000121211 /* createAlbum.swift in Sources */,
+				A1083E3D1D5DE29A00121211 /* AlbumListReducer.swift in Sources */,
+				A1083E411D5DE6D200121211 /* listAlbums.swift in Sources */,
+				A1267B381D5DD7640007D0A5 /* AsyncAction.swift in Sources */,
+				A1083E3F1D5DE4DC00121211 /* AlbumListActions.swift in Sources */,
+				A1083E331D5DE1C000121211 /* helpers.swift in Sources */,
+				A1267B3D1D5DD7640007D0A5 /* SyncReducer.swift in Sources */,
+				A1083E341D5DE1C000121211 /* Operation.swift in Sources */,
+				A1267B201D5DD7520007D0A5 /* main.swift in Sources */,
+				A1267B401D5DD7640007D0A5 /* State.swift in Sources */,
+				A1267B3A1D5DD7640007D0A5 /* SyncAction.swift in Sources */,
+				A1083E361D5DE1E300121211 /* RootReducer.swift in Sources */,
+				A1267B421D5DD7640007D0A5 /* SagaMiddleware.swift in Sources */,
+				A1267B391D5DD7640007D0A5 /* SagaModule+Action.swift in Sources */,
+				A1267B441D5DD7640007D0A5 /* SagaProvidersContainer.swift in Sources */,
+				A1267B411D5DD7640007D0A5 /* Store.swift in Sources */,
+				A1267B3F1D5DD7640007D0A5 /* Reducer.swift in Sources */,
+				A1083E381D5DE1ED00121211 /* RootState.swift in Sources */,
+				A1267B451D5DD7640007D0A5 /* sagaTypes.swift in Sources */,
+				A1267B3E1D5DD7640007D0A5 /* Action.swift in Sources */,
+				A1083E3B1D5DE28E00121211 /* AlbumListState.swift in Sources */,
+				A1267B3B1D5DD7640007D0A5 /* AsyncReducer.swift in Sources */,
+				A1267B3C1D5DD7640007D0A5 /* ReducerCombiner.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A19D4DFF1D58B05800E232BF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -454,6 +689,28 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A1267B211D5DD7520007D0A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A1267B221D5DD7520007D0A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
 		A19D4E131D58B05800E232BF /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -598,6 +855,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A1267B231D5DD7520007D0A5 /* Build configuration list for PBXNativeTarget "ReKatanaDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1267B211D5DD7520007D0A5 /* Debug */,
+				A1267B221D5DD7520007D0A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A19D4DFE1D58B05800E232BF /* Build configuration list for PBXProject "ReKatana" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
