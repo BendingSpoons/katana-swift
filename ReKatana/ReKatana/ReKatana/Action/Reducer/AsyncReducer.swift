@@ -41,4 +41,16 @@ extension AsyncReducer {
       return self.reduceError(action: a, state: s)
     }
   }
+  
+  static func reduceLoading(action: AsyncAction<Payload, CompletedPayload, ErrorPayload>, state: StateType) -> StateType {
+    return state
+  }
+
+  static func reduceCompleted(action: AsyncAction<Payload, CompletedPayload, ErrorPayload>, state: StateType) -> StateType {
+    return state
+  }
+
+  static func reduceError(action: AsyncAction<Payload, CompletedPayload, ErrorPayload>, state: StateType) -> StateType {
+    return state
+  }
 }
