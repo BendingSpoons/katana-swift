@@ -8,10 +8,14 @@
 
 import Foundation
 
-struct Album {
+struct Album: Equatable {
   let id: String
   let name: String
-  let photos: [Photo] = []
+  let photos: [Photo]
+  
+  static func ==(lhs: Album, rhs: Album) -> Bool {
+    return lhs.id == rhs.id
+  }
 }
 
 struct Photo {

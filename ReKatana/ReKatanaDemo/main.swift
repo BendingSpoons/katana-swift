@@ -13,14 +13,15 @@ import Foundation
  This is a real world exaple of how Katana-Redux can be used.
  It mimics the Photo Vault logic, but without the UI and by mocking somethings (e.g., get images from the disk/cameraroll/camera).
  
- The application is CLI based and very minimal. The only purpose here is to test the library in a near-real-world case
+ The application is CLI based and very minimal. The only purpose here is to test the library in a near-real-world case.
+
  
  Features
   - create a new album [DONE]
   - list albums [DONE]
   
  - add new photo to the album [TODO]
-    - from camera roll [TODO]
+    - from camera roll [DONE]
     - from camera [TODO]
  
  - add new video to the album [TODO]
@@ -40,11 +41,12 @@ import Foundation
  First we create the saga middleware.
  Here we add all the saga modules that are used in the application and we create the store middleware
  that will fire the proper sagas actions are dispastched
- 
- Note: Here we are using SagaProvidersContainer as providersContainer.
- We don't really need any provider (so far), so we just used the base, provided, class that is basically empty
  */
-let sagaMiddleware = SagaMiddleware.withSagaModules([], providersContainer: SagaProvidersContainer<RootReducer>.self)
+let sagaMiddleware = SagaMiddleware.withSagaModules(
+  [
+   AlbumReducerCreator(),
+  ],
+  providersContainer: DemoAppProvidersContainer.self)
 
 /*
  Here we create the store.
@@ -72,6 +74,9 @@ repeat {
     
   case .ListAlbums:
     listAlbums(store: store)
+    
+  case .AddPhotoCameraRoll:
+    addPhotoCameraRoll(store: store)
   }
   
   print("------------------\n\n")

@@ -20,5 +20,4 @@ func performCreateAlbum(store: Store<RootReducer>) {
   })
   
   store.dispatch(AddAlbumAction.with(payload: albumName))
-  print(store.getState())
 }

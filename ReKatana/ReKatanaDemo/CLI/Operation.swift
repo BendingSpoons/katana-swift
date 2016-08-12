@@ -14,12 +14,17 @@ import Foundation
 enum Operation: Int {
   case CreateAlbum
   case ListAlbums
+  case AddPhotoCameraRoll
 }
 
 
 func askOperation() -> Operation {
   
-  let question = "What do you want to do?\n0) Create a new album\n1) List Albums"
+  let question = "What do you want to do?" +
+    "\n0) Create a new album" +
+    "\n1) List albums" +
+    "\n2) Add photo from camera roll"
+
   let error = "Invalid choice"
   
   return aksQuestion(question, error: error, until: {
