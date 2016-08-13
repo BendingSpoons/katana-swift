@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Katana
 
 
 struct App1 : NodeDescription {

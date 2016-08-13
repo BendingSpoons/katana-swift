@@ -12,23 +12,22 @@ import UIKit
 
 public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable  {
     
-    enum State {
+    public enum State {
         case normal
         case highlighted
     }
     
     public var frame = CGRect.zero
-    var color = UIColor.white
-    var highlightedColor = UIColor.white
-    var onTap: (() -> ())?
-
-    var text = ""
+    public var color = UIColor.white
+    public var highlightedColor = UIColor.white
+    public var onTap: (() -> ())?
+    public var text = ""
     
     public static func ==(lhs: ButtonProps, rhs: ButtonProps) -> Bool {
         return false
     }
     
-    func color(_ color: UIColor, state: State) -> ButtonProps {
+    public func color(_ color: UIColor, state: State) -> ButtonProps {
         var copy = self
         switch state {
         case .highlighted:
@@ -41,18 +40,20 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable  
         return copy
     }
     
+    public init() {}
+    
 }
 
-struct Button : NodeDescription {
+public struct Button : NodeDescription {
     
-    var props : ButtonProps
-    var children: [AnyNodeDescription] = []
+    public var props : ButtonProps
+    public var children: [AnyNodeDescription] = []
     
-    static var initialState = false
-    static var viewType = UIView.self
+    public static var initialState = false
+    public static var viewType = UIView.self
     
     
-    static func render(props: ButtonProps,
+    public static func render(props: ButtonProps,
                        state: Bool,
                        children: [AnyNodeDescription],
                        update: (Bool)->()) -> [AnyNodeDescription] {
@@ -76,7 +77,7 @@ struct Button : NodeDescription {
             ])]
         }
     
-    init(props: ButtonProps) {
+    public init(props: ButtonProps) {
         self.props = props
     }
     

@@ -1,20 +1,22 @@
 //
 //  AppDelegate.swift
-//  Katana
+//  Demo
 //
-//  Created by Luca Querella on 02/08/16.
+//  Created by Luca Querella on 13/08/16.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
 import UIKit
+import Katana
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-    
+
     var window: UIWindow?
-    
-    
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
+
+    func application(_ application: UIApplication,
+                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = UIViewController()
@@ -35,13 +37,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let profiler = RenderProfiler() { print($0) }
         
-        let root = App1(props: EmptyProps().frame(0,0,220,220), children: [])
+        
+        let root = App(props: EmptyProps().frame(0,0,220,220), children: [])
         
         root.node().render(container: RenderContainers(containers: [view1,view2,profiler]))
         
         return true
     }
+
+
 }
-
-
 

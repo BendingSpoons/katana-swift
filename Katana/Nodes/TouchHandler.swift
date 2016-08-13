@@ -18,33 +18,40 @@ public struct TouchHandlerProps: Equatable, Frameable  {
         return false
     }
     
-    func touchHandler(_ touchHandler: (Bool)->()) -> TouchHandlerProps {
+    public func touchHandler(_ touchHandler: (Bool)->()) -> TouchHandlerProps {
         var copy = self
         copy.touchHandler = touchHandler
         return copy
     }
+    
+    public init() {}
 }
 
-struct TouchHandler : NodeDescription {
+public struct TouchHandler : NodeDescription {
     
-    var props : TouchHandlerProps
-    var children: [AnyNodeDescription] = []
+    public var props : TouchHandlerProps
+    public var children: [AnyNodeDescription] = []
     
-    static var initialState = EmptyState()
-    static var viewType = TouchHandlerView.self
+    public static var initialState = EmptyState()
+    public static var viewType = TouchHandlerView.self
     
 
-    static func renderView(props: TouchHandlerProps, state: EmptyState, view: TouchHandlerView, update: (EmptyState)->())  {
+    public static func renderView(props: TouchHandlerProps, state: EmptyState, view: TouchHandlerView, update: (EmptyState)->())  {
         view.frame = props.frame
         view.handler = props.touchHandler
     }
     
-    static func render(props: TouchHandlerProps,
+    public static func render(props: TouchHandlerProps,
                        state: EmptyState,
                        children: [AnyNodeDescription],
                        update: (EmptyState)->()) -> [AnyNodeDescription] {
         
         return children
+    }
+    
+    public init(props: TouchHandlerProps, children: [AnyNodeDescription]) {
+        self.props = props
+        self.children = children
     }
 }
 

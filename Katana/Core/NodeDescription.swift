@@ -42,7 +42,7 @@ public protocol NodeDescription : AnyNodeDescription {
 
 extension NodeDescription {
     
-    static func renderView(props: Props, state: State, view: NativeView, update: (State)->())  {
+    public static func renderView(props: Props, state: State, view: NativeView, update: (State)->())  {
         view.frame = props.frame
     }
     
@@ -52,11 +52,11 @@ extension NodeDescription {
                        update: (State)->()) -> [AnyNodeDescription] { return [] }
     
     
-    func node() -> AnyNode {
+    public func node() -> AnyNode {
         return Node(description: self)
     }
     
-    func replaceKey() -> Int {        
+    public func replaceKey() -> Int {        
         return ObjectIdentifier(self.dynamicType).hashValue
     }
 

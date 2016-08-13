@@ -9,20 +9,20 @@
 import UIKit
 
 
-protocol Textable {
+public protocol Textable {
     var text : String {get set}
     func text(_ text: String) -> Self
 }
 
 extension Textable {
-    func text(_ text: String) -> Self {
+    public func text(_ text: String) -> Self {
         var copy = self
         copy.text = text
         return copy
     }
 }
 
-protocol Colorable {
+public protocol Colorable {
     var color : UIColor {get set}
     func color(_ color: UIColor) -> Self
 }
@@ -30,7 +30,7 @@ protocol Colorable {
 extension Colorable {
     
     
-    func color(_ color: UIColor) -> Self {
+    public func color(_ color: UIColor) -> Self {
         var copy = self
         copy.color = color
         return copy
@@ -64,7 +64,7 @@ public extension Frameable {
     }
 }
 
-protocol TouchDisableable {
+public protocol TouchDisableable {
     var touchDisabled : Bool {get set}
     func disableTouch() -> Self
     func enableTouch(enable: Bool) -> Self
@@ -74,25 +74,25 @@ protocol TouchDisableable {
 
 extension TouchDisableable {
     
-    func disableTouch() -> Self {
+    public func disableTouch() -> Self {
         var copy = self
         copy.touchDisabled = true
         return copy
     }
-    func enableTouch(enable: Bool) -> Self {
+    public func enableTouch(enable: Bool) -> Self {
         var copy = self
         copy.touchDisabled = !enable
         return copy
     }
 }
 
-protocol Tappable {
+public protocol Tappable {
     var onTap : (()->())? {get set}
     func onTap(_ onTap: ()->()) -> Self
 }
 
 extension Tappable {
-    func onTap(_ onTap: ()->()) -> Self {
+    public func onTap(_ onTap: ()->()) -> Self {
         var copy = self
         copy.onTap = onTap
         return copy
@@ -103,6 +103,9 @@ public struct EmptyState : Equatable {
     public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
         return true
     }
+    
+    public init() {}
+
 }
 
 public struct EmptyProps : Equatable, Frameable {
@@ -112,4 +115,8 @@ public struct EmptyProps : Equatable, Frameable {
     public static func ==(lhs: EmptyProps, rhs: EmptyProps) -> Bool {
         return lhs.frame == rhs.frame
     }
+    
+    public init() {}
 }
+
+

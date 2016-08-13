@@ -23,33 +23,33 @@ public struct ViewProps: Equatable, Colorable,Frameable, TouchDisableable  {
 }
 
 
-struct View : NodeDescription {
+public struct View : NodeDescription {
     
-    var props : ViewProps
-    var children: [AnyNodeDescription] = []
+    public var props : ViewProps
+    public var children: [AnyNodeDescription] = []
     
-    static var initialState = EmptyState()
-    static var viewType = UIView.self
+    public static var initialState = EmptyState()
+    public static var viewType = UIView.self
     
-    static func renderView(props: ViewProps, state: EmptyState, view: UIView, update: (EmptyState)->())  {
+    public static func renderView(props: ViewProps, state: EmptyState, view: UIView, update: (EmptyState)->())  {
         
         view.frame = props.frame
         view.backgroundColor = props.color
         view.isUserInteractionEnabled = !props.touchDisabled
     }
     
-    static func render(props: ViewProps,
+    public static func render(props: ViewProps,
                        state: EmptyState,
                        children: [AnyNodeDescription],
                        update: (EmptyState)->()) -> [AnyNodeDescription] {
         return children
     }
     
-    init(props: ViewProps) {
+    public init(props: ViewProps) {
         self.props = props
     }
     
-    init(props: ViewProps, children: [AnyNodeDescription]) {
+    public init(props: ViewProps, children: [AnyNodeDescription]) {
         self.props = props
         self.children = children
     }

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Katana
 
 
 struct App : NodeDescription {
@@ -25,8 +25,13 @@ struct App : NodeDescription {
                        children: [AnyNodeDescription],
                        update: (Bool)->()) -> [AnyNodeDescription] {
         
+        var color = UIColor.red;
+        if (state) {
+            color = .green
+        }
+        
         return [TouchHandler(props: TouchHandlerProps().frame(0, 0, 220, 220).touchHandler(update), children: [
-            View(props: ViewProps().frame(0, 0, 100, 100).color(state ? .green : .red).disableTouch()),
+            View(props: ViewProps().frame(0, 0, 100, 100).color(color).disableTouch()),
             View(props: ViewProps().frame(0, 100, 100, 100).color(.red).disableTouch()),
             View(props: ViewProps().frame(100, 0, 100, 100).color(.purple).disableTouch()),
             View(props: ViewProps().frame(100, 100, 100, 100).color(.orange).disableTouch())

@@ -25,15 +25,15 @@ public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable
 }
 
 
-struct Text : NodeDescription {
+public struct Text : NodeDescription {
     
-    var props : TextProps
-    var children: [AnyNodeDescription] = []
+    public var props : TextProps
+    public var children: [AnyNodeDescription] = []
     
-    static var initialState = EmptyState()
-    static var viewType = UILabel.self
+    public static var initialState = EmptyState()
+    public static var viewType = UILabel.self
     
-    static func renderView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
+    public static func renderView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
         
         view.frame = props.frame
         view.backgroundColor = props.color
@@ -41,19 +41,17 @@ struct Text : NodeDescription {
         view.text = props.text
     }
     
-    static func render(props: TextProps,
+    public static func render(props: TextProps,
                        state: EmptyState,
                        children: [AnyNodeDescription],
                        update: (EmptyState)->()) -> [AnyNodeDescription] {
         return children
     }
     
-    init(props: TextProps) {
+    public init(props: TextProps) {
         self.props = props
     }
-    
 
-    
     
 }
 
