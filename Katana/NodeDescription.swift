@@ -2,56 +2,62 @@
 //  NodeDescription.swift
 //  Katana
 //
-//  Created by Luca Querella on 02/08/16.
+//  Created by Luca Querella on 09/08/16.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-public protocol Logic {
-    associatedtype Props: Equatable
+public protocol AnyNodeDescription {
+    func node() -> AnyNode;
+    func replaceKey() -> Int
+
+}
+
+public protocol NodeDescription : AnyNodeDescription {
+    associatedtype NativeView: UIView
+    associatedtype Props: Equatable,Frameable
     associatedtype State: Equatable
-    static func logic(state: State, props: Props, update: (State)->())-> (NodeDescription)
-    static var initialState: State {get}
-}
-
-public protocol Visual {
-    associatedtype View: UIKit.UIView
-    associatedtype Props: Equatable
-    static func applyProps(props: Props, view: View) -> ()
-}
-
-public struct LogicNodeDescription<L:Logic> : NodeDescription {
-    let props: L.Props
     
-    public func node() -> Node {
-        return LogicNode(description: self)
-    }
+    static var viewType : NativeView.Type { get }
+    static var initialState: State { get }
     
-    public func replaceKey() -> Int {
-        return ObjectIdentifier(LogicNodeDescription<L>.self).hashValue
-    }
-
-}
-
-public struct VisualNodeDescription<V:Visual> : NodeDescription {
-    let props: V.Props
-    let children: [NodeDescription]
+    var children: [AnyNodeDescription] { set get }
     
-    public func node() -> Node {
-        return VisualNode(description: self)
-    }
+    var props: Props { get }
     
-    public func replaceKey() -> Int {
-        return ObjectIdentifier(VisualNodeDescription<V>.self).hashValue
-    }
-}
-
-public protocol NodeDescription {
-    func node() -> Node
+    static func renderView(props: Props,
+                           state: State,
+                           view: NativeView,
+                           update: (State)->()) ->  Void
+    
+    static func render(props: Props,
+                       state: State,
+                       children: [AnyNodeDescription],
+                       update: (State)->()) -> [AnyNodeDescription]
+    
+    
     func replaceKey() -> Int
 }
 
+extension NodeDescription {
+    
+    static func renderView(props: Props, state: State, view: NativeView, update: (State)->())  {
+        view.frame = props.frame
+    }
+    
+    static func render(props: Props,
+                       state: State,
+                       children: [AnyNodeDescription],
+                       update: (State)->()) -> [AnyNodeDescription] { return [] }
+    
+    
+    func node() -> AnyNode {
+        return Node(description: self)
+    }
+    
+    func replaceKey() -> Int {        
+        return ObjectIdentifier(self.dynamicType).hashValue
+    }
 
-
+}

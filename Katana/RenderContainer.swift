@@ -34,11 +34,11 @@ public class RenderContainers : RenderContainer {
         private let child : RenderContainers
         private let containerChildren : [RenderContainerChild]
     }
-
+    
     public init(containers: [RenderContainer]) {
         self.containers = containers
     }
-
+    
     public func removeAll() {
         self.containerChildren = []
         self.containers.forEach { $0.removeAll() }
@@ -65,7 +65,7 @@ public class RenderContainers : RenderContainer {
     public func bringToFront(child: RenderContainerChild) {
         
         let child = (child as! OpaqueChild)
-
+        
         self.containers.enumerated().forEach{ (index,element) in
             element.bringToFront(child: child.containerChildren[index])
         }
@@ -81,7 +81,7 @@ public class RenderContainers : RenderContainer {
         self.containers.enumerated().forEach{ (index,element) in
             element.remove(child: child.containerChildren[index])
         }
-    
+        
         let index  = self.containerChildren.index { $0 === child.child }
         self.containerChildren.remove(at: index!)
     }
@@ -89,7 +89,7 @@ public class RenderContainers : RenderContainer {
 
 
 public class RenderProfiler : RenderContainer {
-
+    
     private let handler : ((Actions)-> ())?
     private var profilerChildren : [RenderProfiler] = []
     private var root : RenderProfiler?
@@ -114,7 +114,7 @@ public class RenderProfiler : RenderContainer {
     public struct OpaqueChild : RenderContainerChild {
         private var child : RenderProfiler
     }
-
+    
     public func removeAll() {
         (self.root ?? self ).actions.deletes += self.profilerChildren.count
         (self.root ?? self ).actions.lists += 1
@@ -140,13 +140,13 @@ public class RenderProfiler : RenderContainer {
     
     public func bringToFront(child: RenderContainerChild) {
         (self.root ?? self ).actions.moves += 1
-
+        
         let child = (child as! OpaqueChild).child
         let index  = self.profilerChildren.index { $0 === child }
         self.profilerChildren.remove(at: index!)
         self.profilerChildren.insert(child, at: 0)
         (self.root ?? self ).actions.moves += 1
-
+        
     }
     
     public func remove(child: RenderContainerChild) {
@@ -197,4 +197,3 @@ extension UIView : RenderContainer {
         child.view.removeFromSuperview()
     }
 }
-
