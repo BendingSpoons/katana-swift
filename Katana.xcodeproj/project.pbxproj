@@ -30,6 +30,7 @@
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F41D61CC400036020F /* UIColor+Katana.swift */; };
 		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
+		81FA36F91D6214570036020F /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F81D6214570036020F /* Tabbar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -76,6 +77,7 @@
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA36F41D61CC400036020F /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
+		81FA36F81D6214570036020F /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				813F4D201D5F3E51007CDB53 /* App.swift */,
+				81FA36F81D6214570036020F /* Tabbar.swift */,
 				81DFBFC31D5F61EF00225E0E /* Popup.swift */,
 				81DFBFC51D5F760900225E0E /* InstructionPopup.swift */,
 				81DFBFC11D5F57F900225E0E /* Calculator.swift */,
@@ -375,6 +378,7 @@
 				81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */,
 				81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */,
 				813F4D221D5F3E51007CDB53 /* App.swift in Sources */,
+				81FA36F91D6214570036020F /* Tabbar.swift in Sources */,
 				81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */,
 				81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */,
 			);

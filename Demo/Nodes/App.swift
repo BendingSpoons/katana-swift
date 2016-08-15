@@ -61,10 +61,9 @@ struct App : NodeDescription {
                     .onPasswordSet(onPasswordSet), children: []),
             ]
         } else {
+            
             return [
-                View(props: ViewProps()
-                    .frame(props.frame.size)
-                    .color(.red))
+                Tabbar(props: TabbarProps().frame(props.frame.size))
             ]
         }
     }
