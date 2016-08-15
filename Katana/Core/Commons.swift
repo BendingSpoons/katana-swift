@@ -10,14 +10,28 @@ import UIKit
 
 
 public protocol Textable {
-    var text : String {get set}
-    func text(_ text: String) -> Self
+    var text : NSAttributedString {get set}
+    func text(_ text: NSAttributedString) -> Self
 }
 
 extension Textable {
-    public func text(_ text: String) -> Self {
+    public func text(_ text: NSAttributedString) -> Self {
         var copy = self
         copy.text = text
+        return copy
+    }
+    
+    public func text(_ text: NSString, fontSize: CGFloat) -> Self {
+        
+        let attriburedText = NSMutableAttributedString(string: text as String, attributes: [
+            NSFontAttributeName : UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular),
+            NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
+            NSForegroundColorAttributeName : UIColor(0x000000)
+            ])
+        
+        
+        var copy = self
+        copy.text = attriburedText
         return copy
     }
 }
@@ -34,6 +48,10 @@ extension Colorable {
         var copy = self
         copy.color = color
         return copy
+    }
+    
+    public func color(_ hex: Int) -> Self {
+        return color(UIColor(hex))
     }
 }
 
@@ -88,13 +106,49 @@ extension TouchDisableable {
 
 public protocol Tappable {
     var onTap : (()->())? {get set}
-    func onTap(_ onTap: ()->()) -> Self
+    func onTap(_ onTap: (()->())?) -> Self
 }
 
 extension Tappable {
-    public func onTap(_ onTap: ()->()) -> Self {
+    public func onTap(_ onTap: (()->())?) -> Self {
         var copy = self
         copy.onTap = onTap
+        return copy
+    }
+}
+
+public protocol CornerRadiusable {
+    var cornerRadius : CGFloat {get set}
+    func cornerRadius(_ cornerRadius: CGFloat) -> Self
+}
+
+extension CornerRadiusable {
+    public func cornerRadius(_ cornerRadius: CGFloat) -> Self {
+        var copy = self
+        copy.cornerRadius = cornerRadius
+        return copy
+    }
+}
+
+public protocol Bordable {
+    var borderColor : UIColor {get set}
+    var borderWidth : CGFloat {get set}
+    
+    func borderColor(_ borderColor: UIColor) -> Self
+    func borderWidth(_ borderWidth: CGFloat) -> Self
+
+}
+
+extension Bordable {
+    public func borderColor(_ borderColor: UIColor) -> Self {
+        var copy = self
+        copy.borderColor = borderColor
+        return copy
+    }
+
+    public func borderWidth(_ borderWidth: CGFloat) -> Self {
+        var copy = self
+        copy.borderWidth = borderWidth
         return copy
     }
 }

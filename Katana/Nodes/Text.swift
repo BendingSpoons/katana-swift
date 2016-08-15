@@ -12,7 +12,7 @@ public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable
     public var frame = CGRect.zero
     public var color = UIColor.white
     public var touchDisabled =  true
-    public var text: String = ""
+    public var text: NSAttributedString = NSAttributedString()
     
     public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
         return lhs.frame == rhs.frame &&
@@ -38,7 +38,7 @@ public struct Text : NodeDescription {
         view.frame = props.frame
         view.backgroundColor = props.color
         view.isUserInteractionEnabled = !props.touchDisabled
-        view.text = props.text
+        view.attributedText = props.text
     }
     
     public static func render(props: TextProps,

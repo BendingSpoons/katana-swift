@@ -24,23 +24,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.makeKeyAndVisible()
         
         let view = (self.window?.rootViewController?.view)!
-        let view1 = UIView(frame: CGRect(x:0,y:0,width:250, height:250))
-        view1.layer.borderColor = UIColor.green.cgColor
-        view1.layer.borderWidth = 2
-        view.addSubview(view1)
         
-        let view2 = UIView(frame: CGRect(x:0,y:300,width:250, height:250))
-        view2.layer.borderColor = UIColor.red.cgColor
-        view2.layer.borderWidth = 2
-        view.addSubview(view2)
+        let root = App(props: EmptyProps().frame(CGSize(width: 320, height: 480)), children: [])
         
-        
-        let profiler = RenderProfiler() { print($0) }
-        
-        
-        let root = App(props: EmptyProps().frame(0,0,220,220), children: [])
-        
-        root.node().render(container: RenderContainers(containers: [view1,view2,profiler]))
+        root.node().render(container: RenderContainers(containers: [view]))
         
         return true
     }

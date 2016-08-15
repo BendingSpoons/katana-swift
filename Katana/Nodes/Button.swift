@@ -10,7 +10,7 @@ import UIKit
 
 
 
-public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable  {
+public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,Bordable  {
     
     public enum State {
         case normal
@@ -21,7 +21,9 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable  
     public var color = UIColor.white
     public var highlightedColor = UIColor.white
     public var onTap: (() -> ())?
-    public var text = ""
+    public var text = NSAttributedString()
+    public var borderColor = UIColor.black
+    public var borderWidth = CGFloat(0)
     
     public static func ==(lhs: ButtonProps, rhs: ButtonProps) -> Bool {
         return false
@@ -69,6 +71,8 @@ public struct Button : NodeDescription {
             View(props: ViewProps()
                     .frame(props.frame.size)
                     .color(state ? props.highlightedColor : props.color )
+                    .borderColor(props.borderColor)
+                    .borderWidth(props.borderWidth)
                     .disableTouch(), children : []),
             Text(props: TextProps()
                 .frame(props.frame.size)

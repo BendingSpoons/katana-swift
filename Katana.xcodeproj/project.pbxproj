@@ -9,8 +9,10 @@
 /* Begin PBXBuildFile section */
 		813F4D1E1D5F3D94007CDB53 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */; };
 		813F4D221D5F3E51007CDB53 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F4D201D5F3E51007CDB53 /* App.swift */; };
-		813F4D231D5F3E51007CDB53 /* App1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F4D211D5F3E51007CDB53 /* App1.swift */; };
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
+		81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC11D5F57F900225E0E /* Calculator.swift */; };
+		81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC31D5F61EF00225E0E /* Popup.swift */; };
+		81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC51D5F760900225E0E /* InstructionPopup.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
@@ -26,6 +28,8 @@
 		81EA57131D5F3BBA00B6290E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA570F1D5F3BBA00B6290E /* View.swift */; };
 		81EA57171D5F3D5900B6290E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57151D5F3D5900B6290E /* Assets.xcassets */; };
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
+		81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F41D61CC400036020F /* UIColor+Katana.swift */; };
+		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,7 +52,9 @@
 /* Begin PBXFileReference section */
 		813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		813F4D201D5F3E51007CDB53 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
-		813F4D211D5F3E51007CDB53 /* App1.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App1.swift; sourceTree = "<group>"; };
+		81DFBFC11D5F57F900225E0E /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
+		81DFBFC31D5F61EF00225E0E /* Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
+		81DFBFC51D5F760900225E0E /* InstructionPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionPopup.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
 		81EA56CB1D5F3A6000B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -68,6 +74,8 @@
 		81EA570F1D5F3BBA00B6290E /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		81EA57151D5F3D5900B6290E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81FA36F41D61CC400036020F /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
+		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,7 +109,9 @@
 			isa = PBXGroup;
 			children = (
 				813F4D201D5F3E51007CDB53 /* App.swift */,
-				813F4D211D5F3E51007CDB53 /* App1.swift */,
+				81DFBFC31D5F61EF00225E0E /* Popup.swift */,
+				81DFBFC51D5F760900225E0E /* InstructionPopup.swift */,
+				81DFBFC11D5F57F900225E0E /* Calculator.swift */,
 			);
 			path = Nodes;
 			sourceTree = "<group>";
@@ -164,6 +174,8 @@
 				81EA56FB1D5F3AC800B6290E /* RenderContainer.swift */,
 				81EA57001D5F3AEA00B6290E /* Commons.swift */,
 				81EA56F81D5F3AC800B6290E /* Collections+Katana.swift */,
+				81FA36F41D61CC400036020F /* UIColor+Katana.swift */,
+				81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -336,7 +348,9 @@
 			files = (
 				81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */,
 				81EA57101D5F3BBA00B6290E /* Button.swift in Sources */,
+				81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */,
 				81EA56FE1D5F3AC800B6290E /* NodeDescription.swift in Sources */,
+				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				81EA57111D5F3BBA00B6290E /* Text.swift in Sources */,
 				81EA57011D5F3AEA00B6290E /* Commons.swift in Sources */,
 				81EA57131D5F3BBA00B6290E /* View.swift in Sources */,
@@ -358,9 +372,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				813F4D231D5F3E51007CDB53 /* App1.swift in Sources */,
 				81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */,
+				81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */,
 				813F4D221D5F3E51007CDB53 /* App.swift in Sources */,
+				81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */,
+				81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -9,35 +9,65 @@
 import UIKit
 import Katana
 
+struct AppState : Equatable {
+    var showPopup = true
+    var password : [Int]?
+    
+    static func ==(lhs: AppState, rhs: AppState) -> Bool {
+        return lhs.showPopup == rhs.showPopup && lhs.password == rhs.password
+    }
+    
+}
 
 struct App : NodeDescription {
     
     var props : EmptyProps
     var children: [AnyNodeDescription] = []
     
-    static var initialState = false
+    static var initialState = AppState()
     static var viewType = UIView.self
     
-
+    
     
     static func render(props: EmptyProps,
-                       state: Bool,
+                       state: AppState,
                        children: [AnyNodeDescription],
-                       update: (Bool)->()) -> [AnyNodeDescription] {
+                       update: (AppState)->()) -> [AnyNodeDescription] {
         
-        var color = UIColor.red;
-        if (state) {
-            color = .green
+        
+        print("render app \(state)")
+        
+        func onClose() {
+            update(AppState(showPopup: false, password: state.password))
         }
         
-        return [TouchHandler(props: TouchHandlerProps().frame(0, 0, 220, 220).touchHandler(update), children: [
-            View(props: ViewProps().frame(0, 0, 100, 100).color(color).disableTouch()),
-            View(props: ViewProps().frame(0, 100, 100, 100).color(.red).disableTouch()),
-            View(props: ViewProps().frame(100, 0, 100, 100).color(.purple).disableTouch()),
-            View(props: ViewProps().frame(100, 100, 100, 100).color(.orange).disableTouch())
+        func onPasswordSet(_ password: [Int]) {
+            update(AppState(showPopup: false, password: password))
+        }
+
+        
+        if (state.showPopup) {
+            return [
+                Calculator(props: CalculatorProps().frame(props.frame.size), children: []),
+                InstructionPopup(props: InstructionPopupProps()
+                        .frame(props.frame.size)
+                        .onClose(onClose), children: [])
+            ]
             
-            ])]
-
+        } else if (state.password == nil)  {
+            return [
+                Calculator(props: CalculatorProps()
+                    .frame(props.frame.size)
+                    .onPasswordSet(onPasswordSet), children: []),
+            ]
+        } else {
+            return [
+                View(props: ViewProps()
+                    .frame(props.frame.size)
+                    .color(.red))
+            ]
+        }
     }
-
 }
+
+
