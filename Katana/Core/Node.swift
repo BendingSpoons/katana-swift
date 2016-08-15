@@ -113,7 +113,7 @@ public class Node<Description:NodeDescription> : AnyNode {
             } else {
                 
                 //else create a new node
-                let node = description.node()
+                let node = newChild.node()
                 viewIndex.append(children.count + nodesToRender.count)
                 nodes.append(node)
                 nodesToRender.append(node)
