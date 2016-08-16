@@ -9,26 +9,26 @@
 import Foundation
 
 public struct Value: Equatable {
-  let scalable: Float
-  let fixed: Float
+  let scalable: CGFloat
+  let fixed: CGFloat
   
-  var unscaledValue: Float {
+  var unscaledValue: CGFloat {
     return scalable + fixed
   }
   
   static let zero = Value(0)
   
-  init(_ scalable: Float) {
+  init(_ scalable: CGFloat) {
     self.scalable = scalable
     self.fixed = 0
   }
   
-  init(scalable: Float, fixed: Float) {
+  init(scalable: CGFloat, fixed: CGFloat) {
     self.scalable = scalable
     self.fixed = fixed
   }
   
-  public func scale(_ multiplier: Float) -> Float {
+  public func scale(_ multiplier: CGFloat) -> CGFloat {
     return self.scalable * multiplier + self.fixed
   }
   
@@ -36,7 +36,7 @@ public struct Value: Equatable {
     return Value(scalable: -item.scalable, fixed: -item.fixed)
   }
   
-  public static func *(lhs: Value, rhs: Float) -> Value {
+  public static func *(lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable * rhs, fixed: lhs.fixed * rhs)
   }
   
@@ -44,7 +44,7 @@ public struct Value: Equatable {
     return Value(scalable: lhs.scalable + rhs.scalable, fixed: lhs.fixed + rhs.fixed)
   }
   
-  public static func /(lhs: Value, rhs: Float) -> Value {
+  public static func /(lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable / rhs, fixed: lhs.fixed / rhs)
   }
   

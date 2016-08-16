@@ -10,6 +10,7 @@ import Foundation
 
 public class PlasticView {
   private(set) var frame: CGRect
+  private(set) var absoluteOrigin: CGPoint
   public let key: String
   
   convenience init(key: String) {
@@ -19,5 +20,6 @@ public class PlasticView {
   init(key: String, frame: CGRect) {
     self.key = key
     self.frame = frame
+    self.absoluteOrigin = CGPoint.zero
   }
 }

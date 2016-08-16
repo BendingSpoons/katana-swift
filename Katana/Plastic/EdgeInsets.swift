@@ -16,14 +16,14 @@ public struct EdgeInsets: Equatable {
   
   static let zero = EdgeInsets(0, 0, 0, 0)
   
-  init(_ top: Float, _ left: Float, _ bottom: Float, _ right: Float) {
+  init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
     self.top = Value(top)
     self.left = Value(left)
     self.bottom = Value(bottom)
     self.right = Value(right)
   }
   
-  init(scalableTop: Float, fixedTop: Float, scalableLeft: Float, fixedLeft: Float, scalableBottom: Float, fixedBottom: Float, scalableRight: Float, fixedRight: Float) {
+  init(scalableTop: CGFloat, fixedTop: CGFloat, scalableLeft: CGFloat, fixedLeft: CGFloat, scalableBottom: CGFloat, fixedBottom: CGFloat, scalableRight: CGFloat, fixedRight: CGFloat) {
     self.top = Value(scalable: scalableTop, fixed: fixedTop)
     self.left = Value(scalable: scalableLeft, fixed: fixedLeft)
     self.bottom = Value(scalable: scalableBottom, fixed: fixedBottom)
@@ -37,16 +37,16 @@ public struct EdgeInsets: Equatable {
     self.right = right
   }
   
-  public func scale(_ multiplier: Float) -> UIEdgeInsets {
+  public func scale(_ multiplier: CGFloat) -> UIEdgeInsets {
     return UIEdgeInsets(
-      top: CGFloat(self.top.scale(multiplier)),
-      left: CGFloat(self.left.scale(multiplier)),
-      bottom: CGFloat(self.bottom.scale(multiplier)),
-      right: CGFloat(self.right.scale(multiplier))
+      top: self.top.scale(multiplier),
+      left: self.left.scale(multiplier),
+      bottom: self.bottom.scale(multiplier),
+      right: self.right.scale(multiplier)
     )
   }
   
-  public static func *(lhs: EdgeInsets, rhs: Float) -> EdgeInsets {
+  public static func *(lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
     return EdgeInsets(
       top: lhs.top * rhs,
       left: lhs.left * rhs,
@@ -64,7 +64,7 @@ public struct EdgeInsets: Equatable {
     )
   }
   
-  public static func /(lhs: EdgeInsets, rhs: Float) -> EdgeInsets {
+  public static func /(lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
     return EdgeInsets(
       top: lhs.top / rhs,
       left: lhs.left / rhs,

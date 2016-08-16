@@ -14,12 +14,12 @@ public struct Size: Equatable {
   
   static let zero = Size(0, 0)
   
-  init(_ width: Float, _ height: Float) {
+  init(_ width: CGFloat, _ height: CGFloat) {
     self.width = Value(width)
     self.height = Value(height)
   }
   
-  init(scalableWidth: Float, fixedWidth: Float, scalableHeight: Float, fixedHeight: Float) {
+  init(scalableWidth: CGFloat, fixedWidth: CGFloat, scalableHeight: CGFloat, fixedHeight: CGFloat) {
     self.width = Value(scalable: scalableWidth, fixed: fixedWidth)
     self.height = Value(scalable: scalableHeight, fixed: fixedHeight)
   }
@@ -29,14 +29,14 @@ public struct Size: Equatable {
     self.height = height
   }
   
-  public func scale(_ multiplier: Float) -> CGSize {
+  public func scale(_ multiplier: CGFloat) -> CGSize {
     return CGSize(
-      width: CGFloat(self.width.scale(multiplier)),
-      height: CGFloat(self.height.scale(multiplier))
+      width: self.width.scale(multiplier),
+      height: self.height.scale(multiplier)
     )
   }
   
-  public static func *(lhs: Size, rhs: Float) -> Size {
+  public static func *(lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width * rhs, height: lhs.height * rhs)
   }
   
@@ -44,7 +44,7 @@ public struct Size: Equatable {
     return Size(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
   }
   
-  public static func /(lhs: Size, rhs: Float) -> Size {
+  public static func /(lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width / rhs, height: lhs.height / rhs)
   }
   
