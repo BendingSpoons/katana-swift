@@ -9,49 +9,49 @@
 import UIKit
 
 public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable  {
-    public var frame = CGRect.zero
-    public var color = UIColor.white
-    public var touchDisabled =  true
-    public var text: NSAttributedString = NSAttributedString()
-    
-    public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
-        return lhs.frame == rhs.frame &&
-            lhs.color == rhs.color &&
-            lhs.touchDisabled == rhs.touchDisabled &&
-            lhs.text == rhs.text
-    }
-    
-    public init() {}
+  public var frame = CGRect.zero
+  public var color = UIColor.white
+  public var touchDisabled =  true
+  public var text: NSAttributedString = NSAttributedString()
+  
+  public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
+    return lhs.frame == rhs.frame &&
+      lhs.color == rhs.color &&
+      lhs.touchDisabled == rhs.touchDisabled &&
+      lhs.text == rhs.text
+  }
+  
+  public init() {}
 }
 
 
 public struct Text : NodeDescription {
+  
+  public var props : TextProps
+  public var children: [AnyNodeDescription] = []
+  
+  public static var initialState = EmptyState()
+  public static var viewType = UILabel.self
+  
+  public static func renderView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
     
-    public var props : TextProps
-    public var children: [AnyNodeDescription] = []
-    
-    public static var initialState = EmptyState()
-    public static var viewType = UILabel.self
-    
-    public static func renderView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
-        
-        view.frame = props.frame
-        view.backgroundColor = props.color
-        view.isUserInteractionEnabled = !props.touchDisabled
-        view.attributedText = props.text
-    }
-    
-    public static func render(props: TextProps,
-                       state: EmptyState,
-                       children: [AnyNodeDescription],
-                       update: (EmptyState)->()) -> [AnyNodeDescription] {
-        return children
-    }
-    
-    public init(props: TextProps) {
-        self.props = props
-    }
-
-    
+    view.frame = props.frame
+    view.backgroundColor = props.color
+    view.isUserInteractionEnabled = !props.touchDisabled
+    view.attributedText = props.text
+  }
+  
+  public static func render(props: TextProps,
+                            state: EmptyState,
+                            children: [AnyNodeDescription],
+                            update: (EmptyState)->()) -> [AnyNodeDescription] {
+    return children
+  }
+  
+  public init(props: TextProps) {
+    self.props = props
+  }
+  
+  
 }
 

@@ -9,13 +9,13 @@
 import Foundation
 
 extension NSParagraphStyle {
-    
-    public static var centerAlignment : NSParagraphStyle {
-        get {
-            let paragraphStyle = NSMutableParagraphStyle()
-            paragraphStyle.alignment = .center
-            return paragraphStyle
-        }
+  
+  public static var centerAlignment : NSParagraphStyle {
+    get {
+      let paragraphStyle = NSMutableParagraphStyle()
+      paragraphStyle.alignment = .center
+      return paragraphStyle
     }
-    
+  }
+  
 }

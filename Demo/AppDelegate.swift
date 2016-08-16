@@ -11,27 +11,27 @@ import Katana
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
-
-    func application(_ application: UIApplication,
-                     didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        
-        self.window = UIWindow(frame: UIScreen.main.bounds)
-        self.window?.rootViewController = UIViewController()
-        self.window?.rootViewController?.view.backgroundColor = UIColor.white
-        self.window?.makeKeyAndVisible()
-        
-        let view = (self.window?.rootViewController?.view)!
-        
-        let root = App(props: EmptyProps().frame(CGSize(width: 320, height: 480)), children: [])
-        
-        root.node().render(container: RenderContainers(containers: [view]))
-        
-        return true
-    }
-
-
+  
+  var window: UIWindow?
+  
+  
+  func application(_ application: UIApplication,
+                   didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    
+    self.window = UIWindow(frame: UIScreen.main.bounds)
+    self.window?.rootViewController = UIViewController()
+    self.window?.rootViewController?.view.backgroundColor = UIColor.white
+    self.window?.makeKeyAndVisible()
+    
+    let view = (self.window?.rootViewController?.view)!
+    
+    let root = App(props: EmptyProps().frame(CGSize(width: 320, height: 480)), children: [])
+    
+    root.node().render(container: RenderContainers(containers: [view]))
+    
+    return true
+  }
+  
+  
 }
 

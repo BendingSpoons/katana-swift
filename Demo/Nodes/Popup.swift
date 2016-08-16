@@ -9,32 +9,32 @@
 import Katana
 
 struct Popup : NodeDescription {
+  
+  var props : EmptyProps
+  var children: [AnyNodeDescription] = []
+  
+  static var initialState = EmptyState()
+  static var viewType = UIView.self
+  
+  
+  
+  static func render(props: EmptyProps,
+                     state: EmptyState,
+                     children: [AnyNodeDescription],
+                     update: (EmptyState)->()) -> [AnyNodeDescription] {
     
-    var props : EmptyProps
-    var children: [AnyNodeDescription] = []
+    return [
+      
+      View(props: ViewProps()
+        .frame(props.frame.size)
+        .color(UIColor(white: 0, alpha: 0.8))),
+      
+      View(props: ViewProps()
+        .frame(CGRect(x: 25, y: 40, width: 270, height: 400))
+        .color(.white)
+        .cornerRadius(10), children:children )
+    ]
     
-    static var initialState = EmptyState()
-    static var viewType = UIView.self
-    
-    
-    
-    static func render(props: EmptyProps,
-                       state: EmptyState,
-                       children: [AnyNodeDescription],
-                       update: (EmptyState)->()) -> [AnyNodeDescription] {
-        
-        return [
-            
-            View(props: ViewProps()
-                .frame(props.frame.size)
-                .color(UIColor(white: 0, alpha: 0.8))),
-            
-            View(props: ViewProps()
-                .frame(CGRect(x: 25, y: 40, width: 270, height: 400))
-                .color(.white)
-                .cornerRadius(10), children:children )
-        ]
-        
-    }
-    
+  }
+  
 }
