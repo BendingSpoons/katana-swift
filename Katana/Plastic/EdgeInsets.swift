@@ -1,5 +1,5 @@
 //
-//  PlasticEdgeInsets.swift
+//  EdgeInsets.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 16/08/16.
@@ -8,29 +8,29 @@
 
 import Foundation
 
-public struct PlasticEdgeInsets: Equatable {
-  let top: PlasticValue
-  let left: PlasticValue
-  let bottom: PlasticValue
-  let right: PlasticValue
+public struct EdgeInsets: Equatable {
+  let top: Value
+  let left: Value
+  let bottom: Value
+  let right: Value
   
-  static let zero = PlasticEdgeInsets(0, 0, 0, 0)
+  static let zero = EdgeInsets(0, 0, 0, 0)
   
   init(_ top: Float, _ left: Float, _ bottom: Float, _ right: Float) {
-    self.top = PlasticValue(top)
-    self.left = PlasticValue(left)
-    self.bottom = PlasticValue(bottom)
-    self.right = PlasticValue(right)
+    self.top = Value(top)
+    self.left = Value(left)
+    self.bottom = Value(bottom)
+    self.right = Value(right)
   }
   
   init(scalableTop: Float, fixedTop: Float, scalableLeft: Float, fixedLeft: Float, scalableBottom: Float, fixedBottom: Float, scalableRight: Float, fixedRight: Float) {
-    self.top = PlasticValue(scalable: scalableTop, fixed: fixedTop)
-    self.left = PlasticValue(scalable: scalableLeft, fixed: fixedLeft)
-    self.bottom = PlasticValue(scalable: scalableBottom, fixed: fixedBottom)
-    self.right = PlasticValue(scalable: scalableRight, fixed: fixedRight)
+    self.top = Value(scalable: scalableTop, fixed: fixedTop)
+    self.left = Value(scalable: scalableLeft, fixed: fixedLeft)
+    self.bottom = Value(scalable: scalableBottom, fixed: fixedBottom)
+    self.right = Value(scalable: scalableRight, fixed: fixedRight)
   }
   
-  init(top: PlasticValue, left: PlasticValue, bottom: PlasticValue, right: PlasticValue) {
+  init(top: Value, left: Value, bottom: Value, right: Value) {
     self.top = top
     self.left = left
     self.bottom = bottom
@@ -46,8 +46,8 @@ public struct PlasticEdgeInsets: Equatable {
     )
   }
   
-  public static func *(lhs: PlasticEdgeInsets, rhs: Float) -> PlasticEdgeInsets {
-    return PlasticEdgeInsets(
+  public static func *(lhs: EdgeInsets, rhs: Float) -> EdgeInsets {
+    return EdgeInsets(
       top: lhs.top * rhs,
       left: lhs.left * rhs,
       bottom: lhs.bottom * rhs,
@@ -55,8 +55,8 @@ public struct PlasticEdgeInsets: Equatable {
     )
   }
   
-  public static func +(lhs: PlasticEdgeInsets, rhs: PlasticEdgeInsets) -> PlasticEdgeInsets {
-    return PlasticEdgeInsets(
+  public static func +(lhs: EdgeInsets, rhs: EdgeInsets) -> EdgeInsets {
+    return EdgeInsets(
       top: lhs.top + rhs.top,
       left: lhs.left + rhs.left,
       bottom: lhs.bottom + rhs.bottom,
@@ -64,8 +64,8 @@ public struct PlasticEdgeInsets: Equatable {
     )
   }
   
-  public static func /(lhs: PlasticEdgeInsets, rhs: Float) -> PlasticEdgeInsets {
-    return PlasticEdgeInsets(
+  public static func /(lhs: EdgeInsets, rhs: Float) -> EdgeInsets {
+    return EdgeInsets(
       top: lhs.top / rhs,
       left: lhs.left / rhs,
       bottom: lhs.bottom / rhs,
@@ -73,7 +73,7 @@ public struct PlasticEdgeInsets: Equatable {
     )
   }
   
-  public static func ==(lhs: PlasticEdgeInsets, rhs: PlasticEdgeInsets) -> Bool {
+  public static func ==(lhs: EdgeInsets, rhs: EdgeInsets) -> Bool {
     return lhs.top == rhs.top &&
       lhs.left == rhs.left &&
       lhs.bottom == rhs.bottom &&
