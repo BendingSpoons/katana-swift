@@ -29,9 +29,7 @@ extension Array where Element : Comparable {
   }
 }
 
-
 public func ==<T: Comparable>(lhs: [T]?, rhs: [T]?) -> Bool {
-  
   switch (lhs,rhs) {
   case (.some(let lhs), .some(let rhs)):
     return lhs == rhs

@@ -31,6 +31,10 @@
 		81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F41D61CC400036020F /* UIColor+Katana.swift */; };
 		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
 		81FA36F91D6214570036020F /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F81D6214570036020F /* Tabbar.swift */; };
+		A115387C1D63424E00C5C29C /* PlasticNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A115387B1D63424E00C5C29C /* PlasticNodeTests.swift */; };
+		A11538821D634DDD00C5C29C /* PlasticViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */; };
+		A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */; };
+		A11538861D63507C00C5C29C /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538851D63507C00C5C29C /* PlasticView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +82,10 @@
 		81FA36F41D61CC400036020F /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F81D6214570036020F /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
+		A115387B1D63424E00C5C29C /* PlasticNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeTests.swift; sourceTree = "<group>"; };
+		A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticViewsContainer.swift; sourceTree = "<group>"; };
+		A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
+		A11538851D63507C00C5C29C /* PlasticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -142,6 +150,7 @@
 		81EA56C91D5F3A6000B6290E /* Katana */ = {
 			isa = PBXGroup;
 			children = (
+				A11538791D63329300C5C29C /* Plastic */,
 				81EA56F71D5F3AAB00B6290E /* Core */,
 				81EA57031D5F3B8C00B6290E /* Nodes */,
 				81EA56CA1D5F3A6000B6290E /* Katana.h */,
@@ -153,6 +162,7 @@
 		81EA56D71D5F3A6E00B6290E /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
+				A115387A1D63422200C5C29C /* Plastic */,
 				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
 			);
@@ -202,6 +212,24 @@
 				813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		A11538791D63329300C5C29C /* Plastic */ = {
+			isa = PBXGroup;
+			children = (
+				A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */,
+				A11538851D63507C00C5C29C /* PlasticView.swift */,
+			);
+			path = Plastic;
+			sourceTree = "<group>";
+		};
+		A115387A1D63422200C5C29C /* Plastic */ = {
+			isa = PBXGroup;
+			children = (
+				A115387B1D63424E00C5C29C /* PlasticNodeTests.swift */,
+				A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */,
+			);
+			path = Plastic;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -352,6 +380,8 @@
 				81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */,
 				81EA57101D5F3BBA00B6290E /* Button.swift in Sources */,
 				81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */,
+				A11538821D634DDD00C5C29C /* PlasticViewsContainer.swift in Sources */,
+				A11538861D63507C00C5C29C /* PlasticView.swift in Sources */,
 				81EA56FE1D5F3AC800B6290E /* NodeDescription.swift in Sources */,
 				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				81EA57111D5F3BBA00B6290E /* Text.swift in Sources */,
@@ -368,6 +398,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
+				A115387C1D63424E00C5C29C /* PlasticNodeTests.swift in Sources */,
+				A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

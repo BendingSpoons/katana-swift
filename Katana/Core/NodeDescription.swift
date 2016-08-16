@@ -11,20 +11,22 @@ import UIKit
 public protocol AnyNodeDescription {
   func node() -> AnyNode;
   func replaceKey() -> Int
-  
+  var children: [AnyNodeDescription] { set get }
+  var frame: CGRect { get set }
+  var key: String? { get }
 }
 
 public protocol NodeDescription : AnyNodeDescription {
   associatedtype NativeView: UIView
-  associatedtype Props: Equatable,Frameable
+  associatedtype Props: Equatable, Frameable
   associatedtype State: Equatable
   
   static var viewType : NativeView.Type { get }
   static var initialState: State { get }
   
-  var children: [AnyNodeDescription] { set get }
   
-  var props: Props { get }
+  
+  var props: Props { get set }
   
   static func renderView(props: Props,
                          state: State,
@@ -37,7 +39,41 @@ public protocol NodeDescription : AnyNodeDescription {
                      update: (State)->()) -> [AnyNodeDescription]
   
   
+  static func layout(views: PlasticViewsContainer,
+                     props: Props,
+                     state: State) -> Void
+  
+  
   func replaceKey() -> Int
+}
+
+extension NodeDescription {
+  public var frame : CGRect {
+    get {
+      return self.props.frame
+    }
+
+    set {
+      self.props.frame = frame
+    }
+  }
+  
+  public var key: String? {
+    guard let p = self.props as? Keyable else {
+      return nil
+    }
+    
+    return p.key
+  }
+  
+  
+  // default implementation added to support the migration from frame based to
+  // plastic based, remove at the end
+  public static func layout(views: PlasticViewsContainer,
+                     props: Props,
+                     state: State) -> Void {
+    
+  }
 }
 
 extension NodeDescription {

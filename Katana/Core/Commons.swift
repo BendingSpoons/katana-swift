@@ -153,6 +153,19 @@ extension Bordable {
   }
 }
 
+public protocol Keyable {
+  var key: String? { get set }
+  func key(_ key: String?) -> Self
+}
+
+public extension Keyable {
+  public func key(_ key: String?) -> Self {
+    var copy = self
+    copy.key = key
+    return copy
+  }
+}
+
 public struct EmptyState : Equatable {
   public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true

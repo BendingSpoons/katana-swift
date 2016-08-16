@@ -9,14 +9,12 @@
 import UIKit
 
 public protocol AnyNode {
-  
   var description : AnyNodeDescription {get}
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
 
 public class Node<Description:NodeDescription> : AnyNode {
-  
   private var _description : Description
   private var children : [AnyNode]?
   private var state : Description.State
@@ -27,8 +25,6 @@ public class Node<Description:NodeDescription> : AnyNode {
       return self._description
     }
   }
-  
-  
   
   public init(description: Description) {
     self._description = description
@@ -87,10 +83,12 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     
     
-    let newChildren = Description.render(props: self._description.props,
+    var newChildren = Description.render(props: self._description.props,
                                          state: self.state,
                                          children: self._description.children,
                                          update: self.update)
+    
+    newChildren = applyLayout(to: newChildren)
     
     var nodes : [AnyNode] = []
     var viewIndex : [Int] = []
@@ -195,5 +193,14 @@ public class Node<Description:NodeDescription> : AnyNode {
       }
     }
   }
-  
+}
+
+
+
+extension Node {
+  func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, childrenDescription: self._description.children)
+    Description.layout(views: container, props: self._description.props, state: self.state)
+    return children
+  }
 }
