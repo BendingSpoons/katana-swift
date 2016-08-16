@@ -9,58 +9,58 @@
 import Katana
 
 struct AlbumProps : Equatable,Frameable {
-    var frame = CGRect.zero
-    
-    static func ==(lhs: AlbumProps, rhs: AlbumProps) -> Bool {
-        return lhs.frame == rhs.frame
-    }
-    
+  var frame = CGRect.zero
+  
+  static func ==(lhs: AlbumProps, rhs: AlbumProps) -> Bool {
+    return lhs.frame == rhs.frame
+  }
+  
 }
 
 struct AlbumState : Equatable {
-    
-    static func ==(lhs: AlbumState, rhs: AlbumState) -> Bool {
-        return false
-    }
-    
+  
+  static func ==(lhs: AlbumState, rhs: AlbumState) -> Bool {
+    return false
+  }
+  
 }
 
 struct Album : NodeDescription {
-
-    var props : AlbumProps
-    var children: [AnyNodeDescription] = []
-
-    static var initialState = AlbumState()
-    static var viewType = UIView.self
+  
+  var props : AlbumProps
+  var children: [AnyNodeDescription] = []
+  
+  static var initialState = AlbumState()
+  static var viewType = UIView.self
+  
+  static func render(props: AlbumProps,
+                     state: AlbumState,
+                     children: [AnyNodeDescription],
+                     update: (AlbumState)->()) -> [AnyNodeDescription] {
     
-    static func render(props: AlbumProps,
-        state: AlbumState,
-        children: [AnyNodeDescription],
-        update: (AlbumState)->()) -> [AnyNodeDescription] {
-        
-        return [
-            View(props: ViewProps().frame(props.frame.size).color(.yellow)),
-            View(props: ViewProps().frame(0,0,320,45).color(.white), children: [
-                Button(props: ButtonProps()
-                    .frame(10,20,30,20)
-                    .color(.black)
-                    .color(.gray, state: .highlighted)
-                    ),
-                Button(props: ButtonProps()
-                    .frame(150,20,30,20)
-                    .color(.black)
-                    .color(.gray, state: .highlighted)
-                ),
-                Button(props: ButtonProps()
-                    .frame(270,20,30,20)
-                    .color(.black)
-                    .color(.gray, state: .highlighted)
-                )
-                ]),
-        ]
-    }
-    
-    init(props: AlbumProps) {
-        self.props = props
-    }
+    return [
+      View(props: ViewProps().frame(props.frame.size).color(.yellow)),
+      View(props: ViewProps().frame(0,0,320,45).color(.white), children: [
+        Button(props: ButtonProps()
+          .frame(10,20,30,20)
+          .color(.black)
+          .color(.gray, state: .highlighted)
+        ),
+        Button(props: ButtonProps()
+          .frame(150,20,30,20)
+          .color(.black)
+          .color(.gray, state: .highlighted)
+        ),
+        Button(props: ButtonProps()
+          .frame(270,20,30,20)
+          .color(.black)
+          .color(.gray, state: .highlighted)
+        )
+        ]),
+    ]
+  }
+  
+  init(props: AlbumProps) {
+    self.props = props
+  }
 }
