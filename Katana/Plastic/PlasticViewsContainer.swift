@@ -18,12 +18,12 @@ public class PlasticViewsContainer {
   }
 
   init(rootFrame: CGRect, children: [AnyNodeDescription]) {
-    self.views[ROOT_KEY] = PlasticView(key: ROOT_KEY, frame: rootFrame)
+    self.views[ROOT_KEY] = PlasticView(hierarchyManager: self, key: ROOT_KEY, frame: rootFrame)
     
     // create children placeholders
     let childrenKeys = nodeChildrenKeys(children)
     childrenKeys.forEach {
-      self.views[$0] = PlasticView(key: $0)
+      self.views[$0] = PlasticView(hierarchyManager: self, key: $0)
     }
   }
   
@@ -31,7 +31,6 @@ public class PlasticViewsContainer {
     return self.views[key]
   }
 }
-
 
 private extension PlasticViewsContainer {
   private func nodeChildrenKeys(_ children: [AnyNodeDescription]) -> [String] {
@@ -45,5 +44,17 @@ private extension PlasticViewsContainer {
       
       return partialResult + [key] + childrenKeys
     })
+  }
+}
+
+extension PlasticViewsContainer: HierarchyManager {
+  func relativeXCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat {
+    // TODO implement me
+    return absoluteValue
+  }
+
+  func relativeYCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat {
+    // TODO implement me
+    return absoluteValue
   }
 }

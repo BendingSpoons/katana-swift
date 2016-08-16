@@ -51,15 +51,16 @@ public class PlasticView {
     }
   }
 
-  convenience init(key: String) {
-    self.init(key: key, frame: CGRect.zero)
+  convenience init(hierarchyManager: HierarchyManager, key: String) {
+    self.init(hierarchyManager: hierarchyManager, key: key, frame: CGRect.zero)
   }
   
-  init(key: String, frame: CGRect) {
+  init(hierarchyManager: HierarchyManager, key: String, frame: CGRect) {
     self.key = key
     self.frame = frame
     self.absoluteOrigin = frame.origin
     self.multiplier = 1 //TODO: Implement me
+    self.hierarchyManager = hierarchyManager
   }
   
   private func scaleValue(_ value: Value) -> CGFloat {
@@ -94,7 +95,7 @@ extension PlasticView {
 extension PlasticView {
   public var height: Value {
     get {
-      return .Fixed(self.frame.size.height)
+      return .fixed(self.frame.size.height)
     }
     
     set(newValue) {
@@ -120,200 +121,234 @@ extension PlasticView {
   }
 }
 
+// MARK: Width
+extension PlasticView {
+  public var width: Value {
+    get {
+      return .fixed(self.frame.size.width)
+    }
+    
+    set(newValue) {
+      setWidth(newValue)
+    }
+  }
+  
+  private func setWidth(_ value: Value) {
+    self.constraintX = .Width
+    
+    let newWidth = max(scaleValue(value), 0)
+    var newLeft = self.left.coordinate
+    
+    if (self.oldestConstraintX == .Right) {
+      newLeft = self.right.coordinate - newWidth
+    
+    } else if (self.oldestConstraintX == .CenterX) {
+      newLeft = self.centerX.coordinate - newWidth / 2.0
+    }
+    
+    self.updateX(newLeft)
+    self.updateWidth(newWidth)
+  }
+}
+
+// MARK: Bottom
+extension PlasticView {
+  public var bottom: Anchor {
+    get {
+      return Anchor(kind: .Bottom, view: self)
+    }
+    
+    set(newValue) {
+      setBottom(newValue)
+    }
+  }
+  
+  public func setBottom(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintY = .Bottom
+    
+    let newBottom = anchor.coordinate + scaleValue(offset)
+    var newHeight = scaleValue(self.height)
+    
+    if (oldestConstraintY == .Top) {
+      newHeight = max(newBottom - self.top.coordinate, 0)
+    
+    } else if (oldestConstraintY == .CenterY) {
+      newHeight = max(2 * (newBottom - self.centerY.coordinate), 0)
+    }
+    
+    self.updateY(newBottom - newHeight)
+    self.updateHeight(newHeight)
+  }
+}
+
+// MARK: Top
+extension PlasticView {
+  public var top: Anchor {
+    get {
+      return Anchor(kind: .Top, view: self)
+    }
+    
+    set(newValue) {
+      setTop(newValue)
+    }
+  }
+  
+  public func setTop(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    let newTop = anchor.coordinate + scaleValue(offset)
+    var newHeight = scaleValue(self.height)
+    
+    if (self.constraintY == .Bottom) {
+      newHeight = max(self.bottom.coordinate - newTop, 0)
+    
+    } else if (self.constraintY == .CenterY) {
+      newHeight = max(2.0 * (self.centerY.coordinate - newTop), 0.0)
+    }
+    
+    self.updateY(newTop)
+    self.updateHeight(newHeight)
+  }
+}
+
+// MARK: Right
+extension PlasticView {
+  public var right: Anchor {
+    get {
+      return Anchor(kind: .Right, view: self)
+    }
+    
+    set(newValue) {
+      setRight(newValue)
+    }
+  }
+  
+  public func setRight(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintX = .Right;
+    
+    let newRight = anchor.coordinate + scaleValue(offset);
+    var newWidth = scaleValue(self.width);
+    
+    if (self.oldestConstraintX == .Left) {
+      newWidth = max(newRight - self.left.coordinate, 0.0);
+    
+    } else if (self.oldestConstraintX == .CenterX) {
+      newWidth = max(2.0 * (newRight - self.centerX.coordinate), 0.0);
+    }
+    
+    self.updateX(newRight - newWidth);
+    self.updateWidth(newWidth)
+  }
+}
+
+// MARK: Left
+extension PlasticView {
+  public var left: Anchor {
+    get {
+      return Anchor(kind: .Left, view: self)
+    }
+    
+    set(newValue) {
+      setLeft(newValue)
+    }
+  }
+  
+  public func setLeft(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintX = .Left;
+    
+    let newLeft = anchor.coordinate + scaleValue(offset);
+    var newWidth = scaleValue(self.width);
+    
+    if (self.oldestConstraintX == .Right) {
+      newWidth = max(self.right.coordinate - newLeft, 0);
+      
+    } else if (self.oldestConstraintX == .CenterX) {
+      newWidth = max(2.0 * (self.centerX.coordinate - newLeft), 0.0);
+    }
+    
+    // update coords
+    self.updateX(newLeft)
+    self.updateWidth(newWidth)
+  }
+}
+
+// MARK: CenterX
+extension PlasticView {
+  public var centerX: Anchor {
+    get {
+      return Anchor(kind: .CenterX, view: self)
+    }
+    
+    set(newValue) {
+      setCenterX(newValue)
+    }
+  }
+  
+  public func setCenterX(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintX = .CenterX;
+    
+    let newCenterX = anchor.coordinate + scaleValue(offset);
+    var newWidth = scaleValue(self.width);
+    
+    if (self.oldestConstraintX == .Left) {
+      newWidth = max(2.0 * (newCenterX - self.left.coordinate), 0.0);
+      
+    } else if (self.oldestConstraintX == .Right) {
+      newWidth = max(2.0 * (self.right.coordinate - newCenterX), 0.0);
+    }
+    
+    // update coords
+    self.updateX(newCenterX - newWidth / 2.0)
+    self.updateWidth(newWidth)
+  }
+}
+
+// MARK: CenterY
+extension PlasticView {
+  public var centerY: Anchor {
+    get {
+      return Anchor(kind: .CenterY, view: self)
+    }
+    
+    set(newValue) {
+      setCenterY(newValue)
+    }
+  }
+  
+  public func setCenterY(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintY = .CenterY;
+    
+    let newCenterY = anchor.coordinate + scaleValue(offset);
+    var newHeight = scaleValue(self.height);
+    
+    if (self.oldestConstraintY == .Top) {
+      newHeight = max(2.0 * (newCenterY - self.top.coordinate), 0.0);
+      
+    } else if (self.oldestConstraintY == .Bottom) {
+      newHeight = max(2.0 * (self.bottom.coordinate - newCenterY), 0.0);
+    }
+    
+    // update coords
+    self.updateY(newCenterY - newHeight / 2.0)
+    self.updateHeight(newHeight)
+  }
+}
+
+
+// MARK: Size
+extension PlasticView {
+  public var size: Size {
+    get {
+      return .fixed(self.frame.width, self.frame.height)
+    }
+    
+    set(newValue) {
+      self.height = newValue.height
+      self.width = newValue.width
+    }
+  }
+}
+
+
 //class View {
-
-//  public get width(): Value { return Value.fixed(this.frame.width); }
-//  public get bottom(): Anchor { return new Anchor(Anchor.Kind.Bottom, this); }
-//  public get top(): Anchor { return new Anchor(Anchor.Kind.Top, this); }
-//  public get right(): Anchor { return new Anchor(Anchor.Kind.Right, this); }
-//  public get left(): Anchor { return new Anchor(Anchor.Kind.Left, this); }
-//  public get centerX(): Anchor { return new Anchor(Anchor.Kind.CenterX, this); }
-//  public get centerY(): Anchor { return new Anchor(Anchor.Kind.CenterY, this); }
-//  public get size(): Size { return Size.fixed(this.frame.width, this.frame.height); }
-//  public get previousConstraintX(): ConstraintX { return this._constraintX.old };
-//  public get previousConstraintY(): ConstraintY { return this._constraintY.old };
-//  
-//  public get css(): CSSLayoutT {
-//  return {
-//  position: 'absolute',
-//  left: roundToNearestPixel(this.frame.left),
-//  top: roundToNearestPixel(this.frame.top),
-//  width: roundToNearestPixel(this.frame.width),
-//  height: roundToNearestPixel(this.frame.height),
-//  };
-//  }
-//  
-//  // setters
-//  public set constraintX(newConstraintX: ConstraintX) {
-//  this._constraintX.old = this._constraintX.new;
-//  this._constraintX.new = newConstraintX;
-//  }
-//  
-//  public set constraintY(newConstraintY: ConstraintY) {
-//  this._constraintY.old = this._constraintY.new;
-//  this._constraintY.new = newConstraintY;
-//  }
-//  
-//  public set size(newSize: Size) {
-//  this.width = newSize.width;
-//  this.height = newSize.height;
-//  }
-//  
-//  public set left(v: Anchor) { this.setLeft(v); }
-//  public set right(v: Anchor) { this.setRight(v); }
-//  public set centerX(v: Anchor) { this.setCenterX(v); }
-//  public set top(v: Anchor) { this.setTop(v); }
-//  public set bottom(v: Anchor) { this.setBottom(v); }
-//  public set centerY(v: Anchor) { this.setCenterY(v); }
-//  public set hierarchy(v: HierarchyT) { this._hierarchy = v; }
-//  
-//  // complex setters
-//  public set width(v: Value) {
-//  this.constraintX = ConstraintX.Width;
-//  
-//  const newWidth = Math.max(this.scaleValue(v), 0.0);
-//  let newLeft = this.left.coordinate();
-//  
-//  if (this._constraintX.old === ConstraintX.Right) {
-//  newLeft = this.right.coordinate() - newWidth;
-//  
-//  } else if (this._constraintX.old === ConstraintX.CenterX) {
-//  newLeft = this.centerX.coordinate() - newWidth / 2.0;
-//  }
-//  
-//  // update coords
-//  this.updateLeftCoordinate(newLeft);
-//  this.frame.width = newWidth;
-//  }
-//  
-
-//  
-//  public setLeft(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintX = ConstraintX.Left;
-//  
-//  const newLeft: number = v.coordinate() + this.scaleValue(offset);
-//  let newWidth = this.scaleValue(this.width);
-//  
-//  if (this._constraintX.old === ConstraintX.Right) {
-//  newWidth = Math.max(this.right.coordinate() - newLeft, 0);
-//  
-//  } else if (this._constraintX.old === ConstraintX.CenterX) {
-//  newWidth = Math.max(2.0 * (this.centerX.coordinate() - newLeft), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateLeftCoordinate(newLeft);
-//  this.frame.width = newWidth;
-//  }
-//  
-//  public setRight(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintX = View.ConstraintX.Right;
-//  
-//  const newRight = v.coordinate() + this.scaleValue(offset);
-//  let newWidth = this.scaleValue(this.width);
-//  
-//  if (this.previousConstraintX === View.ConstraintX.Left) {
-//  newWidth = Math.max(newRight - this.left.coordinate(), 0.0);
-//  
-//  } else if (this.previousConstraintX === View.ConstraintX.CenterX) {
-//  newWidth = Math.max(2.0 * (newRight - this.centerX.coordinate()), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateLeftCoordinate(newRight - newWidth);
-//  this.frame.width = newWidth;
-//  }
-//  
-//  public setCenterX(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintX = ConstraintX.CenterX;
-//  
-//  const newCenterX: number = v.coordinate() + this.scaleValue(offset);
-//  let newWidth: number = this.scaleValue(this.width);
-//  
-//  if (this._constraintX.old === ConstraintX.Left) {
-//  newWidth = Math.max(2.0 * (newCenterX - this.left.coordinate()), 0.0);
-//  
-//  } else if (this._constraintX.old === ConstraintX.Right) {
-//  newWidth = Math.max(2.0 * (this.right.coordinate() - newCenterX), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateLeftCoordinate(newCenterX - newWidth / 2.0);
-//  this.frame.width = newWidth;
-//  }
-//  
-//  public setTop(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintY = ConstraintY.Top;
-//  
-//  const newTop: number = v.coordinate() + this.scaleValue(offset);
-//  let newHeight: number = this.scaleValue(this.height);
-//  
-//  if (this.constraintY === ConstraintY.Bottom) {
-//  newHeight = Math.max(this.bottom.coordinate() - newTop, 0.0);
-//  
-//  } else if (this.constraintY === ConstraintY.CenterY) {
-//  newHeight = Math.max(2.0 * (this.centerY.coordinate() - newTop), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateTopCoordinate(newTop);
-//  this.frame.height = newHeight;
-//  }
-//  
-//  public setBottom(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintY = ConstraintY.Bottom;
-//  
-//  const newBottom: number = v.coordinate() + this.scaleValue(offset);
-//  let newHeight: number = this.scaleValue(this.height);
-//  
-//  if (this._constraintY.old === ConstraintY.Top) {
-//  newHeight = Math.max(newBottom - this.top.coordinate(), 0.0);
-//  
-//  } else if (this._constraintY.old === ConstraintY.CenterY) {
-//  newHeight = Math.max(2.0 * (newBottom - this.centerY.coordinate()), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateTopCoordinate(newBottom - newHeight);
-//  this.frame.height = newHeight;
-//  }
-//  
-//  public setCenterY(v: Anchor, o?: Value | number) {
-//  const offset = scalableValueFromNumber(o);
-//  
-//  this.constraintY = ConstraintY.CenterY;
-//  
-//  const newCenterY: number = v.coordinate() + this.scaleValue(offset);
-//  let newHeight: number = this.scaleValue(this.height);
-//  
-//  if (this._constraintY.old === ConstraintY.Top) {
-//  newHeight = Math.max(2.0 * (newCenterY - this.top.coordinate()), 0.0);
-//  
-//  } else if (this._constraintY.old === ConstraintY.Bottom) {
-//  newHeight = Math.max(2.0 * (this.bottom.coordinate() - newCenterY), 0.0);
-//  }
-//  
-//  // update coords
-//  this.updateTopCoordinate(newCenterY - newHeight / 2.0);
-//  this.frame.height = newHeight;
-//  }
-//  
-//  // scalable methods
-//  public scaleValue(v: Value): number { return v.totalValue(this.multiplier); }
-//  public scaleFloat(f: number): number { return f * this.multiplier; }
-//  public scaleAndRoundValue(v: Value): number { return Math.round(this.scaleValue(v)); }
-//  public scaleAndRoundFloat(f: number): number { return Math.round(this.scaleFloat(f)); }
-//  
 //  // convenience methods
 //  public fillViewHorizontally(view: View, insets: EdgeInsets = EdgeInsets.zero): void {
 //  this.setLeft(view.left, insets.left);
@@ -423,32 +458,4 @@ extension PlasticView {
 //  invariant(false, 'Something went wrong');
 //  return -1;
 //  }
-//  
-//  private updateLeftCoordinate = (absoluteValue: number) => {
-//  const relativeValue = this.getRelativeCoordinate('left', absoluteValue);
-//  this.absoluteOrigin.left = absoluteValue;
-//  this.frame.left = relativeValue;
-//  };
-//  
-//  private updateTopCoordinate = (absoluteValue: number) => {
-//  const relativeValue = this.getRelativeCoordinate('top', absoluteValue);
-//  this.absoluteOrigin.top = absoluteValue;
-//  this.frame.top = relativeValue;
-//  };
-//}
-//
-//export default View;
-
-//const scalableValueFromNumber = (v?: Value | number): Value => {
-//  if (!v) {
-//    return Value.zero;
-//
-//  } else if (typeof v === 'number') {
-//    return Value.scalable(v);
-//
-//  } else {
-//    return v;
-//  }
-//}
-//
 

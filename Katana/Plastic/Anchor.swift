@@ -17,7 +17,12 @@ public struct Anchor {
   let kind: Kind
   let view: PlasticView
   
-  lazy var coordinate: CGFloat = {
+  init(kind: Kind, view: PlasticView) {
+    self.kind = kind
+    self.view = view
+  }
+  
+  var coordinate: CGFloat {
     let absoluteOrigin = self.view.absoluteOrigin
     let size = self.view.frame
     
@@ -41,5 +46,5 @@ public struct Anchor {
       return absoluteOrigin.y + size.height / 2.0
       
     }
-  }()
+  }
 }
