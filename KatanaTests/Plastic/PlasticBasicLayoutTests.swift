@@ -127,8 +127,8 @@ y  v   |              |  |          |
        +--------------+  +----------+
  
      
-    In order to bottom align v2 to v1 we should calculate the lower corner of v1 (origin + height)
-     and substract the height of v2. In this way we can calculate the origin of v1
+    In order to bottom align v2 to v1 we should calculate the y coordinate of the lower corner of v1 (origin + height)
+    and substract the height of v2. In this way we can calculate the y coordinate of the origin of v1
      
     In addition to that we can add/remove space using margins
  */
@@ -179,8 +179,8 @@ y  v   |              |  |          |
 y  v
      
      
-     In order to right align v2 to v1 we should calculate the right corner of v1 (origin + width)
-     and substract the width of v2. In this way we can calculate the origin of v1
+     In order to right align v2 to v1 we should calculate the x coordinate of the right corner of v1 (origin + width)
+     and substract the width of v2. In this way we can calculate the x coordinate of the origin of v1
      
      In addition to that we can add/remove space using margins
     */
@@ -206,6 +206,117 @@ y  v
     // margin scalable
     v1.setRight(v2.right, .scalable(50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width + 50 * multiplier)
+    
+    // negative
+    v1.setRight(v2.right, .scalable(-50))
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width - 50 * multiplier)
+  }
+  
+  func testShouldAlignCenterX() {
+/*
+ 
+                             x
+  +-------------------------->
+  |
+  |    +--------------+
+  |    |      v2      |
+  |    |              |
+  |    +--------------+
+  |          +---+
+  |          |   |
+  |          |   |
+  |          |   |
+  |          | v1|
+  |          |   |
+  |          |   |
+  |          +---+
+y v
+
+  
+  In order to center X align v2 to v1 we should calculate the x coordinate of the middle point of v1 which is origin.x + width / 2
+  We then subtract half of the width of v2 and this way we have found the x coordinate of the origin of v1
+ 
+  In addition to this we can add/remove margins
+*/
+    
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+    
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    v1.height = .fixed(400)
+    v1.width = .fixed(400)
+    
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+    
+    // no margin
+    v1.centerX = v2.centerX
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0)
+    
+    // margin fixed
+    v1.setCenterX(v2.centerX, .fixed(50))
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 + 50)
+    
+    // margin scalable
+    v1.setCenterX(v2.centerX, .scalable(50))
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 + 50 * multiplier)
+    
+    // negative margin
+    v1.setCenterX(v2.centerX, .scalable(-50))
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 - 50 * multiplier)
+  }
+  
+  func testShouldAlignCenterY() {
+    /*
+     
+     x
+     +--------------------------->
+     |
+     |    +-----+
+     |    |     |
+     |    |     |    +----+
+     |    |     |    |    |
+     |    |     |    |    |
+     |    |     |    |    |
+     |    |  v2 |    | v1 |
+     |    |     |    |    |
+     |    |     |    +----+
+     |    |     |
+     |    |     |
+     |    +-----+
+   y v
+     
+     In order to center Y align v2 to v1 we should calculate the y coordinate of the middle point of v1 which is origin.y + height / 2
+     We then subtract half of the height of v2 and this way we have found the y coordinate of the origin of v1
+     
+     In addition to this we can add/remove margins
+     */
+    
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+    
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    v1.height = .fixed(400)
+    v1.width = .fixed(400)
+    
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+    
+    // no margin
+    v1.centerY = v2.centerY
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0)
+    
+    // margin fixed
+    v1.setCenterY(v2.centerY, .fixed(50))
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50)
+    
+    // margin scalable
+    v1.setCenterY(v2.centerY, .scalable(50))
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50 * multiplier)
+    
+    // negative margin
+    v1.setCenterY(v2.centerY, .scalable(-50))
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 - 50 * multiplier)
   }
   
   func testShouldSetSize() {
