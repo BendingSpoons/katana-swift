@@ -42,6 +42,7 @@
 		A17211541D6362F700C0D858 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211531D6362F700C0D858 /* EdgeInsets.swift */; };
 		A19CCDDC1D63689E00DF997B /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CCDDB1D63689E00DF997B /* Anchor.swift */; };
 		A19CCDDE1D63790B00DF997B /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */; };
+		A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -100,6 +101,7 @@
 		A17211531D6362F700C0D858 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		A19CCDDB1D63689E00DF997B /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
+		A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,12 +247,21 @@
 		A115387A1D63422200C5C29C /* Plastic */ = {
 			isa = PBXGroup;
 			children = (
+				A1B9041A1D639A690032733A /* Models */,
 				A115387B1D63424E00C5C29C /* PlasticNodeTests.swift */,
 				A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */,
 				A172114B1D63583900C0D858 /* PlasticBasicLayoutTests.swift */,
 				A172114D1D6358AA00C0D858 /* PlasticDimensionsTests.swift */,
 			);
 			path = Plastic;
+			sourceTree = "<group>";
+		};
+		A1B9041A1D639A690032733A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -424,6 +435,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
+				A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */,
 				A172114E1D6358AA00C0D858 /* PlasticDimensionsTests.swift in Sources */,
 				A115387C1D63424E00C5C29C /* PlasticNodeTests.swift in Sources */,
 				A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */,

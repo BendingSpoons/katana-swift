@@ -18,12 +18,19 @@ public class PlasticViewsContainer {
   }
 
   init(rootFrame: CGRect, children: [AnyNodeDescription]) {
-    self.views[ROOT_KEY] = PlasticView(hierarchyManager: self, key: ROOT_KEY, frame: rootFrame)
+    let multiplier: CGFloat = 1.0 // TODO implement me
+    
+    self.views[ROOT_KEY] = PlasticView(
+      hierarchyManager: self,
+      key: ROOT_KEY,
+      multiplier: multiplier,
+      frame: rootFrame
+    )
     
     // create children placeholders
     let childrenKeys = nodeChildrenKeys(children)
     childrenKeys.forEach {
-      self.views[$0] = PlasticView(hierarchyManager: self, key: $0)
+      self.views[$0] = PlasticView(hierarchyManager: self, key: $0, multiplier: multiplier)
     }
   }
   
