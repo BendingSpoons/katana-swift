@@ -35,6 +35,11 @@
 		A11538821D634DDD00C5C29C /* PlasticViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */; };
 		A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */; };
 		A11538861D63507C00C5C29C /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11538851D63507C00C5C29C /* PlasticView.swift */; };
+		A172114C1D63583900C0D858 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172114B1D63583900C0D858 /* PlasticBasicLayoutTests.swift */; };
+		A172114E1D6358AA00C0D858 /* PlasticDimensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172114D1D6358AA00C0D858 /* PlasticDimensionsTests.swift */; };
+		A17211501D635AA000C0D858 /* PlasticValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = A172114F1D635AA000C0D858 /* PlasticValue.swift */; };
+		A17211521D635EA300C0D858 /* PlasticSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211511D635EA300C0D858 /* PlasticSize.swift */; };
+		A17211541D6362F700C0D858 /* PlasticEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211531D6362F700C0D858 /* PlasticEdgeInsets.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +91,11 @@
 		A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticViewsContainer.swift; sourceTree = "<group>"; };
 		A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
 		A11538851D63507C00C5C29C /* PlasticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticView.swift; sourceTree = "<group>"; };
+		A172114B1D63583900C0D858 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
+		A172114D1D6358AA00C0D858 /* PlasticDimensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticDimensionsTests.swift; sourceTree = "<group>"; };
+		A172114F1D635AA000C0D858 /* PlasticValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticValue.swift; sourceTree = "<group>"; };
+		A17211511D635EA300C0D858 /* PlasticSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticSize.swift; sourceTree = "<group>"; };
+		A17211531D6362F700C0D858 /* PlasticEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticEdgeInsets.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +229,9 @@
 			children = (
 				A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */,
 				A11538851D63507C00C5C29C /* PlasticView.swift */,
+				A172114F1D635AA000C0D858 /* PlasticValue.swift */,
+				A17211511D635EA300C0D858 /* PlasticSize.swift */,
+				A17211531D6362F700C0D858 /* PlasticEdgeInsets.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -228,6 +241,8 @@
 			children = (
 				A115387B1D63424E00C5C29C /* PlasticNodeTests.swift */,
 				A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */,
+				A172114B1D63583900C0D858 /* PlasticBasicLayoutTests.swift */,
+				A172114D1D6358AA00C0D858 /* PlasticDimensionsTests.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -383,11 +398,14 @@
 				A11538821D634DDD00C5C29C /* PlasticViewsContainer.swift in Sources */,
 				A11538861D63507C00C5C29C /* PlasticView.swift in Sources */,
 				81EA56FE1D5F3AC800B6290E /* NodeDescription.swift in Sources */,
+				A17211521D635EA300C0D858 /* PlasticSize.swift in Sources */,
+				A17211501D635AA000C0D858 /* PlasticValue.swift in Sources */,
 				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				81EA57111D5F3BBA00B6290E /* Text.swift in Sources */,
 				81EA57011D5F3AEA00B6290E /* Commons.swift in Sources */,
 				81EA57131D5F3BBA00B6290E /* View.swift in Sources */,
 				81EA56FD1D5F3AC800B6290E /* Node.swift in Sources */,
+				A17211541D6362F700C0D858 /* PlasticEdgeInsets.swift in Sources */,
 				81EA57121D5F3BBA00B6290E /* TouchHandler.swift in Sources */,
 				81EA56FF1D5F3AC800B6290E /* RenderContainer.swift in Sources */,
 			);
@@ -398,8 +416,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
+				A172114E1D6358AA00C0D858 /* PlasticDimensionsTests.swift in Sources */,
 				A115387C1D63424E00C5C29C /* PlasticNodeTests.swift in Sources */,
 				A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */,
+				A172114C1D63583900C0D858 /* PlasticBasicLayoutTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

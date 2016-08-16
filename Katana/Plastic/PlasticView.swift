@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 public class PlasticView {
   private(set) var frame: CGRect
   public let key: String
