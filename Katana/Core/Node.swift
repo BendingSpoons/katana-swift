@@ -198,9 +198,27 @@ public class Node<Description:NodeDescription> : AnyNode {
 
 
 extension Node {
-  func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, childrenDescription: self._description.children)
+  private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: self._description.children)
     Description.layout(views: container, props: self._description.props, state: self.state)
-    return children
+    return self.getFramedChildren(fromChildren: children, usingContainer: container)
+  }
+  
+  private func getFramedChildren(fromChildren children: [AnyNodeDescription], usingContainer container: PlasticViewsContainer) -> [AnyNodeDescription] {
+    
+    return children.map {
+      var newChild = $0
+      
+      if let key = newChild.key {
+        // we want to throw an exception if container doesn't contain
+        // key anyway
+        let frame = container[key]!.frame
+        newChild.frame = frame
+      }
+      
+      newChild.children = self.getFramedChildren(fromChildren: $0.children, usingContainer: container)
+      
+      return newChild
+    }
   }
 }
