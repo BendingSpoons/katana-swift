@@ -18,6 +18,14 @@ public struct Value: Equatable {
   
   static let zero = Value(0)
   
+  static func Fixed(_ fixed: CGFloat) -> Value {
+    return Value.init(scalable: 0, fixed: fixed)
+  }
+  
+  static func Scalable(_ scalable: CGFloat) -> Value {
+    return Value.init(scalable: scalable, fixed: 0)
+  }
+  
   init(_ scalable: CGFloat) {
     self.scalable = scalable
     self.fixed = 0
