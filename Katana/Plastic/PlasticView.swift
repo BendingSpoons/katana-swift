@@ -62,7 +62,10 @@ public class PlasticView {
     self.multiplier = multiplier
     self.hierarchyManager = hierarchyManager
   }
-  
+}
+
+// MARK: Scalable methods
+extension PlasticView {
   private func scaleValue(_ value: Value) -> CGFloat {
     return value.scale(multiplier)
   }
@@ -194,6 +197,8 @@ extension PlasticView {
   }
   
   public func setTop(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+    self.constraintY = .Top
+
     let newTop = anchor.coordinate + scaleValue(offset)
     var newHeight = scaleValue(self.height)
     
@@ -346,116 +351,3 @@ extension PlasticView {
     }
   }
 }
-
-
-//class View {
-//  // convenience methods
-//  public fillViewHorizontally(view: View, insets: EdgeInsets = EdgeInsets.zero): void {
-//  this.setLeft(view.left, insets.left);
-//  this.setRight(view.right, insets.right.invertedValue());
-//  }
-//  
-//  public fillViewVertically(view: View, insets: EdgeInsets = EdgeInsets.zero): void {
-//  this.setTop(view.top, insets.top);
-//  this.setBottom(view.bottom, insets.bottom.invertedValue());
-//  }
-//  
-//  public fillView(view: View, insets: EdgeInsets = EdgeInsets.zero): void {
-//  this.setLeft(view.left, insets.left);
-//  this.setRight(view.right, insets.right.invertedValue());
-//  this.setTop(view.top, insets.top);
-//  this.setBottom(view.bottom, insets.bottom.invertedValue());
-//  }
-//  
-//  public fillSpace(
-//  top: Anchor,
-//  left: Anchor,
-//  bottom: Anchor,
-//  right: Anchor,
-//  aspectRatio: number = 1,
-//  insets: EdgeInsets = EdgeInsets.zero
-//  ) {
-//  this.setLeft(left, insets.left);
-//  this.setRight(right, insets.right.invertedValue());
-//  this.setTop(top, insets.top);
-//  this.setBottom(bottom, insets.bottom.invertedValue());
-//  
-//  const width = this.width.unscaledValue();
-//  const height = this.height.unscaledValue();
-//  
-//  if (width / height < aspectRatio) {
-//  this.centerBetweenTopAndBottom(top, bottom);
-//  this.height = Value.fixed(width / aspectRatio);
-//  
-//  } else {
-//  this.centerBetweenLeftAndRight(left, right);
-//  this.width = Value.fixed(height * aspectRatio);
-//  }
-//  }
-//  
-//  public centerBetweenLeftAndRight(left: Anchor, right: Anchor): void {
-//  this.setCenterX(
-//  left,
-//  Value.fixed((right.coordinate() - left.coordinate()) / 2.0)
-//  );
-//  }
-//  
-//  public centerBetweenTopAndBottom(top: Anchor, bottom: Anchor): void {
-//  this.setCenterY(
-//  top,
-//  Value.fixed((bottom.coordinate() - top.coordinate()) / 2.0)
-//  );
-//  }
-//  
-//  public centerInView(view: View): void {
-//  this.setCenterY(view.centerY);
-//  this.setCenterX(view.centerX);
-//  }
-//  
-//  public coverLeft(view: View, insets: EdgeInsets = EdgeInsets.zero) {
-//  this.setLeft(view.left, insets.left);
-//  this.setTop(view.top, insets.top);
-//  this.setBottom(view.bottom, insets.bottom.invertedValue());
-//  }
-//  
-//  public coverRight(view: View, insets: EdgeInsets = EdgeInsets.zero) {
-//  this.setRight(view.right, insets.right.invertedValue());
-//  this.setTop(view.top, insets.top);
-//  this.setBottom(view.bottom, insets.bottom.invertedValue());
-//  }
-//  
-//  public setAsHeader(view:View, insets: EdgeInsets = EdgeInsets.zero) {
-//  this.setLeft(view.left, insets.left);
-//  this.setRight(view.right, insets.right.invertedValue());
-//  this.setTop(view.top, insets.top);
-//  }
-//  
-//  public setAsFooter(view: View, insets: EdgeInsets = EdgeInsets.zero) {
-//  this.setLeft(view.left, insets.left);
-//  this.setRight(view.right, insets.right.invertedValue());
-//  this.setBottom(view.bottom, insets.bottom.invertedValue());
-//  }
-//  
-//  private getRelativeCoordinate = (
-//  coord: 'left' | 'top',
-//  absoluteCoordinate: number,
-//  ): number => {
-//  
-//  const view = this._hierarchy[this.key];
-//  invariant(view, `Cannot find a view representation with key ${this.key}`);
-//  
-//  if (!view.parent) {
-//  return absoluteCoordinate;
-//  
-//  // TS is not able to understand if you pass "coord" as dict key
-//  } else if (coord === 'left') {
-//  return absoluteCoordinate - view.parent.absoluteOrigin.left;
-//  
-//  } else if (coord === 'top') {
-//  return absoluteCoordinate - view.parent.absoluteOrigin.top;
-//  }
-//  
-//  invariant(false, 'Something went wrong');
-//  return -1;
-//  }
-

@@ -9,7 +9,7 @@
 import Foundation
 
 
-public struct Anchor {
+public struct Anchor: Equatable {
   public enum Kind {
     case Left, Right, CenterX, Top, Bottom, CenterY
   }
@@ -46,5 +46,9 @@ public struct Anchor {
       return absoluteOrigin.y + size.height / 2.0
       
     }
+  }
+  
+  public static func ==(lhs: Anchor, rhs: Anchor) -> Bool {
+    return lhs.kind == rhs.kind && lhs.view === rhs.view
   }
 }

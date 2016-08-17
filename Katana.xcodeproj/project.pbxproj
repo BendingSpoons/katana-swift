@@ -42,6 +42,8 @@
 		A17211541D6362F700C0D858 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211531D6362F700C0D858 /* EdgeInsets.swift */; };
 		A19CCDDC1D63689E00DF997B /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CCDDB1D63689E00DF997B /* Anchor.swift */; };
 		A19CCDDE1D63790B00DF997B /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */; };
+		A1ACCDE91D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDE81D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift */; };
+		A1ACCDEB1D645AC40055FAA9 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */; };
 		A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */; };
 /* End PBXBuildFile section */
 
@@ -101,6 +103,8 @@
 		A17211531D6362F700C0D858 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		A19CCDDB1D63689E00DF997B /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
+		A1ACCDE81D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticConvenienceLayoutTests.swift; sourceTree = "<group>"; };
+		A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
 		A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -235,6 +239,7 @@
 			children = (
 				A11538811D634DDD00C5C29C /* PlasticViewsContainer.swift */,
 				A11538851D63507C00C5C29C /* PlasticView.swift */,
+				A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */,
 				A172114F1D635AA000C0D858 /* Value.swift */,
 				A17211511D635EA300C0D858 /* Size.swift */,
 				A17211531D6362F700C0D858 /* EdgeInsets.swift */,
@@ -252,6 +257,7 @@
 				A11538831D634EBC00C5C29C /* PlasticContainerTests.swift */,
 				A172114B1D63583900C0D858 /* PlasticBasicLayoutTests.swift */,
 				A172114D1D6358AA00C0D858 /* PlasticDimensionsTests.swift */,
+				A1ACCDE81D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -427,6 +433,7 @@
 				81EA57121D5F3BBA00B6290E /* TouchHandler.swift in Sources */,
 				81EA56FF1D5F3AC800B6290E /* RenderContainer.swift in Sources */,
 				A19CCDDC1D63689E00DF997B /* Anchor.swift in Sources */,
+				A1ACCDEB1D645AC40055FAA9 /* PlasticView+Convenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,6 +447,7 @@
 				A115387C1D63424E00C5C29C /* PlasticNodeTests.swift in Sources */,
 				A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */,
 				A172114C1D63583900C0D858 /* PlasticBasicLayoutTests.swift in Sources */,
+				A1ACCDE91D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
