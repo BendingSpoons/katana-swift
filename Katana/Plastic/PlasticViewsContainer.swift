@@ -44,9 +44,13 @@ public class PlasticViewsContainer {
     )
     
     // create children placeholders
-    let childrenKeys = nodeChildrenKeys(children)
-    childrenKeys.forEach {
-      self.views[$0] = PlasticView(hierarchyManager: self, key: $0, multiplier: multiplier)
+    flattenChildren(children).forEach { (key, node) in
+      self.views[key] = PlasticView(
+        hierarchyManager: self,
+        key: key,
+        multiplier: multiplier,
+        frame: node.frame
+      )
     }
     
     // this is a kind of workaround.. basically in this way we automatically handle the root
@@ -60,16 +64,16 @@ public class PlasticViewsContainer {
 }
 
 private extension PlasticViewsContainer {
-  private func nodeChildrenKeys(_ children: [AnyNodeDescription]) -> [String] {
-    return children.reduce([], { (partialResult, node) -> [String] in
+  private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
+    return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
       
-      let childrenKeys = self.nodeChildrenKeys(node.children)
+      let childrenKeys = self.flattenChildren(node.children)
       
       guard let key = node.key else {
         return partialResult + childrenKeys
       }
       
-      return partialResult + [key] + childrenKeys
+      return partialResult + [(key, node)] + childrenKeys
     })
   }
   

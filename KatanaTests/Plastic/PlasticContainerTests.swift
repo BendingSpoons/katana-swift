@@ -20,7 +20,6 @@ class PlasticViewsContainerTests: XCTestCase {
     XCTAssertEqual(rootPlaceholder.frame, rootFrame)
   }
   
-  
   func testShouldCreateChildren() {
     let hierarchy: [AnyNodeDescription] = [
       View(props: ViewProps().key("One"), children: [
@@ -42,6 +41,32 @@ class PlasticViewsContainerTests: XCTestCase {
     XCTAssertNotNil(plasticViewsContainer["One-B"])
     XCTAssertNotNil(plasticViewsContainer["Two"])
     XCTAssertNotNil(plasticViewsContainer["Four"])
+  }
+  
+  func testShouldKeepOriginalFrames() {
+    
+    let oneFrame = CGRect(x: 20, y: 30, width: 100, height: 100)
+    let oneBFrame = CGRect(x: 10, y: 10, width: 10, height: 10)
+    
+    let hierarchy: [AnyNodeDescription] = [
+      View(props: ViewProps().key("One").frame(oneFrame), children: [
+        View(props: ViewProps().key("One-A")),
+        View(props: ViewProps().key("One-B").frame(oneBFrame))
+        ]),
+      
+      View(props: ViewProps().key("Two")),
+      View(props: ViewProps()),
+      View(props: ViewProps().key("Four")),
+      ]
+    
+    
+    let plasticViewsContainer = PlasticViewsContainer(rootFrame: CGRect.zero, children: hierarchy)
+    let onePlaceholder = plasticViewsContainer["One"]
+    let oneBPlaceholder = plasticViewsContainer["One-B"]
+    
+    
+    XCTAssertEqual(onePlaceholder?.frame, oneFrame)
+    XCTAssertEqual(oneBPlaceholder?.frame, oneBFrame)
   }
   
   func testShouldManageHierarchy() {

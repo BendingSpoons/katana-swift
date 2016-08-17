@@ -35,7 +35,8 @@ public class Node<Description:NodeDescription> : AnyNode {
                                        children: self._description.children,
                                        update: self.update)
     
-    self.children = self.applyLayout(to: children).map { $0.node() }
+    let nChildren = self.applyLayout(to: children)
+    self.children = nChildren.map { $0.node() }
   }
   
   private func update(state: Description.State)  {
@@ -45,7 +46,6 @@ public class Node<Description:NodeDescription> : AnyNode {
   public func update(description: AnyNodeDescription) throws {
     let description = description as! Description
     self.update(state: self.state, description: description)
-    
   }
   
   func update(state: Description.State, description: Description) {
