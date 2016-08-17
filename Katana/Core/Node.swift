@@ -30,10 +30,12 @@ public class Node<Description:NodeDescription> : AnyNode {
     self._description = description
     self.state = Description.initialState
     
-    self.children = Description.render(props: self._description.props,
+    let children  = Description.render(props: self._description.props,
                                        state: self.state,
                                        children: self._description.children,
-                                       update: self.update).map { $0.node() }
+                                       update: self.update)
+    
+    self.children = self.applyLayout(to: children).map { $0.node() }
   }
   
   private func update(state: Description.State)  {
@@ -79,8 +81,6 @@ public class Node<Description:NodeDescription> : AnyNode {
         currentChildren[key]!.append(value)
       }
     }
-    
-    
     
     
     var newChildren = Description.render(props: self._description.props,
@@ -195,11 +195,10 @@ public class Node<Description:NodeDescription> : AnyNode {
   }
 }
 
-
-
+// MARK: Plastic
 extension Node {
   private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: self._description.children)
+    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: children)
     Description.layout(views: container, props: self._description.props, state: self.state)
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
@@ -210,8 +209,7 @@ extension Node {
       var newChild = $0
       
       if let key = newChild.key {
-        // we want to throw an exception if container doesn't contain
-        // key anyway
+        // if key is not in container we would throw an exception anyway
         let frame = container[key]!.frame
         newChild.frame = frame
       }
