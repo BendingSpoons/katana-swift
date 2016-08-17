@@ -8,11 +8,12 @@
 
 import UIKit
 
-public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable  {
+public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable, Keyable  {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  true
   public var text: NSAttributedString = NSAttributedString()
+  public var key: String?
   
   public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
     return lhs.frame == rhs.frame &&

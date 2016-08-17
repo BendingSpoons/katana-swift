@@ -175,8 +175,9 @@ public struct EmptyState : Equatable {
   
 }
 
-public struct EmptyProps : Equatable, Frameable {
+public struct EmptyProps : Equatable, Frameable, Keyable {
   
+  public var key: String?
   public var frame: CGRect = CGRect.zero
   
   public static func ==(lhs: EmptyProps, rhs: EmptyProps) -> Bool {

@@ -54,23 +54,50 @@ struct InstructionPopup : NodeDescription {
       ])
     
     return [
+      View(props: ViewProps()
+        .key("overlay")
+        .color(UIColor(white: 0, alpha: 0.8))),
       
-      Popup(props: EmptyProps().frame(props.frame.size), children: [
-        View(props: ViewProps().frame(0,0,270,400).color(0xE7E2D5), children:[
-          Text(props: TextProps().frame(0,0,270,95)
+      View(props: ViewProps()
+        .key("container")
+        .color(.white)
+        .cornerRadius(10), children:[
+          Text(props: TextProps()
+            .key("title")
             .text(text)
             .color(.clear)),
           
-          ]),
-        Button(props: ButtonProps().frame(0,360,270,40)
-          .color(.white)
-          .color(.gray, state: .highlighted)
-          .onTap(props.onClose)
-          .text(textButton))
-        
-        ])
+          Button(props: ButtonProps()
+            .key("button")
+            .color(.white)
+            .color(.gray, state: .highlighted)
+            .onTap(props.onClose)
+            .text(textButton))
+        ]),
     ]
+  }
+  
+  static func layout(views: PlasticViewsContainer,
+                     props: InstructionPopupProps,
+                     state: EmptyState) -> Void {
     
+    let overlay = views["overlay"]!
+    let container = views["container"]!
+    let button = views["button"]!
+    let title = views["title"]!
+    let root = views.rootView
+    
+    overlay.fill(root)
+    
+    container.width = root.width * 0.8
+    container.height = root.height * 0.8
+    container.center(root)
+    
+    title.asHeader(container)
+    title.height = .scalable(95)
+    
+    button.asFooter(container)
+    button.height = .scalable(40)
   }
 }
 

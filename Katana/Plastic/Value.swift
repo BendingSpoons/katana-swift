@@ -16,22 +16,22 @@ public struct Value: Equatable {
     return scalable + fixed
   }
   
-  static let zero = Value(0)
+  public static let zero = Value(0)
   
-  static func fixed(_ fixed: CGFloat) -> Value {
+  public static func fixed(_ fixed: CGFloat) -> Value {
     return Value.init(scalable: 0, fixed: fixed)
   }
   
-  static func scalable(_ scalable: CGFloat) -> Value {
+  public static func scalable(_ scalable: CGFloat) -> Value {
     return Value.init(scalable: scalable, fixed: 0)
   }
   
-  init(_ scalable: CGFloat) {
+  public init(_ scalable: CGFloat) {
     self.scalable = scalable
     self.fixed = 0
   }
   
-  init(scalable: CGFloat, fixed: CGFloat) {
+  public init(scalable: CGFloat, fixed: CGFloat) {
     self.scalable = scalable
     self.fixed = fixed
   }
