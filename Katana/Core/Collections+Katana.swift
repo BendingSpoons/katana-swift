@@ -8,27 +8,20 @@
 
 import Foundation
 
-extension Array where Element : Comparable {
-  
-  func isSorted() -> Bool {
-    
-    if self.count < 1 {
-      return true
-    }
-    
-    var current = self[0]
-    
-    for element in self {
-      if element < current {
-        return false
+extension Collection where Iterator.Element: Comparable {
+  var isSorted: Bool {
+    var iterator = makeIterator()
+    if var previous = iterator.next() {
+      while let element = iterator.next() {
+        if previous > element {
+          return false
+        }
+        previous = element
       }
-      current = element
     }
-    
     return true
   }
 }
-
 
 public func ==<T: Comparable>(lhs: [T]?, rhs: [T]?) -> Bool {
   

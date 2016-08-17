@@ -32,6 +32,10 @@
 		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
 		81FA36F91D6214570036020F /* Tabbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F81D6214570036020F /* Tabbar.swift */; };
 		81FA36FB1D6231AF0036020F /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FA1D6231AF0036020F /* Album.swift */; };
+		81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */; };
+		81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FE1D6453CD0036020F /* CommonsTest.swift */; };
+		81FA37011D6456190036020F /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37001D6456190036020F /* Collections.swift */; };
+		81FA37031D645A150036020F /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37021D645A150036020F /* UIColorTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,6 +84,10 @@
 		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F81D6214570036020F /* Tabbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Tabbar.swift; sourceTree = "<group>"; };
 		81FA36FA1D6231AF0036020F /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
+		81FA36FE1D6453CD0036020F /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
+		81FA37001D6456190036020F /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		81FA37021D645A150036020F /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +165,10 @@
 			isa = PBXGroup;
 			children = (
 				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
+				81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */,
+				81FA36FE1D6453CD0036020F /* CommonsTest.swift */,
+				81FA37001D6456190036020F /* Collections.swift */,
+				81FA37021D645A150036020F /* UIColorTest.swift */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
 			);
 			path = KatanaTests;
@@ -370,7 +382,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FA37031D645A150036020F /* UIColorTest.swift in Sources */,
+				81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */,
+				81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */,
 				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
+				81FA37011D6456190036020F /* Collections.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

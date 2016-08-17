@@ -1,10 +1,9 @@
 import XCTest
 import Katana
 
-class KatanaTests: XCTestCase {
+class RenderContainersTest: XCTestCase {
   
   func testAddAndRemoveAll() {
-    
     
     let r1 = RenderProfiler() { _ = $0}
     let r2 = RenderProfiler() { _ = $0}
@@ -22,7 +21,6 @@ class KatanaTests: XCTestCase {
   }
   
   func testRemove() {
-    
     
     let r1 = RenderProfiler { _ = $0}
     let r2 = RenderProfiler { _ = $0}

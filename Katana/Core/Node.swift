@@ -185,7 +185,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     
     var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
-    let sorted = viewIndexes.isSorted()
+    let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
       let currentSubview = currentSubviews[viewIndex]!
