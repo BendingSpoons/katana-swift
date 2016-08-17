@@ -8,9 +8,10 @@
 
 import UIKit
 
-public protocol AnyNode {
+public protocol AnyNode: class {
   
   var description : AnyNodeDescription {get}
+  var children : [AnyNode]? {get}
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
@@ -18,7 +19,7 @@ public protocol AnyNode {
 public class Node<Description:NodeDescription> : AnyNode {
   
   private var _description : Description
-  private var children : [AnyNode]?
+  public private(set) var children : [AnyNode]?
   private var state : Description.State
   private var container: RenderContainer?
   
@@ -44,7 +45,7 @@ public class Node<Description:NodeDescription> : AnyNode {
                                        update: update).map { $0.node() }
   }
   
-  private func update(state: Description.State)  {
+  internal func update(state: Description.State)  {
     self.update(state: state, description: self._description)
   }
   
