@@ -8,8 +8,9 @@
 
 import Katana
 
-struct TabbarProps : Equatable,Frameable {
+struct TabbarProps : Equatable,Frameable,Keyable {
   var frame = CGRect.zero
+  var key: String?
   
   static func ==(lhs: TabbarProps, rhs: TabbarProps) -> Bool {
     return lhs.frame == rhs.frame

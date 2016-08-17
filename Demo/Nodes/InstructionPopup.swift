@@ -9,9 +9,10 @@
 import UIKit
 import Katana
 
-struct InstructionPopupProps : Equatable,Frameable {
+struct InstructionPopupProps : Equatable,Frameable,Keyable {
   var frame: CGRect = CGRect.zero
   var onClose: (()->())?
+  var key: String?
   
   func onClose(_ onClose: (()->())?) -> InstructionPopupProps {
     var copy = self

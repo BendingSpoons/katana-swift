@@ -8,9 +8,10 @@
 
 import Katana
 
-struct CalculatorProps : Equatable,Frameable {
+struct CalculatorProps : Equatable,Frameable,Keyable {
   var frame: CGRect = CGRect.zero
   var onPasswordSet: (([Int])->())?
+  var key: String?
   
   static func ==(lhs: CalculatorProps, rhs: CalculatorProps) -> Bool {
     return false
