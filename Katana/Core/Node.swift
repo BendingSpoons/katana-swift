@@ -34,10 +34,14 @@ public class Node<Description:NodeDescription> : AnyNode {
     self._description = description
     self.state = Description.initialState
     
+    let update = { [unowned self] state in
+      self.update(state: state)
+    }
+
     self.children = Description.render(props: self._description.props,
                                        state: self.state,
                                        children: self._description.children,
-                                       update: self.update).map { $0.node() }
+                                       update: update).map { $0.node() }
   }
   
   private func update(state: Description.State)  {
@@ -83,14 +87,16 @@ public class Node<Description:NodeDescription> : AnyNode {
         currentChildren[key]!.append(value)
       }
     }
+
     
-    
-    
+    let update = { [unowned self] state in
+      self.update(state: state)
+    }
     
     let newChildren = Description.render(props: self._description.props,
                                          state: self.state,
                                          children: self._description.children,
-                                         update: self.update)
+                                         update: update)
     
     var nodes : [AnyNode] = []
     var viewIndex : [Int] = []
