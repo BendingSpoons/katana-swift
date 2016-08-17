@@ -66,7 +66,7 @@ public class PlasticView {
 
 // MARK: Scalable methods
 extension PlasticView {
-  private func scaleValue(_ value: Value) -> CGFloat {
+  func scaleValue(_ value: Value) -> CGFloat {
     return value.scale(multiplier)
   }
 }
