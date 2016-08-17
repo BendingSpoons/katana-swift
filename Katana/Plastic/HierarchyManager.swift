@@ -14,6 +14,11 @@ import Foundation
 // UIKit offers method to translate coords from a coordinate system to another,
 // we don't need all this freedom since our use case is way more restricted
 protocol HierarchyManager: class {
-  func relativeXCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat
-  func relativeYCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat
+  // return absolute value in the coordinate system of the parent of the given key
+  // the absolute value is considered as x value
+  func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat
+  
+  // return absolute value in the coordinate system of the parent of the given key
+  // the absolute value is considered as x value
+  func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat
 }

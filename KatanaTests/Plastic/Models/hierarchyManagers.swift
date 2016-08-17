@@ -12,11 +12,11 @@ import Foundation
 // dummy hierarchy manager that always like the view
 // is the top one.. it always returns the passed value
 class DummyHierarchyManager: HierarchyManager {
-  func relativeXCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat {
+  func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     return absoluteValue
   }
   
-  func relativeYCoordinate(_ absoluteValue: CGFloat, forViewWithKey: String) -> CGFloat {
+  func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     return absoluteValue
   }
 }

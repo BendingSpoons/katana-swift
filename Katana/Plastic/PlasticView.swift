@@ -82,13 +82,13 @@ extension PlasticView {
   }
   
   private func updateX(_ newValue: CGFloat) -> Void {
-    let relativeValue = self.hierarchyManager.relativeXCoordinate(newValue, forViewWithKey: self.key)
+    let relativeValue = self.hierarchyManager.getXCoordinate(newValue, inCoordinateSystemOfParentOfKey: self.key)
     self.frame.origin.x = relativeValue
     self.absoluteOrigin.x = newValue
   }
   
   private func updateY(_ newValue: CGFloat) -> Void {
-    let relativeValue = self.hierarchyManager.relativeYCoordinate(newValue, forViewWithKey: self.key)
+    let relativeValue = self.hierarchyManager.getYCoordinate(newValue, inCoordinateSystemOfParentOfKey: self.key)
     self.frame.origin.y = relativeValue
     self.absoluteOrigin.y = newValue
   }

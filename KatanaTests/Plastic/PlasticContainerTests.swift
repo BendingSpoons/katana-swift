@@ -22,7 +22,6 @@ class PlasticViewsContainerTests: XCTestCase {
   
   
   func testShouldCreateChildren() {
-    
     let hierarchy: [AnyNodeDescription] = [
       View(props: ViewProps().key("One"), children: [
         View(props: ViewProps().key("One-A")),
@@ -43,5 +42,123 @@ class PlasticViewsContainerTests: XCTestCase {
     XCTAssertNotNil(plasticViewsContainer["One-B"])
     XCTAssertNotNil(plasticViewsContainer["Two"])
     XCTAssertNotNil(plasticViewsContainer["Four"])
+  }
+  
+  func testShouldManageHierarchy() {
+    let hierarchy: [AnyNodeDescription] = [
+      View(props: ViewProps().key("One"), children: [
+        View(props: ViewProps().key("One-A"), children: [
+            View(props: ViewProps().key("One-A-Inner")),
+          ]),
+        ]),
+      ]
+    
+    
+    let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
+    let plasticViewsContainer = PlasticViewsContainer(rootFrame: containerFrame, children: hierarchy)
+    
+    // add some initial positions
+    let viewOne = plasticViewsContainer["One"]!
+    let viewOneA = plasticViewsContainer["One-A"]!
+    let viewOneAInner = plasticViewsContainer["One-A-Inner"]!
+    let root = plasticViewsContainer.rootView
+    
+    viewOne.coverRight(root)
+    viewOne.width = .fixed(400)
+    
+    viewOneA.asHeader(viewOne)
+    viewOneA.height = .fixed(300)
+    
+    viewOneAInner.asFooter(viewOneA)
+    viewOneAInner.height = .fixed(100)
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      100 - viewOneA.absoluteOrigin.x
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      100 - viewOneA.absoluteOrigin.y
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A"),
+      100 - viewOne.absoluteOrigin.x
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A"),
+      100 - viewOne.absoluteOrigin.y
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      100 - root.absoluteOrigin.x
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      100 - root.absoluteOrigin.y
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: root.key),
+      100
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: root.key),
+      100
+    )
+  }
+
+
+  func testShouldManageHierarchyWithoutKeys() {
+    
+    let oneAFrame = CGRect(x: 10, y: 10, width: 200, height: 200)
+    
+    let hierarchy: [AnyNodeDescription] = [
+      View(props: ViewProps().key("One"), children: [
+        View(props: ViewProps().frame(oneAFrame), children: [
+            View(props: ViewProps().key("One-A-Inner")),
+          ]),
+        ]),
+      ]
+    
+    
+    let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
+    let plasticViewsContainer = PlasticViewsContainer(rootFrame: containerFrame, children: hierarchy)
+    
+    // add some initial positions
+    let viewOne = plasticViewsContainer["One"]!
+    let viewOneAInner = plasticViewsContainer["One-A-Inner"]!
+    let root = plasticViewsContainer.rootView
+    
+    viewOne.coverRight(root)
+    viewOne.width = .fixed(400)
+    
+    viewOneAInner.asFooter(viewOne)
+    viewOneAInner.height = .fixed(100)
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      100 - root.absoluteOrigin.x
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      100 - root.absoluteOrigin.y
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getXCoordinate(600, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      -10
+    )
+    
+    XCTAssertEqual(
+      plasticViewsContainer.getYCoordinate(900, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      890
+    )
   }
 }
