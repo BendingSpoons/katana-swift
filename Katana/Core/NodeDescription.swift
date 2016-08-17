@@ -53,8 +53,8 @@ extension NodeDescription {
       return self.props.frame
     }
 
-    set {
-      self.props.frame = frame
+    set(newValue) {
+      self.props.frame = newValue
     }
   }
   
