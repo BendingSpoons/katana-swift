@@ -13,6 +13,7 @@ import Katana
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
+  var root: AnyNode?
   
   
   func application(_ application: UIApplication,
@@ -26,9 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let view = (self.window?.rootViewController?.view)!
     
     let rootBounds = UIScreen.main.bounds
-    let root = App(props: EmptyProps().frame(rootBounds), children: [])
-    
-    root.node().render(container: RenderContainers(containers: [view]))
+    self.root = App(props: EmptyProps().frame(rootBounds), children: []).node()
+    self.root!.render(container: RenderContainers(containers: [view]))
     
     return true
   }
