@@ -8,7 +8,7 @@
 
 import Foundation
 
-public extension PlasticViewsContainer {
+public extension ViewsContainer {
   public func filter(_ filter: (String) -> Bool) -> [String: PlasticView] {
     var newDict = [String: PlasticView]()
     

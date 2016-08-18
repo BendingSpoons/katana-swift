@@ -22,7 +22,7 @@ private enum HierarchyNode {
   case DynamicFrame(String)
 }
 
-public class PlasticViewsContainer {
+public class ViewsContainer {
   private(set) var views: [String: PlasticView] = [:]
   
   // the key is the node key while the value is a parent node representation
@@ -63,7 +63,7 @@ public class PlasticViewsContainer {
 
 
 // MARK: Hierarchy Manager
-extension PlasticViewsContainer: HierarchyManager {
+extension ViewsContainer: HierarchyManager {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     guard let node = self.hierarchy[key] else {
       fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
@@ -108,7 +108,7 @@ extension PlasticViewsContainer: HierarchyManager {
   }
 }
 
-private extension PlasticViewsContainer {
+private extension ViewsContainer {
   private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
     return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
       

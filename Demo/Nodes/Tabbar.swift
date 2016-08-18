@@ -90,7 +90,7 @@ struct Tabbar : NodeDescription {
     ]
   }
   
-  static func layout(views: PlasticViewsContainer, props: TabbarProps, state: TabbarState) -> Void {
+  static func layout(views: ViewsContainer, props: TabbarProps, state: TabbarState) -> Void {
     let root = views.rootView
     let viewContainer = views["viewContainer"]!
     let tabbarContainer = views["tabbarContainer"]!

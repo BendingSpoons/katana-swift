@@ -36,7 +36,7 @@ private struct TestNode : NodeDescription {
     ]
   }
   
-  static func layout(views: PlasticViewsContainer, props: EmptyProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer, props: EmptyProps, state: EmptyState) -> Void {
     self.invoked = true
   }
 }

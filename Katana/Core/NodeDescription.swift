@@ -44,7 +44,7 @@ public protocol NodeDescription : AnyNodeDescription {
                      update: (State)->()) -> [AnyNodeDescription]
   
   
-  static func layout(views: PlasticViewsContainer,
+  static func layout(views: ViewsContainer,
                      props: Props,
                      state: State) -> Void
   
@@ -74,7 +74,7 @@ extension NodeDescription {
   
   // default implementation added to support the migration from frame based to
   // plastic based, remove at the end
-  public static func layout(views: PlasticViewsContainer,
+  public static func layout(views: ViewsContainer,
                      props: Props,
                      state: State) -> Void {
     

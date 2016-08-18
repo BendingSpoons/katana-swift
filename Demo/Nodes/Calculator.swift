@@ -116,7 +116,7 @@ struct Calculator : NodeDescription {
     
   }
   
-  static func layout(views: PlasticViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
     let root = views.rootView
     let numberDisplay = views["number-display"]!
     let buttonsContainer = views["buttons-container"]!

@@ -14,7 +14,7 @@ class PlasticViewsContainerTests: XCTestCase {
   func testShouldCreateRootElement() {
     let hierarchy: [AnyNodeDescription] = []
     let rootFrame = CGRect(x: 0, y: 10, width: 20, height: 30)
-    let plasticViewsContainer = PlasticViewsContainer(rootFrame: rootFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer(rootFrame: rootFrame, children: hierarchy, multiplier: 1)
     
     let rootPlaceholder = plasticViewsContainer.rootView
     XCTAssertEqual(rootPlaceholder.frame, rootFrame)
@@ -33,7 +33,7 @@ class PlasticViewsContainerTests: XCTestCase {
       ]
     
     
-    let plasticViewsContainer = PlasticViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
     
     XCTAssertNotNil(plasticViewsContainer.rootView)
     XCTAssertNotNil(plasticViewsContainer["One"])
@@ -60,7 +60,7 @@ class PlasticViewsContainerTests: XCTestCase {
       ]
     
     
-    let plasticViewsContainer = PlasticViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
     let onePlaceholder = plasticViewsContainer["One"]
     let oneBPlaceholder = plasticViewsContainer["One-B"]
     
@@ -80,7 +80,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = PlasticViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
     let viewOne = plasticViewsContainer["One"]!
@@ -153,7 +153,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = PlasticViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
     let viewOne = plasticViewsContainer["One"]!

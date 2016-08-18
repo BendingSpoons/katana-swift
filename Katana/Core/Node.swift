@@ -200,12 +200,12 @@ public class Node<Description:NodeDescription> : AnyNode {
 // MARK: Plastic
 extension Node {
   private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
+    let container = ViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
     Description.layout(views: container, props: self._description.props, state: self.state)
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
   
-  private func getFramedChildren(fromChildren children: [AnyNodeDescription], usingContainer container: PlasticViewsContainer) -> [AnyNodeDescription] {
+  private func getFramedChildren(fromChildren children: [AnyNodeDescription], usingContainer container: ViewsContainer) -> [AnyNodeDescription] {
     
     return children.map {
       var newChild = $0

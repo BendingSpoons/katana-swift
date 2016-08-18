@@ -70,7 +70,7 @@ struct App : NodeDescription {
     }
   }
   
-  static func layout(views: PlasticViewsContainer,
+  static func layout(views: ViewsContainer,
                      props: EmptyProps,
                      state: AppState) -> Void {
     

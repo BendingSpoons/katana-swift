@@ -77,7 +77,7 @@ struct InstructionPopup : NodeDescription {
     ]
   }
   
-  static func layout(views: PlasticViewsContainer,
+  static func layout(views: ViewsContainer,
                      props: InstructionPopupProps,
                      state: EmptyState) -> Void {
     
