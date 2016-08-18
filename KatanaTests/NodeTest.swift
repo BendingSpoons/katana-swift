@@ -123,8 +123,10 @@ class NodeTest: XCTestCase {
       .filter { $0.tag ==  Katana.VIEW_TAG }
       .map { WeakView(value: $0) }
     
+    autoreleasepool {
+      try! root.update(description: App(props: AppProps(i:2), children: []))
+    }
 
-    try! root.update(description: App(props: AppProps(i:2), children: []))
     
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
 
