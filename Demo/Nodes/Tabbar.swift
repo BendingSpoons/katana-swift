@@ -28,20 +28,14 @@ struct TabbarState : Equatable {
 }
 
 struct Tabbar : NodeDescription {
-  
   var props : TabbarProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = TabbarState(section: 0)
   static var viewType = UIView.self
   
-  
-  
   static func render(props: TabbarProps,
                      state: TabbarState,
-                     children: [AnyNodeDescription],
                      update: (TabbarState)->()) -> [AnyNodeDescription] {
-    
     
     struct Section {
       var color: UIColor
@@ -85,21 +79,23 @@ struct Tabbar : NodeDescription {
     ]
     
     return [
-      
       sections[state.section].node,
       
-      View(props: ViewProps().frame(0,435,320,45).color(.black), children: sections.enumerated().map { (index,section) in
-        
-        let width = props.frame.size.width/CGFloat(sections.count)
-        let frame = CGRect(x: width * CGFloat(index), y: 0, width: width, height: 45)
-        
-        return View(props: ViewProps().color(.black).frame(frame), children: [
-          Button(props: ButtonProps()
-            .frame(10,10,width-20,45-20)
-            .onTap { update(TabbarState(section: index)) }
-            .color(section.color))
-          ])
-        })
+      View(props: ViewProps().frame(0,435,320,45).color(.black)) {
+        return sections.enumerated().map { (index,section) in
+          let width = props.frame.size.width/CGFloat(sections.count)
+          let frame = CGRect(x: width * CGFloat(index), y: 0, width: width, height: 45)
+          
+          return View(props: ViewProps().color(.black).frame(frame)) {
+            [
+              Button(props: ButtonProps()
+                .frame(10,10,width-20,45-20)
+                .onTap { update(TabbarState(section: index)) }
+                .color(section.color))
+            ]
+          }
+        }
+      }
     ]
   }
   

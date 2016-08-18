@@ -25,7 +25,6 @@ struct CalculatorProps : Equatable,Frameable {
 
 
 struct Calculator : NodeDescription {
-  
   var props : CalculatorProps
   var children: [AnyNodeDescription] = []
   
@@ -34,7 +33,6 @@ struct Calculator : NodeDescription {
   
   static func render(props: CalculatorProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
     
     
@@ -119,10 +117,15 @@ struct Calculator : NodeDescription {
       ])
     
     
-    return [View(props: ViewProps().frame(props.frame).color(.black), children: [
-      Text(props: TextProps().frame(40,40,240,30).color(.clear).text(text)),
-      View(props: ViewProps().frame(0,110,320,370).color(.red), children: buttons)
-      ])]
+    return [
+      View(props: ViewProps().frame(props.frame).color(.black)) {
+        [
+          Text(props: TextProps().frame(40,40,240,30).color(.clear).text(text)),
+          View(props: ViewProps().frame(0,110,320,370).color(.red).children(buttons))
+        ]
+      }
+    ]
+    
     
   }
   

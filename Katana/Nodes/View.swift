@@ -19,7 +19,7 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
   
   public init() {}
   
-  func children(_ children: [AnyNodeDescription]) -> ViewProps {
+  public func children(_ children: [AnyNodeDescription]) -> ViewProps {
     var copy = self
     copy.children = children
     return copy

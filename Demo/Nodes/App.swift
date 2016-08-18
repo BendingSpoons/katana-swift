@@ -20,7 +20,6 @@ struct AppState : Equatable {
 }
 
 struct App : NodeDescription {
-  
   var props : EmptyProps
   var children: [AnyNodeDescription] = []
   
@@ -31,7 +30,6 @@ struct App : NodeDescription {
   
   static func render(props: EmptyProps,
                      state: AppState,
-                     children: [AnyNodeDescription],
                      update: (AppState)->()) -> [AnyNodeDescription] {
     
     
@@ -44,8 +42,7 @@ struct App : NodeDescription {
     func onPasswordSet(_ password: [Int]) {
       update(AppState(showPopup: false, password: password))
     }
-    
-    
+
     if (state.showPopup) {
       return [
         Calculator(props: CalculatorProps().frame(props.frame.size), children: []),

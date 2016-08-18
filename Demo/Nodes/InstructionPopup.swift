@@ -25,7 +25,6 @@ struct InstructionPopupProps : Equatable,Frameable {
 }
 
 struct InstructionPopup : NodeDescription {
-  
   var props : InstructionPopupProps
   var children: [AnyNodeDescription] = []
   
@@ -36,10 +35,7 @@ struct InstructionPopup : NodeDescription {
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
-    
-    
     
     let text = NSMutableAttributedString(string: "Instructions", attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 22, weight: UIFontWeightRegular),
@@ -53,23 +49,24 @@ struct InstructionPopup : NodeDescription {
       ])
     
     return [
-      
-      Popup(props: EmptyProps().frame(props.frame.size), children: [
-        View(props: ViewProps().frame(0,0,270,400).color(0xE7E2D5), children:[
-          Text(props: TextProps().frame(0,0,270,95)
-            .text(text)
-            .color(.clear)),
-          
-          ]),
-        Button(props: ButtonProps().frame(0,360,270,40)
-          .color(.white)
-          .color(.gray, state: .highlighted)
-          .onTap(props.onClose)
-          .text(textButton))
+      Popup(props: PopupProps().frame(props.frame.size)) {
+        [
+          View(props: ViewProps().frame(0,0,270,400).color(0xE7E2D5)) {
+            [
+              Text(props: TextProps().frame(0,0,270,95)
+                .text(text)
+                .color(.clear))
+            ]
+          },
         
-        ])
+          Button(props: ButtonProps().frame(0,360,270,40)
+            .color(.white)
+            .color(.gray, state: .highlighted)
+            .onTap(props.onClose)
+            .text(textButton))
+        ]
+      }
     ]
-    
   }
 }
 

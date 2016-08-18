@@ -195,4 +195,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
   }
   
+  deinit {
+    print("DEINIT")
+  }
 }
