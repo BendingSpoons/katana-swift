@@ -21,17 +21,13 @@ struct AppState : Equatable {
 
 struct App : NodeDescription {
   var props : EmptyProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = AppState()
   static var viewType = UIView.self
   
-  
-  
   static func render(props: EmptyProps,
                      state: AppState,
                      update: (AppState)->()) -> [AnyNodeDescription] {
-    
     
     print("render app \(state)")
     
@@ -45,17 +41,17 @@ struct App : NodeDescription {
 
     if (state.showPopup) {
       return [
-        Calculator(props: CalculatorProps().frame(props.frame.size), children: []),
+        Calculator(props: CalculatorProps().frame(props.frame.size)),
         InstructionPopup(props: InstructionPopupProps()
           .frame(props.frame.size)
-          .onClose(onClose), children: [])
+          .onClose(onClose))
       ]
       
     } else if (state.password == nil)  {
       return [
         Calculator(props: CalculatorProps()
           .frame(props.frame.size)
-          .onPasswordSet(onPasswordSet), children: []),
+          .onPasswordSet(onPasswordSet)),
       ]
     } else {
       

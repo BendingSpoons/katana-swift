@@ -14,17 +14,14 @@ struct TabbarProps : Equatable,Frameable {
   static func ==(lhs: TabbarProps, rhs: TabbarProps) -> Bool {
     return lhs.frame == rhs.frame
   }
-  
 }
 
 struct TabbarState : Equatable {
-  
   var section : Int
   
   static func ==(lhs: TabbarState, rhs: TabbarState) -> Bool {
-    return false
+    return lhs.section == rhs.section
   }
-  
 }
 
 struct Tabbar : NodeDescription {

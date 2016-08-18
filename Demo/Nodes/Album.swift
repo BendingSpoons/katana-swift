@@ -14,15 +14,12 @@ struct AlbumProps : Equatable,Frameable {
   static func ==(lhs: AlbumProps, rhs: AlbumProps) -> Bool {
     return lhs.frame == rhs.frame
   }
-  
 }
 
 struct AlbumState : Equatable {
-  
   static func ==(lhs: AlbumState, rhs: AlbumState) -> Bool {
-    return false
+    return true
   }
-  
 }
 
 struct Album : NodeDescription {

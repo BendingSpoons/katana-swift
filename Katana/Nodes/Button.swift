@@ -11,7 +11,6 @@ import UIKit
 
 
 public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,Bordable  {
-  
   public enum State {
     case normal
     case highlighted
@@ -43,7 +42,6 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,B
   }
   
   public init() {}
-  
 }
 
 public struct Button : NodeDescription {

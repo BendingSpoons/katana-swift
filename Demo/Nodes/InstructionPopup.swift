@@ -26,12 +26,9 @@ struct InstructionPopupProps : Equatable,Frameable {
 
 struct InstructionPopup : NodeDescription {
   var props : InstructionPopupProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
   static var viewType = UIView.self
-  
-  
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,

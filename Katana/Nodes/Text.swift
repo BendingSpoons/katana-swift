@@ -26,9 +26,7 @@ public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable
 
 
 public struct Text : NodeDescription {
-  
   public var props : TextProps
-  public var children: [AnyNodeDescription] = []
   
   public static var initialState = EmptyState()
   public static var viewType = UILabel.self

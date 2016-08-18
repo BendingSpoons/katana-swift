@@ -40,19 +40,16 @@ public class Node<Description:NodeDescription> : AnyNode {
                                        update: update).map { $0.node() }
   }
   
-  internal func update(state: Description.State)  {
+  func update(state: Description.State)  {
     self.update(state: state, description: self._description)
   }
   
   public func update(description: AnyNodeDescription) throws {
     let description = description as! Description
     self.update(state: self.state, description: description)
-    
   }
   
   func update(state: Description.State, description: Description) {
-    
-    
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
@@ -68,10 +65,8 @@ public class Node<Description:NodeDescription> : AnyNode {
     self.state = state
     
     var currentChildren : [Int:[(node: AnyNode, index: Int)]] = [:]
+    
     for (index,child) in children.enumerated() {
-      
-      
-      
       let key = child.description.replaceKey()
       let value = (node: child, index: index)
       
@@ -96,11 +91,9 @@ public class Node<Description:NodeDescription> : AnyNode {
     var nodesToRender : [AnyNode] = []
     
     for newChild in newChildren {
-      
       let key = newChild.replaceKey()
       
       if currentChildren[key]?.count > 0 {
-        
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.description.replaceKey() == newChild.replaceKey())
         
@@ -110,7 +103,6 @@ public class Node<Description:NodeDescription> : AnyNode {
         viewIndex.append(replacement.index)
         
       } else {
-        
         //else create a new node
         let node = newChild.node()
         viewIndex.append(children.count + nodesToRender.count)
@@ -119,19 +111,14 @@ public class Node<Description:NodeDescription> : AnyNode {
       }
     }
     
-    
     self.children = nodes
     
     self.updateRender(applyProps: (!(sameProps && sameState)),
                       childrenToRender: nodesToRender,
                       viewIndexes: viewIndex)
-    
-    
-    
   }
   
   public func render(container: RenderContainer) {
-    
     guard let children = self.children else {
       fatalError("render cannot be called at this time")
     }
@@ -140,10 +127,9 @@ public class Node<Description:NodeDescription> : AnyNode {
       fatalError("node can be render on a single View")
     }
     
-    
     self.container = container.add { Description.NativeView() }
+    
     self.container?.update { view in
-      
       Description.renderView(props: self._description.props,
                              state: self.state,
                              view: view as! Description.NativeView,
@@ -155,7 +141,6 @@ public class Node<Description:NodeDescription> : AnyNode {
   
   
   public func updateRender(applyProps: Bool, childrenToRender: [AnyNode], viewIndexes: [Int]) {
-    
     guard let container = self.container else {
       return
     }
@@ -176,7 +161,6 @@ public class Node<Description:NodeDescription> : AnyNode {
       return node.render(container: container)
     }
     
-    
     var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
     let sorted = viewIndexes.isSorted
     
@@ -193,4 +177,5 @@ public class Node<Description:NodeDescription> : AnyNode {
         self.container?.remove(child: viewToRemove)
       }
     }
-  }}
+  }
+}

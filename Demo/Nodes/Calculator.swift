@@ -26,7 +26,6 @@ struct CalculatorProps : Equatable,Frameable {
 
 struct Calculator : NodeDescription {
   var props : CalculatorProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
   static var viewType = UIView.self
@@ -34,8 +33,7 @@ struct Calculator : NodeDescription {
   static func render(props: CalculatorProps,
                      state: EmptyState,
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
-    
-    
+
     struct Cell {
       var text : String
       var color : UIColor
