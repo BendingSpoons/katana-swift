@@ -49,7 +49,7 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let node = Node(description: TestNode(props: EmptyProps(), children: []))
+    let node = Node(description: TestNode(props: EmptyProps(), children: []), parentNode: nil)
     let renderProfiler = RenderProfiler() { _ = $0 }
     node.render(container: renderProfiler)
     

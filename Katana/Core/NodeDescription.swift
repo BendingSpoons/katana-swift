@@ -9,11 +9,13 @@
 import UIKit
 
 public protocol AnyNodeDescription {
-  func node() -> AnyNode;
-  func replaceKey() -> Int
   var children: [AnyNodeDescription] { set get }
   var frame: CGRect { get set }
   var key: String? { get }
+
+  func node() -> AnyNode;
+  func node(parentNode: AnyNode?) -> AnyNode
+  func replaceKey() -> Int
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -87,9 +89,12 @@ extension NodeDescription {
                      children: [AnyNodeDescription],
                      update: (State)->()) -> [AnyNodeDescription] { return [] }
   
+  public func node(parentNode: AnyNode?) -> AnyNode {
+    return Node(description: self, parentNode: parentNode)
+  }
   
   public func node() -> AnyNode {
-    return Node(description: self)
+    return node(parentNode: nil)
   }
   
   public func replaceKey() -> Int {

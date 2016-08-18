@@ -32,9 +32,7 @@ public class PlasticViewsContainer {
     return self.views[ROOT_KEY]!
   }
 
-  init(rootFrame: CGRect, children: [AnyNodeDescription]) {
-    let multiplier: CGFloat = 1.0 // TODO implement me
-    
+  init(rootFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
     // root element
     self.views[ROOT_KEY] = PlasticView(
       hierarchyManager: self,

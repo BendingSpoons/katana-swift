@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol AnyNode {
+public protocol AnyNode: class {
   var description : AnyNodeDescription {get}
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
@@ -19,6 +19,7 @@ public class Node<Description:NodeDescription> : AnyNode {
   private var children : [AnyNode]?
   private var state : Description.State
   private var container: RenderContainer?
+  weak private var parentNode: AnyNode?
   
   public var description: AnyNodeDescription {
     get {
@@ -26,7 +27,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
   }
   
-  public init(description: Description) {
+  public init(description: Description, parentNode: AnyNode?) {
     self._description = description
     self.state = Description.initialState
     
@@ -36,7 +37,7 @@ public class Node<Description:NodeDescription> : AnyNode {
                                        update: self.update)
     
     let nChildren = self.applyLayout(to: children)
-    self.children = nChildren.map { $0.node() }
+    self.children = nChildren.map { $0.node(parentNode: self) }
   }
   
   private func update(state: Description.State)  {
@@ -111,7 +112,7 @@ public class Node<Description:NodeDescription> : AnyNode {
       } else {
         
         //else create a new node
-        let node = newChild.node()
+        let node = newChild.node(parentNode: self)
         viewIndex.append(children.count + nodesToRender.count)
         nodes.append(node)
         nodesToRender.append(node)
@@ -196,9 +197,9 @@ public class Node<Description:NodeDescription> : AnyNode {
 }
 
 // MARK: Plastic
-extension Node {
+extension Node: ReferenceViewProvider {
   private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: children)
+    let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
     Description.layout(views: container, props: self._description.props, state: self.state)
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
@@ -218,5 +219,9 @@ extension Node {
       
       return newChild
     }
+  }
+  
+  func getPlasticMultiplier() -> CGFloat {
+    return 1
   }
 }

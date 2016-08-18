@@ -45,6 +45,7 @@
 		A1ACCDEB1D645AC40055FAA9 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */; };
 		A1ACCDED1D64660D0055FAA9 /* Array+Plastic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */; };
 		A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */; };
+		A1F469991D65BF620060F9F4 /* ReferenceViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F469981D65BF620060F9F4 /* ReferenceViewProvider.swift */; };
 		A1FD41AD1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
 		A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
+		A1F469981D65BF620060F9F4 /* ReferenceViewProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceViewProvider.swift; sourceTree = "<group>"; };
 		A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -248,6 +250,7 @@
 				A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */,
 				A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */,
 				A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */,
+				A1F469981D65BF620060F9F4 /* ReferenceViewProvider.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				81EA56FF1D5F3AC800B6290E /* RenderContainer.swift in Sources */,
 				A19CCDDC1D63689E00DF997B /* Anchor.swift in Sources */,
 				A1ACCDEB1D645AC40055FAA9 /* PlasticView+Convenience.swift in Sources */,
+				A1F469991D65BF620060F9F4 /* ReferenceViewProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
