@@ -8,6 +8,8 @@
 
 import UIKit
 
+let NO_REFERENCE_SIZE = CGSize(width: -999, height: -999)
+
 public protocol AnyNodeDescription {
   var children: [AnyNodeDescription] { set get }
   var frame: CGRect { get set }
@@ -16,6 +18,7 @@ public protocol AnyNodeDescription {
   func node() -> AnyNode;
   func node(parentNode: AnyNode?) -> AnyNode
   func replaceKey() -> Int
+  func referenceSize() -> CGSize
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -101,4 +104,7 @@ extension NodeDescription {
     return ObjectIdentifier(self.dynamicType).hashValue
   }
   
+  public func referenceSize() -> CGSize {
+    return NO_REFERENCE_SIZE
+  }
 }

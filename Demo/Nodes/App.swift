@@ -27,7 +27,9 @@ struct App : NodeDescription {
   static var initialState = AppState()
   static var viewType = UIView.self
   
-  
+  func referenceSize() -> CGSize {
+    return CGSize(width: 640, height: 960)
+  }
   
   static func render(props: EmptyProps,
                      state: AppState,

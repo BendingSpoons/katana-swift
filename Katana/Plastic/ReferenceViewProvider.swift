@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ReferenceViewProvider {
+public protocol ReferenceViewProvider {
   func getPlasticMultiplier() -> CGFloat
 }

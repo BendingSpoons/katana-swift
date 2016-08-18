@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol AnyNode: class {
+public protocol AnyNode: class, ReferenceViewProvider {
   var description : AnyNodeDescription {get}
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
@@ -30,6 +30,7 @@ public class Node<Description:NodeDescription> : AnyNode {
   public init(description: Description, parentNode: AnyNode?) {
     self._description = description
     self.state = Description.initialState
+    self.parentNode = parentNode
     
     let children  = Description.render(props: self._description.props,
                                        state: self.state,
@@ -197,7 +198,7 @@ public class Node<Description:NodeDescription> : AnyNode {
 }
 
 // MARK: Plastic
-extension Node: ReferenceViewProvider {
+extension Node {
   private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     let container = PlasticViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
     Description.layout(views: container, props: self._description.props, state: self.state)
@@ -221,7 +222,17 @@ extension Node: ReferenceViewProvider {
     }
   }
   
-  func getPlasticMultiplier() -> CGFloat {
-    return 1
+  public func getPlasticMultiplier() -> CGFloat {
+    let refSize = self._description.referenceSize()
+    
+    guard refSize != NO_REFERENCE_SIZE else {
+      return self.parentNode?.getPlasticMultiplier() ?? 0.0
+    }
+    
+    let currentSize = self._description.frame
+    
+    let widthRatio = currentSize.width / refSize.width;
+    let heightRatio = currentSize.height / refSize.height;
+    return min(widthRatio, heightRatio);
   }
 }
