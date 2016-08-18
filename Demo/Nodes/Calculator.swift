@@ -117,23 +117,14 @@ struct Calculator : NodeDescription {
   }
   
   static func layout(views: PlasticViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
-    
-    // return an ordered array of cells that have a certain prefix
-    let orderedCells = { (views:PlasticViewsContainer, prefix: String) -> [PlasticView] in
-      let orderedKeys = views.filter { $0.hasPrefix(prefix) }.keys.sorted(by: <)
-      return orderedKeys.flatMap { views[$0] }
-    }
-    
-    
-    
     let root = views.rootView
     let numberDisplay = views["number-display"]!
     let buttonsContainer = views["buttons-container"]!
-    let btnFirstRow = orderedCells(views, "button-0")
-    let btnSecondRow = orderedCells(views, "button-1")
-    let btnThirdRow = orderedCells(views, "button-2")
-    let btnFourthRow = orderedCells(views, "button-3")
-    let btnFifthRow = orderedCells(views, "button-4")
+    let btnFirstRow = views.orderedViews(withPrefix: "button-0", sortedBy: <)
+    let btnSecondRow = views.orderedViews(withPrefix: "button-1", sortedBy: <)
+    let btnThirdRow = views.orderedViews(withPrefix: "button-2", sortedBy: <)
+    let btnFourthRow = views.orderedViews(withPrefix: "button-3", sortedBy: <)
+    let btnFifthRow = views.orderedViews(withPrefix: "button-4", sortedBy: <)
     
     buttonsContainer.fill(top: root.top, left: root.left, bottom: root.bottom, right: root.right, aspectRatio: 4.0/5.0)
     buttonsContainer.bottom = root.bottom

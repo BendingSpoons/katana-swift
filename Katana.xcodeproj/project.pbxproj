@@ -45,6 +45,7 @@
 		A1ACCDEB1D645AC40055FAA9 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */; };
 		A1ACCDED1D64660D0055FAA9 /* Array+Plastic.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */; };
 		A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */; };
+		A1FD41AD1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -106,6 +107,7 @@
 		A1ACCDEA1D645AC40055FAA9 /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
 		A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
+		A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -245,6 +247,7 @@
 				A19CCDDB1D63689E00DF997B /* Anchor.swift */,
 				A19CCDDD1D63790B00DF997B /* HierarchyManager.swift */,
 				A1ACCDEC1D64660D0055FAA9 /* Array+Plastic.swift */,
+				A1FD41AC1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				81EA57111D5F3BBA00B6290E /* Text.swift in Sources */,
 				81EA57011D5F3AEA00B6290E /* Commons.swift in Sources */,
+				A1FD41AD1D65B08400D252CD /* PlasticViewsContainer+Helpers.swift in Sources */,
 				A1ACCDED1D64660D0055FAA9 /* Array+Plastic.swift in Sources */,
 				81EA57131D5F3BBA00B6290E /* View.swift in Sources */,
 				81EA56FD1D5F3AC800B6290E /* Node.swift in Sources */,

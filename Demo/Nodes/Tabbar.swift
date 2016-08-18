@@ -34,7 +34,9 @@ struct Tabbar : NodeDescription {
   static var initialState = TabbarState()
   static var viewType = UIView.self
   
-  
+  init(props: TabbarProps) {
+    self.props = props
+  }
   
   static func render(props: TabbarProps,
                      state: TabbarState,
@@ -75,20 +77,43 @@ struct Tabbar : NodeDescription {
     ]
     
     return [
-      View(props: ViewProps().frame(0,0,320,435).color(.blue)),
-      View(props: ViewProps().frame(0,435,320,45).color(.black), children: sections.enumerated().map { (index,section) in
+      View(props: ViewProps().key("viewContainer")/*.frame(0,0,320,435)*/.color(.blue)),
+      View(props: ViewProps().key("tabbarContainer")/*.frame(0,435,320,45)*/.color(.black), children: sections.enumerated().map { (index,section) in
         
-        let width = props.frame.size.width/CGFloat(sections.count)
-        let frame = CGRect(x: width * CGFloat(index), y: 0, width: width, height: 45)
+//        let width = props.frame.size.width/CGFloat(sections.count)
+//        let frame = CGRect(x: width * CGFloat(index), y: 0, width: width, height: 45)
         
-        return View(props: ViewProps().color(.black).frame(frame), children: [
-          View(props: ViewProps().frame(10,10,width-20,45-20).color(section.color))
+        return View(props: ViewProps().color(.black).key("tabbarButton-\(index)")/*.frame(frame)*/, children: [
+          View(props: ViewProps().key("tabbarButtonImage-\(index)")/*.frame(10,10,width-20,45-20)*/.color(section.color))
           ])
         })
     ]
   }
   
-  init(props: TabbarProps) {
-    self.props = props
+  static func layout(views: PlasticViewsContainer, props: TabbarProps, state: TabbarState) -> Void {
+    let root = views.rootView
+    let viewContainer = views["viewContainer"]!
+    let tabbarContainer = views["tabbarContainer"]!
+    let buttons = views.orderedViews(withPrefix: "tabbarButton-", sortedBy: <)
+    
+    tabbarContainer.asFooter(root)
+    tabbarContainer.height = .scalable(80)
+    
+    viewContainer.asHeader(root)
+    viewContainer.bottom = tabbarContainer.top
+    
+    
+    // buttons
+    buttons.fill(left: tabbarContainer.left, right: tabbarContainer.right)
+    
+    for (index, btn) in buttons.enumerated() {
+      btn.height = tabbarContainer.height
+      btn.bottom = tabbarContainer.bottom
+      
+      // this is very ugly but in a real case scenario probably btn will be some self contained
+      // view
+      let image = views["tabbarButtonImage-\(index)"]!
+      image.fill(btn, insets: .scalable(10, 10, 10 , 10))
+    }
   }
 }

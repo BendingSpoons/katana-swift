@@ -23,7 +23,7 @@ private enum HierarchyNode {
 }
 
 public class PlasticViewsContainer {
-  private var views: [String: PlasticView] = [:]
+  private(set) var views: [String: PlasticView] = [:]
   
   // the key is the node key while the value is a parent node representation
   private var hierarchy: [String: HierarchyNode] = [:]
@@ -60,21 +60,6 @@ public class PlasticViewsContainer {
   
   public subscript(key: String) -> PlasticView? {
     return self.views[key]
-  }
-}
-
-// MARK: Filter
-public extension PlasticViewsContainer {
-  func filter(_ filter: (String) -> Bool) -> [String: PlasticView] {
-    var newDict = [String: PlasticView]()
-    
-    for (key, view) in self.views {
-      if filter(key) {
-        newDict[key] = view
-      }
-    }
-    
-    return newDict
   }
 }
 
