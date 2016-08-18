@@ -10,7 +10,7 @@ import XCTest
 import Katana
 
 
-private struct TestNode : NodeDescription {
+private struct TestNode : NodeDescription, PlasticNodeDescription {
   var props : EmptyProps
   var children: [AnyNodeDescription] = []
   

@@ -10,13 +10,14 @@ import UIKit
 
 public protocol AnyNode: class, ReferenceViewProvider {
   var description : AnyNodeDescription {get}
+  var children : [AnyNode]? {get}
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
 
 public class Node<Description:NodeDescription> : AnyNode {
   private var _description : Description
-  private var children : [AnyNode]?
+  public private(set) var children : [AnyNode]?
   private var state : Description.State
   private var container: RenderContainer?
   weak private var parentNode: AnyNode?
@@ -32,16 +33,20 @@ public class Node<Description:NodeDescription> : AnyNode {
     self.state = Description.initialState
     self.parentNode = parentNode
     
+    let update = { [unowned self] state in
+      self.update(state: state)
+    }
+
     let children  = Description.render(props: self._description.props,
                                        state: self.state,
                                        children: self._description.children,
-                                       update: self.update)
+                                       update: update)
     
     let nChildren = self.applyLayout(to: children)
     self.children = nChildren.map { $0.node(parentNode: self) }
   }
   
-  private func update(state: Description.State)  {
+  internal func update(state: Description.State)  {
     self.update(state: state, description: self._description)
   }
   
@@ -83,12 +88,15 @@ public class Node<Description:NodeDescription> : AnyNode {
         currentChildren[key]!.append(value)
       }
     }
-    
+
+    let update = { [unowned self] state in
+      self.update(state: state)
+    }
     
     var newChildren = Description.render(props: self._description.props,
                                          state: self.state,
                                          children: self._description.children,
-                                         update: self.update)
+                                         update: update)
     
     newChildren = applyLayout(to: newChildren)
     
@@ -179,7 +187,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     
     var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
-    let sorted = viewIndexes.isSorted()
+    let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
       let currentSubview = currentSubviews[viewIndex]!

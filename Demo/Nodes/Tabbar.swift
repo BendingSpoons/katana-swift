@@ -20,6 +20,8 @@ struct TabbarProps : Equatable,Frameable,Keyable {
 
 struct TabbarState : Equatable {
   
+  var section : Int
+  
   static func ==(lhs: TabbarState, rhs: TabbarState) -> Bool {
     return false
   }
@@ -31,7 +33,7 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
   var props : TabbarProps
   var children: [AnyNodeDescription] = []
   
-  static var initialState = TabbarState()
+  static var initialState = TabbarState(section: 0)
   static var viewType = UIView.self
   
   init(props: TabbarProps) {
@@ -52,27 +54,36 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
     let sections = [
       Section(
         color: .red,
-        node: View(props: ViewProps().color(.red))
+        node: Album(props: AlbumProps()
+          .frame(props.frame.size))
       ),
       
       Section(
         color: .orange,
-        node: View(props: ViewProps().color(.orange))
+        node: View(props: ViewProps()
+          .frame(props.frame.size)
+          .color(.orange))
       ),
       
       Section(
         color: .green,
-        node: View(props: ViewProps().color(.green))
+        node: View(props: ViewProps()
+          .frame(props.frame.size)
+          .color(.green))
       ),
       
       Section(
         color: .white,
-        node: View(props: ViewProps().color(.white))
+        node: View(props: ViewProps()
+          .frame(props.frame.size)
+          .color(.white))
       ),
       
       Section(
         color: .purple,
-        node: View(props: ViewProps().color(.purple))
+        node: View(props: ViewProps()
+          .frame(props.frame.size)
+          .color(.purple))
       )
     ]
     

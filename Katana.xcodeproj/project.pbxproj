@@ -47,6 +47,12 @@
 		A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */; };
 		A1F469991D65BF620060F9F4 /* PlasticProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F469981D65BF620060F9F4 /* PlasticProtocols.swift */; };
 		A1FD41AD1D65B08400D252CD /* ViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FD41AC1D65B08400D252CD /* ViewsContainer+Helpers.swift */; };
+		81FA36FB1D6231AF0036020F /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FA1D6231AF0036020F /* Album.swift */; };
+		81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */; };
+		81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FE1D6453CD0036020F /* CommonsTest.swift */; };
+		81FA37011D6456190036020F /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37001D6456190036020F /* Collections.swift */; };
+		81FA37031D645A150036020F /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37021D645A150036020F /* UIColorTest.swift */; };
+		81FA37051D64875F0036020F /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37041D64875F0036020F /* NodeTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,6 +116,12 @@
 		A1B9041B1D639A7F0032733A /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1F469981D65BF620060F9F4 /* PlasticProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticProtocols.swift; sourceTree = "<group>"; };
 		A1FD41AC1D65B08400D252CD /* ViewsContainer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
+		81FA36FA1D6231AF0036020F /* Album.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
+		81FA36FE1D6453CD0036020F /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
+		81FA37001D6456190036020F /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		81FA37021D645A150036020F /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
+		81FA37041D64875F0036020F /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -144,6 +156,8 @@
 			children = (
 				813F4D201D5F3E51007CDB53 /* App.swift */,
 				81FA36F81D6214570036020F /* Tabbar.swift */,
+				81FA36FA1D6231AF0036020F /* Album.swift */,
+				81DFBFC31D5F61EF00225E0E /* Popup.swift */,
 				81DFBFC51D5F760900225E0E /* InstructionPopup.swift */,
 				81DFBFC11D5F57F900225E0E /* Calculator.swift */,
 			);
@@ -187,6 +201,11 @@
 			children = (
 				A115387A1D63422200C5C29C /* Plastic */,
 				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
+				81FA37041D64875F0036020F /* NodeTest.swift */,
+				81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */,
+				81FA36FE1D6453CD0036020F /* CommonsTest.swift */,
+				81FA37001D6456190036020F /* Collections.swift */,
+				81FA37021D645A150036020F /* UIColorTest.swift */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
 			);
 			path = KatanaTests;
@@ -450,6 +469,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81FA37031D645A150036020F /* UIColorTest.swift in Sources */,
+				81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */,
+				81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */,
+				81FA37051D64875F0036020F /* NodeTest.swift in Sources */,
 				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
 				A1B9041C1D639A7F0032733A /* hierarchyManagers.swift in Sources */,
 				A172114E1D6358AA00C0D858 /* PlasticDimensionsTests.swift in Sources */,
@@ -457,6 +480,7 @@
 				A11538841D634EBC00C5C29C /* PlasticContainerTests.swift in Sources */,
 				A172114C1D63583900C0D858 /* PlasticBasicLayoutTests.swift in Sources */,
 				A1ACCDE91D64403E0055FAA9 /* PlasticConvenienceLayoutTests.swift in Sources */,
+				81FA37011D6456190036020F /* Collections.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -468,6 +492,8 @@
 				81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */,
 				813F4D221D5F3E51007CDB53 /* App.swift in Sources */,
 				81FA36F91D6214570036020F /* Tabbar.swift in Sources */,
+				81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */,
+				81FA36FB1D6231AF0036020F /* Album.swift in Sources */,
 				81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
