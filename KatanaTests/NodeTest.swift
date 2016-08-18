@@ -15,7 +15,6 @@ struct AppProps : Equatable,Frameable {
 }
 
 struct App : NodeDescription {
-  
   var props : AppProps
   var children: [AnyNodeDescription] = []
   
@@ -26,34 +25,39 @@ struct App : NodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
     
     let i = props.i
     
     if (i == 0) {
       
-      return [View(props: ViewProps().frame(0,0,150,150).color(.gray), children: [
-        Button(props: ButtonProps().frame(50,50,100,100)
-          .color(.orange, state: .normal)
-          .color(.orange, state: .highlighted)
-          .text("state \(i)", fontSize: 10)
-          .onTap({
-            update(EmptyState())
-          })),
-        View(props: ViewProps().frame(0,0,150,150).color(.gray))
-        ])]
+      return [
+        View(props: ViewProps().frame(0,0,150,150).color(.gray)) {
+          [
+            Button(props: ButtonProps().frame(50,50,100,100)
+              .color(.orange, state: .normal)
+              .color(.orange, state: .highlighted)
+              .text("state \(i)", fontSize: 10)
+              .onTap({ update(EmptyState()) })),
+            
+            View(props: ViewProps().frame(0,0,150,150).color(.gray))
+          ]
+        }
+      ]
       
     } else if (i == 1) {
-      return [View(props: ViewProps().frame(0,0,150,150).color(.gray), children: [
-        Button(props: ButtonProps().frame(50,50,100,100)
-          .color(.orange, state: .normal)
-          .color(.orange, state: .highlighted)
-          .text("state \(i)", fontSize: 10)
-          .onTap({
-            update(EmptyState())
-          })),
-        ])]
+      return [
+        View(props: ViewProps().frame(0,0,150,150).color(.gray)) {
+          [
+            Button(props: ButtonProps().frame(50,50,100,100)
+              .color(.orange, state: .normal)
+              .color(.orange, state: .highlighted)
+              .text("state \(i)", fontSize: 10)
+              .onTap({ update(EmptyState()) }))
+          ]
+        }
+      ]
+    
     } else {
       return []
     }
