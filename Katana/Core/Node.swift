@@ -35,7 +35,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     self._description = description
     self.state = Description.initialState
     
-    let update : (Description.State)->() = { [weak self] state in
+    let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
 
@@ -90,7 +90,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
 
     
-    let update : (Description.State)->() = { [weak self] state in
+    let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
     
