@@ -25,7 +25,7 @@ struct InstructionPopupProps : Equatable,Frameable,Keyable {
   }
 }
 
-struct InstructionPopup : NodeDescription {
+struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   
   var props : InstructionPopupProps
   var children: [AnyNodeDescription] = []

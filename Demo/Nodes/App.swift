@@ -19,7 +19,7 @@ struct AppState : Equatable {
   
 }
 
-struct App : NodeDescription, ReferenceNodeDescription {
+struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
   
   var props : EmptyProps
   var children: [AnyNodeDescription] = []

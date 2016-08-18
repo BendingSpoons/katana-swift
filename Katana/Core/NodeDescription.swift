@@ -40,12 +40,6 @@ public protocol NodeDescription : AnyNodeDescription {
                      children: [AnyNodeDescription],
                      update: (State)->()) -> [AnyNodeDescription]
   
-  
-  static func layout(views: ViewsContainer,
-                     props: Props,
-                     state: State) -> Void
-  
-  
   func replaceKey() -> Int
 }
 
@@ -66,15 +60,6 @@ extension NodeDescription {
     }
     
     return p.key
-  }
-  
-  
-  // default implementation added to support the migration from frame based to
-  // plastic based, remove at the end
-  public static func layout(views: ViewsContainer,
-                     props: Props,
-                     state: State) -> Void {
-    
   }
 }
 

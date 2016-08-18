@@ -25,7 +25,7 @@ struct CalculatorProps : Equatable,Frameable,Keyable {
 }
 
 
-struct Calculator : NodeDescription {
+struct Calculator : NodeDescription, PlasticNodeDescription {
   
   var props : CalculatorProps
   var children: [AnyNodeDescription] = []

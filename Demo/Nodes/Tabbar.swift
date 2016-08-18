@@ -26,7 +26,7 @@ struct TabbarState : Equatable {
   
 }
 
-struct Tabbar : NodeDescription {
+struct Tabbar : NodeDescription, PlasticNodeDescription {
   
   var props : TabbarProps
   var children: [AnyNodeDescription] = []
@@ -77,14 +77,11 @@ struct Tabbar : NodeDescription {
     ]
     
     return [
-      View(props: ViewProps().key("viewContainer")/*.frame(0,0,320,435)*/.color(.blue)),
-      View(props: ViewProps().key("tabbarContainer")/*.frame(0,435,320,45)*/.color(.black), children: sections.enumerated().map { (index,section) in
+      View(props: ViewProps().key("viewContainer").color(.blue)),
+      View(props: ViewProps().key("tabbarContainer").color(.black), children: sections.enumerated().map { (index,section) in
         
-//        let width = props.frame.size.width/CGFloat(sections.count)
-//        let frame = CGRect(x: width * CGFloat(index), y: 0, width: width, height: 45)
-        
-        return View(props: ViewProps().color(.black).key("tabbarButton-\(index)")/*.frame(frame)*/, children: [
-          View(props: ViewProps().key("tabbarButtonImage-\(index)")/*.frame(10,10,width-20,45-20)*/.color(section.color))
+        return View(props: ViewProps().color(.black).key("tabbarButton-\(index)"), children: [
+          View(props: ViewProps().key("tabbarButtonImage-\(index)").color(section.color))
           ])
         })
     ]

@@ -200,8 +200,16 @@ public class Node<Description:NodeDescription> : AnyNode {
 // MARK: Plastic
 extension Node {
   private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    
+    guard let description = self._description as? AnyPlasticNodeDescription else {
+      // the node is not conforming to plastic, just return the children as is
+      return children
+    }
+    
     let container = ViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
-    Description.layout(views: container, props: self._description.props, state: self.state)
+    
+    description.dynamicType._layout(views: container, props: self._description.props, state: self.state)
+    
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
   
