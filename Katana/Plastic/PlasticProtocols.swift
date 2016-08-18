@@ -11,3 +11,7 @@ import Foundation
 public protocol ReferenceViewProvider {
   func getPlasticMultiplier() -> CGFloat
 }
+
+public protocol ReferenceNodeDescription {
+  static func referenceSize() -> CGSize
+}

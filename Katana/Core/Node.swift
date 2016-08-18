@@ -223,16 +223,16 @@ extension Node {
   }
   
   public func getPlasticMultiplier() -> CGFloat {
-    let refSize = self._description.referenceSize()
-    
-    guard refSize != NO_REFERENCE_SIZE else {
+    guard let description = self._description as? ReferenceNodeDescription else {
       return self.parentNode?.getPlasticMultiplier() ?? 0.0
     }
     
+    
+    let referenceSize = description.dynamicType.referenceSize()
     let currentSize = self._description.frame
     
-    let widthRatio = currentSize.width / refSize.width;
-    let heightRatio = currentSize.height / refSize.height;
+    let widthRatio = currentSize.width / referenceSize.width;
+    let heightRatio = currentSize.height / referenceSize.height;
     return min(widthRatio, heightRatio);
   }
 }
