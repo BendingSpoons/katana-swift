@@ -193,9 +193,4 @@ public class Node<Description:NodeDescription> : AnyNode {
         self.container?.remove(child: viewToRemove)
       }
     }
-  }
-  
-  deinit {
-    print("DEINIT")
-  }
-}
+  }}
