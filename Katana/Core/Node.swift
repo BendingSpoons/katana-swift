@@ -31,8 +31,8 @@ public class Node<Description:NodeDescription> : AnyNode {
     self._description = description
     self.state = Description.initialState
     
-    let update = { [unowned self] state in
-      self.update(state: state)
+    let update : (Description.State)->() = { [weak self] state in
+      self?.update(state: state)
     }
 
     self.children = Description.render(props: self._description.props,
@@ -83,8 +83,8 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
 
     
-    let update = { [unowned self] state in
-      self.update(state: state)
+    let update : (Description.State)->() = { [weak self] state in
+      self?.update(state: state)
     }
     
     let newChildren = Description.render(props: self._description.props,
