@@ -61,10 +61,10 @@ public struct Button : NodeDescription {
                             update: (Bool)->()) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
-      if (pressed) {
+      update(pressed)
+      if (!pressed) {
         props.onTap?()
       }
-      update(pressed)
     }
     
     return [
