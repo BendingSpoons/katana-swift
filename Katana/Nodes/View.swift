@@ -50,9 +50,8 @@ public struct View : NodeDescription {
   
   public static func render(props: ViewProps,
                             state: EmptyState,
-                            children: [AnyNodeDescription],
                             update: (EmptyState)->()) -> [AnyNodeDescription] {
-    return children
+    return [] // TODO: restore this functionality
   }
   
   public init(props: ViewProps) {

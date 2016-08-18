@@ -43,10 +43,9 @@ public struct TouchHandler : NodeDescription {
   
   public static func render(props: TouchHandlerProps,
                             state: EmptyState,
-                            children: [AnyNodeDescription],
                             update: (EmptyState)->()) -> [AnyNodeDescription] {
     
-    return children
+    return [] // TODO: restore this functionalities
   }
   
   public init(props: TouchHandlerProps, children: [AnyNodeDescription]) {

@@ -9,15 +9,13 @@
 import UIKit
 
 public protocol AnyNode: class {
-  
-  var description : AnyNodeDescription {get}
-  var children : [AnyNode]? {get}
+  var description : AnyNodeDescription { get }
+  var children : [AnyNode]? { get }
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
 
 public class Node<Description:NodeDescription> : AnyNode {
-  
   private var _description : Description
   public private(set) var children : [AnyNode]?
   private var state : Description.State
@@ -29,8 +27,6 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
   }
   
-  
-  
   public init(description: Description) {
     self._description = description
     self.state = Description.initialState
@@ -41,7 +37,6 @@ public class Node<Description:NodeDescription> : AnyNode {
 
     self.children = Description.render(props: self._description.props,
                                        state: self.state,
-                                       children: self._description.children,
                                        update: update).map { $0.node() }
   }
   
@@ -64,10 +59,8 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     let sameProps = self._description.props == description.props
     let sameState = self.state == state
-    let sameChildren = self._description.children.count + description.children.count == 0
     
-    
-    if (sameProps && sameState && sameChildren) {
+    if (sameProps && sameState) {
       return
     }
     
@@ -96,7 +89,6 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     let newChildren = Description.render(props: self._description.props,
                                          state: self.state,
-                                         children: self._description.children,
                                          update: update)
     
     var nodes : [AnyNode] = []

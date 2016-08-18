@@ -57,7 +57,6 @@ public struct Button : NodeDescription {
   
   public static func render(props: ButtonProps,
                             state: Bool,
-                            children: [AnyNodeDescription],
                             update: (Bool)->()) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
@@ -84,6 +83,4 @@ public struct Button : NodeDescription {
   public init(props: ButtonProps) {
     self.props = props
   }
-  
-  
 }

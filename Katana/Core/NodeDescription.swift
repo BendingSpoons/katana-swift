@@ -11,7 +11,6 @@ import UIKit
 public protocol AnyNodeDescription {
   func node() -> AnyNode;
   func replaceKey() -> Int
-  
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -21,9 +20,7 @@ public protocol NodeDescription : AnyNodeDescription {
   
   static var viewType : NativeView.Type { get }
   static var initialState: State { get }
-  
-  var children: [AnyNodeDescription] { set get }
-  
+
   var props: Props { get }
   
   static func renderView(props: Props,
@@ -33,7 +30,6 @@ public protocol NodeDescription : AnyNodeDescription {
   
   static func render(props: Props,
                      state: State,
-                     children: [AnyNodeDescription],
                      update: (State)->()) -> [AnyNodeDescription]
   
   
@@ -45,12 +41,6 @@ extension NodeDescription {
   public static func renderView(props: Props, state: State, view: NativeView, update: (State)->())  {
     view.frame = props.frame
   }
-  
-  static func render(props: Props,
-                     state: State,
-                     children: [AnyNodeDescription],
-                     update: (State)->()) -> [AnyNodeDescription] { return [] }
-  
   
   public func node() -> AnyNode {
     return Node(description: self)
