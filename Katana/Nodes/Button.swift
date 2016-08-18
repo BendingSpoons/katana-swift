@@ -47,13 +47,14 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,B
 }
 
 public struct Button : NodeDescription {
-  
   public var props : ButtonProps
-  public var children: [AnyNodeDescription] = []
   
   public static var initialState = false
   public static var viewType = UIView.self
   
+  public init(props: ButtonProps) {
+    self.props = props
+  }
   
   public static func render(props: ButtonProps,
                             state: Bool,
@@ -66,21 +67,22 @@ public struct Button : NodeDescription {
       update(pressed)
     }
     
-    return [TouchHandler(props: TouchHandlerProps().frame(props.frame.size).touchHandler(touchHandler), children: [
-      View(props: ViewProps()
-        .frame(props.frame.size)
-        .color(state ? props.highlightedColor : props.color )
-        .borderColor(props.borderColor)
-        .borderWidth(props.borderWidth)
-        .disableTouch(), children : []),
+    return [
+      TouchHandler(props: TouchHandlerProps().frame(props.frame.size).touchHandler(touchHandler)) {
+        [
+          View(props: ViewProps()
+            .frame(props.frame.size)
+            .color(state ? props.highlightedColor : props.color )
+            .borderColor(props.borderColor)
+            .borderWidth(props.borderWidth)
+            .disableTouch())
+        ]
+      },
+
       Text(props: TextProps()
         .frame(props.frame.size)
         .text(props.text)
         .color(.clear))
-      ])]
-  }
-  
-  public init(props: ButtonProps) {
-    self.props = props
+      ]
   }
 }

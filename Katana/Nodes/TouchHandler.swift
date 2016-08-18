@@ -9,13 +9,18 @@
 import UIKit
 
 public struct TouchHandlerProps: Equatable, Frameable  {
-  
   public var frame = CGRect.zero
-  var text = ""
+  public var children: [AnyNodeDescription] = []
+
   var touchHandler: ((Bool) -> ())?
   
   public static func ==(lhs: TouchHandlerProps, rhs: TouchHandlerProps) -> Bool {
-    return false
+    if lhs.children.count + rhs.children.count > 0 {
+      // Euristic, we always rerender when there is at least 1 child
+      return false
+    }
+    
+    return true
   }
   
   public func touchHandler(_ touchHandler: (Bool)->()) -> TouchHandlerProps {
@@ -24,13 +29,17 @@ public struct TouchHandlerProps: Equatable, Frameable  {
     return copy
   }
   
+  func children(_ children: [AnyNodeDescription]) -> TouchHandlerProps {
+    var copy = self
+    copy.children = children
+    return copy
+  }
+  
   public init() {}
 }
 
 public struct TouchHandler : NodeDescription {
-  
   public var props : TouchHandlerProps
-  public var children: [AnyNodeDescription] = []
   
   public static var initialState = EmptyState()
   public static var viewType = TouchHandlerView.self
@@ -45,12 +54,16 @@ public struct TouchHandler : NodeDescription {
                             state: EmptyState,
                             update: (EmptyState)->()) -> [AnyNodeDescription] {
     
-    return [] // TODO: restore this functionalities
+    return props.children
   }
   
-  public init(props: TouchHandlerProps, children: [AnyNodeDescription]) {
+  public init(props: TouchHandlerProps) {
     self.props = props
-    self.children = children
+  }
+  
+  public init(props: TouchHandlerProps, _ children: @noescape () -> [AnyNodeDescription]) {
+    self.props = props
+    self.props.children = children()
   }
 }
 
