@@ -157,7 +157,7 @@ public class RenderProfiler : RenderContainer {
   }
 }
 
-private let VIEW_TAG = 999987
+internal let VIEW_TAG = 999987
 
 extension UIView : RenderContainer {
   public struct UIViewRenderContainerChild : RenderContainerChild {

@@ -1,5 +1,5 @@
 import XCTest
-import Katana
+@testable import Katana
 
 struct AppProps : Equatable,Frameable {
   var frame: CGRect = CGRect.zero
@@ -62,9 +62,16 @@ struct App : NodeDescription {
 }
 
 
-class Weak {
+class WeakNode {
   weak var value : AnyNode?
   init(value: AnyNode) {
+    self.value = value
+  }
+}
+
+class WeakView {
+  weak var value : UIView?
+  init(value: UIView) {
     self.value = value
   }
 }
@@ -73,12 +80,16 @@ func collectNodes(node: AnyNode) -> [AnyNode] {
   return (node.children!.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children!
 }
 
+func collectView(view: UIView) -> [UIView] {
+  return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
+}
+
 class NodeTest: XCTestCase {
   
   
   func testNodeDeallocation() {
     let root = App(props: AppProps(i:0), children: []).node()
-    var references = collectNodes(node: root).map { Weak(value: $0) }
+    var references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
     
@@ -86,7 +97,7 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 6)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
   
-    references = collectNodes(node: root).map { Weak(value: $0) }
+    references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
@@ -94,11 +105,35 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
-    references = collectNodes(node: root).map { Weak(value: $0) }
+    references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
     
+  }
+  
+  
+  func testViewDeallocation() {
+    let root = App(props: AppProps(i:0), children: []).node()
+    
+    let rootVew = UIView()
+    root.render(container: rootVew)
+    
+    var references = collectView(view: rootVew)
+      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .map { WeakView(value: $0) }
+    
+
+    try! root.update(description: App(props: AppProps(i:2), children: []))
+    
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
+
+    references = collectView(view: rootVew)
+      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .map { WeakView(value: $0) }
+    
+    
+    XCTAssertEqual(references.count, 1)
   }
   
 }
