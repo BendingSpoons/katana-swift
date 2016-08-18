@@ -42,7 +42,7 @@ struct Calculator : NodeDescription {
     struct Cell {
       var text : String
       var color : UIColor
-      var size : Int
+
     }
     
     struct Row {
@@ -51,37 +51,37 @@ struct Calculator : NodeDescription {
     
     let rows = [
       Row(cells: [
-        Cell(text: "C", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "+/-", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "%", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "÷", color: UIColor(0xFF4D1D), size: 1),
+        Cell(text: "C", color: UIColor(0xE7E2D5)),
+        Cell(text: "+/-", color: UIColor(0xE7E2D5)),
+        Cell(text: "%", color: UIColor(0xE7E2D5)),
+        Cell(text: "÷", color: UIColor(0xFF4D1D)),
         ]),
       
       Row(cells: [
-        Cell(text: "7", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "8", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "9", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "X", color: UIColor(0xFF4D1D), size: 1),
+        Cell(text: "7", color: UIColor(0xE7E2D5)),
+        Cell(text: "8", color: UIColor(0xE7E2D5)),
+        Cell(text: "9", color: UIColor(0xE7E2D5)),
+        Cell(text: "X", color: UIColor(0xFF4D1D)),
         ]),
       
       Row(cells: [
-        Cell(text: "4", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "5", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "6", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "-", color: UIColor(0xFF4D1D), size: 1),
+        Cell(text: "4", color: UIColor(0xE7E2D5)),
+        Cell(text: "5", color: UIColor(0xE7E2D5)),
+        Cell(text: "6", color: UIColor(0xE7E2D5)),
+        Cell(text: "-", color: UIColor(0xFF4D1D)),
         ]),
       
       Row(cells: [
-        Cell(text: "1", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "2", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "3", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "+", color: UIColor(0xFF4D1D), size: 1),
+        Cell(text: "1", color: UIColor(0xE7E2D5)),
+        Cell(text: "2", color: UIColor(0xE7E2D5)),
+        Cell(text: "3", color: UIColor(0xE7E2D5)),
+        Cell(text: "+", color: UIColor(0xFF4D1D)),
         ]),
       
       Row(cells: [
-        Cell(text: "0", color: UIColor(0xE7E2D5), size: 2),
-        Cell(text: ".", color: UIColor(0xE7E2D5), size: 1),
-        Cell(text: "=", color: UIColor(0xFF4D1D), size: 1),
+        Cell(text: "0", color: UIColor(0xE7E2D5)),
+        Cell(text: ".", color: UIColor(0xE7E2D5)),
+        Cell(text: "=", color: UIColor(0xFF4D1D)),
         ])
     ]
     
@@ -89,27 +89,16 @@ struct Calculator : NodeDescription {
     var buttons : [AnyNodeDescription] = []
     
     for (rowNumber, row) in rows.enumerated() {
-      
-      var x = 0
-      
-      for (_, cell) in row.cells.enumerated() {
-        
-        let frame = CGRect(x: x,
-                           y: 74*rowNumber,
-                           width: 80*cell.size,
-                           height: 74)
-        
+      for (cellNumber, cell) in row.cells.enumerated() {
         buttons.append(Button(props: ButtonProps()
           .color(cell.color)
-          .frame(frame)
+          .key("button-\(rowNumber)-\(cellNumber)")
           .borderWidth(0.5)
           .text(cell.text, fontSize: 15)
           .onTap({
             props.onPasswordSet?([1,5,9,8])
           })
           ))
-        
-        x += 80*cell.size
       }
     }
     
@@ -121,10 +110,62 @@ struct Calculator : NodeDescription {
     
     
     return [View(props: ViewProps().frame(props.frame).color(.black), children: [
-      Text(props: TextProps().frame(40,40,240,30).color(.clear).text(text)),
-      View(props: ViewProps().frame(0,110,320,370).color(.red), children: buttons)
+      Text(props: TextProps().key("number-display").color(.clear).text(text)),
+      View(props: ViewProps().key("buttons-container").color(.red), children: buttons)
       ])]
     
   }
   
+  static func layout(views: PlasticViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
+    
+    // return an ordered array of cells that have a certain prefix
+    let orderedCells = { (views:PlasticViewsContainer, prefix: String) -> [PlasticView] in
+      let orderedKeys = views.filter { $0.hasPrefix(prefix) }.keys.sorted(by: <)
+      return orderedKeys.flatMap { views[$0] }
+    }
+    
+    
+    
+    let root = views.rootView
+    let numberDisplay = views["number-display"]!
+    let buttonsContainer = views["buttons-container"]!
+    let btnFirstRow = orderedCells(views, "button-0")
+    let btnSecondRow = orderedCells(views, "button-1")
+    let btnThirdRow = orderedCells(views, "button-2")
+    let btnFourthRow = orderedCells(views, "button-3")
+    let btnFifthRow = orderedCells(views, "button-4")
+    
+    buttonsContainer.fill(top: root.top, left: root.left, bottom: root.bottom, right: root.right, aspectRatio: 4.0/5.0)
+    buttonsContainer.bottom = root.bottom
+    
+    numberDisplay.asHeader(root)
+    numberDisplay.bottom = buttonsContainer.top
+    
+    let cellHeight = buttonsContainer.height / 5.0
+    var prevRowBottom = buttonsContainer.top
+    
+    for row in [btnFirstRow, btnSecondRow, btnThirdRow, btnFourthRow] {
+      for btn in row {
+        btn.height = cellHeight
+        btn.top = prevRowBottom
+      }
+      
+      row.fill(left: buttonsContainer.left, right: buttonsContainer.right)
+      prevRowBottom = row[0].bottom
+    }
+    
+    // last row is special because of the double button
+    for btn in btnFifthRow {
+      btn.height = cellHeight
+      btn.top = btnFourthRow[0].bottom
+    }
+    
+    btnFifthRow.fill(
+      left: buttonsContainer.left,
+      right: buttonsContainer.right,
+      insets: .zero,
+      spacings: nil,
+      widths: [2, 1, 1]
+    )
+  }
 }

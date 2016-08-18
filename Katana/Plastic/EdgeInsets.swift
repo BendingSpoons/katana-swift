@@ -14,13 +14,13 @@ public struct EdgeInsets: Equatable {
   let bottom: Value
   let right: Value
   
-  static let zero = EdgeInsets(0, 0, 0, 0)
+  public static let zero = EdgeInsets(0, 0, 0, 0)
   
-  static func fixed(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
+  public static func fixed(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
     return EdgeInsets(top: .fixed(top), left: .fixed(left), bottom: .fixed(bottom), right: .fixed(right))
   }
   
-  static func scalable(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
+  public static func scalable(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
     return EdgeInsets(top: .scalable(top), left: .scalable(left), bottom: .scalable(bottom), right: .scalable(right))
   }
   

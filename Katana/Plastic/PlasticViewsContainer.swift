@@ -63,52 +63,23 @@ public class PlasticViewsContainer {
   }
 }
 
-private extension PlasticViewsContainer {
-  private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
-    return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
-      
-      let childrenKeys = self.flattenChildren(node.children)
-      
-      guard let key = node.key else {
-        return partialResult + childrenKeys
-      }
-      
-      return partialResult + [(key, node)] + childrenKeys
-    })
-  }
-  
-  /*
-    This method creates the hierarchy of the nodes.
-    It populates the accumulator with items where the key is the key of a node and the value a pointer to the parent.
-    This pointer can be of three types:
-    - Root: the parent is the root
-    - StaticFrame: the parent is a node without key, we assume that the frame is static
-    - DynamicFrame: the parent is a node with a key, it is managed by plastic
-  */
-  private func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode, accumulator: inout [String: HierarchyNode]) -> Void {
+// MARK: Filter
+public extension PlasticViewsContainer {
+  func filter(_ filter: (String) -> Bool) -> [String: PlasticView] {
+    var newDict = [String: PlasticView]()
     
-    children.forEach { node in
-      
-      let currentNode: HierarchyNode = {
-        if let key = node.key {
-          return .DynamicFrame(key)
-        }
-        
-        return .StaticFrame(node.frame, parentRepresentation)
-      }()
-      
-      
-      if let key = node.key {
-        // if the node has a key, let's add it to the accumulator
-        accumulator[key] = parentRepresentation
+    for (key, view) in self.views {
+      if filter(key) {
+        newDict[key] = view
       }
-      
-      
-      nodeChildrenHierarchy(node.children, parentRepresentation: currentNode, accumulator: &accumulator)
     }
+    
+    return newDict
   }
 }
 
+
+// MARK: Hierarchy Manager
 extension PlasticViewsContainer: HierarchyManager {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     guard let node = self.hierarchy[key] else {
@@ -150,6 +121,52 @@ extension PlasticViewsContainer: HierarchyManager {
       let parentOrigin = self.resolveAbsoluteOrigin(fromNode: parentNode)
       let currentOrigin = frame.origin
       return CGPoint(x: parentOrigin.x + currentOrigin.x, y: parentOrigin.y + currentOrigin.y)
+    }
+  }
+}
+
+private extension PlasticViewsContainer {
+  private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
+    return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
+      
+      let childrenKeys = self.flattenChildren(node.children)
+      
+      guard let key = node.key else {
+        return partialResult + childrenKeys
+      }
+      
+      return partialResult + [(key, node)] + childrenKeys
+    })
+  }
+  
+  /*
+   This method creates the hierarchy of the nodes.
+   It populates the accumulator with items where the key is the key of a node and the value a pointer to the parent.
+   This pointer can be of three types:
+   - Root: the parent is the root
+   - StaticFrame: the parent is a node without key, we assume that the frame is static
+   - DynamicFrame: the parent is a node with a key, it is managed by plastic
+   */
+  private func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode, accumulator: inout [String: HierarchyNode]) -> Void {
+    
+    children.forEach { node in
+      
+      let currentNode: HierarchyNode = {
+        if let key = node.key {
+          return .DynamicFrame(key)
+        }
+        
+        return .StaticFrame(node.frame, parentRepresentation)
+      }()
+      
+      
+      if let key = node.key {
+        // if the node has a key, let's add it to the accumulator
+        accumulator[key] = parentRepresentation
+      }
+      
+      
+      nodeChildrenHierarchy(node.children, parentRepresentation: currentNode, accumulator: &accumulator)
     }
   }
 }

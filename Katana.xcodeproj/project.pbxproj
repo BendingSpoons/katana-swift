@@ -11,7 +11,6 @@
 		813F4D221D5F3E51007CDB53 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F4D201D5F3E51007CDB53 /* App.swift */; };
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC11D5F57F900225E0E /* Calculator.swift */; };
-		81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC31D5F61EF00225E0E /* Popup.swift */; };
 		81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DFBFC51D5F760900225E0E /* InstructionPopup.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */; };
@@ -69,7 +68,6 @@
 		813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		813F4D201D5F3E51007CDB53 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81DFBFC11D5F57F900225E0E /* Calculator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Calculator.swift; sourceTree = "<group>"; };
-		81DFBFC31D5F61EF00225E0E /* Popup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Popup.swift; sourceTree = "<group>"; };
 		81DFBFC51D5F760900225E0E /* InstructionPopup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InstructionPopup.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -142,7 +140,6 @@
 			children = (
 				813F4D201D5F3E51007CDB53 /* App.swift */,
 				81FA36F81D6214570036020F /* Tabbar.swift */,
-				81DFBFC31D5F61EF00225E0E /* Popup.swift */,
 				81DFBFC51D5F760900225E0E /* InstructionPopup.swift */,
 				81DFBFC11D5F57F900225E0E /* Calculator.swift */,
 			);
@@ -463,7 +460,6 @@
 				81DFBFC61D5F760900225E0E /* InstructionPopup.swift in Sources */,
 				813F4D221D5F3E51007CDB53 /* App.swift in Sources */,
 				81FA36F91D6214570036020F /* Tabbar.swift in Sources */,
-				81DFBFC41D5F61EF00225E0E /* Popup.swift in Sources */,
 				81DFBFC21D5F57F900225E0E /* Calculator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
