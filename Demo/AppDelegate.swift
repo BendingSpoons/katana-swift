@@ -9,16 +9,62 @@
 import UIKit
 import Katana
 
-struct RootLogicState: State {}
+struct RootLogicState: State {
+  var showPopup: Bool
+  var password: [Int]?
+}
 
 enum RootReducer: Reducer {
   static func reduce(action: Action, state: RootLogicState?) -> RootLogicState {
-    return RootLogicState()
+    guard let s = state else {
+      return RootLogicState(showPopup: true, password: nil)
+    }
+    
+    if action is HidePopup {
+      return RootLogicState(showPopup: false, password: s.password)
+    }
+    
+    if let a = action as? PinInserted {
+      return RootLogicState(showPopup: s.showPopup, password: a.pin)
+    }
+    
+    if action is Reset {
+      return RootLogicState(showPopup: true, password: nil)
+    }
+    
+    return s
   }
 }
 
-struct ActionOne: Action {
-  var actionName = "LQ"
+struct HidePopup: Action {
+  var actionName = "hidePopup"
+}
+
+struct Reset: Action {
+  var actionName = "Reset"
+}
+
+struct PinInserted: Action {
+  let actionName = "hidePopup"
+  let pin: [Int]
+}
+
+func delayedAction(store: Store<RootReducer>, action: Action) {
+  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2), execute: {
+    store.dispatch(action)
+    
+    
+    if action is HidePopup {
+      delayedAction(store: store, action: PinInserted(pin: [123]))
+    
+    } else if action is PinInserted {
+      delayedAction(store: store, action: Reset())
+    
+    } else {
+      delayedAction(store: store, action: HidePopup())
+    }
+    
+  })
 }
 
 @UIApplicationMain
@@ -39,19 +85,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     let rootBounds = UIScreen.main.bounds
-    let rootDescription = App(props: EmptyProps().frame(rootBounds))
+    let rootDescription = App(props: AppProps(section: .Popup, frame: rootBounds))
     let store = Store(RootReducer.self)
     
     self.root = StoreListenerNode<RootReducer>(store: store, rootDescription: rootDescription)
     self.root!.render(container: RenderContainers(containers: [view]))
     
-    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2), execute: {
-      store.dispatch(ActionOne())
-    })
+    delayedAction(store: store, action: HidePopup())
     
     return true
   }
-  
-  
 }
 
