@@ -1,41 +1,22 @@
 //
-//  ReferenceViewProvider.swift
+//  PlasticNode.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 18/08/16.
+//  Created by Mauro Bolis on 19/08/16.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
 import Foundation
 
-public protocol ReferenceNodeDescription {
-  static func referenceSize() -> CGSize
-}
 
-public protocol AnyPlasticNodeDescription {
-  static func _layout(views: ViewsContainer, props: Any, state: Any) -> Void
-}
-
-public protocol PlasticNodeDescription: AnyPlasticNodeDescription {
-  associatedtype Props
-  associatedtype State
-  static func layout(views: ViewsContainer, props: Props, state: State) -> Void
-}
-
-
-public extension PlasticNodeDescription {
-  static func _layout(views: ViewsContainer, props: Any, state: Any) -> Void {
-    if let p = props as? Props, let s = state as? State {
-      layout(views: views, props: p, state: s)
-    }
-  }
-}
-
-public protocol ReferenceViewProvider {
+// A node that is able to provide a plastic multiplier
+public protocol PlasticMultiplierProvider {
   func getPlasticMultiplier() -> CGFloat
 }
 
-protocol PlasticNode: ReferenceViewProvider {
+// A node that is able to leverage plastic to trigger the layout of the nodes 
+// returned from the NodeDescription
+protocol PlasticNode: PlasticMultiplierProvider {
   associatedtype Description: NodeDescription
   
   var typedDescription: Description { get }

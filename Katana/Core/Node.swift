@@ -8,7 +8,7 @@
 
 import UIKit
 
-public protocol AnyNode: class, ReferenceViewProvider {
+public protocol AnyNode: class, PlasticMultiplierProvider {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
   func render(container: RenderContainer)
@@ -20,9 +20,9 @@ public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
   
   var state : Description.State
   var typedDescription : Description
-  
-  private var container: RenderContainer?
   weak var parentNode: AnyNode?
+
+  private var container: RenderContainer?  
   
   public var description: AnyNodeDescription {
     get {
