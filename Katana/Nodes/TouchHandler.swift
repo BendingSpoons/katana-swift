@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TouchHandlerProps: Equatable, Frameable  {
+public struct TouchHandlerProps: Equatable, Frameable, Childrenable  {
   public var frame = CGRect.zero
   public var children: [AnyNodeDescription] = []
 
@@ -29,16 +29,10 @@ public struct TouchHandlerProps: Equatable, Frameable  {
     return copy
   }
   
-  func children(_ children: [AnyNodeDescription]) -> TouchHandlerProps {
-    var copy = self
-    copy.children = children
-    return copy
-  }
-  
   public init() {}
 }
 
-public struct TouchHandler : NodeDescription {
+public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   public var props : TouchHandlerProps
   
   public static var initialState = EmptyState()

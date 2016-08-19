@@ -8,8 +8,9 @@
 
 import Katana
 
-struct AlbumProps : Equatable,Frameable {
+struct AlbumProps : Equatable,Frameable, Keyable {
   var frame = CGRect.zero
+  var key: String?
   
   static func ==(lhs: AlbumProps, rhs: AlbumProps) -> Bool {
     return lhs.frame == rhs.frame

@@ -8,9 +8,7 @@
 
 import UIKit
 
-
-
-public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,Bordable  {
+public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,Bordable, Keyable  {
   public enum State {
     case normal
     case highlighted
@@ -23,6 +21,7 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,B
   public var text = NSAttributedString()
   public var borderColor = UIColor.black
   public var borderWidth = CGFloat(0)
+  public var key: String?
   
   public static func ==(lhs: ButtonProps, rhs: ButtonProps) -> Bool {
     return false

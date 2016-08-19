@@ -153,6 +153,32 @@ extension Bordable {
   }
 }
 
+public protocol Keyable {
+  var key: String? { get set }
+  func key(_ key: String?) -> Self
+}
+
+public extension Keyable {
+  public func key(_ key: String?) -> Self {
+    var copy = self
+    copy.key = key
+    return copy
+  }
+}
+
+public protocol Childrenable {
+  var children: [AnyNodeDescription] { get set }
+  func children(_ children: [AnyNodeDescription]) -> Self
+}
+
+extension Childrenable {
+  public func children(_ children: [AnyNodeDescription]) -> Self {
+    var copy = self
+    copy.children = children
+    return copy
+  }
+}
+
 public struct EmptyState : Equatable {
   public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true
@@ -162,8 +188,8 @@ public struct EmptyState : Equatable {
   
 }
 
-public struct EmptyProps : Equatable, Frameable {
-  
+public struct EmptyProps : Equatable, Frameable, Keyable {
+  public var key: String?
   public var frame: CGRect = CGRect.zero
   
   public static func ==(lhs: EmptyProps, rhs: EmptyProps) -> Bool {
@@ -172,5 +198,3 @@ public struct EmptyProps : Equatable, Frameable {
   
   public init() {}
 }
-
-

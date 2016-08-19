@@ -8,25 +8,19 @@
 
 import UIKit
 
-public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable  {
+public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable,Keyable, Childrenable  {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  false
   public var cornerRadius = CGFloat(0)
   public var borderColor = UIColor.black
   public var borderWidth = CGFloat(0)
+  public var key: String?
   public var children: [AnyNodeDescription] = []
-  
+ 
   public init() {}
-  
-  public func children(_ children: [AnyNodeDescription]) -> ViewProps {
-    var copy = self
-    copy.children = children
-    return copy
-  }
-  
+
   public static func ==(lhs: ViewProps, rhs: ViewProps) -> Bool {
-    
     if lhs.children.count + rhs.children.count > 0 {
       // Euristic, we always rerender when there is at least 1 child
       return false
@@ -40,7 +34,7 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
 }
 
 
-public struct View : NodeDescription {
+public struct View : NodeDescription, NodeWithChildrenDescription {
   public var props : ViewProps
 
   public static var initialState = EmptyState()

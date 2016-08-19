@@ -9,9 +9,10 @@
 import UIKit
 import Katana
 
-struct InstructionPopupProps : Equatable,Frameable {
+struct InstructionPopupProps : Equatable,Frameable,Keyable {
   var frame: CGRect = CGRect.zero
   var onClose: (()->())?
+  var key: String?
   
   func onClose(_ onClose: (()->())?) -> InstructionPopupProps {
     var copy = self
@@ -24,11 +25,11 @@ struct InstructionPopupProps : Equatable,Frameable {
   }
 }
 
-struct InstructionPopup : NodeDescription {
-  var props : InstructionPopupProps
-  
+struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   static var initialState = EmptyState()
   static var viewType = UIView.self
+
+  var props : InstructionPopupProps
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,
@@ -44,26 +45,54 @@ struct InstructionPopup : NodeDescription {
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
       NSForegroundColorAttributeName : UIColor(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)
       ])
-    
+
     return [
-      Popup(props: PopupProps().frame(props.frame.size)) {
-        [
-          View(props: ViewProps().frame(0,0,270,400).color(0xE7E2D5)) {
-            [
-              Text(props: TextProps().frame(0,0,270,95)
-                .text(text)
-                .color(.clear))
-            ]
-          },
-        
-          Button(props: ButtonProps().frame(0,360,270,40)
-            .color(.white)
-            .color(.gray, state: .highlighted)
-            .onTap(props.onClose)
-            .text(textButton))
-        ]
-      }
+      View(props: ViewProps()
+          .key("overlay")
+          .color(UIColor(white: 0, alpha: 0.8))),
+
+      View(props: ViewProps()
+        .key("container")
+        .color(0xE7E2D5)
+        .cornerRadius(10)) {
+          [
+            Text(props: TextProps()
+              .key("title")
+              .text(text)
+              .color(.clear)),
+
+            Button(props: ButtonProps()
+              .key("button")
+              .color(.white)
+              .color(.gray, state: .highlighted)
+              .onTap(props.onClose)
+              .text(textButton))
+          ]
+        }
     ]
+  }
+  
+  static func layout(views: ViewsContainer,
+                     props: InstructionPopupProps,
+                     state: EmptyState) -> Void {
+    
+    let overlay = views["overlay"]!
+    let container = views["container"]!
+    let button = views["button"]!
+    let title = views["title"]!
+    let root = views.rootView
+    
+    overlay.fill(root)
+    
+    container.width = root.width * 0.8
+    container.height = root.height * 0.8
+    container.center(root)
+    
+    title.asHeader(container)
+    title.height = .scalable(95)
+    
+    button.asFooter(container)
+    button.height = .scalable(40)
   }
 }
 

@@ -19,11 +19,15 @@ struct AppState : Equatable {
   
 }
 
-struct App : NodeDescription {
-  var props : EmptyProps
-  
+struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
   static var initialState = AppState()
   static var viewType = UIView.self
+
+  var props : EmptyProps
+  
+  static func referenceSize() -> CGSize {
+    return CGSize(width: 640, height: 960)
+  }
   
   static func render(props: EmptyProps,
                      state: AppState,
@@ -41,24 +45,38 @@ struct App : NodeDescription {
 
     if (state.showPopup) {
       return [
-        Calculator(props: CalculatorProps().frame(props.frame.size)),
+        Calculator(props: CalculatorProps().key("calculator")),
         InstructionPopup(props: InstructionPopupProps()
-          .frame(props.frame.size)
+          .key("popup")
           .onClose(onClose))
       ]
       
     } else if (state.password == nil)  {
       return [
         Calculator(props: CalculatorProps()
-          .frame(props.frame.size)
+          .key("calculator")
           .onPasswordSet(onPasswordSet)),
       ]
+
     } else {
-      
       return [
-        Tabbar(props: TabbarProps().frame(props.frame.size))
+        Tabbar(props: TabbarProps().key("tabbar"))
       ]
     }
+  }
+  
+  static func layout(views: ViewsContainer,
+                     props: EmptyProps,
+                     state: AppState) -> Void {
+    
+    let root = views.rootView
+    let popup = views["popup"]
+    let tabbar = views["tabbar"]
+    let calculator = views["calculator"]
+    
+    popup?.fill(root)
+    calculator?.fill(root)
+    tabbar?.fill(root)
   }
 }
 

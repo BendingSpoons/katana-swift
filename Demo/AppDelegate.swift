@@ -26,8 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let view = (self.window?.rootViewController?.view)!
     
-    self.root = App(props: EmptyProps().frame(CGSize(width: 320, height: 480))).node()
-    
+    let rootBounds = UIScreen.main.bounds
+    self.root = App(props: EmptyProps().frame(rootBounds)).node()
     self.root!.render(container: RenderContainers(containers: [view]))
     
     return true
