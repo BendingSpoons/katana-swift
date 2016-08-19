@@ -22,10 +22,12 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldCreateChildren() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One"), children: [
-        View(props: ViewProps().key("One-A")),
-        View(props: ViewProps().key("One-B")),
-        ]),
+      View(props: ViewProps().key("One")) {
+        [
+          View(props: ViewProps().key("One-A")),
+          View(props: ViewProps().key("One-B")),
+        ]
+      },
       
       View(props: ViewProps().key("Two")),
       View(props: ViewProps()),
@@ -49,10 +51,12 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneBFrame = CGRect(x: 10, y: 10, width: 10, height: 10)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One").frame(oneFrame), children: [
-        View(props: ViewProps().key("One-A")),
-        View(props: ViewProps().key("One-B").frame(oneBFrame))
-        ]),
+      View(props: ViewProps().key("One").frame(oneFrame)) {
+        [
+          View(props: ViewProps().key("One-A")),
+          View(props: ViewProps().key("One-B").frame(oneBFrame))
+        ]
+      },
       
       View(props: ViewProps().key("Two")),
       View(props: ViewProps()),
@@ -71,12 +75,16 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldManageHierarchy() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One"), children: [
-        View(props: ViewProps().key("One-A"), children: [
-            View(props: ViewProps().key("One-A-Inner")),
-          ]),
-        ]),
-      ]
+      View(props: ViewProps().key("One")) {
+        [
+          View(props: ViewProps().key("One-A")) {
+            [
+              View(props: ViewProps().key("One-A-Inner")),
+            ]
+          }
+        ]
+      }
+    ]
     
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
@@ -144,13 +152,16 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneAFrame = CGRect(x: 10, y: 10, width: 200, height: 200)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One"), children: [
-        View(props: ViewProps().frame(oneAFrame), children: [
-            View(props: ViewProps().key("One-A-Inner")),
-          ]),
-        ]),
-      ]
-    
+      View(props: ViewProps().key("One")) {
+        [
+          View(props: ViewProps().frame(oneAFrame)) {
+            [
+              View(props: ViewProps().key("One-A-Inner"))
+            ]
+          }
+        ]
+      }
+    ]
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
     let plasticViewsContainer = ViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)

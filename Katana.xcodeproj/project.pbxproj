@@ -81,6 +81,12 @@
 		A159DF951D65DFFB009AE13F /* DemoAppProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF861D65DFFB009AE13F /* DemoAppProvidersContainer.swift */; };
 		A159DF961D65DFFB009AE13F /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF881D65DFFB009AE13F /* RootReducer.swift */; };
 		A159DF971D65DFFB009AE13F /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF891D65DFFB009AE13F /* RootState.swift */; };
+		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
+		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
+		A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */; };
+		A1D09BE71D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE11D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift */; };
+		A1D09BE81D673A590095BAF0 /* PlasticDimensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE21D673A590095BAF0 /* PlasticDimensionsTests.swift */; };
+		A1D09BE91D673A590095BAF0 /* PlasticNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE31D673A590095BAF0 /* PlasticNodeTests.swift */; };
 		A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */; };
 		A1F1B9D91D6736DE0086C027 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */; };
 		A1F1B9DC1D67387B0086C027 /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */; };
@@ -217,6 +223,12 @@
 		A159DF861D65DFFB009AE13F /* DemoAppProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppProvidersContainer.swift; sourceTree = "<group>"; };
 		A159DF881D65DFFB009AE13F /* RootReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
 		A159DF891D65DFFB009AE13F /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
+		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
+		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
+		A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
+		A1D09BE11D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticConvenienceLayoutTests.swift; sourceTree = "<group>"; };
+		A1D09BE21D673A590095BAF0 /* PlasticDimensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticDimensionsTests.swift; sourceTree = "<group>"; };
+		A1D09BE31D673A590095BAF0 /* PlasticNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeTests.swift; sourceTree = "<group>"; };
 		A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceNodeDescription.swift; sourceTree = "<group>"; };
 		A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNode.swift; sourceTree = "<group>"; };
 		A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
@@ -329,6 +341,7 @@
 		81EA56D71D5F3A6E00B6290E /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
+				A1D09BDC1D673A590095BAF0 /* Plastic */,
 				A159DF231D65DF1A009AE13F /* Storage */,
 				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
 				81FA37041D64875F0036020F /* NodeTest.swift */,
@@ -589,6 +602,27 @@
 				A159DF891D65DFFB009AE13F /* RootState.swift */,
 			);
 			path = Root;
+			sourceTree = "<group>";
+		};
+		A1D09BDC1D673A590095BAF0 /* Plastic */ = {
+			isa = PBXGroup;
+			children = (
+				A1D09BDD1D673A590095BAF0 /* Models */,
+				A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */,
+				A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */,
+				A1D09BE11D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift */,
+				A1D09BE21D673A590095BAF0 /* PlasticDimensionsTests.swift */,
+				A1D09BE31D673A590095BAF0 /* PlasticNodeTests.swift */,
+			);
+			path = Plastic;
+			sourceTree = "<group>";
+		};
+		A1D09BDD1D673A590095BAF0 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		A1F1B9D51D6736730086C027 /* Protocols */ = {
@@ -897,8 +931,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A1D09BE81D673A590095BAF0 /* PlasticDimensionsTests.swift in Sources */,
+				A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */,
 				81FA37031D645A150036020F /* UIColorTest.swift in Sources */,
 				A159DF451D65DF36009AE13F /* actions.swift in Sources */,
+				A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */,
+				A1D09BE71D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift in Sources */,
+				A1D09BE91D673A590095BAF0 /* PlasticNodeTests.swift in Sources */,
+				A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */,
 				A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */,
 				A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */,
 				81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */,

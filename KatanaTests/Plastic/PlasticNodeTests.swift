@@ -12,24 +12,24 @@ import Katana
 
 private struct TestNode : NodeDescription, PlasticNodeDescription {
   var props : EmptyProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
   // since we are using a static var here we are not be able to
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
   
   static func render(props: EmptyProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
     
     return [
-      View(props: ViewProps().key("One"), children: [
-        View(props: ViewProps().key("One-A")),
-        View(props: ViewProps().key("One-B")),
-        ]),
+      View(props: ViewProps().key("One")) {
+        [
+          View(props: ViewProps().key("One-A")),
+          View(props: ViewProps().key("One-B")),
+        ]
+      },
       View(props: ViewProps().key("Two")),
       View(props: ViewProps()),
       View(props: ViewProps().key("Four")),
@@ -43,13 +43,12 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
 
 
 class PlasticNodeTests: XCTestCase {
-  
   override func setUp() {
     TestNode.invoked = false
   }
   
   func testLayoutInvoked() {
-    let node = Node(description: TestNode(props: EmptyProps(), children: []), parentNode: nil)
+    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil)
     let renderProfiler = RenderProfiler() { _ = $0 }
     node.render(container: renderProfiler)
     
