@@ -139,7 +139,7 @@ public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
     self.container = container.add { Description.NativeView() }
     
     self.container?.update { view in
-      Description.applyPropsToNativeView(props: self._description.props,
+      Description.applyPropsToNativeView(props: self.typedDescription.props,
                              state: self.state,
                              view: view as! Description.NativeView,
                              update: self.update)
@@ -158,7 +158,7 @@ public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
     
     if (applyProps)  {
       container.update { view in
-        Description.applyPropsToNativeView(props: self._description.props,
+        Description.applyPropsToNativeView(props: self.typedDescription.props,
                                state: self.state,
                                view: view as! Description.NativeView,
                                update: self.update)

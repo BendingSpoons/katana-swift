@@ -81,20 +81,6 @@
 		A159DF951D65DFFB009AE13F /* DemoAppProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF861D65DFFB009AE13F /* DemoAppProvidersContainer.swift */; };
 		A159DF961D65DFFB009AE13F /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF881D65DFFB009AE13F /* RootReducer.swift */; };
 		A159DF971D65DFFB009AE13F /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF891D65DFFB009AE13F /* RootState.swift */; };
-		A159DFAC1D65E023009AE13F /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF9B1D65E023009AE13F /* AsyncAction.swift */; };
-		A159DFAD1D65E023009AE13F /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF9C1D65E023009AE13F /* SagaModule+Action.swift */; };
-		A159DFAE1D65E023009AE13F /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF9D1D65E023009AE13F /* SyncAction.swift */; };
-		A159DFAF1D65E023009AE13F /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF9F1D65E023009AE13F /* AsyncReducer.swift */; };
-		A159DFB01D65E023009AE13F /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA01D65E023009AE13F /* ReducerCombiner.swift */; };
-		A159DFB11D65E023009AE13F /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA11D65E023009AE13F /* SyncReducer.swift */; };
-		A159DFB21D65E023009AE13F /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA31D65E023009AE13F /* Action.swift */; };
-		A159DFB31D65E023009AE13F /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA41D65E023009AE13F /* Reducer.swift */; };
-		A159DFB41D65E023009AE13F /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA51D65E023009AE13F /* State.swift */; };
-		A159DFB51D65E023009AE13F /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA61D65E023009AE13F /* Store.swift */; };
-		A159DFB61D65E023009AE13F /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA81D65E023009AE13F /* SagaMiddleware.swift */; };
-		A159DFB71D65E023009AE13F /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFA91D65E023009AE13F /* SagaModule.swift */; };
-		A159DFB81D65E023009AE13F /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFAA1D65E023009AE13F /* SagaProvidersContainer.swift */; };
-		A159DFB91D65E023009AE13F /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DFAB1D65E023009AE13F /* sagaTypes.swift */; };
 		A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */; };
 		A1F1B9D91D6736DE0086C027 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */; };
 		A1F1B9DC1D67387B0086C027 /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */; };
@@ -107,6 +93,20 @@
 		A1F1B9EE1D6738870086C027 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EA1D6738870086C027 /* EdgeInsets.swift */; };
 		A1F1B9EF1D6738870086C027 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EB1D6738870086C027 /* Size.swift */; };
 		A1F1B9F01D6738870086C027 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EC1D6738870086C027 /* Value.swift */; };
+		A1F1BA051D6739100086C027 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F41D6739100086C027 /* AsyncAction.swift */; };
+		A1F1BA061D6739100086C027 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */; };
+		A1F1BA071D6739100086C027 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F61D6739100086C027 /* SyncAction.swift */; };
+		A1F1BA081D6739100086C027 /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F81D6739100086C027 /* AsyncReducer.swift */; };
+		A1F1BA091D6739100086C027 /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */; };
+		A1F1BA0A1D6739100086C027 /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FA1D6739100086C027 /* SyncReducer.swift */; };
+		A1F1BA0B1D6739100086C027 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FC1D6739100086C027 /* Action.swift */; };
+		A1F1BA0C1D6739100086C027 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FD1D6739100086C027 /* Reducer.swift */; };
+		A1F1BA0D1D6739100086C027 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FE1D6739100086C027 /* State.swift */; };
+		A1F1BA0E1D6739100086C027 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FF1D6739100086C027 /* Store.swift */; };
+		A1F1BA0F1D6739100086C027 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA011D6739100086C027 /* SagaMiddleware.swift */; };
+		A1F1BA101D6739100086C027 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA021D6739100086C027 /* SagaModule.swift */; };
+		A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */; };
+		A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA041D6739100086C027 /* sagaTypes.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,7 +201,7 @@
 		A159DF5B1D65DF67009AE13F /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
 		A159DF5C1D65DF67009AE13F /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
 		A159DF5D1D65DF67009AE13F /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
-		A159DF701D65DFE6009AE13F /* ReduxDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = ReduxDemo; sourceTree = BUILT_PRODUCTS_DIR; };
+		A159DF701D65DFE6009AE13F /* StorageDemo */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = StorageDemo; sourceTree = BUILT_PRODUCTS_DIR; };
 		A159DF721D65DFE6009AE13F /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		A159DF781D65DFFB009AE13F /* addPhotoCameraRoll.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = addPhotoCameraRoll.swift; sourceTree = "<group>"; };
 		A159DF791D65DFFB009AE13F /* createAlbum.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = createAlbum.swift; sourceTree = "<group>"; };
@@ -217,20 +217,6 @@
 		A159DF861D65DFFB009AE13F /* DemoAppProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DemoAppProvidersContainer.swift; sourceTree = "<group>"; };
 		A159DF881D65DFFB009AE13F /* RootReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
 		A159DF891D65DFFB009AE13F /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
-		A159DF9B1D65E023009AE13F /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
-		A159DF9C1D65E023009AE13F /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
-		A159DF9D1D65E023009AE13F /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
-		A159DF9F1D65E023009AE13F /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
-		A159DFA01D65E023009AE13F /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
-		A159DFA11D65E023009AE13F /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
-		A159DFA31D65E023009AE13F /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		A159DFA41D65E023009AE13F /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		A159DFA51D65E023009AE13F /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		A159DFA61D65E023009AE13F /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		A159DFA81D65E023009AE13F /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
-		A159DFA91D65E023009AE13F /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
-		A159DFAA1D65E023009AE13F /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
-		A159DFAB1D65E023009AE13F /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 		A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceNodeDescription.swift; sourceTree = "<group>"; };
 		A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNode.swift; sourceTree = "<group>"; };
 		A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
@@ -243,6 +229,20 @@
 		A1F1B9EA1D6738870086C027 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		A1F1B9EB1D6738870086C027 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A1F1B9EC1D6738870086C027 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
+		A1F1B9F41D6739100086C027 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
+		A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
+		A1F1B9F61D6739100086C027 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
+		A1F1B9F81D6739100086C027 /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
+		A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
+		A1F1B9FA1D6739100086C027 /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
+		A1F1B9FC1D6739100086C027 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A1F1B9FD1D6739100086C027 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		A1F1B9FE1D6739100086C027 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		A1F1B9FF1D6739100086C027 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A1F1BA011D6739100086C027 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
+		A1F1BA021D6739100086C027 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
+		A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
+		A1F1BA041D6739100086C027 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,7 +297,7 @@
 				81EA56C91D5F3A6000B6290E /* Katana */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				81EA56E61D5F3A8A00B6290E /* Demo */,
-				A159DF711D65DFE6009AE13F /* ReduxDemo */,
+				A159DF711D65DFE6009AE13F /* StorageDemo */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 			);
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				81EA56C71D5F3A6000B6290E /* Katana.framework */,
 				81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */,
 				81EA56E51D5F3A8A00B6290E /* Demo.app */,
-				A159DF701D65DFE6009AE13F /* ReduxDemo */,
+				A159DF701D65DFE6009AE13F /* StorageDemo */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -317,7 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				A1502C581D664692009D5D56 /* Plastic */,
-				A159DF4A1D65DF47009AE13F /* Redux */,
+				A159DF4A1D65DF47009AE13F /* Storage */,
 				81EA56F71D5F3AAB00B6290E /* Core */,
 				81EA57031D5F3B8C00B6290E /* Nodes */,
 				81EA56CA1D5F3A6000B6290E /* Katana.h */,
@@ -329,7 +329,7 @@
 		81EA56D71D5F3A6E00B6290E /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
-				A159DF231D65DF1A009AE13F /* Redux */,
+				A159DF231D65DF1A009AE13F /* Storage */,
 				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
 				81FA37041D64875F0036020F /* NodeTest.swift */,
 				81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */,
@@ -396,7 +396,7 @@
 			path = Plastic;
 			sourceTree = "<group>";
 		};
-		A159DF231D65DF1A009AE13F /* Redux */ = {
+		A159DF231D65DF1A009AE13F /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				A159DF241D65DF36009AE13F /* Action */,
@@ -405,7 +405,7 @@
 				A159DF351D65DF36009AE13F /* RealWorld */,
 				A159DF361D65DF36009AE13F /* Saga */,
 			);
-			path = Redux;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		A159DF241D65DF36009AE13F /* Action */ = {
@@ -467,14 +467,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		A159DF4A1D65DF47009AE13F /* Redux */ = {
+		A159DF4A1D65DF47009AE13F /* Storage */ = {
 			isa = PBXGroup;
 			children = (
 				A159DF4B1D65DF67009AE13F /* Action */,
 				A159DF541D65DF67009AE13F /* Core */,
 				A159DF591D65DF67009AE13F /* Saga */,
 			);
-			path = Redux;
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		A159DF4B1D65DF67009AE13F /* Action */ = {
@@ -528,15 +528,15 @@
 			path = Saga;
 			sourceTree = "<group>";
 		};
-		A159DF711D65DFE6009AE13F /* ReduxDemo */ = {
+		A159DF711D65DFE6009AE13F /* StorageDemo */ = {
 			isa = PBXGroup;
 			children = (
-				A159DF981D65E023009AE13F /* Redux */,
+				A1F1B9F11D6739100086C027 /* Storage */,
 				A159DF771D65DFFB009AE13F /* CLI */,
 				A159DF7D1D65DFFB009AE13F /* DemoApp */,
 				A159DF721D65DFE6009AE13F /* main.swift */,
 			);
-			path = ReduxDemo;
+			path = StorageDemo;
 			sourceTree = "<group>";
 		};
 		A159DF771D65DFFB009AE13F /* CLI */ = {
@@ -591,68 +591,6 @@
 			path = Root;
 			sourceTree = "<group>";
 		};
-		A159DF981D65E023009AE13F /* Redux */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF991D65E023009AE13F /* Action */,
-				A159DFA21D65E023009AE13F /* Core */,
-				A159DFA71D65E023009AE13F /* Saga */,
-			);
-			name = Redux;
-			path = Katana/Redux;
-			sourceTree = SOURCE_ROOT;
-		};
-		A159DF991D65E023009AE13F /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF9A1D65E023009AE13F /* ActionCreator */,
-				A159DF9E1D65E023009AE13F /* Reducer */,
-			);
-			path = Action;
-			sourceTree = "<group>";
-		};
-		A159DF9A1D65E023009AE13F /* ActionCreator */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF9B1D65E023009AE13F /* AsyncAction.swift */,
-				A159DF9C1D65E023009AE13F /* SagaModule+Action.swift */,
-				A159DF9D1D65E023009AE13F /* SyncAction.swift */,
-			);
-			path = ActionCreator;
-			sourceTree = "<group>";
-		};
-		A159DF9E1D65E023009AE13F /* Reducer */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF9F1D65E023009AE13F /* AsyncReducer.swift */,
-				A159DFA01D65E023009AE13F /* ReducerCombiner.swift */,
-				A159DFA11D65E023009AE13F /* SyncReducer.swift */,
-			);
-			path = Reducer;
-			sourceTree = "<group>";
-		};
-		A159DFA21D65E023009AE13F /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A159DFA31D65E023009AE13F /* Action.swift */,
-				A159DFA41D65E023009AE13F /* Reducer.swift */,
-				A159DFA51D65E023009AE13F /* State.swift */,
-				A159DFA61D65E023009AE13F /* Store.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		A159DFA71D65E023009AE13F /* Saga */ = {
-			isa = PBXGroup;
-			children = (
-				A159DFA81D65E023009AE13F /* SagaMiddleware.swift */,
-				A159DFA91D65E023009AE13F /* SagaModule.swift */,
-				A159DFAA1D65E023009AE13F /* SagaProvidersContainer.swift */,
-				A159DFAB1D65E023009AE13F /* sagaTypes.swift */,
-			);
-			path = Saga;
-			sourceTree = "<group>";
-		};
 		A1F1B9D51D6736730086C027 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -684,6 +622,68 @@
 				A1F1B9EC1D6738870086C027 /* Value.swift */,
 			);
 			path = Types;
+			sourceTree = "<group>";
+		};
+		A1F1B9F11D6739100086C027 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1B9F21D6739100086C027 /* Action */,
+				A1F1B9FB1D6739100086C027 /* Core */,
+				A1F1BA001D6739100086C027 /* Saga */,
+			);
+			name = Storage;
+			path = Katana/Storage;
+			sourceTree = SOURCE_ROOT;
+		};
+		A1F1B9F21D6739100086C027 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1B9F31D6739100086C027 /* ActionCreator */,
+				A1F1B9F71D6739100086C027 /* Reducer */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		A1F1B9F31D6739100086C027 /* ActionCreator */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1B9F41D6739100086C027 /* AsyncAction.swift */,
+				A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */,
+				A1F1B9F61D6739100086C027 /* SyncAction.swift */,
+			);
+			path = ActionCreator;
+			sourceTree = "<group>";
+		};
+		A1F1B9F71D6739100086C027 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1B9F81D6739100086C027 /* AsyncReducer.swift */,
+				A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */,
+				A1F1B9FA1D6739100086C027 /* SyncReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		A1F1B9FB1D6739100086C027 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1B9FC1D6739100086C027 /* Action.swift */,
+				A1F1B9FD1D6739100086C027 /* Reducer.swift */,
+				A1F1B9FE1D6739100086C027 /* State.swift */,
+				A1F1B9FF1D6739100086C027 /* Store.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A1F1BA001D6739100086C027 /* Saga */ = {
+			isa = PBXGroup;
+			children = (
+				A1F1BA011D6739100086C027 /* SagaMiddleware.swift */,
+				A1F1BA021D6739100086C027 /* SagaModule.swift */,
+				A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */,
+				A1F1BA041D6739100086C027 /* sagaTypes.swift */,
+			);
+			path = Saga;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -754,9 +754,9 @@
 			productReference = 81EA56E51D5F3A8A00B6290E /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		A159DF6F1D65DFE6009AE13F /* ReduxDemo */ = {
+		A159DF6F1D65DFE6009AE13F /* StorageDemo */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A159DF741D65DFE6009AE13F /* Build configuration list for PBXNativeTarget "ReduxDemo" */;
+			buildConfigurationList = A159DF741D65DFE6009AE13F /* Build configuration list for PBXNativeTarget "StorageDemo" */;
 			buildPhases = (
 				A159DF6C1D65DFE6009AE13F /* Sources */,
 				A159DF6D1D65DFE6009AE13F /* Frameworks */,
@@ -766,9 +766,9 @@
 			);
 			dependencies = (
 			);
-			name = ReduxDemo;
+			name = StorageDemo;
 			productName = ReduxDemo;
-			productReference = A159DF701D65DFE6009AE13F /* ReduxDemo */;
+			productReference = A159DF701D65DFE6009AE13F /* StorageDemo */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -816,7 +816,7 @@
 				81EA56C61D5F3A6000B6290E /* Katana */,
 				81EA56D51D5F3A6E00B6290E /* KatanaTests */,
 				81EA56E41D5F3A8A00B6290E /* Demo */,
-				A159DF6F1D65DFE6009AE13F /* ReduxDemo */,
+				A159DF6F1D65DFE6009AE13F /* StorageDemo */,
 			);
 		};
 /* End PBXProject section */
@@ -940,34 +940,34 @@
 			buildActionMask = 2147483647;
 			files = (
 				A159DF941D65DFFB009AE13F /* CameraRollProvider.swift in Sources */,
-				A159DFB21D65E023009AE13F /* Action.swift in Sources */,
-				A159DFB31D65E023009AE13F /* Reducer.swift in Sources */,
-				A159DFB11D65E023009AE13F /* SyncReducer.swift in Sources */,
+				A1F1BA0B1D6739100086C027 /* Action.swift in Sources */,
+				A1F1BA0C1D6739100086C027 /* Reducer.swift in Sources */,
+				A1F1BA0A1D6739100086C027 /* SyncReducer.swift in Sources */,
 				A159DF8F1D65DFFB009AE13F /* AlbumActions.swift in Sources */,
-				A159DFB71D65E023009AE13F /* SagaModule.swift in Sources */,
-				A159DFB61D65E023009AE13F /* SagaMiddleware.swift in Sources */,
-				A159DFB51D65E023009AE13F /* Store.swift in Sources */,
-				A159DFB81D65E023009AE13F /* SagaProvidersContainer.swift in Sources */,
+				A1F1BA101D6739100086C027 /* SagaModule.swift in Sources */,
+				A1F1BA0F1D6739100086C027 /* SagaMiddleware.swift in Sources */,
+				A1F1BA0E1D6739100086C027 /* Store.swift in Sources */,
+				A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */,
 				A159DF901D65DFFB009AE13F /* AlbumModels.swift in Sources */,
-				A159DFAF1D65E023009AE13F /* AsyncReducer.swift in Sources */,
+				A1F1BA081D6739100086C027 /* AsyncReducer.swift in Sources */,
 				A159DF8D1D65DFFB009AE13F /* listAlbums.swift in Sources */,
 				A159DF8A1D65DFFB009AE13F /* addPhotoCameraRoll.swift in Sources */,
 				A159DF8B1D65DFFB009AE13F /* createAlbum.swift in Sources */,
 				A159DF961D65DFFB009AE13F /* RootReducer.swift in Sources */,
 				A159DF731D65DFE6009AE13F /* main.swift in Sources */,
-				A159DFAE1D65E023009AE13F /* SyncAction.swift in Sources */,
-				A159DFAD1D65E023009AE13F /* SagaModule+Action.swift in Sources */,
-				A159DFAC1D65E023009AE13F /* AsyncAction.swift in Sources */,
+				A1F1BA071D6739100086C027 /* SyncAction.swift in Sources */,
+				A1F1BA061D6739100086C027 /* SagaModule+Action.swift in Sources */,
+				A1F1BA051D6739100086C027 /* AsyncAction.swift in Sources */,
 				A159DF921D65DFFB009AE13F /* AlbumReducers.swift in Sources */,
 				A159DF911D65DFFB009AE13F /* AlbumReducer.swift in Sources */,
 				A159DF971D65DFFB009AE13F /* RootState.swift in Sources */,
 				A159DF931D65DFFB009AE13F /* AlbumState.swift in Sources */,
-				A159DFB91D65E023009AE13F /* sagaTypes.swift in Sources */,
+				A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */,
 				A159DF8C1D65DFFB009AE13F /* helpers.swift in Sources */,
-				A159DFB01D65E023009AE13F /* ReducerCombiner.swift in Sources */,
+				A1F1BA091D6739100086C027 /* ReducerCombiner.swift in Sources */,
 				A159DF8E1D65DFFB009AE13F /* Operation.swift in Sources */,
 				A159DF951D65DFFB009AE13F /* DemoAppProvidersContainer.swift in Sources */,
-				A159DFB41D65E023009AE13F /* State.swift in Sources */,
+				A1F1BA0D1D6739100086C027 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1232,7 +1232,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A159DF741D65DFE6009AE13F /* Build configuration list for PBXNativeTarget "ReduxDemo" */ = {
+		A159DF741D65DFE6009AE13F /* Build configuration list for PBXNativeTarget "StorageDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A159DF751D65DFE6009AE13F /* Debug */,
