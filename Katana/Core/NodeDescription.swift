@@ -47,8 +47,8 @@ extension NodeDescription {
       return self.props.frame
     }
 
-    set {
-      self.props.frame = frame
+    set(newFrame) {
+      self.props.frame = newFrame
     }
   }
   
