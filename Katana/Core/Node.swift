@@ -8,8 +8,7 @@
 
 import UIKit
 
-public protocol AnyNode: class {
-  
+public protocol AnyNode: class, ReferenceViewProvider {
   var description : AnyNodeDescription {get}
   var children : [AnyNode]? {get}
   func render(container: RenderContainer)
@@ -17,11 +16,11 @@ public protocol AnyNode: class {
 }
 
 public class Node<Description:NodeDescription> : AnyNode {
-  
   private var _description : Description
   public private(set) var children : [AnyNode]?
   private var state : Description.State
   private var container: RenderContainer?
+  weak private var parentNode: AnyNode?
   
   public var description: AnyNodeDescription {
     get {
@@ -29,20 +28,22 @@ public class Node<Description:NodeDescription> : AnyNode {
     }
   }
   
-  
-  
-  public init(description: Description) {
+  public init(description: Description, parentNode: AnyNode?) {
     self._description = description
     self.state = Description.initialState
+    self.parentNode = parentNode
     
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
 
-    self.children = Description.render(props: self._description.props,
+    let children  = Description.render(props: self._description.props,
                                        state: self.state,
                                        children: self._description.children,
-                                       update: update).map { $0.node() }
+                                       update: update)
+    
+    let nChildren = self.applyLayout(to: children)
+    self.children = nChildren.map { $0.node(parentNode: self) }
   }
   
   internal func update(state: Description.State)  {
@@ -52,7 +53,6 @@ public class Node<Description:NodeDescription> : AnyNode {
   public func update(description: AnyNodeDescription) throws {
     let description = description as! Description
     self.update(state: self.state, description: description)
-    
   }
   
   func update(state: Description.State, description: Description) {
@@ -89,15 +89,17 @@ public class Node<Description:NodeDescription> : AnyNode {
       }
     }
 
-    
+
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
     
-    let newChildren = Description.render(props: self._description.props,
+    var newChildren = Description.render(props: self._description.props,
                                          state: self.state,
                                          children: self._description.children,
                                          update: update)
+    
+    newChildren = applyLayout(to: newChildren)
     
     var nodes : [AnyNode] = []
     var viewIndex : [Int] = []
@@ -120,7 +122,7 @@ public class Node<Description:NodeDescription> : AnyNode {
       } else {
         
         //else create a new node
-        let node = newChild.node()
+        let node = newChild.node(parentNode: self)
         viewIndex.append(children.count + nodesToRender.count)
         nodes.append(node)
         nodesToRender.append(node)
@@ -202,5 +204,52 @@ public class Node<Description:NodeDescription> : AnyNode {
       }
     }
   }
+}
+
+// MARK: Plastic
+extension Node {
+  private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    
+    guard let description = self._description as? AnyPlasticNodeDescription else {
+      // the node is not conforming to plastic, just return the children as is
+      return children
+    }
+    
+    let container = ViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
+    
+    description.dynamicType._layout(views: container, props: self._description.props, state: self.state)
+    
+    return self.getFramedChildren(fromChildren: children, usingContainer: container)
+  }
   
+  private func getFramedChildren(fromChildren children: [AnyNodeDescription], usingContainer container: ViewsContainer) -> [AnyNodeDescription] {
+    
+    return children.map {
+      var newChild = $0
+      
+      if let key = newChild.key {
+        // if key is not in container we would throw an exception anyway
+        let frame = container[key]!.frame
+        newChild.frame = frame
+      }
+      
+      newChild.children = self.getFramedChildren(fromChildren: $0.children, usingContainer: container)
+      
+      return newChild
+    }
+  }
+  
+  public func getPlasticMultiplier() -> CGFloat {
+    guard let description = self._description as? ReferenceNodeDescription else {
+      return self.parentNode?.getPlasticMultiplier() ?? 0.0
+    }
+    
+    
+    let referenceSize = description.dynamicType.referenceSize()
+    let currentSize = self._description.frame
+    
+    let widthRatio = currentSize.width / referenceSize.width;
+    let heightRatio = currentSize.height / referenceSize.height;
+    return min(widthRatio, heightRatio);
+  }
 }

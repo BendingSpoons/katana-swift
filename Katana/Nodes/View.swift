@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable  {
+public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable,Keyable  {
   
   public var frame = CGRect.zero
   public var color = UIColor.white
@@ -16,7 +16,7 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
   public var cornerRadius = CGFloat(0)
   public var borderColor = UIColor.black
   public var borderWidth = CGFloat(0)
-  
+  public var key: String?
   
   public static func ==(lhs: ViewProps, rhs: ViewProps) -> Bool {
     return lhs.frame == rhs.frame &&

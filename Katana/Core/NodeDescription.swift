@@ -9,22 +9,26 @@
 import UIKit
 
 public protocol AnyNodeDescription {
+  var children: [AnyNodeDescription] { set get }
+  var frame: CGRect { get set }
+  var key: String? { get }
+
   func node() -> AnyNode;
+  func node(parentNode: AnyNode?) -> AnyNode
   func replaceKey() -> Int
-  
 }
 
 public protocol NodeDescription : AnyNodeDescription {
   associatedtype NativeView: UIView
-  associatedtype Props: Equatable,Frameable
+  associatedtype Props: Equatable, Frameable
   associatedtype State: Equatable
   
   static var viewType : NativeView.Type { get }
   static var initialState: State { get }
   
-  var children: [AnyNodeDescription] { set get }
   
-  var props: Props { get }
+  
+  var props: Props { get set }
   
   static func renderView(props: Props,
                          state: State,
@@ -36,8 +40,27 @@ public protocol NodeDescription : AnyNodeDescription {
                      children: [AnyNodeDescription],
                      update: (State)->()) -> [AnyNodeDescription]
   
-  
   func replaceKey() -> Int
+}
+
+extension NodeDescription {
+  public var frame : CGRect {
+    get {
+      return self.props.frame
+    }
+
+    set(newValue) {
+      self.props.frame = newValue
+    }
+  }
+  
+  public var key: String? {
+    guard let p = self.props as? Keyable else {
+      return nil
+    }
+    
+    return p.key
+  }
 }
 
 extension NodeDescription {
@@ -51,13 +74,15 @@ extension NodeDescription {
                      children: [AnyNodeDescription],
                      update: (State)->()) -> [AnyNodeDescription] { return [] }
   
+  public func node(parentNode: AnyNode?) -> AnyNode {
+    return Node(description: self, parentNode: parentNode)
+  }
   
   public func node() -> AnyNode {
-    return Node(description: self)
+    return node(parentNode: nil)
   }
   
   public func replaceKey() -> Int {
     return ObjectIdentifier(self.dynamicType).hashValue
   }
-  
 }
