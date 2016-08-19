@@ -35,7 +35,7 @@ private struct Row {
 
 struct Calculator : NodeDescription, PlasticNodeDescription {
   static var initialState = EmptyState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
 
   var props : CalculatorProps
   

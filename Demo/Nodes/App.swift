@@ -21,7 +21,7 @@ struct AppState : Equatable {
 
 struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
   static var initialState = AppState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
 
   var props : EmptyProps
   

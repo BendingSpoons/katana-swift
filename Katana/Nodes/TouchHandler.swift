@@ -36,9 +36,9 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   public var props : TouchHandlerProps
   
   public static var initialState = EmptyState()
-  public static var viewType = TouchHandlerView.self
+  public static var nativeViewType = TouchHandlerView.self
   
-  public static func renderView(props: TouchHandlerProps, state: EmptyState, view: TouchHandlerView, update: (EmptyState)->())  {
+  public static func applyPropsToNativeView(props: TouchHandlerProps, state: EmptyState, view: TouchHandlerView, update: (EmptyState)->())  {
     view.frame = props.frame
     view.handler = props.touchHandler
   }

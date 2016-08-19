@@ -27,7 +27,7 @@ struct Album : NodeDescription, PlasticNodeDescription {
   var props : AlbumProps
   
   static var initialState = AlbumState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
   
   static func render(props: AlbumProps,
                      state: AlbumState,

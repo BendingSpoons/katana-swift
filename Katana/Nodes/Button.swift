@@ -47,7 +47,7 @@ public struct Button : NodeDescription {
   public var props : ButtonProps
   
   public static var initialState = false
-  public static var viewType = UIView.self
+  public static var nativeViewType = UIView.self
   
   public init(props: ButtonProps) {
     self.props = props

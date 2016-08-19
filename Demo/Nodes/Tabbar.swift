@@ -32,7 +32,7 @@ private struct Section {
 
 struct Tabbar : NodeDescription, PlasticNodeDescription {
   static var initialState = TabbarState(section: 0)
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
 
   var props : TabbarProps
   

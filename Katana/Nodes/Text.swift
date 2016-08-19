@@ -30,9 +30,9 @@ public struct Text : NodeDescription {
   public var props : TextProps
   
   public static var initialState = EmptyState()
-  public static var viewType = UILabel.self
+  public static var nativeViewType = UILabel.self
   
-  public static func renderView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
+  public static func applyPropsToNativeView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled

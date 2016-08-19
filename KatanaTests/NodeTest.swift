@@ -19,7 +19,7 @@ struct App : NodeDescription {
   var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
   
   
   
@@ -71,7 +71,7 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
   var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
-  static var viewType = UIView.self
+  static var nativeViewType = UIView.self
   
   
   

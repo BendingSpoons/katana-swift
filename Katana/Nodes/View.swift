@@ -38,9 +38,9 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
   public var props : ViewProps
 
   public static var initialState = EmptyState()
-  public static var viewType = UIView.self
+  public static var nativeViewType = UIView.self
   
-  public static func renderView(props: ViewProps, state: EmptyState, view: UIView, update: (EmptyState)->())  {
+  public static func applyPropsToNativeView(props: ViewProps, state: EmptyState, view: UIView, update: (EmptyState)->())  {
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled

@@ -22,12 +22,12 @@ public protocol NodeDescription : AnyNodeDescription {
   associatedtype Props: Equatable, Frameable
   associatedtype State: Equatable
   
-  static var viewType : NativeView.Type { get }
+  static var nativeViewType : NativeView.Type { get }
   static var initialState: State { get }
   
   var props: Props { get set }
   
-  static func renderView(props: Props,
+  static func applyPropsToNativeView(props: Props,
                          state: State,
                          view: NativeView,
                          update: (State)->()) ->  Void
@@ -40,27 +40,29 @@ public protocol NodeDescription : AnyNodeDescription {
 }
 
 extension NodeDescription {
+  
   public var frame : CGRect {
+    
     get {
       return self.props.frame
     }
 
-    set(newValue) {
-      self.props.frame = newValue
+    set {
+      self.props.frame = frame
     }
   }
   
   public var key: String? {
-    guard let p = self.props as? Keyable else {
+    guard let props = self.props as? Keyable else {
       return nil
     }
     
-    return p.key
+    return props.key
   }
 }
 
 extension NodeDescription {
-  public static func renderView(props: Props, state: State, view: NativeView, update: (State)->())  {
+  public static func applyPropsToNativeView(props: Props, state: State, view: NativeView, update: (State)->())  {
     view.frame = props.frame
   }
 

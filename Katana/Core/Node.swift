@@ -41,8 +41,8 @@ public class Node<Description:NodeDescription> : AnyNode {
                                        state: self.state,
                                        update: update)
     
-    let nChildren = self.applyLayout(to: children)
-    self.children = nChildren.map { $0.node(parentNode: self) }
+    self.children = self.applyLayout(to: children)
+          .map { $0.node(parentNode: self) }
   }
   
   func update(state: Description.State)  {
@@ -137,7 +137,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     self.container = container.add { Description.NativeView() }
     
     self.container?.update { view in
-      Description.renderView(props: self._description.props,
+      Description.applyPropsToNativeView(props: self._description.props,
                              state: self.state,
                              view: view as! Description.NativeView,
                              update: self.update)
@@ -156,7 +156,7 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     if (applyProps)  {
       container.update { view in
-        Description.renderView(props: self._description.props,
+        Description.applyPropsToNativeView(props: self._description.props,
                                state: self.state,
                                view: view as! Description.NativeView,
                                update: self.update)
