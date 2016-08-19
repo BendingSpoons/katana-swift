@@ -42,7 +42,7 @@ public class Store<RootReducer: Reducer> {
     return compose(m, storeDispatch: self.performDispatch)
   }()
   
-  init(_: RootReducer.Type) {
+  public init(_: RootReducer.Type) {
     self.listeners = []
     self.state = RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = []
@@ -54,11 +54,11 @@ public class Store<RootReducer: Reducer> {
     self.middlewares = middlewares
   }
   
-  func getState() -> RootReducer.StateType {
+  public func getState() -> RootReducer.StateType {
     return state
   }
   
-  func addListener(_ listener: StoreListener<RootReducer>) -> StoreUnsubscribe {
+  public func addListener(_ listener: StoreListener<RootReducer>) -> StoreUnsubscribe {
     listeners.append(listener)
     let idx = listeners.count - 1
     
@@ -67,7 +67,7 @@ public class Store<RootReducer: Reducer> {
     }
   }
   
-  func dispatch(_ action: Action) {
+  public func dispatch(_ action: Action) {
     self.dispatchFunction(action)
   }
   
