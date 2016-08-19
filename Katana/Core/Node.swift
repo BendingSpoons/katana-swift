@@ -122,9 +122,7 @@ public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
     
     self.children = nodes
     
-    self.updateRender(applyProps: (!(sameProps && sameState)),
-                      childrenToRender: nodesToRender,
-                      viewIndexes: viewIndex)
+    self.updateRender(childrenToRender: nodesToRender, viewIndexes: viewIndex)
   }
   
   public func render(container: RenderContainer) {
@@ -149,21 +147,19 @@ public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
   }
   
   
-  public func updateRender(applyProps: Bool, childrenToRender: [AnyNode], viewIndexes: [Int]) {
+  public func updateRender(childrenToRender: [AnyNode], viewIndexes: [Int]) {
     guard let container = self.container else {
       return
     }
     
     assert(viewIndexes.count == self.children?.count)
     
-    if (applyProps)  {
-      container.update { view in
-        Description.applyPropsToNativeView(props: self.typedDescription.props,
-                               state: self.state,
-                               view: view as! Description.NativeView,
-                               update: self.update)
-        
-      }
+    container.update { view in
+      Description.applyPropsToNativeView(props: self.typedDescription.props,
+                             state: self.state,
+                             view: view as! Description.NativeView,
+                             update: self.update)
+      
     }
     
     childrenToRender.forEach { node in
