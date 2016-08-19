@@ -15,21 +15,23 @@ public protocol AnyNode: class, ReferenceViewProvider {
   func update(description: AnyNodeDescription) throws
 }
 
-public class Node<Description:NodeDescription> : AnyNode {
-  private var _description : Description
+public class Node<Description:NodeDescription>: PlasticNode, AnyNode {
   public private(set) var children : [AnyNode]?
-  private var state : Description.State
+  
+  var state : Description.State
+  var typedDescription : Description
+  
   private var container: RenderContainer?
-  weak private var parentNode: AnyNode?
+  weak var parentNode: AnyNode?
   
   public var description: AnyNodeDescription {
     get {
-      return self._description
+      return self.typedDescription
     }
   }
   
   public init(description: Description, parentNode: AnyNode?) {
-    self._description = description
+    self.typedDescription = description
     self.state = Description.initialState
     self.parentNode = parentNode
     
@@ -37,7 +39,7 @@ public class Node<Description:NodeDescription> : AnyNode {
       self?.update(state: state)
     }
 
-    let children  = Description.render(props: self._description.props,
+    let children  = Description.render(props: self.typedDescription.props,
                                        state: self.state,
                                        update: update)
     
@@ -46,7 +48,7 @@ public class Node<Description:NodeDescription> : AnyNode {
   }
   
   func update(state: Description.State)  {
-    self.update(state: state, description: self._description)
+    self.update(state: state, description: self.typedDescription)
   }
   
   public func update(description: AnyNodeDescription) throws {
@@ -59,14 +61,14 @@ public class Node<Description:NodeDescription> : AnyNode {
       fatalError("update should not be called at this time")
     }
     
-    let sameProps = self._description.props == description.props
+    let sameProps = self.typedDescription.props == description.props
     let sameState = self.state == state
     
     if (sameProps && sameState) {
       return
     }
     
-    self._description = description
+    self.typedDescription = description
     self.state = state
     
     var currentChildren : [Int:[(node: AnyNode, index: Int)]] = [:]
@@ -87,11 +89,11 @@ public class Node<Description:NodeDescription> : AnyNode {
       self?.update(state: state)
     }
     
-    var newChildren = Description.render(props: self._description.props,
+    var newChildren = Description.render(props: self.typedDescription.props,
                                          state: self.state,
                                          update: update)
     
-    newChildren = applyLayout(to: newChildren)
+    newChildren = self.applyLayout(to: newChildren)
     
     var nodes : [AnyNode] = []
     var viewIndex : [Int] = []
@@ -184,57 +186,5 @@ public class Node<Description:NodeDescription> : AnyNode {
         self.container?.remove(child: viewToRemove)
       }
     }
-  }
-}
-
-// MARK: Plastic
-extension Node {
-  private func applyLayout(to children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    
-    guard let description = self._description as? AnyPlasticNodeDescription else {
-      // the node is not conforming to plastic, just return the children as is
-      return children
-    }
-    
-    let container = ViewsContainer(rootFrame: self._description.props.frame, children: children, multiplier: self.getPlasticMultiplier())
-    
-    description.dynamicType._layout(views: container, props: self._description.props, state: self.state)
-    
-    return self.getFramedChildren(fromChildren: children, usingContainer: container)
-  }
-  
-  private func getFramedChildren(fromChildren children: [AnyNodeDescription], usingContainer container: ViewsContainer) -> [AnyNodeDescription] {
-    
-    return children.map {
-      var newChild = $0
-      
-      if let key = newChild.key {
-        // if key is not in container we would throw an exception anyway
-        let frame = container[key]!.frame
-        newChild.frame = frame
-      }
-      
-      if var n = newChild as? AnyNodeWithChildrenDescription {
-        n.children = self.getFramedChildren(fromChildren: n.children, usingContainer: container)
-        return n as! AnyNodeDescription
-      
-      } else {
-        return newChild
-      }
-    }
-  }
-  
-  public func getPlasticMultiplier() -> CGFloat {
-    guard let description = self._description as? ReferenceNodeDescription else {
-      return self.parentNode?.getPlasticMultiplier() ?? 0.0
-    }
-    
-    
-    let referenceSize = description.dynamicType.referenceSize()
-    let currentSize = self._description.frame
-    
-    let widthRatio = currentSize.width / referenceSize.width;
-    let heightRatio = currentSize.height / referenceSize.height;
-    return min(widthRatio, heightRatio);
   }
 }
