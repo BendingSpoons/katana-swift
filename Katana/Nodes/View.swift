@@ -8,8 +8,7 @@
 
 import UIKit
 
-public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable,Keyable  {
-  
+public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable,Keyable, Childrenable  {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  false
@@ -17,28 +16,31 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
   public var borderColor = UIColor.black
   public var borderWidth = CGFloat(0)
   public var key: String?
-  
+  public var children: [AnyNodeDescription] = []
+ 
+  public init() {}
+
   public static func ==(lhs: ViewProps, rhs: ViewProps) -> Bool {
+    if lhs.children.count + rhs.children.count > 0 {
+      // Euristic, we always rerender when there is at least 1 child
+      return false
+    }
+    
     return lhs.frame == rhs.frame &&
       lhs.color == rhs.color &&
       lhs.touchDisabled == rhs.touchDisabled &&
       lhs.cornerRadius == rhs.cornerRadius
   }
-  
-  public init() {}
 }
 
 
-public struct View : NodeDescription {
-  
+public struct View : NodeDescription, NodeWithChildrenDescription {
   public var props : ViewProps
-  public var children: [AnyNodeDescription] = []
-  
+
   public static var initialState = EmptyState()
   public static var viewType = UIView.self
   
   public static func renderView(props: ViewProps, state: EmptyState, view: UIView, update: (EmptyState)->())  {
-    
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled
@@ -50,20 +52,17 @@ public struct View : NodeDescription {
   
   public static func render(props: ViewProps,
                             state: EmptyState,
-                            children: [AnyNodeDescription],
                             update: (EmptyState)->()) -> [AnyNodeDescription] {
-    return children
+    return props.children
   }
   
   public init(props: ViewProps) {
     self.props = props
   }
   
-  public init(props: ViewProps, children: [AnyNodeDescription]) {
+  public init(props: ViewProps, _ children: @noescape () -> [AnyNodeDescription]) {
     self.props = props
-    self.children = children
+    self.props.children = children()
   }
-  
-  
 }
 

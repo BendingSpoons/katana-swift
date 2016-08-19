@@ -20,12 +20,10 @@ struct AppState : Equatable {
 }
 
 struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
-  
-  var props : EmptyProps
-  var children: [AnyNodeDescription] = []
-  
   static var initialState = AppState()
   static var viewType = UIView.self
+
+  var props : EmptyProps
   
   static func referenceSize() -> CGSize {
     return CGSize(width: 640, height: 960)
@@ -33,9 +31,7 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
   
   static func render(props: EmptyProps,
                      state: AppState,
-                     children: [AnyNodeDescription],
                      update: (AppState)->()) -> [AnyNodeDescription] {
-    
     
     print("render app \(state)")
     
@@ -46,24 +42,23 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
     func onPasswordSet(_ password: [Int]) {
       update(AppState(showPopup: false, password: password))
     }
-    
-    
+
     if (state.showPopup) {
       return [
-        Calculator(props: CalculatorProps().key("calculator"), children: []),
+        Calculator(props: CalculatorProps().key("calculator")),
         InstructionPopup(props: InstructionPopupProps()
           .key("popup")
-          .onClose(onClose), children: [])
+          .onClose(onClose))
       ]
       
     } else if (state.password == nil)  {
       return [
         Calculator(props: CalculatorProps()
           .key("calculator")
-          .onPasswordSet(onPasswordSet), children: []),
+          .onPasswordSet(onPasswordSet)),
       ]
+
     } else {
-      
       return [
         Tabbar(props: TabbarProps().key("tabbar"))
       ]

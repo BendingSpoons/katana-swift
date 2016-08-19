@@ -8,59 +8,78 @@
 
 import Katana
 
-struct AlbumProps : Equatable,Frameable {
+struct AlbumProps : Equatable,Frameable, Keyable {
   var frame = CGRect.zero
+  var key: String?
   
   static func ==(lhs: AlbumProps, rhs: AlbumProps) -> Bool {
     return lhs.frame == rhs.frame
   }
-  
 }
 
 struct AlbumState : Equatable {
-  
   static func ==(lhs: AlbumState, rhs: AlbumState) -> Bool {
-    return false
+    return true
   }
-  
 }
 
-struct Album : NodeDescription {
-  
+struct Album : NodeDescription, PlasticNodeDescription {
   var props : AlbumProps
-  var children: [AnyNodeDescription] = []
   
   static var initialState = AlbumState()
   static var viewType = UIView.self
   
   static func render(props: AlbumProps,
                      state: AlbumState,
-                     children: [AnyNodeDescription],
                      update: (AlbumState)->()) -> [AnyNodeDescription] {
     
     return [
-      View(props: ViewProps().frame(props.frame.size).color(.yellow)),
-      View(props: ViewProps().frame(0,0,320,45).color(.white), children: [
-        Button(props: ButtonProps()
-          .frame(10,20,30,20)
-          .color(.black)
-          .color(.gray, state: .highlighted)
-        ),
-        Button(props: ButtonProps()
-          .frame(150,20,30,20)
-          .color(.black)
-          .color(.gray, state: .highlighted)
-        ),
-        Button(props: ButtonProps()
-          .frame(270,20,30,20)
-          .color(.black)
-          .color(.gray, state: .highlighted)
-        )
-        ]),
+      View(props: ViewProps().key("fullView").color(.yellow)),
+      View(props: ViewProps().key("buttonsContainer").color(.white)) {
+        [
+          Button(props: ButtonProps()
+            .key("leftButton")
+            .color(.black)
+            .color(.gray, state: .highlighted)
+          ),
+          Button(props: ButtonProps()
+            .key("centerButton")
+            .color(.black)
+            .color(.gray, state: .highlighted)
+          ),
+          Button(props: ButtonProps()
+            .key("rightButton")
+            .color(.black)
+            .color(.gray, state: .highlighted)
+          )
+        ]
+      }
     ]
   }
   
-  init(props: AlbumProps) {
-    self.props = props
+  static func layout(views: ViewsContainer, props: AlbumProps, state: AlbumState) -> Void {
+    let buttonsContainer = views["buttonsContainer"]!
+    let fullView = views["fullView"]!
+    let leftButton = views["leftButton"]!
+    let centerButton = views["centerButton"]!
+    let rightButton = views["rightButton"]!
+    let root = views.rootView
+    
+    fullView.fill(root)
+    
+    buttonsContainer.asHeader(root)
+    buttonsContainer.height = .scalable(90)
+    
+    leftButton.size = .scalable(60, 40)
+    leftButton.setCenterY(buttonsContainer.centerY, .fixed(10))
+    leftButton.setLeft(buttonsContainer.left, .scalable(10))
+    
+    rightButton.size = .scalable(60, 40)
+    rightButton.setCenterY(buttonsContainer.centerY, .fixed(10))
+    rightButton.setRight(buttonsContainer.right, .scalable(-10))
+    
+    centerButton.size = .scalable(60, 40)
+    centerButton.setCenterY(buttonsContainer.centerY, .fixed(10))
+    centerButton.center(betweenLeft: leftButton.right, andRight: rightButton.left)
   }
 }

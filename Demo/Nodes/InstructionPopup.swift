@@ -26,21 +26,14 @@ struct InstructionPopupProps : Equatable,Frameable,Keyable {
 }
 
 struct InstructionPopup : NodeDescription, PlasticNodeDescription {
-  
-  var props : InstructionPopupProps
-  var children: [AnyNodeDescription] = []
-  
   static var initialState = EmptyState()
   static var viewType = UIView.self
-  
-  
+
+  var props : InstructionPopupProps
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
-    
-    
     
     let text = NSMutableAttributedString(string: "Instructions", attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 22, weight: UIFontWeightRegular),
@@ -52,28 +45,30 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
       NSForegroundColorAttributeName : UIColor(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)
       ])
-    
+
     return [
       View(props: ViewProps()
-        .key("overlay")
-        .color(UIColor(white: 0, alpha: 0.8))),
-      
+          .key("overlay")
+          .color(UIColor(white: 0, alpha: 0.8))),
+
       View(props: ViewProps()
         .key("container")
-        .color(.white)
-        .cornerRadius(10), children:[
-          Text(props: TextProps()
-            .key("title")
-            .text(text)
-            .color(.clear)),
-          
-          Button(props: ButtonProps()
-            .key("button")
-            .color(.white)
-            .color(.gray, state: .highlighted)
-            .onTap(props.onClose)
-            .text(textButton))
-        ]),
+        .color(0xE7E2D5)
+        .cornerRadius(10)) {
+          [
+            Text(props: TextProps()
+              .key("title")
+              .text(text)
+              .color(.clear)),
+
+            Button(props: ButtonProps()
+              .key("button")
+              .color(.white)
+              .color(.gray, state: .highlighted)
+              .onTap(props.onClose)
+              .text(textButton))
+          ]
+        }
     ]
   }
   
@@ -94,10 +89,10 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     container.center(root)
     
     title.asHeader(container)
-    title.height = .scalable(95)
+    title.height = .scalable(190)
     
     button.asFooter(container)
-    button.height = .scalable(40)
+    button.height = .scalable(80)
   }
 }
 

@@ -24,31 +24,24 @@ struct CalculatorProps : Equatable,Frameable,Keyable {
   }
 }
 
+private struct Cell {
+  var text : String
+  var color : UIColor
+}
+
+private struct Row {
+  var cells : [Cell]
+}
 
 struct Calculator : NodeDescription, PlasticNodeDescription {
-  
-  var props : CalculatorProps
-  var children: [AnyNodeDescription] = []
-  
   static var initialState = EmptyState()
   static var viewType = UIView.self
+
+  var props : CalculatorProps
   
   static func render(props: CalculatorProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
-    
-    
-    struct Cell {
-      var text : String
-      var color : UIColor
-
-    }
-    
-    struct Row {
-      var cells : [Cell]
-    }
-    
+                     update: (EmptyState)->()) -> [AnyNodeDescription] {    
     let rows = [
       Row(cells: [
         Cell(text: "C", color: UIColor(0xE7E2D5)),
@@ -98,7 +91,7 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
           .onTap({
             props.onPasswordSet?([1,5,9,8])
           })
-          ))
+        ))
       }
     }
     
@@ -106,18 +99,21 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
       NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
       NSForegroundColorAttributeName : UIColor(0xE7E2D5)
-      ])
+    ])
     
-    
-    return [View(props: ViewProps().frame(props.frame).color(.black), children: [
-      Text(props: TextProps().key("number-display").color(.clear).text(text)),
-      View(props: ViewProps().key("buttons-container").color(.red), children: buttons)
-      ])]
-    
+    return [
+      View(props: ViewProps().key("container").color(.black)) {
+        [
+          Text(props: TextProps().key("number-display").color(.clear).text(text)),
+          View(props: ViewProps().key("buttons-container").color(.red).children(buttons))
+        ]
+      }
+    ]
   }
   
   static func layout(views: ViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
     let root = views.rootView
+    let container = views["container"]!
     let numberDisplay = views["number-display"]!
     let buttonsContainer = views["buttons-container"]!
     let btnFirstRow = views.orderedViews(withPrefix: "button-0", sortedBy: <)
@@ -125,6 +121,8 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
     let btnThirdRow = views.orderedViews(withPrefix: "button-2", sortedBy: <)
     let btnFourthRow = views.orderedViews(withPrefix: "button-3", sortedBy: <)
     let btnFifthRow = views.orderedViews(withPrefix: "button-4", sortedBy: <)
+    
+    container.fill(root)
     
     buttonsContainer.fill(top: root.top, left: root.left, bottom: root.bottom, right: root.right, aspectRatio: 4.0/5.0)
     buttonsContainer.bottom = root.bottom

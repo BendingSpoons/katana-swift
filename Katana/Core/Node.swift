@@ -9,8 +9,8 @@
 import UIKit
 
 public protocol AnyNode: class, ReferenceViewProvider {
-  var description : AnyNodeDescription {get}
-  var children : [AnyNode]? {get}
+  var description : AnyNodeDescription { get }
+  var children : [AnyNode]? { get }
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
@@ -39,14 +39,13 @@ public class Node<Description:NodeDescription> : AnyNode {
 
     let children  = Description.render(props: self._description.props,
                                        state: self.state,
-                                       children: self._description.children,
                                        update: update)
     
     let nChildren = self.applyLayout(to: children)
     self.children = nChildren.map { $0.node(parentNode: self) }
   }
   
-  internal func update(state: Description.State)  {
+  func update(state: Description.State)  {
     self.update(state: state, description: self._description)
   }
   
@@ -56,18 +55,14 @@ public class Node<Description:NodeDescription> : AnyNode {
   }
   
   func update(state: Description.State, description: Description) {
-    
-    
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
     
     let sameProps = self._description.props == description.props
     let sameState = self.state == state
-    let sameChildren = self._description.children.count + description.children.count == 0
     
-    
-    if (sameProps && sameState && sameChildren) {
+    if (sameProps && sameState) {
       return
     }
     
@@ -75,10 +70,8 @@ public class Node<Description:NodeDescription> : AnyNode {
     self.state = state
     
     var currentChildren : [Int:[(node: AnyNode, index: Int)]] = [:]
+    
     for (index,child) in children.enumerated() {
-      
-      
-      
       let key = child.description.replaceKey()
       let value = (node: child, index: index)
       
@@ -96,7 +89,6 @@ public class Node<Description:NodeDescription> : AnyNode {
     
     var newChildren = Description.render(props: self._description.props,
                                          state: self.state,
-                                         children: self._description.children,
                                          update: update)
     
     newChildren = applyLayout(to: newChildren)
@@ -106,11 +98,9 @@ public class Node<Description:NodeDescription> : AnyNode {
     var nodesToRender : [AnyNode] = []
     
     for newChild in newChildren {
-      
       let key = newChild.replaceKey()
       
       if currentChildren[key]?.count > 0 {
-        
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.description.replaceKey() == newChild.replaceKey())
         
@@ -120,7 +110,6 @@ public class Node<Description:NodeDescription> : AnyNode {
         viewIndex.append(replacement.index)
         
       } else {
-        
         //else create a new node
         let node = newChild.node(parentNode: self)
         viewIndex.append(children.count + nodesToRender.count)
@@ -129,19 +118,14 @@ public class Node<Description:NodeDescription> : AnyNode {
       }
     }
     
-    
     self.children = nodes
     
     self.updateRender(applyProps: (!(sameProps && sameState)),
                       childrenToRender: nodesToRender,
                       viewIndexes: viewIndex)
-    
-    
-    
   }
   
   public func render(container: RenderContainer) {
-    
     guard let children = self.children else {
       fatalError("render cannot be called at this time")
     }
@@ -150,10 +134,9 @@ public class Node<Description:NodeDescription> : AnyNode {
       fatalError("node can be render on a single View")
     }
     
-    
     self.container = container.add { Description.NativeView() }
+    
     self.container?.update { view in
-      
       Description.renderView(props: self._description.props,
                              state: self.state,
                              view: view as! Description.NativeView,
@@ -165,7 +148,6 @@ public class Node<Description:NodeDescription> : AnyNode {
   
   
   public func updateRender(applyProps: Bool, childrenToRender: [AnyNode], viewIndexes: [Int]) {
-    
     guard let container = self.container else {
       return
     }
@@ -185,7 +167,6 @@ public class Node<Description:NodeDescription> : AnyNode {
     childrenToRender.forEach { node in
       return node.render(container: container)
     }
-    
     
     var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
     let sorted = viewIndexes.isSorted
@@ -233,9 +214,13 @@ extension Node {
         newChild.frame = frame
       }
       
-      newChild.children = self.getFramedChildren(fromChildren: $0.children, usingContainer: container)
+      if var n = newChild as? AnyNodeWithChildrenDescription {
+        n.children = self.getFramedChildren(fromChildren: n.children, usingContainer: container)
+        return n as! AnyNodeDescription
       
-      return newChild
+      } else {
+        return newChild
+      }
     }
   }
   

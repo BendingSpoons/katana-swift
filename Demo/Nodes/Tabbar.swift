@@ -15,100 +15,98 @@ struct TabbarProps : Equatable,Frameable,Keyable {
   static func ==(lhs: TabbarProps, rhs: TabbarProps) -> Bool {
     return lhs.frame == rhs.frame
   }
-  
 }
 
 struct TabbarState : Equatable {
-  
   var section : Int
   
   static func ==(lhs: TabbarState, rhs: TabbarState) -> Bool {
-    return false
+    return lhs.section == rhs.section
   }
-  
+}
+
+private struct Section {
+  var color: UIColor
+  var node: AnyNodeDescription
 }
 
 struct Tabbar : NodeDescription, PlasticNodeDescription {
-  
-  var props : TabbarProps
-  var children: [AnyNodeDescription] = []
-  
   static var initialState = TabbarState(section: 0)
   static var viewType = UIView.self
+
+  var props : TabbarProps
   
   init(props: TabbarProps) {
     self.props = props
   }
-  
+
   static func render(props: TabbarProps,
                      state: TabbarState,
-                     children: [AnyNodeDescription],
                      update: (TabbarState)->()) -> [AnyNodeDescription] {
-    
-    
-    struct Section {
-      var color: UIColor
-      var node: AnyNodeDescription
-    }
-    
     let sections = [
       Section(
         color: .red,
-        node: Album(props: AlbumProps()
-          .frame(props.frame.size))
+        node: Album(props: AlbumProps().key("view"))
       ),
       
       Section(
         color: .orange,
         node: View(props: ViewProps()
-          .frame(props.frame.size)
+          .key("view")
           .color(.orange))
       ),
       
       Section(
         color: .green,
         node: View(props: ViewProps()
-          .frame(props.frame.size)
+          .key("view")
           .color(.green))
       ),
       
       Section(
         color: .white,
         node: View(props: ViewProps()
-          .frame(props.frame.size)
+          .key("view")
           .color(.white))
       ),
       
       Section(
         color: .purple,
         node: View(props: ViewProps()
-          .frame(props.frame.size)
+          .key("view")
           .color(.purple))
       )
     ]
     
     return [
-      View(props: ViewProps().key("viewContainer").color(.blue)),
-      View(props: ViewProps().key("tabbarContainer").color(.black), children: sections.enumerated().map { (index,section) in
-        
-        return View(props: ViewProps().color(.black).key("tabbarButton-\(index)"), children: [
-          View(props: ViewProps().key("tabbarButtonImage-\(index)").color(section.color))
-          ])
-        })
+      sections[state.section].node,
+      
+      View(props: ViewProps().key("tabbarContainer").color(.black)) {
+        return sections.enumerated().map { (index,section) in
+          return View(props: ViewProps().color(.black).key("tabbarButtonContainer-\(index)")) {
+            [
+              Button(props: ButtonProps()
+                .key("tabbarButton-\(index)")
+                .color(section.color)
+                .onTap { update(TabbarState(section: index)) })
+            ]
+          }
+        }
+      }
     ]
   }
   
   static func layout(views: ViewsContainer, props: TabbarProps, state: TabbarState) -> Void {
     let root = views.rootView
-    let viewContainer = views["viewContainer"]!
+    let view = views["view"]!
     let tabbarContainer = views["tabbarContainer"]!
-    let buttons = views.orderedViews(withPrefix: "tabbarButton-", sortedBy: <)
+    let buttons = views.orderedViews(withPrefix: "tabbarButtonContainer-", sortedBy: <)
     
     tabbarContainer.asFooter(root)
     tabbarContainer.height = .scalable(80)
     
-    viewContainer.asHeader(root)
-    viewContainer.bottom = tabbarContainer.top
+    view.asHeader(root)
+    view.bottom = tabbarContainer.top
     
     
     // buttons
@@ -120,7 +118,7 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
       
       // this is very ugly but in a real case scenario probably btn will be some self contained
       // view
-      let image = views["tabbarButtonImage-\(index)"]!
+      let image = views["tabbarButton-\(index)"]!
       image.fill(btn, insets: .scalable(10, 10, 10 , 10))
     }
   }

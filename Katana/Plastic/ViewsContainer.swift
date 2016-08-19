@@ -112,13 +112,17 @@ private extension ViewsContainer {
   private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
     return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
       
-      let childrenKeys = self.flattenChildren(node.children)
+      var flatChildren: [(String, AnyNodeDescription)] = []
       
-      guard let key = node.key else {
-        return partialResult + childrenKeys
+      if let n = node as? AnyNodeWithChildrenDescription {
+        flatChildren = self.flattenChildren(n.children)
       }
       
-      return partialResult + [(key, node)] + childrenKeys
+      guard let key = node.key else {
+        return partialResult + flatChildren
+      }
+      
+      return partialResult + [(key, node)] + flatChildren
     })
   }
   
@@ -148,8 +152,9 @@ private extension ViewsContainer {
         accumulator[key] = parentRepresentation
       }
       
-      
-      nodeChildrenHierarchy(node.children, parentRepresentation: currentNode, accumulator: &accumulator)
+      if let n = node as? AnyNodeWithChildrenDescription {
+        nodeChildrenHierarchy(n.children, parentRepresentation: currentNode, accumulator: &accumulator)
+      }
     }
   }
 }

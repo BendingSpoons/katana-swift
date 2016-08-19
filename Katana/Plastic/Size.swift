@@ -12,17 +12,17 @@ public struct Size: Equatable {
   let width: Value
   let height: Value
   
-  static let zero = Size(0, 0)
+  public static let zero = Size(0, 0)
   
-  static func fixed(_ width: CGFloat, _ height: CGFloat) -> Size {
+  public static func fixed(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .fixed(width), height: .fixed(height))
   }
   
-  static func scalable(_ width: CGFloat, _ height: CGFloat) -> Size {
+  public static func scalable(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .scalable(width), height: .scalable(height))
   }
   
-  static func scalable(_ scalable: CGFloat) -> Value {
+  public static func scalable(_ scalable: CGFloat) -> Value {
     return Value.init(scalable: scalable, fixed: 0)
   }
   
