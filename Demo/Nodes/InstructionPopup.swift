@@ -89,10 +89,10 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     container.center(root)
     
     title.asHeader(container)
-    title.height = .scalable(95)
+    title.height = .scalable(190)
     
     button.asFooter(container)
-    button.height = .scalable(40)
+    button.height = .scalable(80)
   }
 }
 

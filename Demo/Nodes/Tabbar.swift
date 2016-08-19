@@ -83,9 +83,12 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
       
       View(props: ViewProps().key("tabbarContainer").color(.black)) {
         return sections.enumerated().map { (index,section) in
-          return View(props: ViewProps().color(.black).key("tabbarButton-\(index)")) {
+          return View(props: ViewProps().color(.black).key("tabbarButtonContainer-\(index)")) {
             [
-              View(props: ViewProps().key("tabbarButtonImage-\(index)").color(section.color))
+              Button(props: ButtonProps()
+                .key("tabbarButton-\(index)")
+                .color(section.color)
+                .onTap { update(TabbarState(section: index)) })
             ]
           }
         }
@@ -97,7 +100,7 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
     let root = views.rootView
     let view = views["view"]!
     let tabbarContainer = views["tabbarContainer"]!
-    let buttons = views.orderedViews(withPrefix: "tabbarButton-", sortedBy: <)
+    let buttons = views.orderedViews(withPrefix: "tabbarButtonContainer-", sortedBy: <)
     
     tabbarContainer.asFooter(root)
     tabbarContainer.height = .scalable(80)
@@ -115,7 +118,7 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
       
       // this is very ugly but in a real case scenario probably btn will be some self contained
       // view
-      let image = views["tabbarButtonImage-\(index)"]!
+      let image = views["tabbarButton-\(index)"]!
       image.fill(btn, insets: .scalable(10, 10, 10 , 10))
     }
   }

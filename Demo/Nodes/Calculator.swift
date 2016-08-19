@@ -102,7 +102,7 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
     ])
     
     return [
-      View(props: ViewProps().frame(props.frame).color(.black)) {
+      View(props: ViewProps().key("container").color(.black)) {
         [
           Text(props: TextProps().key("number-display").color(.clear).text(text)),
           View(props: ViewProps().key("buttons-container").color(.red).children(buttons))
@@ -113,6 +113,7 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
   
   static func layout(views: ViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
     let root = views.rootView
+    let container = views["container"]!
     let numberDisplay = views["number-display"]!
     let buttonsContainer = views["buttons-container"]!
     let btnFirstRow = views.orderedViews(withPrefix: "button-0", sortedBy: <)
@@ -120,6 +121,8 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
     let btnThirdRow = views.orderedViews(withPrefix: "button-2", sortedBy: <)
     let btnFourthRow = views.orderedViews(withPrefix: "button-3", sortedBy: <)
     let btnFifthRow = views.orderedViews(withPrefix: "button-4", sortedBy: <)
+    
+    container.fill(root)
     
     buttonsContainer.fill(top: root.top, left: root.left, bottom: root.bottom, right: root.right, aspectRatio: 4.0/5.0)
     buttonsContainer.bottom = root.bottom
