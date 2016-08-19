@@ -77,34 +77,39 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     children: [AnyNodeDescription],
                      update: (EmptyState)->()) -> [AnyNodeDescription] {
     
     let i = props.i
     
     if (i == 0) {
       
-      return [View(props: ViewProps().key("container")/*.frame(0,0,150,150)*/.color(.gray), children: [
-        Button(props: ButtonProps().key("button")//.frame(50,50,100,100)
-          .color(.orange, state: .normal)
-          .color(.orange, state: .highlighted)
-          .text("state \(i)", fontSize: 10)
-          .onTap({
-            update(EmptyState())
-          })),
-        View(props: ViewProps().key("otherView")/*.frame(0,0,150,150)*/.color(.gray))
-        ])]
+      return [
+        View(props: ViewProps().key("container").color(.gray)) {
+          [
+            Button(props: ButtonProps().key("button")
+              .color(.orange, state: .normal)
+              .color(.orange, state: .highlighted)
+              .text("state \(i)", fontSize: 10)
+              .onTap({ update(EmptyState()) })),
+            
+            View(props: ViewProps().key("otherView").color(.gray))
+          ]
+        }
+      ]
       
     } else if (i == 1) {
-      return [View(props: ViewProps().key("container")/*.frame(0,0,150,150)*/.color(.gray), children: [
-        Button(props: ButtonProps().key("button")//.frame(50,50,100,100)
-          .color(.orange, state: .normal)
-          .color(.orange, state: .highlighted)
-          .text("state \(i)", fontSize: 10)
-          .onTap({
-            update(EmptyState())
-          })),
-        ])]
+      return [
+        View(props: ViewProps().key("container").color(.gray)) {
+          [
+            Button(props: ButtonProps().key("button")
+              .color(.orange, state: .normal)
+              .color(.orange, state: .highlighted)
+              .text("state \(i)", fontSize: 10)
+              .onTap({ update(EmptyState()) }))
+          ]
+        }
+      ]
+
     } else {
       return []
     }
