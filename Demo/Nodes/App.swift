@@ -19,7 +19,7 @@ struct AppState : Equatable {
   
 }
 
-struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
+struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, ConnectedNodeDescription {
   static var initialState = AppState()
   static var nativeViewType = UIView.self
 
@@ -77,6 +77,11 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
     popup?.fill(root)
     calculator?.fill(root)
     tabbar?.fill(root)
+  }
+  
+  
+  static func connect(parentProps: EmptyProps, storageState: RootLogicState) -> EmptyProps {
+    return parentProps
   }
 }
 

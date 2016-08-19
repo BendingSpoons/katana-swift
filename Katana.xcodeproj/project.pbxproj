@@ -87,6 +87,9 @@
 		A1D09BE71D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE11D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift */; };
 		A1D09BE81D673A590095BAF0 /* PlasticDimensionsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE21D673A590095BAF0 /* PlasticDimensionsTests.swift */; };
 		A1D09BE91D673A590095BAF0 /* PlasticNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE31D673A590095BAF0 /* PlasticNodeTests.swift */; };
+		A1D09BED1D674CEF0095BAF0 /* StoreListenerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BEC1D674CEF0095BAF0 /* StoreListenerNode.swift */; };
+		A1D09BF11D678F110095BAF0 /* ConnectedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BF01D678F110095BAF0 /* ConnectedNode.swift */; };
+		A1D09BF31D67906B0095BAF0 /* ConnectedNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BF21D67906B0095BAF0 /* ConnectedNodeDescription.swift */; };
 		A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */; };
 		A1F1B9D91D6736DE0086C027 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */; };
 		A1F1B9DC1D67387B0086C027 /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */; };
@@ -229,6 +232,9 @@
 		A1D09BE11D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticConvenienceLayoutTests.swift; sourceTree = "<group>"; };
 		A1D09BE21D673A590095BAF0 /* PlasticDimensionsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticDimensionsTests.swift; sourceTree = "<group>"; };
 		A1D09BE31D673A590095BAF0 /* PlasticNodeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeTests.swift; sourceTree = "<group>"; };
+		A1D09BEC1D674CEF0095BAF0 /* StoreListenerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreListenerNode.swift; sourceTree = "<group>"; };
+		A1D09BF01D678F110095BAF0 /* ConnectedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNode.swift; sourceTree = "<group>"; };
+		A1D09BF21D67906B0095BAF0 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
 		A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceNodeDescription.swift; sourceTree = "<group>"; };
 		A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNode.swift; sourceTree = "<group>"; };
 		A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
@@ -374,6 +380,9 @@
 				81EA56F81D5F3AC800B6290E /* Collections+Katana.swift */,
 				81FA36F41D61CC400036020F /* UIColor+Katana.swift */,
 				81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */,
+				A1D09BEC1D674CEF0095BAF0 /* StoreListenerNode.swift */,
+				A1D09BF01D678F110095BAF0 /* ConnectedNode.swift */,
+				A1D09BF21D67906B0095BAF0 /* ConnectedNodeDescription.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -893,6 +902,7 @@
 				A1F1B9E71D6738830086C027 /* ViewsContainer.swift in Sources */,
 				A1F1B9EF1D6738870086C027 /* Size.swift in Sources */,
 				A159DF641D65DF67009AE13F /* Action.swift in Sources */,
+				A1D09BF31D67906B0095BAF0 /* ConnectedNodeDescription.swift in Sources */,
 				81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */,
 				A159DF661D65DF67009AE13F /* State.swift in Sources */,
 				A1F1B9E61D6738830086C027 /* ViewsContainer+Helpers.swift in Sources */,
@@ -911,6 +921,7 @@
 				A1F1B9E41D6738830086C027 /* PlasticView+Convenience.swift in Sources */,
 				A159DF631D65DF67009AE13F /* SyncReducer.swift in Sources */,
 				A159DF621D65DF67009AE13F /* ReducerCombiner.swift in Sources */,
+				A1D09BF11D678F110095BAF0 /* ConnectedNode.swift in Sources */,
 				A159DF5E1D65DF67009AE13F /* AsyncAction.swift in Sources */,
 				81EA56FD1D5F3AC800B6290E /* Node.swift in Sources */,
 				A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */,
@@ -922,6 +933,7 @@
 				A159DF681D65DF67009AE13F /* SagaMiddleware.swift in Sources */,
 				81EA56FF1D5F3AC800B6290E /* RenderContainer.swift in Sources */,
 				A1F1B9EE1D6738870086C027 /* EdgeInsets.swift in Sources */,
+				A1D09BED1D674CEF0095BAF0 /* StoreListenerNode.swift in Sources */,
 				A1F1B9DC1D67387B0086C027 /* HierarchyManager.swift in Sources */,
 				A159DF611D65DF67009AE13F /* AsyncReducer.swift in Sources */,
 			);

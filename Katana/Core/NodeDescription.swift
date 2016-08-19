@@ -12,8 +12,8 @@ public protocol AnyNodeDescription {
   var frame: CGRect { get set }
   var key: String? { get }
   
-  func node() -> AnyNode;
-  func node(parentNode: AnyNode?) -> AnyNode
+  func node<RootReducer: Reducer>(store: Store<RootReducer>) -> AnyNode
+  func node<RootReducer: Reducer>(parentNode: AnyNode?, store: Store<RootReducer>) -> AnyNode
   func replaceKey() -> Int
 }
 
@@ -66,12 +66,13 @@ extension NodeDescription {
     view.frame = props.frame
   }
 
-  public func node() -> AnyNode {
-    return node(parentNode: nil)
+  
+  public func node<RootReducer: Reducer>(store: Store<RootReducer>) -> AnyNode {
+    return node(parentNode: nil, store: store)
   }
   
-  public func node(parentNode: AnyNode?) -> AnyNode {
-    return Node(description: self, parentNode: parentNode)
+  public func node<RootReducer: Reducer>(parentNode: AnyNode?, store: Store<RootReducer>) -> AnyNode {
+    return Node(description: self, parentNode: parentNode, store: store)
   }
   
   public func replaceKey() -> Int {
