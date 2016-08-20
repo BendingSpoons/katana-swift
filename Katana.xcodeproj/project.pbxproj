@@ -36,6 +36,7 @@
 		81FA37011D6456190036020F /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37001D6456190036020F /* Collections.swift */; };
 		81FA37031D645A150036020F /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37021D645A150036020F /* UIColorTest.swift */; };
 		81FA37051D64875F0036020F /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37041D64875F0036020F /* NodeTest.swift */; };
+		A11308DC1D6887230093D7E7 /* EmptyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11308DB1D6887230093D7E7 /* EmptyStore.swift */; };
 		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
 		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
 		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
@@ -180,6 +181,7 @@
 		81FA37001D6456190036020F /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
 		81FA37021D645A150036020F /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		81FA37041D64875F0036020F /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
+		A11308DB1D6887230093D7E7 /* EmptyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStore.swift; sourceTree = "<group>"; };
 		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
 		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				81FA37001D6456190036020F /* Collections.swift */,
 				81FA37021D645A150036020F /* UIColorTest.swift */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
+				A11308DB1D6887230093D7E7 /* EmptyStore.swift */,
 			);
 			path = KatanaTests;
 			sourceTree = "<group>";
@@ -960,6 +963,7 @@
 				A159DF3D1D65DF36009AE13F /* ActionSagaTests.swift in Sources */,
 				A159DF401D65DF36009AE13F /* SyncActionTests.swift in Sources */,
 				81FA37051D64875F0036020F /* NodeTest.swift in Sources */,
+				A11308DC1D6887230093D7E7 /* EmptyStore.swift in Sources */,
 				A159DF421D65DF36009AE13F /* MiddlewareTests.swift in Sources */,
 				A159DF431D65DF36009AE13F /* ReducerTests.swift in Sources */,
 				A159DF461D65DF36009AE13F /* reducers.swift in Sources */,

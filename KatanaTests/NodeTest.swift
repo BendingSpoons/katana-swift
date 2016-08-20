@@ -151,7 +151,7 @@ func collectView(view: UIView) -> [UIView] {
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).node()
+    let root = App(props: AppProps(i:0), children: []).node(store: Store(EmptyReducer.self))
     var references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
@@ -176,7 +176,7 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).node()
+    let root = App(props: AppProps(i:0), children: []).node(store: Store(EmptyReducer.self))
     
     let rootVew = UIView()
     root.render(container: rootVew)
@@ -201,7 +201,7 @@ class NodeTest: XCTestCase {
   
   
   func testNodeDeallocationPlastic() {
-    let root = AppWithPlastic(props: AppProps(i:0), children: []).node()
+    let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store: Store(EmptyReducer.self))
     var references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
@@ -221,13 +221,11 @@ class NodeTest: XCTestCase {
     references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
-    
-    
   }
   
   
   func testViewDeallocationWithPlastic() {
-    let root = AppWithPlastic(props: AppProps(i:0), children: []).node()
+    let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store : Store(EmptyReducer.self))
     
     let rootVew = UIView()
     root.render(container: rootVew)
