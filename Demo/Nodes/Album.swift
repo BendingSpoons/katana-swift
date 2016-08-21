@@ -31,7 +31,8 @@ struct Album : NodeDescription, PlasticNodeDescription {
   
   static func render(props: AlbumProps,
                      state: AlbumState,
-                     update: (AlbumState)->()) -> [AnyNodeDescription] {
+                     update: (AlbumState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return [
       View(props: ViewProps().key("fullView").color(.yellow)),

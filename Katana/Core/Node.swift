@@ -43,7 +43,8 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
 
     let children  = Description.render(props: self.typedDescription.props,
                                        state: self.state,
-                                       update: update)
+                                       update: update,
+                                       dispatch: self.store.dispatch)
     
     self.children = self.applyLayout(to: children).map {
       $0.node(parentNode: self, store: self.store)
@@ -101,7 +102,8 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     
     var newChildren = Description.render(props: self.typedDescription.props,
                                          state: self.state,
-                                         update: update)
+                                         update: update,
+                                         dispatch: self.store.dispatch)
     
     newChildren = self.applyLayout(to: newChildren)
     

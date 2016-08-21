@@ -34,18 +34,15 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func onClose() {
-//      update(AppState(showPopup: false, password: state.password))
-      // TODO: trigger an action here
-      update(EmptyState())
+      dispatch(HidePopup())
     }
     
     func onPasswordSet(_ password: [Int]) {
-//      update(AppState(showPopup: false, password: password))
-      // TODO: trigger an action here
-      update(EmptyState())
+      dispatch(PinInserted(pin: [123]))
     }
 
     

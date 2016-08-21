@@ -49,24 +49,6 @@ struct PinInserted: Action {
   let pin: [Int]
 }
 
-func delayedAction(store: Store<RootReducer>, action: Action) {
-  DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + .seconds(2), execute: {
-    store.dispatch(action)
-    
-    
-    if action is HidePopup {
-      delayedAction(store: store, action: PinInserted(pin: [123]))
-    
-    } else if action is PinInserted {
-      delayedAction(store: store, action: Reset())
-    
-    } else {
-      delayedAction(store: store, action: HidePopup())
-    }
-    
-  })
-}
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
@@ -90,8 +72,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     self.root = StoreListenerNode<RootReducer>(store: store, rootDescription: rootDescription)
     self.root!.render(container: RenderContainers(containers: [view]))
-    
-    delayedAction(store: store, action: HidePopup())
     
     return true
   }

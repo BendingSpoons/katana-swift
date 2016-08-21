@@ -41,7 +41,8 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
   
   static func render(props: CalculatorProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {    
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     let rows = [
       Row(cells: [
         Cell(text: "C", color: UIColor(0xE7E2D5)),

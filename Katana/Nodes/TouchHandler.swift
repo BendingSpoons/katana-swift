@@ -45,7 +45,8 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   
   public static func render(props: TouchHandlerProps,
                             state: EmptyState,
-                            update: (EmptyState)->()) -> [AnyNodeDescription] {
+                            update: (EmptyState)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return props.children
   }

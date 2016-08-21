@@ -33,7 +33,8 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let text = NSMutableAttributedString(string: "Instructions", attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 22, weight: UIFontWeightRegular),

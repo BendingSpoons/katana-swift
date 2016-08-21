@@ -34,7 +34,8 @@ public protocol NodeDescription : AnyNodeDescription {
   
   static func render(props: Props,
                      state: State,
-                     update: (State)->()) -> [AnyNodeDescription]
+                     update: (State)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription]
   
   func replaceKey() -> Int
 }

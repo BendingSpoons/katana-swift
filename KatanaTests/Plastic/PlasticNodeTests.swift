@@ -21,7 +21,8 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   
   static func render(props: EmptyProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return [
       View(props: ViewProps().key("One")) {
