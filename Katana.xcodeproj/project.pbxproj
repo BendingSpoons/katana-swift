@@ -118,6 +118,9 @@
 		A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */; };
 		A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA041D6739100086C027 /* sagaTypes.swift */; };
 		A1F320261D6AFFA7000A98B3 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320251D6AFFA7000A98B3 /* AnyStore.swift */; };
+		A1F320201D6AF5EC000A98B3 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3201F1D6AF5EC000A98B3 /* Table.swift */; };
+		A1F320221D6AF7B2000A98B3 /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */; };
+		A1F320241D6AF98D000A98B3 /* TableDelegateBridge.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320231D6AF98D000A98B3 /* TableDelegateBridge.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -265,6 +268,9 @@
 		A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
 		A1F1BA041D6739100086C027 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 		A1F320251D6AFFA7000A98B3 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
+		A1F3201F1D6AF5EC000A98B3 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
+		A1F320231D6AF98D000A98B3 /* TableDelegateBridge.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegateBridge.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -395,6 +401,7 @@
 		81EA57031D5F3B8C00B6290E /* Nodes */ = {
 			isa = PBXGroup;
 			children = (
+				A1F3201E1D6AF5D0000A98B3 /* Table */,
 				81EA570C1D5F3BBA00B6290E /* Button.swift */,
 				81EA570D1D5F3BBA00B6290E /* Text.swift */,
 				81EA570E1D5F3BBA00B6290E /* TouchHandler.swift */,
@@ -735,6 +742,16 @@
 			path = Saga;
 			sourceTree = "<group>";
 		};
+		A1F3201E1D6AF5D0000A98B3 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				A1F3201F1D6AF5EC000A98B3 /* Table.swift */,
+				A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */,
+				A1F320231D6AF98D000A98B3 /* TableDelegateBridge.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -903,12 +920,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				A159DF671D65DF67009AE13F /* Store.swift in Sources */,
+				A1F320241D6AF98D000A98B3 /* TableDelegateBridge.swift in Sources */,
 				A159DF6B1D65DF67009AE13F /* sagaTypes.swift in Sources */,
 				A159DF601D65DF67009AE13F /* SyncAction.swift in Sources */,
 				A1F1B9E71D6738830086C027 /* ViewsContainer.swift in Sources */,
 				A1F1B9EF1D6738870086C027 /* Size.swift in Sources */,
 				A159DF641D65DF67009AE13F /* Action.swift in Sources */,
 				A1D09BF31D67906B0095BAF0 /* ConnectedNodeDescription.swift in Sources */,
+				A1F320221D6AF7B2000A98B3 /* TableDelegate.swift in Sources */,
 				81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */,
 				A159DF661D65DF67009AE13F /* State.swift in Sources */,
 				A1F1B9E61D6738830086C027 /* ViewsContainer+Helpers.swift in Sources */,
@@ -925,6 +944,7 @@
 				A1F1B9F01D6738870086C027 /* Value.swift in Sources */,
 				81EA57131D5F3BBA00B6290E /* View.swift in Sources */,
 				A1F1B9E41D6738830086C027 /* PlasticView+Convenience.swift in Sources */,
+				A1F320201D6AF5EC000A98B3 /* Table.swift in Sources */,
 				A159DF631D65DF67009AE13F /* SyncReducer.swift in Sources */,
 				A159DF621D65DF67009AE13F /* ReducerCombiner.swift in Sources */,
 				A1D09BF11D678F110095BAF0 /* ConnectedNode.swift in Sources */,

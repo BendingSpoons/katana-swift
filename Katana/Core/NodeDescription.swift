@@ -32,6 +32,13 @@ public protocol NodeDescription : AnyNodeDescription {
                          view: NativeView,
                          update: (State)->()) ->  Void
   
+  
+  static func applyPropsToNativeView(props: Props,
+                                     state: State,
+                                     view: NativeView,
+                                     update: (State)->(),
+                                     concreteNode: AnyNode) -> Void
+  
   static func render(props: Props,
                      state: State,
                      update: (State)->(),
@@ -66,7 +73,14 @@ extension NodeDescription {
   public static func applyPropsToNativeView(props: Props, state: State, view: NativeView, update: (State)->())  {
     view.frame = props.frame
   }
-
+  
+  public static func applyPropsToNativeView(props: Props,
+                                     state: State,
+                                     view: NativeView,
+                                     update: (State)->(),
+                                     concreteNode: AnyNode) ->  Void {
+    self.applyPropsToNativeView(props: props, state: state, view: view, update: update)
+  }
   
   public func node(store: AnyStore) -> AnyNode {
     return node(parentNode: nil, store: store)

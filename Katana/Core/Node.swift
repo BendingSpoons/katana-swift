@@ -11,18 +11,20 @@ import UIKit
 public protocol AnyNode: class, PlasticMultiplierProvider {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
+  var store: AnyStore { get }
+
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
 
 public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
+  public private(set) unowned var store: AnyStore
   
   var state : Description.State
   var typedDescription : Description
   weak var parentNode: AnyNode?
-  unowned var store: AnyStore
-
+  
   private var container: RenderContainer?  
   
   public var description: AnyNodeDescription {
