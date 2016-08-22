@@ -11,18 +11,20 @@ import UIKit
 public protocol AnyNode: class, PlasticMultiplierProvider {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
+  var store: AnyStore { get }
+
   func render(container: RenderContainer)
   func update(description: AnyNodeDescription) throws
 }
 
-public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNode, ConnectedNode, AnyNode {
+public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
+  public private(set) unowned var store: AnyStore
   
   var state : Description.State
   var typedDescription : Description
   weak var parentNode: AnyNode?
-  unowned var store: Store<RootReducer>
-
+  
   private var container: RenderContainer?  
   
   public var description: AnyNodeDescription {
@@ -31,7 +33,7 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     }
   }
   
-  public init(description: Description, parentNode: AnyNode?, store: Store<RootReducer>) {
+  public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
     self.typedDescription = description
     self.state = Description.initialState
     self.parentNode = parentNode
@@ -40,6 +42,8 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
+    
+    self.typedDescription.props = self.updatedPropsWithConnect(description: description, props: self.typedDescription.props)
 
     let children  = Description.render(props: self.typedDescription.props,
                                        state: self.state,
@@ -51,19 +55,23 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     }
   }
   
+  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
+    if let desc = description as? AnyConnectedNodeDescription {
+      // description is connected to the store, we need to update it
+      let state = self.store.getAnyState()
+      return desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
+    }
+    
+    return props
+  }
+  
   func update(state: Description.State)  {
     self.update(state: state, description: self.typedDescription)
   }
   
   public func update(description: AnyNodeDescription) throws {
     var description = description as! Description
-    
-    if let desc = description as? AnyConnectedNodeDescription {
-      // description is connected to the store, we need to update it
-      let state = self.store.getState()
-      description.props = desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
-    }
-    
+    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
     self.update(state: self.state, description: description)
   }
   
@@ -152,7 +160,8 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
       Description.applyPropsToNativeView(props: self.typedDescription.props,
                              state: self.state,
                              view: view as! Description.NativeView,
-                             update: self.update)
+                             update: self.update,
+                             concreteNode: self)
     }
     
     children.forEach { $0.render(container: self.container!) }
@@ -170,7 +179,8 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
       Description.applyPropsToNativeView(props: self.typedDescription.props,
                              state: self.state,
                              view: view as! Description.NativeView,
-                             update: self.update)
+                             update: self.update,
+                             concreteNode: self)
       
     }
     

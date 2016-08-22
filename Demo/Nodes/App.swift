@@ -45,28 +45,30 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
       dispatch(PinInserted(pin: [123]))
     }
 
-    
-    switch props.section {
-    case .Popup:
-      return [
-        Calculator(props: CalculatorProps().key("calculator")),
-        InstructionPopup(props: InstructionPopupProps()
-          .key("popup")
-          .onClose(onClose))
-      ]
-      
-    case .Calculator:
-      return [
-        Calculator(props: CalculatorProps()
-          .key("calculator")
-          .onPasswordSet(onPasswordSet)),
-      ]
-      
-    case .Tabbar:
-      return [
-        Tabbar(props: TabbarProps().key("tabbar"))
-      ]
-    }
+    return [
+      TableExample(props: TableExampleProps().key("table"))
+    ]
+//    switch props.section {
+//    case .Popup:
+//      return [
+//        Calculator(props: CalculatorProps().key("calculator")),
+//        InstructionPopup(props: InstructionPopupProps()
+//          .key("popup")
+//          .onClose(onClose))
+//      ]
+//      
+//    case .Calculator:
+//      return [
+//        Calculator(props: CalculatorProps()
+//          .key("calculator")
+//          .onPasswordSet(onPasswordSet)),
+//      ]
+//      
+//    case .Tabbar:
+//      return [
+//        Tabbar(props: TabbarProps().key("tabbar"))
+//      ]
+//    }
   }
   
   static func layout(views: ViewsContainer,
@@ -77,10 +79,12 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
     let popup = views["popup"]
     let tabbar = views["tabbar"]
     let calculator = views["calculator"]
+    let table = views["table"]
     
     popup?.fill(root)
     calculator?.fill(root)
     tabbar?.fill(root)
+    table?.fill(root)
   }
   
   

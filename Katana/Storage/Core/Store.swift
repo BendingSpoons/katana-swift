@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: move these in a separate file as soon as the typealias bug has been fixed
-public typealias StoreListener<RootReducer: Reducer> = (store: Store<RootReducer>) -> Void
+public typealias StoreListener = () -> Void
 public typealias StoreUnsubscribe = () -> ()
 public typealias StoreMiddleware<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
 public typealias StoreDispatch = (_: Action) -> Void
@@ -34,7 +34,7 @@ private func compose(_ middlewares: [(next: StoreDispatch) -> (action: Action) -
 
 public class Store<RootReducer: Reducer> {
   private var state: RootReducer.StateType
-  private var listeners: [StoreListener<RootReducer>]
+  private var listeners: [StoreListener]
   private let middlewares: [StoreMiddleware<RootReducer>]
   
   lazy private var dispatchFunction: StoreDispatch = {
@@ -57,8 +57,8 @@ public class Store<RootReducer: Reducer> {
   public func getState() -> RootReducer.StateType {
     return state
   }
-  
-  public func addListener(_ listener: StoreListener<RootReducer>) -> StoreUnsubscribe {
+
+  public func addListener(_ listener: StoreListener) -> StoreUnsubscribe {
     listeners.append(listener)
     let idx = listeners.count - 1
     
@@ -79,6 +79,12 @@ public class Store<RootReducer: Reducer> {
     assert(Thread.isMainThread, "It is currently possible to dispatch actions only in the main thread")
     self.state = RootReducer.reduce(action: action, state: self.state)
     
-    self.listeners.forEach { $0(store: self) }
+    self.listeners.forEach { $0() }
+  }
+}
+
+extension Store: AnyStore {
+  public func getAnyState() -> Any {
+    return self.getState()
   }
 }

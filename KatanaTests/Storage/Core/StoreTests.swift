@@ -32,7 +32,7 @@ class StoreTests: XCTestCase {
     let store = Store(AppReducer.self)
     var newState: AppState? = nil
     
-    _ = store.addListener { store in
+    _ = store.addListener { [unowned store] in
       newState = store.getState()
     }
     
@@ -47,12 +47,12 @@ class StoreTests: XCTestCase {
     var firstState: AppState? = nil
     var secondState: AppState? = nil
     
-    let unsubscribe = store.addListener {
+    let unsubscribe = store.addListener { [unowned store] in
       if firstState != nil {
-        secondState = $0.getState()
+        secondState = store.getState()
         
       } else {
-        firstState = $0.getState()
+        firstState = store.getState()
       }
     }
     
