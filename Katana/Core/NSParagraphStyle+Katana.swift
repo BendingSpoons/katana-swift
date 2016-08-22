@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension NSParagraphStyle {
   

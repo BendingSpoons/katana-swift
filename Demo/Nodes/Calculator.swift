@@ -7,6 +7,7 @@
 //
 
 import Katana
+import UIKit
 
 struct CalculatorProps : Equatable,Frameable,Keyable {
   var frame: CGRect = CGRect.zero

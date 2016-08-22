@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 // protocol used to emulate the hierarchy methods
 // that UIKit offers. Whoever implements this method should act as  UIKit

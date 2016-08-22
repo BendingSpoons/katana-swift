@@ -7,6 +7,7 @@
 //
 
 import Katana
+import UIKit
 
 struct PopupProps : Equatable, Frameable {
   var frame: CGRect = CGRect.zero

@@ -7,6 +7,7 @@
 //
 
 import Katana
+import UIKit
 
 struct AlbumProps : Equatable,Frameable, Keyable {
   var frame = CGRect.zero

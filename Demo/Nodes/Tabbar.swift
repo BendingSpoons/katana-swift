@@ -7,6 +7,7 @@
 //
 
 import Katana
+import UIKit
 
 struct TabbarProps : Equatable,Frameable,Keyable {
   var frame = CGRect.zero
