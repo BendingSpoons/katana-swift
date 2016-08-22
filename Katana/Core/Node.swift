@@ -154,7 +154,8 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
       Description.applyPropsToNativeView(props: self.typedDescription.props,
                              state: self.state,
                              view: view as! Description.NativeView,
-                             update: self.update)
+                             update: self.update,
+                             concreteNode: self)
     }
     
     children.forEach { $0.render(container: self.container!) }
@@ -172,7 +173,8 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
       Description.applyPropsToNativeView(props: self.typedDescription.props,
                              state: self.state,
                              view: view as! Description.NativeView,
-                             update: self.update)
+                             update: self.update,
+                             concreteNode: self)
       
     }
     

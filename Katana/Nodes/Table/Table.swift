@@ -34,17 +34,21 @@ public struct Table : NodeDescription {
   public var props : TableProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = UITableView.self
+  public static var nativeViewType = KatanaTableView.self
+  
+  public init(props: TableProps) {
+    self.props = props
+  }
   
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
-                                            view: UITableView,
+                                            view: KatanaTableView,
                                             update: (EmptyState)->(),
                                             concreteNode: AnyNode)  {
     view.frame = props.frame
     
     if let delegate = props.delegate {
-      view.delegate = TableDelegateBridge(concreteNode: concreteNode, delegate: delegate)
+      view.update(withParentNode: concreteNode, delegate: delegate)
     }
   }
   

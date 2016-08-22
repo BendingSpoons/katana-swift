@@ -53,7 +53,7 @@ struct PinInserted: Action {
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  var root: StoreListenerNode<RootReducer>?
+  var root: StoreListenerNode?
   
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -70,7 +70,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootDescription = App(props: AppProps(section: .Popup, frame: rootBounds))
     let store = Store(RootReducer.self)
     
-    self.root = StoreListenerNode<RootReducer>(store: store, rootDescription: rootDescription)
+    self.root = StoreListenerNode(store: store, rootDescription: rootDescription)
     self.root!.render(container: RenderContainers(containers: [view]))
     
     return true
