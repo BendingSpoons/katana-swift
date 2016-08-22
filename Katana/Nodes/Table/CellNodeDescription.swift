@@ -8,12 +8,18 @@
 
 import Foundation
 
-public protocol CellNodeDescription: NodeDescription {
+public protocol AnyCellNodeDescription: AnyNodeDescription {
+  static func anyDidTap(dispatch: StoreDispatch, props: Any, indexPath: IndexPath)
+}
+
+public protocol CellNodeDescription: NodeDescription, AnyCellNodeDescription {
   associatedtype NativeView: CellNativeView
   associatedtype State: Equatable, Highlightable
   
   static var nativeViewType : NativeView.Type { get }
   static var initialState: State { get }
+  
+  static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath)
 }
 
 public extension CellNodeDescription {
@@ -33,5 +39,12 @@ public extension CellNodeDescription {
                                             update: (State)->(),
                                             concreteNode: AnyNode) ->  Void {
     self.applyPropsToNativeView(props: props, state: state, view: view, update: update)
+  }
+  
+  
+  public static func anyDidTap(dispatch: StoreDispatch, props: Any, indexPath: IndexPath) {
+    if let p = props as? Props {
+      self.didTap(dispatch: dispatch, props: p, indexPath: indexPath)
+    }
   }
 }

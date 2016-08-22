@@ -29,7 +29,7 @@ struct CellExampleState: Highlightable, Equatable {
   }
 }
 
-struct CellExaple: CellNodeDescription, ConnectedNodeDescription {
+struct CellExample: CellNodeDescription, ConnectedNodeDescription {
   var props: CellExampleProps
   
   static var initialState = CellExampleState()
@@ -65,5 +65,9 @@ struct CellExaple: CellNodeDescription, ConnectedNodeDescription {
   
   static func connect(parentProps: CellExampleProps, storageState: RootLogicState) -> CellExampleProps {
     return parentProps
+  }
+  
+  static func didTap(dispatch: StoreDispatch, props: CellExampleProps, indexPath: IndexPath) {
+    print("A")
   }
 }

@@ -22,7 +22,7 @@ private struct Delegate: TableDelegate {
     var props = CellExampleProps()
     props.additionalCounter = indexPath.row
     
-    return CellExaple(props: props)
+    return CellExample(props: props)
   }
 }
 

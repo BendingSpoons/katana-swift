@@ -11,6 +11,7 @@ import UIKit
 public protocol AnyNodeDescription {
   var frame: CGRect { get set }
   var key: String? { get }
+  var anyProps: Any { get }
   
   func node(store: AnyStore) -> AnyNode
   func node(parentNode: AnyNode?, store: AnyStore) -> AnyNode
@@ -48,9 +49,7 @@ public protocol NodeDescription : AnyNodeDescription {
 }
 
 extension NodeDescription {
-  
   public var frame : CGRect {
-    
     get {
       return self.props.frame
     }
@@ -66,6 +65,10 @@ extension NodeDescription {
     }
     
     return props.key
+  }
+  
+  public var anyProps: Any {
+    return self.props
   }
 }
 

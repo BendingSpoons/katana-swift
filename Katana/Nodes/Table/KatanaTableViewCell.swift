@@ -50,6 +50,12 @@ class KatanaTableViewCell: UITableViewCell {
     newNode.render(container: self.contentView)
   }
   
+  func didTap(atIndexPath indexPath: IndexPath) {
+    if let description = self.node?.description as? AnyCellNodeDescription, let store = node?.store {
+      description.dynamicType.anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
+    }
+  }
+  
   override func setHighlighted(_ highlighted: Bool, animated: Bool) {
     super.setHighlighted(highlighted, animated: animated)
     
