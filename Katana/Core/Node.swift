@@ -15,13 +15,13 @@ public protocol AnyNode: class, PlasticMultiplierProvider {
   func update(description: AnyNodeDescription) throws
 }
 
-public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNode, ConnectedNode, AnyNode {
+public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
   
   var state : Description.State
   var typedDescription : Description
   weak var parentNode: AnyNode?
-  unowned var store: Store<RootReducer>
+  unowned var store: AnyStore
 
   private var container: RenderContainer?  
   
@@ -31,7 +31,7 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     }
   }
   
-  public init(description: Description, parentNode: AnyNode?, store: Store<RootReducer>) {
+  public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
     self.typedDescription = description
     self.state = Description.initialState
     self.parentNode = parentNode
@@ -60,7 +60,7 @@ public class Node<Description: NodeDescription, RootReducer: Reducer>: PlasticNo
     
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
-      let state = self.store.getState()
+      let state = self.store.getAnyState()
       description.props = desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
     }
     

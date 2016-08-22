@@ -117,6 +117,7 @@
 		A1F1BA101D6739100086C027 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA021D6739100086C027 /* SagaModule.swift */; };
 		A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */; };
 		A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA041D6739100086C027 /* sagaTypes.swift */; };
+		A1F320261D6AFFA7000A98B3 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320251D6AFFA7000A98B3 /* AnyStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -263,6 +264,7 @@
 		A1F1BA021D6739100086C027 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
 		A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
 		A1F1BA041D6739100086C027 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
+		A1F320251D6AFFA7000A98B3 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -538,6 +540,7 @@
 				A159DF561D65DF67009AE13F /* Reducer.swift */,
 				A159DF571D65DF67009AE13F /* State.swift */,
 				A159DF581D65DF67009AE13F /* Store.swift */,
+				A1F320251D6AFFA7000A98B3 /* AnyStore.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -934,6 +937,7 @@
 				A159DF691D65DF67009AE13F /* SagaModule.swift in Sources */,
 				A1F1B9E31D6738830086C027 /* Array+Plastic.swift in Sources */,
 				A159DF681D65DF67009AE13F /* SagaMiddleware.swift in Sources */,
+				A1F320261D6AFFA7000A98B3 /* AnyStore.swift in Sources */,
 				81EA56FF1D5F3AC800B6290E /* RenderContainer.swift in Sources */,
 				A1F1B9EE1D6738870086C027 /* EdgeInsets.swift in Sources */,
 				A1D09BED1D674CEF0095BAF0 /* StoreListenerNode.swift in Sources */,

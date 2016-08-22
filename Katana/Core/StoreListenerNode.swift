@@ -8,15 +8,15 @@
 
 import Foundation
 
-public class StoreListenerNode<R: Reducer> {
-  let store: Store<R>
+public class StoreListenerNode {
+  let store: AnyStore
   let rootNode: AnyNode
 
-  public init(store: Store<R>, rootDescription: AnyNodeDescription) {
+  public init(store: AnyStore, rootDescription: AnyNodeDescription) {
     self.store = store
     self.rootNode = rootDescription.node(store: self.store)
     
-    let _ = store.addListener({ [unowned self] store in
+    let _ = store.addListener({ [unowned self] in
       self.storeDidChange()
     })
   }
