@@ -34,7 +34,7 @@ public struct Table : NodeDescription {
   public var props : TableProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = KatanaTableView.self
+  public static var nativeViewType = NativeTableView.self
   
   public init(props: TableProps) {
     self.props = props
@@ -43,7 +43,7 @@ public struct Table : NodeDescription {
 
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
-                                            view: KatanaTableView,
+                                            view: NativeTableView,
                                             update: (EmptyState)->(),
                                             concreteNode: AnyNode)  {
     view.frame = props.frame

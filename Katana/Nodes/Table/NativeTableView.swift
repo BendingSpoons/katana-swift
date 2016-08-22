@@ -17,14 +17,14 @@ import UIKit
 
 private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
-public class KatanaTableView: UITableView {
+public class NativeTableView: UITableView {
   private weak var parentNode: AnyNode?
   private var katanDelegate: TableDelegate?
   
   override public init(frame: CGRect, style: UITableViewStyle) {
     super.init(frame: frame, style: style)
    
-    self.register(KatanaTableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
+    self.register(NativeTableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
     self.tableFooterView = UIView()
     self.separatorStyle = .none
     
@@ -45,7 +45,7 @@ public class KatanaTableView: UITableView {
 }
 
 
-extension KatanaTableView: UITableViewDataSource  {
+extension NativeTableView: UITableViewDataSource  {
   public func numberOfSections(in tableView: UITableView) -> Int {
     if let delegate = self.katanDelegate {
       return delegate.numberOfSections()
@@ -63,7 +63,7 @@ extension KatanaTableView: UITableViewDataSource  {
   }
   
   @objc(tableView:cellForRowAtIndexPath:) public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as! KatanaTableViewCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeTableViewCell
     
     if let parentNode = self.parentNode, let delegate = self.katanDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)
@@ -84,9 +84,9 @@ extension KatanaTableView: UITableViewDataSource  {
 }
 
 
-extension KatanaTableView: UITableViewDelegate {
+extension NativeTableView: UITableViewDelegate {
   public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    if let cell = tableView.cellForRow(at: indexPath) as? KatanaTableViewCell {
+    if let cell = tableView.cellForRow(at: indexPath) as? NativeTableViewCell {
       cell.didTap(atIndexPath: indexPath)
     }
   }

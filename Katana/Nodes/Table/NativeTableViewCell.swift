@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class KatanaTableViewCell: UITableViewCell {
+class NativeTableViewCell: UITableViewCell {
   private var node: AnyNode? = nil
   
   override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {

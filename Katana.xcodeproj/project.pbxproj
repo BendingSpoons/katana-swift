@@ -122,8 +122,8 @@
 		A1F320261D6AFFA7000A98B3 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320251D6AFFA7000A98B3 /* AnyStore.swift */; };
 		A1F320291D6B169E000A98B3 /* TableExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320281D6B169E000A98B3 /* TableExample.swift */; };
 		A1F3202B1D6B17DB000A98B3 /* CellExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3202A1D6B17DB000A98B3 /* CellExample.swift */; };
-		A1F3202D1D6B1ACB000A98B3 /* KatanaTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3202C1D6B1ACB000A98B3 /* KatanaTableView.swift */; };
-		A1F3202F1D6B1DF9000A98B3 /* KatanaTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3202E1D6B1DF9000A98B3 /* KatanaTableViewCell.swift */; };
+		A1F3202D1D6B1ACB000A98B3 /* NativeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3202C1D6B1ACB000A98B3 /* NativeTableView.swift */; };
+		A1F3202F1D6B1DF9000A98B3 /* NativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3202E1D6B1DF9000A98B3 /* NativeTableViewCell.swift */; };
 		A1F320311D6B2F72000A98B3 /* CellNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320301D6B2F72000A98B3 /* CellNativeView.swift */; };
 		A1F320331D6B3208000A98B3 /* CellNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320321D6B3208000A98B3 /* CellNodeDescription.swift */; };
 /* End PBXBuildFile section */
@@ -277,8 +277,8 @@
 		A1F320251D6AFFA7000A98B3 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
 		A1F320281D6B169E000A98B3 /* TableExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableExample.swift; sourceTree = "<group>"; };
 		A1F3202A1D6B17DB000A98B3 /* CellExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellExample.swift; sourceTree = "<group>"; };
-		A1F3202C1D6B1ACB000A98B3 /* KatanaTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatanaTableView.swift; sourceTree = "<group>"; };
-		A1F3202E1D6B1DF9000A98B3 /* KatanaTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KatanaTableViewCell.swift; sourceTree = "<group>"; };
+		A1F3202C1D6B1ACB000A98B3 /* NativeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableView.swift; sourceTree = "<group>"; };
+		A1F3202E1D6B1DF9000A98B3 /* NativeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableViewCell.swift; sourceTree = "<group>"; };
 		A1F320301D6B2F72000A98B3 /* CellNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellNativeView.swift; sourceTree = "<group>"; };
 		A1F320321D6B3208000A98B3 /* CellNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellNodeDescription.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -758,8 +758,8 @@
 			children = (
 				A1F3201F1D6AF5EC000A98B3 /* Table.swift */,
 				A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */,
-				A1F3202C1D6B1ACB000A98B3 /* KatanaTableView.swift */,
-				A1F3202E1D6B1DF9000A98B3 /* KatanaTableViewCell.swift */,
+				A1F3202C1D6B1ACB000A98B3 /* NativeTableView.swift */,
+				A1F3202E1D6B1DF9000A98B3 /* NativeTableViewCell.swift */,
 				A1F320301D6B2F72000A98B3 /* CellNativeView.swift */,
 				A1F320321D6B3208000A98B3 /* CellNodeDescription.swift */,
 			);
@@ -959,7 +959,7 @@
 				81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */,
 				81EA56FE1D5F3AC800B6290E /* NodeDescription.swift in Sources */,
 				A1F1B9E51D6738830086C027 /* PlasticView.swift in Sources */,
-				A1F3202F1D6B1DF9000A98B3 /* KatanaTableViewCell.swift in Sources */,
+				A1F3202F1D6B1DF9000A98B3 /* NativeTableViewCell.swift in Sources */,
 				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				A1F320331D6B3208000A98B3 /* CellNodeDescription.swift in Sources */,
 				81EA57111D5F3BBA00B6290E /* Text.swift in Sources */,
@@ -977,7 +977,7 @@
 				81EA56FD1D5F3AC800B6290E /* Node.swift in Sources */,
 				A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */,
 				A159DF5F1D65DF67009AE13F /* SagaModule+Action.swift in Sources */,
-				A1F3202D1D6B1ACB000A98B3 /* KatanaTableView.swift in Sources */,
+				A1F3202D1D6B1ACB000A98B3 /* NativeTableView.swift in Sources */,
 				81EA57121D5F3BBA00B6290E /* TouchHandler.swift in Sources */,
 				A1F1B9D91D6736DE0086C027 /* PlasticNode.swift in Sources */,
 				A159DF691D65DF67009AE13F /* SagaModule.swift in Sources */,
