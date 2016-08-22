@@ -48,11 +48,16 @@ struct TableExample: NodeDescription, ConnectedNodeDescription {
                      state: EmptyState,
                      update: (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
+    
+    var tableProps = TableProps().frame(props.frame)
+    
+    if (props.counter < 10) {
+      tableProps = tableProps.delegate(Delegate(props: props))
+    }
+    
+    
     return [
-      Table(props: TableProps()
-        .frame(props.frame)
-        .delegate(Delegate(props: props))
-      )
+      Table(props: tableProps)
     ]
   }
   

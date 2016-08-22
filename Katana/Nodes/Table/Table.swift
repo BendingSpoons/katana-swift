@@ -46,11 +46,10 @@ public struct Table : NodeDescription {
                                             view: NativeTableView,
                                             update: (EmptyState)->(),
                                             concreteNode: AnyNode)  {
-    view.frame = props.frame
     
-    if let delegate = props.delegate {
-      view.update(withParentNode: concreteNode, delegate: delegate)
-    }
+    let delegate = props.delegate ?? EmptyDelegate()
+    view.frame = props.frame
+    view.update(withParentNode: concreteNode, delegate: delegate)
   }
   
   

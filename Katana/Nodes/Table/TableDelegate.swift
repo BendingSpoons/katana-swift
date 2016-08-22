@@ -20,3 +20,21 @@ public extension TableDelegate {
     return 1
   }
 }
+
+struct EmptyDelegate: TableDelegate {
+  func numberOfSections() -> Int {
+    return 0
+  }
+
+  func numberOfRows(forSection section: Int) -> Int {
+    return 0
+  }
+  
+  func nodeDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
+    fatalError()
+  }
+
+  func height(forRowAt indexPath: IndexPath) -> Value {
+    fatalError()
+  }
+}
