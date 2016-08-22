@@ -46,7 +46,7 @@ public class KatanaTableView: UITableView {
 
 
 extension KatanaTableView: UITableViewDataSource  {
-  @objc(numberOfSectionsInTableView:) public func numberOfSections(in tableView: UITableView) -> Int {
+  public func numberOfSections(in tableView: UITableView) -> Int {
     if let delegate = self.katanDelegate {
       return delegate.numberOfSections()
     }
