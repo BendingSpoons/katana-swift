@@ -42,6 +42,8 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
+    
+    self.typedDescription.props = self.updatedPropsWithConnect(description: description, props: self.typedDescription.props)
 
     let children  = Description.render(props: self.typedDescription.props,
                                        state: self.state,
@@ -53,19 +55,23 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     }
   }
   
+  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
+    if let desc = description as? AnyConnectedNodeDescription {
+      // description is connected to the store, we need to update it
+      let state = self.store.getAnyState()
+      return desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
+    }
+    
+    return props
+  }
+  
   func update(state: Description.State)  {
     self.update(state: state, description: self.typedDescription)
   }
   
   public func update(description: AnyNodeDescription) throws {
     var description = description as! Description
-    
-    if let desc = description as? AnyConnectedNodeDescription {
-      // description is connected to the store, we need to update it
-      let state = self.store.getAnyState()
-      description.props = desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
-    }
-    
+    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
     self.update(state: self.state, description: description)
   }
   

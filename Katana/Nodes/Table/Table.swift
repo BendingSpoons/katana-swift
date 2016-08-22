@@ -24,8 +24,8 @@ public struct TableProps: Equatable, Frameable, Keyable {
   }
   
   public static func ==(lhs: TableProps, rhs: TableProps) -> Bool {
-    return lhs.key == rhs.key &&
-      lhs.frame == rhs.frame
+    // delegate to the table mechanism any optimization here
+    return false
   }
 }
 
@@ -40,6 +40,7 @@ public struct Table : NodeDescription {
     self.props = props
   }
   
+
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
                                             view: KatanaTableView,
