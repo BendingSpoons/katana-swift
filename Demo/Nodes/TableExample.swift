@@ -19,7 +19,10 @@ private struct Delegate: TableDelegate {
   }
   
   private func nodeDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
-    return CellExaple(props: EmptyProps())
+    var props = CellExampleProps()
+    props.additionalCounter = indexPath.row
+    
+    return CellExaple(props: props)
   }
 }
 

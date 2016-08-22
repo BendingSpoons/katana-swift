@@ -179,6 +179,10 @@ extension Childrenable {
   }
 }
 
+public protocol Highlightable {
+  var highlighted: Bool { get set }
+}
+
 public struct EmptyState : Equatable {
   public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true

@@ -9,23 +9,61 @@
 import Foundation
 import Katana
 
-struct CellExaple: NodeDescription {
-  var props: EmptyProps
+struct CellExampleProps: Frameable, Equatable {
+  var frame = CGRect.zero
+  var baseCounter = 0
+  var additionalCounter = 0
   
-  static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
+  static func ==(lhs: CellExampleProps, rhs: CellExampleProps) -> Bool {
+    return lhs.frame == rhs.frame &&
+      lhs.baseCounter == rhs.baseCounter &&
+      lhs.additionalCounter == rhs.additionalCounter
+  }
+}
+
+struct CellExampleState: Highlightable, Equatable {
+  var highlighted: Bool = false
   
-  static func render(props: EmptyProps,
-                     state: EmptyState,
-                     update: (EmptyState)->(),
+  static func ==(lhs: CellExampleState, rhs: CellExampleState) -> Bool {
+    return lhs.highlighted == rhs.highlighted
+  }
+}
+
+struct CellExaple: CellNodeDescription, ConnectedNodeDescription {
+  var props: CellExampleProps
+  
+  static var initialState = CellExampleState()
+  static var nativeViewType = CellNativeView.self
+  
+  static func render(props: CellExampleProps,
+                     state: CellExampleState,
+                     update: (CellExampleState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
+    
+    let text = NSMutableAttributedString(string: "\(props.baseCounter + props.additionalCounter)", attributes: [
+      NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
+      NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
+      NSForegroundColorAttributeName : UIColor.black
+    ])
+    
     return [
       View(props: ViewProps()
-        .color(.blue)
-        .borderColor(.red)
+        .color(state.highlighted ? .red : .blue)
+        .borderColor(state.highlighted ? .black : .red)
         .borderWidth(5)
-        .frame(props.frame)
-      )
+        .frame(props.frame)) {
+          [
+            Text(props: TextProps()
+              .frame(props.frame)
+              .text(text)
+              .color(UIColor.white.withAlphaComponent(0.6))
+            )
+          ]
+      }
     ]
+  }
+  
+  static func connect(parentProps: CellExampleProps, storageState: RootLogicState) -> CellExampleProps {
+    return parentProps
   }
 }

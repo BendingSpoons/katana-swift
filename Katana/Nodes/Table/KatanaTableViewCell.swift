@@ -12,6 +12,16 @@ import UIKit
 class KatanaTableViewCell: UITableViewCell {
   private var node: AnyNode? = nil
   
+  override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    self.selectionStyle = .none
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
+  }
+  
   func update(withParentNode parentNode: AnyNode, description: AnyNodeDescription) {
     // we need to pass the cell frame
     // here we are causing a second evaluation of the description
@@ -38,5 +48,16 @@ class KatanaTableViewCell: UITableViewCell {
     let newNode = newDescription.node(parentNode: parentNode, store: parentNode.store)
     self.node = newNode
     newNode.render(container: self.contentView)
+  }
+  
+  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    super.setHighlighted(highlighted, animated: animated)
+    
+    // let's see if in our subviews there is a CellNativeView, which we can use
+    // to properly update the state
+    // it there is such view, it is the only subview of contentview
+    if let view = self.contentView.subviews.first as? CellNativeView {
+      view.setHighlighted(highlighted)
+    }
   }
 }
