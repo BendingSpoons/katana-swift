@@ -94,7 +94,7 @@ class ActionSagaModuleTests: XCTestCase {
     var invokedCompleted: Bool = false
 
     let spySaga: Saga<AsyncActions.LoginActionType, AppReducer, AppSagaProviderContainer> = { action, getState, dispatch, providers in
-      if (action.state == .Loading) {
+      if (action.state == .loading) {
         invoked = true
         dispatch(action.completedAction(payload: "completed"))
       

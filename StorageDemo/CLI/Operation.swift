@@ -12,9 +12,9 @@ import Foundation
 /// An enum used to list all the implemented operations in the
 /// application
 enum Operation: Int {
-  case CreateAlbum
-  case ListAlbums
-  case AddPhotoCameraRoll
+  case createAlbum
+  case listAlbums
+  case addPhotoCameraRoll
 }
 
 

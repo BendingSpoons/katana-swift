@@ -11,7 +11,7 @@ import UIKit
 
 public struct Anchor: Equatable {
   public enum Kind {
-    case Left, Right, CenterX, Top, Bottom, CenterY
+    case left, right, centerX, top, bottom, centerY
   }
   
   let kind: Kind
@@ -27,22 +27,22 @@ public struct Anchor: Equatable {
     let size = self.view.frame
     
     switch self.kind {
-    case .Left:
+    case .left:
       return absoluteOrigin.x
     
-    case .Right:
+    case .right:
       return absoluteOrigin.x + size.width
     
-    case .CenterX:
+    case .centerX:
       return absoluteOrigin.x + size.width / 2.0
       
-    case .Top:
+    case .top:
       return absoluteOrigin.y
       
-    case .Bottom:
+    case .bottom:
       return absoluteOrigin.y + size.height
       
-    case .CenterY:
+    case .centerY:
       return absoluteOrigin.y + size.height / 2.0
       
     }

@@ -11,7 +11,7 @@ import Katana
 
 struct AppProps: Equatable, Frameable {
   enum Section {
-    case Popup, Calculator, Tabbar
+    case popup, calculator, tabbar
   }
   
   var section: Section
@@ -90,13 +90,13 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
   
   static func connect(parentProps: AppProps, storageState: RootLogicState) -> AppProps {
     if storageState.showPopup {
-      return AppProps(section: .Popup, frame: parentProps.frame)
+      return AppProps(section: .popup, frame: parentProps.frame)
     
     } else if storageState.password == nil {
-      return AppProps(section: .Calculator, frame: parentProps.frame)
+      return AppProps(section: .calculator, frame: parentProps.frame)
     
     } else {
-      return AppProps(section: .Tabbar, frame: parentProps.frame)
+      return AppProps(section: .tabbar, frame: parentProps.frame)
     }
   }
 }

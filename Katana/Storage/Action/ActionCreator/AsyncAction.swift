@@ -9,7 +9,7 @@
 import Foundation
 
 enum AsyncActionState {
-  case Loading, Completed, Error
+  case loading, completed, error
 }
 
 struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
@@ -24,7 +24,7 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
     self.payload = payload
     self.completedPayload = nil
     self.errorPayload = nil
-    self.state = .Loading
+    self.state = .loading
   }
   
   private init(actionName: String, completedPayload: CompletedPayload) {
@@ -32,7 +32,7 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
     self.payload = nil
     self.completedPayload = completedPayload
     self.errorPayload = nil
-    self.state = .Completed
+    self.state = .completed
   }
   
   private init(actionName: String, errorPayload: ErrorPayload) {
@@ -40,16 +40,16 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
     self.payload = nil
     self.completedPayload = nil
     self.errorPayload = errorPayload
-    self.state = .Error
+    self.state = .error
   }
   
   func completedAction(payload: CompletedPayload) -> AsyncAction<Payload, CompletedPayload, ErrorPayload> {
-    assert(self.state == .Loading, "Cannot Invoked this method on actions that are not in the loading state")
+    assert(self.state == .loading, "Cannot Invoked this method on actions that are not in the loading state")
     return self.dynamicType.init(actionName: self.actionName, completedPayload: payload)
   }
   
   func errorAction(payload: ErrorPayload) -> AsyncAction<Payload, CompletedPayload, ErrorPayload> {
-    assert(self.state == .Loading, "Cannot Invoked this method on actions that are not in the loading state")
+    assert(self.state == .loading, "Cannot Invoked this method on actions that are not in the loading state")
     return self.dynamicType.init(actionName: self.actionName, errorPayload: payload)
   }
 }

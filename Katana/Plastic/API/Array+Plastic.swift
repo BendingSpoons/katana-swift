@@ -33,7 +33,7 @@ extension Array where Element: PlasticView {
     for (index, view) in otherViews.enumerated() {
       let leftwardView = self[index] // take prev view
       let scaledSpacing = scaledSpacings[index]
-      let anchor = Anchor(kind: .Right, view: leftwardView)
+      let anchor = Anchor(kind: .right, view: leftwardView)
       view.setLeft(anchor, .fixed(scaledSpacing))
     }
   }
@@ -62,7 +62,7 @@ extension Array where Element: PlasticView {
     for (index, view) in otherViews.enumerated() {
       let upperView = self[index]
       let scaledSpacing = scaledSpacings[index]
-      let anchor = Anchor(kind: .Bottom, view: upperView)
+      let anchor = Anchor(kind: .bottom, view: upperView)
       view.setTop(anchor, .fixed(scaledSpacing))
     }
   }

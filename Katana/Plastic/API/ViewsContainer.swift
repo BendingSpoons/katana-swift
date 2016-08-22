@@ -12,14 +12,14 @@ private let ROOT_KEY = "//ROOT_KEY\\"
 
 private enum HierarchyNode {
   // the node is the root node
-  case Root
+  case root
   
   // the node is something with a static frame (no key)
   // we save the frame of the node and the reference to the parent
-  indirect case StaticFrame(CGRect, HierarchyNode)
+  indirect case staticFrame(CGRect, HierarchyNode)
   
   // the node is something with a dynamic frame (managed by plastic)
-  case DynamicFrame(String)
+  case dynamicFrame(String)
 }
 
 public class ViewsContainer {
@@ -52,8 +52,8 @@ public class ViewsContainer {
     }
     
     // this is a kind of workaround.. basically in this way we automatically handle the root
-    hierarchy[ROOT_KEY] = .Root
-    self.nodeChildrenHierarchy(children, parentRepresentation: .Root, accumulator: &hierarchy)
+    hierarchy[ROOT_KEY] = .root
+    self.nodeChildrenHierarchy(children, parentRepresentation: .root, accumulator: &hierarchy)
   }
   
   public subscript(key: String) -> PlasticView? {
@@ -89,10 +89,10 @@ extension ViewsContainer: HierarchyManager {
   */
   private func resolveAbsoluteOrigin(fromNode node: HierarchyNode) -> CGPoint {
     switch node {
-    case .Root:
+    case .root:
       return CGPoint.zero
       
-    case let .DynamicFrame(key):
+    case let .dynamicFrame(key):
       guard let node = self[key] else {
         fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
       }
@@ -100,7 +100,7 @@ extension ViewsContainer: HierarchyManager {
       return node.absoluteOrigin
       
       
-    case let .StaticFrame(frame, parentNode):
+    case let .staticFrame(frame, parentNode):
       let parentOrigin = self.resolveAbsoluteOrigin(fromNode: parentNode)
       let currentOrigin = frame.origin
       return CGPoint(x: parentOrigin.x + currentOrigin.x, y: parentOrigin.y + currentOrigin.y)
@@ -140,10 +140,10 @@ private extension ViewsContainer {
       
       let currentNode: HierarchyNode = {
         if let key = node.key {
-          return .DynamicFrame(key)
+          return .dynamicFrame(key)
         }
         
-        return .StaticFrame(node.frame, parentRepresentation)
+        return .staticFrame(node.frame, parentRepresentation)
       }()
       
       

@@ -31,13 +31,13 @@ extension AsyncReducer {
     
     
     switch a.state {
-    case .Loading:
+    case .loading:
       return self.reduceLoading(action: a, state: s)
       
-    case .Completed:
+    case .completed:
       return self.reduceCompleted(action: a, state: s)
       
-    case .Error:
+    case .error:
       return self.reduceError(action: a, state: s)
     }
   }

@@ -32,7 +32,7 @@ extension SagaModule {
     let filteredSaga: Saga3<AsyncAction<Payload, CompletedPayload, ErrorPayload>, RootReducer, Providers> = {
       action, getState, dispatch, providers in
 
-      if action.state == .Loading {
+      if action.state == .loading {
         saga(action: action, getState: getState, dispatch: dispatch, providers: providers)
       }
     }

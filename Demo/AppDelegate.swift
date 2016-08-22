@@ -76,7 +76,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     let rootBounds = UIScreen.main.bounds
-    let rootDescription = App(props: AppProps(section: .Popup, frame: rootBounds))
+    let rootDescription = App(props: AppProps(section: .popup, frame: rootBounds))
     let store = Store(RootReducer.self)
     
     self.root = StoreListenerNode(store: store, rootDescription: rootDescription)

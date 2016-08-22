@@ -9,11 +9,11 @@
 import UIKit
 
 private enum ConstraintX {
-  case None, Left, Right, CenterX, Width
+  case none, left, right, centerX, width
 }
 
 private enum ConstraintY {
-  case None, Top, Bottom, CenterY, Height
+  case none, top, bottom, centerY, height
 }
 
 public class PlasticView {
@@ -24,10 +24,10 @@ public class PlasticView {
   private let multiplier: CGFloat
   private unowned let hierarchyManager: HierarchyManager
   
-  private var oldestConstraintX = ConstraintX.None
-  private var newestConstraintX = ConstraintX.None
-  private var oldestConstraintY = ConstraintY.None
-  private var newestConstraintY = ConstraintY.None
+  private var oldestConstraintX = ConstraintX.none
+  private var newestConstraintX = ConstraintX.none
+  private var oldestConstraintY = ConstraintY.none
+  private var newestConstraintY = ConstraintY.none
   
   private var constraintX: ConstraintX {
     get {
@@ -107,15 +107,15 @@ extension PlasticView {
   }
   
   private func setHeight(_ value: Value) {
-    self.constraintY = .Height
+    self.constraintY = .height
     
     let newHeight = max(scaleValue(value), 0)
     var newTop = self.top.coordinate
     
-    if (oldestConstraintY == .Bottom) {
+    if (oldestConstraintY == .bottom) {
       newTop = self.bottom.coordinate - newHeight
     
-    } else if (oldestConstraintY == .CenterY) {
+    } else if (oldestConstraintY == .centerY) {
       newTop = self.centerY.coordinate - newHeight / 2.0
     }
     
@@ -137,15 +137,15 @@ extension PlasticView {
   }
   
   private func setWidth(_ value: Value) {
-    self.constraintX = .Width
+    self.constraintX = .width
     
     let newWidth = max(scaleValue(value), 0)
     var newLeft = self.left.coordinate
     
-    if (self.oldestConstraintX == .Right) {
+    if (self.oldestConstraintX == .right) {
       newLeft = self.right.coordinate - newWidth
     
-    } else if (self.oldestConstraintX == .CenterX) {
+    } else if (self.oldestConstraintX == .centerX) {
       newLeft = self.centerX.coordinate - newWidth / 2.0
     }
     
@@ -158,7 +158,7 @@ extension PlasticView {
 extension PlasticView {
   public var bottom: Anchor {
     get {
-      return Anchor(kind: .Bottom, view: self)
+      return Anchor(kind: .bottom, view: self)
     }
     
     set(newValue) {
@@ -167,15 +167,15 @@ extension PlasticView {
   }
   
   public func setBottom(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintY = .Bottom
+    self.constraintY = .bottom
     
     let newBottom = anchor.coordinate + scaleValue(offset)
     var newHeight = scaleValue(self.height)
     
-    if (oldestConstraintY == .Top) {
+    if (oldestConstraintY == .top) {
       newHeight = max(newBottom - self.top.coordinate, 0)
     
-    } else if (oldestConstraintY == .CenterY) {
+    } else if (oldestConstraintY == .centerY) {
       newHeight = max(2 * (newBottom - self.centerY.coordinate), 0)
     }
     
@@ -188,7 +188,7 @@ extension PlasticView {
 extension PlasticView {
   public var top: Anchor {
     get {
-      return Anchor(kind: .Top, view: self)
+      return Anchor(kind: .top, view: self)
     }
     
     set(newValue) {
@@ -197,15 +197,15 @@ extension PlasticView {
   }
   
   public func setTop(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintY = .Top
+    self.constraintY = .top
 
     let newTop = anchor.coordinate + scaleValue(offset)
     var newHeight = scaleValue(self.height)
     
-    if (self.constraintY == .Bottom) {
+    if (self.constraintY == .bottom) {
       newHeight = max(self.bottom.coordinate - newTop, 0)
     
-    } else if (self.constraintY == .CenterY) {
+    } else if (self.constraintY == .centerY) {
       newHeight = max(2.0 * (self.centerY.coordinate - newTop), 0.0)
     }
     
@@ -218,7 +218,7 @@ extension PlasticView {
 extension PlasticView {
   public var right: Anchor {
     get {
-      return Anchor(kind: .Right, view: self)
+      return Anchor(kind: .right, view: self)
     }
     
     set(newValue) {
@@ -227,15 +227,15 @@ extension PlasticView {
   }
   
   public func setRight(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintX = .Right;
+    self.constraintX = .right;
     
     let newRight = anchor.coordinate + scaleValue(offset);
     var newWidth = scaleValue(self.width);
     
-    if (self.oldestConstraintX == .Left) {
+    if (self.oldestConstraintX == .left) {
       newWidth = max(newRight - self.left.coordinate, 0.0);
     
-    } else if (self.oldestConstraintX == .CenterX) {
+    } else if (self.oldestConstraintX == .centerX) {
       newWidth = max(2.0 * (newRight - self.centerX.coordinate), 0.0);
     }
     
@@ -248,7 +248,7 @@ extension PlasticView {
 extension PlasticView {
   public var left: Anchor {
     get {
-      return Anchor(kind: .Left, view: self)
+      return Anchor(kind: .left, view: self)
     }
     
     set(newValue) {
@@ -257,15 +257,15 @@ extension PlasticView {
   }
   
   public func setLeft(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintX = .Left;
+    self.constraintX = .left;
     
     let newLeft = anchor.coordinate + scaleValue(offset);
     var newWidth = scaleValue(self.width);
     
-    if (self.oldestConstraintX == .Right) {
+    if (self.oldestConstraintX == .right) {
       newWidth = max(self.right.coordinate - newLeft, 0);
       
-    } else if (self.oldestConstraintX == .CenterX) {
+    } else if (self.oldestConstraintX == .centerX) {
       newWidth = max(2.0 * (self.centerX.coordinate - newLeft), 0.0);
     }
     
@@ -279,7 +279,7 @@ extension PlasticView {
 extension PlasticView {
   public var centerX: Anchor {
     get {
-      return Anchor(kind: .CenterX, view: self)
+      return Anchor(kind: .centerX, view: self)
     }
     
     set(newValue) {
@@ -288,15 +288,15 @@ extension PlasticView {
   }
   
   public func setCenterX(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintX = .CenterX;
+    self.constraintX = .centerX;
     
     let newCenterX = anchor.coordinate + scaleValue(offset);
     var newWidth = scaleValue(self.width);
     
-    if (self.oldestConstraintX == .Left) {
+    if (self.oldestConstraintX == .left) {
       newWidth = max(2.0 * (newCenterX - self.left.coordinate), 0.0);
       
-    } else if (self.oldestConstraintX == .Right) {
+    } else if (self.oldestConstraintX == .right) {
       newWidth = max(2.0 * (self.right.coordinate - newCenterX), 0.0);
     }
     
@@ -310,7 +310,7 @@ extension PlasticView {
 extension PlasticView {
   public var centerY: Anchor {
     get {
-      return Anchor(kind: .CenterY, view: self)
+      return Anchor(kind: .centerY, view: self)
     }
     
     set(newValue) {
@@ -319,15 +319,15 @@ extension PlasticView {
   }
   
   public func setCenterY(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
-    self.constraintY = .CenterY;
+    self.constraintY = .centerY;
     
     let newCenterY = anchor.coordinate + scaleValue(offset);
     var newHeight = scaleValue(self.height);
     
-    if (self.oldestConstraintY == .Top) {
+    if (self.oldestConstraintY == .top) {
       newHeight = max(2.0 * (newCenterY - self.top.coordinate), 0.0);
       
-    } else if (self.oldestConstraintY == .Bottom) {
+    } else if (self.oldestConstraintY == .bottom) {
       newHeight = max(2.0 * (self.bottom.coordinate - newCenterY), 0.0);
     }
     

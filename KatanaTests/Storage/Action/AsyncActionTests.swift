@@ -19,7 +19,7 @@ class AsyncActionTests: XCTestCase {
     XCTAssertEqual(action.payload, "token")
     XCTAssertEqual(action.completedPayload, nil)
     XCTAssertEqual(action.errorPayload, nil)
-    XCTAssertEqual(action.state, AsyncActionState.Loading)
+    XCTAssertEqual(action.state, AsyncActionState.loading)
   }
   
   func testActionCompleted() {
@@ -31,7 +31,7 @@ class AsyncActionTests: XCTestCase {
     XCTAssertEqual(completedAction.payload, nil)
     XCTAssertEqual(completedAction.completedPayload, username)
     XCTAssertEqual(completedAction.errorPayload, nil)
-    XCTAssertEqual(completedAction.state, AsyncActionState.Completed)
+    XCTAssertEqual(completedAction.state, AsyncActionState.completed)
   }
 
   func testActionError() {
@@ -43,7 +43,7 @@ class AsyncActionTests: XCTestCase {
     XCTAssertEqual(errorAction.payload, nil)
     XCTAssertEqual(errorAction.completedPayload, nil)
     XCTAssertEqual(errorAction.errorPayload, error)
-    XCTAssertEqual(errorAction.state, AsyncActionState.Error)
+    XCTAssertEqual(errorAction.state, AsyncActionState.error)
   }
 }
 
