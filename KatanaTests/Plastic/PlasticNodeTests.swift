@@ -21,7 +21,8 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   
   static func render(props: EmptyProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return [
       View(props: ViewProps().key("One")) {
@@ -48,7 +49,7 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil)
+    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store(EmptyReducer.self))
     let renderProfiler = RenderProfiler() { _ = $0 }
     node.render(container: renderProfiler)
     

@@ -55,7 +55,8 @@ public struct Button : NodeDescription {
   
   public static func render(props: ButtonProps,
                             state: Bool,
-                            update: (Bool)->()) -> [AnyNodeDescription] {
+                            update: (Bool)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
       update(pressed)

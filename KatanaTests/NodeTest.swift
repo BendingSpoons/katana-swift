@@ -25,7 +25,8 @@ struct App : NodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let i = props.i
     
@@ -77,7 +78,8 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->()) -> [AnyNodeDescription] {
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let i = props.i
     
@@ -151,7 +153,8 @@ func collectView(view: UIView) -> [UIView] {
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).node()
+    let store = Store(EmptyReducer.self)
+    let root = App(props: AppProps(i:0), children: []).node(store: store)
     var references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
@@ -176,7 +179,8 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).node()
+    let store = Store(EmptyReducer.self)
+    let root = App(props: AppProps(i:0), children: []).node(store: store)
     
     let rootVew = UIView()
     root.render(container: rootVew)
@@ -201,7 +205,8 @@ class NodeTest: XCTestCase {
   
   
   func testNodeDeallocationPlastic() {
-    let root = AppWithPlastic(props: AppProps(i:0), children: []).node()
+    let store = Store(EmptyReducer.self)
+    let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store: store)
     var references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
@@ -221,13 +226,12 @@ class NodeTest: XCTestCase {
     references = collectNodes(node: root).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
-    
-    
   }
   
   
   func testViewDeallocationWithPlastic() {
-    let root = AppWithPlastic(props: AppProps(i:0), children: []).node()
+    let store = Store(EmptyReducer.self)
+    let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store : store)
     
     let rootVew = UIView()
     root.render(container: rootVew)

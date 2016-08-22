@@ -9,41 +9,45 @@
 import UIKit
 import Katana
 
-struct AppState : Equatable {
-  var showPopup = true
-  var password : [Int]?
-  
-  static func ==(lhs: AppState, rhs: AppState) -> Bool {
-    return lhs.showPopup == rhs.showPopup && lhs.password == rhs.password
+struct AppProps: Equatable, Frameable {
+  enum Section {
+    case Popup, Calculator, Tabbar
   }
   
+  var section: Section
+  var frame: CGRect
+  
+  static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
+    return lhs.section == rhs.section
+  }
 }
 
-struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
-  static var initialState = AppState()
+struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, ConnectedNodeDescription {
+  static var initialState = EmptyState()
   static var nativeViewType = UIView.self
 
-  var props : EmptyProps
+  var props : AppProps
   
   static func referenceSize() -> CGSize {
     return CGSize(width: 640, height: 960)
   }
   
-  static func render(props: EmptyProps,
-                     state: AppState,
-                     update: (AppState)->()) -> [AnyNodeDescription] {
-    
-    print("render app \(state)")
+  static func render(props: AppProps,
+                     state: EmptyState,
+                     update: (EmptyState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func onClose() {
-      update(AppState(showPopup: false, password: state.password))
+      dispatch(HidePopup())
     }
     
     func onPasswordSet(_ password: [Int]) {
-      update(AppState(showPopup: false, password: password))
+      dispatch(PinInserted(pin: [123]))
     }
 
-    if (state.showPopup) {
+    
+    switch props.section {
+    case .Popup:
       return [
         Calculator(props: CalculatorProps().key("calculator")),
         InstructionPopup(props: InstructionPopupProps()
@@ -51,14 +55,14 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
           .onClose(onClose))
       ]
       
-    } else if (state.password == nil)  {
+    case .Calculator:
       return [
         Calculator(props: CalculatorProps()
           .key("calculator")
           .onPasswordSet(onPasswordSet)),
       ]
-
-    } else {
+      
+    case .Tabbar:
       return [
         Tabbar(props: TabbarProps().key("tabbar"))
       ]
@@ -66,8 +70,8 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
   }
   
   static func layout(views: ViewsContainer,
-                     props: EmptyProps,
-                     state: AppState) -> Void {
+                     props: AppProps,
+                     state: EmptyState) -> Void {
     
     let root = views.rootView
     let popup = views["popup"]
@@ -77,6 +81,19 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription {
     popup?.fill(root)
     calculator?.fill(root)
     tabbar?.fill(root)
+  }
+  
+  
+  static func connect(parentProps: AppProps, storageState: RootLogicState) -> AppProps {
+    if storageState.showPopup {
+      return AppProps(section: .Popup, frame: parentProps.frame)
+    
+    } else if storageState.password == nil {
+      return AppProps(section: .Calculator, frame: parentProps.frame)
+    
+    } else {
+      return AppProps(section: .Tabbar, frame: parentProps.frame)
+    }
   }
 }
 

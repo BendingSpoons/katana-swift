@@ -52,7 +52,8 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
   
   public static func render(props: ViewProps,
                             state: EmptyState,
-                            update: (EmptyState)->()) -> [AnyNodeDescription] {
+                            update: (EmptyState)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return props.children
   }
   

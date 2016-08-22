@@ -42,7 +42,8 @@ struct Tabbar : NodeDescription, PlasticNodeDescription {
 
   static func render(props: TabbarProps,
                      state: TabbarState,
-                     update: (TabbarState)->()) -> [AnyNodeDescription] {
+                     update: (TabbarState)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     let sections = [
       Section(
         color: .red,

@@ -41,7 +41,8 @@ public struct Text : NodeDescription {
   
   public static func render(props: TextProps,
                             state: EmptyState,
-                            update: (EmptyState)->()) -> [AnyNodeDescription] {
+                            update: (EmptyState)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   
