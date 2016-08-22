@@ -32,7 +32,7 @@ class KatanaTableViewCell: UITableViewCell {
     
     
     if let node = self.node {
-      if node.description.dynamicType == description.dynamicType {
+      if node.description.replaceKey() == description.replaceKey() {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
         return
