@@ -10,8 +10,10 @@ import Foundation
 import Katana
 
 private struct Delegate: TableDelegate {
+  let props: TableExampleProps
+  
   func numberOfRows(forSection section: Int) -> Int {
-    return 200000
+    return 200//000
   }
   
   func height(forRowAt indexPath: IndexPath) -> Value {
@@ -26,21 +28,38 @@ private struct Delegate: TableDelegate {
   }
 }
 
-struct TableExample: NodeDescription {
-  var props: EmptyProps
+struct TableExampleProps: Frameable, Equatable, Keyable {
+  var counter: Int = 0
+  var frame = CGRect.zero
+  var key: String?
+  
+  static func ==(l: TableExampleProps, r: TableExampleProps) -> Bool {
+    return l.counter == r.counter && l.frame == r.frame
+  }
+}
+
+struct TableExample: NodeDescription, ConnectedNodeDescription {
+  var props: TableExampleProps
   
   static var initialState = EmptyState()
   static var nativeViewType = UIView.self
   
-  static func render(props: EmptyProps,
+  static func render(props: TableExampleProps,
                      state: EmptyState,
                      update: (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return [
       Table(props: TableProps()
         .frame(props.frame)
-        .delegate(Delegate())
+        .delegate(Delegate(props: props))
       )
     ]
+  }
+  
+  static func connect(parentProps: TableExampleProps, storageState: RootLogicState) -> TableExampleProps {
+    var newProps = parentProps
+    newProps.counter = storageState.counter
+    
+    return newProps
   }
 }

@@ -46,7 +46,7 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
     }
 
     return [
-      TableExample(props: EmptyProps().key("table"))
+      TableExample(props: TableExampleProps().key("table"))
     ]
 //    switch props.section {
 //    case .Popup:

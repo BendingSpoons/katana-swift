@@ -64,10 +64,12 @@ struct CellExample: CellNodeDescription, ConnectedNodeDescription {
   }
   
   static func connect(parentProps: CellExampleProps, storageState: RootLogicState) -> CellExampleProps {
-    return parentProps
+    var newProps = parentProps
+    newProps.baseCounter = storageState.counter
+    return newProps
   }
   
   static func didTap(dispatch: StoreDispatch, props: CellExampleProps, indexPath: IndexPath) {
-    print("A")
+    dispatch(IncreaseCounter())
   }
 }
