@@ -82,9 +82,6 @@ public class TouchHandlerView : UIControl {
   public override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
     if (touching) {
       self.touching = false
-      
-      touch?.location(in: self)
-      
       self.handler?(self.touching)
     }
   }
