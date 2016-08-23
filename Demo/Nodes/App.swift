@@ -46,7 +46,8 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
     }
 
     return [
-      TableExample(props: TableExampleProps().key("table"))
+//      TableExample(props: TableExampleProps().key("table"))
+      GridExample(props: GridExampleProps().key("grid"))
     ]
 //    switch props.section {
 //    case .Popup:
@@ -80,11 +81,13 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
     let tabbar = views["tabbar"]
     let calculator = views["calculator"]
     let table = views["table"]
+    let grid = views["grid"]
     
     popup?.fill(root)
     calculator?.fill(root)
     tabbar?.fill(root)
     table?.fill(root)
+    grid?.fill(root)
   }
   
   
