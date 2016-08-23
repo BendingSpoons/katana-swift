@@ -45,15 +45,20 @@ struct GridExample: NodeDescription, ConnectedNodeDescription {
                      update: (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
-    var tableProps = GridProps().frame(props.frame)
+    var gridProps = GridProps()
+      .frame(props.frame)
+      .numberOfCellsOnline(2)
+      .cellSpacing(.scalable(10))
+      .lineInsets(.scalable(10))
+      .sectionInsets(.scalable(10, 10, 10, 10))
     
     if (props.counter < 10) {
-      tableProps = tableProps.delegate(Delegate(props: props))
+      gridProps = gridProps.delegate(Delegate(props: props))
     }
     
     
     return [
-      Grid(props: tableProps)
+      Grid(props: gridProps)
     ]
   }
   

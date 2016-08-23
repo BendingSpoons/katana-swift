@@ -14,11 +14,54 @@ public struct GridProps: Equatable, Frameable, Keyable {
   public var key: String?
   public var delegate: GridDelegate?
   
+  public var cellAspectRatio: CGFloat?
+  public var numberOfCellsOnline: Int?
+  public var minimumCellLenghtOnline: Value?
+  public var sectionInsets: EdgeInsets?
+  public var lineInsets: Value?
+  public var cellSpacing: Value?
+  
   public init() {}
   
   public func delegate(_ delegate: GridDelegate) -> GridProps {
     var copy = self
     copy.delegate = delegate
+    return copy
+  }
+  
+  public func cellAspectRatio(_ cellAspectRatio: CGFloat) -> GridProps {
+    var copy = self
+    copy.cellAspectRatio = cellAspectRatio
+    return copy
+  }
+
+  public func numberOfCellsOnline(_ numberOfCellsOnline: Int) -> GridProps {
+    var copy = self
+    copy.numberOfCellsOnline = numberOfCellsOnline
+    return copy
+  }
+
+  public func minimumCellLenghtOnline(_ minimumCellLenghtOnline: Value) -> GridProps {
+    var copy = self
+    copy.minimumCellLenghtOnline = minimumCellLenghtOnline
+    return copy
+  }
+  
+  public func sectionInsets(_ sectionInsets: EdgeInsets) -> GridProps {
+    var copy = self
+    copy.sectionInsets = sectionInsets
+    return copy
+  }
+  
+  public func lineInsets(_ lineInsets: Value) -> GridProps {
+    var copy = self
+    copy.lineInsets = lineInsets
+    return copy
+  }
+  
+  public func cellSpacing(_ cellSpacing: Value) -> GridProps {
+    var copy = self
+    copy.cellSpacing = cellSpacing
     return copy
   }
   
@@ -46,8 +89,9 @@ public struct Grid : NodeDescription {
                                             concreteNode: AnyNode)  {
     
     let delegate = props.delegate ?? EmptyGridDelegate()
+    
     view.frame = props.frame
-    view.update(withParentNode: concreteNode, delegate: delegate)
+    view.update(withParentNode: concreteNode, delegate: delegate, props: props)
   }
   
   

@@ -83,6 +83,7 @@
 		A159DF961D65DFFB009AE13F /* RootReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF881D65DFFB009AE13F /* RootReducer.swift */; };
 		A159DF971D65DFFB009AE13F /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF891D65DFFB009AE13F /* RootState.swift */; };
 		A19D03431D6C3AB10071E515 /* GridExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D03421D6C3AB10071E515 /* GridExample.swift */; };
+		A19D03491D6C43230071E515 /* NativeGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D03481D6C43230071E515 /* NativeGridLayout.swift */; };
 		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
 		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
 		A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */; };
@@ -243,6 +244,7 @@
 		A159DF881D65DFFB009AE13F /* RootReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootReducer.swift; sourceTree = "<group>"; };
 		A159DF891D65DFFB009AE13F /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		A19D03421D6C3AB10071E515 /* GridExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridExample.swift; sourceTree = "<group>"; };
+		A19D03481D6C43230071E515 /* NativeGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeGridLayout.swift; sourceTree = "<group>"; };
 		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
 		A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
@@ -802,6 +804,7 @@
 				A1FC28451D6C31A3001832D4 /* NativeGridView.swift */,
 				A1FC28471D6C3730001832D4 /* GridDelegate.swift */,
 				A1FC28491D6C3913001832D4 /* NativeGridViewCell.swift */,
+				A19D03481D6C43230071E515 /* NativeGridLayout.swift */,
 			);
 			path = Grid;
 			sourceTree = "<group>";
@@ -987,6 +990,7 @@
 				81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */,
 				A159DF661D65DF67009AE13F /* State.swift in Sources */,
 				A1FC28441D6C313C001832D4 /* Grid.swift in Sources */,
+				A19D03491D6C43230071E515 /* NativeGridLayout.swift in Sources */,
 				A1FC28461D6C31A3001832D4 /* NativeGridView.swift in Sources */,
 				A1F1B9E61D6738830086C027 /* ViewsContainer+Helpers.swift in Sources */,
 				81EA57101D5F3BBA00B6290E /* Button.swift in Sources */,

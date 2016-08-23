@@ -15,11 +15,7 @@ public class NativeGridView: UICollectionView {
   private var katanaDelegate: GridDelegate?
 
   convenience init() {
-    // TODO: handle this
-    let layout = UICollectionViewFlowLayout()
-    layout.itemSize = CGSize(width: 100, height: 100)
-    
-    self.init(frame: CGRect.zero, collectionViewLayout: layout)
+    self.init(frame: CGRect.zero, collectionViewLayout: NativeGridLayout())
   }
   
   override public init(frame: CGRect, collectionViewLayout layout: UICollectionViewLayout) {
@@ -35,9 +31,13 @@ public class NativeGridView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func update(withParentNode parentNode: AnyNode, delegate: GridDelegate) {
+  func update(withParentNode parentNode: AnyNode, delegate: GridDelegate, props: GridProps) {
     // TODO: maybe check for equality somehow here?
-    // TODO: update layout here
+    
+    let layout = self.collectionViewLayout as! NativeGridLayout
+    layout.update(withProps: props, multiplier: parentNode.getPlasticMultiplier())
+    self.collectionViewLayout = layout
+    
     self.katanaDelegate = delegate
     self.parentNode = parentNode
     self.reloadData()
