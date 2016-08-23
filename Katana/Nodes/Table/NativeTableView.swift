@@ -19,7 +19,7 @@ private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
 public class NativeTableView: UITableView {
   private weak var parentNode: AnyNode?
-  private var katanDelegate: TableDelegate?
+  private var katanaDelegate: TableDelegate?
   
   override public init(frame: CGRect, style: UITableViewStyle) {
     super.init(frame: frame, style: style)
@@ -38,7 +38,7 @@ public class NativeTableView: UITableView {
   
   func update(withParentNode parentNode: AnyNode, delegate: TableDelegate) {
     // TODO: maybe check for equality somehow here?
-    self.katanDelegate = delegate
+    self.katanaDelegate = delegate
     self.parentNode = parentNode
     self.reloadData()
   }
@@ -47,7 +47,7 @@ public class NativeTableView: UITableView {
 
 extension NativeTableView: UITableViewDataSource  {
   public func numberOfSections(in tableView: UITableView) -> Int {
-    if let delegate = self.katanDelegate {
+    if let delegate = self.katanaDelegate {
       return delegate.numberOfSections()
     }
     
@@ -55,7 +55,7 @@ extension NativeTableView: UITableViewDataSource  {
   }
   
   public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-    if let delegate = self.katanDelegate {
+    if let delegate = self.katanaDelegate {
       return delegate.numberOfRows(forSection: section)
     }
     
@@ -65,7 +65,7 @@ extension NativeTableView: UITableViewDataSource  {
   @objc(tableView:cellForRowAtIndexPath:) public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeTableViewCell
     
-    if let parentNode = self.parentNode, let delegate = self.katanDelegate {
+    if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)
       cell.update(withParentNode: parentNode, description: description)
     }
@@ -74,7 +74,7 @@ extension NativeTableView: UITableViewDataSource  {
   }
   
   @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if let parentNode = self.parentNode, let delegate = self.katanDelegate {
+    if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
       let height = delegate.height(forRowAt: indexPath)
       return height.scale(parentNode.getPlasticMultiplier())
     }

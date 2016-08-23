@@ -21,7 +21,7 @@ public extension TableDelegate {
   }
 }
 
-struct EmptyDelegate: TableDelegate {
+struct EmptyTableDelegate: TableDelegate {
   func numberOfSections() -> Int {
     return 0
   }

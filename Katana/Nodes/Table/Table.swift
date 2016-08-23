@@ -7,7 +7,6 @@
 //
 
 import Foundation
-
 import UIKit
 
 public struct TableProps: Equatable, Frameable, Keyable {
@@ -47,7 +46,7 @@ public struct Table : NodeDescription {
                                             update: (EmptyState)->(),
                                             concreteNode: AnyNode)  {
     
-    let delegate = props.delegate ?? EmptyDelegate()
+    let delegate = props.delegate ?? EmptyTableDelegate()
     view.frame = props.frame
     view.update(withParentNode: concreteNode, delegate: delegate)
   }
