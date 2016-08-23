@@ -16,7 +16,9 @@ public class NativeGridView: UICollectionView {
 
   convenience init() {
     // TODO: handle this
-    let layout = UICollectionViewLayout()
+    let layout = UICollectionViewFlowLayout()
+    layout.itemSize = CGSize(width: 100, height: 100)
+    
     self.init(frame: CGRect.zero, collectionViewLayout: layout)
   }
   
