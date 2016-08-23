@@ -69,13 +69,13 @@ repeat {
   print("\n")
   
   switch operation {
-  case .CreateAlbum:
+  case .createAlbum:
     performCreateAlbum(store: store)
     
-  case .ListAlbums:
+  case .listAlbums:
     listAlbums(store: store)
     
-  case .AddPhotoCameraRoll:
+  case .addPhotoCameraRoll:
     addPhotoCameraRoll(store: store)
   }
   

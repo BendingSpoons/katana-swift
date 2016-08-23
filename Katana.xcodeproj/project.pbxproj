@@ -84,6 +84,21 @@
 		A159DF971D65DFFB009AE13F /* RootState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF891D65DFFB009AE13F /* RootState.swift */; };
 		A19D03431D6C3AB10071E515 /* GridExample.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D03421D6C3AB10071E515 /* GridExample.swift */; };
 		A19D03491D6C43230071E515 /* NativeGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19D03481D6C43230071E515 /* NativeGridLayout.swift */; };
+		A1A42A121D6CCDB30024F0C5 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A001D6CCDB30024F0C5 /* AsyncAction.swift */; };
+		A1A42A131D6CCDB30024F0C5 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A011D6CCDB30024F0C5 /* SagaModule+Action.swift */; };
+		A1A42A141D6CCDB30024F0C5 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A021D6CCDB30024F0C5 /* SyncAction.swift */; };
+		A1A42A151D6CCDB30024F0C5 /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A041D6CCDB30024F0C5 /* AsyncReducer.swift */; };
+		A1A42A161D6CCDB30024F0C5 /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A051D6CCDB30024F0C5 /* ReducerCombiner.swift */; };
+		A1A42A171D6CCDB30024F0C5 /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A061D6CCDB30024F0C5 /* SyncReducer.swift */; };
+		A1A42A181D6CCDB30024F0C5 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A081D6CCDB30024F0C5 /* Action.swift */; };
+		A1A42A191D6CCDB30024F0C5 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A091D6CCDB30024F0C5 /* AnyStore.swift */; };
+		A1A42A1A1D6CCDB30024F0C5 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A0A1D6CCDB30024F0C5 /* Reducer.swift */; };
+		A1A42A1B1D6CCDB30024F0C5 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A0B1D6CCDB30024F0C5 /* State.swift */; };
+		A1A42A1C1D6CCDB30024F0C5 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A0C1D6CCDB30024F0C5 /* Store.swift */; };
+		A1A42A1D1D6CCDB30024F0C5 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A0E1D6CCDB30024F0C5 /* SagaMiddleware.swift */; };
+		A1A42A1E1D6CCDB30024F0C5 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A0F1D6CCDB30024F0C5 /* SagaModule.swift */; };
+		A1A42A1F1D6CCDB30024F0C5 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A101D6CCDB30024F0C5 /* SagaProvidersContainer.swift */; };
+		A1A42A201D6CCDB30024F0C5 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A42A111D6CCDB30024F0C5 /* sagaTypes.swift */; };
 		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
 		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
 		A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */; };
@@ -105,20 +120,6 @@
 		A1F1B9EE1D6738870086C027 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EA1D6738870086C027 /* EdgeInsets.swift */; };
 		A1F1B9EF1D6738870086C027 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EB1D6738870086C027 /* Size.swift */; };
 		A1F1B9F01D6738870086C027 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9EC1D6738870086C027 /* Value.swift */; };
-		A1F1BA051D6739100086C027 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F41D6739100086C027 /* AsyncAction.swift */; };
-		A1F1BA061D6739100086C027 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */; };
-		A1F1BA071D6739100086C027 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F61D6739100086C027 /* SyncAction.swift */; };
-		A1F1BA081D6739100086C027 /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F81D6739100086C027 /* AsyncReducer.swift */; };
-		A1F1BA091D6739100086C027 /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */; };
-		A1F1BA0A1D6739100086C027 /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FA1D6739100086C027 /* SyncReducer.swift */; };
-		A1F1BA0B1D6739100086C027 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FC1D6739100086C027 /* Action.swift */; };
-		A1F1BA0C1D6739100086C027 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FD1D6739100086C027 /* Reducer.swift */; };
-		A1F1BA0D1D6739100086C027 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FE1D6739100086C027 /* State.swift */; };
-		A1F1BA0E1D6739100086C027 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1B9FF1D6739100086C027 /* Store.swift */; };
-		A1F1BA0F1D6739100086C027 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA011D6739100086C027 /* SagaMiddleware.swift */; };
-		A1F1BA101D6739100086C027 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA021D6739100086C027 /* SagaModule.swift */; };
-		A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */; };
-		A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F1BA041D6739100086C027 /* sagaTypes.swift */; };
 		A1F320201D6AF5EC000A98B3 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F3201F1D6AF5EC000A98B3 /* Table.swift */; };
 		A1F320221D6AF7B2000A98B3 /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */; };
 		A1F320261D6AFFA7000A98B3 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F320251D6AFFA7000A98B3 /* AnyStore.swift */; };
@@ -245,6 +246,21 @@
 		A159DF891D65DFFB009AE13F /* RootState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootState.swift; sourceTree = "<group>"; };
 		A19D03421D6C3AB10071E515 /* GridExample.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridExample.swift; sourceTree = "<group>"; };
 		A19D03481D6C43230071E515 /* NativeGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeGridLayout.swift; sourceTree = "<group>"; };
+		A1A42A001D6CCDB30024F0C5 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
+		A1A42A011D6CCDB30024F0C5 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
+		A1A42A021D6CCDB30024F0C5 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
+		A1A42A041D6CCDB30024F0C5 /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
+		A1A42A051D6CCDB30024F0C5 /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
+		A1A42A061D6CCDB30024F0C5 /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
+		A1A42A081D6CCDB30024F0C5 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A1A42A091D6CCDB30024F0C5 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
+		A1A42A0A1D6CCDB30024F0C5 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
+		A1A42A0B1D6CCDB30024F0C5 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		A1A42A0C1D6CCDB30024F0C5 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		A1A42A0E1D6CCDB30024F0C5 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
+		A1A42A0F1D6CCDB30024F0C5 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
+		A1A42A101D6CCDB30024F0C5 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
+		A1A42A111D6CCDB30024F0C5 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
 		A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
@@ -266,20 +282,6 @@
 		A1F1B9EA1D6738870086C027 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
 		A1F1B9EB1D6738870086C027 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		A1F1B9EC1D6738870086C027 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
-		A1F1B9F41D6739100086C027 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
-		A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
-		A1F1B9F61D6739100086C027 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
-		A1F1B9F81D6739100086C027 /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
-		A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
-		A1F1B9FA1D6739100086C027 /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
-		A1F1B9FC1D6739100086C027 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		A1F1B9FD1D6739100086C027 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
-		A1F1B9FE1D6739100086C027 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
-		A1F1B9FF1D6739100086C027 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		A1F1BA011D6739100086C027 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
-		A1F1BA021D6739100086C027 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
-		A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
-		A1F1BA041D6739100086C027 /* sagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaTypes.swift; sourceTree = "<group>"; };
 		A1F3201F1D6AF5EC000A98B3 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		A1F320211D6AF7B2000A98B3 /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
 		A1F320251D6AFFA7000A98B3 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
@@ -591,7 +593,7 @@
 		A159DF711D65DFE6009AE13F /* StorageDemo */ = {
 			isa = PBXGroup;
 			children = (
-				A1F1B9F11D6739100086C027 /* Storage */,
+				A1A429FD1D6CCDB30024F0C5 /* Storage */,
 				A159DF771D65DFFB009AE13F /* CLI */,
 				A159DF7D1D65DFFB009AE13F /* DemoApp */,
 				A159DF721D65DFE6009AE13F /* main.swift */,
@@ -659,6 +661,69 @@
 			path = Grid;
 			sourceTree = "<group>";
 		};
+		A1A429FD1D6CCDB30024F0C5 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				A1A429FE1D6CCDB30024F0C5 /* Action */,
+				A1A42A071D6CCDB30024F0C5 /* Core */,
+				A1A42A0D1D6CCDB30024F0C5 /* Saga */,
+			);
+			name = Storage;
+			path = Katana/Storage;
+			sourceTree = SOURCE_ROOT;
+		};
+		A1A429FE1D6CCDB30024F0C5 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				A1A429FF1D6CCDB30024F0C5 /* ActionCreator */,
+				A1A42A031D6CCDB30024F0C5 /* Reducer */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
+		A1A429FF1D6CCDB30024F0C5 /* ActionCreator */ = {
+			isa = PBXGroup;
+			children = (
+				A1A42A001D6CCDB30024F0C5 /* AsyncAction.swift */,
+				A1A42A011D6CCDB30024F0C5 /* SagaModule+Action.swift */,
+				A1A42A021D6CCDB30024F0C5 /* SyncAction.swift */,
+			);
+			path = ActionCreator;
+			sourceTree = "<group>";
+		};
+		A1A42A031D6CCDB30024F0C5 /* Reducer */ = {
+			isa = PBXGroup;
+			children = (
+				A1A42A041D6CCDB30024F0C5 /* AsyncReducer.swift */,
+				A1A42A051D6CCDB30024F0C5 /* ReducerCombiner.swift */,
+				A1A42A061D6CCDB30024F0C5 /* SyncReducer.swift */,
+			);
+			path = Reducer;
+			sourceTree = "<group>";
+		};
+		A1A42A071D6CCDB30024F0C5 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				A1A42A081D6CCDB30024F0C5 /* Action.swift */,
+				A1A42A091D6CCDB30024F0C5 /* AnyStore.swift */,
+				A1A42A0A1D6CCDB30024F0C5 /* Reducer.swift */,
+				A1A42A0B1D6CCDB30024F0C5 /* State.swift */,
+				A1A42A0C1D6CCDB30024F0C5 /* Store.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		A1A42A0D1D6CCDB30024F0C5 /* Saga */ = {
+			isa = PBXGroup;
+			children = (
+				A1A42A0E1D6CCDB30024F0C5 /* SagaMiddleware.swift */,
+				A1A42A0F1D6CCDB30024F0C5 /* SagaModule.swift */,
+				A1A42A101D6CCDB30024F0C5 /* SagaProvidersContainer.swift */,
+				A1A42A111D6CCDB30024F0C5 /* sagaTypes.swift */,
+			);
+			path = Saga;
+			sourceTree = "<group>";
+		};
 		A1D09BDC1D673A590095BAF0 /* Plastic */ = {
 			isa = PBXGroup;
 			children = (
@@ -711,68 +776,6 @@
 				A1F1B9EC1D6738870086C027 /* Value.swift */,
 			);
 			path = Types;
-			sourceTree = "<group>";
-		};
-		A1F1B9F11D6739100086C027 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1B9F21D6739100086C027 /* Action */,
-				A1F1B9FB1D6739100086C027 /* Core */,
-				A1F1BA001D6739100086C027 /* Saga */,
-			);
-			name = Storage;
-			path = Katana/Storage;
-			sourceTree = SOURCE_ROOT;
-		};
-		A1F1B9F21D6739100086C027 /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1B9F31D6739100086C027 /* ActionCreator */,
-				A1F1B9F71D6739100086C027 /* Reducer */,
-			);
-			path = Action;
-			sourceTree = "<group>";
-		};
-		A1F1B9F31D6739100086C027 /* ActionCreator */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1B9F41D6739100086C027 /* AsyncAction.swift */,
-				A1F1B9F51D6739100086C027 /* SagaModule+Action.swift */,
-				A1F1B9F61D6739100086C027 /* SyncAction.swift */,
-			);
-			path = ActionCreator;
-			sourceTree = "<group>";
-		};
-		A1F1B9F71D6739100086C027 /* Reducer */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1B9F81D6739100086C027 /* AsyncReducer.swift */,
-				A1F1B9F91D6739100086C027 /* ReducerCombiner.swift */,
-				A1F1B9FA1D6739100086C027 /* SyncReducer.swift */,
-			);
-			path = Reducer;
-			sourceTree = "<group>";
-		};
-		A1F1B9FB1D6739100086C027 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1B9FC1D6739100086C027 /* Action.swift */,
-				A1F1B9FD1D6739100086C027 /* Reducer.swift */,
-				A1F1B9FE1D6739100086C027 /* State.swift */,
-				A1F1B9FF1D6739100086C027 /* Store.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
-		A1F1BA001D6739100086C027 /* Saga */ = {
-			isa = PBXGroup;
-			children = (
-				A1F1BA011D6739100086C027 /* SagaMiddleware.swift */,
-				A1F1BA021D6739100086C027 /* SagaModule.swift */,
-				A1F1BA031D6739100086C027 /* SagaProvidersContainer.swift */,
-				A1F1BA041D6739100086C027 /* sagaTypes.swift */,
-			);
-			path = Saga;
 			sourceTree = "<group>";
 		};
 		A1F3201E1D6AF5D0000A98B3 /* Table */ = {
@@ -1088,34 +1091,35 @@
 			buildActionMask = 2147483647;
 			files = (
 				A159DF941D65DFFB009AE13F /* CameraRollProvider.swift in Sources */,
-				A1F1BA0B1D6739100086C027 /* Action.swift in Sources */,
-				A1F1BA0C1D6739100086C027 /* Reducer.swift in Sources */,
-				A1F1BA0A1D6739100086C027 /* SyncReducer.swift in Sources */,
+				A1A42A181D6CCDB30024F0C5 /* Action.swift in Sources */,
+				A1A42A1A1D6CCDB30024F0C5 /* Reducer.swift in Sources */,
+				A1A42A171D6CCDB30024F0C5 /* SyncReducer.swift in Sources */,
 				A159DF8F1D65DFFB009AE13F /* AlbumActions.swift in Sources */,
-				A1F1BA101D6739100086C027 /* SagaModule.swift in Sources */,
-				A1F1BA0F1D6739100086C027 /* SagaMiddleware.swift in Sources */,
-				A1F1BA0E1D6739100086C027 /* Store.swift in Sources */,
-				A1F1BA111D6739100086C027 /* SagaProvidersContainer.swift in Sources */,
 				A159DF901D65DFFB009AE13F /* AlbumModels.swift in Sources */,
-				A1F1BA081D6739100086C027 /* AsyncReducer.swift in Sources */,
+				A1A42A151D6CCDB30024F0C5 /* AsyncReducer.swift in Sources */,
+				A1A42A1C1D6CCDB30024F0C5 /* Store.swift in Sources */,
 				A159DF8D1D65DFFB009AE13F /* listAlbums.swift in Sources */,
 				A159DF8A1D65DFFB009AE13F /* addPhotoCameraRoll.swift in Sources */,
 				A159DF8B1D65DFFB009AE13F /* createAlbum.swift in Sources */,
+				A1A42A201D6CCDB30024F0C5 /* sagaTypes.swift in Sources */,
 				A159DF961D65DFFB009AE13F /* RootReducer.swift in Sources */,
 				A159DF731D65DFE6009AE13F /* main.swift in Sources */,
-				A1F1BA071D6739100086C027 /* SyncAction.swift in Sources */,
-				A1F1BA061D6739100086C027 /* SagaModule+Action.swift in Sources */,
-				A1F1BA051D6739100086C027 /* AsyncAction.swift in Sources */,
+				A1A42A141D6CCDB30024F0C5 /* SyncAction.swift in Sources */,
+				A1A42A1D1D6CCDB30024F0C5 /* SagaMiddleware.swift in Sources */,
+				A1A42A191D6CCDB30024F0C5 /* AnyStore.swift in Sources */,
+				A1A42A131D6CCDB30024F0C5 /* SagaModule+Action.swift in Sources */,
+				A1A42A1F1D6CCDB30024F0C5 /* SagaProvidersContainer.swift in Sources */,
+				A1A42A1E1D6CCDB30024F0C5 /* SagaModule.swift in Sources */,
+				A1A42A121D6CCDB30024F0C5 /* AsyncAction.swift in Sources */,
 				A159DF921D65DFFB009AE13F /* AlbumReducers.swift in Sources */,
 				A159DF911D65DFFB009AE13F /* AlbumReducer.swift in Sources */,
 				A159DF971D65DFFB009AE13F /* RootState.swift in Sources */,
 				A159DF931D65DFFB009AE13F /* AlbumState.swift in Sources */,
-				A1F1BA121D6739100086C027 /* sagaTypes.swift in Sources */,
 				A159DF8C1D65DFFB009AE13F /* helpers.swift in Sources */,
-				A1F1BA091D6739100086C027 /* ReducerCombiner.swift in Sources */,
+				A1A42A161D6CCDB30024F0C5 /* ReducerCombiner.swift in Sources */,
 				A159DF8E1D65DFFB009AE13F /* Operation.swift in Sources */,
+				A1A42A1B1D6CCDB30024F0C5 /* State.swift in Sources */,
 				A159DF951D65DFFB009AE13F /* DemoAppProvidersContainer.swift in Sources */,
-				A1F1BA0D1D6739100086C027 /* State.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
