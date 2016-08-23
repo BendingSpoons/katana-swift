@@ -11,6 +11,17 @@ import Foundation
 class NativeGridViewCell: UICollectionViewCell {
   private var node: AnyNode? = nil
   
+  override var isHighlighted: Bool {
+    didSet {
+      // let's see if in our subviews there is a CellNativeView, which we can use
+      // to properly update the state
+      // it there is such view, it is the only subview of contentview
+      if let view = self.contentView.subviews.first as? CellNativeView {
+        view.setHighlighted(self.isHighlighted)
+      }
+    }
+  }
+  
 //  override init(frame: CGRect) {
 //    super.init(frame: frame)
 //  }
@@ -52,15 +63,4 @@ class NativeGridViewCell: UICollectionViewCell {
       description.dynamicType.anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }
-  
-//  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
-//    super.setHighlighted(highlighted, animated: animated)
-//    
-//    // let's see if in our subviews there is a CellNativeView, which we can use
-//    // to properly update the state
-//    // it there is such view, it is the only subview of contentview
-//    if let view = self.contentView.subviews.first as? CellNativeView {
-//      view.setHighlighted(highlighted)
-//    }
-//  }
 }
