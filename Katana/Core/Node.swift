@@ -13,7 +13,7 @@ public protocol AnyNode: class, PlasticMultiplierProvider {
   var children : [AnyNode]? { get }
   var store: AnyStore { get }
 
-  func render(container: RenderContainer)
+  func draw(container: DrawableContainer)
   func update(description: AnyNodeDescription) throws
 }
 
@@ -25,7 +25,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
   var typedDescription : Description
   weak var parentNode: AnyNode?
   
-  private var container: RenderContainer?  
+  private var container: DrawableContainer?  
   
   public var description: AnyNodeDescription {
     get {
@@ -51,7 +51,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                                        dispatch: self.store.dispatch)
     
     self.children = self.applyLayout(to: children).map {
-      $0.node(parentNode: self, store: self.store)
+      $0.node(parentNode: self)
     }
   }
   
@@ -59,7 +59,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       let state = self.store.getAnyState()
-      return desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
+      return desc.dynamicType.anyConnect(parentProps: description.props, storageState: state) as! Description.Props
     }
     
     return props
@@ -133,7 +133,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
         
       } else {
         //else create a new node
-        let node = newChild.node(parentNode: self, store: self.store)
+        let node = newChild.node(parentNode: self)
         viewIndex.append(children.count + nodesToRender.count)
         nodes.append(node)
         nodesToRender.append(node)
@@ -142,16 +142,16 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     
     self.children = nodes
     
-    self.updateRender(childrenToRender: nodesToRender, viewIndexes: viewIndex)
+    self.redraw(childrenToAdd: nodesToRender, viewIndexes: viewIndex)
   }
   
-  public func render(container: RenderContainer) {
+  public func draw(container: DrawableContainer) {
     guard let children = self.children else {
-      fatalError("render cannot be called at this time")
+      fatalError("draw cannot be called at this time")
     }
     
     if (self.container != nil)  {
-      fatalError("node can be render on a single View")
+      fatalError("draw can only be call once on a node")
     }
     
     self.container = container.add { Description.NativeView() }
@@ -161,14 +161,14 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                              state: self.state,
                              view: view as! Description.NativeView,
                              update: self.update,
-                             concreteNode: self)
+                             node: self)
     }
     
-    children.forEach { $0.render(container: self.container!) }
+    children.forEach { $0.draw(container: self.container!) }
   }
   
   
-  public func updateRender(childrenToRender: [AnyNode], viewIndexes: [Int]) {
+  public func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
     guard let container = self.container else {
       return
     }
@@ -180,15 +180,15 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                              state: self.state,
                              view: view as! Description.NativeView,
                              update: self.update,
-                             concreteNode: self)
+                             node: self)
       
     }
     
-    childrenToRender.forEach { node in
-      return node.render(container: container)
+    childrenToAdd.forEach { node in
+      return node.draw(container: container)
     }
     
-    var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
+    var currentSubviews : [DrawableContainerChild?] =  container.children().map { $0 }
     let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {

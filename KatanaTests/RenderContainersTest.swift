@@ -1,13 +1,13 @@
 import XCTest
 import Katana
 
-class RenderContainersTest: XCTestCase {
+class DrawableContainersTest: XCTestCase {
   
   func testAddAndRemoveAll() {
     
     let r1 = RenderProfiler() { _ = $0}
     let r2 = RenderProfiler() { _ = $0}
-    let r = RenderContainers(containers: [r1,r2])
+    let r = DrawableContainers(containers: [r1,r2])
     let child = r.add { UIView() }
     XCTAssert(r.children().count == 1)
     XCTAssert(r1.children().count == 1)
@@ -24,7 +24,7 @@ class RenderContainersTest: XCTestCase {
     
     let r1 = RenderProfiler { _ = $0}
     let r2 = RenderProfiler { _ = $0}
-    let r = RenderContainers(containers: [r1,r2])
+    let r = DrawableContainers(containers: [r1,r2])
     _ = r.add { UIView() }
     _ = r.add { UIView() }
     _ = r.add { UIView() }

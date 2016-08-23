@@ -1,5 +1,5 @@
 //
-//  ReferenceNodeDescription.swift
+//  PasticReferenceSizeNodeDescription.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 19/08/16.
@@ -10,11 +10,11 @@ import UIKit
 
 // type erasure for PlasticNodeDescription
 public protocol AnyPlasticNodeDescription {
-  static func _layout(views: ViewsContainer, props: Any, state: Any) -> Void
+  static func anyLayout(views: ViewsContainer, props: Any, state: Any) -> Void
 }
 
 // a node that has a reference size
-public protocol ReferenceNodeDescription {
+public protocol PasticReferenceSizeNodeDescription {
   static func referenceSize() -> CGSize
 }
 
@@ -26,7 +26,7 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription {
 }
 
 public extension PlasticNodeDescription {
-  static func _layout(views: ViewsContainer, props: Any, state: Any) -> Void {
+  static func anyLayout(views: ViewsContainer, props: Any, state: Any) -> Void {
     if let p = props as? Props, let s = state as? State {
       layout(views: views, props: p, state: s)
     }

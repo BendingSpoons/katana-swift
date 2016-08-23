@@ -13,8 +13,8 @@ public protocol AnyNodeDescription {
   var key: String? { get }
   var anyProps: Any { get }
   
-  func node(store: AnyStore) -> AnyNode
-  func node(parentNode: AnyNode?, store: AnyStore) -> AnyNode
+  func node(store: AnyStore) -> RootNode
+  func node(parentNode: AnyNode) -> AnyNode
   func replaceKey() -> Int
 }
 
@@ -27,18 +27,12 @@ public protocol NodeDescription : AnyNodeDescription {
   static var initialState: State { get }
   
   var props: Props { get set }
-  
-  static func applyPropsToNativeView(props: Props,
-                         state: State,
-                         view: NativeView,
-                         update: (State)->()) ->  Void
-  
-  
+
   static func applyPropsToNativeView(props: Props,
                                      state: State,
                                      view: NativeView,
                                      update: (State)->(),
-                                     concreteNode: AnyNode) -> Void
+                                     node: AnyNode) -> Void
   
   static func render(props: Props,
                      state: State,
@@ -73,24 +67,22 @@ extension NodeDescription {
 }
 
 extension NodeDescription {
-  public static func applyPropsToNativeView(props: Props, state: State, view: NativeView, update: (State)->())  {
-    view.frame = props.frame
-  }
+
   
   public static func applyPropsToNativeView(props: Props,
                                      state: State,
                                      view: NativeView,
                                      update: (State)->(),
-                                     concreteNode: AnyNode) ->  Void {
-    self.applyPropsToNativeView(props: props, state: state, view: view, update: update)
+                                     node: AnyNode) ->  Void {
+    view.frame = props.frame
   }
   
-  public func node(store: AnyStore) -> AnyNode {
-    return node(parentNode: nil, store: store)
+  public func node(store: AnyStore) -> RootNode {
+    return RootNode(store: store, node: Node(description: self, parentNode: nil, store: store))
   }
   
-  public func node(parentNode: AnyNode?, store: AnyStore) -> AnyNode {
-    return Node(description: self, parentNode: parentNode, store: store)
+  public func node(parentNode: AnyNode) -> AnyNode {
+    return Node(description: self, parentNode: parentNode, store: parentNode.store)
   }
   
   public func replaceKey() -> Int {
@@ -98,11 +90,11 @@ extension NodeDescription {
   }
 }
 
-public protocol AnyNodeWithChildrenDescription {
+public protocol AnyNodeWithChildrenDescription: AnyNodeDescription {
   var children: [AnyNodeDescription] { get set }
 }
 
-public protocol NodeWithChildrenDescription: AnyNodeWithChildrenDescription {
+public protocol NodeWithChildrenDescription: NodeDescription, AnyNodeWithChildrenDescription {
   associatedtype Props: Childrenable
   var props: Props { get set }
 }

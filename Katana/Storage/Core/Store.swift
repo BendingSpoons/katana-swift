@@ -42,13 +42,13 @@ public class Store<RootReducer: Reducer> {
     return compose(m, storeDispatch: self.performDispatch)
   }()
   
-  public init(_: RootReducer.Type) {
+  public init() {
     self.listeners = []
     self.state = RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = []
   }
   
-  init(_: RootReducer.Type, middlewares: [StoreMiddleware<RootReducer>]) {
+  init(middlewares: [StoreMiddleware<RootReducer>]) {
     self.listeners = []
     self.state = RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = middlewares
@@ -76,7 +76,11 @@ public class Store<RootReducer: Reducer> {
     // with multiple actions.
     // we can remove this limitation by adding an (atomic) FIFO queue where actions are added
     // while the current action has been completed
-    assert(Thread.isMainThread, "It is currently possible to dispatch actions only in the main thread")
+    
+    guard Thread.isMainThread else {
+      fatalError("actions must be dispatched in the main thread")
+    }
+    
     self.state = RootReducer.reduce(action: action, state: self.state)
     
     self.listeners.forEach { $0() }
@@ -88,3 +92,4 @@ extension Store: AnyStore {
     return self.getState()
   }
 }
+

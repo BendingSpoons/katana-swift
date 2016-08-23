@@ -23,7 +23,13 @@ public protocol CellNodeDescription: NodeDescription, AnyCellNodeDescription {
 }
 
 public extension CellNodeDescription {
-  public static func applyPropsToNativeView(props: Props, state: State, view: NativeView, update: (State)->())  {
+
+  public static func applyPropsToNativeView(props: Props,
+                                            state: State,
+                                            view: NativeView,
+                                            update: (State)->(),
+                                            concreteNode: AnyNode) ->  Void {
+
     view.frame = props.frame
     
     view.update = { (highlighted: Bool) in
@@ -31,14 +37,7 @@ public extension CellNodeDescription {
       newState.highlighted = highlighted
       update(newState)
     }
-  }
   
-  public static func applyPropsToNativeView(props: Props,
-                                            state: State,
-                                            view: NativeView,
-                                            update: (State)->(),
-                                            concreteNode: AnyNode) ->  Void {
-    self.applyPropsToNativeView(props: props, state: state, view: view, update: update)
   }
   
   

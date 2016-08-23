@@ -36,7 +36,7 @@ extension PlasticNode {
     }
     
     let container = ViewsContainer(rootFrame: self.typedDescription.props.frame, children: children, multiplier: self.getPlasticMultiplier())
-    description.dynamicType._layout(views: container, props: self.typedDescription.props, state: self.state)
+    description.dynamicType.anyLayout(views: container, props: self.typedDescription.props, state: self.state)
     
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
@@ -54,7 +54,7 @@ extension PlasticNode {
       
       if var n = newChild as? AnyNodeWithChildrenDescription {
         n.children = self.getFramedChildren(fromChildren: n.children, usingContainer: container)
-        return n as! AnyNodeDescription
+        return n as AnyNodeDescription
         
       } else {
         return newChild
@@ -63,7 +63,7 @@ extension PlasticNode {
   }
   
   public func getPlasticMultiplier() -> CGFloat {
-    guard let description = self.typedDescription as? ReferenceNodeDescription else {
+    guard let description = self.typedDescription as? PasticReferenceSizeNodeDescription else {
       return self.parentNode?.getPlasticMultiplier() ?? 0.0
     }
     

@@ -65,8 +65,9 @@ public class ViewsContainer {
 // MARK: Hierarchy Manager
 extension ViewsContainer: HierarchyManager {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
+    
     guard let node = self.hierarchy[key] else {
-      fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+      fatalError("\(key) is not a valid node key")
     }
     
     let origin = self.resolveAbsoluteOrigin(fromNode: node)
@@ -75,7 +76,7 @@ extension ViewsContainer: HierarchyManager {
 
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     guard let node = self.hierarchy[key] else {
-      fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+      fatalError("\(key) is not a valid node key")
     }
     
     let origin = self.resolveAbsoluteOrigin(fromNode: node)
@@ -94,7 +95,7 @@ extension ViewsContainer: HierarchyManager {
       
     case let .dynamicFrame(key):
       guard let node = self[key] else {
-        fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+        fatalError("\(key) is not a valid node key")
       }
       
       return node.absoluteOrigin

@@ -45,9 +45,9 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
-    let newNode = newDescription.node(parentNode: parentNode, store: parentNode.store)
+    let newNode = newDescription.node(parentNode: parentNode)
     self.node = newNode
-    newNode.render(container: self.contentView)
+    newNode.draw(container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {

@@ -14,7 +14,7 @@ extension Array where Element: PlasticView {
     let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
-      preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
+      fatalError("The number of spacings values should be equal to the number of views minus 1")
     }
     
     let firstView = self[0]

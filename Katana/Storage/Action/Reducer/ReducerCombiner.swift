@@ -32,7 +32,7 @@ extension ReducerCombiner {
       // a compile time it won't crash.. So developer.. if you have reached this because of an
       // esception.. you are adding reducers that manage a different type of state
       // then the comibe reducer
-      return reducer._reduce(action: action, state: s) as! StateType
+      return reducer.anyReduce(action: action, state: s) as! StateType
     }
     
     return s
