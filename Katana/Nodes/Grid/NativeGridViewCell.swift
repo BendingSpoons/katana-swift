@@ -22,14 +22,6 @@ class NativeGridViewCell: UICollectionViewCell {
     }
   }
   
-//  override init(frame: CGRect) {
-//    super.init(frame: frame)
-//  }
-//  
-//  required init?(coder aDecoder: NSCoder) {
-//    fatalError("init(coder:) has not been implemented")
-//  }
-  
   func update(withParentNode parentNode: AnyNode, description: AnyNodeDescription) {
     // we need to pass the cell frame
     // here we are causing a second evaluation of the description
