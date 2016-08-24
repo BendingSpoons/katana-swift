@@ -153,25 +153,25 @@ func collectView(view: UIView) -> [UIView] {
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let store = Store(EmptyReducer.self)
+    let store = Store<EmptyReducer>()
     let root = App(props: AppProps(i:0), children: []).node(store: store)
-    var references = collectNodes(node: root).map { WeakNode(value: $0) }
+    var references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
     
-    try! root.update(description: App(props: AppProps(i:1), children: []))
+    try! root.node.update(description: App(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 6)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
   
-    references = collectNodes(node: root).map { WeakNode(value: $0) }
+    references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
-    try! root.update(description: App(props: AppProps(i:2), children: []))
+    try! root.node.update(description: App(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
-    references = collectNodes(node: root).map { WeakNode(value: $0) }
+    references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -179,18 +179,18 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let store = Store(EmptyReducer.self)
+    let store = Store<EmptyReducer>()
     let root = App(props: AppProps(i:0), children: []).node(store: store)
     
     let rootVew = UIView()
-    root.render(container: rootVew)
+    root.node.draw(container: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEW_TAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! root.update(description: App(props: AppProps(i:2), children: []))
+      try! root.node.update(description: App(props: AppProps(i:2), children: []))
     }
 
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
@@ -205,43 +205,43 @@ class NodeTest: XCTestCase {
   
   
   func testNodeDeallocationPlastic() {
-    let store = Store(EmptyReducer.self)
+    let store = Store<EmptyReducer>()
     let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store: store)
-    var references = collectNodes(node: root).map { WeakNode(value: $0) }
+    var references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
     
-    try! root.update(description: AppWithPlastic(props: AppProps(i:1), children: []))
+    try! root.node.update(description: AppWithPlastic(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 6)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
-    references = collectNodes(node: root).map { WeakNode(value: $0) }
+    references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
-    try! root.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
+    try! root.node.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
-    references = collectNodes(node: root).map { WeakNode(value: $0) }
+    references = collectNodes(node: root.node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
   }
   
   
   func testViewDeallocationWithPlastic() {
-    let store = Store(EmptyReducer.self)
+    let store = Store<EmptyReducer>()
     let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store : store)
     
     let rootVew = UIView()
-    root.render(container: rootVew)
+    root.node.draw(container: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEW_TAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! root.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
+      try! root.node.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
     }
     
     
@@ -250,7 +250,6 @@ class NodeTest: XCTestCase {
     references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEW_TAG }
       .map { WeakView(value: $0) }
-    
     
     XCTAssertEqual(references.count, 1)
   }

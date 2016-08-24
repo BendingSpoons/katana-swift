@@ -47,7 +47,7 @@ class ActionSagaModuleTests: XCTestCase {
   
     module.addSaga(spySaga, forActionCreator: SyncActions.LogoutAction)
   
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
           module
         ], providersContainer: AppSagaProviderContainer.self)
@@ -73,7 +73,7 @@ class ActionSagaModuleTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
         ], providersContainer: AppSagaProviderContainer.self)
@@ -106,7 +106,7 @@ class ActionSagaModuleTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionCreator: AsyncActions.LoginAction)
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
         ], providersContainer: AppSagaProviderContainer.self)

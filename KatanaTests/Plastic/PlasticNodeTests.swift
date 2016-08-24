@@ -49,9 +49,8 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store(EmptyReducer.self))
-    let renderProfiler = RenderProfiler() { _ = $0 }
-    node.render(container: renderProfiler)
+    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store<EmptyReducer>())
+    node.draw(container: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
