@@ -11,8 +11,14 @@
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		8192F37D1D6CF0A500881600 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F37C1D6CF0A500881600 /* SagaModule+Action.swift */; };
 		8192F37F1D6DA69F00881600 /* SagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F37E1D6DA69F00881600 /* SagaTypes.swift */; };
+		8192F3881D6DA7CE00881600 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3811D6DA7CE00881600 /* Collections.swift */; };
+		8192F3891D6DA7CE00881600 /* CommonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3821D6DA7CE00881600 /* CommonsTest.swift */; };
+		8192F38A1D6DA7CE00881600 /* EmptyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3831D6DA7CE00881600 /* EmptyStore.swift */; };
+		8192F38B1D6DA7CE00881600 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3841D6DA7CE00881600 /* NodeDescriptionTest.swift */; };
+		8192F38C1D6DA7CE00881600 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3851D6DA7CE00881600 /* NodeTest.swift */; };
+		8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */; };
+		8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3871D6DA7CE00881600 /* UIColorTest.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */; };
 		81EA56FC1D5F3AC800B6290E /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56F81D5F3AC800B6290E /* Collections+Katana.swift */; };
@@ -28,12 +34,6 @@
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F41D61CC400036020F /* UIColor+Katana.swift */; };
 		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
-		81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */; };
-		81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36FE1D6453CD0036020F /* CommonsTest.swift */; };
-		81FA37011D6456190036020F /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37001D6456190036020F /* Collections.swift */; };
-		81FA37031D645A150036020F /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37021D645A150036020F /* UIColorTest.swift */; };
-		81FA37051D64875F0036020F /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA37041D64875F0036020F /* NodeTest.swift */; };
-		A11308DC1D6887230093D7E7 /* EmptyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11308DB1D6887230093D7E7 /* EmptyStore.swift */; };
 		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
 		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
 		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
@@ -113,11 +113,17 @@
 		813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		8192F37C1D6CF0A500881600 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
 		8192F37E1D6DA69F00881600 /* SagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaTypes.swift; sourceTree = "<group>"; };
+		8192F3811D6DA7CE00881600 /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
+		8192F3821D6DA7CE00881600 /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
+		8192F3831D6DA7CE00881600 /* EmptyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStore.swift; sourceTree = "<group>"; };
+		8192F3841D6DA7CE00881600 /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
+		8192F3851D6DA7CE00881600 /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
+		8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
+		8192F3871D6DA7CE00881600 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
 		81EA56CB1D5F3A6000B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		81EA56DA1D5F3A6E00B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EA56E51D5F3A8A00B6290E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -134,12 +140,6 @@
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA36F41D61CC400036020F /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
-		81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
-		81FA36FE1D6453CD0036020F /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
-		81FA37001D6456190036020F /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
-		81FA37021D645A150036020F /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
-		81FA37041D64875F0036020F /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
-		A11308DB1D6887230093D7E7 /* EmptyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyStore.swift; sourceTree = "<group>"; };
 		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
 		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
@@ -225,6 +225,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		8192F3801D6DA7CE00881600 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				8192F3811D6DA7CE00881600 /* Collections.swift */,
+				8192F3821D6DA7CE00881600 /* CommonsTest.swift */,
+				8192F3831D6DA7CE00881600 /* EmptyStore.swift */,
+				8192F3841D6DA7CE00881600 /* NodeDescriptionTest.swift */,
+				8192F3851D6DA7CE00881600 /* NodeTest.swift */,
+				8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */,
+				8192F3871D6DA7CE00881600 /* UIColorTest.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
 		81EA56BD1D5F3A6000B6290E = {
 			isa = PBXGroup;
 			children = (
@@ -261,16 +275,10 @@
 		81EA56D71D5F3A6E00B6290E /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
+				8192F3801D6DA7CE00881600 /* Core */,
 				A1D09BDC1D673A590095BAF0 /* Plastic */,
 				A159DF231D65DF1A009AE13F /* Storage */,
-				81EA56D81D5F3A6E00B6290E /* RenderContainersTest.swift */,
-				81FA37041D64875F0036020F /* NodeTest.swift */,
-				81FA36FC1D6452D10036020F /* NodeDescriptionTest.swift */,
-				81FA36FE1D6453CD0036020F /* CommonsTest.swift */,
-				81FA37001D6456190036020F /* Collections.swift */,
-				81FA37021D645A150036020F /* UIColorTest.swift */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
-				A11308DB1D6887230093D7E7 /* EmptyStore.swift */,
 			);
 			path = KatanaTests;
 			sourceTree = "<group>";
@@ -622,7 +630,7 @@
 					};
 					81EA56E41D5F3A8A00B6290E = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -734,32 +742,32 @@
 			files = (
 				A1D09BE81D673A590095BAF0 /* PlasticDimensionsTests.swift in Sources */,
 				A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */,
-				81FA37031D645A150036020F /* UIColorTest.swift in Sources */,
 				A159DF451D65DF36009AE13F /* actions.swift in Sources */,
 				A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */,
 				A1D09BE71D673A590095BAF0 /* PlasticConvenienceLayoutTests.swift in Sources */,
 				A1D09BE91D673A590095BAF0 /* PlasticNodeTests.swift in Sources */,
+				8192F3881D6DA7CE00881600 /* Collections.swift in Sources */,
 				A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */,
+				8192F38A1D6DA7CE00881600 /* EmptyStore.swift in Sources */,
 				A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */,
+				8192F38B1D6DA7CE00881600 /* NodeDescriptionTest.swift in Sources */,
 				A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */,
-				81FA36FD1D6452D10036020F /* NodeDescriptionTest.swift in Sources */,
 				A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */,
-				81FA36FF1D6453CD0036020F /* CommonsTest.swift in Sources */,
 				A159DF481D65DF36009AE13F /* sagaProviderContainers.swift in Sources */,
 				A159DF3D1D65DF36009AE13F /* ActionSagaTests.swift in Sources */,
 				A159DF401D65DF36009AE13F /* SyncActionTests.swift in Sources */,
-				81FA37051D64875F0036020F /* NodeTest.swift in Sources */,
-				A11308DC1D6887230093D7E7 /* EmptyStore.swift in Sources */,
 				A159DF421D65DF36009AE13F /* MiddlewareTests.swift in Sources */,
+				8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */,
 				A159DF431D65DF36009AE13F /* ReducerTests.swift in Sources */,
+				8192F3891D6DA7CE00881600 /* CommonsTest.swift in Sources */,
+				8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */,
 				A159DF461D65DF36009AE13F /* reducers.swift in Sources */,
 				A159DF3E1D65DF36009AE13F /* actionStates.swift in Sources */,
+				8192F38C1D6DA7CE00881600 /* NodeTest.swift in Sources */,
 				A159DF491D65DF36009AE13F /* SagaTests.swift in Sources */,
 				A159DF3F1D65DF36009AE13F /* AsyncActionTests.swift in Sources */,
 				A159DF471D65DF36009AE13F /* states.swift in Sources */,
 				A159DF441D65DF36009AE13F /* StoreTests.swift in Sources */,
-				81EA56D91D5F3A6E00B6290E /* RenderContainersTest.swift in Sources */,
-				81FA37011D6456190036020F /* Collections.swift in Sources */,
 				A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -952,6 +960,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;
@@ -964,6 +973,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;
