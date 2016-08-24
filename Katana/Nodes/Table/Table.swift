@@ -31,10 +31,11 @@ public struct TableProps: Equatable, Frameable, Keyable {
 
 
 public struct Table : NodeDescription {
+  public typealias NativeView = UIView
+  
   public var props : TableProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = NativeTableView.self
   
   public init(props: TableProps) {
     self.props = props

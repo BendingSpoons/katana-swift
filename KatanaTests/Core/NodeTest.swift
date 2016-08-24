@@ -15,13 +15,12 @@ struct AppProps : Equatable,Frameable {
 }
 
 struct App : NodeDescription {
+  typealias NativeView = UIView
+  
   var props : AppProps
   var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
-  
-  
   
   static func render(props: AppProps,
                      state: EmptyState,
@@ -67,14 +66,12 @@ struct App : NodeDescription {
 }
 
 struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
-  
+  typealias NativeView = UIView
+
   var props : AppProps
   var children: [AnyNodeDescription] = []
   
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
-  
-  
   
   static func render(props: AppProps,
                      state: EmptyState,

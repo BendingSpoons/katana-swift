@@ -16,9 +16,7 @@ public protocol CellNodeDescription: NodeDescription, AnyCellNodeDescription {
   associatedtype NativeView: CellNativeView
   associatedtype State: Equatable, Highlightable
   
-  static var nativeViewType : NativeView.Type { get }
   static var initialState: State { get }
-  
   static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath)
 }
 

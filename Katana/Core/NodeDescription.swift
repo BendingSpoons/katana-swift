@@ -23,7 +23,6 @@ public protocol NodeDescription : AnyNodeDescription {
   associatedtype Props: Equatable, Frameable
   associatedtype State: Equatable
   
-  static var nativeViewType : NativeView.Type { get }
   static var initialState: State { get }
   
   var props: Props { get set }
@@ -67,8 +66,6 @@ extension NodeDescription {
 }
 
 extension NodeDescription {
-
-  
   public static func applyPropsToNativeView(props: Props,
                                      state: State,
                                      view: NativeView,

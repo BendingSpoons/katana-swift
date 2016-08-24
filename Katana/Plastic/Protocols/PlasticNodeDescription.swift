@@ -10,7 +10,7 @@ import Foundation
 
 // type erasure for PlasticNodeDescription
 public protocol AnyPlasticNodeDescription {
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void
+  static func anyLayout(views: ViewsContainer, props: Any, state: Any) -> Void
 }
 
 // a node that leverages plastic to layout
