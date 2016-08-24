@@ -8,11 +8,6 @@
 
 import UIKit
 
-// type erasure for PlasticNodeDescription
-public protocol AnyPlasticNodeDescription {
-  static func anyLayout(views: ViewsContainer, props: Any, state: Any) -> Void
-}
-
 // a node that has a reference size
 public protocol PasticReferenceSizeNodeDescription {
   static func referenceSize() -> CGSize
