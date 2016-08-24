@@ -34,6 +34,7 @@
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F41D61CC400036020F /* UIColor+Katana.swift */; };
 		81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */; };
+		A12381A81D6DEEC80040ECEE /* PlasticNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12381A71D6DEEC80040ECEE /* PlasticNodeDescription.swift */; };
 		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
 		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
 		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
@@ -140,6 +141,7 @@
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81FA36F41D61CC400036020F /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		81FA36F61D61DB6B0036020F /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
+		A12381A71D6DEEC80040ECEE /* PlasticNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescription.swift; sourceTree = "<group>"; };
 		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
 		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
@@ -501,6 +503,7 @@
 				A1F1B9DB1D67387B0086C027 /* HierarchyManager.swift */,
 				A1F1B9D61D6736870086C027 /* ReferenceNodeDescription.swift */,
 				A1F1B9D81D6736DE0086C027 /* PlasticNode.swift */,
+				A12381A71D6DEEC80040ECEE /* PlasticNodeDescription.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -703,6 +706,7 @@
 				81FA36F71D61DB6B0036020F /* NSParagraphStyle+Katana.swift in Sources */,
 				81EA56FE1D5F3AC800B6290E /* NodeDescription.swift in Sources */,
 				A1F1B9E51D6738830086C027 /* PlasticView.swift in Sources */,
+				A12381A81D6DEEC80040ECEE /* PlasticNodeDescription.swift in Sources */,
 				A1F3202F1D6B1DF9000A98B3 /* NativeTableViewCell.swift in Sources */,
 				81FA36F51D61CC400036020F /* UIColor+Katana.swift in Sources */,
 				A1F320331D6B3208000A98B3 /* CellNodeDescription.swift in Sources */,
