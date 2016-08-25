@@ -9,12 +9,18 @@
 import XCTest
 @testable import Katana
 
+private enum Keys: String, NodeDescriptionKeys {
+  case One, OneA, OneB, OneAInner
+  case Two
+  case Four
+}
+
 class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldCreateRootElement() {
     let hierarchy: [AnyNodeDescription] = []
     let rootFrame = CGRect(x: 0, y: 10, width: 20, height: 30)
-    let plasticViewsContainer = ViewsContainer(rootFrame: rootFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: rootFrame, children: hierarchy, multiplier: 1)
     
     let rootPlaceholder = plasticViewsContainer.rootView
     XCTAssertEqual(rootPlaceholder.frame, rootFrame)
@@ -22,27 +28,27 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldCreateChildren() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One")) {
+      View(props: ViewProps().key(Keys.One)) {
         [
-          View(props: ViewProps().key("One-A")),
-          View(props: ViewProps().key("One-B")),
+          View(props: ViewProps().key(Keys.OneA)),
+          View(props: ViewProps().key(Keys.OneB)),
         ]
       },
       
-      View(props: ViewProps().key("Two")),
+      View(props: ViewProps().key(Keys.Two)),
       View(props: ViewProps()),
-      View(props: ViewProps().key("Four")),
+      View(props: ViewProps().key(Keys.Four)),
       ]
     
     
-    let plasticViewsContainer = ViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
     
     XCTAssertNotNil(plasticViewsContainer.rootView)
-    XCTAssertNotNil(plasticViewsContainer["One"])
-    XCTAssertNotNil(plasticViewsContainer["One-A"])
-    XCTAssertNotNil(plasticViewsContainer["One-B"])
-    XCTAssertNotNil(plasticViewsContainer["Two"])
-    XCTAssertNotNil(plasticViewsContainer["Four"])
+    XCTAssertNotNil(plasticViewsContainer[.One])
+    XCTAssertNotNil(plasticViewsContainer[.OneA])
+    XCTAssertNotNil(plasticViewsContainer[.OneB])
+    XCTAssertNotNil(plasticViewsContainer[.Two])
+    XCTAssertNotNil(plasticViewsContainer[.Four])
   }
   
   func testShouldKeepOriginalFrames() {
@@ -51,22 +57,22 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneBFrame = CGRect(x: 10, y: 10, width: 10, height: 10)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One").frame(oneFrame)) {
+      View(props: ViewProps().key(Keys.One).frame(oneFrame)) {
         [
-          View(props: ViewProps().key("One-A")),
-          View(props: ViewProps().key("One-B").frame(oneBFrame))
+          View(props: ViewProps().key(Keys.OneA)),
+          View(props: ViewProps().key(Keys.OneB).frame(oneBFrame))
         ]
       },
       
-      View(props: ViewProps().key("Two")),
+      View(props: ViewProps().key(Keys.Two)),
       View(props: ViewProps()),
-      View(props: ViewProps().key("Four")),
+      View(props: ViewProps().key(Keys.Four)),
       ]
     
     
-    let plasticViewsContainer = ViewsContainer(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
-    let onePlaceholder = plasticViewsContainer["One"]
-    let oneBPlaceholder = plasticViewsContainer["One-B"]
+    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let onePlaceholder = plasticViewsContainer[Keys.One]
+    let oneBPlaceholder = plasticViewsContainer[Keys.OneB]
     
     
     XCTAssertEqual(onePlaceholder?.frame, oneFrame)
@@ -75,11 +81,11 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldManageHierarchy() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One")) {
+      View(props: ViewProps().key(Keys.One)) {
         [
-          View(props: ViewProps().key("One-A")) {
+          View(props: ViewProps().key(Keys.OneA)) {
             [
-              View(props: ViewProps().key("One-A-Inner")),
+              View(props: ViewProps().key(Keys.OneAInner)),
             ]
           }
         ]
@@ -88,12 +94,12 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = ViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
-    let viewOne = plasticViewsContainer["One"]!
-    let viewOneA = plasticViewsContainer["One-A"]!
-    let viewOneAInner = plasticViewsContainer["One-A-Inner"]!
+    let viewOne = plasticViewsContainer[Keys.One]!
+    let viewOneA = plasticViewsContainer[Keys.OneA]!
+    let viewOneAInner = plasticViewsContainer[Keys.OneAInner]!
     let root = plasticViewsContainer.rootView
     
     viewOne.coverRight(root)
@@ -106,43 +112,33 @@ class PlasticViewsContainerTests: XCTestCase {
     viewOneAInner.height = .fixed(100)
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
       100 - viewOneA.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
       100 - viewOneA.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A"),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
       100 - viewOne.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One-A"),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
       100 - viewOne.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
       100 - root.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
       100 - root.absoluteOrigin.y
-    )
-    
-    XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: root.key),
-      100
-    )
-    
-    XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: root.key),
-      100
     )
   }
 
@@ -152,11 +148,11 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneAFrame = CGRect(x: 10, y: 10, width: 200, height: 200)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key("One")) {
+      View(props: ViewProps().key(Keys.One)) {
         [
           View(props: ViewProps().frame(oneAFrame)) {
             [
-              View(props: ViewProps().key("One-A-Inner"))
+              View(props: ViewProps().key(Keys.OneAInner))
             ]
           }
         ]
@@ -164,11 +160,11 @@ class PlasticViewsContainerTests: XCTestCase {
     ]
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = ViewsContainer(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
-    let viewOne = plasticViewsContainer["One"]!
-    let viewOneAInner = plasticViewsContainer["One-A-Inner"]!
+    let viewOne = plasticViewsContainer[Keys.One]!
+    let viewOneAInner = plasticViewsContainer[Keys.OneAInner]!
     let root = plasticViewsContainer.rootView
     
     viewOne.coverRight(root)
@@ -178,22 +174,22 @@ class PlasticViewsContainerTests: XCTestCase {
     viewOneAInner.height = .fixed(100)
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
       100 - root.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "One"),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
       100 - root.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(600, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      plasticViewsContainer.getXCoordinate(600, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
       -10
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(900, inCoordinateSystemOfParentOfKey: "One-A-Inner"),
+      plasticViewsContainer.getYCoordinate(900, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
       890
     )
   }

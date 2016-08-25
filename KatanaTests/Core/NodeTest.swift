@@ -1,6 +1,10 @@
 import XCTest
 @testable import Katana
 
+enum AppKeys: String, NodeDescriptionKeys {
+  case container, otherView, button
+}
+
 struct AppProps : Equatable,Frameable {
   var frame: CGRect = CGRect.zero
   var i: Int
@@ -83,24 +87,24 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
     if (i == 0) {
       
       return [
-        View(props: ViewProps().key("container").color(.gray)) {
+        View(props: ViewProps().key(AppKeys.container).color(.gray)) {
           [
-            Button(props: ButtonProps().key("button")
+            Button(props: ButtonProps().key(AppKeys.button)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
               .onTap({ update(EmptyState()) })),
             
-            View(props: ViewProps().key("otherView").color(.gray))
+            View(props: ViewProps().key(AppKeys.otherView).color(.gray))
           ]
         }
       ]
       
     } else if (i == 1) {
       return [
-        View(props: ViewProps().key("container").color(.gray)) {
+        View(props: ViewProps().key(AppKeys.container).color(.gray)) {
           [
-            Button(props: ButtonProps().key("button")
+            Button(props: ButtonProps().key(AppKeys.button)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
@@ -114,10 +118,10 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
     }
   }
   
-  static func layout(views: ViewsContainer, props: AppProps, state: EmptyState) -> Void {
-    let container = views["container"]
-    let button = views["button"]
-    let otherView = views["otherView"]
+  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) -> Void {
+    let container = views[.container]
+    let button = views[.button]
+    let otherView = views[.otherView]
     
     
     container?.size = .fixed(150, 150)
