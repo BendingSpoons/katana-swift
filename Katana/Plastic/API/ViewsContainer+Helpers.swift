@@ -9,8 +9,8 @@
 import Foundation
 
 public extension ViewsContainer {
-  public func filter(_ filter: (String) -> Bool) -> [String: PlasticView] {
-    var newDict = [String: PlasticView]()
+  public func filtered(_ filter: (Key) -> Bool) -> [Key: PlasticView] {
+    var newDict = [Key: PlasticView]()
     
     for (key, view) in self.views {
       if filter(key) {
@@ -23,10 +23,11 @@ public extension ViewsContainer {
   
   
   // return an ordered array of items that have a certain prefix
-  public func orderedViews(withPrefix prefix: String, sortedBy sort: (String, String) -> Bool) -> [PlasticView] {
-    return self.views
-      .filter { $0.key.hasPrefix(prefix) }
-      .sorted { sort($0.key, $1.key) }
-      .flatMap { self[$0.key] }
+  public func orderedViews(filter: (Key) -> Bool, sortedBy sort: (Key, Key) -> Bool) -> [PlasticView] {
+    return self
+      .filtered(filter)
+      .map { $0.key }
+      .sorted()
+      .flatMap { self[$0] }
     }
 }

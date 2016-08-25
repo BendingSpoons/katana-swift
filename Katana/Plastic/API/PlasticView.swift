@@ -51,10 +51,6 @@ public class PlasticView {
     }
   }
 
-  convenience init(hierarchyManager: HierarchyManager, key: String, multiplier: CGFloat) {
-    self.init(hierarchyManager: hierarchyManager, key: key, multiplier: multiplier, frame: CGRect.zero)
-  }
-  
   init(hierarchyManager: HierarchyManager, key: String, multiplier: CGFloat, frame: CGRect) {
     self.key = key
     self.frame = frame

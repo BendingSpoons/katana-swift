@@ -58,8 +58,7 @@ extension Colorable {
 public protocol Frameable {
   var frame : CGRect {get set}
   func frame(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> Self
-  func frame(_: CGRect) -> Self
-  
+  func frame(_: CGRect) -> Self  
 }
 
 public extension Frameable {
@@ -156,12 +155,19 @@ extension Bordable {
 public protocol Keyable {
   var key: String? { get set }
   func key(_ key: String?) -> Self
+  func key<Key>(_ key: Key) -> Self where Key: RawRepresentable, Key.RawValue == String
 }
 
 public extension Keyable {
   public func key(_ key: String?) -> Self {
     var copy = self
     copy.key = key
+    return copy
+  }
+  
+  func key<Key>(_ key: Key) -> Self where Key: RawRepresentable, Key.RawValue == String {
+    var copy = self
+    copy.key = key.rawValue
     return copy
   }
 }

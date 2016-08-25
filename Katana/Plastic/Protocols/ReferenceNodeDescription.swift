@@ -1,5 +1,5 @@
 //
-//  PasticReferenceSizeNodeDescription.swift
+//  PlasticReferenceSizeNodeDescription.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 19/08/16.
@@ -9,6 +9,6 @@
 import UIKit
 
 // a node that has a reference size
-public protocol PasticReferenceSizeNodeDescription {
+public protocol PlasticReferenceSizeNodeDescription {
   static func referenceSize() -> CGSize
 }

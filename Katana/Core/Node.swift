@@ -17,7 +17,7 @@ public protocol AnyNode: class, PlasticMultiplierProvider {
   func update(description: AnyNodeDescription) throws
 }
 
-public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, AnyNode {
+public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
   public private(set) unowned var store: AnyStore
   
@@ -50,7 +50,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                                        update: update,
                                        dispatch: self.store.dispatch)
     
-    self.children = self.applyLayout(to: children).map {
+    self.children =  self.processChildrenBeforeDraw(children).map {
       $0.node(parentNode: self)
     }
   }
@@ -113,7 +113,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                                          update: update,
                                          dispatch: self.store.dispatch)
     
-    newChildren = self.applyLayout(to: newChildren)
+    newChildren = self.processChildrenBeforeDraw(newChildren)
     
     var nodes : [AnyNode] = []
     var viewIndex : [Int] = []
@@ -204,5 +204,22 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
         self.container?.remove(child: viewToRemove)
       }
     }
+  }
+  
+  public func getPlasticMultiplier() -> CGFloat {
+    guard let description = self.typedDescription as? PlasticReferenceSizeNodeDescription else {
+      return self.parentNode?.getPlasticMultiplier() ?? 0.0
+    }
+    
+    let referenceSize = description.dynamicType.referenceSize()
+    let currentSize = self.typedDescription.frame
+    
+    let widthRatio = currentSize.width / referenceSize.width;
+    let heightRatio = currentSize.height / referenceSize.height;
+    return min(widthRatio, heightRatio);
+  }
+  
+  func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    return children
   }
 }
