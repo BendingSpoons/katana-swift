@@ -188,7 +188,7 @@ extension Node {
     }
     
     self.children = nodes
-    self.redraw(childrenToAdd: nodes, viewIndexes: viewIndexes)
+    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes)
   }
   
   private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
