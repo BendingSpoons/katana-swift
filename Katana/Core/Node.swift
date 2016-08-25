@@ -8,6 +8,8 @@
 
 import UIKit
 
+private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
+
 public protocol AnyNode: class, PlasticMultiplierProvider {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
@@ -55,16 +57,13 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
   }
   
-  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
-    if let desc = description as? AnyConnectedNodeDescription {
-      // description is connected to the store, we need to update it
-      let state = self.store.getAnyState()
-      return desc.dynamicType.anyConnect(parentProps: description.props, storageState: state) as! Description.Props
-    }
-    
-    return props
+  func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    return children
   }
-  
+}
+
+// MARK: Update
+extension Node {
   func update(state: Description.State)  {
     self.update(state: state, description: self.typedDescription)
   }
@@ -90,7 +89,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     self.typedDescription = description
     self.state = state
     
-    var currentChildren : [Int:[(node: AnyNode, index: Int)]] = [:]
+    var currentChildren = ChildrenDictionary()
     
     for (index,child) in children.enumerated() {
       let key = child.description.replaceKey()
@@ -102,8 +101,8 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
         currentChildren[key]!.append(value)
       }
     }
-
-
+    
+    
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
@@ -141,10 +140,26 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
     
     self.children = nodes
-    
     self.redraw(childrenToAdd: nodesToRender, viewIndexes: viewIndex)
   }
-  
+}
+
+
+// MARK: Connect
+extension Node {
+  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
+    if let desc = description as? AnyConnectedNodeDescription {
+      // description is connected to the store, we need to update it
+      let state = self.store.getAnyState()
+      return desc.dynamicType.anyConnect(parentProps: description.props, storageState: state) as! Description.Props
+    }
+    
+    return props
+  }
+}
+
+// MARK: Draw
+extension Node {
   public func draw(container: DrawableContainer) {
     guard let children = self.children else {
       fatalError("draw cannot be called at this time")
@@ -158,10 +173,10 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     
     self.container?.update { view in
       Description.applyPropsToNativeView(props: self.typedDescription.props,
-                             state: self.state,
-                             view: view as! Description.NativeView,
-                             update: self.update,
-                             node: self)
+                                         state: self.state,
+                                         view: view as! Description.NativeView,
+                                         update: self.update,
+                                         node: self)
     }
     
     children.forEach { $0.draw(container: self.container!) }
@@ -177,10 +192,10 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     
     container.update { view in
       Description.applyPropsToNativeView(props: self.typedDescription.props,
-                             state: self.state,
-                             view: view as! Description.NativeView,
-                             update: self.update,
-                             node: self)
+                                         state: self.state,
+                                         view: view as! Description.NativeView,
+                                         update: self.update,
+                                         node: self)
       
     }
     
@@ -205,7 +220,10 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
   }
-  
+}
+
+// MARK: Plastic Multiplier
+extension Node {
   public func getPlasticMultiplier() -> CGFloat {
     guard let description = self.typedDescription as? PlasticReferenceSizeNodeDescription else {
       return self.parentNode?.getPlasticMultiplier() ?? 0.0
@@ -217,9 +235,5 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     let widthRatio = currentSize.width / referenceSize.width;
     let heightRatio = currentSize.height / referenceSize.height;
     return min(widthRatio, heightRatio);
-  }
-  
-  func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    return children
   }
 }
