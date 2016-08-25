@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct SyncAction<Payload>: Action {
-  let payload: Payload
-  private(set) var actionName: String
+public struct SyncAction<Payload>: Action {
+  public let payload: Payload
+  public private(set) var actionName: String
   
   private init(actionName: String, payload: Payload) {
     self.actionName = actionName
@@ -18,14 +18,14 @@ struct SyncAction<Payload>: Action {
   }
 }
 
-struct SyncActionCreator<Payload> {
-  let actionName: String
+public struct SyncActionCreator<Payload> {
+  public let actionName: String
   
   public init(withName name: String) {
     actionName = name
   }
   
-  func with(payload: Payload) -> SyncAction<Payload> {
+  public func with(payload: Payload) -> SyncAction<Payload> {
     return SyncAction<Payload>(actionName: self.actionName, payload: payload)
   }
 }

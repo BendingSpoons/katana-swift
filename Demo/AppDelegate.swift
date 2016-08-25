@@ -9,12 +9,7 @@
 import UIKit
 import Katana
 
-struct AppState : State {}
-struct AppReducer : Reducer {
-  static func reduce(action: Action, state: AppState?) -> AppState {
-    return state!
-  }
-}
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -34,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
     let store = Store<AppReducer>()
     
-    self.root = View(props: ViewProps().frame(rootBounds)).node(store: store)
+    self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)
     
     return true

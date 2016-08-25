@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ReducerCombiner: Reducer {
+public protocol ReducerCombiner: Reducer {
   associatedtype StateType: State
 
   static var initialState: StateType { get }
@@ -18,7 +18,7 @@ protocol ReducerCombiner: Reducer {
   static var reducers: [String: AnyReducer.Type] { get }
 }
 
-extension ReducerCombiner {
+public extension ReducerCombiner {
   static func reduce(action: Action, state: StateType?) -> StateType {
     guard let s = state else {
       return initialState
