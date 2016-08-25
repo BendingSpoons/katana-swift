@@ -113,34 +113,7 @@ extension Node {
                                          dispatch: self.store.dispatch)
     
     newChildren = self.processChildrenBeforeDraw(newChildren)
-    
-    var nodes : [AnyNode] = []
-    var viewIndex : [Int] = []
-    var nodesToRender : [AnyNode] = []
-    
-    for newChild in newChildren {
-      let key = newChild.replaceKey()
-      
-      if currentChildren[key]?.count > 0 {
-        let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.description.replaceKey() == newChild.replaceKey())
-        
-        try! replacement.node.update(description: newChild)
-        
-        nodes.append(replacement.node)
-        viewIndex.append(replacement.index)
-        
-      } else {
-        //else create a new node
-        let node = newChild.node(parentNode: self)
-        viewIndex.append(children.count + nodesToRender.count)
-        nodes.append(node)
-        nodesToRender.append(node)
-      }
-    }
-    
-    self.children = nodes
-    self.redraw(childrenToAdd: nodesToRender, viewIndexes: viewIndex)
+    self.updateHierarchy(newChildren: newChildren, currentChildren: currentChildren)
   }
 }
 
@@ -183,7 +156,42 @@ extension Node {
   }
   
   
-  public func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
+  private func updateHierarchy(newChildren: [AnyNodeDescription], currentChildren: ChildrenDictionary) {
+    guard let children = self.children else {
+      fatalError("update should not be called at this time")
+    }
+    
+    var nodes : [AnyNode] = []
+    var viewIndexes : [Int] = []
+    var childrenToAdd : [AnyNode] = []
+    var currentChildren = currentChildren
+    
+    for newChild in newChildren {
+      let key = newChild.replaceKey()
+      
+      if currentChildren[key]?.count > 0 {
+        let replacement = currentChildren[key]!.removeFirst()
+        assert(replacement.node.description.replaceKey() == newChild.replaceKey())
+        
+        try! replacement.node.update(description: newChild)
+        
+        nodes.append(replacement.node)
+        viewIndexes.append(replacement.index)
+        
+      } else {
+        //else create a new node
+        let node = newChild.node(parentNode: self)
+        viewIndexes.append(children.count + childrenToAdd.count)
+        nodes.append(node)
+        childrenToAdd.append(node)
+      }
+    }
+    
+    self.children = nodes
+    self.redraw(childrenToAdd: nodes, viewIndexes: viewIndexes)
+  }
+  
+  private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
     guard let container = self.container else {
       return
     }
@@ -196,7 +204,6 @@ extension Node {
                                          view: view as! Description.NativeView,
                                          update: self.update,
                                          node: self)
-      
     }
     
     childrenToAdd.forEach { node in
