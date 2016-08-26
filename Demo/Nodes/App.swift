@@ -45,19 +45,14 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     
-    if (props.showPopup) {
+    if (props.showCalculator) {
       return [
         Calculator(props: CalculatorProps().key(AppKeys.calculator)),
         InstructionPopup(props: InstructionPopupProps()
           .onClose({ dispatch(DismissInstructionsAction.with(payload: true)) })
           .key(AppKeys.popup))
       ]
-    } else if (props.showCalculator) {
-      return [
-        Calculator(props: CalculatorProps()
-          .onPasswordSet({ dispatch(SetPinAction.with(payload: $0)) })
-          .key(AppKeys.calculator)),
-      ]
+
     } else {
       return [
         View(props: ViewProps())
@@ -74,6 +69,10 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     
     popup?.fill(root)
     calculator?.fill(root)
+    
+    if (!props.showPopup) {
+      popup?.bottom = root.top
+    }
   }
   
   static func connect(parentProps: AppProps, storageState: AppState) -> AppProps {
@@ -82,6 +81,17 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     parentProps.showCalculator = storageState.pin == nil
     return parentProps
   }
+  
+  static func childrenAnimationForNextRender(currentProps: AppProps,
+                                             nextProps: AppProps,
+                                             currentState: AppState,
+                                             nextState: AppState,
+                                             parentAnimation: Animation) -> Animation {
+    
+    return .simpleSpring(duration: 1, damping: 0.3, initialVelocity: 1)
+    
+  }
+  
   
 }
 
