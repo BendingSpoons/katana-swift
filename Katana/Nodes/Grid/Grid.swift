@@ -76,7 +76,7 @@ public struct Grid : NodeDescription {
   public var props : GridProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = NativeGridView.self
+  public typealias NativeView = NativeGridView
   
   public init(props: GridProps) {
     self.props = props
