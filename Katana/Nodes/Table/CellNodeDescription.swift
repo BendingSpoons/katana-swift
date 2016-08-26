@@ -16,14 +16,18 @@ public protocol CellNodeDescription: NodeDescription, AnyCellNodeDescription {
   associatedtype NativeView: CellNativeView
   associatedtype State: Equatable, Highlightable
   
-  static var nativeViewType : NativeView.Type { get }
   static var initialState: State { get }
-  
   static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath)
 }
 
 public extension CellNodeDescription {
-  public static func applyPropsToNativeView(props: Props, state: State, view: NativeView, update: (State)->())  {
+
+  public static func applyPropsToNativeView(props: Props,
+                                            state: State,
+                                            view: NativeView,
+                                            update: (State)->(),
+                                            concreteNode: AnyNode) ->  Void {
+
     view.frame = props.frame
     
     view.update = { (highlighted: Bool) in
@@ -31,14 +35,7 @@ public extension CellNodeDescription {
       newState.highlighted = highlighted
       update(newState)
     }
-  }
   
-  public static func applyPropsToNativeView(props: Props,
-                                            state: State,
-                                            view: NativeView,
-                                            update: (State)->(),
-                                            concreteNode: AnyNode) ->  Void {
-    self.applyPropsToNativeView(props: props, state: state, view: view, update: update)
   }
   
   

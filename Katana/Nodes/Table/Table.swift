@@ -30,10 +30,11 @@ public struct TableProps: Equatable, Frameable, Keyable {
 
 
 public struct Table : NodeDescription {
+  public typealias NativeView = UIView
+  
   public var props : TableProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = NativeTableView.self
   
   public init(props: TableProps) {
     self.props = props
@@ -44,11 +45,11 @@ public struct Table : NodeDescription {
                                             state: EmptyState,
                                             view: NativeTableView,
                                             update: (EmptyState)->(),
-                                            concreteNode: AnyNode)  {
+                                            node: AnyNode)  {
     
     let delegate = props.delegate ?? EmptyTableDelegate()
     view.frame = props.frame
-    view.update(withParentNode: concreteNode, delegate: delegate)
+    view.update(withParentNode: node, delegate: delegate)
   }
   
   

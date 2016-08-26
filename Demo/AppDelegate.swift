@@ -9,60 +9,13 @@
 import UIKit
 import Katana
 
-struct RootLogicState: State {
-  var showPopup: Bool
-  var password: [Int]?
-  var counter: Int
-}
 
-enum RootReducer: Reducer {
-  static func reduce(action: Action, state: RootLogicState?) -> RootLogicState {
-    guard let s = state else {
-      return RootLogicState(showPopup: true, password: nil, counter: 0)
-    }
-    
-    if action is HidePopup {
-      return RootLogicState(showPopup: false, password: s.password, counter: s.counter)
-    }
-    
-    if let a = action as? PinInserted {
-      return RootLogicState(showPopup: s.showPopup, password: a.pin, counter: s.counter)
-    }
-    
-    if action is Reset {
-      return RootLogicState(showPopup: true, password: nil, counter: s.counter)
-    }
-    
-    if action is IncreaseCounter {
-      return RootLogicState(showPopup: s.showPopup, password: s.password, counter: s.counter + 1)
-    }
-    
-    return s
-  }
-}
-
-struct HidePopup: Action {
-  var actionName = "hidePopup"
-}
-
-struct Reset: Action {
-  var actionName = "Reset"
-}
-
-struct PinInserted: Action {
-  let actionName = "hidePopup"
-  let pin: [Int]
-}
-
-struct IncreaseCounter: Action {
-  let actionName = "IncreaseCounter"
-}
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  var root: StoreListenerNode?
+  var root: RootNode?
   
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
@@ -73,14 +26,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.makeKeyAndVisible()
     
     let view = (self.window?.rootViewController?.view)!
-    
-    
     let rootBounds = UIScreen.main.bounds
-    let rootDescription = App(props: AppProps(section: .popup, frame: rootBounds))
-    let store = Store(RootReducer.self)
+    let store = Store<AppReducer>()
     
-    self.root = StoreListenerNode(store: store, rootDescription: rootDescription)
-    self.root!.render(container: view)//RenderContainers(containers: [view]))
+    self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
+    self.root!.draw(container: view)
     
     return true
   }

@@ -9,12 +9,16 @@
 import XCTest
 import Katana
 
+private enum Keys: String, NodeDescriptionKeys {
+  case One
+}
 
 private struct TestNode : NodeDescription, PlasticNodeDescription {
+  typealias NativeView = UIView
+
   var props : EmptyProps
   
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
   // since we are using a static var here we are not be able to
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
@@ -25,19 +29,11 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return [
-      View(props: ViewProps().key("One")) {
-        [
-          View(props: ViewProps().key("One-A")),
-          View(props: ViewProps().key("One-B")),
-        ]
-      },
-      View(props: ViewProps().key("Two")),
-      View(props: ViewProps()),
-      View(props: ViewProps().key("Four")),
+      View(props: ViewProps().key(Keys.One))
     ]
   }
   
-  static func layout(views: ViewsContainer, props: EmptyProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer<Keys>, props: EmptyProps, state: EmptyState) -> Void {
     self.invoked = true
   }
 }
@@ -49,9 +45,8 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let node = Node(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store(EmptyReducer.self))
-    let renderProfiler = RenderProfiler() { _ = $0 }
-    node.render(container: renderProfiler)
+    let node = PlasticNode(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store<EmptyReducer>())
+    node.draw(container: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }

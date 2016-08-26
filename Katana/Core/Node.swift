@@ -8,16 +8,18 @@
 
 import UIKit
 
+private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
+
 public protocol AnyNode: class, PlasticMultiplierProvider {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
   var store: AnyStore { get }
 
-  func render(container: RenderContainer)
+  func draw(container: DrawableContainer)
   func update(description: AnyNodeDescription) throws
 }
 
-public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, AnyNode {
+public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
   public private(set) unowned var store: AnyStore
   
@@ -25,7 +27,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
   var typedDescription : Description
   weak var parentNode: AnyNode?
   
-  private var container: RenderContainer?  
+  private var container: DrawableContainer?  
   
   public var description: AnyNodeDescription {
     get {
@@ -50,21 +52,18 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                                        update: update,
                                        dispatch: self.store.dispatch)
     
-    self.children = self.applyLayout(to: children).map {
-      $0.node(parentNode: self, store: self.store)
+    self.children =  self.processChildrenBeforeDraw(children).map {
+      $0.node(parentNode: self)
     }
   }
   
-  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
-    if let desc = description as? AnyConnectedNodeDescription {
-      // description is connected to the store, we need to update it
-      let state = self.store.getAnyState()
-      return desc.dynamicType._connect(parentProps: description.props, storageState: state) as! Description.Props
-    }
-    
-    return props
+  func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    return children
   }
-  
+}
+
+// MARK: Update
+extension Node {
   func update(state: Description.State)  {
     self.update(state: state, description: self.typedDescription)
   }
@@ -90,7 +89,7 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     self.typedDescription = description
     self.state = state
     
-    var currentChildren : [Int:[(node: AnyNode, index: Int)]] = [:]
+    var currentChildren = ChildrenDictionary()
     
     for (index,child) in children.enumerated() {
       let key = child.description.replaceKey()
@@ -102,8 +101,8 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
         currentChildren[key]!.append(value)
       }
     }
-
-
+    
+    
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
@@ -113,11 +112,59 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
                                          update: update,
                                          dispatch: self.store.dispatch)
     
-    newChildren = self.applyLayout(to: newChildren)
+    newChildren = self.processChildrenBeforeDraw(newChildren)
+    self.updateHierarchy(newChildren: newChildren, currentChildren: currentChildren)
+  }
+}
+
+
+// MARK: Connect
+extension Node {
+  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
+    if let desc = description as? AnyConnectedNodeDescription {
+      // description is connected to the store, we need to update it
+      let state = self.store.getAnyState()
+      return desc.dynamicType.anyConnect(parentProps: description.props, storageState: state) as! Description.Props
+    }
+    
+    return props
+  }
+}
+
+// MARK: Draw
+extension Node {
+  public func draw(container: DrawableContainer) {
+    guard let children = self.children else {
+      fatalError("draw cannot be called at this time")
+    }
+    
+    if (self.container != nil)  {
+      fatalError("draw can only be call once on a node")
+    }
+    
+    self.container = container.add { Description.NativeView() }
+    
+    self.container?.update { view in
+      Description.applyPropsToNativeView(props: self.typedDescription.props,
+                                         state: self.state,
+                                         view: view as! Description.NativeView,
+                                         update: self.update,
+                                         node: self)
+    }
+    
+    children.forEach { $0.draw(container: self.container!) }
+  }
+  
+  
+  private func updateHierarchy(newChildren: [AnyNodeDescription], currentChildren: ChildrenDictionary) {
+    guard let children = self.children else {
+      fatalError("update should not be called at this time")
+    }
     
     var nodes : [AnyNode] = []
-    var viewIndex : [Int] = []
-    var nodesToRender : [AnyNode] = []
+    var viewIndexes : [Int] = []
+    var childrenToAdd : [AnyNode] = []
+    var currentChildren = currentChildren
     
     for newChild in newChildren {
       let key = newChild.replaceKey()
@@ -129,46 +176,22 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
         try! replacement.node.update(description: newChild)
         
         nodes.append(replacement.node)
-        viewIndex.append(replacement.index)
+        viewIndexes.append(replacement.index)
         
       } else {
         //else create a new node
-        let node = newChild.node(parentNode: self, store: self.store)
-        viewIndex.append(children.count + nodesToRender.count)
+        let node = newChild.node(parentNode: self)
+        viewIndexes.append(children.count + childrenToAdd.count)
         nodes.append(node)
-        nodesToRender.append(node)
+        childrenToAdd.append(node)
       }
     }
     
     self.children = nodes
-    
-    self.updateRender(childrenToRender: nodesToRender, viewIndexes: viewIndex)
+    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes)
   }
   
-  public func render(container: RenderContainer) {
-    guard let children = self.children else {
-      fatalError("render cannot be called at this time")
-    }
-    
-    if (self.container != nil)  {
-      fatalError("node can be render on a single View")
-    }
-    
-    self.container = container.add { Description.NativeView() }
-    
-    self.container?.update { view in
-      Description.applyPropsToNativeView(props: self.typedDescription.props,
-                             state: self.state,
-                             view: view as! Description.NativeView,
-                             update: self.update,
-                             concreteNode: self)
-    }
-    
-    children.forEach { $0.render(container: self.container!) }
-  }
-  
-  
-  public func updateRender(childrenToRender: [AnyNode], viewIndexes: [Int]) {
+  private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
     guard let container = self.container else {
       return
     }
@@ -177,18 +200,17 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
     
     container.update { view in
       Description.applyPropsToNativeView(props: self.typedDescription.props,
-                             state: self.state,
-                             view: view as! Description.NativeView,
-                             update: self.update,
-                             concreteNode: self)
-      
+                                         state: self.state,
+                                         view: view as! Description.NativeView,
+                                         update: self.update,
+                                         node: self)
     }
     
-    childrenToRender.forEach { node in
-      return node.render(container: container)
+    childrenToAdd.forEach { node in
+      return node.draw(container: container)
     }
     
-    var currentSubviews : [RenderContainerChild?] =  container.children().map { $0 }
+    var currentSubviews : [DrawableContainerChild?] =  container.children().map { $0 }
     let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
@@ -204,5 +226,21 @@ public class Node<Description: NodeDescription>: PlasticNode, ConnectedNode, Any
         self.container?.remove(child: viewToRemove)
       }
     }
+  }
+}
+
+// MARK: Plastic Multiplier
+extension Node {
+  public func getPlasticMultiplier() -> CGFloat {
+    guard let description = self.typedDescription as? PlasticReferenceSizeNodeDescription else {
+      return self.parentNode?.getPlasticMultiplier() ?? 0.0
+    }
+    
+    let referenceSize = description.dynamicType.referenceSize()
+    let currentSize = self.typedDescription.frame
+    
+    let widthRatio = currentSize.width / referenceSize.width;
+    let heightRatio = currentSize.height / referenceSize.height;
+    return min(widthRatio, heightRatio);
   }
 }

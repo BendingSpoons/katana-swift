@@ -29,7 +29,7 @@ class MiddlewareTests: XCTestCase {
     }
     
     
-    let store = Store(AppReducer.self, middlewares: [basicMiddleware])
+    let store = Store<AppReducer>(middlewares: [basicMiddleware])
     
     let initialState = store.getState()
     let action = AddTodoAction(title: "New Todo")
@@ -70,7 +70,7 @@ class MiddlewareTests: XCTestCase {
     }
     
     
-    let store = Store(AppReducer.self, middlewares: [basicMiddleware, secondMiddleware])
+    let store = Store<AppReducer>(middlewares: [basicMiddleware, secondMiddleware])
     
     let initialState = store.getState()
     let action = AddTodoAction(title: "New Todo")

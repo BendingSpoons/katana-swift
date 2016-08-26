@@ -23,7 +23,7 @@ class SagaTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionNamed: "AddTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
       ], providersContainer: AppSagaProviderContainer.self)
@@ -49,7 +49,7 @@ class SagaTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionNamed: "AddTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
         ], providersContainer: AppSagaProviderContainer.self)
@@ -75,7 +75,7 @@ class SagaTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(doubleTodoSaga, forActionNamed: "AddTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
         ], providersContainer: AppSagaProviderContainer.self)
@@ -108,7 +108,7 @@ class SagaTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionNamed: "AddTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         module
         ], providersContainer: AppSagaProviderContainer.self)
@@ -142,7 +142,7 @@ class SagaTests: XCTestCase {
     var moduleTwo = SagaModule()
     moduleTwo.addSaga(sagaTwo, forActionNamed: "RemoveTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules([
         moduleOne, moduleTwo
         ], providersContainer: AppSagaProviderContainer.self)
@@ -165,7 +165,7 @@ class SagaTests: XCTestCase {
     var module = SagaModule()
     module.addSaga(spySaga, forActionNamed: "AddTodo")
     
-    let store = Store(AppReducer.self, middlewares: [
+    let store = Store<AppReducer>(middlewares: [
       SagaMiddleware.withSagaModules(
         [module],
         providersContainer: AppSagaProviderContainer.self)

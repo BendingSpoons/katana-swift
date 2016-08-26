@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol AnyConnectedNodeDescription {
-  static func _connect(parentProps: Any, storageState: Any) -> Any
+  static func anyConnect(parentProps: Any, storageState: Any) -> Any
 }
 
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
@@ -20,11 +20,11 @@ public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
 }
 
 public extension ConnectedNodeDescription {
-  static func _connect(parentProps: Any, storageState: Any) -> Any {
+  static func anyConnect(parentProps: Any, storageState: Any) -> Any {
     if let p = parentProps as? Props, let s = storageState as? StorageState {
       return self.connect(parentProps: p, storageState: s)
     }
     
-    fatalError("Something is wrong, check the signature of the connect function of \(self.dynamicType)")
+    fatalError("invalid signature of the connect function of \(self.dynamicType)")
   }
 }

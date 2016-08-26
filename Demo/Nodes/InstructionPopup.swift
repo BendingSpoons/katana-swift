@@ -25,10 +25,14 @@ struct InstructionPopupProps : Equatable,Frameable,Keyable {
   }
 }
 
+enum InstructionPopupKeys : String,  NodeDescriptionKeys {
+  case overlay, container, title, button
+}
+
 struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
-
+  typealias NativeView = UIView
+  
   var props : InstructionPopupProps
   
   static func render(props: InstructionPopupProps,
@@ -46,41 +50,44 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
       NSForegroundColorAttributeName : UIColor(colorLiteralRed: 1, green: 0, blue: 0, alpha: 1)
       ])
-
+    
     return [
       View(props: ViewProps()
-          .key("overlay")
-          .color(UIColor(white: 0, alpha: 0.8))),
-
+        .key(InstructionPopupKeys.overlay)
+        .color(UIColor(white: 0, alpha: 0.8))),
+      
       View(props: ViewProps()
-        .key("container")
+        .key(InstructionPopupKeys.container)
         .color(0xE7E2D5)
         .cornerRadius(10)) {
           [
             Text(props: TextProps()
-              .key("title")
+              .key(InstructionPopupKeys.title)
               .text(text)
               .color(.clear)),
-
+            
             Button(props: ButtonProps()
-              .key("button")
+              .key(InstructionPopupKeys.button)
               .color(.white)
               .color(.gray, state: .highlighted)
               .onTap(props.onClose)
               .text(textButton))
           ]
-        }
+      }
+      
     ]
   }
   
-  static func layout(views: ViewsContainer,
+  
+  
+  static func layout(views: ViewsContainer<InstructionPopupKeys>,
                      props: InstructionPopupProps,
                      state: EmptyState) -> Void {
     
-    let overlay = views["overlay"]!
-    let container = views["container"]!
-    let button = views["button"]!
-    let title = views["title"]!
+    let overlay = views[.overlay]!
+    let container = views[.container]!
+    let button = views[.button]!
+    let title = views[.title]!
     let root = views.rootView
     
     overlay.fill(root)
@@ -96,5 +103,3 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     button.height = .scalable(80)
   }
 }
-
-

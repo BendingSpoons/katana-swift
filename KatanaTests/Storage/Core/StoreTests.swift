@@ -12,7 +12,7 @@ import XCTest
 
 class StoreTests: XCTestCase {
   func testInitialState() {
-    let store = Store(AppReducer.self)
+    let store = Store<AppReducer>()
     let state = store.getState()
     
     XCTAssertEqual(state.todo, TodoReducer.initialState)
@@ -20,7 +20,7 @@ class StoreTests: XCTestCase {
   }
   
   func testDispatch() {
-    let store = Store(AppReducer.self)
+    let store = Store<AppReducer>()
     store.dispatch(AddTodoAction(title: "New Todo"))
     let newState = store.getState()
 
@@ -29,7 +29,7 @@ class StoreTests: XCTestCase {
   }
   
   func testListener() {
-    let store = Store(AppReducer.self)
+    let store = Store<AppReducer>()
     var newState: AppState? = nil
     
     _ = store.addListener { [unowned store] in
@@ -43,7 +43,7 @@ class StoreTests: XCTestCase {
   }
   
   func testListenerRemove() {
-    let store = Store(AppReducer.self)
+    let store = Store<AppReducer>()
     var firstState: AppState? = nil
     var secondState: AppState? = nil
     

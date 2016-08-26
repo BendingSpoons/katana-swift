@@ -8,20 +8,20 @@
 
 import Foundation
 
-protocol SyncReducer: Reducer {
+public protocol SyncReducer: Reducer {
   associatedtype Payload
   associatedtype StateType: State
   static func reduceSync(action: SyncAction<Payload>, state: StateType) -> StateType
 }
 
-extension SyncReducer {
+public extension SyncReducer {
   static func reduce(action: Action, state: StateType?) -> StateType {
     guard let s = state else {
-      preconditionFailure("This should not happen. \(Self.self) is meant to be used in a ReducerCombiner. If you already doing this, it may be that there is a bug in the library implementation. Please open an issue on github")
+      fatalError("This should not happen. \(Self.self) is meant to be used in a ReducerCombiner. If you already doing this, it may be that there is a bug in the library implementation. Please open an issue on github")
     }
     
     guard let a = action as? SyncAction<Payload> else {
-      preconditionFailure("This should not happen. \(Self.self) is meant to be used with a \(SyncAction<Payload>.self) action. Check the reducer combiner and make sure that you are associating this reducer with the proper action. If you already doing this, it may be that there is a bug in the library implementation. Please open an issue on github")
+      fatalError("This should not happen. \(Self.self) is meant to be used with a \(SyncAction<Payload>.self) action. Check the reducer combiner and make sure that you are associating this reducer with the proper action. If you already doing this, it may be that there is a bug in the library implementation. Please open an issue on github")
     }
     
     return self.reduceSync(action: a, state: s)

@@ -15,7 +15,7 @@ class PlasticBasicLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -37,7 +37,7 @@ class PlasticBasicLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -59,7 +59,7 @@ class PlasticBasicLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -85,7 +85,7 @@ class PlasticBasicLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -136,7 +136,7 @@ y  v   |              |  |          |
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     v1.height = .fixed(400)
     v1.width = .fixed(400)
     
@@ -188,7 +188,7 @@ y  v
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     v1.height = .fixed(400)
     v1.width = .fixed(400)
     
@@ -242,7 +242,7 @@ y v
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     v1.height = .fixed(400)
     v1.width = .fixed(400)
     
@@ -295,7 +295,7 @@ y v
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     v1.height = .fixed(400)
     v1.width = .fixed(400)
     
@@ -323,7 +323,7 @@ y v
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     // non scalable
     v1.size = .fixed(300, 300)

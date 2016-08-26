@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
-import UIKit
+import CoreGraphics
 
 public struct Size: Equatable {
   let width: Value

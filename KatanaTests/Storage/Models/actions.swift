@@ -9,9 +9,9 @@
 import Foundation
 @testable import Katana
 
-struct AddTodoAction: Action, Equatable {
-  let actionName = "AddTodo"
-  let title: String
+public struct AddTodoAction: Action, Equatable {
+  public let actionName = "AddTodo"
+  public let title: String
   
   static func ==(lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title

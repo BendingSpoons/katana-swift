@@ -25,6 +25,54 @@ struct CalculatorProps : Equatable,Frameable,Keyable {
   }
 }
 
+enum CalculatorKeys: NodeDescriptionKeys {
+  case button(row: Int, column: Int)
+  case container
+  case numberDisplay
+  case buttonsContainer
+  
+  
+  init?(rawValue: String) {
+    switch rawValue {
+    case "container":
+      self = .container
+      
+    case "numberDisplay":
+      self = .numberDisplay
+      
+    case "buttonsContainer":
+      self = .buttonsContainer
+      
+    case let x where x.components(separatedBy: "-").count == 3:
+      let items = x.components(separatedBy: "-").flatMap { Int($0) }
+      self = .button(row: items[0], column: items[1])
+      
+    default:
+      return nil
+    }
+  }
+  
+  var rawValue: String {
+    switch self {
+    case .container:
+      return "container"
+      
+    case .buttonsContainer:
+      return "buttonsContainer"
+      
+    case .numberDisplay:
+      return "numberDisplay"
+      
+    case let .button(row: row, column: column):
+      return "button-\(row)-\(column)"
+    }
+  }
+  
+  var hashValue: Int {
+    return self.rawValue.hashValue
+  }
+}
+
 private struct Cell {
   var text : String
   var color : UIColor
@@ -35,9 +83,9 @@ private struct Row {
 }
 
 struct Calculator : NodeDescription, PlasticNodeDescription {
+  typealias NativeView = UIView
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
-
+  
   var props : CalculatorProps
   
   static func render(props: CalculatorProps,
@@ -85,15 +133,17 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
     
     for (rowNumber, row) in rows.enumerated() {
       for (cellNumber, cell) in row.cells.enumerated() {
+        let key = CalculatorKeys.button(row: rowNumber, column: cellNumber)
+        
         buttons.append(Button(props: ButtonProps()
           .color(cell.color)
-          .key("button-\(rowNumber)-\(cellNumber)")
+          .key(key)
           .borderWidth(0.5)
           .text(cell.text, fontSize: 15)
           .onTap({
             props.onPasswordSet?([1,5,9,8])
           })
-        ))
+          ))
       }
     }
     
@@ -101,28 +151,40 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
       NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
       NSForegroundColorAttributeName : UIColor(0xE7E2D5)
-    ])
+      ])
     
     return [
-      View(props: ViewProps().key("container").color(.black)) {
+      View(props: ViewProps().key(CalculatorKeys.container).color(.black)) {
         [
-          Text(props: TextProps().key("number-display").color(.clear).text(text)),
-          View(props: ViewProps().key("buttons-container").color(.red).children(buttons))
+          Text(props: TextProps().key(CalculatorKeys.numberDisplay).color(.clear).text(text)),
+          View(props: ViewProps().key(CalculatorKeys.buttonsContainer).color(.red).children(buttons))
         ]
       }
     ]
   }
   
-  static func layout(views: ViewsContainer, props: CalculatorProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer<CalculatorKeys>, props: CalculatorProps, state: EmptyState) -> Void {
+    
+    func filter(withRow indexRow: Int) -> (CalculatorKeys) -> Bool {
+      return {
+        if case .button(let row, _) = $0 {
+          return row == indexRow
+        }
+        
+        return false
+      }
+    }
+    
+    
     let root = views.rootView
-    let container = views["container"]!
-    let numberDisplay = views["number-display"]!
-    let buttonsContainer = views["buttons-container"]!
-    let btnFirstRow = views.orderedViews(withPrefix: "button-0", sortedBy: <)
-    let btnSecondRow = views.orderedViews(withPrefix: "button-1", sortedBy: <)
-    let btnThirdRow = views.orderedViews(withPrefix: "button-2", sortedBy: <)
-    let btnFourthRow = views.orderedViews(withPrefix: "button-3", sortedBy: <)
-    let btnFifthRow = views.orderedViews(withPrefix: "button-4", sortedBy: <)
+    let container = views[.container]!
+    let numberDisplay = views[.numberDisplay]!
+    let buttonsContainer = views[.buttonsContainer]!
+    let btnFirstRow = views.orderedViews(filter: filter(withRow: 0), sortedBy: <)
+    let btnSecondRow = views.orderedViews(filter: filter(withRow: 1), sortedBy: <)
+    let btnThirdRow = views.orderedViews(filter: filter(withRow: 2), sortedBy: <)
+    let btnFourthRow = views.orderedViews(filter: filter(withRow: 3), sortedBy: <)
+    let btnFifthRow = views.orderedViews(filter: filter(withRow: 4), sortedBy: <)
     
     container.fill(root)
     

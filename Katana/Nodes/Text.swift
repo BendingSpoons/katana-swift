@@ -27,12 +27,17 @@ public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable
 
 
 public struct Text : NodeDescription {
+  public typealias NativeView = UILabel
+
   public var props : TextProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = UILabel.self
   
-  public static func applyPropsToNativeView(props: TextProps, state: EmptyState, view: UILabel, update: (EmptyState)->())  {
+  public static func applyPropsToNativeView(props: TextProps,
+                                            state: EmptyState,
+                                            view: UILabel,
+                                            update: (EmptyState)->(),
+                                            node: AnyNode)  {
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled

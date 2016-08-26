@@ -20,7 +20,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -50,7 +50,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -81,7 +81,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -136,7 +136,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 50, height: 50)
     let v2RightX = v2Frame.origin.x + v2Frame.size.width
@@ -173,7 +173,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 50, height: 50)
     let v2BottomY = v2Frame.origin.y + v2Frame.size.height
@@ -190,7 +190,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     // we need to provide a size in order to calculate the center
     v1.size = .fixed(100, 100)
     
@@ -208,7 +208,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 50, height: 50)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -262,7 +262,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     // here we need to define the width otherwise plastic won't be able to calculate the origin
     // (To be honest it works anyway, but it resolves the origin when the width is set. We set it upfront since we are in a testing environment)
     v1.width = .fixed(50)
@@ -300,7 +300,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 50, height: 50)
     let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
@@ -355,7 +355,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
-    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier)
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     // here we need to define the height otherwise plastic won't be able to calculate the origin
     // (To be honest it works anyway, but it resolves the origin when the width is set. We set it upfront since we are in a testing environment)
     v1.height = .fixed(50)

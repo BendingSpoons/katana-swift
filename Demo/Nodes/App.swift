@@ -2,7 +2,7 @@
 //  App.swift
 //  Katana
 //
-//  Created by Luca Querella on 10/08/16.
+//  Created by Luca Querella on 25/08/16.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
@@ -10,22 +10,29 @@ import UIKit
 import Katana
 
 struct AppProps: Equatable, Frameable {
-  enum Section {
-    case popup, calculator, tabbar
-  }
-  
-  var section: Section
-  var frame: CGRect
+  var showPopup = false
+  var showCalculator = false
+  var frame: CGRect = CGRect.zero
   
   static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
-    return lhs.section == rhs.section
+    return lhs.showPopup == rhs.showPopup &&
+      lhs.showCalculator == rhs.showCalculator &&
+      lhs.frame == rhs.frame
   }
 }
 
-struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, ConnectedNodeDescription {
+enum AppKeys: String,NodeDescriptionKeys {
+  case calculator, popup
+}
+
+struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeNodeDescription  {
+  
+  typealias NativeView = UIView
+  
+  
   static var initialState = EmptyState()
   static var nativeViewType = UIView.self
-
+  
   var props : AppProps
   
   static func referenceSize() -> CGSize {
@@ -37,71 +44,44 @@ struct App : NodeDescription, ReferenceNodeDescription, PlasticNodeDescription, 
                      update: (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
-    func onClose() {
-      dispatch(HidePopup())
+    
+    if (props.showPopup) {
+      return [
+        Calculator(props: CalculatorProps().key(AppKeys.calculator)),
+        InstructionPopup(props: InstructionPopupProps()
+          .onClose({ dispatch(DismissInstructionsAction.with(payload: true)) })
+          .key(AppKeys.popup))
+      ]
+    } else if (props.showCalculator) {
+      return [
+        Calculator(props: CalculatorProps()
+          .onPasswordSet({ dispatch(SetPinAction.with(payload: $0)) })
+          .key(AppKeys.calculator)),
+      ]
+    } else {
+      return [
+        View(props: ViewProps())
+      ]
     }
     
-    func onPasswordSet(_ password: [Int]) {
-      dispatch(PinInserted(pin: [123]))
-    }
-
-    return [
-//      TableExample(props: TableExampleProps().key("table"))
-      GridExample(props: GridExampleProps().key("grid"))
-    ]
-//    switch props.section {
-//    case .Popup:
-//      return [
-//        Calculator(props: CalculatorProps().key("calculator")),
-//        InstructionPopup(props: InstructionPopupProps()
-//          .key("popup")
-//          .onClose(onClose))
-//      ]
-//      
-//    case .Calculator:
-//      return [
-//        Calculator(props: CalculatorProps()
-//          .key("calculator")
-//          .onPasswordSet(onPasswordSet)),
-//      ]
-//      
-//    case .Tabbar:
-//      return [
-//        Tabbar(props: TabbarProps().key("tabbar"))
-//      ]
-//    }
+    
   }
   
-  static func layout(views: ViewsContainer,
-                     props: AppProps,
-                     state: EmptyState) -> Void {
-    
+  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) {
     let root = views.rootView
-    let popup = views["popup"]
-    let tabbar = views["tabbar"]
-    let calculator = views["calculator"]
-    let table = views["table"]
-    let grid = views["grid"]
+    let popup = views[.popup]
+    let calculator = views[.calculator]
     
     popup?.fill(root)
     calculator?.fill(root)
-    tabbar?.fill(root)
-    table?.fill(root)
-    grid?.fill(root)
   }
   
-  
-  static func connect(parentProps: AppProps, storageState: RootLogicState) -> AppProps {
-    if storageState.showPopup {
-      return AppProps(section: .popup, frame: parentProps.frame)
-    
-    } else if storageState.password == nil {
-      return AppProps(section: .calculator, frame: parentProps.frame)
-    
-    } else {
-      return AppProps(section: .tabbar, frame: parentProps.frame)
-    }
+  static func connect(parentProps: AppProps, storageState: AppState) -> AppProps {
+    var parentProps = parentProps
+    parentProps.showPopup = !storageState.instructionShown
+    parentProps.showCalculator = storageState.pin == nil
+    return parentProps
   }
+  
 }
-
 

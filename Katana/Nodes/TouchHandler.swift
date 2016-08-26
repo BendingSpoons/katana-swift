@@ -33,12 +33,17 @@ public struct TouchHandlerProps: Equatable, Frameable, Childrenable  {
 }
 
 public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
+  public typealias NativeView = TouchHandlerView
+  
   public var props : TouchHandlerProps
   
   public static var initialState = EmptyState()
-  public static var nativeViewType = TouchHandlerView.self
   
-  public static func applyPropsToNativeView(props: TouchHandlerProps, state: EmptyState, view: TouchHandlerView, update: (EmptyState)->())  {
+  public static func applyPropsToNativeView(props: TouchHandlerProps,
+                                            state: EmptyState,
+                                            view: TouchHandlerView,
+                                            update: (EmptyState)->(),
+                                            node: AnyNode)  {
     view.frame = props.frame
     view.handler = props.touchHandler
   }

@@ -8,25 +8,25 @@
 
 import Foundation
 
-public class StoreListenerNode {
+public class RootNode {
   let store: AnyStore
-  let rootNode: AnyNode
+  let node: AnyNode
 
-  public init(store: AnyStore, rootDescription: AnyNodeDescription) {
+  public init(store: AnyStore, node: AnyNode) {
     self.store = store
-    self.rootNode = rootDescription.node(store: self.store)
+    self.node = node
     
     let _ = store.addListener({ [unowned self] in
       self.storeDidChange()
     })
   }
 
-  public func render(container: RenderContainer) {
-    self.rootNode.render(container: container)
+  public func draw(container: DrawableContainer) {
+    self.node.draw(container: container)
   }
   
   private func storeDidChange() -> Void {
-    self.explore(self.rootNode)
+    self.explore(self.node)
   }
   
   private func explore(_ node: AnyNode) -> Void {

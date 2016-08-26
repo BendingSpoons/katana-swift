@@ -10,36 +10,40 @@ import UIKit
 
 private let ROOT_KEY = "//ROOT_KEY\\"
 
-private enum HierarchyNode {
+private enum HierarchyNode<Key: RawRepresentable & Hashable> {
   // the node is the root node
   case root
   
   // the node is something with a static frame (no key)
   // we save the frame of the node and the reference to the parent
-  indirect case staticFrame(CGRect, HierarchyNode)
+  indirect case staticFrame(CGRect, HierarchyNode<Key>)
   
   // the node is something with a dynamic frame (managed by plastic)
-  case dynamicFrame(String)
+  case dynamicFrame(Key)
 }
 
-public class ViewsContainer {
-  private(set) var views: [String: PlasticView] = [:]
+public class ViewsContainer<Key: RawRepresentable & Hashable & Comparable> {
+  // an association between the key and the plastic view
+  private(set) var views: [Key: PlasticView] = [:]
   
   // the key is the node key while the value is a parent node representation
-  private var hierarchy: [String: HierarchyNode] = [:]
+  private var hierarchy: [Key: HierarchyNode<Key>] = [:]
   
-  public var rootView: PlasticView {
-    return self.views[ROOT_KEY]!
-  }
+  private let rootFrame: CGRect
+  private let multiplier: CGFloat
 
-  init(rootFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
-    // root element
-    self.views[ROOT_KEY] = PlasticView(
+  lazy public private(set) var rootView: PlasticView = {
+    return PlasticView(
       hierarchyManager: self,
       key: ROOT_KEY,
-      multiplier: multiplier,
-      frame: rootFrame
+      multiplier: self.multiplier,
+      frame: self.rootFrame
     )
+  }()
+
+  init(rootFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
+    self.rootFrame = rootFrame
+    self.multiplier = multiplier
     
     // create children placeholders
     flattenChildren(children).forEach { (key, node) in
@@ -52,11 +56,10 @@ public class ViewsContainer {
     }
     
     // this is a kind of workaround.. basically in this way we automatically handle the root
-    hierarchy[ROOT_KEY] = .root
     self.nodeChildrenHierarchy(children, parentRepresentation: .root, accumulator: &hierarchy)
   }
   
-  public subscript(key: String) -> PlasticView? {
+  public subscript(key: Key) -> PlasticView? {
     return self.views[key]
   }
 }
@@ -65,8 +68,9 @@ public class ViewsContainer {
 // MARK: Hierarchy Manager
 extension ViewsContainer: HierarchyManager {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
+    
     guard let node = self.hierarchy[key] else {
-      fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+      fatalError("\(key) is not a valid node key")
     }
     
     let origin = self.resolveAbsoluteOrigin(fromNode: node)
@@ -75,7 +79,7 @@ extension ViewsContainer: HierarchyManager {
 
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     guard let node = self.hierarchy[key] else {
-      fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+      fatalError("\(key) is not a valid node key")
     }
     
     let origin = self.resolveAbsoluteOrigin(fromNode: node)
@@ -87,14 +91,14 @@ extension ViewsContainer: HierarchyManager {
     Two cases are trivial: root and managed by plastic (since plastic already holds an absolute value).
     When we have static frames (node without keys) we need to explore the hierarchy until we either find the root or a plastic node
   */
-  private func resolveAbsoluteOrigin(fromNode node: HierarchyNode) -> CGPoint {
+  private func resolveAbsoluteOrigin(fromNode node: HierarchyNode<Key>) -> CGPoint {
     switch node {
     case .root:
-      return CGPoint.zero
+      return self.rootFrame.origin
       
     case let .dynamicFrame(key):
       guard let node = self[key] else {
-        fatalError("\(key) is not a valid node key, this is most likely a bug in Plastic. Open an issue on GithHub")
+        fatalError("\(key) is not a valid node key")
       }
       
       return node.absoluteOrigin
@@ -134,13 +138,13 @@ private extension ViewsContainer {
    - StaticFrame: the parent is a node without key, we assume that the frame is static
    - DynamicFrame: the parent is a node with a key, it is managed by plastic
    */
-  private func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode, accumulator: inout [String: HierarchyNode]) -> Void {
+  private func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
     
     children.forEach { node in
       
-      let currentNode: HierarchyNode = {
+      let currentNode: HierarchyNode<Key> = {
         if let key = node.key {
-          return .dynamicFrame(key)
+          return .dynamicFrame(key.toEnumRawValue())
         }
         
         return .staticFrame(node.frame, parentRepresentation)
@@ -156,5 +160,31 @@ private extension ViewsContainer {
         nodeChildrenHierarchy(n.children, parentRepresentation: currentNode, accumulator: &accumulator)
       }
     }
+  }
+}
+
+private extension Dictionary where Key: RawRepresentable {
+  // Some magic tricks to have a less verbose syntax
+  // Basically always allow to access the dictionary with a string key, regardless the key type
+  // The bang is safe since in all the dictionaries we have in this file we enforce that the keys is effectvely a string
+  // using the static type checking
+  private subscript(key: String) -> Value? {
+    get {
+      let k = Key.init(rawValue: key as! Key.RawValue)!
+      return self[k]
+    }
+    
+    set(newValue) {
+      let k = Key.init(rawValue: key as! Key.RawValue)!
+      self[k] = newValue
+    }
+  }
+}
+
+private extension String {
+  // as before, this is just sugar syntax to avoid checks we know are already satisfied by
+  // the viewsContainer checks
+  private func toEnumRawValue<Key: RawRepresentable>() -> Key {
+    return Key.init(rawValue: self as! Key.RawValue)!
   }
 }

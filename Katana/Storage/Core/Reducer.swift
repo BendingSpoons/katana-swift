@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol AnyReducer {
-  static func _reduce(action: Action, state: State?) -> State
+  static func anyReduce(action: Action, state: State?) -> State
 }
 
 public protocol Reducer: AnyReducer {
@@ -18,7 +18,7 @@ public protocol Reducer: AnyReducer {
 }
 
 public extension Reducer {
-  static func _reduce(action: Action, state: State?) -> State {
+  static func anyReduce(action: Action, state: State?) -> State {
     guard let state = state else {
       return self.reduce(action: action, state: nil)
     }
