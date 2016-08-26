@@ -14,17 +14,16 @@ struct AppState : State {
   var instructionShown: Bool
 }
 
-struct AppStateActions {
-  typealias SetPinActionType = SyncAction<[Int]>
-  static let SetPinAction = SyncActionCreator<[Int]>(withName: "SetPin")
-  
-  typealias DismissInstructionsActionType = SyncAction<Bool>
-  static let DismissInstructionsAction = SyncActionCreator<Bool>(withName: "DismissInstructions")
 
-}
+typealias SetPinActionType = SyncAction<[Int]>
+let SetPinAction = SyncActionCreator<[Int]>(withName: "SetPin")
+
+typealias DismissInstructionsActionType = SyncAction<Bool>
+let DismissInstructionsAction = SyncActionCreator<Bool>(withName: "DismissInstructions")
+
 
 struct SetPingReducer : SyncReducer {
-  static func reduceSync(action: AppStateActions.SetPinActionType, state: AppState) -> AppState {
+  static func reduceSync(action: SetPinActionType, state: AppState) -> AppState {
     var state = state
     state.pin = action.payload
     return state
@@ -32,7 +31,7 @@ struct SetPingReducer : SyncReducer {
 }
 
 struct DismissInstructionsReducer : SyncReducer {
-  static func reduceSync(action: AppStateActions.DismissInstructionsActionType, state: AppState) -> AppState {
+  static func reduceSync(action: DismissInstructionsActionType, state: AppState) -> AppState {
     var state = state
     state.instructionShown = true
     return state
@@ -44,8 +43,8 @@ struct AppReducer : ReducerCombiner   {
   
   static var initialState = AppState(pin: nil, instructionShown: false)
   static var reducers : [String:AnyReducer.Type] = [
-    AppStateActions.SetPinAction.actionName:SetPingReducer.self,
-    AppStateActions.DismissInstructionsAction.actionName:DismissInstructionsReducer.self
-
+    SetPinAction.actionName:SetPingReducer.self,
+    DismissInstructionsAction.actionName:DismissInstructionsReducer.self
+    
   ]
 }

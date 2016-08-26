@@ -49,13 +49,13 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
       return [
         Calculator(props: CalculatorProps().key(AppKeys.calculator)),
         InstructionPopup(props: InstructionPopupProps()
-          .onClose({ dispatch(AppStateActions.DismissInstructionsAction.with(payload: true)) })
+          .onClose({ dispatch(DismissInstructionsAction.with(payload: true)) })
           .key(AppKeys.popup))
       ]
     } else if (props.showCalculator) {
       return [
         Calculator(props: CalculatorProps()
-          .onPasswordSet({ dispatch(AppStateActions.SetPinAction.with(payload: $0)) })
+          .onPasswordSet({ dispatch(SetPinAction.with(payload: $0)) })
           .key(AppKeys.calculator)),
       ]
     } else {
