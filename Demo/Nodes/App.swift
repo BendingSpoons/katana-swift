@@ -47,10 +47,14 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     
     if (props.showCalculator) {
       return [
-        Calculator(props: CalculatorProps().key(AppKeys.calculator)),
+        Calculator(props: CalculatorProps()
+          .onPasswordSet({ dispatch(SetPinAction.with(payload: $0 )) })
+          .key(AppKeys.calculator)
+        ),
         InstructionPopup(props: InstructionPopupProps()
           .onClose({ dispatch(DismissInstructionsAction.with(payload: true)) })
-          .key(AppKeys.popup))
+          .key(AppKeys.popup)
+        )
       ]
 
     } else {
