@@ -84,8 +84,8 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
   
   static func childrenAnimationForNextRender(currentProps: AppProps,
                                              nextProps: AppProps,
-                                             currentState: AppState,
-                                             nextState: AppState,
+                                             currentState: EmptyState,
+                                             nextState: EmptyState,
                                              parentAnimation: Animation) -> Animation {
     
     return .simpleSpring(duration: 1, damping: 0.3, initialVelocity: 1)
