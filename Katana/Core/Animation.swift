@@ -25,9 +25,7 @@ public enum Animation {
   func animateBlock(_ block: () -> Void) -> Void {
     switch self {
     case .none:
-      UIView.setAnimationsEnabled(false)
       UIView.performWithoutAnimation(block)
-      UIView.setAnimationsEnabled(true)
      
     case let .simpleLinear(duration):
       UIView.animate(withDuration: duration, animations: block)
