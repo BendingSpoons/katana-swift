@@ -21,8 +21,12 @@ struct AppProps: Equatable, Frameable {
   }
 }
 
-struct App : NodeDescription, PlasticNodeDescription, PasticReferenceSizeNodeDescription, ConnectedNodeDescription {
+enum AppKeys: String,NodeDescriptionKeys {
+  case calculator, popup
+}
 
+struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeNodeDescription  {
+  
   typealias NativeView = UIView
   
   
@@ -40,19 +44,19 @@ struct App : NodeDescription, PlasticNodeDescription, PasticReferenceSizeNodeDes
                      update: (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
-
+    
     if (props.showPopup) {
       return [
-        Calculator(props: CalculatorProps().key("calculator")),
+        Calculator(props: CalculatorProps().key(AppKeys.calculator)),
         InstructionPopup(props: InstructionPopupProps()
           .onClose({ dispatch(AppStateActions.DismissInstructionsAction.with(payload: true)) })
-          .key("popup"))
+          .key(AppKeys.popup))
       ]
     } else if (props.showCalculator) {
       return [
         Calculator(props: CalculatorProps()
           .onPasswordSet({ dispatch(AppStateActions.SetPinAction.with(payload: $0)) })
-          .key("calculator")),
+          .key(AppKeys.calculator)),
       ]
     } else {
       return [
@@ -60,15 +64,13 @@ struct App : NodeDescription, PlasticNodeDescription, PasticReferenceSizeNodeDes
       ]
     }
     
+    
   }
   
-  static func layout(views: ViewsContainer,
-                     props: AppProps,
-                     state: EmptyState) -> Void {
-    
+  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) {
     let root = views.rootView
-    let popup = views["popup"]
-    let calculator = views["calculator"]
+    let popup = views[.popup]
+    let calculator = views[.calculator]
     
     popup?.fill(root)
     calculator?.fill(root)
@@ -80,6 +82,6 @@ struct App : NodeDescription, PlasticNodeDescription, PasticReferenceSizeNodeDes
     parentProps.showCalculator = storageState.pin == nil
     return parentProps
   }
-
+  
 }
 

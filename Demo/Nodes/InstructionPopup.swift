@@ -25,6 +25,10 @@ struct InstructionPopupProps : Equatable,Frameable,Keyable {
   }
 }
 
+enum InstructionPopupKeys : String,  NodeDescriptionKeys {
+  case overlay, container, title, button
+}
+
 struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   static var initialState = EmptyState()
   typealias NativeView = UIView
@@ -49,21 +53,21 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     
     return [
       View(props: ViewProps()
-        .key("overlay")
+        .key(InstructionPopupKeys.overlay)
         .color(UIColor(white: 0, alpha: 0.8))),
       
       View(props: ViewProps()
-        .key("container")
+        .key(InstructionPopupKeys.container)
         .color(0xE7E2D5)
         .cornerRadius(10)) {
           [
             Text(props: TextProps()
-              .key("title")
+              .key(InstructionPopupKeys.title)
               .text(text)
               .color(.clear)),
             
             Button(props: ButtonProps()
-              .key("button")
+              .key(InstructionPopupKeys.button)
               .color(.white)
               .color(.gray, state: .highlighted)
               .onTap(props.onClose)
@@ -74,14 +78,16 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     ]
   }
   
-  static func layout(views: ViewsContainer,
+  
+  
+  static func layout(views: ViewsContainer<InstructionPopupKeys>,
                      props: InstructionPopupProps,
                      state: EmptyState) -> Void {
     
-    let overlay = views["overlay"]!
-    let container = views["container"]!
-    let button = views["button"]!
-    let title = views["title"]!
+    let overlay = views[.overlay]!
+    let container = views[.container]!
+    let button = views[.button]!
+    let title = views[.title]!
     let root = views.rootView
     
     overlay.fill(root)
@@ -97,5 +103,3 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     button.height = .scalable(80)
   }
 }
-
-
