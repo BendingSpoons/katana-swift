@@ -72,6 +72,7 @@
 		A19B764A1D707CDD00238684 /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B76471D707CDD00238684 /* NSParagraphStyle+Katana.swift */; };
 		A19B764B1D707CDD00238684 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B76481D707CDD00238684 /* UIColor+Katana.swift */; };
 		A19B764D1D707CF800238684 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B764C1D707CF800238684 /* Commons.swift */; };
+		A19B764F1D707D7800238684 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19B764E1D707D7800238684 /* Animation.swift */; };
 		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
 		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
 		A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */; };
@@ -185,6 +186,7 @@
 		A19B76471D707CDD00238684 /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 		A19B76481D707CDD00238684 /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		A19B764C1D707CF800238684 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
+		A19B764E1D707D7800238684 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
 		A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 				A17FB83B1D6F234900CB8D7A /* PlasticNode.swift */,
 				81EA56F91D5F3AC800B6290E /* Node.swift */,
 				A1D09BEC1D674CEF0095BAF0 /* RootNode.swift */,
+				A19B764E1D707D7800238684 /* Animation.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -777,6 +780,7 @@
 				81EA56FD1D5F3AC800B6290E /* Node.swift in Sources */,
 				A1F1B9D71D6736870086C027 /* ReferenceNodeDescription.swift in Sources */,
 				A1F3202D1D6B1ACB000A98B3 /* NativeTableView.swift in Sources */,
+				A19B764F1D707D7800238684 /* Animation.swift in Sources */,
 				81EA57121D5F3BBA00B6290E /* TouchHandler.swift in Sources */,
 				A19B76441D707CBB00238684 /* NodeWithChildrenDescription.swift in Sources */,
 				A159DF691D65DF67009AE13F /* SagaModule.swift in Sources */,

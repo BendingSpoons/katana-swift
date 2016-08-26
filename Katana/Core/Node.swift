@@ -17,6 +17,7 @@ public protocol AnyNode: class, PlasticMultiplierProvider {
 
   func draw(container: DrawableContainer)
   func update(description: AnyNodeDescription) throws
+  func update(description: AnyNodeDescription, parentAnimation: Animation) throws
 }
 
 public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
@@ -65,26 +66,35 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
 // MARK: Update
 extension Node {
   func update(state: Description.State)  {
-    self.update(state: state, description: self.typedDescription)
+    self.update(state: state, description: self.typedDescription, parentAnimation: .none)
   }
   
   public func update(description: AnyNodeDescription) throws {
-    var description = description as! Description
-    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(state: self.state, description: description)
+    try self.update(description: description, parentAnimation: .none)
   }
   
-  func update(state: Description.State, description: Description) {
+  public func update(description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
+    var description = description as! Description
+    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
+    self.update(state: self.state, description: description, parentAnimation: animation)
+  }
+  
+  private func update(state: Description.State, description: Description, parentAnimation: Animation) {
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
     
-    let sameProps = self.typedDescription.props == description.props
-    let sameState = self.state == state
-    
-    if (sameProps && sameState) {
+    guard self.typedDescription.props != description.props || self.state != state else {
       return
     }
+    
+    let childrenAnimation = self.typedDescription.dynamicType.childrenAnimationForNextRender(
+      currentProps: self.typedDescription.props,
+      nextProps: description.props,
+      currentState: self.state,
+      nextState: state,
+      parentAnimation: parentAnimation
+    )
     
     self.typedDescription = description
     self.state = state
@@ -102,7 +112,6 @@ extension Node {
       }
     }
     
-    
     let update = { [weak self] (state: Description.State) -> Void in
       self?.update(state: state)
     }
@@ -113,7 +122,34 @@ extension Node {
                                          dispatch: self.store.dispatch)
     
     newChildren = self.processChildrenBeforeDraw(newChildren)
-    self.updateHierarchy(newChildren: newChildren, currentChildren: currentChildren)
+    
+    var nodes : [AnyNode] = []
+    var viewIndexes : [Int] = []
+    var childrenToAdd : [AnyNode] = []
+    
+    for newChild in newChildren {
+      let key = newChild.replaceKey()
+      
+      if currentChildren[key]?.count > 0 {
+        let replacement = currentChildren[key]!.removeFirst()
+        assert(replacement.node.description.replaceKey() == newChild.replaceKey())
+        
+        try! replacement.node.update(description: newChild, parentAnimation: childrenAnimation)
+        
+        nodes.append(replacement.node)
+        viewIndexes.append(replacement.index)
+        
+      } else {
+        //else create a new node
+        let node = newChild.node(parentNode: self)
+        viewIndexes.append(children.count + childrenToAdd.count)
+        nodes.append(node)
+        childrenToAdd.append(node)
+      }
+    }
+    
+    self.children = nodes
+    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
 }
 
@@ -144,66 +180,40 @@ extension Node {
     
     self.container = container.add { Description.NativeView() }
     
+    let update = { [weak self] (state: Description.State) -> Void in
+      self?.update(state: state)
+    }
+    
     self.container?.update { view in
       Description.applyPropsToNativeView(props: self.typedDescription.props,
                                          state: self.state,
                                          view: view as! Description.NativeView,
-                                         update: self.update,
+                                         update: update,
                                          node: self)
     }
     
     children.forEach { $0.draw(container: self.container!) }
   }
   
-  
-  private func updateHierarchy(newChildren: [AnyNodeDescription], currentChildren: ChildrenDictionary) {
-    guard let children = self.children else {
-      fatalError("update should not be called at this time")
-    }
-    
-    var nodes : [AnyNode] = []
-    var viewIndexes : [Int] = []
-    var childrenToAdd : [AnyNode] = []
-    var currentChildren = currentChildren
-    
-    for newChild in newChildren {
-      let key = newChild.replaceKey()
-      
-      if currentChildren[key]?.count > 0 {
-        let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.description.replaceKey() == newChild.replaceKey())
-        
-        try! replacement.node.update(description: newChild)
-        
-        nodes.append(replacement.node)
-        viewIndexes.append(replacement.index)
-        
-      } else {
-        //else create a new node
-        let node = newChild.node(parentNode: self)
-        viewIndexes.append(children.count + childrenToAdd.count)
-        nodes.append(node)
-        childrenToAdd.append(node)
-      }
-    }
-    
-    self.children = nodes
-    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes)
-  }
-  
-  private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int]) {
+  private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
     guard let container = self.container else {
       return
     }
     
     assert(viewIndexes.count == self.children?.count)
     
-    container.update { view in
-      Description.applyPropsToNativeView(props: self.typedDescription.props,
-                                         state: self.state,
-                                         view: view as! Description.NativeView,
-                                         update: self.update,
-                                         node: self)
+    let update = { [weak self] (state: Description.State) -> Void in
+      self?.update(state: state)
+    }
+    
+    animation.animateBlock {
+      container.update { view in
+        Description.applyPropsToNativeView(props: self.typedDescription.props,
+                                           state: self.state,
+                                           view: view as! Description.NativeView,
+                                           update: update,
+                                           node: self)
+      }
     }
     
     childrenToAdd.forEach { node in

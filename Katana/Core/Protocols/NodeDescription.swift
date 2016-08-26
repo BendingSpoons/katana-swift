@@ -38,6 +38,12 @@ public protocol NodeDescription : AnyNodeDescription {
                      update: (State)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription]
   
+  static func childrenAnimationForNextRender(currentProps: Props,
+                                             nextProps: Props,
+                                             currentState: State,
+                                             nextState: State,
+                                             parentAnimation: Animation) -> Animation
+  
   func replaceKey() -> Int
 }
 
@@ -72,6 +78,14 @@ extension NodeDescription {
                                      update: (State)->(),
                                      node: AnyNode) ->  Void {
     view.frame = props.frame
+  }
+  
+  public static func childrenAnimationForNextRender(currentProps: Props,
+                                                    nextProps: Props,
+                                                    currentState: State,
+                                                    nextState: State,
+                                                    parentAnimation: Animation) -> Animation {
+    return parentAnimation
   }
   
   public func node(store: AnyStore) -> RootNode {
