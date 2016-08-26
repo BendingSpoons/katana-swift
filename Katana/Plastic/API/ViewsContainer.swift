@@ -94,7 +94,7 @@ extension ViewsContainer: HierarchyManager {
   private func resolveAbsoluteOrigin(fromNode node: HierarchyNode<Key>) -> CGPoint {
     switch node {
     case .root:
-      return CGPoint.zero
+      return self.rootFrame.origin
       
     case let .dynamicFrame(key):
       guard let node = self[key] else {
