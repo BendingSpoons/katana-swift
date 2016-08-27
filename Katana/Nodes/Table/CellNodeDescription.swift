@@ -25,7 +25,7 @@ public extension CellNodeDescription {
   public static func applyPropsToNativeView(props: Props,
                                             state: State,
                                             view: NativeView,
-                                            update: (State)->(),
+                                            update: @escaping (State)->(),
                                             concreteNode: AnyNode) ->  Void {
 
     view.frame = props.frame

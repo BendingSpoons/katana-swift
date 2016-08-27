@@ -66,7 +66,7 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
     self.props = props
   }
   
-  public init(props: ViewProps, _ children: @noescape () -> [AnyNodeDescription]) {
+  public init(props: ViewProps, _ children: () -> [AnyNodeDescription]) {
     self.props = props
     self.props.children = children()
   }

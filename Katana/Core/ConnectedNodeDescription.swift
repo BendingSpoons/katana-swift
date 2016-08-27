@@ -25,6 +25,6 @@ public extension ConnectedNodeDescription {
       return self.connect(parentProps: p, storageState: s)
     }
     
-    fatalError("invalid signature of the connect function of \(self.dynamicType)")
+    fatalError("invalid signature of the connect function of \(type(of: self))")
   }
 }

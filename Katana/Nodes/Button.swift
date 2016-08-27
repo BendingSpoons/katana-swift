@@ -59,7 +59,12 @@ public struct Button : NodeDescription {
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
-      update(pressed)
+      
+      /********
+      FIX ME
+      ********/
+    
+      //update(pressed)
       if (!pressed) {
         props.onTap?()
       }

@@ -18,8 +18,8 @@ import UIKit
 private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
 public class NativeTableView: UITableView {
-  private weak var parentNode: AnyNode?
-  private var katanaDelegate: TableDelegate?
+  private(set) weak var parentNode: AnyNode?
+  private(set) var katanaDelegate: TableDelegate?
   
   override public init(frame: CGRect, style: UITableViewStyle) {
     super.init(frame: frame, style: style)

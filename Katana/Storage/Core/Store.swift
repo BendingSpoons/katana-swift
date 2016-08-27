@@ -11,24 +11,24 @@ import Foundation
 // TODO: move these in a separate file as soon as the typealias bug has been fixed
 public typealias StoreListener = () -> Void
 public typealias StoreUnsubscribe = () -> ()
-public typealias StoreMiddleware<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
+public typealias StoreMiddleware<RootReducer: Reducer> = (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
 public typealias StoreDispatch = (_: Action) -> Void
 public typealias StoreGetState<RootReducer: Reducer> = () -> RootReducer.StateType
 
-private func compose(_ middlewares: [(next: StoreDispatch) -> (action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
+private func compose(_ middlewares: [(_ next: StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
   guard middlewares.count > 0 else {
     return storeDispatch
   }
   
   guard middlewares.count > 1 else {
-    return middlewares.first!(next: storeDispatch)
+    return middlewares.first!(storeDispatch)
   }
   
   var m = middlewares
   let last = m.removeLast()
   
-  return m.reduce(last(next: storeDispatch), { chain, middleware in
-    return middleware(next: chain)
+  return m.reduce(last(storeDispatch), { chain, middleware in
+    return middleware(chain)
   })
 }
 
@@ -38,7 +38,7 @@ public class Store<RootReducer: Reducer> {
   private let middlewares: [StoreMiddleware<RootReducer>]
   
   lazy private var dispatchFunction: StoreDispatch = {
-    let m = self.middlewares.map { $0(store: self) }
+    let m = self.middlewares.map { $0(self) }
     return compose(m, storeDispatch: self.performDispatch)
   }()
   

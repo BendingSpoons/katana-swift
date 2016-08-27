@@ -58,17 +58,13 @@ public class PlasticView {
     self.multiplier = multiplier
     self.hierarchyManager = hierarchyManager
   }
-}
 
-// MARK: Scalable methods
-extension PlasticView {
+  
   func scaleValue(_ value: Value) -> CGFloat {
     return value.scale(multiplier)
   }
-}
 
-// MARK: Update frame and absolute origin
-extension PlasticView {
+  
   private func updateHeight(_ newValue: CGFloat) -> Void {
     self.frame.size.height = newValue
   }
@@ -88,10 +84,8 @@ extension PlasticView {
     self.frame.origin.y = relativeValue
     self.absoluteOrigin.y = newValue
   }
-}
 
-// MARK: Height
-extension PlasticView {
+  
   public var height: Value {
     get {
       return .fixed(self.frame.size.height)
@@ -118,10 +112,8 @@ extension PlasticView {
     self.updateY(newTop)
     self.updateHeight(newHeight)
   }
-}
 
-// MARK: Width
-extension PlasticView {
+  
   public var width: Value {
     get {
       return .fixed(self.frame.size.width)
@@ -148,10 +140,8 @@ extension PlasticView {
     self.updateX(newLeft)
     self.updateWidth(newWidth)
   }
-}
 
-// MARK: Bottom
-extension PlasticView {
+  
   public var bottom: Anchor {
     get {
       return Anchor(kind: .bottom, view: self)
@@ -178,10 +168,8 @@ extension PlasticView {
     self.updateY(newBottom - newHeight)
     self.updateHeight(newHeight)
   }
-}
 
-// MARK: Top
-extension PlasticView {
+  
   public var top: Anchor {
     get {
       return Anchor(kind: .top, view: self)
@@ -208,10 +196,8 @@ extension PlasticView {
     self.updateY(newTop)
     self.updateHeight(newHeight)
   }
-}
 
-// MARK: Right
-extension PlasticView {
+  
   public var right: Anchor {
     get {
       return Anchor(kind: .right, view: self)
@@ -238,10 +224,8 @@ extension PlasticView {
     self.updateX(newRight - newWidth);
     self.updateWidth(newWidth)
   }
-}
 
-// MARK: Left
-extension PlasticView {
+  
   public var left: Anchor {
     get {
       return Anchor(kind: .left, view: self)
@@ -269,10 +253,8 @@ extension PlasticView {
     self.updateX(newLeft)
     self.updateWidth(newWidth)
   }
-}
 
-// MARK: CenterX
-extension PlasticView {
+  
   public var centerX: Anchor {
     get {
       return Anchor(kind: .centerX, view: self)
@@ -300,10 +282,8 @@ extension PlasticView {
     self.updateX(newCenterX - newWidth / 2.0)
     self.updateWidth(newWidth)
   }
-}
 
-// MARK: CenterY
-extension PlasticView {
+  
   public var centerY: Anchor {
     get {
       return Anchor(kind: .centerY, view: self)
@@ -331,11 +311,7 @@ extension PlasticView {
     self.updateY(newCenterY - newHeight / 2.0)
     self.updateHeight(newHeight)
   }
-}
 
-
-// MARK: Size
-extension PlasticView {
   public var size: Size {
     get {
       return .fixed(self.frame.width, self.frame.height)

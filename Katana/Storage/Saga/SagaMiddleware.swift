@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: remove this as soon as the typealias bug has been fixed
-public typealias StoreMiddleware2<RootReducer: Reducer> = (store: Store<RootReducer>) -> (next: StoreDispatch) -> (action: Action) -> Void
+public typealias StoreMiddleware2<RootReducer: Reducer> = (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
 
 private func handleAction<RootReducer: Reducer>(
     _ action: Action,
@@ -22,7 +22,7 @@ private func handleAction<RootReducer: Reducer>(
   let actionSagas = sagas[actionName]
   
   actionSagas?.forEach { saga in
-    saga(action: action, getState: store.getState, dispatch: store.dispatch, providers: providersContainer)
+    saga(action, store.getState, store.dispatch, providersContainer)
   }
 }
 

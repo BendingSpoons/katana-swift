@@ -12,7 +12,7 @@ public struct SyncAction<Payload>: Action {
   public let payload: Payload
   public private(set) var actionName: String
   
-  private init(actionName: String, payload: Payload) {
+  internal init(actionName: String, payload: Payload) {
     self.actionName = actionName
     self.payload = payload
   }

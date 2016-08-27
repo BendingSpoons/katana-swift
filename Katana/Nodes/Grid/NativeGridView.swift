@@ -11,8 +11,8 @@ import Foundation
 private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
 public class NativeGridView: UICollectionView {
-  private weak var parentNode: AnyNode?
-  private var katanaDelegate: GridDelegate?
+  private(set) weak var parentNode: AnyNode?
+  private(set) var katanaDelegate: GridDelegate?
 
   convenience init() {
     self.init(frame: CGRect.zero, collectionViewLayout: NativeGridLayout())

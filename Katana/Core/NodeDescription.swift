@@ -98,9 +98,9 @@ extension NodeDescription {
   
   public func replaceKey() -> Int {
     if let props = self.props as? Keyable, let key = props.key {
-      return "\(ObjectIdentifier(self.dynamicType).hashValue)_\(key)".hashValue
+      return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue
     }
 
-    return ObjectIdentifier(self.dynamicType).hashValue
+    return ObjectIdentifier(type(of: self)).hashValue
   }
 }

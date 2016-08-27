@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol ConnectedNode {
+protocol ConnectedNode : AnyNode {
   var description: AnyNodeDescription { get }
   func storeDidChange()
   func update(description: AnyNodeDescription) throws

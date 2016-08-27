@@ -52,7 +52,7 @@ class NativeTableViewCell: UITableViewCell {
   
   func didTap(atIndexPath indexPath: IndexPath) {
     if let description = self.node?.description as? AnyCellNodeDescription, let store = node?.store {
-      description.dynamicType.anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
+      type(of: description).anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }
   

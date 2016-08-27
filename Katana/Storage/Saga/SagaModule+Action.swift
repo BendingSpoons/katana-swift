@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: remove this and use sagaTypes as soon as the typealias bug has been fixed
-public typealias Saga3<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (action: ManagedAction, getState: () -> RootReducer.StateType, dispatch: StoreDispatch, providers: Providers) -> Void
+public typealias Saga3<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (_ action: ManagedAction, _ getState: () -> RootReducer.StateType, _ dispatch: StoreDispatch, _ providers: Providers) -> Void
 
 extension SagaModule {
   mutating func addSaga<RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>, Payload>(
@@ -33,7 +33,7 @@ extension SagaModule {
       action, getState, dispatch, providers in
 
       if action.state == .loading {
-        saga(action: action, getState: getState, dispatch: dispatch, providers: providers)
+        saga(action, getState, dispatch, providers)
       }
     }
     

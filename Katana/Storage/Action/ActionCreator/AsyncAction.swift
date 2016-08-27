@@ -8,18 +8,19 @@
 
 import Foundation
 
-enum AsyncActionState {
+public enum AsyncActionState {
   case loading, completed, error
 }
 
-struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
+public struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
+  
   let payload: Payload?
   let completedPayload: CompletedPayload?
   let errorPayload: ErrorPayload?
   let state: AsyncActionState
-  private(set) var actionName: String
+  public private(set) var actionName: String
   
-  private init(actionName: String, payload: Payload) {
+  internal init(actionName: String, payload: Payload) {
     self.actionName = actionName
     self.payload = payload
     self.completedPayload = nil
@@ -27,7 +28,7 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
     self.state = .loading
   }
   
-  private init(actionName: String, completedPayload: CompletedPayload) {
+  internal init(actionName: String, completedPayload: CompletedPayload) {
     self.actionName = actionName
     self.payload = nil
     self.completedPayload = completedPayload
@@ -35,7 +36,7 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
     self.state = .completed
   }
   
-  private init(actionName: String, errorPayload: ErrorPayload) {
+  internal init(actionName: String, errorPayload: ErrorPayload) {
     self.actionName = actionName
     self.payload = nil
     self.completedPayload = nil
@@ -45,12 +46,12 @@ struct AsyncAction<Payload, CompletedPayload, ErrorPayload>: Action {
   
   func completedAction(payload: CompletedPayload) -> AsyncAction<Payload, CompletedPayload, ErrorPayload> {
     assert(self.state == .loading, "Cannot Invoked this method on actions that are not in the loading state")
-    return self.dynamicType.init(actionName: self.actionName, completedPayload: payload)
+    return type(of: self).init(actionName: self.actionName, completedPayload: payload)
   }
   
   func errorAction(payload: ErrorPayload) -> AsyncAction<Payload, CompletedPayload, ErrorPayload> {
     assert(self.state == .loading, "Cannot Invoked this method on actions that are not in the loading state")
-    return self.dynamicType.init(actionName: self.actionName, errorPayload: payload)
+    return type(of: self).init(actionName: self.actionName, errorPayload: payload)
   }
 }
 

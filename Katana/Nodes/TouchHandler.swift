@@ -23,7 +23,7 @@ public struct TouchHandlerProps: Equatable, Frameable, Childrenable  {
     return true
   }
   
-  public func touchHandler(_ touchHandler: (Bool)->()) -> TouchHandlerProps {
+  public func touchHandler(_ touchHandler: ((Bool)->())?) -> TouchHandlerProps {
     var copy = self
     copy.touchHandler = touchHandler
     return copy
@@ -60,7 +60,7 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
     self.props = props
   }
   
-  public init(props: TouchHandlerProps, _ children: @noescape () -> [AnyNodeDescription]) {
+  public init(props: TouchHandlerProps, _ children: () -> [AnyNodeDescription]) {
     self.props = props
     self.props.children = children()
   }

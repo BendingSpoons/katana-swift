@@ -9,7 +9,7 @@
 import Foundation
 
 // TODO: remove this and use sagaTypes as soon as the typealias bug has been fixed
-public typealias Saga2<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (action: ManagedAction, getState: () -> RootReducer.StateType, dispatch: StoreDispatch, providers: Providers) -> Void
+public typealias Saga2<ManagedAction: Action, RootReducer: Reducer, Providers: SagaProvidersContainer<RootReducer>> = (_ action: ManagedAction, _ getState: () -> RootReducer.StateType, _ dispatch: StoreDispatch, _ providers: Providers) -> Void
 
 public struct SagaModule {
   private(set) var sagas: [String: AnySaga] = [:]
@@ -23,7 +23,7 @@ public struct SagaModule {
           let gS = getState as? () -> RootReducer.StateType,
           let p = providers as? Providers {
 
-        saga(action: a, getState: gS, dispatch: dispatch, providers: p)
+        saga(a, gS, dispatch, p)
         return
       }
     

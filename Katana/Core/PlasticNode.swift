@@ -9,6 +9,7 @@
 import Foundation
 
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>, NodeWithPlastic {
+  
   override func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     let newChildren = super.processChildrenBeforeDraw(children)
     return self.applyLayout(to: newChildren, description: self.typedDescription)
@@ -19,7 +20,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     let frame = self.typedDescription.props.frame
     
     let container = ViewsContainer<Description.Keys>(rootFrame: frame, children: children, multiplier: multiplier)
-    description.dynamicType.anyLayout(views: container, props: self.typedDescription.props, state: self.state)
+    type(of: description).anyLayout(views: container, props: self.typedDescription.props, state: self.state)
     
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }

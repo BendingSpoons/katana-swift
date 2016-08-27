@@ -29,7 +29,7 @@ internal let VIEW_TAG = 999987
 
 extension UIView : DrawableContainer {
   public struct UIViewDrawableContainerChild : DrawableContainerChild {
-    private var view : UIView
+    private(set) var view : UIView
   }
   
   public func removeAll() {

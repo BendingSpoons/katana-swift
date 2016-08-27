@@ -13,6 +13,7 @@ struct CalculatorProps : Equatable,Frameable,Keyable {
   var frame: CGRect = CGRect.zero
   var onPasswordSet: (([Int])->())?
   var key: String?
+
   
   static func ==(lhs: CalculatorProps, rhs: CalculatorProps) -> Bool {
     return false
@@ -135,11 +136,17 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
       for (cellNumber, cell) in row.cells.enumerated() {
         let key = CalculatorKeys.button(row: rowNumber, column: cellNumber)
         
+        
         buttons.append(Button(props: ButtonProps()
           .color(cell.color)
           .key(key)
           .borderWidth(0.5)
-          .text(cell.text, fontSize: 15)
+          
+          /****
+           FIXME
+          ****/
+          
+          .text("", fontSize: 15)
           .onTap({
             props.onPasswordSet?([1,5,9,8])
           })

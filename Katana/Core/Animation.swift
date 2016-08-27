@@ -22,7 +22,7 @@ public enum Animation {
   case spring(duration: TimeInterval, damping: CGFloat, initialVelocity: CGFloat, options: UIViewAnimationOptions, delay: TimeInterval)
   
   
-  func animateBlock(_ block: () -> Void) -> Void {
+  func animateBlock(_ block: @escaping ()->() ) {
     switch self {
     case .none:
       UIView.performWithoutAnimation(block)

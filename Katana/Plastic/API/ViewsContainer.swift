@@ -10,7 +10,7 @@ import UIKit
 
 private let ROOT_KEY = "//ROOT_KEY\\"
 
-private enum HierarchyNode<Key: RawRepresentable & Hashable> {
+internal enum HierarchyNode<Key> where Key : RawRepresentable & Hashable {
   // the node is the root node
   case root
   
@@ -22,7 +22,9 @@ private enum HierarchyNode<Key: RawRepresentable & Hashable> {
   case dynamicFrame(Key)
 }
 
-public class ViewsContainer<Key: RawRepresentable & Hashable & Comparable> {
+public class ViewsContainer<Key> : HierarchyManager
+  where Key : RawRepresentable & Hashable & Comparable {
+  
   // an association between the key and the plastic view
   private(set) var views: [Key: PlasticView] = [:]
   
@@ -46,8 +48,10 @@ public class ViewsContainer<Key: RawRepresentable & Hashable & Comparable> {
     self.multiplier = multiplier
     
     // create children placeholders
-    flattenChildren(children).forEach { (key, node) in
-      self.views[key] = PlasticView(
+    flattenChildren(children).forEach { key,node in
+
+      
+      self.views[(key as! Key)] = PlasticView(
         hierarchyManager: self,
         key: key,
         multiplier: multiplier,
@@ -62,14 +66,10 @@ public class ViewsContainer<Key: RawRepresentable & Hashable & Comparable> {
   public subscript(key: Key) -> PlasticView? {
     return self.views[key]
   }
-}
 
-
-// MARK: Hierarchy Manager
-extension ViewsContainer: HierarchyManager {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     
-    guard let node = self.hierarchy[key] else {
+    guard let node = self.hierarchy[(key as! Key)] else {
       fatalError("\(key) is not a valid node key")
     }
     
@@ -78,7 +78,7 @@ extension ViewsContainer: HierarchyManager {
   }
 
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
-    guard let node = self.hierarchy[key] else {
+    guard let node = self.hierarchy[(key as! Key)] else {
       fatalError("\(key) is not a valid node key")
     }
     
@@ -112,8 +112,8 @@ extension ViewsContainer: HierarchyManager {
   }
 }
 
-private extension ViewsContainer {
-  private func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
+internal extension ViewsContainer {
+  internal func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
     return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
       
       var flatChildren: [(String, AnyNodeDescription)] = []
@@ -138,7 +138,7 @@ private extension ViewsContainer {
    - StaticFrame: the parent is a node without key, we assume that the frame is static
    - DynamicFrame: the parent is a node with a key, it is managed by plastic
    */
-  private func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
+  internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
     
     children.forEach { node in
       
@@ -153,7 +153,7 @@ private extension ViewsContainer {
       
       if let key = node.key {
         // if the node has a key, let's add it to the accumulator
-        accumulator[key] = parentRepresentation
+        accumulator[(key as! Key)] = parentRepresentation
       }
       
       if let n = node as? AnyNodeWithChildrenDescription {
@@ -181,10 +181,10 @@ private extension Dictionary where Key: RawRepresentable {
   }
 }
 
-private extension String {
+internal extension String {
   // as before, this is just sugar syntax to avoid checks we know are already satisfied by
   // the viewsContainer checks
-  private func toEnumRawValue<Key: RawRepresentable>() -> Key {
+  internal func toEnumRawValue<Key: RawRepresentable>() -> Key {
     return Key.init(rawValue: self as! Key.RawValue)!
   }
 }

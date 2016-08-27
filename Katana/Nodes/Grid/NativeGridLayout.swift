@@ -13,7 +13,7 @@ private enum LayoutType {
 }
 
 class NativeGridLayout: UICollectionViewFlowLayout {
-  private var layoutType: LayoutType
+  fileprivate var layoutType: LayoutType
   var plasticMultiplier: CGFloat?
   
   override public init() {
