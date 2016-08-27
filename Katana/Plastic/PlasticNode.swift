@@ -16,7 +16,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
   }
   
   func applyLayout(to children: [AnyNodeDescription], description: Description) -> [AnyNodeDescription] {
-    let multiplier = self.getPlasticMultiplier()
+    let multiplier = self.plasticMultipler
     let frame = self.typedDescription.props.frame
     
     let container = ViewsContainer<Description.Keys>(rootFrame: frame, children: children, multiplier: multiplier)

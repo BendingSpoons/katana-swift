@@ -8,7 +8,6 @@
 
 import UIKit
 
-// A node that is able to provide a plastic multiplier
 public protocol PlasticMultiplierProvider {
-  func getPlasticMultiplier() -> CGFloat
+  var plasticMultipler : CGFloat { get }
 }

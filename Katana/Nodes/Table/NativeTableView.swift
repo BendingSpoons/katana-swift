@@ -76,7 +76,7 @@ extension NativeTableView: UITableViewDataSource  {
   @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
     if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
       let height = delegate.height(forRowAt: indexPath)
-      return height.scale(parentNode.getPlasticMultiplier())
+      return height.scale(parentNode.plasticMultipler)
     }
     
     return 0

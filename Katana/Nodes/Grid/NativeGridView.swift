@@ -35,7 +35,7 @@ public class NativeGridView: UICollectionView {
     // TODO: maybe check for equality somehow here?
     
     let layout = self.collectionViewLayout as! NativeGridLayout
-    layout.update(withProps: props, multiplier: parentNode.getPlasticMultiplier())
+    layout.update(withProps: props, multiplier: parentNode.plasticMultipler)
     self.collectionViewLayout = layout
     
     self.katanaDelegate = delegate

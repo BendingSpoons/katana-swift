@@ -228,10 +228,11 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
   }
-
-  public func getPlasticMultiplier() -> CGFloat {
+  
+  public var plasticMultipler: CGFloat {
+    
     guard let description = self.typedDescription as? PlasticReferenceSizeNodeDescription else {
-      return self.parentNode?.getPlasticMultiplier() ?? 0.0
+      return self.parentNode?.plasticMultipler ?? 0.0
     }
     
     let referenceSize = type(of: description).referenceSize()
