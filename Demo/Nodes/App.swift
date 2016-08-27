@@ -25,7 +25,7 @@ enum AppKeys: String,NodeDescriptionKeys {
   case calculator, popup
 }
 
-struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeNodeDescription  {
+struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
   
   typealias NativeView = UIView
   
@@ -35,7 +35,7 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
   
   var props : AppProps
   
-  static func referenceSize() -> CGSize {
+  static var referenceSize: CGSize {
     return CGSize(width: 640, height: 960)
   }
   

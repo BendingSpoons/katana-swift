@@ -63,7 +63,7 @@
 		816697711D722C3000CE2547 /* PlasticNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697631D722C3000CE2547 /* PlasticNodeDescription.swift */; };
 		816697721D722C3000CE2547 /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697641D722C3000CE2547 /* PlasticView.swift */; };
 		816697731D722C3000CE2547 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697651D722C3000CE2547 /* PlasticView+Convenience.swift */; };
-		816697741D722C3000CE2547 /* ReferenceNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697661D722C3000CE2547 /* ReferenceNodeDescription.swift */; };
+		816697741D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697661D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift */; };
 		816697751D722C3000CE2547 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697671D722C3000CE2547 /* Size.swift */; };
 		816697761D722C3000CE2547 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697681D722C3000CE2547 /* Value.swift */; };
 		816697771D722C3000CE2547 /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 816697691D722C3000CE2547 /* ViewsContainer.swift */; };
@@ -178,7 +178,7 @@
 		816697631D722C3000CE2547 /* PlasticNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescription.swift; sourceTree = "<group>"; };
 		816697641D722C3000CE2547 /* PlasticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticView.swift; sourceTree = "<group>"; };
 		816697651D722C3000CE2547 /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
-		816697661D722C3000CE2547 /* ReferenceNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReferenceNodeDescription.swift; sourceTree = "<group>"; };
+		816697661D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescriptionWithReferenceSize.swift; sourceTree = "<group>"; };
 		816697671D722C3000CE2547 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		816697681D722C3000CE2547 /* Value.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Value.swift; sourceTree = "<group>"; };
 		816697691D722C3000CE2547 /* ViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsContainer.swift; sourceTree = "<group>"; };
@@ -254,20 +254,20 @@
 		813E58A21D71B8650000DE20 /* Plastic */ = {
 			isa = PBXGroup;
 			children = (
-				8166975D1D722C3000CE2547 /* Anchor.swift */,
-				8166975E1D722C3000CE2547 /* Array+Plastic.swift */,
-				8166975F1D722C3000CE2547 /* EdgeInsets.swift */,
-				816697601D722C3000CE2547 /* HierarchyManager.swift */,
-				816697611D722C3000CE2547 /* PlasticMultiplierProvider.swift */,
 				816697621D722C3000CE2547 /* PlasticNode.swift */,
 				816697631D722C3000CE2547 /* PlasticNodeDescription.swift */,
+				816697611D722C3000CE2547 /* PlasticMultiplierProvider.swift */,
+				816697661D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift */,
 				816697641D722C3000CE2547 /* PlasticView.swift */,
-				816697651D722C3000CE2547 /* PlasticView+Convenience.swift */,
-				816697661D722C3000CE2547 /* ReferenceNodeDescription.swift */,
-				816697671D722C3000CE2547 /* Size.swift */,
-				816697681D722C3000CE2547 /* Value.swift */,
+				816697601D722C3000CE2547 /* HierarchyManager.swift */,
 				816697691D722C3000CE2547 /* ViewsContainer.swift */,
 				8166976A1D722C3000CE2547 /* ViewsContainer+Helpers.swift */,
+				8166975D1D722C3000CE2547 /* Anchor.swift */,
+				816697671D722C3000CE2547 /* Size.swift */,
+				816697681D722C3000CE2547 /* Value.swift */,
+				8166975F1D722C3000CE2547 /* EdgeInsets.swift */,
+				8166975E1D722C3000CE2547 /* Array+Plastic.swift */,
+				816697651D722C3000CE2547 /* PlasticView+Convenience.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -750,7 +750,7 @@
 				816697351D71CA1E00CE2547 /* Button.swift in Sources */,
 				816697421D71CA1E00CE2547 /* TouchHandler.swift in Sources */,
 				813E590D1D71B8840000DE20 /* Node.swift in Sources */,
-				816697741D722C3000CE2547 /* ReferenceNodeDescription.swift in Sources */,
+				816697741D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */,
 				813E59301D71B9BD0000DE20 /* NodeWithChildrenDescription.swift in Sources */,
 				813E591B1D71B8840000DE20 /* Action.swift in Sources */,
 				813E59231D71B8840000DE20 /* SagaProvidersContainer.swift in Sources */,

@@ -57,6 +57,8 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
   }
   
+  
+  // Customization point for sublcasses. It allowes to update the children before they get drawn
   func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
@@ -231,11 +233,11 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   
   public var plasticMultipler: CGFloat {
     
-    guard let description = self.typedDescription as? PlasticReferenceSizeNodeDescription else {
+    guard let description = self.typedDescription as? PlasticNodeDescriptionWithReferenceSize else {
       return self.parentNode?.plasticMultipler ?? 0.0
     }
     
-    let referenceSize = type(of: description).referenceSize()
+    let referenceSize = type(of: description).referenceSize
     let currentSize = self.typedDescription.frame
     
     let widthRatio = currentSize.width / referenceSize.width;

@@ -8,6 +8,7 @@
 
 import UIKit
 
+
 public protocol PlasticMultiplierProvider {
   var plasticMultipler : CGFloat { get }
 }
