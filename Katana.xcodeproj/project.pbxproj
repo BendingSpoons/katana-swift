@@ -15,21 +15,11 @@
 		813E590C1D71B8840000DE20 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58E91D71B8840000DE20 /* UIColor+Katana.swift */; };
 		813E590D1D71B8840000DE20 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58EA1D71B8840000DE20 /* Node.swift */; };
 		813E59151D71B8840000DE20 /* RootNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58F31D71B8840000DE20 /* RootNode.swift */; };
-		813E59161D71B8840000DE20 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58F71D71B8840000DE20 /* AsyncAction.swift */; };
-		813E59171D71B8840000DE20 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58F81D71B8840000DE20 /* SyncAction.swift */; };
-		813E59181D71B8840000DE20 /* AsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FA1D71B8840000DE20 /* AsyncReducer.swift */; };
-		813E59191D71B8840000DE20 /* ReducerCombiner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FB1D71B8840000DE20 /* ReducerCombiner.swift */; };
-		813E591A1D71B8840000DE20 /* SyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FC1D71B8840000DE20 /* SyncReducer.swift */; };
 		813E591B1D71B8840000DE20 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FE1D71B8840000DE20 /* Action.swift */; };
 		813E591C1D71B8840000DE20 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FF1D71B8840000DE20 /* AnyStore.swift */; };
 		813E591D1D71B8840000DE20 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59001D71B8840000DE20 /* Reducer.swift */; };
 		813E591E1D71B8840000DE20 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59011D71B8840000DE20 /* State.swift */; };
 		813E591F1D71B8840000DE20 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59021D71B8840000DE20 /* Store.swift */; };
-		813E59201D71B8840000DE20 /* SagaMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59041D71B8840000DE20 /* SagaMiddleware.swift */; };
-		813E59211D71B8840000DE20 /* SagaModule+Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59051D71B8840000DE20 /* SagaModule+Action.swift */; };
-		813E59221D71B8840000DE20 /* SagaModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59061D71B8840000DE20 /* SagaModule.swift */; };
-		813E59231D71B8840000DE20 /* SagaProvidersContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59071D71B8840000DE20 /* SagaProvidersContainer.swift */; };
-		813E59241D71B8840000DE20 /* SagaTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59081D71B8840000DE20 /* SagaTypes.swift */; };
 		813E592B1D71B9BD0000DE20 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59251D71B9BD0000DE20 /* Commons.swift */; };
 		813E592C1D71B9BD0000DE20 /* ConnectedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59261D71B9BD0000DE20 /* ConnectedNode.swift */; };
 		813E592D1D71B9BD0000DE20 /* ConnectedNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59271D71B9BD0000DE20 /* ConnectedNodeDescription.swift */; };
@@ -75,6 +65,7 @@
 		8192F38C1D6DA7CE00881600 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3851D6DA7CE00881600 /* NodeTest.swift */; };
 		8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */; };
 		8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3871D6DA7CE00881600 /* UIColorTest.swift */; };
+		81B831C91D74C349003E29A1 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831C81D74C349003E29A1 /* SyncAction.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
@@ -132,21 +123,11 @@
 		813E58E91D71B8840000DE20 /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		813E58EA1D71B8840000DE20 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813E58F31D71B8840000DE20 /* RootNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNode.swift; sourceTree = "<group>"; };
-		813E58F71D71B8840000DE20 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
-		813E58F81D71B8840000DE20 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
-		813E58FA1D71B8840000DE20 /* AsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncReducer.swift; sourceTree = "<group>"; };
-		813E58FB1D71B8840000DE20 /* ReducerCombiner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerCombiner.swift; sourceTree = "<group>"; };
-		813E58FC1D71B8840000DE20 /* SyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncReducer.swift; sourceTree = "<group>"; };
 		813E58FE1D71B8840000DE20 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		813E58FF1D71B8840000DE20 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
 		813E59001D71B8840000DE20 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		813E59011D71B8840000DE20 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		813E59021D71B8840000DE20 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		813E59041D71B8840000DE20 /* SagaMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaMiddleware.swift; sourceTree = "<group>"; };
-		813E59051D71B8840000DE20 /* SagaModule+Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "SagaModule+Action.swift"; sourceTree = "<group>"; };
-		813E59061D71B8840000DE20 /* SagaModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaModule.swift; sourceTree = "<group>"; };
-		813E59071D71B8840000DE20 /* SagaProvidersContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaProvidersContainer.swift; sourceTree = "<group>"; };
-		813E59081D71B8840000DE20 /* SagaTypes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaTypes.swift; sourceTree = "<group>"; };
 		813E59251D71B9BD0000DE20 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813E59261D71B9BD0000DE20 /* ConnectedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNode.swift; sourceTree = "<group>"; };
 		813E59271D71B9BD0000DE20 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
@@ -191,6 +172,7 @@
 		8192F3851D6DA7CE00881600 /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
 		8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		8192F3871D6DA7CE00881600 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
+		81B831C81D74C349003E29A1 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -304,39 +286,10 @@
 		813E58F41D71B8840000DE20 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				813E58F51D71B8840000DE20 /* Action */,
+				81B831C71D74C279003E29A1 /* SmartActions */,
 				813E58FD1D71B8840000DE20 /* Core */,
-				813E59031D71B8840000DE20 /* Saga */,
 			);
 			path = Storage;
-			sourceTree = "<group>";
-		};
-		813E58F51D71B8840000DE20 /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				813E58F61D71B8840000DE20 /* ActionCreator */,
-				813E58F91D71B8840000DE20 /* Reducer */,
-			);
-			path = Action;
-			sourceTree = "<group>";
-		};
-		813E58F61D71B8840000DE20 /* ActionCreator */ = {
-			isa = PBXGroup;
-			children = (
-				813E58F71D71B8840000DE20 /* AsyncAction.swift */,
-				813E58F81D71B8840000DE20 /* SyncAction.swift */,
-			);
-			path = ActionCreator;
-			sourceTree = "<group>";
-		};
-		813E58F91D71B8840000DE20 /* Reducer */ = {
-			isa = PBXGroup;
-			children = (
-				813E58FA1D71B8840000DE20 /* AsyncReducer.swift */,
-				813E58FB1D71B8840000DE20 /* ReducerCombiner.swift */,
-				813E58FC1D71B8840000DE20 /* SyncReducer.swift */,
-			);
-			path = Reducer;
 			sourceTree = "<group>";
 		};
 		813E58FD1D71B8840000DE20 /* Core */ = {
@@ -350,18 +303,6 @@
 				A1BD64BD1D745DE7009A766A /* typealiases.swift */,
 			);
 			path = Core;
-			sourceTree = "<group>";
-		};
-		813E59031D71B8840000DE20 /* Saga */ = {
-			isa = PBXGroup;
-			children = (
-				813E59041D71B8840000DE20 /* SagaMiddleware.swift */,
-				813E59051D71B8840000DE20 /* SagaModule+Action.swift */,
-				813E59061D71B8840000DE20 /* SagaModule.swift */,
-				813E59071D71B8840000DE20 /* SagaProvidersContainer.swift */,
-				813E59081D71B8840000DE20 /* SagaTypes.swift */,
-			);
-			path = Saga;
 			sourceTree = "<group>";
 		};
 		814C11071D6DFE0200324FCD /* Node */ = {
@@ -433,6 +374,14 @@
 				8192F3871D6DA7CE00881600 /* UIColorTest.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		81B831C71D74C279003E29A1 /* SmartActions */ = {
+			isa = PBXGroup;
+			children = (
+				81B831C81D74C349003E29A1 /* SyncAction.swift */,
+			);
+			path = SmartActions;
 			sourceTree = "<group>";
 		};
 		81EA56BD1D5F3A6000B6290E = {
@@ -757,22 +706,17 @@
 				816697741D722C3000CE2547 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */,
 				813E59301D71B9BD0000DE20 /* NodeWithChildrenDescription.swift in Sources */,
 				813E591B1D71B8840000DE20 /* Action.swift in Sources */,
-				813E59231D71B8840000DE20 /* SagaProvidersContainer.swift in Sources */,
 				816697411D71CA1E00CE2547 /* Text.swift in Sources */,
 				8166973F1D71CA1E00CE2547 /* Table.swift in Sources */,
 				8166976F1D722C3000CE2547 /* PlasticMultiplierProvider.swift in Sources */,
 				816697701D722C3000CE2547 /* PlasticNode.swift in Sources */,
 				8166973E1D71CA1E00CE2547 /* NativeTableViewCell.swift in Sources */,
 				813E59151D71B8840000DE20 /* RootNode.swift in Sources */,
-				813E59171D71B8840000DE20 /* SyncAction.swift in Sources */,
-				813E59191D71B8840000DE20 /* ReducerCombiner.swift in Sources */,
 				8166976E1D722C3000CE2547 /* HierarchyManager.swift in Sources */,
 				813E592D1D71B9BD0000DE20 /* ConnectedNodeDescription.swift in Sources */,
 				813E592C1D71B9BD0000DE20 /* ConnectedNode.swift in Sources */,
 				8166976B1D722C3000CE2547 /* Anchor.swift in Sources */,
-				813E59161D71B8840000DE20 /* AsyncAction.swift in Sources */,
 				813E590B1D71B8840000DE20 /* NSParagraphStyle+Katana.swift in Sources */,
-				813E59221D71B8840000DE20 /* SagaModule.swift in Sources */,
 				813E592B1D71B9BD0000DE20 /* Commons.swift in Sources */,
 				816697361D71CA1E00CE2547 /* Grid.swift in Sources */,
 				813E591D1D71B8840000DE20 /* Reducer.swift in Sources */,
@@ -780,20 +724,16 @@
 				816697711D722C3000CE2547 /* PlasticNodeDescription.swift in Sources */,
 				816697751D722C3000CE2547 /* Size.swift in Sources */,
 				816697431D71CA1E00CE2547 /* View.swift in Sources */,
+				81B831C91D74C349003E29A1 /* SyncAction.swift in Sources */,
 				813E590A1D71B8840000DE20 /* Collections+Katana.swift in Sources */,
-				813E59201D71B8840000DE20 /* SagaMiddleware.swift in Sources */,
 				8166976C1D722C3000CE2547 /* Array+Plastic.swift in Sources */,
 				813E590C1D71B8840000DE20 /* UIColor+Katana.swift in Sources */,
-				813E59211D71B8840000DE20 /* SagaModule+Action.swift in Sources */,
 				8166973A1D71CA1E00CE2547 /* NativeGridViewCell.swift in Sources */,
 				8166973C1D71CA1E00CE2547 /* CellNodeDescription.swift in Sources */,
 				816697401D71CA1E00CE2547 /* TableDelegate.swift in Sources */,
-				813E59241D71B8840000DE20 /* SagaTypes.swift in Sources */,
 				813E59091D71B8840000DE20 /* Animation.swift in Sources */,
-				813E591A1D71B8840000DE20 /* SyncReducer.swift in Sources */,
 				816697381D71CA1E00CE2547 /* NativeGridLayout.swift in Sources */,
 				813E591E1D71B8840000DE20 /* State.swift in Sources */,
-				813E59181D71B8840000DE20 /* AsyncReducer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
