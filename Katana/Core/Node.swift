@@ -128,7 +128,9 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     for newChild in newChildren {
       let key = newChild.replaceKey()
       
-      if (currentChildren[key]?.count)! > 0 {
+      let childrenCount = currentChildren[key]?.count ?? 0
+      
+      if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.description.replaceKey() == newChild.replaceKey())
         

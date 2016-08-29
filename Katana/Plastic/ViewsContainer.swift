@@ -50,8 +50,9 @@ public class ViewsContainer<Key> : HierarchyManager
     // create children placeholders
     flattenChildren(children).forEach { key,node in
 
-      
-      self.views[(key as! Key)] = PlasticView(
+      let enumKey = Key.init(rawValue: key as! Key.RawValue)!
+
+      self.views[enumKey] = PlasticView(
         hierarchyManager: self,
         key: key,
         multiplier: multiplier,
@@ -68,8 +69,9 @@ public class ViewsContainer<Key> : HierarchyManager
   }
 
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
+    let enumKey = Key.init(rawValue: key as! Key.RawValue)!
     
-    guard let node = self.hierarchy[(key as! Key)] else {
+    guard let node = self.hierarchy[enumKey] else {
       fatalError("\(key) is not a valid node key")
     }
     
@@ -78,7 +80,9 @@ public class ViewsContainer<Key> : HierarchyManager
   }
 
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
-    guard let node = self.hierarchy[(key as! Key)] else {
+    let enumKey = Key.init(rawValue: key as! Key.RawValue)!
+    
+    guard let node = self.hierarchy[enumKey] else {
       fatalError("\(key) is not a valid node key")
     }
     
@@ -153,30 +157,13 @@ internal extension ViewsContainer {
       
       if let key = node.key {
         // if the node has a key, let's add it to the accumulator
-        accumulator[(key as! Key)] = parentRepresentation
+        let enumKey = Key.init(rawValue: key as! Key.RawValue)!
+        accumulator[enumKey] = parentRepresentation
       }
       
       if let n = node as? AnyNodeWithChildrenDescription {
         nodeChildrenHierarchy(n.children, parentRepresentation: currentNode, accumulator: &accumulator)
       }
-    }
-  }
-}
-
-private extension Dictionary where Key: RawRepresentable {
-  // Some magic tricks to have a less verbose syntax
-  // Basically always allow to access the dictionary with a string key, regardless the key type
-  // The bang is safe since in all the dictionaries we have in this file we enforce that the keys is effectvely a string
-  // using the static type checking
-  private subscript(key: String) -> Value? {
-    get {
-      let k = Key.init(rawValue: key as! Key.RawValue)!
-      return self[k]
-    }
-    
-    set(newValue) {
-      let k = Key.init(rawValue: key as! Key.RawValue)!
-      self[k] = newValue
     }
   }
 }
