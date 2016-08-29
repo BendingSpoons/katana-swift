@@ -37,13 +37,15 @@ public class Store<RootReducer: Reducer> {
   
   public init() {
     self.listeners = []
-    self.state = RootReducer.reduce(action: InitAction(), state: nil)
+    self.state = RootReducer.StateType()
+    //RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = []
   }
   
   init(middlewares: [StoreMiddleware<RootReducer>]) {
     self.listeners = []
-    self.state = RootReducer.reduce(action: InitAction(), state: nil)
+    self.state = RootReducer.StateType()
+    //RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = middlewares
   }
   
@@ -75,7 +77,7 @@ public class Store<RootReducer: Reducer> {
     }
     
     self.state = RootReducer.reduce(action: action, state: self.state)
-    
+
     self.listeners.forEach { $0() }
   }
 }

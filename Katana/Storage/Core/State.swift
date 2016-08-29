@@ -8,4 +8,6 @@
 
 import Foundation
 
-public protocol State {}
+public protocol State {
+  init()
+}

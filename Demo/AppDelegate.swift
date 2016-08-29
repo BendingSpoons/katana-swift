@@ -27,10 +27,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
-//    let store = Store<AppReducer>()
+
     
-  /*  self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
-    self.root!.draw(container: view)*/
+    let store = Store<SmartReducer<AppState>>()
+    
+    self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
+    self.root!.draw(container: view)
     
     return true
   }

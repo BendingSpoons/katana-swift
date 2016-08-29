@@ -66,12 +66,14 @@
 		8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */; };
 		8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3871D6DA7CE00881600 /* UIColorTest.swift */; };
 		81B831C91D74C349003E29A1 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831C81D74C349003E29A1 /* SyncAction.swift */; };
+		81B831CB1D74D8B0003E29A1 /* SmartReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */; };
 		81EA57171D5F3D5900B6290E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57151D5F3D5900B6290E /* Assets.xcassets */; };
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
+		81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* SetPin.swift */; };
 		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
 		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
 		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
@@ -173,6 +175,7 @@
 		8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		8192F3871D6DA7CE00881600 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		81B831C81D74C349003E29A1 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
+		81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartReducer.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -183,6 +186,7 @@
 		81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EA57151D5F3D5900B6290E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81F3F52B1D74EC46006150BB /* SetPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPin.swift; sourceTree = "<group>"; };
 		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
 		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
@@ -316,12 +320,12 @@
 			path = Nodes;
 			sourceTree = "<group>";
 		};
-		814C11091D6DFE0A00324FCD /* Store */ = {
+		814C11091D6DFE0A00324FCD /* State */ = {
 			isa = PBXGroup;
 			children = (
 				814C110A1D6E008F00324FCD /* AppState.swift */,
 			);
-			path = Store;
+			path = State;
 			sourceTree = "<group>";
 		};
 		816697231D71CA1E00CE2547 /* Nodes */ = {
@@ -380,6 +384,7 @@
 			isa = PBXGroup;
 			children = (
 				81B831C81D74C349003E29A1 /* SyncAction.swift */,
+				81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */,
 			);
 			path = SmartActions;
 			sourceTree = "<group>";
@@ -431,7 +436,8 @@
 		81EA56E61D5F3A8A00B6290E /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				814C11091D6DFE0A00324FCD /* Store */,
+				81F3F5281D74EC1D006150BB /* Actions */,
+				814C11091D6DFE0A00324FCD /* State */,
 				814C11071D6DFE0200324FCD /* Node */,
 				81EA57141D5F3D4900B6290E /* Support Files */,
 				81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */,
@@ -447,6 +453,14 @@
 				813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */,
 			);
 			path = "Support Files";
+			sourceTree = "<group>";
+		};
+		81F3F5281D74EC1D006150BB /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				81F3F52B1D74EC46006150BB /* SetPin.swift */,
+			);
+			path = Actions;
 			sourceTree = "<group>";
 		};
 		A159DF231D65DF1A009AE13F /* Storage */ = {
@@ -719,6 +733,7 @@
 				813E590B1D71B8840000DE20 /* NSParagraphStyle+Katana.swift in Sources */,
 				813E592B1D71B9BD0000DE20 /* Commons.swift in Sources */,
 				816697361D71CA1E00CE2547 /* Grid.swift in Sources */,
+				81B831CB1D74D8B0003E29A1 /* SmartReducer.swift in Sources */,
 				813E591D1D71B8840000DE20 /* Reducer.swift in Sources */,
 				816697781D722C3000CE2547 /* ViewsContainer+Helpers.swift in Sources */,
 				816697711D722C3000CE2547 /* PlasticNodeDescription.swift in Sources */,
@@ -779,6 +794,7 @@
 			files = (
 				81BD02A21D6F162200CFF250 /* App.swift in Sources */,
 				8108D8181D6F3B79001A495D /* InstructionPopup.swift in Sources */,
+				81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */,
 				8108D8161D6F3B69001A495D /* Calculator.swift in Sources */,
 				81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */,
 				814C110B1D6E008F00324FCD /* AppState.swift in Sources */,

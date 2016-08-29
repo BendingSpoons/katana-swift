@@ -10,6 +10,6 @@ import Katana
 
 
 struct AppState : State {
-  var pin: [Int]?
-  var instructionShown: Bool
+  var pin: [Int]? = nil
+  var instructionShown = false
 }

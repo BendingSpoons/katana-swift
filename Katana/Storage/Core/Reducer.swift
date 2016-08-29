@@ -9,19 +9,17 @@
 import Foundation
 
 public protocol AnyReducer {
-  static func anyReduce(action: Action, state: State?) -> State
+  static func anyReduce(action: Action, state: State) -> State
 }
 
 public protocol Reducer: AnyReducer {
   associatedtype StateType: State
-  static func reduce(action: Action, state: StateType?) -> StateType
+  static func reduce(action: Action, state: StateType) -> StateType
 }
 
 public extension Reducer {
-  static func anyReduce(action: Action, state: State?) -> State {
-    guard let state = state else {
-      return self.reduce(action: action, state: nil)
-    }
+  static func anyReduce(action: Action, state: State) -> State {
+
     
     guard let specificState = state as? StateType else {
       return state

@@ -9,11 +9,7 @@
 import Foundation
 
 public protocol Action {
-  var actionName: String { get }
+  static var name : String {get}
 }
 
-// NB: internal usage only
-struct InitAction: Action {
-  let actionName = "@@INIT@@"
-}
 
