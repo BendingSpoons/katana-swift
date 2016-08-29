@@ -8,9 +8,6 @@
 
 import Foundation
 
-// TODO: remove this as soon as the typealias bug has been fixed
-public typealias StoreMiddleware2<RootReducer: Reducer> = (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
-
 private func handleAction<RootReducer: Reducer>(
     _ action: Action,
     usingSagas sagas: [String: [AnySaga]],
@@ -30,7 +27,7 @@ private func handleAction<RootReducer: Reducer>(
 private func createMiddleware<RootReducer: Reducer>(
     modules: [SagaModule],
     providersContainer: SagaProvidersContainer<RootReducer>.Type
-  ) -> StoreMiddleware2<RootReducer> {
+  ) -> StoreMiddleware<RootReducer> {
   // put saga in a structure where is easy to retrieve
   // all the sagas that are associated with an action
   // basically the key is the action name and the values are an array of 
@@ -65,7 +62,7 @@ enum SagaMiddleware <RootReducer: Reducer> {
   static func withSagaModules(
       _ sagaModules: [SagaModule],
       providersContainer: SagaProvidersContainer<RootReducer>.Type
-    ) -> StoreMiddleware2<RootReducer> {
+    ) -> StoreMiddleware<RootReducer> {
 
     return createMiddleware(modules: sagaModules, providersContainer: providersContainer)
   }

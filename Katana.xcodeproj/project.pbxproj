@@ -97,6 +97,7 @@
 		A159DF471D65DF36009AE13F /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF341D65DF36009AE13F /* states.swift */; };
 		A159DF481D65DF36009AE13F /* sagaProviderContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF381D65DF36009AE13F /* sagaProviderContainers.swift */; };
 		A159DF491D65DF36009AE13F /* SagaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF391D65DF36009AE13F /* SagaTests.swift */; };
+		A1BD64BE1D745DE7009A766A /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD64BD1D745DE7009A766A /* typealiases.swift */; };
 		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
 		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
 		A1D09BE61D673A590095BAF0 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */; };
@@ -216,6 +217,7 @@
 		A159DF341D65DF36009AE13F /* states.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = states.swift; sourceTree = "<group>"; };
 		A159DF381D65DF36009AE13F /* sagaProviderContainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaProviderContainers.swift; sourceTree = "<group>"; };
 		A159DF391D65DF36009AE13F /* SagaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaTests.swift; sourceTree = "<group>"; };
+		A1BD64BD1D745DE7009A766A /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
 		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
 		A1D09BE01D673A590095BAF0 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 				813E59001D71B8840000DE20 /* Reducer.swift */,
 				813E59011D71B8840000DE20 /* State.swift */,
 				813E59021D71B8840000DE20 /* Store.swift */,
+				A1BD64BD1D745DE7009A766A /* typealiases.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				813E592F1D71B9BD0000DE20 /* NodeDescription.swift in Sources */,
 				8166973B1D71CA1E00CE2547 /* CellNativeView.swift in Sources */,
 				8166976D1D722C3000CE2547 /* EdgeInsets.swift in Sources */,
+				A1BD64BE1D745DE7009A766A /* typealiases.swift in Sources */,
 				816697771D722C3000CE2547 /* ViewsContainer.swift in Sources */,
 				816697721D722C3000CE2547 /* PlasticView.swift in Sources */,
 				813E591C1D71B8840000DE20 /* AnyStore.swift in Sources */,

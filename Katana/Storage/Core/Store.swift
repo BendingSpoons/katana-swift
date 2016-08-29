@@ -8,13 +8,6 @@
 
 import Foundation
 
-// TODO: move these in a separate file as soon as the typealias bug has been fixed
-public typealias StoreListener = () -> Void
-public typealias StoreUnsubscribe = () -> ()
-public typealias StoreMiddleware<RootReducer: Reducer> = (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
-public typealias StoreDispatch = (_: Action) -> Void
-public typealias StoreGetState<RootReducer: Reducer> = () -> RootReducer.StateType
-
 private func compose(_ middlewares: [(_ next: StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
   guard middlewares.count > 0 else {
     return storeDispatch
