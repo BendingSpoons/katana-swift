@@ -66,7 +66,7 @@
 		8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */; };
 		8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3871D6DA7CE00881600 /* UIColorTest.swift */; };
 		81B831C91D74C349003E29A1 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831C81D74C349003E29A1 /* SyncAction.swift */; };
-		81B831CB1D74D8B0003E29A1 /* SmartReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */; };
+		81B831CB1D74D8B0003E29A1 /* SyncAsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
@@ -74,6 +74,9 @@
 		81EA57171D5F3D5900B6290E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57151D5F3D5900B6290E /* Assets.xcassets */; };
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* SetPin.swift */; };
+		81F3F52E1D74ECEF006150BB /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52D1D74ECEF006150BB /* Saga.swift */; };
+		81F3F5301D74ED2C006150BB /* AsnyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52F1D74ED2C006150BB /* AsnyAction.swift */; };
+		81F3F5321D74F357006150BB /* DownloadPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* DownloadPhotos.swift */; };
 		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
 		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
 		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
@@ -175,7 +178,7 @@
 		8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		8192F3871D6DA7CE00881600 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		81B831C81D74C349003E29A1 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
-		81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartReducer.swift; sourceTree = "<group>"; };
+		81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAsyncReducer.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -187,6 +190,9 @@
 		81EA57151D5F3D5900B6290E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81F3F52B1D74EC46006150BB /* SetPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPin.swift; sourceTree = "<group>"; };
+		81F3F52D1D74ECEF006150BB /* Saga.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
+		81F3F52F1D74ED2C006150BB /* AsnyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsnyAction.swift; sourceTree = "<group>"; };
+		81F3F5311D74F357006150BB /* DownloadPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPhotos.swift; sourceTree = "<group>"; };
 		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
 		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
 		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
@@ -290,7 +296,7 @@
 		813E58F41D71B8840000DE20 /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				81B831C71D74C279003E29A1 /* SmartActions */,
+				81B831C71D74C279003E29A1 /* SyncAsyncActions */,
 				813E58FD1D71B8840000DE20 /* Core */,
 			);
 			path = Storage;
@@ -380,13 +386,15 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		81B831C71D74C279003E29A1 /* SmartActions */ = {
+		81B831C71D74C279003E29A1 /* SyncAsyncActions */ = {
 			isa = PBXGroup;
 			children = (
 				81B831C81D74C349003E29A1 /* SyncAction.swift */,
-				81B831CA1D74D8B0003E29A1 /* SmartReducer.swift */,
+				81F3F52F1D74ED2C006150BB /* AsnyAction.swift */,
+				81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */,
+				81F3F52D1D74ECEF006150BB /* Saga.swift */,
 			);
-			path = SmartActions;
+			path = SyncAsyncActions;
 			sourceTree = "<group>";
 		};
 		81EA56BD1D5F3A6000B6290E = {
@@ -459,6 +467,7 @@
 			isa = PBXGroup;
 			children = (
 				81F3F52B1D74EC46006150BB /* SetPin.swift */,
+				81F3F5311D74F357006150BB /* DownloadPhotos.swift */,
 			);
 			path = Actions;
 			sourceTree = "<group>";
@@ -709,6 +718,7 @@
 				813E591C1D71B8840000DE20 /* AnyStore.swift in Sources */,
 				816697761D722C3000CE2547 /* Value.swift in Sources */,
 				816697371D71CA1E00CE2547 /* GridDelegate.swift in Sources */,
+				81F3F5301D74ED2C006150BB /* AsnyAction.swift in Sources */,
 				816697731D722C3000CE2547 /* PlasticView+Convenience.swift in Sources */,
 				813E592E1D71B9BD0000DE20 /* DrawableContainer.swift in Sources */,
 				8166973D1D71CA1E00CE2547 /* NativeTableView.swift in Sources */,
@@ -733,7 +743,8 @@
 				813E590B1D71B8840000DE20 /* NSParagraphStyle+Katana.swift in Sources */,
 				813E592B1D71B9BD0000DE20 /* Commons.swift in Sources */,
 				816697361D71CA1E00CE2547 /* Grid.swift in Sources */,
-				81B831CB1D74D8B0003E29A1 /* SmartReducer.swift in Sources */,
+				81F3F52E1D74ECEF006150BB /* Saga.swift in Sources */,
+				81B831CB1D74D8B0003E29A1 /* SyncAsyncReducer.swift in Sources */,
 				813E591D1D71B8840000DE20 /* Reducer.swift in Sources */,
 				816697781D722C3000CE2547 /* ViewsContainer+Helpers.swift in Sources */,
 				816697711D722C3000CE2547 /* PlasticNodeDescription.swift in Sources */,
@@ -793,6 +804,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BD02A21D6F162200CFF250 /* App.swift in Sources */,
+				81F3F5321D74F357006150BB /* DownloadPhotos.swift in Sources */,
 				8108D8181D6F3B79001A495D /* InstructionPopup.swift in Sources */,
 				81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */,
 				8108D8161D6F3B69001A495D /* Calculator.swift in Sources */,

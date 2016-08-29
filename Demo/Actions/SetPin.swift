@@ -12,7 +12,7 @@ struct SetPin : SyncAction {
   
   var payload: [Int]
   
-  static func syncReduce(state: inout AppState, action: SetPin) {
+  static func reduce(state: inout AppState, action: SetPin) {
     state.pin = action.payload
   }
 }

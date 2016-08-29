@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol AnySyncAction : Action {
-  static func anySyncReduce( state: State, action: AnySyncAction) -> State
+  static func anyReduce( state: State, action: AnySyncAction) -> State
 }
 
 public protocol SyncAction : Action, AnySyncAction {
@@ -18,7 +18,7 @@ public protocol SyncAction : Action, AnySyncAction {
   
   var payload : PayloadType {get}
   
-  static func syncReduce( state: inout StateType, action: Self)
+  static func reduce( state: inout StateType, action: Self)
 }
 
 public extension SyncAction {
@@ -27,11 +27,11 @@ public extension SyncAction {
     return "\(type(of: self))"
   }
   
-  static func anySyncReduce( state: State, action: AnySyncAction) -> State {
+  static func anyReduce( state: State, action: AnySyncAction) -> State {
     var state = state as! StateType
     let action = action as! Self
     
-    syncReduce(state: &state, action: action)
+    reduce(state: &state, action: action)
     
     return state as! State
     

@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
 
     
-    let store = Store<SmartReducer<AppState>>()
+    let store = Store<SyncAsyncReducer<AppState>>()
     
     self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)
