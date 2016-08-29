@@ -16,18 +16,6 @@ public extension NodeDescriptionKeys where RawValue: Comparable {
   public static func <(lhs: Self, rhs: Self) -> Bool {
     return lhs.rawValue < rhs.rawValue
   }
-  
-  public static func <=(lhs: Self, rhs: Self) -> Bool {
-    return lhs.rawValue <= rhs.rawValue
-  }
-  
-  public static func >=(lhs: Self, rhs: Self) -> Bool {
-    return lhs.rawValue >= rhs.rawValue
-  }
-
-  public static func >(lhs: Self, rhs: Self) -> Bool {
-    return lhs.rawValue > rhs.rawValue
-  }
 }
 
 // type erasure for PlasticNodeDescription
