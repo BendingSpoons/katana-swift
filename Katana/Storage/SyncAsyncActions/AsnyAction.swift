@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol AnyAsyncAction : Action {
-  static func anyReduce( state: State, action: AnyAsyncAction) -> State
+  static func anyReduce(state: State, action: AnyAsyncAction) -> State
 }
 
 public enum AsyncActionState {
@@ -28,19 +28,17 @@ public protocol AsyncAction : Action, AnyAsyncAction {
   var completedPayload : CompletedPayloadType {get}
   var failedPayload : FailedPayloadType {get}
   
-  static func loadingReduce( state: inout StateType, action: Self)
-  static func completedReduce( state: inout StateType, action: Self)
-  static func failedReduce( state: inout StateType, action: Self)
-
+  static func loadingReduce(state: inout StateType, action: Self)
+  static func completedReduce(state: inout StateType, action: Self)
+  static func failedReduce(state: inout StateType, action: Self)
 }
 
 public extension AsyncAction {
-  
   static var name : String {
     return "\(type(of: self))"
   }
   
-  static func anyReduce( state: State, action: AnyAsyncAction) -> State {
+  static func anyReduce(state: State, action: AnyAsyncAction) -> State {
     var state = state as! StateType
     let action = action as! Self
     
@@ -54,11 +52,8 @@ public extension AsyncAction {
 
     case .failed:
       failedReduce(state: &state, action: action)
-
-      
     }
     
     return state as! State
   }
-  
 }

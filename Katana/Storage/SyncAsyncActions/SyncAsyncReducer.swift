@@ -9,8 +9,6 @@
 import Foundation
 
 public struct SyncAsyncReducer<ReducerState: State> : Reducer {
-  
-  
   public static func reduce(action: Action, state: ReducerState) -> ReducerState {
     
     if let action = action as? AnySyncAction {
@@ -26,5 +24,4 @@ public struct SyncAsyncReducer<ReducerState: State> : Reducer {
     
     fatalError("SmartReducer can only reduce Asny/Sync Actions")
   }
-  
 }
