@@ -30,12 +30,12 @@ public protocol NodeDescription : AnyNodeDescription {
   static func applyPropsToNativeView(props: Props,
                                      state: State,
                                      view: NativeView,
-                                     update: (State)->(),
+                                     update: @escaping (State)->(),
                                      node: AnyNode) -> Void
   
   static func render(props: Props,
                      state: State,
-                     update: (State)->(),
+                     update: @escaping (State)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription]
   
   static func childrenAnimationForNextRender(currentProps: Props,
@@ -75,7 +75,7 @@ extension NodeDescription {
   public static func applyPropsToNativeView(props: Props,
                                      state: State,
                                      view: NativeView,
-                                     update: (State)->(),
+                                     update: @escaping (State)->(),
                                      node: AnyNode) ->  Void {
     view.frame = props.frame
   }

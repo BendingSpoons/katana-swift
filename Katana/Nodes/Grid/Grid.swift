@@ -85,7 +85,7 @@ public struct Grid : NodeDescription {
   public static func applyPropsToNativeView(props: GridProps,
                                             state: EmptyState,
                                             view: NativeGridView,
-                                            update: (EmptyState)->(),
+                                            update: @escaping (EmptyState)->(),
                                             concreteNode: AnyNode)  {
     
     let delegate = props.delegate ?? EmptyGridDelegate()
@@ -97,7 +97,7 @@ public struct Grid : NodeDescription {
   
   public static func render(props: GridProps,
                             state: EmptyState,
-                            update: (EmptyState)->(),
+                            update: @escaping (EmptyState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }

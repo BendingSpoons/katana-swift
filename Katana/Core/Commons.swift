@@ -12,6 +12,7 @@ import UIKit
 public protocol Textable {
   var text : NSAttributedString {get set}
   func text(_ text: NSAttributedString) -> Self
+  func text(_ text: String, fontSize: CGFloat) -> Self
 }
 
 extension Textable {
@@ -21,7 +22,7 @@ extension Textable {
     return copy
   }
   
-  public func text(_ text: NSString, fontSize: CGFloat) -> Self {
+  public func text(_ text: String, fontSize: CGFloat) -> Self {
     
     let attriburedText = NSMutableAttributedString(string: text as String, attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular),

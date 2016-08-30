@@ -42,7 +42,7 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   public static func applyPropsToNativeView(props: TouchHandlerProps,
                                             state: EmptyState,
                                             view: TouchHandlerView,
-                                            update: (EmptyState)->(),
+                                            update: @escaping (EmptyState)->(),
                                             node: AnyNode)  {
     view.frame = props.frame
     view.handler = props.touchHandler
@@ -50,7 +50,7 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   
   public static func render(props: TouchHandlerProps,
                             state: EmptyState,
-                            update: (EmptyState)->(),
+                            update: @escaping (EmptyState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return props.children

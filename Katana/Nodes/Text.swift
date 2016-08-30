@@ -36,7 +36,7 @@ public struct Text : NodeDescription {
   public static func applyPropsToNativeView(props: TextProps,
                                             state: EmptyState,
                                             view: UILabel,
-                                            update: (EmptyState)->(),
+                                            update: @escaping (EmptyState)->(),
                                             node: AnyNode)  {
     view.frame = props.frame
     view.backgroundColor = props.color
@@ -46,7 +46,7 @@ public struct Text : NodeDescription {
   
   public static func render(props: TextProps,
                             state: EmptyState,
-                            update: (EmptyState)->(),
+                            update: @escaping (EmptyState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
