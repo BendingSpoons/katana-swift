@@ -41,7 +41,7 @@ public class Store<RootReducer: Reducer> {
     self.middlewares = []
   }
   
-  init(middlewares: [StoreMiddleware<RootReducer>]) {
+  public init(middlewares: [StoreMiddleware<RootReducer>]) {
     self.listeners = []
     self.state = RootReducer.StateType()
     self.middlewares = middlewares
