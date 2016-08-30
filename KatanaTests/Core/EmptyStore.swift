@@ -13,7 +13,7 @@ import Foundation
 struct EmptyAppState: State {}
 
 enum EmptyReducer: Reducer {
-  static func reduce(action: Action, state: EmptyAppState?) -> EmptyAppState {
+  static func reduce(action: Action, state: EmptyAppState) -> EmptyAppState {
     return EmptyAppState()
   }
 }

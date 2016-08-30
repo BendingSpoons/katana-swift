@@ -11,7 +11,7 @@ import XCTest
 
 class CombinedReducerTests: XCTestCase {
   func testAddItem() {
-    let state = AppReducer.reduce(action: InitAction(), state: nil) // init performed by the store
+    let state = AppState()
     let newState = AppReducer.reduce(action: AddTodoAction(title: "New Todo"), state: state)
     
     XCTAssertEqual(newState.todo.todos.count, 1)
@@ -20,7 +20,7 @@ class CombinedReducerTests: XCTestCase {
   }
   
   func testUnchangedState() {
-    let state = AppReducer.reduce(action: InitAction(), state: nil) // init performed by the store
+    let state = AppState()
     let firstState = AppReducer.reduce(action: AddTodoAction(title: "New Todo"), state: state)
     
     let newState = AppReducer.reduce(action: ExternalAction(), state: firstState)

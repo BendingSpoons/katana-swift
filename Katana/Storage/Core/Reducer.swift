@@ -19,8 +19,6 @@ public protocol Reducer: AnyReducer {
 
 public extension Reducer {
   static func anyReduce(action: Action, state: State) -> State {
-
-    
     guard let specificState = state as? StateType else {
       return state
     }

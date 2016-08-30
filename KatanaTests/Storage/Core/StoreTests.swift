@@ -15,8 +15,8 @@ class StoreTests: XCTestCase {
     let store = Store<AppReducer>()
     let state = store.getState()
     
-    XCTAssertEqual(state.todo, TodoReducer.initialState)
-    XCTAssertEqual(state.user, UserReducer.initialState)
+    XCTAssertEqual(state.todo, TodoState())
+    XCTAssertEqual(state.user, UserState())
   }
   
   func testDispatch() {

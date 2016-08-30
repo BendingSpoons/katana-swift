@@ -34,11 +34,23 @@ struct TodoState: State, Equatable {
   }
 }
 
+extension TodoState {
+  init() {
+    self.todos = []
+  }
+}
+
 struct UserState: State, Equatable {
   let users: [User]
 
   static func ==(lhs: UserState, rhs: UserState) -> Bool {
     return lhs.users == rhs.users
+  }
+}
+
+extension UserState {
+  init() {
+    self.users = []
   }
 }
 
@@ -48,5 +60,12 @@ struct AppState: State, Equatable {
   
   static func ==(lhs: AppState, rhs: AppState) -> Bool {
     return lhs.todo == rhs.todo && lhs.user == rhs.user
+  }
+}
+
+extension AppState {
+  init() {
+    self.todo = TodoState()
+    self.user = UserState()
   }
 }

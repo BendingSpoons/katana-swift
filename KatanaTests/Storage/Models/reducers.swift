@@ -10,21 +10,15 @@ import Foundation
 @testable import Katana
 
 enum TodoReducer: Reducer {
-  static let initialState = TodoState(todos: [])
-
-  static func reduce(action: Action, state: TodoState?) -> TodoState {
-    guard let s = state else {
-      return initialState
-    }
-    
+  static func reduce(action: Action, state: TodoState) -> TodoState {
     if let action = action as? AddTodoAction {
-      return _reduce(action: action, state: s)
+      return _reduce(action: action, state: state)
     
     } else if let action = action as? RemoveTodoAction {
-      return _reduce(action: action, state: s)
+      return _reduce(action: action, state: state)
     }
     
-    return s
+    return state
   }
   
   static func _reduce(action: AddTodoAction, state: TodoState) -> TodoState {
@@ -40,18 +34,17 @@ enum TodoReducer: Reducer {
 }
 
 enum UserReducer: Reducer {
-  static let initialState = UserState(users: [])
-  static func reduce(action: Action, state: UserState?) -> UserState {
-    return state ?? initialState
+  static func reduce(action: Action, state: UserState) -> UserState {
+    return UserState()
   }
 }
 
 
 enum AppReducer: Reducer {
-  static func reduce(action: Action, state: AppState?) -> AppState {
+  static func reduce(action: Action, state: AppState) -> AppState {
     return AppState(
-      todo: TodoReducer.reduce(action: action, state: state?.todo),
-      user: UserReducer.reduce(action: action, state: state?.user)
+      todo: TodoReducer.reduce(action: action, state: state.todo),
+      user: UserReducer.reduce(action: action, state: state.user)
     )
   }
 }
