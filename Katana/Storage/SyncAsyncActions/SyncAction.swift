@@ -34,8 +34,7 @@ public extension SyncAction {
 }
 
 public extension SyncAction where Self : ActionWithSideEffect {
-  
-  static func anySideEffect(action: AnySyncAction, getState: StoreGetState<State>, dispatch: StoreDispatch) {
+  static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch) {
     
     let action = action as! Self
     
