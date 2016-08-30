@@ -25,7 +25,7 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   
   static func render(props: EmptyProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     return [

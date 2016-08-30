@@ -4,9 +4,8 @@ import Katana
 class CommonsTest: XCTestCase {
   
   func testFramable() {
-    
     struct Picture : Frameable {
-      private var frame =  CGRect.zero
+      fileprivate var frame =  CGRect.zero
     }
     
     let p = Picture()

@@ -28,7 +28,7 @@ struct App : NodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let i = props.i
@@ -79,7 +79,7 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let i = props.i
@@ -92,7 +92,7 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
             Button(props: ButtonProps().key(AppKeys.button)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 10)
+              .text("state \(i)", fontSize: 18)
               .onTap({ update(EmptyState()) })),
             
             View(props: ViewProps().key(AppKeys.otherView).color(.gray))

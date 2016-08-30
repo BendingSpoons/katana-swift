@@ -44,7 +44,7 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
   public static func applyPropsToNativeView(props: ViewProps,
                                             state: EmptyState,
                                             view: UIView,
-                                            update: (EmptyState)->(),
+                                            update: @escaping (EmptyState)->(),
                                             node: AnyNode)  {
     view.frame = props.frame
     view.backgroundColor = props.color
@@ -57,7 +57,7 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
   
   public static func render(props: ViewProps,
                             state: EmptyState,
-                            update: (EmptyState)->(),
+                            update: @escaping (EmptyState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return props.children
   }

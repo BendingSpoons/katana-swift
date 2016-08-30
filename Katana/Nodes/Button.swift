@@ -55,16 +55,12 @@ public struct Button : NodeDescription {
   
   public static func render(props: ButtonProps,
                             state: Bool,
-                            update: (Bool)->(),
+                            update: @escaping (Bool)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
+      update(pressed)
       
-      /********
-      FIX ME
-      ********/
-    
-      //update(pressed)
       if (!pressed) {
         props.onTap?()
       }

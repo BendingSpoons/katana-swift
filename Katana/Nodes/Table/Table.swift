@@ -44,7 +44,7 @@ public struct Table : NodeDescription {
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
                                             view: NativeTableView,
-                                            update: (EmptyState)->(),
+                                            update: @escaping (EmptyState)->(),
                                             node: AnyNode)  {
     
     let delegate = props.delegate ?? EmptyTableDelegate()
@@ -55,7 +55,7 @@ public struct Table : NodeDescription {
   
   public static func render(props: TableProps,
                             state: EmptyState,
-                            update: (EmptyState)->(),
+                            update: @escaping (EmptyState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
