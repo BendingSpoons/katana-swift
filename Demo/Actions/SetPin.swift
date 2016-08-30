@@ -8,11 +8,16 @@
 
 import Katana
 
-struct SetPin : SyncAction {
+struct SetPin : SyncAction, ActionWithSideEffect {
   
   var payload: [Int]
   
   static func reduce(state: inout AppState, action: SetPin) {
     state.pin = action.payload
   }
+  
+  static func sideEffect(action: SetPin, getState: () -> AppState, dispatch: StoreDispatch) {
+    
+  }
+
 }

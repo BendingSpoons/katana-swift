@@ -16,7 +16,6 @@ public struct SyncAsyncReducer<ReducerState: State> : Reducer {
       return result
     }
     
-    
     if let action = action as? AnyAsyncAction {
       let result = type(of: action).anyReduce(state: state, action: action) as! ReducerState
       return result

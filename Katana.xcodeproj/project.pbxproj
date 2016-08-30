@@ -64,6 +64,7 @@
 		8192F38C1D6DA7CE00881600 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3851D6DA7CE00881600 /* NodeTest.swift */; };
 		8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */; };
 		8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8192F3871D6DA7CE00881600 /* UIColorTest.swift */; };
+		81ABE5141D75C5680094C386 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81ABE5131D75C5680094C386 /* ActionWithSideEffect.swift */; };
 		81B831C91D74C349003E29A1 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831C81D74C349003E29A1 /* SyncAction.swift */; };
 		81B831CB1D74D8B0003E29A1 /* SyncAsyncReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
@@ -73,7 +74,7 @@
 		81EA57171D5F3D5900B6290E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57151D5F3D5900B6290E /* Assets.xcassets */; };
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* SetPin.swift */; };
-		81F3F52E1D74ECEF006150BB /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52D1D74ECEF006150BB /* Saga.swift */; };
+		81F3F52E1D74ECEF006150BB /* SideEffectsMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52D1D74ECEF006150BB /* SideEffectsMiddleware.swift */; };
 		81F3F5301D74ED2C006150BB /* AsnyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52F1D74ED2C006150BB /* AsnyAction.swift */; };
 		81F3F5321D74F357006150BB /* DownloadPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* DownloadPhotos.swift */; };
 		A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */; };
@@ -166,6 +167,7 @@
 		8192F3851D6DA7CE00881600 /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
 		8192F3861D6DA7CE00881600 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		8192F3871D6DA7CE00881600 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
+		81ABE5131D75C5680094C386 /* ActionWithSideEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithSideEffect.swift; sourceTree = "<group>"; };
 		81B831C81D74C349003E29A1 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
 		81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAsyncReducer.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
@@ -179,7 +181,7 @@
 		81EA57151D5F3D5900B6290E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81F3F52B1D74EC46006150BB /* SetPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPin.swift; sourceTree = "<group>"; };
-		81F3F52D1D74ECEF006150BB /* Saga.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
+		81F3F52D1D74ECEF006150BB /* SideEffectsMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectsMiddleware.swift; sourceTree = "<group>"; };
 		81F3F52F1D74ED2C006150BB /* AsnyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsnyAction.swift; sourceTree = "<group>"; };
 		81F3F5311D74F357006150BB /* DownloadPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPhotos.swift; sourceTree = "<group>"; };
 		A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedReducerTests.swift; sourceTree = "<group>"; };
@@ -370,8 +372,9 @@
 			children = (
 				81B831C81D74C349003E29A1 /* SyncAction.swift */,
 				81F3F52F1D74ED2C006150BB /* AsnyAction.swift */,
+				81ABE5131D75C5680094C386 /* ActionWithSideEffect.swift */,
 				81B831CA1D74D8B0003E29A1 /* SyncAsyncReducer.swift */,
-				81F3F52D1D74ECEF006150BB /* Saga.swift */,
+				81F3F52D1D74ECEF006150BB /* SideEffectsMiddleware.swift */,
 			);
 			path = SyncAsyncActions;
 			sourceTree = "<group>";
@@ -668,6 +671,7 @@
 				813E592E1D71B9BD0000DE20 /* DrawableContainer.swift in Sources */,
 				8166973D1D71CA1E00CE2547 /* NativeTableView.swift in Sources */,
 				813E591F1D71B8840000DE20 /* Store.swift in Sources */,
+				81ABE5141D75C5680094C386 /* ActionWithSideEffect.swift in Sources */,
 				816697391D71CA1E00CE2547 /* NativeGridView.swift in Sources */,
 				816697351D71CA1E00CE2547 /* Button.swift in Sources */,
 				816697421D71CA1E00CE2547 /* TouchHandler.swift in Sources */,
@@ -688,7 +692,7 @@
 				813E590B1D71B8840000DE20 /* NSParagraphStyle+Katana.swift in Sources */,
 				813E592B1D71B9BD0000DE20 /* Commons.swift in Sources */,
 				816697361D71CA1E00CE2547 /* Grid.swift in Sources */,
-				81F3F52E1D74ECEF006150BB /* Saga.swift in Sources */,
+				81F3F52E1D74ECEF006150BB /* SideEffectsMiddleware.swift in Sources */,
 				81B831CB1D74D8B0003E29A1 /* SyncAsyncReducer.swift in Sources */,
 				813E591D1D71B8840000DE20 /* Reducer.swift in Sources */,
 				816697781D722C3000CE2547 /* ViewsContainer+Helpers.swift in Sources */,

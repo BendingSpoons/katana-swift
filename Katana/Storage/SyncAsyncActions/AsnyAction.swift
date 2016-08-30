@@ -9,9 +9,7 @@
 import Foundation
 
 public protocol AnyAsyncAction : Action {
-
   static func anyReduce(state: State, action: AnyAsyncAction) -> State
-  static func anySaga(action: AnyAsyncAction, state: State, dispatch: StoreDispatch)
   var state : AsyncActionState {get set}
 }
 
@@ -35,8 +33,6 @@ public protocol AsyncAction : Action, AnyAsyncAction {
   static func completedReduce(state: inout StateType, action: Self)
   static func failedReduce(state: inout StateType, action: Self)
   
-  static func saga(action: Self, state: StateType, dispatch: StoreDispatch)
-
   func completedAction(payload: CompletedPayloadType) -> Self
   func failedAction(payload: FailedPayloadType) -> Self
   
@@ -63,14 +59,6 @@ public extension AsyncAction {
     return state as! State
   }
   
-  static func anySaga(action: AnyAsyncAction, state: State, dispatch: StoreDispatch) {
-    let state = state as! StateType
-    let action = action as! Self
-    
-    saga(action: action, state: state, dispatch: dispatch)
-    
-  }
-  
   func completedAction(payload: CompletedPayloadType) -> Self {
     var copy = self
     copy.completedPayload = payload
@@ -85,7 +73,21 @@ public extension AsyncAction {
     return copy
   }
   
-  static func saga(action: Self, state: StateType, dispatch: StoreDispatch) {
+}
+
+public extension AsyncAction where Self : ActionWithSideEffect {
+  
+  static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch) {
     
+    let action = action as! Self
+    
+    if action.state == .loading {
+      
+      func _getState() -> StateType{
+        return getState() as! StateType
+      }
+      
+      sideEffect(action: action, getState: _getState, dispatch: dispatch)
+    }
   }
 }
