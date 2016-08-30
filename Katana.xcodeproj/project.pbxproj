@@ -77,13 +77,6 @@
 		81F3F52E1D74ECEF006150BB /* Saga.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52D1D74ECEF006150BB /* Saga.swift */; };
 		81F3F5301D74ED2C006150BB /* AsnyAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52F1D74ED2C006150BB /* AsnyAction.swift */; };
 		81F3F5321D74F357006150BB /* DownloadPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* DownloadPhotos.swift */; };
-		A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF251D65DF36009AE13F /* actionActions.swift */; };
-		A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF261D65DF36009AE13F /* actionReducers.swift */; };
-		A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF271D65DF36009AE13F /* ActionReducerTests.swift */; };
-		A159DF3D1D65DF36009AE13F /* ActionSagaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF281D65DF36009AE13F /* ActionSagaTests.swift */; };
-		A159DF3E1D65DF36009AE13F /* actionStates.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF291D65DF36009AE13F /* actionStates.swift */; };
-		A159DF3F1D65DF36009AE13F /* AsyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2A1D65DF36009AE13F /* AsyncActionTests.swift */; };
-		A159DF401D65DF36009AE13F /* SyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2B1D65DF36009AE13F /* SyncActionTests.swift */; };
 		A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */; };
 		A159DF421D65DF36009AE13F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2E1D65DF36009AE13F /* MiddlewareTests.swift */; };
 		A159DF431D65DF36009AE13F /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2F1D65DF36009AE13F /* ReducerTests.swift */; };
@@ -91,8 +84,6 @@
 		A159DF451D65DF36009AE13F /* actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF321D65DF36009AE13F /* actions.swift */; };
 		A159DF461D65DF36009AE13F /* reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF331D65DF36009AE13F /* reducers.swift */; };
 		A159DF471D65DF36009AE13F /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF341D65DF36009AE13F /* states.swift */; };
-		A159DF481D65DF36009AE13F /* sagaProviderContainers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF381D65DF36009AE13F /* sagaProviderContainers.swift */; };
-		A159DF491D65DF36009AE13F /* SagaTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF391D65DF36009AE13F /* SagaTests.swift */; };
 		A1BD64BE1D745DE7009A766A /* typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD64BD1D745DE7009A766A /* typealiases.swift */; };
 		A1D09BE41D673A590095BAF0 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */; };
 		A1D09BE51D673A590095BAF0 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */; };
@@ -193,13 +184,6 @@
 		81F3F52D1D74ECEF006150BB /* Saga.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Saga.swift; sourceTree = "<group>"; };
 		81F3F52F1D74ED2C006150BB /* AsnyAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsnyAction.swift; sourceTree = "<group>"; };
 		81F3F5311D74F357006150BB /* DownloadPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPhotos.swift; sourceTree = "<group>"; };
-		A159DF251D65DF36009AE13F /* actionActions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionActions.swift; sourceTree = "<group>"; };
-		A159DF261D65DF36009AE13F /* actionReducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionReducers.swift; sourceTree = "<group>"; };
-		A159DF271D65DF36009AE13F /* ActionReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionReducerTests.swift; sourceTree = "<group>"; };
-		A159DF281D65DF36009AE13F /* ActionSagaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionSagaTests.swift; sourceTree = "<group>"; };
-		A159DF291D65DF36009AE13F /* actionStates.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionStates.swift; sourceTree = "<group>"; };
-		A159DF2A1D65DF36009AE13F /* AsyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncActionTests.swift; sourceTree = "<group>"; };
-		A159DF2B1D65DF36009AE13F /* SyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncActionTests.swift; sourceTree = "<group>"; };
 		A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedReducerTests.swift; sourceTree = "<group>"; };
 		A159DF2E1D65DF36009AE13F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		A159DF2F1D65DF36009AE13F /* ReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
@@ -207,8 +191,6 @@
 		A159DF321D65DF36009AE13F /* actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actions.swift; sourceTree = "<group>"; };
 		A159DF331D65DF36009AE13F /* reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reducers.swift; sourceTree = "<group>"; };
 		A159DF341D65DF36009AE13F /* states.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = states.swift; sourceTree = "<group>"; };
-		A159DF381D65DF36009AE13F /* sagaProviderContainers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sagaProviderContainers.swift; sourceTree = "<group>"; };
-		A159DF391D65DF36009AE13F /* SagaTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SagaTests.swift; sourceTree = "<group>"; };
 		A1BD64BD1D745DE7009A766A /* typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = typealiases.swift; sourceTree = "<group>"; };
 		A1D09BDE1D673A590095BAF0 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		A1D09BDF1D673A590095BAF0 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
@@ -475,27 +457,11 @@
 		A159DF231D65DF1A009AE13F /* Storage */ = {
 			isa = PBXGroup;
 			children = (
-				A159DF241D65DF36009AE13F /* Action */,
 				A159DF2C1D65DF36009AE13F /* Core */,
 				A159DF311D65DF36009AE13F /* Models */,
 				A159DF351D65DF36009AE13F /* RealWorld */,
-				A159DF361D65DF36009AE13F /* Saga */,
 			);
 			path = Storage;
-			sourceTree = "<group>";
-		};
-		A159DF241D65DF36009AE13F /* Action */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF251D65DF36009AE13F /* actionActions.swift */,
-				A159DF261D65DF36009AE13F /* actionReducers.swift */,
-				A159DF271D65DF36009AE13F /* ActionReducerTests.swift */,
-				A159DF281D65DF36009AE13F /* ActionSagaTests.swift */,
-				A159DF291D65DF36009AE13F /* actionStates.swift */,
-				A159DF2A1D65DF36009AE13F /* AsyncActionTests.swift */,
-				A159DF2B1D65DF36009AE13F /* SyncActionTests.swift */,
-			);
-			path = Action;
 			sourceTree = "<group>";
 		};
 		A159DF2C1D65DF36009AE13F /* Core */ = {
@@ -524,23 +490,6 @@
 			children = (
 			);
 			path = RealWorld;
-			sourceTree = "<group>";
-		};
-		A159DF361D65DF36009AE13F /* Saga */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF371D65DF36009AE13F /* Models */,
-				A159DF391D65DF36009AE13F /* SagaTests.swift */,
-			);
-			path = Saga;
-			sourceTree = "<group>";
-		};
-		A159DF371D65DF36009AE13F /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				A159DF381D65DF36009AE13F /* sagaProviderContainers.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 		A1D09BDC1D673A590095BAF0 /* Plastic */ = {
@@ -778,24 +727,15 @@
 				8192F38A1D6DA7CE00881600 /* EmptyStore.swift in Sources */,
 				A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */,
 				8192F38B1D6DA7CE00881600 /* NodeDescriptionTest.swift in Sources */,
-				A159DF3C1D65DF36009AE13F /* ActionReducerTests.swift in Sources */,
-				A159DF3B1D65DF36009AE13F /* actionReducers.swift in Sources */,
-				A159DF481D65DF36009AE13F /* sagaProviderContainers.swift in Sources */,
-				A159DF3D1D65DF36009AE13F /* ActionSagaTests.swift in Sources */,
-				A159DF401D65DF36009AE13F /* SyncActionTests.swift in Sources */,
 				A159DF421D65DF36009AE13F /* MiddlewareTests.swift in Sources */,
 				8192F38E1D6DA7CE00881600 /* UIColorTest.swift in Sources */,
 				A159DF431D65DF36009AE13F /* ReducerTests.swift in Sources */,
 				8192F3891D6DA7CE00881600 /* CommonsTest.swift in Sources */,
 				8192F38D1D6DA7CE00881600 /* RenderContainersTest.swift in Sources */,
 				A159DF461D65DF36009AE13F /* reducers.swift in Sources */,
-				A159DF3E1D65DF36009AE13F /* actionStates.swift in Sources */,
 				8192F38C1D6DA7CE00881600 /* NodeTest.swift in Sources */,
-				A159DF491D65DF36009AE13F /* SagaTests.swift in Sources */,
-				A159DF3F1D65DF36009AE13F /* AsyncActionTests.swift in Sources */,
 				A159DF471D65DF36009AE13F /* states.swift in Sources */,
 				A159DF441D65DF36009AE13F /* StoreTests.swift in Sources */,
-				A159DF3A1D65DF36009AE13F /* actionActions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
