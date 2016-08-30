@@ -38,14 +38,12 @@ public class Store<RootReducer: Reducer> {
   public init() {
     self.listeners = []
     self.state = RootReducer.StateType()
-    //RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = []
   }
   
   init(middlewares: [StoreMiddleware<RootReducer>]) {
     self.listeners = []
     self.state = RootReducer.StateType()
-    //RootReducer.reduce(action: InitAction(), state: nil)
     self.middlewares = middlewares
   }
   

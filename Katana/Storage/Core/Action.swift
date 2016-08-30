@@ -8,8 +8,6 @@
 
 import Foundation
 
-public protocol Action {
-  static var name : String {get}
-}
+public protocol Action {}
 
 

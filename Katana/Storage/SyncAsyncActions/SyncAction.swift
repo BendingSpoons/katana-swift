@@ -22,10 +22,6 @@ public protocol SyncAction : Action, AnySyncAction {
 }
 
 public extension SyncAction {
-  static var name : String {
-    return "\(type(of: self))"
-  }
-  
   static func anyReduce(state: State, action: AnySyncAction) -> State {
     var state = state as! StateType
     let action = action as! Self

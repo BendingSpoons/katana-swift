@@ -34,10 +34,6 @@ public protocol AsyncAction : Action, AnyAsyncAction {
 }
 
 public extension AsyncAction {
-  static var name : String {
-    return "\(type(of: self))"
-  }
-  
   static func anyReduce(state: State, action: AnyAsyncAction) -> State {
     var state = state as! StateType
     let action = action as! Self
