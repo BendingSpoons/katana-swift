@@ -8,8 +8,7 @@
 
 import Foundation
 
-public func sagaMiddleware<State>(state _: State.Type) -> StoreMiddleware<SyncAsyncReducer<State>> {
-  
+public func sagaMiddleware<R: Reducer>(reducer _: R.Type) -> StoreMiddleware<R> {
   return { store in
     return { next in
       return { action in
