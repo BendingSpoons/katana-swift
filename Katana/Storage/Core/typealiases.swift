@@ -10,6 +10,6 @@ import Foundation
 
 public typealias StoreListener = () -> Void
 public typealias StoreUnsubscribe = () -> ()
-public typealias StoreMiddleware<RootReducer: Reducer> = (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
+public typealias StoreMiddleware<RootReducer: Reducer> = @escaping (_ store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void
 public typealias StoreDispatch = (_: Action) -> Void
 public typealias StoreGetState<RootReducer: Reducer> = () -> RootReducer.StateType

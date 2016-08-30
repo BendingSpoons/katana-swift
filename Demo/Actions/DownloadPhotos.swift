@@ -11,8 +11,8 @@ import Katana
 struct DownloadPhotos : AsyncAction {
   
   var loadingPayload: Void
-  var completedPayload: [String]
-  var failedPayload: String
+  var completedPayload: [String]?
+  var failedPayload: String?
   var state: AsyncActionState
   
   static func loadingReduce(state: inout AppState, action: DownloadPhotos) {
@@ -25,7 +25,10 @@ struct DownloadPhotos : AsyncAction {
   
   static func completedReduce(state: inout AppState, action: DownloadPhotos) {
     state.loadingPhotos = false
-    state.photos = action.completedPayload
+    state.photos = action.completedPayload!
   }
   
+  init(loadingPayload: Void) {
+    self.state = .loading
+  }
 }

@@ -91,7 +91,7 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
   
   static func render(props: CalculatorProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     let rows = [
       Row(cells: [

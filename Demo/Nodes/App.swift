@@ -41,7 +41,7 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
   
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     

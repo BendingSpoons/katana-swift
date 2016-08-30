@@ -29,7 +29,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
 
     
-    let store = Store<SyncAsyncReducer<AppState>>()
+    let saga = sagaMiddleware(state: AppState.self)
+    let store = Store<SyncAsyncReducer<AppState>>(middlewares: [saga])
     
     self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)

@@ -37,7 +37,7 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   
   static func render(props: InstructionPopupProps,
                      state: EmptyState,
-                     update: (EmptyState)->(),
+                     update: @escaping (EmptyState)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     let text = NSMutableAttributedString(string: "Instructions", attributes: [
