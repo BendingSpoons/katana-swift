@@ -16,7 +16,6 @@
 		813E590D1D71B8840000DE20 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58EA1D71B8840000DE20 /* Node.swift */; };
 		813E59151D71B8840000DE20 /* RootNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58F31D71B8840000DE20 /* RootNode.swift */; };
 		813E591B1D71B8840000DE20 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FE1D71B8840000DE20 /* Action.swift */; };
-		813E591C1D71B8840000DE20 /* AnyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E58FF1D71B8840000DE20 /* AnyStore.swift */; };
 		813E591D1D71B8840000DE20 /* Reducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59001D71B8840000DE20 /* Reducer.swift */; };
 		813E591E1D71B8840000DE20 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59011D71B8840000DE20 /* State.swift */; };
 		813E591F1D71B8840000DE20 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813E59021D71B8840000DE20 /* Store.swift */; };
@@ -120,7 +119,6 @@
 		813E58EA1D71B8840000DE20 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813E58F31D71B8840000DE20 /* RootNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNode.swift; sourceTree = "<group>"; };
 		813E58FE1D71B8840000DE20 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
-		813E58FF1D71B8840000DE20 /* AnyStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyStore.swift; sourceTree = "<group>"; };
 		813E59001D71B8840000DE20 /* Reducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reducer.swift; sourceTree = "<group>"; };
 		813E59011D71B8840000DE20 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		813E59021D71B8840000DE20 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -288,7 +286,6 @@
 			isa = PBXGroup;
 			children = (
 				813E58FE1D71B8840000DE20 /* Action.swift */,
-				813E58FF1D71B8840000DE20 /* AnyStore.swift */,
 				813E59001D71B8840000DE20 /* Reducer.swift */,
 				813E59011D71B8840000DE20 /* State.swift */,
 				813E59021D71B8840000DE20 /* Store.swift */,
@@ -664,7 +661,6 @@
 				A1BD64BE1D745DE7009A766A /* typealiases.swift in Sources */,
 				816697771D722C3000CE2547 /* ViewsContainer.swift in Sources */,
 				816697721D722C3000CE2547 /* PlasticView.swift in Sources */,
-				813E591C1D71B8840000DE20 /* AnyStore.swift in Sources */,
 				816697761D722C3000CE2547 /* Value.swift in Sources */,
 				816697371D71CA1E00CE2547 /* GridDelegate.swift in Sources */,
 				81F3F5301D74ED2C006150BB /* AsnyAction.swift in Sources */,

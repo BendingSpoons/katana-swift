@@ -16,16 +16,16 @@ public func sagaMiddleware<R: Reducer>(reducer _: R.Type) -> StoreMiddleware<R> 
         if let action = action as? AnySyncAction {
           type(of: action).anySaga(action: action, state: store.getState(), dispatch: store.dispatch)
         
-        } else if let action = action as? AnyAsyncAction {
+        }
+        
+        if let action = action as? AnyAsyncAction {
           if action.state == .loading {
             type(of: action).anySaga(action: action, state: store.getState(), dispatch: store.dispatch)
           }
-          
-        } else {
-          fatalError("SagaMiddleware can handle only Asny/Sync Actions")
         }
         
         next(action)
+        
       }
     }
   }

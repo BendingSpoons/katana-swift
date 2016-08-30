@@ -8,21 +8,12 @@
 
 import Foundation
 
-private func compose(_ middlewares: [(_ next: StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
-  guard middlewares.count > 0 else {
-    return storeDispatch
-  }
-  
-  guard middlewares.count > 1 else {
-    return middlewares.first!(storeDispatch)
-  }
-  
-  var m = middlewares
-  let last = m.removeLast()
-  
-  return m.reduce(last(storeDispatch), { chain, middleware in
-    return middleware(chain)
-  })
+public protocol AnyStore: class {
+  func dispatch(_ action: Action)
+  func addListener(_ listener: StoreListener) -> StoreUnsubscribe
+  // the name is not getState because otherwise we cannot use inferred types anymore
+  // since getState can also return any
+  func getAnyState() -> Any
 }
 
 public class Store<RootReducer: Reducer> {
@@ -84,5 +75,22 @@ extension Store: AnyStore {
   public func getAnyState() -> Any {
     return self.getState()
   }
+}
+
+private func compose(_ middlewares: [(_ next: StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
+  guard middlewares.count > 0 else {
+    return storeDispatch
+  }
+  
+  guard middlewares.count > 1 else {
+    return middlewares.first!(storeDispatch)
+  }
+  
+  var m = middlewares
+  let last = m.removeLast()
+  
+  return m.reduce(last(storeDispatch), { chain, middleware in
+    return middleware(chain)
+  })
 }
 

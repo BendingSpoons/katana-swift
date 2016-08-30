@@ -9,15 +9,6 @@
 import UIKit
 import Katana
 
-struct EmptyAppState: State {}
-
-enum EmptyReducer: Reducer {
-  static func reduce(action: Action, state: EmptyAppState) -> EmptyAppState {
-    return EmptyAppState()
-  }
-}
-
-
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -36,14 +27,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
 
+
     
-//    [(Store<EmptyReducer>) -> (StoreDispatch) -> (Action) -> Void]
-//    
-//    [(Store<_>) -> (StoreDispatch) -> (Action) -> Void]'
-//    
-    
-    let middlewares = [sagaMiddleware(reducer: EmptyReducer.self)]
-    let store = Store(middlewares: middlewares)
+    let store = Store(middlewares: [sagaMiddleware(reducer: SyncAsyncReducer<AppState>.self)])
     
     self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)
