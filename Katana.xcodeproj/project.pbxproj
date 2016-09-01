@@ -67,6 +67,7 @@
 		819F76461D784A0F0083045D /* SideEffectsMiddleware.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F76411D784A0F0083045D /* SideEffectsMiddleware.swift */; };
 		819F76471D784A0F0083045D /* SyncSmartAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F76421D784A0F0083045D /* SyncSmartAction.swift */; };
 		819F76481D784A0F0083045D /* SmartReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F76431D784A0F0083045D /* SmartReducer.swift */; };
+		819F764C1D7860180083045D /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F764B1D7860180083045D /* AppCell.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
@@ -168,6 +169,7 @@
 		819F76411D784A0F0083045D /* SideEffectsMiddleware.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectsMiddleware.swift; sourceTree = "<group>"; };
 		819F76421D784A0F0083045D /* SyncSmartAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncSmartAction.swift; sourceTree = "<group>"; };
 		819F76431D784A0F0083045D /* SmartReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartReducer.swift; sourceTree = "<group>"; };
+		819F764B1D7860180083045D /* AppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 			isa = PBXGroup;
 			children = (
 				81BD02A11D6F162200CFF250 /* App.swift */,
+				819F764B1D7860180083045D /* AppCell.swift */,
 			);
 			name = Node;
 			path = Nodes;
@@ -738,6 +741,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81BD02A21D6F162200CFF250 /* App.swift in Sources */,
+				819F764C1D7860180083045D /* AppCell.swift in Sources */,
 				81F3F5321D74F357006150BB /* RemoveTodo.swift in Sources */,
 				81F3F52C1D74EC46006150BB /* AddTodo.swift in Sources */,
 				81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */,
