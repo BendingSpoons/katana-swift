@@ -196,7 +196,6 @@ public struct EmptyState: NodeDescriptionState {
   }
   
   public init() {}
-  
 }
 
 public struct EmptyProps : Equatable, Frameable, Keyable {

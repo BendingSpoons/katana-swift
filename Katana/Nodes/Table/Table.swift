@@ -30,7 +30,7 @@ public struct TableProps: Equatable, Frameable, Keyable {
 
 
 public struct Table : NodeDescription {
-  public typealias NativeView = UIView
+  public typealias NativeView = NativeTableView
   
   public var props : TableProps
   

@@ -12,7 +12,7 @@ public protocol AnySyncSmartAction : Action {
   static func anyReduce(state: State, action: AnySyncSmartAction) -> State
 }
 
-public protocol SyncSmartAction : Action {
+public protocol SyncSmartAction : Action, AnySyncSmartAction {
   associatedtype PayloadType
   associatedtype StateType
   

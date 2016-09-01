@@ -16,13 +16,16 @@ public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
   associatedtype Props: Equatable, Frameable = EmptyProps
   associatedtype StorageState: State = EmptyState
 
-  static func connect(parentProps: Props, storageState: StorageState) -> Props
+  static func connect(props: inout Props, storageState: StorageState)
 }
 
 public extension ConnectedNodeDescription {
   static func anyConnect(parentProps: Any, storageState: Any) -> Any {
-    if let p = parentProps as? Props, let s = storageState as? StorageState {
-      return self.connect(parentProps: p, storageState: s)
+    if let parentProps = parentProps as? Props, let s = storageState as? StorageState {
+      var parentPropsCopy = parentProps
+      self.connect(props: &parentPropsCopy, storageState: s)
+      return parentPropsCopy
+      
     }
     
     fatalError("invalid signature of the connect function of \(type(of: self))")

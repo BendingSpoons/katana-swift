@@ -16,8 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var root: RootNode?
   
-  func application(_ application: UIApplication,
-                   didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = UIViewController()
@@ -26,8 +25,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
-
-
+    
     
     let store = Store(middlewares: [sagaMiddleware(reducer: SmartReducer<AppState>.self)])
     

@@ -8,12 +8,14 @@
 
 import UIKit
 
-public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable, Keyable  {
+public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable, Keyable,Bordable  {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  true
   public var text: NSAttributedString = NSAttributedString()
   public var key: String?
+  public var borderColor = UIColor.black
+  public var borderWidth = CGFloat(0)
   
   public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
     return lhs.frame == rhs.frame &&
@@ -40,6 +42,8 @@ public struct Text : NodeDescription {
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled
     view.attributedText = props.text
+    view.layer.borderWidth = props.borderWidth
+    view.layer.borderColor = props.borderColor.cgColor
   }
   
   public static func render(props: TextProps,
