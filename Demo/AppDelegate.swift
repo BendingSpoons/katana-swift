@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var root: RootNode?
   
-  func application(_ application: UIApplication,
+  @nonobjc func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.main.bounds)

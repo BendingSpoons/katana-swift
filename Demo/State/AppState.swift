@@ -10,8 +10,6 @@ import Katana
 
 
 struct AppState : State {
-  var pin: [Int]? = nil
-  var instructionShown = false
-  var photos: [String] = []
-  var loadingPhotos = false
+  var todos: [String] = []
+
 }
