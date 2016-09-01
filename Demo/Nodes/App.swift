@@ -18,10 +18,10 @@ struct AppProps: Equatable, Frameable {
   static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
     
     //FIXME
-    return false /* lhs.showPopup == rhs.showPopup &&
+    return lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
       lhs.frame == rhs.frame &&
-      lhs.todos == rhs.todos*/
+      lhs.todos == rhs.todos
   }
 }
 

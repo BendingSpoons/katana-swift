@@ -11,6 +11,8 @@ import UIKit
 
 class NativeTableViewCell: UITableViewCell {
   private var node: AnyNode? = nil
+  private var listenerNode: RootNode? = nil
+  
   
   override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,9 +47,9 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
-    let newNode = newDescription.node(parentNode: parentNode)
-    self.node = newNode
-    newNode.draw(container: self.contentView)
+    self.node = newDescription.node(parentNode: parentNode)
+    self.listenerNode = RootNode(store: parentNode.store, node: self.node!)
+    self.listenerNode!.draw(container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
