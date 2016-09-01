@@ -83,8 +83,12 @@ struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
   }
   
   static func connect(props: inout AppCellProps, storageState: AppState) {
-    props.name = storageState.todos[props.index]
-    props.completed = storageState.todosCompleted[props.index]
+    
+    //FIXME
+    if props.index < storageState.todos.count   {
+      props.name = storageState.todos[props.index]
+      props.completed = storageState.todosCompleted[props.index]
+    }
 
   }
 }
