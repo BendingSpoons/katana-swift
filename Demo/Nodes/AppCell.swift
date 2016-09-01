@@ -15,7 +15,8 @@ struct AppCellProps : Equatable,Frameable {
   
   static func ==(lhs: AppCellProps, rhs: AppCellProps) -> Bool {
     return lhs.frame == rhs.frame &&
-      lhs.index == rhs.index
+      lhs.index == rhs.index &&
+      lhs.name == rhs.name
   }
   
   func index(_ index: Int) -> AppCellProps {
@@ -23,11 +24,10 @@ struct AppCellProps : Equatable,Frameable {
     copy.index = index
     return copy
   }
-
 }
 
 enum AppCellKeys: String,NodeDescriptionKeys {
-  case name
+  case name, delete
 }
 
 struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
@@ -46,16 +46,33 @@ struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescripti
     update: @escaping (EmptyState) -> (),
     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
+    
     return [
-      Text(props: TextProps().text(props.name, fontSize: 7).key(AppCellKeys.name))
+      Text(props: TextProps()
+        .key(AppCellKeys.name)
+        .text(props.name, fontSize: 7)
+      ),
+      
+      Button(props: ButtonProps()
+        .key(AppCellKeys.delete)
+        .color(.orange)
+        .text("-", fontSize: 10)
+        .onTap({dispatch(RemoveTodo(payload: props.index))})
+      )
     ]
   }
   
-  static func layout(views: ViewsContainer<AppCellKeys>, props: AppCellProps, state: EmptyState) {
+  static func layout(views: ViewsContainer<AppCellKeys>,
+                     props: AppCellProps, state: EmptyState) {
+    
     let root = views.nativeView
     let name = views[.name]!
+    let delete = views[.delete]!
     
     name.fill(root)
+    
+    delete.coverRight(name)
+    delete.width = .fixed(30)
   }
   
   static func connect(props: inout AppCellProps, storageState: AppState) {

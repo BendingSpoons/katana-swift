@@ -53,9 +53,23 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     }
     
     return [
-      Text(props: TextProps().text("My awesome todos", fontSize: 10).color(.red).key(AppKeys.title)),
-      Button(props: ButtonProps().color(.blue).key(AppKeys.add).text("+", fontSize: 10).onTap(addTodo)),
-      Table(props: TableProps().key(AppKeys.list).delegate(AppListDelegate(todos: props.todos )))
+      Text(props: TextProps()
+        .key(AppKeys.title)
+        .text("My awesome todos", fontSize: 10)
+        .color(.red)
+      ),
+      
+      Button(props: ButtonProps()
+        .key(AppKeys.add)
+        .color(.blue)
+        .text("+", fontSize: 10)
+        .onTap(addTodo)
+      ),
+      
+      Table(props: TableProps()
+        .key(AppKeys.list)
+        .delegate(AppListDelegate(todos: props.todos ))
+      )
     ]
     
   }
