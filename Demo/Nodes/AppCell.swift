@@ -52,7 +52,7 @@ struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescripti
   }
   
   static func layout(views: ViewsContainer<AppCellKeys>, props: AppCellProps, state: EmptyState) {
-    let root = views.rootView
+    let root = views.nativeView
     let name = views[.name]!
     
     name.fill(root)
