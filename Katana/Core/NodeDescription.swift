@@ -19,9 +19,9 @@ public protocol AnyNodeDescription {
 }
 
 public protocol NodeDescription : AnyNodeDescription {
-  associatedtype NativeView: UIView
-  associatedtype Props: Equatable, Frameable
-  associatedtype State: Equatable
+  associatedtype NativeView: UIView = UIView
+  associatedtype Props: Equatable, Frameable = EmptyProps
+  associatedtype State: Equatable = EmptyState
   
   static var initialState: State { get }
   

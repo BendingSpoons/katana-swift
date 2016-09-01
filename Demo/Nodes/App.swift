@@ -26,12 +26,7 @@ enum AppKeys: String,NodeDescriptionKeys {
 }
 
 struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
-  
-  typealias NativeView = UIView
-  
-  
   static var initialState = EmptyState()
-  static var nativeViewType = UIView.self
   
   var props : AppProps
   
@@ -51,10 +46,6 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
           .onPasswordSet({ dispatch(SetPin(payload: $0)) })
           .key(AppKeys.calculator)
         ),
-/*        InstructionPopup(props: InstructionPopupProps()
-         // .onClose({ dispatch(DismissInstructionsAction.with(payload: true)) })
-          .key(AppKeys.popup)
-        )*/
       ]
 
     } else {

@@ -31,7 +31,6 @@ enum InstructionPopupKeys : String,  NodeDescriptionKeys {
 
 struct InstructionPopup : NodeDescription, PlasticNodeDescription {
   static var initialState = EmptyState()
-  typealias NativeView = UIView
   
   var props : InstructionPopupProps
   

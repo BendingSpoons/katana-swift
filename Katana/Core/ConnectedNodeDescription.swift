@@ -13,8 +13,8 @@ public protocol AnyConnectedNodeDescription {
 }
 
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
-  associatedtype Props: Equatable, Frameable
-  associatedtype StorageState: State
+  associatedtype Props: Equatable, Frameable = EmptyProps
+  associatedtype StorageState: State = EmptyState
 
   static func connect(parentProps: Props, storageState: StorageState) -> Props
 }

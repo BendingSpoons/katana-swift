@@ -35,8 +35,6 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
 
 
 public struct View : NodeDescription, NodeWithChildrenDescription {
-  public typealias NativeView = UIView
-
   public var props : ViewProps
 
   public static var initialState = EmptyState()

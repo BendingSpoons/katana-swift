@@ -44,8 +44,6 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,B
 }
 
 public struct Button : NodeDescription {
-  public typealias NativeView = UIView
-
   public var props : ButtonProps
   public static var initialState = false
   
