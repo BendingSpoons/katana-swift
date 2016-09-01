@@ -29,7 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     
-    let store = Store(middlewares: [sagaMiddleware(reducer: SyncAsyncReducer<AppState>.self)])
+    let store = Store(middlewares: [sagaMiddleware(reducer: SmartReducer<AppState>.self)])
     
     self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)

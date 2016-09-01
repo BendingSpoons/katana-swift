@@ -1,5 +1,5 @@
 //
-//  ActionWithSideEffect.swift
+//  SmartActionWithSideEffect.swift
 //  Katana
 //
 //  Created by Luca Querella on 30/08/16.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol AnyActionWithSideEffect : Action {
+public protocol AnySmartActionWithSideEffect : Action {
   static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch)
 }
 
-public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
+public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect {
   associatedtype StateType : State
 
   static func sideEffect(action: Self, getState: StoreGetState<StateType>, dispatch: StoreDispatch)

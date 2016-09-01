@@ -8,7 +8,7 @@
 
 import Katana
 
-struct SetPin : SyncAction, ActionWithSideEffect {
+struct SetPin : SyncSmartAction, SmartActionWithSideEffect {
   var payload: [Int]
   
   static func reduce(state: inout AppState, action: SetPin) {

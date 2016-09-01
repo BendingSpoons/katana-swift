@@ -13,7 +13,7 @@ public func sagaMiddleware<R: Reducer>(reducer _: R.Type) -> StoreMiddleware<R> 
     return { next in
       return { action in
         
-        if let action = action as? AnyActionWithSideEffect {
+        if let action = action as? AnySmartActionWithSideEffect {
           type(of: action).anySideEffect(action: action, getState: store.getState, dispatch: store.dispatch)
         }
 

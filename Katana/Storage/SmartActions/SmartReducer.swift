@@ -8,15 +8,15 @@
 
 import Foundation
 
-public struct SyncAsyncReducer<ReducerState: State> : Reducer {
+public struct SmartReducer<ReducerState: State> : Reducer {
   public static func reduce(action: Action, state: ReducerState) -> ReducerState {
     
-    if let action = action as? AnySyncAction {
+    if let action = action as? AnySyncSmartAction {
       let result = type(of: action).anyReduce(state: state, action: action) as! ReducerState
       return result
     }
     
-    if let action = action as? AnyAsyncAction {
+    if let action = action as? AnyAsyncSmartAction {
       let result = type(of: action).anyReduce(state: state, action: action) as! ReducerState
       return result
     }

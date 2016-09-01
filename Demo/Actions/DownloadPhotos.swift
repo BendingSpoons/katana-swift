@@ -8,12 +8,12 @@
 
 import Katana
 
-struct DownloadPhotos : AsyncAction {
+struct DownloadPhotos : AsyncSmartAction {
   
   var loadingPayload: Void
   var completedPayload: [String]?
   var failedPayload: String?
-  var state: AsyncActionState
+  var state: AsyncSmartActionState
   
   static func loadingReduce(state: inout AppState, action: DownloadPhotos) {
     state.loadingPhotos = true

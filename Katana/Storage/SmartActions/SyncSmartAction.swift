@@ -1,5 +1,5 @@
 //
-//  SyncAction.swift
+//  SyncSmartAction.swift
 //  Katana
 //
 //  Created by Luca Querella on 29/08/16.
@@ -8,11 +8,11 @@
 
 import Foundation
 
-public protocol AnySyncAction : Action {
-  static func anyReduce(state: State, action: AnySyncAction) -> State
+public protocol AnySyncSmartAction : Action {
+  static func anyReduce(state: State, action: AnySyncSmartAction) -> State
 }
 
-public protocol SyncAction : Action {
+public protocol SyncSmartAction : Action {
   associatedtype PayloadType
   associatedtype StateType
   
@@ -21,8 +21,8 @@ public protocol SyncAction : Action {
   static func reduce(state: inout StateType, action: Self)
 }
 
-public extension SyncAction {
-  static func anyReduce(state: State, action: AnySyncAction) -> State {
+public extension SyncSmartAction {
+  static func anyReduce(state: State, action: AnySyncSmartAction) -> State {
     var state = state as! StateType
     let action = action as! Self
     
@@ -33,7 +33,7 @@ public extension SyncAction {
 
 }
 
-public extension SyncAction where Self : ActionWithSideEffect {
+public extension SyncSmartAction where Self : SmartActionWithSideEffect {
   static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch) {
     
     let action = action as! Self
