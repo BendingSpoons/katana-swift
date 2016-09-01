@@ -13,6 +13,8 @@ struct RemoveTodo : SyncSmartAction {
   
   static func reduce(state: inout AppState, action: RemoveTodo) {
     state.todos.remove(at: action.payload)
+    state.todosCompleted.remove(at: action.payload)
+
   }
   
 }

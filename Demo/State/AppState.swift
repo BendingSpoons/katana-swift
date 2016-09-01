@@ -11,5 +11,6 @@ import Katana
 
 struct AppState : State {
   var todos: [String] = []
+  var todosCompleted: [Bool] = []
 
 }

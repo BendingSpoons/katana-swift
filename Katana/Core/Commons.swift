@@ -196,7 +196,16 @@ public struct EmptyState : Equatable {
   }
   
   public init() {}
+}
+
+public struct EmptyHighlightableState : Equatable, Highlightable {
+  public var highlighted = false
+
+  public static func ==(lhs: EmptyHighlightableState, rhs: EmptyHighlightableState) -> Bool {
+    return lhs.highlighted == rhs.highlighted
+  }
   
+  public init() {}
 }
 
 public struct EmptyProps : Equatable, Frameable, Keyable {

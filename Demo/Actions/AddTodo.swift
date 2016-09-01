@@ -13,6 +13,8 @@ struct AddTodo : SyncSmartAction {
   
   static func reduce(state: inout AppState, action: AddTodo) {
     state.todos.append(action.payload)
+    state.todosCompleted.append(false)
+
   }
 
 }

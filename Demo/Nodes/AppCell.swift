@@ -12,11 +12,13 @@ struct AppCellProps : Equatable,Frameable {
   var frame = CGRect.zero
   var index = 0
   var name = ""
+  var completed = false
   
   static func ==(lhs: AppCellProps, rhs: AppCellProps) -> Bool {
     return lhs.frame == rhs.frame &&
       lhs.index == rhs.index &&
-      lhs.name == rhs.name
+      lhs.name == rhs.name &&
+      lhs.completed == rhs.completed
   }
   
   func index(_ index: Int) -> AppCellProps {
@@ -30,27 +32,28 @@ enum AppCellKeys: String,NodeDescriptionKeys {
   case name, delete
 }
 
-struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
+struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
-  typealias NativeView = UIView
+  typealias NativeView = CellNativeView
   
   var props : AppCellProps
-  static var initialState = EmptyState()
+  static var initialState = EmptyHighlightableState()
   
   init(props: AppCellProps) {
     self.props = props
   }
   
   static func render(props: AppCellProps,
-    state: EmptyState,
-    update: @escaping (EmptyState) -> (),
+    state: EmptyHighlightableState,
+    update: @escaping (EmptyHighlightableState) -> (),
     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     
     return [
       Text(props: TextProps()
         .key(AppCellKeys.name)
-        .text(props.name, fontSize: 7)
+        .text(props.name, fontSize: ( props.completed ? 10 : 5 ))
+        .color(state.highlighted ? .gray : .white)
       ),
       
       Button(props: ButtonProps()
@@ -62,8 +65,12 @@ struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescripti
     ]
   }
   
+  public static func didTap(dispatch: StoreDispatch, props: AppCellProps, indexPath: IndexPath) {
+    dispatch(ToogleTodoCompletion(payload: props.index))
+  }
+  
   static func layout(views: ViewsContainer<AppCellKeys>,
-                     props: AppCellProps, state: EmptyState) {
+                     props: AppCellProps, state: EmptyHighlightableState) {
     
     let root = views.nativeView
     let name = views[.name]!
@@ -77,5 +84,7 @@ struct AppCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescripti
   
   static func connect(props: inout AppCellProps, storageState: AppState) {
     props.name = storageState.todos[props.index]
+    props.completed = storageState.todosCompleted[props.index]
+
   }
 }
