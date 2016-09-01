@@ -16,10 +16,12 @@ struct AppProps: Equatable, Frameable {
   var todos: [String] = []
   
   static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
-    return lhs.showPopup == rhs.showPopup &&
+    
+    //FIXME
+    return false /* lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
       lhs.frame == rhs.frame &&
-      lhs.todos == rhs.todos
+      lhs.todos == rhs.todos*/
   }
 }
 
@@ -55,13 +57,15 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     return [
       Text(props: TextProps()
         .key(AppKeys.title)
-        .text("My awesome todos", fontSize: 10)
-        .color(.red)
+        .text("My awesome todos", fontSize: 15)
+        .borderColor(UIColor(0xC42900))
+        .borderWidth(2)
       ),
       
       Button(props: ButtonProps()
         .key(AppKeys.add)
-        .color(.blue)
+        .color(0xEE6502)
+        .color(UIColor(0xC42900), state: .highlighted)
         .text("+", fontSize: 10)
         .onTap(addTodo)
       ),
@@ -113,7 +117,7 @@ struct AppListDelegate  : TableDelegate {
   }
   
   func height(forRowAt indexPath: IndexPath) -> Value {
-    return .fixed(50)
+    return .scalable(100)
   }
 }
 

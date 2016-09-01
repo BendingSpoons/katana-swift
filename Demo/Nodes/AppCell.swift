@@ -49,16 +49,23 @@ struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
     dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     
+    let text = NSMutableAttributedString(string: props.name, attributes: [
+      NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
+      NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
+      NSForegroundColorAttributeName : UIColor.black,
+      NSStrikethroughStyleAttributeName : props.completed
+      ])
+    
     return [
       Text(props: TextProps()
         .key(AppCellKeys.name)
-        .text(props.name, fontSize: ( props.completed ? 10 : 5 ))
+        .text(text)
         .color(state.highlighted ? .gray : .white)
       ),
       
       Button(props: ButtonProps()
         .key(AppCellKeys.delete)
-        .color(.orange)
+        .color(0x1D9F9F)
         .text("-", fontSize: 10)
         .onTap({dispatch(RemoveTodo(payload: props.index))})
       )
@@ -79,7 +86,7 @@ struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
     name.fill(root)
     
     delete.coverRight(name)
-    delete.width = .fixed(30)
+    delete.width = .scalable(60)
   }
   
   static func connect(props: inout AppCellProps, storageState: AppState) {
