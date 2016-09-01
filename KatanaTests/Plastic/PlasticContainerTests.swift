@@ -20,9 +20,9 @@ class PlasticViewsContainerTests: XCTestCase {
   func testShouldCreateRootElement() {
     let hierarchy: [AnyNodeDescription] = []
     let rootFrame = CGRect(x: 0, y: 10, width: 20, height: 30)
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: rootFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: rootFrame, children: hierarchy, multiplier: 1)
     
-    let rootPlaceholder = plasticViewsContainer.rootView
+    let rootPlaceholder = plasticViewsContainer.nativeView
     XCTAssertEqual(rootPlaceholder.frame, rootFrame)
   }
   
@@ -41,9 +41,9 @@ class PlasticViewsContainerTests: XCTestCase {
       ]
     
     
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
     
-    XCTAssertNotNil(plasticViewsContainer.rootView)
+    XCTAssertNotNil(plasticViewsContainer.nativeView)
     XCTAssertNotNil(plasticViewsContainer[.One])
     XCTAssertNotNil(plasticViewsContainer[.OneA])
     XCTAssertNotNil(plasticViewsContainer[.OneB])
@@ -70,7 +70,7 @@ class PlasticViewsContainerTests: XCTestCase {
       ]
     
     
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
     let onePlaceholder = plasticViewsContainer[Keys.One]
     let oneBPlaceholder = plasticViewsContainer[Keys.OneB]
     
@@ -94,13 +94,13 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!
     let viewOneA = plasticViewsContainer[Keys.OneA]!
     let viewOneAInner = plasticViewsContainer[Keys.OneAInner]!
-    let root = plasticViewsContainer.rootView
+    let root = plasticViewsContainer.nativeView
     
     viewOne.coverRight(root)
     viewOne.width = .fixed(400)
@@ -157,13 +157,13 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let containerFrame = CGRect(x: 20, y: 20, width: 1000, height: 1000)
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!
     let viewOneA = plasticViewsContainer[Keys.OneA]!
     let viewOneAInner = plasticViewsContainer[Keys.OneAInner]!
-    let root = plasticViewsContainer.rootView
+    let root = plasticViewsContainer.nativeView
     
     viewOne.coverRight(root)
     viewOne.width = .fixed(400)
@@ -223,12 +223,12 @@ class PlasticViewsContainerTests: XCTestCase {
     ]
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
-    let plasticViewsContainer = ViewsContainer<Keys>(rootFrame: containerFrame, children: hierarchy, multiplier: 1)
+    let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!
     let viewOneAInner = plasticViewsContainer[Keys.OneAInner]!
-    let root = plasticViewsContainer.rootView
+    let root = plasticViewsContainer.nativeView
     
     viewOne.coverRight(root)
     viewOne.width = .fixed(400)

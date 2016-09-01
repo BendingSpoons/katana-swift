@@ -19,7 +19,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     let multiplier = self.plasticMultipler
     let frame = self.typedDescription.props.frame
     
-    let container = ViewsContainer<Description.Keys>(rootFrame: frame, children: children, multiplier: multiplier)
+    let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame, children: children, multiplier: multiplier)
     type(of: description).anyLayout(views: container, props: self.typedDescription.props, state: self.state)
     
     return self.getFramedChildren(fromChildren: children, usingContainer: container)

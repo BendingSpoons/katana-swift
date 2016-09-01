@@ -88,7 +88,7 @@ struct InstructionPopup : NodeDescription, PlasticNodeDescription {
     let container = views[.container]!
     let button = views[.button]!
     let title = views[.title]!
-    let root = views.rootView
+    let root = views.nativeView
     
     overlay.fill(root)
     

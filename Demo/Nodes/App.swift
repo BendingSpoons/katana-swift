@@ -67,7 +67,7 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
   }
   
   static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) {
-    let root = views.rootView
+    let root = views.nativeView
     let popup = views[.popup]
     let calculator = views[.calculator]
     

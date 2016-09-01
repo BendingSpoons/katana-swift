@@ -8,11 +8,11 @@
 
 import UIKit
 
-private let ROOT_KEY = "//ROOT_KEY\\"
+private let NATIVE_VIEW_KEY = "//NATIVE_VIEW_KEY\\"
 
 internal enum HierarchyNode<Key> where Key : RawRepresentable & Hashable {
-  // the node is the root node
-  case root
+  // the node is the native node
+  case nativeView
   
   // the node is something with a static frame (no key)
   // we save the frame of the node and the reference to the parent
@@ -31,25 +31,24 @@ public class ViewsContainer<Key> : HierarchyManager
   // the key is the node key while the value is a parent node representation
   private var hierarchy: [Key: HierarchyNode<Key>] = [:]
   
-  private let rootFrame: CGRect
+  private let nativeViewFrame: CGRect
   private let multiplier: CGFloat
 
-  lazy public private(set) var rootView: PlasticView = {
+  lazy public private(set) var nativeView: PlasticView = {
     return PlasticView(
       hierarchyManager: self,
-      key: ROOT_KEY,
+      key: NATIVE_VIEW_KEY,
       multiplier: self.multiplier,
-      frame: self.rootFrame
+      frame: self.nativeViewFrame
     )
   }()
 
-  init(rootFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
-    self.rootFrame = rootFrame
+  init(nativeViewFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
+    self.nativeViewFrame = nativeViewFrame
     self.multiplier = multiplier
     
     // create children placeholders
     flattenChildren(children).forEach { key,node in
-
       let enumKey = Key.init(rawValue: key as! Key.RawValue)!
 
       self.views[enumKey] = PlasticView(
@@ -61,7 +60,7 @@ public class ViewsContainer<Key> : HierarchyManager
     }
     
     // this is a kind of workaround.. basically in this way we automatically handle the root
-    self.nodeChildrenHierarchy(children, parentRepresentation: .root, accumulator: &hierarchy)
+    self.nodeChildrenHierarchy(children, parentRepresentation: .nativeView, accumulator: &hierarchy)
   }
   
   public subscript(key: Key) -> PlasticView? {
@@ -97,8 +96,8 @@ public class ViewsContainer<Key> : HierarchyManager
   */
   private func resolveAbsoluteOrigin(fromNode node: HierarchyNode<Key>) -> CGPoint {
     switch node {
-    case .root:
-      return self.rootFrame.origin
+    case .nativeView:
+      return self.nativeViewFrame.origin
       
     case let .dynamicFrame(key):
       guard let node = self[key] else {

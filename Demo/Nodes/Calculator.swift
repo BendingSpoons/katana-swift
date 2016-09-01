@@ -183,7 +183,7 @@ struct Calculator : NodeDescription, PlasticNodeDescription {
     }
     
     
-    let root = views.rootView
+    let root = views.nativeView
     let container = views[.container]!
     let numberDisplay = views[.numberDisplay]!
     let buttonsContainer = views[.buttonsContainer]!
