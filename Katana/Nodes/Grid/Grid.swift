@@ -73,10 +73,9 @@ public struct GridProps: Equatable, Frameable, Keyable {
 
 
 public struct Grid : NodeDescription {
-  public var props : GridProps
-  
-  public static var initialState = EmptyState()
   public typealias NativeView = NativeGridView
+  
+  public var props : GridProps
   
   public init(props: GridProps) {
     self.props = props

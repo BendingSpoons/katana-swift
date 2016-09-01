@@ -34,13 +34,10 @@ public struct Table : NodeDescription {
   
   public var props : TableProps
   
-  public static var initialState = EmptyState()
-  
   public init(props: TableProps) {
     self.props = props
   }
   
-
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
                                             view: NativeTableView,

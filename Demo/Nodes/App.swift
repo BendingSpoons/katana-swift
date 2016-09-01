@@ -26,8 +26,6 @@ enum AppKeys: String,NodeDescriptionKeys {
 }
 
 struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
-  static var initialState = EmptyState()
-  
   var props : AppProps
   
   static var referenceSize: CGSize {

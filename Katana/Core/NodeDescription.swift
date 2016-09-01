@@ -8,6 +8,10 @@
 
 import UIKit
 
+public protocol NodeDescriptionState: Equatable {
+  init()
+}
+
 public protocol AnyNodeDescription {
   var frame: CGRect { get set }
   var key: String? { get }
@@ -21,9 +25,7 @@ public protocol AnyNodeDescription {
 public protocol NodeDescription : AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
   associatedtype Props: Equatable, Frameable = EmptyProps
-  associatedtype State: Equatable = EmptyState
-  
-  static var initialState: State { get }
+  associatedtype State: NodeDescriptionState = EmptyState
   
   var props: Props { get set }
 

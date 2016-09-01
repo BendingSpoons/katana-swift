@@ -31,8 +31,6 @@ public struct Text : NodeDescription {
 
   public var props : TextProps
   
-  public static var initialState = EmptyState()
-  
   public static func applyPropsToNativeView(props: TextProps,
                                             state: EmptyState,
                                             view: UILabel,

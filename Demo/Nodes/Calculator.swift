@@ -85,7 +85,6 @@ private struct Row {
 
 struct Calculator : NodeDescription, PlasticNodeDescription {
   typealias NativeView = UIView
-  static var initialState = EmptyState()
   
   var props : CalculatorProps
   

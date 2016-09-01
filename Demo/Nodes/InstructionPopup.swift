@@ -30,8 +30,6 @@ enum InstructionPopupKeys : String,  NodeDescriptionKeys {
 }
 
 struct InstructionPopup : NodeDescription, PlasticNodeDescription {
-  static var initialState = EmptyState()
-  
   var props : InstructionPopupProps
   
   static func render(props: InstructionPopupProps,

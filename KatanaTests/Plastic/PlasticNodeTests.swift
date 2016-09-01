@@ -18,7 +18,6 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
 
   var props : EmptyProps
   
-  static var initialState = EmptyState()
   // since we are using a static var here we are not be able to
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false

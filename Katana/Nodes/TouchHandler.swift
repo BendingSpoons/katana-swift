@@ -37,8 +37,6 @@ public struct TouchHandler : NodeDescription, NodeWithChildrenDescription {
   
   public var props : TouchHandlerProps
   
-  public static var initialState = EmptyState()
-  
   public static func applyPropsToNativeView(props: TouchHandlerProps,
                                             state: EmptyState,
                                             view: TouchHandlerView,

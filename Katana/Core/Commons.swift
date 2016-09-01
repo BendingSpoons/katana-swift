@@ -190,7 +190,7 @@ public protocol Highlightable {
   var highlighted: Bool { get set }
 }
 
-public struct EmptyState : Equatable {
+public struct EmptyState: NodeDescriptionState {
   public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true
   }

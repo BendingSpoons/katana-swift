@@ -37,7 +37,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   
   public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
     self.typedDescription = description
-    self.state = Description.initialState
+    self.state = Description.State.init()
     self.parentNode = parentNode
     self.store = store
     

@@ -37,8 +37,6 @@ public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRa
 public struct View : NodeDescription, NodeWithChildrenDescription {
   public var props : ViewProps
 
-  public static var initialState = EmptyState()
-  
   public static func applyPropsToNativeView(props: ViewProps,
                                             state: EmptyState,
                                             view: UIView,

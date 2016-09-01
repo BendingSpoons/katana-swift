@@ -45,19 +45,18 @@ public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,B
 
 public struct Button : NodeDescription {
   public var props : ButtonProps
-  public static var initialState = false
   
   public init(props: ButtonProps) {
     self.props = props
   }
   
   public static func render(props: ButtonProps,
-                            state: Bool,
-                            update: @escaping (Bool)->(),
+                            state: EmptyHighlightableState,
+                            update: @escaping (EmptyHighlightableState)->(),
                             dispatch: StoreDispatch) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
-      update(pressed)
+      update(EmptyHighlightableState(highlighted: pressed))
       
       if (!pressed) {
         props.onTap?()
@@ -69,7 +68,7 @@ public struct Button : NodeDescription {
         [
           View(props: ViewProps()
             .frame(props.frame.size)
-            .color(state ? props.highlightedColor : props.color )
+            .color(state.highlighted ? props.highlightedColor : props.color)
             .borderColor(props.borderColor)
             .borderWidth(props.borderWidth)
             .disableTouch())

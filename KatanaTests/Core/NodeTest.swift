@@ -24,8 +24,6 @@ struct App : NodeDescription {
   var props : AppProps
   var children: [AnyNodeDescription] = []
   
-  static var initialState = EmptyState()
-  
   static func render(props: AppProps,
                      state: EmptyState,
                      update: @escaping (EmptyState)->(),
@@ -74,8 +72,6 @@ struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
 
   var props : AppProps
   var children: [AnyNodeDescription] = []
-  
-  static var initialState = EmptyState()
   
   static func render(props: AppProps,
                      state: EmptyState,
