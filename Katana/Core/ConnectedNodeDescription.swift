@@ -13,15 +13,15 @@ public protocol AnyConnectedNodeDescription {
 }
 
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
-  associatedtype Props: Equatable, Frameable = EmptyProps
+  associatedtype PropsType: Equatable, Frameable = EmptyProps
   associatedtype StorageState: State = EmptyState
 
-  static func connect(props: inout Props, storageState: StorageState)
+  static func connect(props: inout PropsType, storageState: StorageState)
 }
 
 public extension ConnectedNodeDescription {
   static func anyConnect(parentProps: Any, storageState: Any) -> Any {
-    if let parentProps = parentProps as? Props, let s = storageState as? StorageState {
+    if let parentProps = parentProps as? PropsType, let s = storageState as? StorageState {
       var parentPropsCopy = parentProps
       self.connect(props: &parentPropsCopy, storageState: s)
       return parentPropsCopy

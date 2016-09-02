@@ -26,12 +26,12 @@ public protocol AnyPlasticNodeDescription {
 // a node that leverages plastic to layout
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
   associatedtype Keys: NodeDescriptionKeys
-  static func layout(views: ViewsContainer<Keys>, props: Props, state: State) -> Void
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
 }
 
 public extension PlasticNodeDescription {
   static func anyLayout(views: Any, props: Any, state: Any) -> Void {
-    if let p = props as? Props, let s = state as? State, let v = views as? ViewsContainer<Keys> {
+    if let p = props as? PropsType, let s = state as? StateType, let v = views as? ViewsContainer<Keys> {
       layout(views: v, props: p, state: s)
     }
   }

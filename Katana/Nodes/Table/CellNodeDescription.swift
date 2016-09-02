@@ -14,17 +14,17 @@ public protocol AnyCellNodeDescription: AnyNodeDescription {
 
 public protocol CellNodeDescription: NodeDescription, AnyCellNodeDescription {
   associatedtype NativeView: CellNativeView = CellNativeView
-  associatedtype State: Highlightable = EmptyHighlightableState
+  associatedtype StateType: Highlightable = EmptyHighlightableState
 
-  static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath)
+  static func didTap(dispatch: StoreDispatch, props: PropsType, indexPath: IndexPath)
 }
 
 public extension CellNodeDescription {
   
-  public static func applyPropsToNativeView(props: Props,
-                                            state: State,
+  public static func applyPropsToNativeView(props: PropsType,
+                                            state: StateType,
                                             view: NativeView,
-                                            update: @escaping (State)->(),
+                                            update: @escaping (StateType)->(),
                                             node: AnyNode) -> Void {
     
     view.frame = props.frame
@@ -39,7 +39,7 @@ public extension CellNodeDescription {
   
   
   public static func anyDidTap(dispatch: StoreDispatch, props: Any, indexPath: IndexPath) {
-    if let p = props as? Props {
+    if let p = props as? PropsType {
       self.didTap(dispatch: dispatch, props: p, indexPath: indexPath)
     }
   }

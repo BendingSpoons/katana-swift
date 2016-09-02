@@ -24,26 +24,26 @@ public protocol AnyNodeDescription {
 
 public protocol NodeDescription : AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
-  associatedtype Props: Equatable, Frameable = EmptyProps
-  associatedtype State: NodeDescriptionState = EmptyState
+  associatedtype PropsType: Equatable, Frameable = EmptyProps
+  associatedtype StateType: NodeDescriptionState = EmptyState
   
-  var props: Props { get set }
+  var props: PropsType { get set }
 
-  static func applyPropsToNativeView(props: Props,
-                                     state: State,
+  static func applyPropsToNativeView(props: PropsType,
+                                     state: StateType,
                                      view: NativeView,
-                                     update: @escaping (State)->(),
+                                     update: @escaping (StateType)->(),
                                      node: AnyNode) -> Void
   
-  static func render(props: Props,
-                     state: State,
-                     update: @escaping (State)->(),
+  static func render(props: PropsType,
+                     state: StateType,
+                     update: @escaping (StateType)->(),
                      dispatch: StoreDispatch) -> [AnyNodeDescription]
   
-  static func childrenAnimationForNextRender(currentProps: Props,
-                                             nextProps: Props,
-                                             currentState: State,
-                                             nextState: State,
+  static func childrenAnimationForNextRender(currentProps: PropsType,
+                                             nextProps: PropsType,
+                                             currentState: StateType,
+                                             nextState: StateType,
                                              parentAnimation: Animation) -> Animation
   
   func replaceKey() -> Int
@@ -74,18 +74,18 @@ extension NodeDescription {
 }
 
 extension NodeDescription {
-  public static func applyPropsToNativeView(props: Props,
-                                     state: State,
+  public static func applyPropsToNativeView(props: PropsType,
+                                     state: StateType,
                                      view: NativeView,
-                                     update: @escaping (State)->(),
+                                     update: @escaping (StateType)->(),
                                      node: AnyNode) ->  Void {
     view.frame = props.frame
   }
   
-  public static func childrenAnimationForNextRender(currentProps: Props,
-                                                    nextProps: Props,
-                                                    currentState: State,
-                                                    nextState: State,
+  public static func childrenAnimationForNextRender(currentProps: PropsType,
+                                                    nextProps: PropsType,
+                                                    currentState: StateType,
+                                                    nextState: StateType,
                                                     parentAnimation: Animation) -> Animation {
     return parentAnimation
   }

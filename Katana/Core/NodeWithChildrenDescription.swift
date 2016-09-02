@@ -13,8 +13,7 @@ public protocol AnyNodeWithChildrenDescription: AnyNodeDescription {
 }
 
 public protocol NodeWithChildrenDescription: NodeDescription, AnyNodeWithChildrenDescription {
-  associatedtype Props: Childrenable
-  var props: Props { get set }
+  associatedtype PropsType: Childrenable
 }
 
 public extension NodeWithChildrenDescription {

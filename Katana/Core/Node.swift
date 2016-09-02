@@ -24,7 +24,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   
   public private(set) var children : [AnyNode]?
   public private(set) unowned var store: AnyStore
-  private(set) var state : Description.State
+  private(set) var state : Description.StateType
   private(set) var typedDescription : Description
   private(set) weak var parentNode: AnyNode?
   private var container: DrawableContainer?  
@@ -37,11 +37,11 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   
   public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
     self.typedDescription = description
-    self.state = Description.State.init()
+    self.state = Description.StateType.init()
     self.parentNode = parentNode
     self.store = store
     
-    let update = { [weak self] (state: Description.State) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> Void in
       self?.update(state: state)
     }
     
@@ -63,7 +63,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     return children
   }
 
-  func update(state: Description.State)  {
+  func update(state: Description.StateType)  {
     self.update(state: state, description: self.typedDescription, parentAnimation: .none)
   }
   
@@ -77,7 +77,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     self.update(state: self.state, description: description, parentAnimation: animation)
   }
   
-  private func update(state: Description.State, description: Description, parentAnimation: Animation) {
+  private func update(state: Description.StateType, description: Description, parentAnimation: Animation) {
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
@@ -110,7 +110,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
     
-    let update = { [weak self] (state: Description.State) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> Void in
       self?.update(state: state)
     }
     
@@ -153,11 +153,11 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   }
 
   
-  func updatedPropsWithConnect(description: Description, props: Description.Props) -> Description.Props {
+  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       let state = self.store.getAnyState()
-      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.Props
+      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
     }
     
     return props
@@ -175,7 +175,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     
     self.container = container.add { Description.NativeView() }
     
-    let update = { [weak self] (state: Description.State) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> Void in
       self?.update(state: state)
     }
     
@@ -197,7 +197,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     
     assert(viewIndexes.count == self.children?.count)
     
-    let update = { [weak self] (state: Description.State) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> Void in
       self?.update(state: state)
     }
     
