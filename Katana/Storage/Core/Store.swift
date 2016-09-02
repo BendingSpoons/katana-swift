@@ -56,14 +56,12 @@ public class Store<RootReducer: Reducer> {
   }
   
   private func performDispatch(_ action: Action) {
-    // we dispatch everything in the main thread to avoid any possible issue
+    // we dispatch everything in the main queue to avoid any possible issue
     // with multiple actions.
     // we can remove this limitation by adding an (atomic) FIFO queue where actions are added
     // while the current action has been completed
     
-    guard Thread.isMainThread else {
-      fatalError("actions must be dispatched in the main thread")
-    }
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
     
     self.state = RootReducer.reduce(action: action, state: self.state)
 

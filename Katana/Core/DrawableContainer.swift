@@ -33,12 +33,16 @@ extension UIView : DrawableContainer {
   }
   
   public func removeAll() {
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+
     self.subviews
       .filter { $0.tag == VIEW_TAG }
       .forEach { $0.removeFromSuperview() }
   }
   
   public func add(child: () -> UIView) -> DrawableContainer {
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+
     let child = child()
     child.tag = VIEW_TAG
     self.addSubview(child)
@@ -46,6 +50,7 @@ extension UIView : DrawableContainer {
   }
   
   public func update(view: (UIView)->()) {
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
     view(self)
   }
   
@@ -54,11 +59,15 @@ extension UIView : DrawableContainer {
   }
   
   public func bringToFront(child: DrawableContainerChild) {
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+
     let child = child as! UIViewDrawableContainerChild
     self.bringSubview(toFront: child.view)
   }
   
   public func remove(child: DrawableContainerChild) {
+    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+
     let child = child as! UIViewDrawableContainerChild
     child.view.removeFromSuperview()
   }
