@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
     
-    let sideEffects = sideEffectsMiddleware(state: AppState.self)
+    let sideEffects = sideEffectsMiddleware(state: AppState.self, dependencies: nil)
     let actionLogger = actionLoggerMiddleware(state: AppState.self)
 
     let store = Store<SmartReducer<AppState>>(middlewares: [sideEffects,actionLogger])

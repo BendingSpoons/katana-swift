@@ -34,13 +34,16 @@ public extension SyncSmartAction {
 }
 
 public extension SyncSmartAction where Self : SmartActionWithSideEffect {
-  static func anySideEffect(action: Action, state: State, dispatch: StoreDispatch) {
+  
+  
+  
+/*  static func anySideEffect(action: Action, state: State, dispatch: StoreDispatch, dependencies: SideEffectsDependenciesContainer<State> ) {
     
     let action = action as! Self
     let state = state as! StateType
     
-    sideEffect(action: action, state: state, dispatch: dispatch)
-  }
+    sideEffect(action: action, state: state, dispatch: dispatch, dependencies: SideEffectsDependenciesContainer<`Self`.StateType>))
+  }*/
 }
 
 
