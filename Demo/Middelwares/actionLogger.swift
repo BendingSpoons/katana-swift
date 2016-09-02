@@ -6,7 +6,7 @@
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
-import Foundation
+import Katana
 
 public func actionLoggerMiddleware<S: State>(state _: S.Type) -> StoreMiddleware<S> {
   return { state, dispatch in
