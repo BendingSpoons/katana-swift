@@ -10,10 +10,10 @@ import Foundation
 
 public protocol AnySmartActionWithSideEffect : Action {
   
-  static func anySideEffect<S: State>(action: Action,
-                            state: S,
+  static func anySideEffect(action: Action,
+                            state: State,
                             dispatch: StoreDispatch, 
-                            dependencies: SideEffectsDependenciesContainer<S>?)
+                            dependencies: Any?)
 }
 
 public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect {
@@ -22,6 +22,6 @@ public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect 
   static func sideEffect(action: Self,
                          state: StateType,
                          dispatch: StoreDispatch,
-                         dependencies: SideEffectsDependenciesContainer<StateType>?)
+                         dependencies: SideEffectsDependencies<StateType>?)
 }
 

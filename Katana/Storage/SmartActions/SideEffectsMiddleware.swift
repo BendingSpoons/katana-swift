@@ -8,8 +8,7 @@
 
 import Foundation
 
-
-open class SideEffectsDependenciesContainer<S: State> {
+open class SideEffectsDependencies<S: State> {
   let state: S
   let dispatch: StoreDispatch
   
@@ -19,9 +18,8 @@ open class SideEffectsDependenciesContainer<S: State> {
   }
 }
 
-
 public func sideEffectsMiddleware<S: State>(state _: S.Type,
-                                  dependencies: SideEffectsDependenciesContainer<S>.Type?) -> StoreMiddleware<S> {
+                                  dependencies: SideEffectsDependencies<S>.Type?) -> StoreMiddleware<S> {
   
   return { state, dispatch in
     return { next in

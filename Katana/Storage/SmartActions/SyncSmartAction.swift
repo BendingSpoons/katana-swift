@@ -17,7 +17,7 @@ public protocol SyncSmartAction : Action, AnySyncSmartAction {
   associatedtype StateType
   
   var payload : PayloadType {get set}
-
+  
   static func reduce(state: inout StateType, action: Self)
 }
 
@@ -30,20 +30,23 @@ public extension SyncSmartAction {
     
     return state as! State
   }
-
+  
 }
 
 public extension SyncSmartAction where Self : SmartActionWithSideEffect {
   
-  
-  
-/*  static func anySideEffect(action: Action, state: State, dispatch: StoreDispatch, dependencies: SideEffectsDependenciesContainer<State> ) {
     
-    let action = action as! Self
-    let state = state as! StateType
-    
-    sideEffect(action: action, state: state, dispatch: dispatch, dependencies: SideEffectsDependenciesContainer<`Self`.StateType>))
-  }*/
+    static func anySideEffect(action: Action,
+                              state: State,
+                              dispatch: StoreDispatch,
+                              dependencies: Any?) {
+      
+      let action = action as! Self
+      let state = state as! StateType
+      let dependencies = dependencies as! SideEffectsDependencies<Self.StateType>?
+      
+      
+      sideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
+      
+    }
 }
-
-
