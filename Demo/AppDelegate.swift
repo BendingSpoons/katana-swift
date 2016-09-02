@@ -38,15 +38,5 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   }
 }
 
-public func actionLoggerMiddleware<S: State>(state _: S.Type) -> StoreMiddleware<S> {
-  return { state, dispatch in
-    return { next in
-      return { action in
-        print(action)
-        next(action)
-      }
-    }
-  }
-}
 
 

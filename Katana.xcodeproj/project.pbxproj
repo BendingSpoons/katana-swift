@@ -69,17 +69,16 @@
 		819F76481D784A0F0083045D /* SmartReducer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F76431D784A0F0083045D /* SmartReducer.swift */; };
 		819F764C1D7860180083045D /* AppCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F764B1D7860180083045D /* AppCell.swift */; };
 		819F764E1D786BFE0083045D /* ToogleTodoCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F764D1D786BFE0083045D /* ToogleTodoCompletion.swift */; };
+		819F76511D7A01410083045D /* actionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 819F76501D7A01410083045D /* actionLogger.swift */; };
 		81BD02A21D6F162200CFF250 /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81BD02A11D6F162200CFF250 /* App.swift */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */; };
 		81EA57171D5F3D5900B6290E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57151D5F3D5900B6290E /* Assets.xcassets */; };
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
-		81F3F52C1D74EC46006150BB /* SetPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* SetPin.swift */; };
-		81F3F5321D74F357006150BB /* DownloadPhotos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* DownloadPhotos.swift */; };
-		A128BDCA1D7885A700874B42 /* EmptyHighlightableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128BDC91D7885A700874B42 /* EmptyHighlightableState.swift */; };
 		81F3F52C1D74EC46006150BB /* AddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* AddTodo.swift */; };
 		81F3F5321D74F357006150BB /* RemoveTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* RemoveTodo.swift */; };
+		A128BDCA1D7885A700874B42 /* EmptyHighlightableState.swift in Sources */ = {isa = PBXBuildFile; fileRef = A128BDC91D7885A700874B42 /* EmptyHighlightableState.swift */; };
 		A159DF411D65DF36009AE13F /* CombinedReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */; };
 		A159DF421D65DF36009AE13F /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2E1D65DF36009AE13F /* MiddlewareTests.swift */; };
 		A159DF431D65DF36009AE13F /* ReducerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A159DF2F1D65DF36009AE13F /* ReducerTests.swift */; };
@@ -175,6 +174,7 @@
 		819F76431D784A0F0083045D /* SmartReducer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SmartReducer.swift; sourceTree = "<group>"; };
 		819F764B1D7860180083045D /* AppCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCell.swift; sourceTree = "<group>"; };
 		819F764D1D786BFE0083045D /* ToogleTodoCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToogleTodoCompletion.swift; sourceTree = "<group>"; };
+		819F76501D7A01410083045D /* actionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionLogger.swift; sourceTree = "<group>"; };
 		81BD02A11D6F162200CFF250 /* App.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
@@ -185,11 +185,9 @@
 		81EA56E71D5F3A8A00B6290E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		81EA57151D5F3D5900B6290E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81F3F52B1D74EC46006150BB /* SetPin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SetPin.swift; sourceTree = "<group>"; };
-		81F3F5311D74F357006150BB /* DownloadPhotos.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadPhotos.swift; sourceTree = "<group>"; };
-		A128BDC91D7885A700874B42 /* EmptyHighlightableState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyHighlightableState.swift; sourceTree = "<group>"; };
 		81F3F52B1D74EC46006150BB /* AddTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodo.swift; sourceTree = "<group>"; };
 		81F3F5311D74F357006150BB /* RemoveTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveTodo.swift; sourceTree = "<group>"; };
+		A128BDC91D7885A700874B42 /* EmptyHighlightableState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EmptyHighlightableState.swift; sourceTree = "<group>"; };
 		A159DF2D1D65DF36009AE13F /* CombinedReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CombinedReducerTests.swift; sourceTree = "<group>"; };
 		A159DF2E1D65DF36009AE13F /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		A159DF2F1D65DF36009AE13F /* ReducerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReducerTests.swift; sourceTree = "<group>"; };
@@ -385,6 +383,14 @@
 			path = SmartActions;
 			sourceTree = "<group>";
 		};
+		819F764F1D7A011B0083045D /* Middelwares */ = {
+			isa = PBXGroup;
+			children = (
+				819F76501D7A01410083045D /* actionLogger.swift */,
+			);
+			path = Middelwares;
+			sourceTree = "<group>";
+		};
 		81EA56BD1D5F3A6000B6290E = {
 			isa = PBXGroup;
 			children = (
@@ -432,6 +438,7 @@
 		81EA56E61D5F3A8A00B6290E /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				819F764F1D7A011B0083045D /* Middelwares */,
 				81F3F5281D74EC1D006150BB /* Actions */,
 				814C11091D6DFE0A00324FCD /* State */,
 				814C11071D6DFE0200324FCD /* Node */,
@@ -754,6 +761,7 @@
 				81BD02A21D6F162200CFF250 /* App.swift in Sources */,
 				819F764C1D7860180083045D /* AppCell.swift in Sources */,
 				81F3F5321D74F357006150BB /* RemoveTodo.swift in Sources */,
+				819F76511D7A01410083045D /* actionLogger.swift in Sources */,
 				81F3F52C1D74EC46006150BB /* AddTodo.swift in Sources */,
 				81EA56E81D5F3A8A00B6290E /* AppDelegate.swift in Sources */,
 				814C110B1D6E008F00324FCD /* AppState.swift in Sources */,
