@@ -9,12 +9,12 @@
 import Foundation
 
 public protocol AnySmartActionWithSideEffect : Action {
-  static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch)
+  static func anySideEffect(action: Action, state: State, dispatch: StoreDispatch)
 }
 
 public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect {
   associatedtype StateType : State
 
-  static func sideEffect(action: Self, getState: StoreGetState<StateType>, dispatch: StoreDispatch)
+  static func sideEffect(action: Self, state: StateType, dispatch: StoreDispatch)
 }
 

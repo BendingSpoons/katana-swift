@@ -17,12 +17,14 @@ public protocol AnyStore: class {
 }
 
 public class Store<RootReducer: Reducer> {
-  private var state: RootReducer.StateType
+  fileprivate var state: RootReducer.StateType
   private var listeners: [StoreListener]
-  private let middlewares: [StoreMiddleware<RootReducer>]
+  private let middlewares: [StoreMiddleware<RootReducer.StateType>]
   
   lazy private var dispatchFunction: StoreDispatch = {
-    let m = self.middlewares.map { $0(self) }
+    let m = self.middlewares.map { middleware in
+      middleware(self.state, self.dispatch)
+    }
     return compose(m, storeDispatch: self.performDispatch)
   }()
   
@@ -32,14 +34,10 @@ public class Store<RootReducer: Reducer> {
     self.middlewares = []
   }
   
-  public init(middlewares: [StoreMiddleware<RootReducer>]) {
+  public init(middlewares: [StoreMiddleware<RootReducer.StateType>]) {
     self.listeners = []
     self.state = RootReducer.StateType()
     self.middlewares = middlewares
-  }
-  
-  public func getState() -> RootReducer.StateType {
-    return state
   }
 
   public func addListener(_ listener: StoreListener) -> StoreUnsubscribe {
@@ -71,7 +69,7 @@ public class Store<RootReducer: Reducer> {
 
 extension Store: AnyStore {
   public func getAnyState() -> Any {
-    return self.getState()
+    return self.state
   }
 }
 

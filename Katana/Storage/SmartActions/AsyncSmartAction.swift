@@ -77,17 +77,14 @@ public extension AsyncSmartAction {
 
 public extension AsyncSmartAction where Self : SmartActionWithSideEffect {
   
-  static func anySideEffect(action: Action, getState: StoreGetState<State>, dispatch: StoreDispatch) {
+  static func anySideEffect(action: Action, state: State, dispatch: StoreDispatch) {
     
     let action = action as! Self
+    let state = state as! StateType
     
     if action.state == .loading {
       
-      func _getState() -> StateType{
-        return getState() as! StateType
-      }
-      
-      sideEffect(action: action, getState: _getState, dispatch: dispatch)
+      sideEffect(action: action, state: state, dispatch: dispatch)
     }
   }
 }

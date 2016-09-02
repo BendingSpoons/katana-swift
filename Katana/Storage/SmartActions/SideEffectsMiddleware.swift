@@ -8,13 +8,13 @@
 
 import Foundation
 
-public func sagaMiddleware<R: Reducer>(reducer _: R.Type) -> StoreMiddleware<R> {
-  return { store in
+public func sideEffectsMiddleware<S: State>(state _: S.Type) -> StoreMiddleware<S> {
+  return { state, dispatch in
     return { next in
       return { action in
         
         if let action = action as? AnySmartActionWithSideEffect {
-          type(of: action).anySideEffect(action: action, getState: store.getState, dispatch: store.dispatch)
+          type(of: action).anySideEffect(action: action, state: state, dispatch: dispatch)
         }
 
         next(action)

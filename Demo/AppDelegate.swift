@@ -26,8 +26,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
     
-    
-    let store = Store(middlewares: [sagaMiddleware(reducer: SmartReducer<AppState>.self)])
+    let sideEffects = sideEffectsMiddleware(state: AppState.self)
+    let actionLogger = actionLoggerMiddleware(state: AppState.self)
+
+    let store = Store<SmartReducer<AppState>>(middlewares: [sideEffects,actionLogger])
     
     self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
     self.root!.draw(container: view)
@@ -35,4 +37,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 }
+
+public func actionLoggerMiddleware<S: State>(state _: S.Type) -> StoreMiddleware<S> {
+  return { state, dispatch in
+    return { next in
+      return { action in
+        print(action)
+        next(action)
+      }
+    }
+  }
+}
+
 
