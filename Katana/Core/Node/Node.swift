@@ -157,7 +157,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
-      let state = self.store.getAnyState()
+      let state = self.store.anyState
       return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
     }
     
