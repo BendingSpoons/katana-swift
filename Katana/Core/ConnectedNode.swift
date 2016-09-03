@@ -11,7 +11,6 @@ import Foundation
 
 protocol ConnectedNode : AnyNode {
   func storeDidChange()
-  func update(description: AnyNodeDescription) throws
 }
 
 extension ConnectedNode {
