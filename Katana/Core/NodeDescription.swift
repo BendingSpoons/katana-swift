@@ -8,8 +8,11 @@
 
 import UIKit
 
-public protocol NodeDescriptionState: Equatable {
+public protocol NodeState: Equatable {
   init()
+}
+
+public protocol NodeProps: Equatable, Frameable {
 }
 
 public protocol AnyNodeDescription {
@@ -17,15 +20,15 @@ public protocol AnyNodeDescription {
   var key: String? { get }
   var anyProps: Any { get }
   
-  func node(store: AnyStore) -> RootNode
+  func rootNode(store: AnyStore) -> RootNode
   func node(parentNode: AnyNode) -> AnyNode
   func replaceKey() -> Int
 }
 
 public protocol NodeDescription : AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
-  associatedtype PropsType: Equatable, Frameable = EmptyProps
-  associatedtype StateType: NodeDescriptionState = EmptyState
+  associatedtype PropsType: NodeProps = EmptyProps
+  associatedtype StateType: NodeState = EmptyState
   
   var props: PropsType { get set }
 
@@ -50,6 +53,26 @@ public protocol NodeDescription : AnyNodeDescription {
 }
 
 extension NodeDescription {
+  
+  public static func applyPropsToNativeView(props: PropsType,
+                                            state: StateType,
+                                            view: NativeView,
+                                            update: @escaping (StateType)->(),
+                                            node: AnyNode) ->  Void {
+    view.frame = props.frame
+  }
+  
+  public static func childrenAnimationForNextRender(currentProps: PropsType,
+                                                    nextProps: PropsType,
+                                                    currentState: StateType,
+                                                    nextState: StateType,
+                                                    parentAnimation: Animation) -> Animation {
+    return parentAnimation
+  }
+}
+
+extension AnyNodeDescription where Self : NodeDescription {
+  
   public var frame : CGRect {
     get {
       return self.props.frame
@@ -71,26 +94,8 @@ extension NodeDescription {
   public var anyProps: Any {
     return self.props
   }
-}
-
-extension NodeDescription {
-  public static func applyPropsToNativeView(props: PropsType,
-                                     state: StateType,
-                                     view: NativeView,
-                                     update: @escaping (StateType)->(),
-                                     node: AnyNode) ->  Void {
-    view.frame = props.frame
-  }
   
-  public static func childrenAnimationForNextRender(currentProps: PropsType,
-                                                    nextProps: PropsType,
-                                                    currentState: StateType,
-                                                    nextState: StateType,
-                                                    parentAnimation: Animation) -> Animation {
-    return parentAnimation
-  }
-  
-  public func node(store: AnyStore) -> RootNode {
+  public func rootNode(store: AnyStore) -> RootNode {
     return RootNode(store: store, node: Node(description: self, parentNode: nil, store: store))
   }
   

@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-struct AppProps: Equatable, Frameable {
+struct AppProps: NodeProps {
   var showPopup = false
   var showCalculator = false
   var frame: CGRect = CGRect.zero

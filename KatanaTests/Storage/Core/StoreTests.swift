@@ -13,7 +13,7 @@ import XCTest
 class StoreTests: XCTestCase {
   func testInitialState() {
     let store = Store<AppReducer>()
-    let state = store.getState()
+    let state = store.state
     
     XCTAssertEqual(state.todo, TodoState())
     XCTAssertEqual(state.user, UserState())
@@ -22,7 +22,7 @@ class StoreTests: XCTestCase {
   func testDispatch() {
     let store = Store<AppReducer>()
     store.dispatch(AddTodoAction(title: "New Todo"))
-    let newState = store.getState()
+    let newState = store.state
 
     XCTAssertEqual(newState.todo.todos.count, 1)
     XCTAssertEqual(newState.todo.todos[0].title, "New Todo")
@@ -33,7 +33,7 @@ class StoreTests: XCTestCase {
     var newState: AppState? = nil
     
     _ = store.addListener { [unowned store] in
-      newState = store.getState()
+      newState = store.state
     }
     
     store.dispatch(AddTodoAction(title: "New Todo"))
@@ -49,10 +49,10 @@ class StoreTests: XCTestCase {
     
     let unsubscribe = store.addListener { [unowned store] in
       if firstState != nil {
-        secondState = store.getState()
+        secondState = store.state
         
       } else {
-        firstState = store.getState()
+        firstState = store.state
       }
     }
     
@@ -68,7 +68,7 @@ class StoreTests: XCTestCase {
     XCTAssertNil(secondState)
     
     // state is ok
-    let lastState = store.getState()
+    let lastState = store.state
     let titles = lastState.todo.todos.map { $0.title }
     XCTAssertEqual(lastState.todo.todos.count, 2)
     XCTAssertEqual(titles.contains("New Todo"), true)

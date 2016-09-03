@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct GridProps: Equatable, Frameable, Keyable {
+public struct GridProps: NodeProps, Keyable {
   public var frame = CGRect.zero
   public var key: String?
   public var delegate: GridDelegate?

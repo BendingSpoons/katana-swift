@@ -46,3 +46,19 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     }
   }
 }
+
+public extension AnyNode {
+  public var plasticMultipler: CGFloat {
+    
+    guard let description = self.description as? PlasticNodeDescriptionWithReferenceSize else {
+      return self.parentNode?.plasticMultipler ?? 0.0
+    }
+    
+    let referenceSize = type(of: description).referenceSize
+    let currentSize = self.description.frame
+    
+    let widthRatio = currentSize.width / referenceSize.width;
+    let heightRatio = currentSize.height / referenceSize.height;
+    return min(widthRatio, heightRatio);
+  }
+}

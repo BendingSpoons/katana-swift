@@ -17,7 +17,7 @@ public protocol AnyStore: class {
 }
 
 public class Store<RootReducer: Reducer> {
-  fileprivate var state: RootReducer.StateType
+  public private(set) var state: RootReducer.StateType
   private var listeners: [StoreListener]
   private let middlewares: [StoreMiddleware<RootReducer.StateType>]
   

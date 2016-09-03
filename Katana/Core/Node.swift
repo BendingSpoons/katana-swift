@@ -10,10 +10,11 @@ import UIKit
 
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
-public protocol AnyNode: class, PlasticMultiplierProvider {
+public protocol AnyNode: class {
   var description : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
   var store: AnyStore { get }
+  var parentNode: AnyNode? {get}
 
   func draw(container: DrawableContainer)
   func update(description: AnyNodeDescription) throws
@@ -26,7 +27,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   public private(set) unowned var store: AnyStore
   private(set) var state : Description.StateType
   private(set) var typedDescription : Description
-  private(set) weak var parentNode: AnyNode?
+  public private(set) weak var parentNode: AnyNode?
   private var container: DrawableContainer?  
   
   public var description: AnyNodeDescription {
@@ -232,18 +233,5 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
   }
-  
-  public var plasticMultipler: CGFloat {
-    
-    guard let description = self.typedDescription as? PlasticNodeDescriptionWithReferenceSize else {
-      return self.parentNode?.plasticMultipler ?? 0.0
-    }
-    
-    let referenceSize = type(of: description).referenceSize
-    let currentSize = self.typedDescription.frame
-    
-    let widthRatio = currentSize.width / referenceSize.width;
-    let heightRatio = currentSize.height / referenceSize.height;
-    return min(widthRatio, heightRatio);
-  }
+
 }

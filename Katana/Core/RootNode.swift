@@ -9,8 +9,8 @@
 import Foundation
 
 public class RootNode {
-  let store: AnyStore
-  let node: AnyNode
+  public let store: AnyStore
+  public let node: AnyNode
 
   public init(store: AnyStore, node: AnyNode) {
     self.store = store

@@ -36,7 +36,7 @@ public extension PlasticNodeDescription {
     }
   }
   
-  public func node(store: AnyStore) -> RootNode {
+  public func rootNode(store: AnyStore) -> RootNode {
     return RootNode(store: store, node: PlasticNode(description: self, parentNode: nil, store: store))
   }
   

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public struct TableProps: Equatable, Frameable, Keyable {
+public struct TableProps: NodeProps, Keyable {
   public var frame = CGRect.zero
   public var key: String?
   public var delegate: TableDelegate?

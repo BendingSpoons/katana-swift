@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ButtonProps: Equatable, Colorable, Frameable, Textable, Tappable,Bordable, Keyable  {
+public struct ButtonProps: NodeProps, Colorable, Textable, Tappable,Bordable, Keyable  {
   public enum State {
     case normal
     case highlighted

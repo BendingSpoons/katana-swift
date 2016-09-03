@@ -8,7 +8,7 @@
 
 import Katana
 
-struct AppCellProps : Equatable,Frameable {
+struct AppCellProps : NodeProps {
   var frame = CGRect.zero
   var index = 0
   var name = ""
@@ -32,7 +32,7 @@ enum AppCellKeys: String,NodeDescriptionKeys {
   case name, delete
 }
 
-struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
+struct AppCell : CellNodeDescription, NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
   var props : AppCellProps
     

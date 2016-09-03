@@ -31,7 +31,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let store = Store<SmartReducer<AppState>>(middlewares: [sideEffects,actionLogger])
     
-    self.root = App(props: AppProps().frame(rootBounds)).node(store: store)
+    self.root = App(props: AppProps().frame(rootBounds)).rootNode(store: store)
     self.root!.draw(container: view)
     
     return true

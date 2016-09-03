@@ -47,6 +47,7 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
+    //FIXME: UNSUBSCRIBE
     self.node = newDescription.node(parentNode: parentNode)
     self.listenerNode = RootNode(store: parentNode.store, node: self.node!)
     self.listenerNode!.draw(container: self.contentView)

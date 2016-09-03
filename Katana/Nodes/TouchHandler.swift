@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TouchHandlerProps: Equatable, Frameable, Childrenable  {
+public struct TouchHandlerProps: NodeProps, Childrenable  {
   public var frame = CGRect.zero
   public var children: [AnyNodeDescription] = []
 

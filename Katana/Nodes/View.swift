@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ViewProps: Equatable,Colorable,Frameable,TouchDisableable,CornerRadiusable,Bordable,Keyable, Childrenable  {
+public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisableable, CornerRadiusable, Bordable {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  false

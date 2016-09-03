@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct TextProps: Equatable,Colorable,Frameable,Textable,TouchDisableable, Keyable,Bordable  {
+public struct TextProps: NodeProps, Colorable, Textable, TouchDisableable, Keyable, Bordable {
   public var frame = CGRect.zero
   public var color = UIColor.white
   public var touchDisabled =  true
