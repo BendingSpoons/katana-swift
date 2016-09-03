@@ -34,7 +34,7 @@ class NativeTableViewCell: UITableViewCell {
     
     
     if let node = self.node {
-      if node.anyDescription.replaceKey() == description.replaceKey() {
+      if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
         return

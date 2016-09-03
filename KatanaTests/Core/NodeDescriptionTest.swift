@@ -3,16 +3,16 @@ import Katana
 
 class NodeDescriptionTest: XCTestCase {
   
-  func testReplaceKey() {
+  func testreplaceKey() {
     
     let view1 = View(props: ViewProps().color(.blue))
     let view2 = View(props: ViewProps().color(.blue))
     let button = Button(props: ButtonProps().color(.blue))
 
-    XCTAssert(view1.replaceKey() == view1.replaceKey())
-    XCTAssert(view1.replaceKey() == view2.replaceKey())
-    XCTAssert(button.replaceKey() == button.replaceKey())
-    XCTAssert(button.replaceKey() != view1.replaceKey())
+    XCTAssert(view1.replaceKey == view1.replaceKey)
+    XCTAssert(view1.replaceKey == view2.replaceKey)
+    XCTAssert(button.replaceKey == button.replaceKey)
+    XCTAssert(button.replaceKey != view1.replaceKey)
 
   }
   
@@ -25,11 +25,11 @@ class NodeDescriptionTest: XCTestCase {
     let button2 = Button(props: ButtonProps().color(.blue).key("d"))
 
     
-    XCTAssert(view1.replaceKey() == view1.replaceKey())
-    XCTAssert(view1.replaceKey() == view2.replaceKey())
-    XCTAssert(view1.replaceKey() != view3.replaceKey())
-    XCTAssert(view1.replaceKey() != button1.replaceKey())
-    XCTAssert(view1.replaceKey() != button2.replaceKey())
+    XCTAssert(view1.replaceKey == view1.replaceKey)
+    XCTAssert(view1.replaceKey == view2.replaceKey)
+    XCTAssert(view1.replaceKey != view3.replaceKey)
+    XCTAssert(view1.replaceKey != button1.replaceKey)
+    XCTAssert(view1.replaceKey != button2.replaceKey)
 
   }
 

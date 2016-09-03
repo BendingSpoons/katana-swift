@@ -19,10 +19,10 @@ public protocol AnyNodeDescription {
   var frame: CGRect { get set }
   var key: String? { get }
   var anyProps: Any { get }
+  var replaceKey : Int { get }
   
   func rootNode(store: AnyStore) -> RootNode
   func node(parentNode: AnyNode) -> AnyNode
-  func replaceKey() -> Int
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -49,7 +49,6 @@ public protocol NodeDescription : AnyNodeDescription {
                                              nextState: StateType,
                                              parentAnimation: Animation) -> Animation
   
-  func replaceKey() -> Int
 }
 
 extension NodeDescription {
@@ -103,7 +102,8 @@ extension AnyNodeDescription where Self : NodeDescription {
     return Node(description: self, parentNode: parentNode, store: parentNode.store)
   }
   
-  public func replaceKey() -> Int {
+  public var replaceKey : Int {
+
     if let props = self.props as? Keyable, let key = props.key {
       return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue
     }

@@ -101,7 +101,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     var currentChildren = ChildrenDictionary()
     
     for (index,child) in children.enumerated() {
-      let key = child.anyDescription.replaceKey()
+      let key = child.anyDescription.replaceKey
       let value = (node: child, index: index)
       
       if currentChildren[key] == nil {
@@ -127,13 +127,13 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     var childrenToAdd : [AnyNode] = []
     
     for newChild in newChildren {
-      let key = newChild.replaceKey()
+      let key = newChild.replaceKey
       
       let childrenCount = currentChildren[key]?.count ?? 0
       
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.anyDescription.replaceKey() == newChild.replaceKey())
+        assert(replacement.node.anyDescription.replaceKey == newChild.replaceKey)
         
         try! replacement.node.update(description: newChild, parentAnimation: childrenAnimation)
         
