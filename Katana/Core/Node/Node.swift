@@ -10,10 +10,14 @@ import UIKit
 
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
+private func defaultDispatch(_: Action) {
+  fatalError("no store connected")
+}
+
 public protocol AnyNode: class {
   var anyDescription : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
-  var store: AnyStore { get }
+  var store: AnyStore? { get }
   var parentNode: AnyNode? {get}
 
   func draw(container: DrawableContainer)
@@ -24,7 +28,7 @@ public protocol AnyNode: class {
 public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   
   public private(set) var children : [AnyNode]?
-  public private(set) unowned var store: AnyStore
+  public private(set) weak var store: AnyStore?
   private(set) var state : Description.StateType
   private(set) var description : Description
   public private(set) weak var parentNode: AnyNode?
@@ -36,7 +40,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
   }
   
-  public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
+  public init(description: Description, parentNode: AnyNode?, store: AnyStore?) {
     self.description = description
     self.state = Description.StateType.init()
     self.parentNode = parentNode
@@ -51,7 +55,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     let children  = Description.render(props: self.description.props,
                                        state: self.state,
                                        update: update,
-                                       dispatch: self.store.dispatch)
+                                       dispatch: self.store?.dispatch ?? defaultDispatch)
     
     self.children =  self.processChildrenBeforeDraw(children).map {
       $0.node(parentNode: self)
@@ -118,7 +122,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     var newChildren = Description.render(props: self.description.props,
                                          state: self.state,
                                          update: update,
-                                         dispatch: self.store.dispatch)
+                                         dispatch: self.store?.dispatch ?? defaultDispatch)
     
     newChildren = self.processChildrenBeforeDraw(newChildren)
     
@@ -157,7 +161,12 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
-      let state = self.store.anyState
+      
+      guard let store = self.store else {
+        fatalError("connected not lacks store")
+      }
+      
+      let state = store.anyState
       return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
     }
     

@@ -21,8 +21,9 @@ public protocol AnyNodeDescription {
   var anyProps: Any { get }
   var replaceKey : Int { get }
   
-  func rootNode(store: AnyStore) -> RootNode
   func node(parentNode: AnyNode) -> AnyNode
+  func node() -> AnyNode
+
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -94,8 +95,8 @@ extension AnyNodeDescription where Self : NodeDescription {
     return self.props
   }
   
-  public func rootNode(store: AnyStore) -> RootNode {
-    return RootNode(store: store, node: Node(description: self, parentNode: nil, store: store))
+  public func node() -> AnyNode {
+    return Node(description: self, parentNode: nil, store: nil)
   }
   
   public func node(parentNode: AnyNode) -> AnyNode {

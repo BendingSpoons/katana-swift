@@ -53,3 +53,9 @@ public class RootNode {
       }
   }
 }
+
+public extension AnyNodeDescription {
+  public func rootNode(store: AnyStore) -> RootNode {
+    return RootNode(store: store, node:self.node())
+  }
+}
