@@ -10,16 +10,15 @@ import Foundation
 
 
 protocol ConnectedNode : AnyNode {
-  var description: AnyNodeDescription { get }
   func storeDidChange()
   func update(description: AnyNodeDescription) throws
 }
 
 extension ConnectedNode {
   func storeDidChange() {
-    if self.description is AnyConnectedNodeDescription {
+    if self.anyDescription is AnyConnectedNodeDescription {
       // ok the description is connected to the node, let's trigger an update
-      try! self.update(description: self.description)
+      try! self.update(description: self.anyDescription)
     }
   }
 }

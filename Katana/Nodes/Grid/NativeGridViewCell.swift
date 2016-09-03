@@ -33,7 +33,7 @@ class NativeGridViewCell: UICollectionViewCell {
     
     
     if let node = self.node {
-      if node.description.replaceKey() == description.replaceKey() {
+      if node.anyDescription.replaceKey() == description.replaceKey() {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
         return
@@ -52,7 +52,7 @@ class NativeGridViewCell: UICollectionViewCell {
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-    if let description = self.node?.description as? AnyCellNodeDescription, let store = node?.store {
+    if let description = self.node?.anyDescription as? AnyCellNodeDescription, let store = node?.store {
       type(of: description).anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }

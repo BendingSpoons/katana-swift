@@ -11,7 +11,7 @@ import UIKit
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 public protocol AnyNode: class {
-  var description : AnyNodeDescription { get }
+  var anyDescription : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
   var store: AnyStore { get }
   var parentNode: AnyNode? {get}
@@ -26,18 +26,18 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   public private(set) var children : [AnyNode]?
   public private(set) unowned var store: AnyStore
   private(set) var state : Description.StateType
-  private(set) var typedDescription : Description
+  private(set) var description : Description
   public private(set) weak var parentNode: AnyNode?
   private var container: DrawableContainer?  
   
-  public var description: AnyNodeDescription {
+  public var anyDescription: AnyNodeDescription {
     get {
-      return self.typedDescription
+      return self.description
     }
   }
   
   public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
-    self.typedDescription = description
+    self.description = description
     self.state = Description.StateType.init()
     self.parentNode = parentNode
     self.store = store
@@ -46,9 +46,9 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       self?.update(state: state)
     }
     
-    self.typedDescription.props = self.updatedPropsWithConnect(description: description, props: self.typedDescription.props)
+    self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
 
-    let children  = Description.render(props: self.typedDescription.props,
+    let children  = Description.render(props: self.description.props,
                                        state: self.state,
                                        update: update,
                                        dispatch: self.store.dispatch)
@@ -65,7 +65,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
   }
 
   func update(state: Description.StateType)  {
-    self.update(state: state, description: self.typedDescription, parentAnimation: .none)
+    self.update(state: state, description: self.description, parentAnimation: .none)
   }
   
   public func update(description: AnyNodeDescription) throws {
@@ -83,25 +83,25 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       fatalError("update should not be called at this time")
     }
     
-    guard self.typedDescription.props != description.props || self.state != state else {
+    guard self.description.props != description.props || self.state != state else {
       return
     }
     
-    let childrenAnimation = type(of: self.typedDescription).childrenAnimationForNextRender(
-      currentProps: self.typedDescription.props,
+    let childrenAnimation = type(of: self.description).childrenAnimationForNextRender(
+      currentProps: self.description.props,
       nextProps: description.props,
       currentState: self.state,
       nextState: state,
       parentAnimation: parentAnimation
     )
     
-    self.typedDescription = description
+    self.description = description
     self.state = state
     
     var currentChildren = ChildrenDictionary()
     
     for (index,child) in children.enumerated() {
-      let key = child.description.replaceKey()
+      let key = child.anyDescription.replaceKey()
       let value = (node: child, index: index)
       
       if currentChildren[key] == nil {
@@ -115,7 +115,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       self?.update(state: state)
     }
     
-    var newChildren = Description.render(props: self.typedDescription.props,
+    var newChildren = Description.render(props: self.description.props,
                                          state: self.state,
                                          update: update,
                                          dispatch: self.store.dispatch)
@@ -133,7 +133,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.description.replaceKey() == newChild.replaceKey())
+        assert(replacement.node.anyDescription.replaceKey() == newChild.replaceKey())
         
         try! replacement.node.update(description: newChild, parentAnimation: childrenAnimation)
         
@@ -181,7 +181,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
     
     self.container?.update { view in
-      Description.applyPropsToNativeView(props: self.typedDescription.props,
+      Description.applyPropsToNativeView(props: self.description.props,
                                          state: self.state,
                                          view: view as! Description.NativeView,
                                          update: update,
@@ -204,7 +204,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     
     animation.animateBlock {
       container.update { view in
-        Description.applyPropsToNativeView(props: self.typedDescription.props,
+        Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
                                            view: view as! Description.NativeView,
                                            update: update,

@@ -11,15 +11,15 @@ import Foundation
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description> {
   override func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     let newChildren = super.processChildrenBeforeDraw(children)
-    return self.applyLayout(to: newChildren, description: self.typedDescription)
+    return self.applyLayout(to: newChildren, description: self.description)
   }
   
   func applyLayout(to children: [AnyNodeDescription], description: Description) -> [AnyNodeDescription] {
     let multiplier = self.plasticMultipler
-    let frame = self.typedDescription.props.frame
+    let frame = self.description.props.frame
     
     let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame, children: children, multiplier: multiplier)
-    type(of: description).anyLayout(views: container, props: self.typedDescription.props, state: self.state)
+    type(of: description).anyLayout(views: container, props: self.description.props, state: self.state)
     
     return self.getFramedChildren(fromChildren: children, usingContainer: container)
   }
@@ -50,12 +50,12 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
 public extension AnyNode {
   public var plasticMultipler: CGFloat {
     
-    guard let description = self.description as? PlasticNodeDescriptionWithReferenceSize else {
+    guard let description = self.anyDescription as? PlasticNodeDescriptionWithReferenceSize else {
       return self.parentNode?.plasticMultipler ?? 0.0
     }
     
     let referenceSize = type(of: description).referenceSize
-    let currentSize = self.description.frame
+    let currentSize = self.anyDescription.frame
     
     let widthRatio = currentSize.width / referenceSize.width;
     let heightRatio = currentSize.height / referenceSize.height;
