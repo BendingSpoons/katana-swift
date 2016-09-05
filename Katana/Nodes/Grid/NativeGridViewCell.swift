@@ -9,7 +9,8 @@
 import Foundation
 
 class NativeGridViewCell: UICollectionViewCell {
-  private var root: Root? = nil
+  private var node: AnyNode? = nil
+
   
   override var isHighlighted: Bool {
     didSet {
@@ -31,7 +32,7 @@ class NativeGridViewCell: UICollectionViewCell {
     newDescription.frame = self.bounds
     
     
-    if let node = self.root?.node {
+    if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
@@ -45,15 +46,21 @@ class NativeGridViewCell: UICollectionViewCell {
       view.removeFromSuperview()
     }
     
-    self.root = newDescription.root(store: parent.treeRoot.store)
-    self.root?.draw(container: self.contentView)
+    self.node?.parent?.removeManagedChild(node: node!)
+    
+    self.node = parent.addManagedChild(description: description, container: self.contentView)
+    
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
 
-    if let description = self.root?.node?.anyDescription as? AnyCellNodeDescription {
+    /*if let description = self.root?.node?.anyDescription as? AnyCellNodeDescription {
       let store = self.root?.store
       type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
-    }
+    }*/
+  }
+  
+  deinit {
+    self.node?.parent?.removeManagedChild(node: node!)
   }
 }
