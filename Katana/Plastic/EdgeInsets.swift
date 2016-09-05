@@ -9,10 +9,10 @@
 import CoreGraphics
 
 public struct EdgeInsets: Equatable {
-  let top: Value
-  let left: Value
-  let bottom: Value
-  let right: Value
+  public let top: Value
+  public let left: Value
+  public let bottom: Value
+  public let right: Value
   
   public static let zero = EdgeInsets(0, 0, 0, 0)
   

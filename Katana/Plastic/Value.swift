@@ -9,8 +9,8 @@
 import CoreGraphics
 
 public struct Value: Equatable {
-  let scalable: CGFloat
-  let fixed: CGFloat
+  public let scalable: CGFloat
+  public let fixed: CGFloat
   
   var unscaledValue: CGFloat {
     return scalable + fixed

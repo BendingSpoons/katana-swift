@@ -9,8 +9,8 @@
 import CoreGraphics
 
 public struct Size: Equatable {
-  let width: Value
-  let height: Value
+  public let width: Value
+  public let height: Value
   
   public static let zero = Size(0, 0)
   
