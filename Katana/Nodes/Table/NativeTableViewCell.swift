@@ -46,9 +46,7 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
-    if let node = self.node {
-      parent.removeManagedChild(node: node)
-    }
+    self.node?.parent?.removeManagedChild(node: node!)
     
     self.node = parent.addManagedChild(description: description, container: self.contentView)
 
@@ -71,5 +69,9 @@ class NativeTableViewCell: UITableViewCell {
     if let view = self.contentView.subviews.first as? CellNativeView {
       view.setHighlighted(highlighted)
     }
+  }
+  
+  deinit {
+    self.node?.parent?.removeManagedChild(node: node!)
   }
 }
