@@ -28,7 +28,7 @@ enum AppKeys: String,NodeDescriptionKeys {
   case title, add, list
 }
 
-struct App : NodeDescription, DispatchingNodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
   
   var props : AppProps
   

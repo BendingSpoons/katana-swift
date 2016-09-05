@@ -32,7 +32,7 @@ enum AppCellKeys: String,NodeDescriptionKeys {
   case name, delete
 }
 
-struct AppCell : CellNodeDescription, DispatchingNodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
+struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
   
   var props : AppCellProps
   

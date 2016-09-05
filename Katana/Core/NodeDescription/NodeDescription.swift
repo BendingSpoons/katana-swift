@@ -51,7 +51,8 @@ public protocol NodeDescription : AnyNodeDescription {
   
   static func render(props: PropsType,
                      state: StateType,
-                     update: @escaping (StateType)->()) -> [AnyNodeDescription]
+                     update: @escaping (StateType)->(),
+                     dispatch: StoreDispatch) -> [AnyNodeDescription]
   
   static func childrenAnimationForNextRender(currentProps: PropsType,
                                              nextProps: PropsType,

@@ -57,7 +57,6 @@
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
 		8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */; };
 		813315901D7B728900FBE210 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158D1D7B728900FBE210 /* UIColor+Katana.swift */; };
-		813315921D7B8A0D00FBE210 /* DispatchingNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */; };
 		813F4D1E1D5F3D94007CDB53 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */; };
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		814C110B1D6E008F00324FCD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814C110A1D6E008F00324FCD /* AppState.swift */; };
@@ -161,7 +160,6 @@
 		8133158B1D7B728900FBE210 /* Collections+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collections+Katana.swift"; sourceTree = "<group>"; };
 		8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 		8133158D1D7B728900FBE210 /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
-		813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchingNodeDescription.swift; sourceTree = "<group>"; };
 		813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		814C110A1D6E008F00324FCD /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		81911D9C1D7D916B00123C54 /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
@@ -270,7 +268,6 @@
 			children = (
 				813315281D7B726000FBE210 /* Root.swift */,
 				813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */,
-				813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */,
 			);
 			path = StoreConnection;
 			sourceTree = "<group>";
@@ -721,7 +718,6 @@
 				813315771D7B726000FBE210 /* PlasticNode.swift in Sources */,
 				813315621D7B726000FBE210 /* Root.swift in Sources */,
 				8133155A1D7B726000FBE210 /* Animation.swift in Sources */,
-				813315921D7B8A0D00FBE210 /* DispatchingNodeDescription.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */,

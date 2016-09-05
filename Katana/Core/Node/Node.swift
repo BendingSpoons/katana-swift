@@ -67,19 +67,12 @@ public class Node<Description: NodeDescription> {
       self?.update(state: state)
     }
     
-    let anyUpdate = { [weak self] (state: Any) -> Void in
-      let state = state as! Description.StateType
-      self?.update(state: state)
-    }
+    let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
-    if let description = self.description as? AnyDispatchingNodeDescription {
-      return type(of: description).anyRender(props: self.description.props,
-                                             state: self.state,
-                                             update: anyUpdate,
-                                             dispatch: self.treeRoot.store!.dispatch)
-    } else {
-      return type(of: description).render(props: self.description.props, state: self.state , update: update)
-    }
+    return type(of: description).render(props: self.description.props,
+                                           state: self.state,
+                                           update: update,
+                                           dispatch: dispatch)
   }
   
   func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {

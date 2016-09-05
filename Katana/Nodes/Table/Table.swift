@@ -52,7 +52,8 @@ public struct Table : NodeDescription {
   
   public static func render(props: TableProps,
                             state: EmptyState,
-                            update: @escaping (EmptyState)->()) -> [AnyNodeDescription] {
+                            update: @escaping (EmptyState)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
 }

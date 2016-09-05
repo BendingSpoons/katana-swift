@@ -48,7 +48,8 @@ public struct Text : NodeDescription {
   
   public static func render(props: TextProps,
                             state: EmptyState,
-                            update: @escaping (EmptyState)->()) -> [AnyNodeDescription] {
+                            update: @escaping (EmptyState)->(),
+                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   
