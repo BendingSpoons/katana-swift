@@ -12,7 +12,18 @@ public protocol NodeState: Equatable {
   init()
 }
 
-public protocol NodeProps: Equatable, Frameable {
+public extension NodeState {
+  static func ==(l: Self, r: Self) -> Bool {
+    return false
+  }
+}
+
+public protocol NodeProps: Equatable, Frameable {}
+
+public extension NodeProps {
+  static func ==(l: Self, r: Self) -> Bool {
+    return false
+  }
 }
 
 public protocol AnyNodeDescription {
