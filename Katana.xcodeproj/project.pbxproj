@@ -26,9 +26,8 @@
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
 		8133155F1D7B726000FBE210 /* NodeWithChildrenDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315241D7B726000FBE210 /* NodeWithChildrenDescription.swift */; };
-		813315601D7B726000FBE210 /* ConnectedNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315261D7B726000FBE210 /* ConnectedNode.swift */; };
 		813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */; };
-		813315621D7B726000FBE210 /* RootNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315281D7B726000FBE210 /* RootNode.swift */; };
+		813315621D7B726000FBE210 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315281D7B726000FBE210 /* Root.swift */; };
 		813315631D7B726000FBE210 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133152A1D7B726000FBE210 /* Button.swift */; };
 		813315641D7B726000FBE210 /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133152C1D7B726000FBE210 /* Grid.swift */; };
 		813315651D7B726000FBE210 /* GridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133152D1D7B726000FBE210 /* GridDelegate.swift */; };
@@ -71,6 +70,7 @@
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
 		8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */; };
 		813315901D7B728900FBE210 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158D1D7B728900FBE210 /* UIColor+Katana.swift */; };
+		813315921D7B8A0D00FBE210 /* DispatchingNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */; };
 		813F4D1E1D5F3D94007CDB53 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */; };
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		814C110B1D6E008F00324FCD /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 814C110A1D6E008F00324FCD /* AppState.swift */; };
@@ -130,9 +130,8 @@
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
 		813315241D7B726000FBE210 /* NodeWithChildrenDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeWithChildrenDescription.swift; sourceTree = "<group>"; };
-		813315261D7B726000FBE210 /* ConnectedNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNode.swift; sourceTree = "<group>"; };
 		813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
-		813315281D7B726000FBE210 /* RootNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootNode.swift; sourceTree = "<group>"; };
+		813315281D7B726000FBE210 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
 		8133152A1D7B726000FBE210 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		8133152C1D7B726000FBE210 /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
 		8133152D1D7B726000FBE210 /* GridDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +174,7 @@
 		8133158B1D7B728900FBE210 /* Collections+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collections+Katana.swift"; sourceTree = "<group>"; };
 		8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
 		8133158D1D7B728900FBE210 /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
+		813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DispatchingNodeDescription.swift; sourceTree = "<group>"; };
 		813F4D1D1D5F3D94007CDB53 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		814C110A1D6E008F00324FCD /* AppState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		8192F3811D6DA7CE00881600 /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
@@ -319,9 +319,9 @@
 		813315251D7B726000FBE210 /* StoreConnection */ = {
 			isa = PBXGroup;
 			children = (
-				813315261D7B726000FBE210 /* ConnectedNode.swift */,
+				813315281D7B726000FBE210 /* Root.swift */,
 				813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */,
-				813315281D7B726000FBE210 /* RootNode.swift */,
+				813315911D7B8A0D00FBE210 /* DispatchingNodeDescription.swift */,
 			);
 			path = StoreConnection;
 			sourceTree = "<group>";
@@ -711,9 +711,9 @@
 				813315721D7B726000FBE210 /* View.swift in Sources */,
 				8133156C1D7B726000FBE210 /* NativeTableView.swift in Sources */,
 				813315771D7B726000FBE210 /* PlasticNode.swift in Sources */,
-				813315601D7B726000FBE210 /* ConnectedNode.swift in Sources */,
-				813315621D7B726000FBE210 /* RootNode.swift in Sources */,
+				813315621D7B726000FBE210 /* Root.swift in Sources */,
 				8133155A1D7B726000FBE210 /* Animation.swift in Sources */,
+				813315921D7B8A0D00FBE210 /* DispatchingNodeDescription.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */,

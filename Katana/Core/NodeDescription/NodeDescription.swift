@@ -21,9 +21,8 @@ public protocol AnyNodeDescription {
   var anyProps: Any { get }
   var replaceKey : Int { get }
   
-  func node(parentNode: AnyNode) -> AnyNode
-  func node() -> AnyNode
-
+  func node(parent: AnyNode?) -> AnyNode
+  func root(store: AnyStore?) -> Root
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -41,8 +40,7 @@ public protocol NodeDescription : AnyNodeDescription {
   
   static func render(props: PropsType,
                      state: StateType,
-                     update: @escaping (StateType)->(),
-                     dispatch: StoreDispatch) -> [AnyNodeDescription]
+                     update: @escaping (StateType)->()) -> [AnyNodeDescription]
   
   static func childrenAnimationForNextRender(currentProps: PropsType,
                                              nextProps: PropsType,
@@ -94,13 +92,16 @@ extension AnyNodeDescription where Self : NodeDescription {
   public var anyProps: Any {
     return self.props
   }
-  
-  public func node() -> AnyNode {
-    return Node(description: self, parentNode: nil, store: nil)
+
+  public func node(parent: AnyNode?) -> AnyNode {
+    return Node(description: self, parent: parent)
   }
   
-  public func node(parentNode: AnyNode) -> AnyNode {
-    return Node(description: self, parentNode: parentNode, store: parentNode.store)
+  public func root(store: AnyStore?) -> Root {
+    let root = Root(store: store)
+    let node = Node(description: self, parent: nil, root: root)
+    root.node = node
+    return root
   }
   
   public var replaceKey : Int {

@@ -53,8 +53,7 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
   
   public static func render(props: ViewProps,
                             state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
+                            update: @escaping (EmptyState)->()) -> [AnyNodeDescription] {
     return props.children
   }
   

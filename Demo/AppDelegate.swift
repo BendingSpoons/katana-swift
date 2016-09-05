@@ -14,7 +14,7 @@ import Katana
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  var root: RootNode?
+  var root: Root?
   
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey : Any]? = nil) -> Bool {
     
@@ -31,8 +31,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     let store = Store<SmartReducer<AppState>>(middlewares: [sideEffects,actionLogger])
     
-    self.root = App(props: AppProps().frame(rootBounds)).rootNode(store: store)
+    self.root = App(props: AppProps().frame(rootBounds)).root(store: store)
     self.root!.draw(container: view)
+    
     
     return true
   }

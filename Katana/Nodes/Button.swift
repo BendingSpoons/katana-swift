@@ -52,8 +52,7 @@ public struct Button : NodeDescription {
   
   public static func render(props: ButtonProps,
                             state: EmptyHighlightableState,
-                            update: @escaping (EmptyHighlightableState)->(),
-                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
+                            update: @escaping (EmptyHighlightableState)->()) -> [AnyNodeDescription] {
     
     func touchHandler(pressed: Bool) {
       update(EmptyHighlightableState(highlighted: pressed))

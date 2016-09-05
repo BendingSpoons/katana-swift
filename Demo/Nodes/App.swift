@@ -17,7 +17,6 @@ struct AppProps: NodeProps {
   
   static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
     
-    //FIXME
     return lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
       lhs.frame == rhs.frame &&
@@ -29,7 +28,7 @@ enum AppKeys: String,NodeDescriptionKeys {
   case title, add, list
 }
 
-struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct App : NodeDescription, DispatchingNodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
   
   var props : AppProps
   
@@ -64,10 +63,10 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
         .onTap(addTodo)
       ),
       
-      Table(props: TableProps()
+/*      Table(props: TableProps()
         .key(AppKeys.list)
         .delegate(AppListDelegate(todos: props.todos ))
-      )
+      )*/
     ]
     
   }
@@ -77,7 +76,7 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     let root = views.nativeView
     let title = views[.title]!
     let add = views[.add]!
-    let list = views[.list]!
+    //let list = views[.list]!
     
     title.asHeader(root, insets: .scalable(30, 0, 0, 0))
     title.height = .scalable(60)
@@ -85,9 +84,9 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     add.coverRight(title)
     add.width = .scalable(60)
     
-    list.fillHorizontally(root)
+    /*list.fillHorizontally(root)
     list.top = title.bottom
-    list.bottom = root.bottom
+    list.bottom = root.bottom*/ 
   }
   
   static func connect(props: inout AppProps, storageState: AppState){
