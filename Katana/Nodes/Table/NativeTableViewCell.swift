@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 class NativeTableViewCell: UITableViewCell {
-  private var root: Root? = nil
+  private var node: AnyNode?
   
   
   override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -32,7 +32,7 @@ class NativeTableViewCell: UITableViewCell {
     newDescription.frame = self.bounds
     
     
-    if let node = self.root?.node {
+    if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
@@ -46,16 +46,18 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
+    if let node = self.node {
+      parent.removeManagedChild(node: node)
+    }
     
-    self.root = newDescription.root(store: parent.treeRoot.store)
-    self.root?.draw(container: self.contentView)
+    self.node = parent.addManagedChild(description: description, container: self.contentView)
 
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
     
-    if let description = self.root?.node?.anyDescription as? AnyCellNodeDescription {
-      let store = self.root?.store
+    if let description = self.node?.anyDescription as? AnyCellNodeDescription {
+      let store = self.node?.treeRoot.store
       type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }

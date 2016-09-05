@@ -13,14 +13,20 @@ private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 public protocol AnyNode: class {
   var anyDescription : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
+  var indirectChildren : [AnyNode] { get }
+
   var parent: AnyNode? {get}
   var root: Root? {get}
   
   func update(description: AnyNodeDescription) throws
   func update(description: AnyNodeDescription, parentAnimation: Animation) throws
+  
+  func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode
+  func removeManagedChild(node: AnyNode)
+
 }
 
-protocol InternalAnyNode : class {
+protocol InternalAnyNode : AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
   //use Description().root(..).draw(..)
   func draw(container: DrawableContainer)
@@ -34,6 +40,7 @@ public class Node<Description: NodeDescription> {
   private var container: DrawableContainer?
   public private(set) weak var parent: AnyNode?
   public private(set) weak var root: Root?
+  public var indirectChildren: [AnyNode] = []
 
   
   public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
@@ -49,6 +56,7 @@ public class Node<Description: NodeDescription> {
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
 
+    
     let children  = renderChildren()
         
     self.children =  self.processChildrenBeforeDraw(children).map {
@@ -238,6 +246,17 @@ public class Node<Description: NodeDescription> {
         self.container?.remove(child: viewToRemove)
       }
     }
+  }
+  
+  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
+    let node = description.node(parent: self) as! InternalAnyNode
+    self.indirectChildren.append(node)
+    node.draw(container: container)
+    return node
+  }
+  
+  public func removeManagedChild(node: AnyNode) {
+    fatalError("not implemented yet")
   }
 
 }

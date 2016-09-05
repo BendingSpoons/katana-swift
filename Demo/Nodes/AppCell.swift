@@ -32,14 +32,11 @@ enum AppCellKeys: String,NodeDescriptionKeys {
   case name, delete
 }
 
-struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
+struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
   var props : AppCellProps
   
-  //FIXME: this should not be necessery
-  static var referenceSize: CGSize {
-    return CGSize(width: 640, height: 960)
-  }
+
     
   static func render(props: AppCellProps,
     state: EmptyHighlightableState,

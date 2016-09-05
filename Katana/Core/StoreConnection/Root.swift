@@ -65,12 +65,10 @@ public class Root {
     }
     
     node.children?
-      .filter {
-        childrenTable[ObjectIdentifier($0).hashValue] != nil
-      }
-      .forEach {
-        explore($0)
-      }
+      .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
+      .forEach { explore($0) }
+    
+    node.indirectChildren.forEach { explore($0) }
   }
   
   deinit {
