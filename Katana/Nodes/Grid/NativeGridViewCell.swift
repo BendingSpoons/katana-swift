@@ -9,8 +9,7 @@
 import Foundation
 
 class NativeGridViewCell: UICollectionViewCell {
-  private var node: AnyNode? = nil
-  private var listenerNode: Root? = nil
+  private var root: Root? = nil
   
   override var isHighlighted: Bool {
     didSet {
@@ -32,7 +31,7 @@ class NativeGridViewCell: UICollectionViewCell {
     newDescription.frame = self.bounds
     
     
-    if let node = self.node {
+    if let node = self.root?.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
         try! node.update(description: newDescription)
@@ -46,18 +45,15 @@ class NativeGridViewCell: UICollectionViewCell {
       view.removeFromSuperview()
     }
     
-    //FIXME: 1) UNSUBSCRIBE 2) HANDLE NO STORE
-    //FIXME - it doens't even compile now
-    /*self.node = newDescription.node(parent: parent)
-    self.listenerNode = RootNode(store: parent.store!, node: self.node!)
-    self.listenerNode!.draw(container: self.contentView)*/
+    self.root = newDescription.root(store: parent.treeRoot.store)
+    self.root?.draw(container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-    //FIXME - it doens't even compile now
 
-    /*if let description = self.node?.anyDescription as? AnyCellNodeDescription, let store = node?.store {
-      type(of: description).anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
-    }*/
+    if let description = self.root?.node?.anyDescription as? AnyCellNodeDescription {
+      let store = self.root?.store
+      type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
+    }
   }
 }

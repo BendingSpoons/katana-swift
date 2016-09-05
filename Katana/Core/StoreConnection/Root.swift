@@ -79,8 +79,8 @@ public class Root {
 }
 
 
-public extension Node {
-  var treeRoot : Root {
+public extension AnyNode {
+  public var treeRoot : Root {
     var node: AnyNode = self
     while (node.parent != nil) {
       node = node.parent!
