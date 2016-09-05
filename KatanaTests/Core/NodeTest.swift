@@ -6,8 +6,7 @@ class NodeTest: XCTestCase {
   func testNodeDeallocation() {
 
 
-    /*let store = Store<SmartReducer<MyAppState>>(middlewares: [])
-    let node = App(props: AppProps(i:0), children: []).rootNode(store: store).node
+    let node = App(props: AppProps(i:0), children: []).root(store: nil).node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
@@ -27,18 +26,18 @@ class NodeTest: XCTestCase {
     
     references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
-    XCTAssertEqual(references.filter { $0.value != nil }.count, 0)*/
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
     
   }
   
   func testViewDeallocation() {
     
-    /*let store = Store<SmartReducer<AppState>>(middlewares: [])
-    let node = App(props: AppProps(i:0), children: []).rootNode(store: store).node
+    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let node = root.node!
     
     let rootVew = UIView()
-    node.draw(container: rootVew)
+    root.draw(container: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEW_TAG }
@@ -55,7 +54,7 @@ class NodeTest: XCTestCase {
       .map { WeakView(value: $0) }
     
     
-    XCTAssertEqual(references.count, 1)*/
+    XCTAssertEqual(references.count, 1)
   }
 
 }
@@ -81,11 +80,9 @@ fileprivate struct App : NodeDescription {
   var children: [AnyNodeDescription] = []
   
   
-  static func render(props: AppProps,
-                     state: EmptyState,
-                     update: @escaping  (EmptyState) -> (),
-                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
-    
+  fileprivate static func render(props: AppProps,
+                                 state: EmptyState,
+                                 update: @escaping (EmptyState) -> ()) -> [AnyNodeDescription] {
     
     
     let i = props.i
