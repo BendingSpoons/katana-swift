@@ -166,7 +166,6 @@ public class Node<Description: NodeDescription> {
   
 
   public func draw(container: DrawableContainer) {
-    //FIXME: check that is the root
     
     guard let children = self.children else {
       fatalError("draw cannot be called at this time")
