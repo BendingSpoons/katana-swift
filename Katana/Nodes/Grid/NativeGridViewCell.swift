@@ -48,16 +48,15 @@ class NativeGridViewCell: UICollectionViewCell {
     
     self.node?.parent?.removeManagedChild(node: node!)
     
-    self.node = parent.addManagedChild(description: description, container: self.contentView)
-    
+    self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
 
-    /*if let description = self.root?.node?.anyDescription as? AnyCellNodeDescription {
-      let store = self.root?.store
+    if let description = self.node?.anyDescription as? AnyCellNodeDescription {
+      let store = self.node?.treeRoot.store
       type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
-    }*/
+    }
   }
   
   deinit {

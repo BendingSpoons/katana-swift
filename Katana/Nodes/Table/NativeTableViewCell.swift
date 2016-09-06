@@ -48,7 +48,7 @@ class NativeTableViewCell: UITableViewCell {
     
     self.node?.parent?.removeManagedChild(node: node!)
     
-    self.node = parent.addManagedChild(description: description, container: self.contentView)
+    self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
 
   }
   
