@@ -90,7 +90,7 @@ public struct Grid : NodeDescription {
     let delegate = props.delegate ?? EmptyGridDelegate()
     
     view.frame = props.frame
-    view.update(withparent: concreteNode, delegate: delegate, props: props)
+    view.update(withParent: concreteNode, delegate: delegate, props: props)
   }
   
   

@@ -31,7 +31,7 @@ public class NativeGridView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func update(withparent parent: AnyNode, delegate: GridDelegate, props: GridProps) {
+  func update(withParent parent: AnyNode, delegate: GridDelegate, props: GridProps) {
     // TODO: maybe check for equality somehow here?
     
     let layout = self.collectionViewLayout as! NativeGridLayout
