@@ -8,8 +8,7 @@
 
 import Foundation
 
-public class Root {
-  
+open class Root {
   public let store: AnyStore?
   
   public var node: AnyNode? {
