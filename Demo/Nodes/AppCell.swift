@@ -32,15 +32,16 @@ enum AppCellKeys: String,NodeDescriptionKeys {
   case name, delete
 }
 
-struct AppCell : CellNodeDescription, NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
+struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
   var props : AppCellProps
+  
+
     
   static func render(props: AppCellProps,
     state: EmptyHighlightableState,
     update: @escaping (EmptyHighlightableState) -> (),
     dispatch: StoreDispatch) -> [AnyNodeDescription] {
-    
     
     let text = NSMutableAttributedString(string: props.name, attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
@@ -65,8 +66,8 @@ struct AppCell : CellNodeDescription, NodeDescription, ConnectedNodeDescription,
     ]
   }
   
-  public static func didTap(dispatch: StoreDispatch, props: AppCellProps, indexPath: IndexPath) {
-    dispatch(ToogleTodoCompletion(payload: props.index))
+  public static func didTap(dispatch: StoreDispatch?, props: AppCellProps, indexPath: IndexPath) {
+    dispatch?(ToogleTodoCompletion(payload: props.index))
   }
   
   static func layout(views: ViewsContainer<AppCellKeys>,

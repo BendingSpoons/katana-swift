@@ -46,7 +46,7 @@ public struct Table : NodeDescription {
     
     let delegate = props.delegate ?? EmptyTableDelegate()
     view.frame = props.frame
-    view.update(withParentNode: node, delegate: delegate)
+    view.update(withparent: node, delegate: delegate)
   }
   
   

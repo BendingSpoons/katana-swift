@@ -12,7 +12,18 @@ public protocol NodeState: Equatable {
   init()
 }
 
-public protocol NodeProps: Equatable, Frameable {
+public extension NodeState {
+  static func ==(l: Self, r: Self) -> Bool {
+    return false
+  }
+}
+
+public protocol NodeProps: Equatable, Frameable {}
+
+public extension NodeProps {
+  static func ==(l: Self, r: Self) -> Bool {
+    return false
+  }
 }
 
 public protocol AnyNodeDescription {
@@ -21,8 +32,8 @@ public protocol AnyNodeDescription {
   var anyProps: Any { get }
   var replaceKey : Int { get }
   
-  func rootNode(store: AnyStore) -> RootNode
-  func node(parentNode: AnyNode) -> AnyNode
+  func node(parent: AnyNode?) -> AnyNode
+  func root(store: AnyStore?) -> Root
 }
 
 public protocol NodeDescription : AnyNodeDescription {
@@ -93,13 +104,16 @@ extension AnyNodeDescription where Self : NodeDescription {
   public var anyProps: Any {
     return self.props
   }
-  
-  public func rootNode(store: AnyStore) -> RootNode {
-    return RootNode(store: store, node: Node(description: self, parentNode: nil, store: store))
+
+  public func node(parent: AnyNode?) -> AnyNode {
+    return Node(description: self, parent: parent)
   }
   
-  public func node(parentNode: AnyNode) -> AnyNode {
-    return Node(description: self, parentNode: parentNode, store: parentNode.store)
+  public func root(store: AnyStore?) -> Root {
+    let root = Root(store: store)
+    let node = Node(description: self, parent: nil, root: root)
+    root.node = node
+    return root
   }
   
   public var replaceKey : Int {

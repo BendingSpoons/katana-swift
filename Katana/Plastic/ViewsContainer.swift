@@ -107,8 +107,8 @@ public class ViewsContainer<Key> : HierarchyManager
       return node.absoluteOrigin
       
       
-    case let .staticFrame(frame, parentNode):
-      let parentOrigin = self.resolveAbsoluteOrigin(fromNode: parentNode)
+    case let .staticFrame(frame, parent):
+      let parentOrigin = self.resolveAbsoluteOrigin(fromNode: parent)
       let currentOrigin = frame.origin
       return CGPoint(x: parentOrigin.x + currentOrigin.x, y: parentOrigin.y + currentOrigin.y)
     }

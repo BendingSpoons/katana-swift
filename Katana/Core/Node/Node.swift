@@ -13,72 +13,98 @@ private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 public protocol AnyNode: class {
   var anyDescription : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
-  var store: AnyStore { get }
-  var parentNode: AnyNode? {get}
+  var managedChildren : [AnyNode] { get }
 
-  func draw(container: DrawableContainer)
+  var parent: AnyNode? {get}
+  var root: Root? {get}
+  
   func update(description: AnyNodeDescription) throws
   func update(description: AnyNodeDescription, parentAnimation: Animation) throws
+  
+  func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode
+  func removeManagedChild(node: AnyNode)
+
 }
 
-public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
+protocol InternalAnyNode : AnyNode {
+  //draw should never be called on a node directly, it should only be called from the Root.
+  //use Description().root(..).draw(..)
+  func draw(container: DrawableContainer)
+}
+
+public class Node<Description: NodeDescription> {
   
   public private(set) var children : [AnyNode]?
-  public private(set) unowned var store: AnyStore
   private(set) var state : Description.StateType
   private(set) var description : Description
-  public private(set) weak var parentNode: AnyNode?
-  private var container: DrawableContainer?  
+  private var container: DrawableContainer?
+  public private(set) weak var parent: AnyNode?
+  public private(set) weak var root: Root?
+  public var managedChildren: [AnyNode] = []
+
   
-  public var anyDescription: AnyNodeDescription {
-    get {
-      return self.description
+  public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
+    
+    guard ((parent != nil) != (root != nil)) else {
+      fatalError("either the parent or the root should be passed")
     }
-  }
-  
-  public init(description: Description, parentNode: AnyNode?, store: AnyStore) {
+    
     self.description = description
     self.state = Description.StateType.init()
-    self.parentNode = parentNode
-    self.store = store
-    
-    let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
-    }
+    self.parent = parent
+    self.root = root
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
 
-    let children  = Description.render(props: self.description.props,
-                                       state: self.state,
-                                       update: update,
-                                       dispatch: self.store.dispatch)
     
+    let children  = renderChildren()
+        
     self.children =  self.processChildrenBeforeDraw(children).map {
-      $0.node(parentNode: self)
+      $0.node(parent: self)
     }
   }
-  
   
   // Customization point for sublcasses. It allowes to update the children before they get drawn
   func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
+  
+  private func renderChildren() -> [AnyNodeDescription] {
+    
+    let update = { [weak self] (state: Description.StateType) -> Void in
+      self?.update(state: state)
+    }
+    
+    let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    
+    return type(of: description).render(props: self.description.props,
+                                           state: self.state,
+                                           update: update,
+                                           dispatch: dispatch)
+  }
+  
+  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
+    
+    if let desc = description as? AnyConnectedNodeDescription {
+     // description is connected to the store, we need to update it
+     
+     
+     guard let store = self.treeRoot.store else {
+      fatalError("connected not lacks store")
+     }
+     
+     let state = store.anyState
+     return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
+     }
+    
+    return props
+  }
 
-  func update(state: Description.StateType)  {
+  private func update(state: Description.StateType)  {
     self.update(state: state, description: self.description, parentAnimation: .none)
   }
   
-  public func update(description: AnyNodeDescription) throws {
-    try self.update(description: description, parentAnimation: .none)
-  }
-  
-  public func update(description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
-    var description = description as! Description
-    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(state: self.state, description: description, parentAnimation: animation)
-  }
-  
-  private func update(state: Description.StateType, description: Description, parentAnimation: Animation) {
+  fileprivate func update(state: Description.StateType, description: Description, parentAnimation: Animation) {
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
@@ -111,14 +137,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
     
-    let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
-    }
-    
-    var newChildren = Description.render(props: self.description.props,
-                                         state: self.state,
-                                         update: update,
-                                         dispatch: self.store.dispatch)
+    var newChildren = self.renderChildren()
     
     newChildren = self.processChildrenBeforeDraw(newChildren)
     
@@ -142,7 +161,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
         
       } else {
         //else create a new node
-        let node = newChild.node(parentNode: self)
+        let node = newChild.node(parent: self)
         viewIndexes.append(children.count + childrenToAdd.count)
         nodes.append(node)
         childrenToAdd.append(node)
@@ -152,20 +171,10 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     self.children = nodes
     self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
-
   
-  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
-    if let desc = description as? AnyConnectedNodeDescription {
-      // description is connected to the store, we need to update it
-      let state = self.store.anyState
-      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
-    }
-    
-    return props
-  }
 
-  
   public func draw(container: DrawableContainer) {
+    
     guard let children = self.children else {
       fatalError("draw cannot be called at this time")
     }
@@ -188,7 +197,11 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
                                          node: self)
     }
     
-    children.forEach { $0.draw(container: self.container!) }
+    
+    children.forEach { child in
+      let child = child as! InternalAnyNode
+      child.draw(container: self.container!)
+    }
   }
   
   private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
@@ -213,6 +226,7 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
     }
     
     childrenToAdd.forEach { node in
+      let node = node as! InternalAnyNode
       return node.draw(container: container)
     }
     
@@ -233,5 +247,41 @@ public class Node<Description: NodeDescription>: ConnectedNode, AnyNode {
       }
     }
   }
+  
+  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
+    let node = description.node(parent: self) as! InternalAnyNode
+    self.managedChildren.append(node)
+    node.draw(container: container)
+    return node
+  }
+  
+  public func removeManagedChild(node: AnyNode) {
+    let index = self.managedChildren.index { node === $0 }
+    self.managedChildren.remove(at: index!)
+  }
 
+}
+
+extension Node : AnyNode {
+
+  public var anyDescription: AnyNodeDescription {
+    get {
+      return self.description
+    }
+  }
+  
+  public func update(description: AnyNodeDescription) throws {
+    try self.update(description: description, parentAnimation: .none)
+  }
+  
+  public func update(description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
+    var description = description as! Description
+    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
+    self.update(state: self.state, description: description, parentAnimation: animation)
+  }
+  
+}
+
+extension Node : InternalAnyNode {
+  
 }

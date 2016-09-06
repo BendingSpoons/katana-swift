@@ -18,7 +18,7 @@ import UIKit
 private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
 public class NativeTableView: UITableView {
-  private(set) weak var parentNode: AnyNode?
+  private(set) weak var parent: AnyNode?
   private(set) var katanaDelegate: TableDelegate?
   
   override public init(frame: CGRect, style: UITableViewStyle) {
@@ -36,10 +36,10 @@ public class NativeTableView: UITableView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func update(withParentNode parentNode: AnyNode, delegate: TableDelegate) {
+  func update(withparent parent: AnyNode, delegate: TableDelegate) {
     // TODO: maybe check for equality somehow here?
     self.katanaDelegate = delegate
-    self.parentNode = parentNode
+    self.parent = parent
     self.reloadData()
   }
 }
@@ -65,18 +65,18 @@ extension NativeTableView: UITableViewDataSource  {
   @objc(tableView:cellForRowAtIndexPath:) public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeTableViewCell
     
-    if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
+    if let parent = self.parent, let delegate = self.katanaDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)
-      cell.update(withParentNode: parentNode, description: description)
+      cell.update(withparent: parent, description: description)
     }
     
     return cell
   }
   
   @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
+    if let parent = self.parent, let delegate = self.katanaDelegate {
       let height = delegate.height(forRowAt: indexPath)
-      return height.scale(parentNode.plasticMultipler)
+      return height.scale(parent.plasticMultipler)
     }
     
     return 0

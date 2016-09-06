@@ -7,7 +7,74 @@
 //
 
 import XCTest
-import Katana
+@testable import Katana
+
+
+class PlasticNodeTests: XCTestCase {
+  override func setUp() {
+    TestNode.invoked = false
+  }
+  
+  func testLayoutInvoked() {
+    let root = TestNode(props: EmptyProps()).root(store: nil)
+    root.draw(container: UIView())
+    
+    XCTAssertEqual(TestNode.invoked, true)
+  }
+  
+  func testNodeDeallocationPlastic() {
+    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    
+  
+    var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    XCTAssert(references.count == 6)
+    XCTAssert(references.filter { $0.value != nil }.count == 6)
+    
+    try! root.node!.update(description: App(props: AppProps(i:1), children: []))
+    XCTAssert(references.count == 6)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    
+    references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    XCTAssert(references.count == 5)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    
+    try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+    XCTAssert(references.count == 5)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
+    
+    references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    XCTAssert(references.count == 0)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
+  }
+  
+  func testViewDeallocationWithPlastic() {
+
+    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    
+    let rootVew = UIView()
+    root.draw(container: rootVew)
+    
+    var references = collectView(view: rootVew)
+      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .map { WeakView(value: $0) }
+    
+    autoreleasepool {
+      try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+    }
+    
+    
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
+    
+    references = collectView(view: rootVew)
+      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .map { WeakView(value: $0) }
+    
+    XCTAssertEqual(references.count, 1)
+  }
+  
+  
+}
+
 
 private enum Keys: String, NodeDescriptionKeys {
   case One
@@ -15,7 +82,7 @@ private enum Keys: String, NodeDescriptionKeys {
 
 private struct TestNode : NodeDescription, PlasticNodeDescription {
   typealias NativeView = UIView
-
+  
   var props : EmptyProps
   
   // since we are using a static var here we are not be able to
@@ -24,8 +91,7 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   
   static func render(props: EmptyProps,
                      state: EmptyState,
-                     update: @escaping (EmptyState)->(),
-                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
+                     update: @escaping (EmptyState) -> ()) -> [AnyNodeDescription] {
     
     return [
       View(props: ViewProps().key(Keys.One))
@@ -37,61 +103,78 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   }
 }
 
+fileprivate struct MyAppState : State {}
 
-class PlasticNodeTests: XCTestCase {
-  override func setUp() {
-    TestNode.invoked = false
+fileprivate struct AppProps : NodeProps {
+  var frame: CGRect = CGRect.zero
+  var i: Int
+  
+  static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
+    return lhs.frame == rhs.frame && lhs.i == rhs.i
   }
   
-  func testLayoutInvoked() {
-    /*let node = PlasticNode(description: TestNode(props: EmptyProps()), parentNode: nil, store: Store<EmptyReducer>())
-    node.draw(container: UIView())
-    
-    XCTAssertEqual(TestNode.invoked, true)*/
+  init(i:Int) {
+    self.i = i
   }
 }
 
-
-//FIXME
-
-/*struct AppWithPlastic : NodeDescription, PlasticNodeDescription {
-  typealias NativeView = UIView
+fileprivate struct App : NodeDescription {
   
   var props : AppProps
   var children: [AnyNodeDescription] = []
   
-  static func render(props: AppProps,
-                     state: EmptyState,
-                     update: @escaping (EmptyState)->(),
-                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
+  
+  fileprivate static func render(props: AppProps,
+                                 state: EmptyState,
+                                 update: @escaping (EmptyState) -> ()) -> [AnyNodeDescription] {
+    
     
     let i = props.i
     
     if (i == 0) {
       
       return [
-        View(props: ViewProps().key(AppKeys.container).color(.gray)) {
+        View(props: ViewProps()
+          .frame(0,0,150,150)
+          .color(.gray)
+          .key(AppKeys.container)
+        ) {
           [
-            Button(props: ButtonProps().key(AppKeys.button)
+            Button(props: ButtonProps()
+              .key(AppKeys.button)
+              .frame(50,50,100,100)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 18)
-              .onTap({ update(EmptyState()) })),
+              .text("state \(i)", fontSize: 10)
+              .onTap({ update(EmptyState()) })
+            ),
             
-            View(props: ViewProps().key(AppKeys.otherView).color(.gray))
+            View(props: ViewProps()
+              .frame(0,0,150,150)
+              .color(.gray)
+              .key(AppKeys.otherView)
+              
+            )
           ]
         }
       ]
       
     } else if (i == 1) {
       return [
-        View(props: ViewProps().key(AppKeys.container).color(.gray)) {
+        View(props: ViewProps()
+          .frame(0,0,150,150)
+          .color(.gray)
+          .key(AppKeys.container)
+        ) {
           [
-            Button(props: ButtonProps().key(AppKeys.button)
+            Button(props: ButtonProps()
+              .frame(50,50,100,100)
+              .key(AppKeys.button)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
-              .onTap({ update(EmptyState()) }))
+              .onTap({ update(EmptyState()) })
+            )
           ]
         }
       ]
@@ -99,11 +182,10 @@ class PlasticNodeTests: XCTestCase {
     } else {
       return []
     }
+    
   }
-
-}
-
-static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) -> Void {
+  
+  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) -> Void {
     let container = views[.container]
     let button = views[.button]
     let otherView = views[.otherView]
@@ -115,54 +197,29 @@ static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: Empty
   }
 }
 
-func testNodeDeallocationPlastic() {
-  let store = Store<EmptyReducer>()
-  let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store: store)
-  var references = collectNodes(node: root.node).map { WeakNode(value: $0) }
-  XCTAssert(references.count == 6)
-  XCTAssert(references.filter { $0.value != nil }.count == 6)
-  
-  try! root.node.update(description: AppWithPlastic(props: AppProps(i:1), children: []))
-  XCTAssert(references.count == 6)
-  XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
-  
-  references = collectNodes(node: root.node).map { WeakNode(value: $0) }
-  XCTAssert(references.count == 5)
-  XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
-  
-  try! root.node.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
-  XCTAssert(references.count == 5)
-  XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
-  
-  references = collectNodes(node: root.node).map { WeakNode(value: $0) }
-  XCTAssert(references.count == 0)
-  XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
+fileprivate enum AppKeys: String,NodeDescriptionKeys {
+  case container, button, otherView
 }
 
-func testViewDeallocationWithPlastic() {
-  let store = Store<EmptyReducer>()
-  let root = AppWithPlastic(props: AppProps(i:0), children: []).node(store : store)
-  
-  let rootVew = UIView()
-  root.node.draw(container: rootVew)
-  
-  var references = collectView(view: rootVew)
-    .filter { $0.tag ==  Katana.VIEW_TAG }
-    .map { WeakView(value: $0) }
-  
-  autoreleasepool {
-    try! root.node.update(description: AppWithPlastic(props: AppProps(i:2), children: []))
+
+fileprivate class WeakNode {
+  weak var value : AnyNode?
+  init(value: AnyNode) {
+    self.value = value
   }
-  
-  
-  XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
-  
-  references = collectView(view: rootVew)
-    .filter { $0.tag ==  Katana.VIEW_TAG }
-    .map { WeakView(value: $0) }
-  
-  XCTAssertEqual(references.count, 1)
 }
- 
-*/
- 
+
+fileprivate class WeakView {
+  weak var value : UIView?
+  init(value: UIView) {
+    self.value = value
+  }
+}
+
+fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
+  return (node.children!.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children!
+}
+
+fileprivate func collectView(view: UIView) -> [UIView] {
+  return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
+}

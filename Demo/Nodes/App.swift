@@ -17,7 +17,6 @@ struct AppProps: NodeProps {
   
   static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
     
-    //FIXME
     return lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
       lhs.frame == rhs.frame &&

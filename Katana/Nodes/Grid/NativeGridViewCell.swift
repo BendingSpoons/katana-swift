@@ -10,7 +10,7 @@ import Foundation
 
 class NativeGridViewCell: UICollectionViewCell {
   private var node: AnyNode? = nil
-  private var listenerNode: RootNode? = nil
+
   
   override var isHighlighted: Bool {
     didSet {
@@ -23,7 +23,7 @@ class NativeGridViewCell: UICollectionViewCell {
     }
   }
   
-  func update(withParentNode parentNode: AnyNode, description: AnyNodeDescription) {
+  func update(withparent parent: AnyNode, description: AnyNodeDescription) {
     // we need to pass the cell frame
     // here we are causing a second evaluation of the description
     // Is there any way to avoid this? Passing the frame to the delegate could be an option
@@ -46,14 +46,20 @@ class NativeGridViewCell: UICollectionViewCell {
       view.removeFromSuperview()
     }
     
-    self.node = newDescription.node(parentNode: parentNode)
-    self.listenerNode = RootNode(store: parentNode.store, node: self.node!)
-    self.listenerNode!.draw(container: self.contentView)
+    self.node?.parent?.removeManagedChild(node: node!)
+    
+    self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-    if let description = self.node?.anyDescription as? AnyCellNodeDescription, let store = node?.store {
-      type(of: description).anyDidTap(dispatch: store.dispatch, props: description.anyProps, indexPath: indexPath)
+
+    if let description = self.node?.anyDescription as? AnyCellNodeDescription {
+      let store = self.node?.treeRoot.store
+      type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
     }
+  }
+  
+  deinit {
+    self.node?.parent?.removeManagedChild(node: node!)
   }
 }

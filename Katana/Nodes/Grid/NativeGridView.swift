@@ -11,7 +11,7 @@ import Foundation
 private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
 
 public class NativeGridView: UICollectionView {
-  private(set) weak var parentNode: AnyNode?
+  private(set) weak var parent: AnyNode?
   private(set) var katanaDelegate: GridDelegate?
 
   convenience init() {
@@ -31,15 +31,15 @@ public class NativeGridView: UICollectionView {
     fatalError("init(coder:) has not been implemented")
   }
   
-  func update(withParentNode parentNode: AnyNode, delegate: GridDelegate, props: GridProps) {
+  func update(withparent parent: AnyNode, delegate: GridDelegate, props: GridProps) {
     // TODO: maybe check for equality somehow here?
     
     let layout = self.collectionViewLayout as! NativeGridLayout
-    layout.update(withProps: props, multiplier: parentNode.plasticMultipler)
+    layout.update(withProps: props, multiplier: parent.plasticMultipler)
     self.collectionViewLayout = layout
     
     self.katanaDelegate = delegate
-    self.parentNode = parentNode
+    self.parent = parent
     self.reloadData()
   }
 }
@@ -64,9 +64,9 @@ extension NativeGridView: UICollectionViewDataSource {
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
     let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeGridViewCell
     
-    if let parentNode = self.parentNode, let delegate = self.katanaDelegate {
+    if let parent = self.parent, let delegate = self.katanaDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)
-      cell.update(withParentNode: parentNode, description: description)
+      cell.update(withparent: parent, description: description)
     }
     
     return cell

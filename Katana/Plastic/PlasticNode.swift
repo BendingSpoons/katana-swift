@@ -51,7 +51,7 @@ public extension AnyNode {
   public var plasticMultipler: CGFloat {
     
     guard let description = self.anyDescription as? PlasticNodeDescriptionWithReferenceSize else {
-      return self.parentNode?.plasticMultipler ?? 0.0
+      return self.parent?.plasticMultipler ?? 0.0
     }
     
     let referenceSize = type(of: description).referenceSize
