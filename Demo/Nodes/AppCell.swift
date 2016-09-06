@@ -33,10 +33,7 @@ enum AppCellKeys: String,NodeDescriptionKeys {
 }
 
 struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
-  
   var props : AppCellProps
-  
-
     
   static func render(props: AppCellProps,
     state: EmptyHighlightableState,
@@ -66,8 +63,8 @@ struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
     ]
   }
   
-  public static func didTap(dispatch: StoreDispatch?, props: AppCellProps, indexPath: IndexPath) {
-    dispatch?(ToogleTodoCompletion(payload: props.index))
+  public static func didTap(dispatch: StoreDispatch, props: AppCellProps, indexPath: IndexPath) {
+    dispatch(ToogleTodoCompletion(payload: props.index))
   }
   
   static func layout(views: ViewsContainer<AppCellKeys>,
