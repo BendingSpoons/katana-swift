@@ -47,16 +47,14 @@ class NativeTableViewCell: UITableViewCell {
     }
     
     self.node?.parent?.removeManagedChild(node: node!)
-    
     self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
-
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-    
     if let description = self.node?.anyDescription as? AnyCellNodeDescription {
       let store = self.node?.treeRoot.store
-      type(of: description).anyDidTap(dispatch: store?.dispatch, props: description.anyProps, indexPath: indexPath)
+      let dispatch =  store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+      type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }
   
