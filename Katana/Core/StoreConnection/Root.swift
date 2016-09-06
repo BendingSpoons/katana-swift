@@ -68,7 +68,7 @@ public class Root {
       .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
       .forEach { explore($0) }
     
-    node.indirectChildren.forEach { explore($0) }
+    node.managedChildren.forEach { explore($0) }
   }
   
   deinit {

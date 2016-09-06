@@ -13,7 +13,7 @@ private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 public protocol AnyNode: class {
   var anyDescription : AnyNodeDescription { get }
   var children : [AnyNode]? { get }
-  var indirectChildren : [AnyNode] { get }
+  var managedChildren : [AnyNode] { get }
 
   var parent: AnyNode? {get}
   var root: Root? {get}
@@ -40,7 +40,7 @@ public class Node<Description: NodeDescription> {
   private var container: DrawableContainer?
   public private(set) weak var parent: AnyNode?
   public private(set) weak var root: Root?
-  public var indirectChildren: [AnyNode] = []
+  public var managedChildren: [AnyNode] = []
 
   
   public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
@@ -250,7 +250,7 @@ public class Node<Description: NodeDescription> {
   
   public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
     let node = description.node(parent: self) as! InternalAnyNode
-    self.indirectChildren.append(node)
+    self.managedChildren.append(node)
     node.draw(container: container)
     return node
   }
