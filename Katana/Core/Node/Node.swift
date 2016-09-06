@@ -256,7 +256,8 @@ public class Node<Description: NodeDescription> {
   }
   
   public func removeManagedChild(node: AnyNode) {
-    fatalError("not implemented yet")
+    let index = self.managedChildren.index { node === $0 }
+    self.managedChildren.remove(at: index!)
   }
 
 }
