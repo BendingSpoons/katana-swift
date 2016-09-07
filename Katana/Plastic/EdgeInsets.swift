@@ -24,21 +24,21 @@ public struct EdgeInsets: Equatable {
     return EdgeInsets(top: .scalable(top), left: .scalable(left), bottom: .scalable(bottom), right: .scalable(right))
   }
   
-  init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
+  public init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
     self.top = Value(top)
     self.left = Value(left)
     self.bottom = Value(bottom)
     self.right = Value(right)
   }
   
-  init(scalableTop: CGFloat, fixedTop: CGFloat, scalableLeft: CGFloat, fixedLeft: CGFloat, scalableBottom: CGFloat, fixedBottom: CGFloat, scalableRight: CGFloat, fixedRight: CGFloat) {
+  public init(scalableTop: CGFloat, fixedTop: CGFloat, scalableLeft: CGFloat, fixedLeft: CGFloat, scalableBottom: CGFloat, fixedBottom: CGFloat, scalableRight: CGFloat, fixedRight: CGFloat) {
     self.top = Value(scalable: scalableTop, fixed: fixedTop)
     self.left = Value(scalable: scalableLeft, fixed: fixedLeft)
     self.bottom = Value(scalable: scalableBottom, fixed: fixedBottom)
     self.right = Value(scalable: scalableRight, fixed: fixedRight)
   }
   
-  init(top: Value, left: Value, bottom: Value, right: Value) {
+  public init(top: Value, left: Value, bottom: Value, right: Value) {
     self.top = top
     self.left = left
     self.bottom = bottom

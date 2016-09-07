@@ -26,17 +26,17 @@ public struct Size: Equatable {
     return Value.init(scalable: scalable, fixed: 0)
   }
   
-  init(_ width: CGFloat, _ height: CGFloat) {
+  public init(_ width: CGFloat, _ height: CGFloat) {
     self.width = Value(width)
     self.height = Value(height)
   }
   
-  init(scalableWidth: CGFloat, fixedWidth: CGFloat, scalableHeight: CGFloat, fixedHeight: CGFloat) {
+  public init(scalableWidth: CGFloat, fixedWidth: CGFloat, scalableHeight: CGFloat, fixedHeight: CGFloat) {
     self.width = Value(scalable: scalableWidth, fixed: fixedWidth)
     self.height = Value(scalable: scalableHeight, fixed: fixedHeight)
   }
   
-  init(width: Value, height: Value) {
+  public init(width: Value, height: Value) {
     self.width = width
     self.height = height
   }
