@@ -38,7 +38,7 @@ struct AppCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
   static func render(props: AppCellProps,
     state: EmptyHighlightableState,
     update: @escaping (EmptyHighlightableState) -> (),
-    dispatch: StoreDispatch) -> [AnyNodeDescription] {
+    dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     let text = NSMutableAttributedString(string: props.name, attributes: [
       NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),

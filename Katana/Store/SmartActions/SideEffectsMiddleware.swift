@@ -12,7 +12,7 @@ open class SideEffectsDependencies<S: State> {
   let state: S
   let dispatch: StoreDispatch
   
-  required public init(dispatch: StoreDispatch, state: S) {
+  required public init(dispatch: @escaping StoreDispatch, state: S) {
     self.state = state
     self.dispatch = dispatch
   }

@@ -36,11 +36,12 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     return CGSize(width: 640, height: 960)
   }
   
+  
   static func render(props: AppProps,
                      state: EmptyState,
-                     update: @escaping  (EmptyState) -> (),
-                     dispatch: StoreDispatch) -> [AnyNodeDescription] {
-    
+                     update: @escaping (EmptyState) -> (),
+                     dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+        
     
     func addTodo() {
       let randomNumber = Int(arc4random_uniform(1000) + 1)

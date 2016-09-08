@@ -10,7 +10,7 @@ import Foundation
 
 public protocol AnyStore: class {
   func dispatch(_ action: Action)
-  func addListener(_ listener: StoreListener) -> StoreUnsubscribe
+  func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
   var anyState: Any { get }
 }
 
@@ -38,7 +38,7 @@ public class Store<RootReducer: Reducer> {
     self.middlewares = middlewares
   }
 
-  public func addListener(_ listener: StoreListener) -> StoreUnsubscribe {
+  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     listeners.append(listener)
     let idx = listeners.count - 1
     
@@ -71,7 +71,7 @@ extension Store: AnyStore {
   }
 }
 
-private func compose(_ middlewares: [(_ next: StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: StoreDispatch) -> StoreDispatch {
+private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
   guard middlewares.count > 0 else {
     return storeDispatch
   }

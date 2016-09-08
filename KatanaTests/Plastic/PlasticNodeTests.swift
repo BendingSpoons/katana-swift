@@ -81,6 +81,8 @@ private enum Keys: String, NodeDescriptionKeys {
 }
 
 private struct TestNode : NodeDescription, PlasticNodeDescription {
+
+
   typealias NativeView = UIView
   
   var props : EmptyProps
@@ -89,9 +91,11 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
   
-  static func render(props: EmptyProps,
-                     state: EmptyState,
-                     update: @escaping (EmptyState) -> ()) -> [AnyNodeDescription] {
+  public static func render(props: EmptyProps,
+                            state: EmptyState,
+                            update: @escaping (EmptyState) -> (),
+                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+   
     
     return [
       View(props: ViewProps().key(Keys.One))
@@ -126,7 +130,9 @@ fileprivate struct App : NodeDescription {
   
   fileprivate static func render(props: AppProps,
                                  state: EmptyState,
-                                 update: @escaping (EmptyState) -> ()) -> [AnyNodeDescription] {
+                                 update: @escaping (EmptyState) -> (),
+                                 dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
+
     
     
     let i = props.i

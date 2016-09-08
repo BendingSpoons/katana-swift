@@ -97,7 +97,7 @@ public struct Grid : NodeDescription {
   public static func render(props: GridProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
-                            dispatch: StoreDispatch) -> [AnyNodeDescription] {
+                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
 }
