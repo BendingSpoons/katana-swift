@@ -23,7 +23,8 @@ public protocol AnyNode: class {
   
   func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode
   func removeManagedChild(node: AnyNode)
-
+  
+  func forceReload()
 }
 
 protocol InternalAnyNode : AnyNode {
@@ -104,12 +105,12 @@ public class Node<Description: NodeDescription> {
     self.update(state: state, description: self.description, parentAnimation: .none)
   }
   
-  fileprivate func update(state: Description.StateType, description: Description, parentAnimation: Animation) {
+  fileprivate func update(state: Description.StateType, description: Description, parentAnimation: Animation, force: Bool = false) {
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
     
-    guard self.description.props != description.props || self.state != state else {
+    guard force || self.description.props != description.props || self.state != state else {
       return
     }
     
@@ -263,7 +264,6 @@ public class Node<Description: NodeDescription> {
 }
 
 extension Node : AnyNode {
-
   public var anyDescription: AnyNodeDescription {
     get {
       return self.description
@@ -280,6 +280,9 @@ extension Node : AnyNode {
     self.update(state: self.state, description: description, parentAnimation: animation)
   }
   
+  public func forceReload() {
+    self.update(state: self.state, description: self.description, parentAnimation: .none, force: true)
+  }
 }
 
 extension Node : InternalAnyNode {
