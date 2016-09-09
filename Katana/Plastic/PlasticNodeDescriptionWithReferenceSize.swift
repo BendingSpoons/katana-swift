@@ -9,6 +9,6 @@
 import UIKit
 
 // a node that has a reference size
-public protocol PlasticNodeDescriptionWithReferenceSize : AnyPlasticNodeDescription {
+public protocol PlasticNodeDescriptionWithReferenceSize {
   static var referenceSize: CGSize {get}
 }
