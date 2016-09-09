@@ -19,11 +19,11 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     let frame = self.description.props.frame
     let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame, children: children, multiplier: multiplier)
     let selfType = type(of: description)
-    let layoutCache = selfType.layoutHash(props: self.description.props, state: self.state)
+    let layoutHash = selfType.layoutHash(props: self.description.props, state: self.state)
     
-    if let layoutCache = layoutCache {
+    if let layoutHash = layoutHash {
       // cache enabled, let's see if we have something cached
-      if let frames = LayoutsCache.shared.getCachedLayout(layoutHash: layoutCache, nativeViewFrame: frame, multiplier: multiplier, nodeDescription: self.description) {
+      if let frames = LayoutsCache.shared.getCachedLayout(layoutHash: layoutHash, nativeViewFrame: frame, multiplier: multiplier, nodeDescription: self.description) {
         return self.getFramedChildren(fromChildren: children, frames: frames)
       }
     }
@@ -33,9 +33,9 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     type(of: description).anyLayout(views: container, props: self.description.props, state: self.state)
     let frames = container.frames
     
-    if let layoutCache = layoutCache {
+    if let layoutHash = layoutHash {
       // save only if layout cache is enabled
-      LayoutsCache.shared.cacheLayout(layoutHash: layoutCache, nativeViewFrame: frame, multiplier: multiplier, nodeDescription: self.description, frames: frames)
+      LayoutsCache.shared.cacheLayout(layoutHash: layoutHash, nativeViewFrame: frame, multiplier: multiplier, nodeDescription: self.description, frames: frames)
     }
     
     return self.getFramedChildren(fromChildren: children, frames: frames)
