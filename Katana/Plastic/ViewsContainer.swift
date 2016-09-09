@@ -23,7 +23,7 @@ internal enum HierarchyNode<Key> where Key : RawRepresentable & Hashable {
 }
 
 public class ViewsContainer<Key> : HierarchyManager
-  where Key : RawRepresentable & Hashable & Comparable {
+where Key : RawRepresentable & Hashable & Comparable {
   
   // an association between the key and the plastic view
   private(set) var views: [Key: PlasticView] = [:]
@@ -33,7 +33,7 @@ public class ViewsContainer<Key> : HierarchyManager
   
   private let nativeViewFrame: CGRect
   private let multiplier: CGFloat
-
+  
   lazy public private(set) var nativeView: PlasticView = {
     return PlasticView(
       hierarchyManager: self,
@@ -42,15 +42,18 @@ public class ViewsContainer<Key> : HierarchyManager
       frame: self.nativeViewFrame
     )
   }()
-
+  
   init(nativeViewFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
     self.nativeViewFrame = nativeViewFrame
     self.multiplier = multiplier
     
     // create children placeholders
-    flattenChildren(children).forEach { key,node in
+    var flatChildren = [(String, AnyNodeDescription)]()
+    flattenChildren(children, accumulator: &flatChildren)
+    
+    flatChildren.forEach { key,node in
       let enumKey = Key.init(rawValue: key as! Key.RawValue)!
-
+      
       self.views[enumKey] = PlasticView(
         hierarchyManager: self,
         key: key,
@@ -66,7 +69,7 @@ public class ViewsContainer<Key> : HierarchyManager
   public subscript(key: Key) -> PlasticView? {
     return self.views[key]
   }
-
+  
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     let enumKey = Key.init(rawValue: key as! Key.RawValue)!
     
@@ -77,7 +80,7 @@ public class ViewsContainer<Key> : HierarchyManager
     let origin = self.resolveAbsoluteOrigin(fromNode: node)
     return absoluteValue - origin.x
   }
-
+  
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     let enumKey = Key.init(rawValue: key as! Key.RawValue)!
     
@@ -90,10 +93,10 @@ public class ViewsContainer<Key> : HierarchyManager
   }
   
   /*
-    This method basically explores the node hierarchy and returns the absolute origin of the node.
-    Two cases are trivial: root and managed by plastic (since plastic already holds an absolute value).
-    When we have static frames (node without keys) we need to explore the hierarchy until we either find the root or a plastic node
-  */
+   This method basically explores the node hierarchy and returns the absolute origin of the node.
+   Two cases are trivial: root and managed by plastic (since plastic already holds an absolute value).
+   When we have static frames (node without keys) we need to explore the hierarchy until we either find the root or a plastic node
+   */
   private func resolveAbsoluteOrigin(fromNode node: HierarchyNode<Key>) -> CGPoint {
     switch node {
     case .nativeView:
@@ -116,21 +119,16 @@ public class ViewsContainer<Key> : HierarchyManager
 }
 
 internal extension ViewsContainer {
-  internal func flattenChildren(_ children: [AnyNodeDescription]) -> [(String, AnyNodeDescription)] {
-    return children.reduce([], { (partialResult, node) -> [(String, AnyNodeDescription)] in
-      
-      var flatChildren: [(String, AnyNodeDescription)] = []
-      
+  internal func flattenChildren(_ children: [AnyNodeDescription], accumulator: inout [(String, AnyNodeDescription)]) {
+    for node in children {
       if let n = node as? AnyNodeWithChildrenDescription {
-        flatChildren = self.flattenChildren(n.children)
+        self.flattenChildren(n.children, accumulator: &accumulator)
       }
       
-      guard let key = node.key else {
-        return partialResult + flatChildren
+      if let key = node.key {
+        accumulator.append((key, node))
       }
-      
-      return partialResult + [(key, node)] + flatChildren
-    })
+    }
   }
   
   /*
@@ -142,9 +140,7 @@ internal extension ViewsContainer {
    - DynamicFrame: the parent is a node with a key, it is managed by plastic
    */
   internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
-    
     children.forEach { node in
-      
       let currentNode: HierarchyNode<Key> = {
         if let key = node.key {
           return .dynamicFrame(key.toEnumRawValue())
@@ -152,7 +148,6 @@ internal extension ViewsContainer {
         
         return .staticFrame(node.frame, parentRepresentation)
       }()
-      
       
       if let key = node.key {
         // if the node has a key, let's add it to the accumulator
