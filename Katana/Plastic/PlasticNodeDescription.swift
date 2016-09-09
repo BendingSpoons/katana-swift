@@ -26,7 +26,9 @@ public protocol AnyPlasticNodeDescription {
 // a node that leverages plastic to layout
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
   associatedtype Keys: NodeDescriptionKeys
+  
   static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
+  static func layoutHash(props: PropsType, state: StateType) -> Int?
 }
 
 public extension PlasticNodeDescription {
@@ -36,8 +38,12 @@ public extension PlasticNodeDescription {
     }
   }
   
+  static func layoutHash(props: PropsType, state: StateType) -> Int? {
+    return nil
+  }
+  
   public func node(parent: AnyNode?) -> AnyNode {
-     return PlasticNode(description: self, parent: parent, root: nil)
+    return PlasticNode(description: self, parent: parent, root: nil)
   }
   
   func root(store: AnyStore?) -> Root {

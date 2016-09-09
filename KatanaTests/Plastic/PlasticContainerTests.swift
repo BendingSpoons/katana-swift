@@ -42,6 +42,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    plasticViewsContainer.initialize()
     
     XCTAssertNotNil(plasticViewsContainer.nativeView)
     XCTAssertNotNil(plasticViewsContainer[.One])
@@ -71,6 +72,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
+    plasticViewsContainer.initialize()
     let onePlaceholder = plasticViewsContainer[Keys.One]
     let oneBPlaceholder = plasticViewsContainer[Keys.OneB]
     
@@ -95,6 +97,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
+    plasticViewsContainer.initialize()
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!
@@ -158,6 +161,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     let containerFrame = CGRect(x: 20, y: 20, width: 1000, height: 1000)
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
+    plasticViewsContainer.initialize()
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!
@@ -224,6 +228,7 @@ class PlasticViewsContainerTests: XCTestCase {
     
     let containerFrame = CGRect(x: 0, y: 0, width: 1000, height: 1000)
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: containerFrame, children: hierarchy, multiplier: 1)
+    plasticViewsContainer.initialize()
     
     // add some initial positions
     let viewOne = plasticViewsContainer[Keys.One]!

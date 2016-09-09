@@ -90,6 +90,7 @@
 		81EA57181D5F3D5900B6290E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81EA57161D5F3D5900B6290E /* Info.plist */; };
 		81F3F52C1D74EC46006150BB /* AddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F52B1D74EC46006150BB /* AddTodo.swift */; };
 		81F3F5321D74F357006150BB /* RemoveTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81F3F5311D74F357006150BB /* RemoveTodo.swift */; };
+		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +197,7 @@
 		81EA57161D5F3D5900B6290E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81F3F52B1D74EC46006150BB /* AddTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodo.swift; sourceTree = "<group>"; };
 		81F3F5311D74F357006150BB /* RemoveTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveTodo.swift; sourceTree = "<group>"; };
+		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -327,6 +329,7 @@
 				813315471D7B726000FBE210 /* Value.swift */,
 				813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */,
 				813315491D7B726000FBE210 /* ViewsContainer.swift */,
+				A17211541D831D540084B9E0 /* LayoutsCache.swift */,
 			);
 			path = Plastic;
 			sourceTree = "<group>";
@@ -733,6 +736,7 @@
 				813315691D7B726000FBE210 /* NodesCommons.swift in Sources */,
 				813315851D7B726000FBE210 /* AsyncSmartAction.swift in Sources */,
 				813315841D7B726000FBE210 /* typealiases.swift in Sources */,
+				A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */,
 				8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */,
 				813315651D7B726000FBE210 /* GridDelegate.swift in Sources */,
 				8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */,

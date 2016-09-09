@@ -42,7 +42,7 @@ public protocol NodeDescription : AnyNodeDescription {
   associatedtype StateType: NodeState = EmptyState
   
   var props: PropsType { get set }
-
+  
   static func applyPropsToNativeView(props: PropsType,
                                      state: StateType,
                                      view: NativeView,
@@ -87,7 +87,7 @@ extension AnyNodeDescription where Self : NodeDescription {
     get {
       return self.props.frame
     }
-
+    
     set(newFrame) {
       self.props.frame = newFrame
     }
@@ -104,7 +104,7 @@ extension AnyNodeDescription where Self : NodeDescription {
   public var anyProps: Any {
     return self.props
   }
-
+  
   public func node(parent: AnyNode?) -> AnyNode {
     return Node(description: self, parent: parent)
   }
@@ -117,12 +117,11 @@ extension AnyNodeDescription where Self : NodeDescription {
   }
   
   public var replaceKey : Int {
-
+    
     if let props = self.props as? Keyable, let key = props.key {
       return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue
     }
-
+    
     return ObjectIdentifier(type(of: self)).hashValue
   }
 }
-

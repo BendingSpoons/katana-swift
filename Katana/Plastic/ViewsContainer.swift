@@ -30,11 +30,13 @@ where Key : RawRepresentable & Hashable & Comparable {
   
   // the key is the node key while the value is a parent node representation
   private var hierarchy: [Key: HierarchyNode<Key>] = [:]
+  private var flatChildren: [(String, AnyNodeDescription)]
+  private var children: [AnyNodeDescription]
   
   private let nativeViewFrame: CGRect
   private let multiplier: CGFloat
   
-  lazy public private(set) var nativeView: PlasticView = {
+  lazy public var nativeView: PlasticView = {
     return PlasticView(
       hierarchyManager: self,
       key: NATIVE_VIEW_KEY,
@@ -43,15 +45,32 @@ where Key : RawRepresentable & Hashable & Comparable {
     )
   }()
   
+  var childrenKeys: [String] {
+    return self.flatChildren.map { $0.0 }
+  }
+  
+  var frames: [String: CGRect] {
+    var frames = [String: CGRect]()
+    
+    for (key, value) in self.views {
+      frames[key.rawValue as! String] = value.frame
+    }
+    
+    return frames
+  }
+  
   init(nativeViewFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
     self.nativeViewFrame = nativeViewFrame
     self.multiplier = multiplier
+    self.children = children
     
     // create children placeholders
-    var flatChildren = [(String, AnyNodeDescription)]()
-    flattenChildren(children, accumulator: &flatChildren)
-    
-    flatChildren.forEach { key,node in
+    self.flatChildren = [(String, AnyNodeDescription)]()
+    flattenChildren(children, accumulator: &self.flatChildren)
+  }
+  
+  func initialize() {
+    self.flatChildren.forEach { key,node in
       let enumKey = Key.init(rawValue: key as! Key.RawValue)!
       
       self.views[enumKey] = PlasticView(
@@ -62,8 +81,7 @@ where Key : RawRepresentable & Hashable & Comparable {
       )
     }
     
-    // this is a kind of workaround.. basically in this way we automatically handle the root
-    self.nodeChildrenHierarchy(children, parentRepresentation: .nativeView, accumulator: &hierarchy)
+    self.nodeChildrenHierarchy(self.children, parentRepresentation: .nativeView, accumulator: &hierarchy)
   }
   
   public subscript(key: Key) -> PlasticView? {
@@ -141,6 +159,7 @@ internal extension ViewsContainer {
    */
   internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
     children.forEach { node in
+      
       let currentNode: HierarchyNode<Key> = {
         if let key = node.key {
           return .dynamicFrame(key.toEnumRawValue())
@@ -148,6 +167,7 @@ internal extension ViewsContainer {
         
         return .staticFrame(node.frame, parentRepresentation)
       }()
+      
       
       if let key = node.key {
         // if the node has a key, let's add it to the accumulator
