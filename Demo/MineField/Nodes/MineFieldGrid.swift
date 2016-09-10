@@ -57,14 +57,10 @@ enum MineFieldGridKeys: NodeDescriptionKeys {
 }
 
 
-struct MineFieldGrid : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct MineFieldGrid : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription  {
   
   var props : MineFieldGridProps
-  
-  static var referenceSize: CGSize {
-    return CGSize(width: 640, height: 960)
-  }
-  
+
   static func render(props: MineFieldGridProps,
                      state: EmptyState,
                      update: @escaping  (EmptyState) -> (),

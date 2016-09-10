@@ -9,20 +9,9 @@
 import UIKit
 import Katana
 
-public protocol HasMinable {
-  var hasMine: Bool { get set }
-  func hasMine(_ hasMine: Bool) -> Self
-}
 
-extension HasMinable {
-  func hasMine(_ hasMine: Bool) -> Self {
-    var copy = self
-    copy.hasMine = hasMine
-    return copy
-  }
-}
 
-struct MineFieldCellProps: NodeProps, Keyable, HasMinable {
+struct MineFieldCellProps: NodeProps, Keyable {
   public var frame: CGRect = CGRect.zero
   public var key: String?
   public var hasMine: Bool = false
@@ -31,17 +20,6 @@ struct MineFieldCellProps: NodeProps, Keyable, HasMinable {
   public var col: Int = 0
   public var row: Int = 0
   
-  public func minesNearby(minesNearby: Int) -> MineFieldCellProps {
-    var copy = self
-    copy.minesNearby = minesNearby
-    return copy
-  }
-  
-  public func disclosed(_ disclosed: Bool) -> MineFieldCellProps {
-    var copy = self
-    copy.disclosed = disclosed
-    return copy
-  }
   
   public func col(_ col: Int) -> MineFieldCellProps {
     var copy = self
@@ -55,7 +33,6 @@ struct MineFieldCellProps: NodeProps, Keyable, HasMinable {
     return copy
   }
   
-  // if I remove this I get slow updates (ok, it will redraw every MineFieldCell on every update but it's not enough to justify it)
   static func ==(lhs: MineFieldCellProps, rhs: MineFieldCellProps) -> Bool {
     return
       lhs.frame == rhs.frame &&
@@ -73,14 +50,10 @@ enum MineFieldCellKeys: String,NodeDescriptionKeys {
 }
 
 
-struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription  {
   
   var props : MineFieldCellProps
-  
-  static var referenceSize: CGSize {
-    return CGSize(width: 20, height: 20)
-  }
-  
+
   static func render(props: MineFieldCellProps,
                      state: EmptyState,
                      update: @escaping  (EmptyState) -> (),
