@@ -18,7 +18,10 @@ import XCTest
     var storeAfter: Any?
   
     
-    func basicMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void {
+    func basicMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> 
+                      (_ next: StoreDispatch) -> 
+                      (_ action: Action) -> Void {
+ 
       return { next in
         return { action in
           dispatchedAction = action
@@ -50,7 +53,9 @@ import XCTest
     var storeAfter: Any?
     var invokationOrder: [String] = []
     
-    func basicMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void {
+    func basicMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> 
+                                              (_ next: StoreDispatch) ->
+                                              (_ action: Action) -> Void {
       return { next in
         return { action in
           invokationOrder.append("basic")
@@ -62,7 +67,9 @@ import XCTest
       }
     }
     
-    func secondMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> (_ next: StoreDispatch) -> (_ action: Action) -> Void {
+    func secondMiddleware<RootReducer: Reducer>(store: Store<RootReducer>) -> 
+                                                (_ next: StoreDispatch) ->
+                                                (_ action: Action) -> Void {
       return { next in
         return { action in
           invokationOrder.append("second")

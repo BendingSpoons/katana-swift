@@ -7,6 +7,7 @@ disabled_rules:
   - trailing_whitespace
   - type_name #restore as soon as they add support for swift 3
   - valid_docs
+  - nesting
 
 opt_in_rules:
   - no_multiple_newlines
@@ -36,8 +37,6 @@ opt_in_rules:
 #   - type_body_length
 #   - variable_name
 
-excluded:
-  - katana-lib-swift
 
 line_length: 130
 
@@ -47,6 +46,9 @@ file_length:
 variable_name:
   min_length:
     warning: 1
+function_body_length:
+  warning: 100
+  error: 200
 
 # closing_brace               | no     | yes         | yes                    | warning                                          |
 # | colon                       | no     | yes         | yes                    | warning                                          |
