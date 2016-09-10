@@ -57,7 +57,11 @@ public class Store<RootReducer: Reducer> {
     // we can remove this limitation by adding an (atomic) FIFO queue where actions are added
     // while the current action has been completed
     
-    dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+    if #available(iOS 10.0, *) {
+      dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+    } else {
+      //FIXME
+    }
     
     self.state = RootReducer.reduce(action: action, state: self.state)
 
