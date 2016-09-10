@@ -48,19 +48,19 @@ public struct Size: Equatable {
     )
   }
   
-  public static func *(lhs: Size, rhs: CGFloat) -> Size {
+  public static func * (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width * rhs, height: lhs.height * rhs)
   }
   
-  public static func +(lhs: Size, rhs: Size) -> Size {
+  public static func + (lhs: Size, rhs: Size) -> Size {
     return Size(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
   }
   
-  public static func /(lhs: Size, rhs: CGFloat) -> Size {
+  public static func / (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width / rhs, height: lhs.height / rhs)
   }
   
-  public static func ==(lhs: Size, rhs: Size) -> Bool {
+  public static func == (lhs: Size, rhs: Size) -> Bool {
     return lhs.width == rhs.width && lhs.height == rhs.height
   }
 }

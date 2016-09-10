@@ -17,7 +17,7 @@ public protocol Reducer: AnyReducer {
   static func reduce(action: Action, state: StateType) -> StateType
 }
 
-public extension AnyReducer where Self : Reducer {
+public extension AnyReducer where Self: Reducer {
   
   static func anyReduce(action: Action, state: State) -> State {
     guard let typedState = state as? StateType else {

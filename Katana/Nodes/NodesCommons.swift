@@ -10,7 +10,7 @@ import UIKit
 
 
 public protocol Textable {
-  var text : NSAttributedString {get set}
+  var text: NSAttributedString {get set}
   func text(_ text: NSAttributedString) -> Self
   func text(_ text: String, fontSize: CGFloat) -> Self
 }
@@ -25,9 +25,9 @@ extension Textable {
   public func text(_ text: String, fontSize: CGFloat) -> Self {
     
     let attriburedText = NSMutableAttributedString(string: text as String, attributes: [
-      NSFontAttributeName : UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular),
+      NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular),
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
-      NSForegroundColorAttributeName : UIColor(0x000000)
+      NSForegroundColorAttributeName: UIColor(0x000000)
       ])
     
     
@@ -38,7 +38,7 @@ extension Textable {
 }
 
 public protocol Colorable {
-  var color : UIColor {get set}
+  var color: UIColor {get set}
   func color(_ color: UIColor) -> Self
 }
 
@@ -57,7 +57,7 @@ extension Colorable {
 }
 
 public protocol TouchDisableable {
-  var touchDisabled : Bool {get set}
+  var touchDisabled: Bool {get set}
   func disableTouch() -> Self
   func enableTouch(enable: Bool) -> Self
   
@@ -92,7 +92,7 @@ extension Tappable {
 }
 
 public protocol CornerRadiusable {
-  var cornerRadius : CGFloat {get set}
+  var cornerRadius: CGFloat {get set}
   func cornerRadius(_ cornerRadius: CGFloat) -> Self
 }
 
@@ -105,8 +105,8 @@ extension CornerRadiusable {
 }
 
 public protocol Bordable {
-  var borderColor : UIColor {get set}
-  var borderWidth : CGFloat {get set}
+  var borderColor: UIColor {get set}
+  var borderWidth: CGFloat {get set}
   
   func borderColor(_ borderColor: UIColor) -> Self
   func borderWidth(_ borderWidth: CGFloat) -> Self
@@ -142,9 +142,7 @@ public struct EmptyHighlightableState: NodeState, Highlightable {
     self.highlighted = highlighted
   }
   
-  public static func ==(lhs: EmptyHighlightableState, rhs: EmptyHighlightableState) -> Bool {
+  public static func == (lhs: EmptyHighlightableState, rhs: EmptyHighlightableState) -> Bool {
     return lhs.highlighted == rhs.highlighted
   }
 }
-
-

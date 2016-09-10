@@ -8,7 +8,7 @@
 
 import Katana
 
-struct RemoveTodo : SyncSmartAction {
+struct RemoveTodo: SyncSmartAction {
   var payload: Int
   
   static func reduce(state: inout ToDoState, action: RemoveTodo) {

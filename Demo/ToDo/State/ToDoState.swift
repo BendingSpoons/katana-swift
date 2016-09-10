@@ -9,7 +9,7 @@
 import Katana
 
 
-struct ToDoState : State {
+struct ToDoState: State {
   var todos: [String] = []
   var todosCompleted: [Bool] = []
 

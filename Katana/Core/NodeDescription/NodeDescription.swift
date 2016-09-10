@@ -13,7 +13,7 @@ public protocol NodeState: Equatable {
 }
 
 public extension NodeState {
-  static func ==(l: Self, r: Self) -> Bool {
+  static func == (l: Self, r: Self) -> Bool {
     return false
   }
 }
@@ -21,7 +21,7 @@ public extension NodeState {
 public protocol NodeProps: Equatable, Frameable {}
 
 public extension NodeProps {
-  static func ==(l: Self, r: Self) -> Bool {
+  static func == (l: Self, r: Self) -> Bool {
     return false
   }
 }
@@ -30,13 +30,13 @@ public protocol AnyNodeDescription {
   var frame: CGRect { get set }
   var key: String? { get }
   var anyProps: Any { get }
-  var replaceKey : Int { get }
+  var replaceKey: Int { get }
   
   func node(parent: AnyNode?) -> AnyNode
   func root(store: AnyStore?) -> Root
 }
 
-public protocol NodeDescription : AnyNodeDescription {
+public protocol NodeDescription: AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
   associatedtype PropsType: NodeProps = EmptyProps
   associatedtype StateType: NodeState = EmptyState
@@ -68,7 +68,7 @@ extension NodeDescription {
                                             state: StateType,
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
-                                            node: AnyNode) ->  Void {
+                                            node: AnyNode) -> Void {
     view.frame = props.frame
   }
   
@@ -81,9 +81,9 @@ extension NodeDescription {
   }
 }
 
-extension AnyNodeDescription where Self : NodeDescription {
+extension AnyNodeDescription where Self: NodeDescription {
   
-  public var frame : CGRect {
+  public var frame: CGRect {
     get {
       return self.props.frame
     }
@@ -116,7 +116,7 @@ extension AnyNodeDescription where Self : NodeDescription {
     return root
   }
   
-  public var replaceKey : Int {
+  public var replaceKey: Int {
     
     if let props = self.props as? Keyable, let key = props.key {
       return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue

@@ -31,7 +31,15 @@ public struct EdgeInsets: Equatable {
     self.right = Value(right)
   }
   
-  public init(scalableTop: CGFloat, fixedTop: CGFloat, scalableLeft: CGFloat, fixedLeft: CGFloat, scalableBottom: CGFloat, fixedBottom: CGFloat, scalableRight: CGFloat, fixedRight: CGFloat) {
+  public init(scalableTop: CGFloat,
+                 fixedTop: CGFloat,
+             scalableLeft: CGFloat,
+                fixedLeft: CGFloat,
+           scalableBottom: CGFloat,
+              fixedBottom: CGFloat,
+            scalableRight: CGFloat,
+               fixedRight: CGFloat) {
+    
     self.top = Value(scalable: scalableTop, fixed: fixedTop)
     self.left = Value(scalable: scalableLeft, fixed: fixedLeft)
     self.bottom = Value(scalable: scalableBottom, fixed: fixedBottom)
@@ -54,7 +62,7 @@ public struct EdgeInsets: Equatable {
     )
   }
   
-  public static func *(lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
+  public static func * (lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
     return EdgeInsets(
       top: lhs.top * rhs,
       left: lhs.left * rhs,
@@ -63,7 +71,7 @@ public struct EdgeInsets: Equatable {
     )
   }
   
-  public static func +(lhs: EdgeInsets, rhs: EdgeInsets) -> EdgeInsets {
+  public static func + (lhs: EdgeInsets, rhs: EdgeInsets) -> EdgeInsets {
     return EdgeInsets(
       top: lhs.top + rhs.top,
       left: lhs.left + rhs.left,
@@ -72,7 +80,7 @@ public struct EdgeInsets: Equatable {
     )
   }
   
-  public static func /(lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
+  public static func / (lhs: EdgeInsets, rhs: CGFloat) -> EdgeInsets {
     return EdgeInsets(
       top: lhs.top / rhs,
       left: lhs.left / rhs,
@@ -81,7 +89,7 @@ public struct EdgeInsets: Equatable {
     )
   }
   
-  public static func ==(lhs: EdgeInsets, rhs: EdgeInsets) -> Bool {
+  public static func == (lhs: EdgeInsets, rhs: EdgeInsets) -> Bool {
     return lhs.top == rhs.top &&
       lhs.left == rhs.left &&
       lhs.bottom == rhs.bottom &&

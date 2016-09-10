@@ -27,28 +27,34 @@ extension PlasticView {
     self.setBottom(view.bottom, -insets.bottom)
   }
   
-  public func fill(top: Anchor, left: Anchor, bottom: Anchor, right: Anchor, aspectRatio: CGFloat = 1, insets: EdgeInsets = .zero) -> Void {
-    self.setLeft(left, insets.left);
-    self.setRight(right, -insets.right);
-    self.setTop(top, insets.top);
-    self.setBottom(bottom, -insets.bottom);
+  public func fill(top: Anchor,
+                  left: Anchor,
+                bottom: Anchor,
+                 right: Anchor,
+           aspectRatio: CGFloat = 1,
+                insets: EdgeInsets = .zero) -> Void {
     
-    let width = self.width.unscaledValue;
-    let height = self.height.unscaledValue;
+    self.setLeft(left, insets.left)
+    self.setRight(right, -insets.right)
+    self.setTop(top, insets.top)
+    self.setBottom(bottom, -insets.bottom)
     
-    if (width / height < aspectRatio) {
-      self.center(betweenTop: top, andBottom: bottom);
-      self.height = Value.fixed(width / aspectRatio);
+    let width = self.width.unscaledValue
+    let height = self.height.unscaledValue
+    
+    if width / height < aspectRatio {
+      self.center(betweenTop: top, andBottom: bottom)
+      self.height = Value.fixed(width / aspectRatio)
       
     } else {
-      self.center(betweenLeft: left, andRight: right);
-      self.width = Value.fixed(height * aspectRatio);
+      self.center(betweenLeft: left, andRight: right)
+      self.width = Value.fixed(height * aspectRatio)
     }
   }
   
   public func center(betweenLeft left: Anchor, andRight right: Anchor) -> Void {
     let offset: Value = .fixed((right.coordinate - left.coordinate) / 2.0)
-    self.setCenterX(left, offset);
+    self.setCenterX(left, offset)
   }
   
   public func center(betweenTop top: Anchor, andBottom bottom: Anchor) -> Void {
@@ -62,26 +68,26 @@ extension PlasticView {
   }
   
   public func coverLeft(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
-    self.setLeft(view.left, insets.left);
-    self.setTop(view.top, insets.top);
-    self.setBottom(view.bottom, -insets.bottom);
+    self.setLeft(view.left, insets.left)
+    self.setTop(view.top, insets.top)
+    self.setBottom(view.bottom, -insets.bottom)
   }
   
   public func coverRight(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
-    self.setRight(view.right, -insets.right);
-    self.setTop(view.top, insets.top);
-    self.setBottom(view.bottom, -insets.bottom);
+    self.setRight(view.right, -insets.right)
+    self.setTop(view.top, insets.top)
+    self.setBottom(view.bottom, -insets.bottom)
   }
   
   public func asHeader(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) -> Void {
-    self.setLeft(view.left, insets.left);
-    self.setRight(view.right, -insets.right);
-    self.setTop(view.top, insets.top);
+    self.setLeft(view.left, insets.left)
+    self.setRight(view.right, -insets.right)
+    self.setTop(view.top, insets.top)
   }
   
   public func asFooter(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) -> Void {
-    self.setLeft(view.left, insets.left);
-    self.setRight(view.right, -insets.right);
-    self.setBottom(view.bottom, -insets.bottom);
+    self.setLeft(view.left, insets.left)
+    self.setRight(view.right, -insets.right)
+    self.setBottom(view.bottom, -insets.bottom)
   }
 }

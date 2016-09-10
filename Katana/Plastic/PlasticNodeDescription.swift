@@ -13,7 +13,7 @@ public protocol NodeDescriptionKeys: RawRepresentable, Hashable, Comparable {
 }
 
 public extension NodeDescriptionKeys where RawValue: Comparable {
-  public static func <(lhs: Self, rhs: Self) -> Bool {
+  public static func < (lhs: Self, rhs: Self) -> Bool {
     return lhs.rawValue < rhs.rawValue
   }
 }

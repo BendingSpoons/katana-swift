@@ -25,11 +25,12 @@ public protocol DrawableContainer {
   func remove(child: DrawableContainerChild)
 }
 
-internal let VIEW_TAG = 999987
+internal let VIEWTAG = 999987
 
-extension UIView : DrawableContainer {
-  public struct UIViewDrawableContainerChild : DrawableContainerChild {
-    private(set) var view : UIView
+extension UIView: DrawableContainer {
+  
+  public struct UIViewDrawableContainerChild: DrawableContainerChild {
+    private(set) var view: UIView
   }
   
   public func removeAll() {
@@ -41,7 +42,7 @@ extension UIView : DrawableContainer {
     }
 
     self.subviews
-      .filter { $0.tag == VIEW_TAG }
+      .filter { $0.tag == VIEWTAG }
       .forEach { $0.removeFromSuperview() }
   }
   
@@ -54,7 +55,7 @@ extension UIView : DrawableContainer {
     }
     
     let child = child()
-    child.tag = VIEW_TAG
+    child.tag = VIEWTAG
     self.addSubview(child)
     return child
   }
@@ -70,7 +71,7 @@ extension UIView : DrawableContainer {
   }
   
   public func children () -> [DrawableContainerChild] {
-    return self.subviews.filter {$0.tag == VIEW_TAG}.map { UIViewDrawableContainerChild(view: $0) }
+    return self.subviews.filter {$0.tag == VIEWTAG}.map { UIViewDrawableContainerChild(view: $0) }
   }
   
   public func bringToFront(child: DrawableContainerChild) {

@@ -40,7 +40,7 @@ class NodeTest: XCTestCase {
     root.draw(container: rootVew)
     
     var references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
@@ -50,7 +50,7 @@ class NodeTest: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
 
     references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     
@@ -59,25 +59,25 @@ class NodeTest: XCTestCase {
 
 }
 
-fileprivate struct MyAppState : State {}
+fileprivate struct MyAppState: State {}
 
-fileprivate struct AppProps : NodeProps {
+fileprivate struct AppProps: NodeProps {
   var frame: CGRect = CGRect.zero
   var i: Int
   
-  static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
+  static func == (lhs: AppProps, rhs: AppProps) -> Bool {
     return lhs.frame == rhs.frame && lhs.i == rhs.i
   }
   
-  init(i:Int) {
+  init(i: Int) {
     self.i = i
   }
 }
 
-fileprivate struct App : NodeDescription {
+fileprivate struct App: NodeDescription {
 
 
-  var props : AppProps
+  var props: AppProps
   var children: [AnyNodeDescription] = []
   
   
@@ -89,28 +89,28 @@ fileprivate struct App : NodeDescription {
     
     let i = props.i
     
-    if (i == 0) {
+    if i == 0 {
       
       return [
-        View(props: ViewProps().frame(0,0,150,150).color(.gray)) {
+        View(props: ViewProps().frame(0, 0, 150, 150).color(.gray)) {
           [
-            Button(props: ButtonProps().frame(50,50,100,100)
+            Button(props: ButtonProps().frame(50, 50, 100, 100)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
               .onTap({ update(EmptyState()) })
             ),
             
-            View(props: ViewProps().frame(0,0,150,150).color(.gray))
+            View(props: ViewProps().frame(0, 0, 150, 150).color(.gray))
           ]
         }
       ]
       
-    } else if (i == 1) {
+    } else if i == 1 {
       return [
-        View(props: ViewProps().frame(0,0,150,150).color(.gray)) {
+        View(props: ViewProps().frame(0, 0, 150, 150).color(.gray)) {
           [
-            Button(props: ButtonProps().frame(50,50,100,100)
+            Button(props: ButtonProps().frame(50, 50, 100, 100)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
@@ -129,14 +129,14 @@ fileprivate struct App : NodeDescription {
 
 
 fileprivate class WeakNode {
-  weak var value : AnyNode?
+  weak var value: AnyNode?
   init(value: AnyNode) {
     self.value = value
   }
 }
 
 fileprivate class WeakView {
-  weak var value : UIView?
+  weak var value: UIView?
   init(value: UIView) {
     self.value = value
   }
@@ -149,7 +149,3 @@ fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
 fileprivate func collectView(view: UIView) -> [UIView] {
   return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
 }
-
-
-
-

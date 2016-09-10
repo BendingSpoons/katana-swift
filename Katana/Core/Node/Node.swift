@@ -11,9 +11,9 @@ import UIKit
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 public protocol AnyNode: class {
-  var anyDescription : AnyNodeDescription { get }
-  var children : [AnyNode]? { get }
-  var managedChildren : [AnyNode] { get }
+  var anyDescription: AnyNodeDescription { get }
+  var children: [AnyNode]? { get }
+  var managedChildren: [AnyNode] { get }
 
   var parent: AnyNode? {get}
   var root: Root? {get}
@@ -27,7 +27,7 @@ public protocol AnyNode: class {
   func forceReload()
 }
 
-protocol InternalAnyNode : AnyNode {
+protocol InternalAnyNode: AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
   //use Description().root(..).draw(..)
   func draw(container: DrawableContainer)
@@ -35,9 +35,9 @@ protocol InternalAnyNode : AnyNode {
 
 public class Node<Description: NodeDescription> {
   
-  public private(set) var children : [AnyNode]?
-  private(set) var state : Description.StateType
-  private(set) var description : Description
+  public private(set) var children: [AnyNode]?
+  private(set) var state: Description.StateType
+  private(set) var description: Description
   private var container: DrawableContainer?
   public private(set) weak var parent: AnyNode?
   public private(set) weak var root: Root?
@@ -46,7 +46,7 @@ public class Node<Description: NodeDescription> {
   
   public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
     
-    guard ((parent != nil) != (root != nil)) else {
+    guard (parent != nil) != (root != nil) else {
       fatalError("either the parent or the root should be passed")
     }
     
@@ -101,11 +101,15 @@ public class Node<Description: NodeDescription> {
     return props
   }
 
-  private func update(state: Description.StateType)  {
+  private func update(state: Description.StateType) {
     self.update(state: state, description: self.description, parentAnimation: .none)
   }
   
-  fileprivate func update(state: Description.StateType, description: Description, parentAnimation: Animation, force: Bool = false) {
+  fileprivate func update(state: Description.StateType,
+                    description: Description,
+                parentAnimation: Animation,
+                          force: Bool = false) {
+    
     guard let children = self.children else {
       fatalError("update should not be called at this time")
     }
@@ -127,7 +131,7 @@ public class Node<Description: NodeDescription> {
     
     var currentChildren = ChildrenDictionary()
     
-    for (index,child) in children.enumerated() {
+    for (index, child) in children.enumerated() {
       let key = child.anyDescription.replaceKey
       let value = (node: child, index: index)
       
@@ -142,9 +146,9 @@ public class Node<Description: NodeDescription> {
     
     newChildren = self.processChildrenBeforeDraw(newChildren)
     
-    var nodes : [AnyNode] = []
-    var viewIndexes : [Int] = []
-    var childrenToAdd : [AnyNode] = []
+    var nodes: [AnyNode] = []
+    var viewIndexes: [Int] = []
+    var childrenToAdd: [AnyNode] = []
     
     for newChild in newChildren {
       let key = newChild.replaceKey
@@ -180,7 +184,7 @@ public class Node<Description: NodeDescription> {
       fatalError("draw cannot be called at this time")
     }
     
-    if (self.container != nil)  {
+    if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
     
@@ -231,12 +235,12 @@ public class Node<Description: NodeDescription> {
       return node.draw(container: container)
     }
     
-    var currentSubviews : [DrawableContainerChild?] =  container.children().map { $0 }
+    var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
     let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
       let currentSubview = currentSubviews[viewIndex]!
-      if (!sorted) {
+      if !sorted {
         container.bringToFront(child: currentSubview)
       }
       currentSubviews[viewIndex] = nil
@@ -263,7 +267,7 @@ public class Node<Description: NodeDescription> {
 
 }
 
-extension Node : AnyNode {
+extension Node: AnyNode {
   public var anyDescription: AnyNodeDescription {
     get {
       return self.description

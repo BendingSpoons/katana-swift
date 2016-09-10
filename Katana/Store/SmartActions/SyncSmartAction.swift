@@ -8,15 +8,15 @@
 
 import Foundation
 
-public protocol AnySyncSmartAction : Action {
+public protocol AnySyncSmartAction: Action {
   static func anyReduce(state: State, action: AnySyncSmartAction) -> State
 }
 
-public protocol SyncSmartAction : Action, AnySyncSmartAction {
+public protocol SyncSmartAction: Action, AnySyncSmartAction {
   associatedtype PayloadType
   associatedtype StateType
   
-  var payload : PayloadType {get set}
+  var payload: PayloadType {get set}
   
   static func reduce(state: inout StateType, action: Self)
 }
@@ -33,7 +33,7 @@ public extension SyncSmartAction {
   
 }
 
-public extension SyncSmartAction where Self : SmartActionWithSideEffect {
+public extension SyncSmartAction where Self: SmartActionWithSideEffect {
   
     
     static func anySideEffect(action: Action,

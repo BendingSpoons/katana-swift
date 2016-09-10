@@ -10,8 +10,11 @@ import UIKit
 import Katana
 
 extension UIColor {
-  static var randomColor : UIColor {
-    return UIColor(red: CGFloat(arc4random_uniform(256)) / 255.0, green: CGFloat(arc4random_uniform(256)) / 255.0, blue: CGFloat(arc4random_uniform(256)) / 255.0, alpha: 1.0)
+  static var randomColor: UIColor {
+    return UIColor(red: CGFloat(arc4random_uniform(256)) / 255.0,
+                   green: CGFloat(arc4random_uniform(256)) / 255.0,
+                   blue: CGFloat(arc4random_uniform(256)) / 255.0,
+                   alpha: 1.0)
   }
   
   
@@ -24,7 +27,7 @@ struct MineFieldGridProps: NodeProps, Keyable {
   public var rows: Int = 0
   
   
-  static func ==(lhs: MineFieldGridProps, rhs: MineFieldGridProps) -> Bool {
+  static func == (lhs: MineFieldGridProps, rhs: MineFieldGridProps) -> Bool {
     return
       lhs.frame == rhs.frame && lhs.cols == rhs.cols && lhs.rows == rhs.rows
   }
@@ -36,10 +39,10 @@ enum MineFieldGridKeys: NodeDescriptionKeys {
   
   init?(rawValue: String) {
     let components = rawValue.components(separatedBy: ".")
+    
     if let col = Int(components[0]), let row = Int(components[1]) {
       self = .button(column: col, row: row)
-    }
-    else {
+    } else {
       return nil
     }
   }
@@ -57,9 +60,9 @@ enum MineFieldGridKeys: NodeDescriptionKeys {
 }
 
 
-struct MineFieldGrid : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription  {
+struct MineFieldGrid: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
-  var props : MineFieldGridProps
+  var props: MineFieldGridProps
 
   static func render(props: MineFieldGridProps,
                      state: EmptyState,
@@ -93,7 +96,7 @@ struct MineFieldGrid : NodeDescription, ConnectedNodeDescription, PlasticNodeDes
     var topAnchor = root.top
     
     for column in 0..<props.cols {
-      var node :PlasticView!
+      var node: PlasticView!
       for row in 0..<props.rows {
         node = views[.button(column: column, row: row)]!
         node.left = leftAnchor
@@ -107,7 +110,7 @@ struct MineFieldGrid : NodeDescription, ConnectedNodeDescription, PlasticNodeDes
     }
   }
   
-  static func connect(props: inout MineFieldGridProps, storageState: MineFieldState){
+  static func connect(props: inout MineFieldGridProps, storageState: MineFieldState) {
     props.cols = storageState.cols
     props.rows = storageState.rows
   }

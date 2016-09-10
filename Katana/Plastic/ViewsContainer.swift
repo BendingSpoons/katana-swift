@@ -8,9 +8,9 @@
 
 import UIKit
 
-private let NATIVE_VIEW_KEY = "//NATIVE_VIEW_KEY\\"
+private let NATIVEVIEWKEY = "//NATIVEVIEWKEY\\"
 
-internal enum HierarchyNode<Key> where Key : RawRepresentable & Hashable {
+internal enum HierarchyNode<Key> where Key: RawRepresentable & Hashable {
   // the node is the native node
   case nativeView
   
@@ -22,8 +22,8 @@ internal enum HierarchyNode<Key> where Key : RawRepresentable & Hashable {
   case dynamicFrame(Key)
 }
 
-public class ViewsContainer<Key> : HierarchyManager
-where Key : RawRepresentable & Hashable & Comparable {
+public class ViewsContainer<Key>: HierarchyManager
+where Key: RawRepresentable & Hashable & Comparable {
   
   // an association between the key and the plastic view
   private(set) var views: [Key: PlasticView] = [:]
@@ -39,7 +39,7 @@ where Key : RawRepresentable & Hashable & Comparable {
   lazy public var nativeView: PlasticView = {
     return PlasticView(
       hierarchyManager: self,
-      key: NATIVE_VIEW_KEY,
+      key: NATIVEVIEWKEY,
       multiplier: self.multiplier,
       frame: self.nativeViewFrame
     )
@@ -70,7 +70,7 @@ where Key : RawRepresentable & Hashable & Comparable {
   }
   
   func initialize() {
-    self.flatChildren.forEach { key,node in
+    self.flatChildren.forEach { key, node in
       let enumKey = Key.init(rawValue: key as! Key.RawValue)!
       
       self.views[enumKey] = PlasticView(
@@ -157,7 +157,10 @@ internal extension ViewsContainer {
    - StaticFrame: the parent is a node without key, we assume that the frame is static
    - DynamicFrame: the parent is a node with a key, it is managed by plastic
    */
-  internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription], parentRepresentation: HierarchyNode<Key>, accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
+  internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription],
+                            parentRepresentation: HierarchyNode<Key>,
+                                     accumulator: inout [Key: HierarchyNode<Key>]) -> Void {
+    
     children.forEach { node in
       
       let currentNode: HierarchyNode<Key> = {

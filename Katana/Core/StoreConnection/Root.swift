@@ -13,7 +13,7 @@ open class Root {
   
   public var node: AnyNode? {
     willSet(node) {
-      if (self.node != nil) {
+      if self.node != nil {
         fatalError("node cannot be changed")
       }
     }
@@ -77,13 +77,11 @@ open class Root {
 
 
 public extension AnyNode {
-  public var treeRoot : Root {
+  public var treeRoot: Root {
     var node: AnyNode = self
-    while (node.parent != nil) {
+    while node.parent != nil {
       node = node.parent!
     }
     return node.root!
   }
 }
-
-

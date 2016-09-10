@@ -13,19 +13,19 @@ struct MineFieldProps: NodeProps {
   var frame: CGRect = CGRect.zero
   var gameover: Bool = false
   
-  static func ==(lhs: MineFieldProps, rhs: MineFieldProps) -> Bool {
+  static func == (lhs: MineFieldProps, rhs: MineFieldProps) -> Bool {
     return
       lhs.frame == rhs.frame && lhs.gameover == rhs.gameover
   }
 }
 
-enum MineFieldKeys: String,NodeDescriptionKeys {
+enum MineFieldKeys: String, NodeDescriptionKeys {
   case title, field
 }
 
-struct MineField : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct MineField: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
   
-  var props : MineFieldProps
+  var props: MineFieldProps
   
   static var referenceSize: CGSize {
     return CGSize(width: 640, height: 960)
@@ -74,9 +74,7 @@ struct MineField : NodeDescription, ConnectedNodeDescription, PlasticNodeDescrip
     field.bottom = root.bottom
   }
   
-  static func connect(props: inout MineFieldProps, storageState: MineFieldState){
+  static func connect(props: inout MineFieldProps, storageState: MineFieldState) {
     props.gameover = storageState.gameOver
   }
 }
-
-

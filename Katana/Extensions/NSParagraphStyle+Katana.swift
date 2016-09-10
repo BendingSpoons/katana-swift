@@ -10,7 +10,7 @@ import UIKit
 
 extension NSParagraphStyle {
   
-  public static var centerAlignment : NSParagraphStyle {
+  public static var centerAlignment: NSParagraphStyle {
     get {
       let paragraphStyle = NSMutableParagraphStyle()
       paragraphStyle.alignment = .center

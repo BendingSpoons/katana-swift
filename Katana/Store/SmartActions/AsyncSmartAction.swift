@@ -8,26 +8,26 @@
 
 import Foundation
 
-public protocol AnyAsyncSmartAction : Action {
+public protocol AnyAsyncSmartAction: Action {
   static func anyReduce(state: State, action: AnyAsyncSmartAction) -> State
-  var state : AsyncSmartActionState {get set}
+  var state: AsyncSmartActionState {get set}
 }
 
 public enum AsyncSmartActionState {
   case loading, completed, failed
 }
 
-public protocol AsyncSmartAction : Action, AnyAsyncSmartAction {
+public protocol AsyncSmartAction: Action, AnyAsyncSmartAction {
   associatedtype LoadingPayloadType
   associatedtype CompletedPayloadType
   associatedtype FailedPayloadType
   associatedtype StateType
   
-  var state : AsyncSmartActionState {get set}
+  var state: AsyncSmartActionState {get set}
   
-  var loadingPayload : LoadingPayloadType {get set}
-  var completedPayload : CompletedPayloadType? {get set}
-  var failedPayload : FailedPayloadType? {get set}
+  var loadingPayload: LoadingPayloadType {get set}
+  var completedPayload: CompletedPayloadType? {get set}
+  var failedPayload: FailedPayloadType? {get set}
 
   static func loadingReduce(state: inout StateType, action: Self)
   static func completedReduce(state: inout StateType, action: Self)
@@ -75,7 +75,7 @@ public extension AsyncSmartAction {
   
 }
 
-public extension AsyncSmartAction where Self : SmartActionWithSideEffect {
+public extension AsyncSmartAction where Self: SmartActionWithSideEffect {
   
   
   

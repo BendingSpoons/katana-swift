@@ -40,23 +40,23 @@ public struct Value: Equatable {
     return self.scalable * multiplier + self.fixed
   }
   
-  public static prefix func -(item: Value) -> Value {
+  public static prefix func - (item: Value) -> Value {
     return Value(scalable: -item.scalable, fixed: -item.fixed)
   }
   
-  public static func *(lhs: Value, rhs: CGFloat) -> Value {
+  public static func * (lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable * rhs, fixed: lhs.fixed * rhs)
   }
   
-  public static func +(lhs: Value, rhs: Value) -> Value {
+  public static func + (lhs: Value, rhs: Value) -> Value {
     return Value(scalable: lhs.scalable + rhs.scalable, fixed: lhs.fixed + rhs.fixed)
   }
   
-  public static func /(lhs: Value, rhs: CGFloat) -> Value {
+  public static func / (lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable / rhs, fixed: lhs.fixed / rhs)
   }
   
-  public static func ==(lhs: Value, rhs: Value) -> Bool {
+  public static func == (lhs: Value, rhs: Value) -> Bool {
     return lhs.scalable == rhs.scalable && lhs.fixed == rhs.fixed
   }
 }

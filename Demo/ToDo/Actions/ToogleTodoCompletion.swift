@@ -8,7 +8,7 @@
 
 import Katana
 
-struct ToogleTodoCompletion : SyncSmartAction {
+struct ToogleTodoCompletion: SyncSmartAction {
   var payload: Int
   
   static func reduce(state: inout ToDoState, action: ToogleTodoCompletion) {

@@ -9,8 +9,6 @@
 import UIKit
 import Katana
 
-
-
 struct MineFieldCellProps: NodeProps, Keyable {
   public var frame: CGRect = CGRect.zero
   public var key: String?
@@ -33,7 +31,7 @@ struct MineFieldCellProps: NodeProps, Keyable {
     return copy
   }
   
-  static func ==(lhs: MineFieldCellProps, rhs: MineFieldCellProps) -> Bool {
+  static func == (lhs: MineFieldCellProps, rhs: MineFieldCellProps) -> Bool {
     return
       lhs.frame == rhs.frame &&
         lhs.hasMine == rhs.hasMine &&
@@ -44,15 +42,15 @@ struct MineFieldCellProps: NodeProps, Keyable {
   }
 }
 
-enum MineFieldCellKeys: String,NodeDescriptionKeys {
+enum MineFieldCellKeys: String, NodeDescriptionKeys {
   case button
   case text
 }
 
 
-struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription  {
+struct MineFieldCell: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   
-  var props : MineFieldCellProps
+  var props: MineFieldCellProps
 
   static func render(props: MineFieldCellProps,
                      state: EmptyState,
@@ -66,13 +64,11 @@ struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDes
     let disclosed: Bool = props.disclosed
     
     var text: String
-    if(props.hasMine) {
+    if props.hasMine {
       text = props.hasMine ? "+" : ""
-    }
-    else if(props.minesNearby > 0) {
+    } else if props.minesNearby > 0 {
       text = String(props.minesNearby)
-    }
-    else {
+    } else {
       text = ""
     }
     
@@ -89,10 +85,9 @@ struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDes
       .onTap(discloseMineFieldCell)
     )
     
-    if(disclosed) {
+    if disclosed {
       return [textNode]
-    }
-    else {
+    } else {
       return [textNode, buttonNode]
     }
   }
@@ -111,7 +106,7 @@ struct MineFieldCell : NodeDescription, ConnectedNodeDescription, PlasticNodeDes
   static func connect(props: inout MineFieldCellProps, storageState: MineFieldState) {
     let column = props.col
     let row = props.row
-    props.hasMine = storageState[column,row]
+    props.hasMine = storageState[column, row]
     props.disclosed = storageState.isDisclosed(col: column, row: row)
     props.minesNearby = storageState.minesNearbyCellAt(col: column, row: row)
   }

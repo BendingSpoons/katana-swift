@@ -67,7 +67,12 @@ extension Array where Element: PlasticView {
     }
   }
   
-  public func fill(left: Anchor, right: Anchor, insets: EdgeInsets = .zero, spacings s: [Value]? = nil, widths w: [CGFloat]? = nil) -> Void {
+  public func fill(left: Anchor,
+                  right: Anchor,
+                 insets: EdgeInsets = .zero,
+             spacings s: [Value]? = nil,
+               widths w: [CGFloat]? = nil) -> Void {
+    
     let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
     let widths = w ?? (0..<self.count).map { _ in 1 }
     
@@ -79,18 +84,18 @@ extension Array where Element: PlasticView {
       preconditionFailure("The number of widths should be equal to the number of views")
     }
     
-    let firstView = self[0];
+    let firstView = self[0]
     
     // Determine the total available width excluding the spacings
-    let insetsSpacing = firstView.scaleValue(insets.left) + firstView.scaleValue(insets.right);
+    let insetsSpacing = firstView.scaleValue(insets.left) + firstView.scaleValue(insets.right)
     let totalSpacing = spacings.reduce(insetsSpacing, {
       return $0 + firstView.scaleValue($1)
     })
     
-    let totalAvailableWidth = right.coordinate - left.coordinate - totalSpacing;
+    let totalAvailableWidth = right.coordinate - left.coordinate - totalSpacing
     
     // Determine each view's width to preserve proportions within available width
-    let totalReferenceWidth = widths.reduce(0, +);
+    let totalReferenceWidth = widths.reduce(0, +)
     
     for (index, view) in self.enumerated() {
       let referenceWidth = widths[index]
@@ -108,7 +113,12 @@ extension Array where Element: PlasticView {
     }
   }
   
-  public func fill(top: Anchor, bottom: Anchor, insets: EdgeInsets = .zero, spacings s: [Value]? = nil, heights h: [CGFloat]? = nil)-> Void {
+  public func fill(top: Anchor,
+                bottom: Anchor,
+                insets: EdgeInsets = .zero,
+            spacings s: [Value]? = nil,
+             heights h: [CGFloat]? = nil) -> Void {
+    
     let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
     let heights = h ?? (0..<self.count).map { _ in 1 }
     
@@ -120,18 +130,18 @@ extension Array where Element: PlasticView {
       preconditionFailure("The number of heights should be equal to the number of views")
     }
     
-    let firstView = self[0];
+    let firstView = self[0]
     
     // Determine the total available width excluding the spacings
-    let insetsSpacing = firstView.scaleValue(insets.top) + firstView.scaleValue(insets.bottom);
+    let insetsSpacing = firstView.scaleValue(insets.top) + firstView.scaleValue(insets.bottom)
     let totalSpacing = spacings.reduce(insetsSpacing, {
       return $0 + firstView.scaleValue($1)
     })
     
-    let totalAvailableHeight = bottom.coordinate - top.coordinate - totalSpacing;
+    let totalAvailableHeight = bottom.coordinate - top.coordinate - totalSpacing
     
     // Determine each view's width to preserve proportions within available width
-    let totalReferenceHeight = heights.reduce(0, +);
+    let totalReferenceHeight = heights.reduce(0, +)
     
     for (index, view) in self.enumerated() {
       let referenceHeight = heights[index]

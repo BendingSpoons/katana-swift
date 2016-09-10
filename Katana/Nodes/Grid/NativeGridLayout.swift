@@ -95,7 +95,7 @@ extension NativeGridLayout {
     self.sectionInset = self.scalableSectionInsets.scale(multiplier)
     self.minimumLineSpacing = self.scalableLineSpacing.scale(multiplier)
     self.minimumInteritemSpacing = self.scalableInterCellSpacing.scale(multiplier)
-    self.itemSize = self.scaledCellSize();
+    self.itemSize = self.scaledCellSize()
   }
   
   private func scaledCellSize() -> CGSize {
@@ -103,10 +103,10 @@ extension NativeGridLayout {
       return .zero
     }
     
-    let viewSize = collectionView.frame.size;
-    let horizontalInsetSum = self.sectionInset.left + self.sectionInset.right;
-    let verticalInsetSum = self.sectionInset.top + self.sectionInset.bottom;
-    let totalGapLength = CGFloat(numberOfCellsOnline - 1) * self.minimumInteritemSpacing;
+    let viewSize = collectionView.frame.size
+    let horizontalInsetSum = self.sectionInset.left + self.sectionInset.right
+    let verticalInsetSum = self.sectionInset.top + self.sectionInset.bottom
+    let totalGapLength = CGFloat(numberOfCellsOnline - 1) * self.minimumInteritemSpacing
     
     switch (self.layoutType, self.scrollDirection) {
     case (.variableNumberCellsOnline, .vertical):
@@ -118,10 +118,10 @@ extension NativeGridLayout {
       ))
       
       let totalGapLength = CGFloat(cellsNumber) * self.minimumInteritemSpacing
-      let viewWidthWithoutGaps = viewSize.width - totalGapLength;
+      let viewWidthWithoutGaps = viewSize.width - totalGapLength
       
       let width = viewWidthWithoutGaps / CGFloat(cellsNumber)
-      let height = width / self.cellAspectRatio;
+      let height = width / self.cellAspectRatio
       return CGSize(width: floor(width), height: floor(height))
       
       
@@ -134,7 +134,7 @@ extension NativeGridLayout {
         ))
       
       let totalGapLength = CGFloat(cellsNumber) * self.minimumInteritemSpacing
-      let viewHeightWithoutGaps = viewSize.height - totalGapLength;
+      let viewHeightWithoutGaps = viewSize.height - totalGapLength
       
       let height = viewHeightWithoutGaps / CGFloat(cellsNumber)
       let width = height * self.cellAspectRatio

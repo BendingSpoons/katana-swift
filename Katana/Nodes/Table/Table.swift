@@ -22,17 +22,17 @@ public struct TableProps: NodeProps, Keyable {
     return copy
   }
   
-  public static func ==(lhs: TableProps, rhs: TableProps) -> Bool {
+  public static func == (lhs: TableProps, rhs: TableProps) -> Bool {
     // delegate to the table mechanism any optimization here
     return false
   }
 }
 
 
-public struct Table : NodeDescription {
+public struct Table: NodeDescription {
   public typealias NativeView = NativeTableView
   
-  public var props : TableProps
+  public var props: TableProps
   
   public init(props: TableProps) {
     self.props = props
@@ -42,7 +42,7 @@ public struct Table : NodeDescription {
                                             state: EmptyState,
                                             view: NativeTableView,
                                             update: @escaping (EmptyState)->(),
-                                            node: AnyNode)  {
+                                            node: AnyNode) {
     
     let delegate = props.delegate ?? EmptyTableDelegate()
     view.frame = props.frame

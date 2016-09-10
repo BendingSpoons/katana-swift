@@ -36,4 +36,3 @@ class Color: XCTestCase {
   }
   
 }
-

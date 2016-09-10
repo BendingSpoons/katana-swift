@@ -17,7 +17,7 @@ public struct TextProps: NodeProps, Colorable, Textable, TouchDisableable, Keyab
   public var borderColor = UIColor.black
   public var borderWidth = CGFloat(0)
   
-  public static func ==(lhs: TextProps, rhs: TextProps) -> Bool {
+  public static func == (lhs: TextProps, rhs: TextProps) -> Bool {
     return lhs.frame == rhs.frame &&
       lhs.color == rhs.color &&
       lhs.touchDisabled == rhs.touchDisabled &&
@@ -28,16 +28,16 @@ public struct TextProps: NodeProps, Colorable, Textable, TouchDisableable, Keyab
 }
 
 
-public struct Text : NodeDescription {
+public struct Text: NodeDescription {
   public typealias NativeView = UILabel
 
-  public var props : TextProps
+  public var props: TextProps
   
   public static func applyPropsToNativeView(props: TextProps,
                                             state: EmptyState,
                                             view: UILabel,
                                             update: @escaping (EmptyState)->(),
-                                            node: AnyNode)  {
+                                            node: AnyNode) {
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled
@@ -57,4 +57,3 @@ public struct Text : NodeDescription {
     self.props = props
   }
 }
-

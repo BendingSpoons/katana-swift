@@ -55,7 +55,7 @@ class PlasticNodeTests: XCTestCase {
     root.draw(container: rootVew)
     
     var references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
@@ -66,7 +66,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
     
     references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEW_TAG }
+      .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     XCTAssertEqual(references.count, 1)
@@ -80,12 +80,12 @@ private enum Keys: String, NodeDescriptionKeys {
   case One
 }
 
-private struct TestNode : NodeDescription, PlasticNodeDescription {
+private struct TestNode: NodeDescription, PlasticNodeDescription {
 
 
   typealias NativeView = UIView
   
-  var props : EmptyProps
+  var props: EmptyProps
   
   // since we are using a static var here we are not be able to
   // parallelize tests. Let's refactor this test when we will need it
@@ -107,24 +107,24 @@ private struct TestNode : NodeDescription, PlasticNodeDescription {
   }
 }
 
-fileprivate struct MyAppState : State {}
+fileprivate struct MyAppState: State {}
 
-fileprivate struct AppProps : NodeProps {
+fileprivate struct AppProps: NodeProps {
   var frame: CGRect = CGRect.zero
   var i: Int
   
-  static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
+  static func == (lhs: AppProps, rhs: AppProps) -> Bool {
     return lhs.frame == rhs.frame && lhs.i == rhs.i
   }
   
-  init(i:Int) {
+  init(i: Int) {
     self.i = i
   }
 }
 
-fileprivate struct App : NodeDescription {
+fileprivate struct App: NodeDescription {
   
-  var props : AppProps
+  var props: AppProps
   var children: [AnyNodeDescription] = []
   
   
@@ -137,18 +137,18 @@ fileprivate struct App : NodeDescription {
     
     let i = props.i
     
-    if (i == 0) {
+    if i == 0 {
       
       return [
         View(props: ViewProps()
-          .frame(0,0,150,150)
+          .frame(0, 0, 150, 150)
           .color(.gray)
           .key(AppKeys.container)
         ) {
           [
             Button(props: ButtonProps()
               .key(AppKeys.button)
-              .frame(50,50,100,100)
+              .frame(50, 50, 100, 100)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
               .text("state \(i)", fontSize: 10)
@@ -156,7 +156,7 @@ fileprivate struct App : NodeDescription {
             ),
             
             View(props: ViewProps()
-              .frame(0,0,150,150)
+              .frame(0, 0, 150, 150)
               .color(.gray)
               .key(AppKeys.otherView)
               
@@ -165,16 +165,16 @@ fileprivate struct App : NodeDescription {
         }
       ]
       
-    } else if (i == 1) {
+    } else if i == 1 {
       return [
         View(props: ViewProps()
-          .frame(0,0,150,150)
+          .frame(0, 0, 150, 150)
           .color(.gray)
           .key(AppKeys.container)
         ) {
           [
             Button(props: ButtonProps()
-              .frame(50,50,100,100)
+              .frame(50, 50, 100, 100)
               .key(AppKeys.button)
               .color(.orange, state: .normal)
               .color(.orange, state: .highlighted)
@@ -203,20 +203,20 @@ fileprivate struct App : NodeDescription {
   }
 }
 
-fileprivate enum AppKeys: String,NodeDescriptionKeys {
+fileprivate enum AppKeys: String, NodeDescriptionKeys {
   case container, button, otherView
 }
 
 
 fileprivate class WeakNode {
-  weak var value : AnyNode?
+  weak var value: AnyNode?
   init(value: AnyNode) {
     self.value = value
   }
 }
 
 fileprivate class WeakView {
-  weak var value : UIView?
+  weak var value: UIView?
   init(value: UIView) {
     self.value = value
   }

@@ -65,17 +65,17 @@ public struct GridProps: NodeProps, Keyable {
     return copy
   }
   
-  public static func ==(lhs: GridProps, rhs: GridProps) -> Bool {
+  public static func == (lhs: GridProps, rhs: GridProps) -> Bool {
     // delegate to the grid mechanism any optimization here
     return false
   }
 }
 
 
-public struct Grid : NodeDescription {
+public struct Grid: NodeDescription {
   public typealias NativeView = NativeGridView
   
-  public var props : GridProps
+  public var props: GridProps
   
   public init(props: GridProps) {
     self.props = props
@@ -85,7 +85,7 @@ public struct Grid : NodeDescription {
                                             state: EmptyState,
                                             view: NativeGridView,
                                             update: @escaping (EmptyState)->(),
-                                            concreteNode: AnyNode)  {
+                                            concreteNode: AnyNode) {
     
     let delegate = props.delegate ?? EmptyGridDelegate()
     

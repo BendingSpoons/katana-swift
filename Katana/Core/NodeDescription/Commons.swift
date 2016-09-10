@@ -9,7 +9,7 @@
 import UIKit
 
 public protocol Frameable {
-  var frame : CGRect {get set}
+  var frame: CGRect {get set}
   func frame(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> Self
   func frame(_: CGRect) -> Self  
 }
@@ -67,20 +67,20 @@ extension Childrenable {
   }
 }
 
-public struct EmptyProps : NodeProps, Keyable {
+public struct EmptyProps: NodeProps, Keyable {
   public var key: String?
   public var frame: CGRect = CGRect.zero
   
-  public static func ==(lhs: EmptyProps, rhs: EmptyProps) -> Bool {
+  public static func == (lhs: EmptyProps, rhs: EmptyProps) -> Bool {
     return lhs.frame == rhs.frame
   }
   
   public init() {}
 }
 
-public struct EmptyState : NodeState {
+public struct EmptyState: NodeState {
 
-  public static func ==(lhs: EmptyState, rhs: EmptyState) -> Bool {
+  public static func == (lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true
   }
   

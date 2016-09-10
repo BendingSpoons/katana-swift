@@ -8,7 +8,7 @@
 
 import UIKit
 
-public struct ButtonProps: NodeProps, Colorable, Textable, Tappable,Bordable, Keyable  {
+public struct ButtonProps: NodeProps, Colorable, Textable, Tappable, Bordable, Keyable {
   public enum State {
     case normal
     case highlighted
@@ -23,7 +23,7 @@ public struct ButtonProps: NodeProps, Colorable, Textable, Tappable,Bordable, Ke
   public var borderWidth = CGFloat(0)
   public var key: String?
   
-  public static func ==(lhs: ButtonProps, rhs: ButtonProps) -> Bool {
+  public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
     return false
   }
   
@@ -43,8 +43,8 @@ public struct ButtonProps: NodeProps, Colorable, Textable, Tappable,Bordable, Ke
   public init() {}
 }
 
-public struct Button : NodeDescription {
-  public var props : ButtonProps
+public struct Button: NodeDescription {
+  public var props: ButtonProps
   
   public init(props: ButtonProps) {
     self.props = props
@@ -58,7 +58,7 @@ public struct Button : NodeDescription {
     func touchHandler(pressed: Bool) {
       update(EmptyHighlightableState(highlighted: pressed))
       
-      if (!pressed) {
+      if !pressed {
         props.onTap?()
       }
     }

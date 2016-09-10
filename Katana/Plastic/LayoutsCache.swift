@@ -47,7 +47,12 @@ class LayoutsCache {
     self.cache = [:]
   }
   
-  func cacheLayout(layoutHash: Int, nativeViewFrame: CGRect, multiplier: CGFloat, nodeDescription: AnyNodeDescription, frames: [String: CGRect]) {
+  func cacheLayout(layoutHash: Int,
+              nativeViewFrame: CGRect,
+                   multiplier: CGFloat,
+              nodeDescription: AnyNodeDescription,
+              frames: [String: CGRect]) {
+    
     let nodeHash = ObjectIdentifier(type(of: nodeDescription)).hashValue
     
     let key = CacheKey(
@@ -60,7 +65,11 @@ class LayoutsCache {
     self.cache[key] = frames
   }
   
-  func getCachedLayout(layoutHash: Int, nativeViewFrame: CGRect, multiplier: CGFloat, nodeDescription: AnyNodeDescription) -> [String: CGRect]? {
+  func getCachedLayout(layoutHash: Int,
+                  nativeViewFrame: CGRect,
+                       multiplier: CGFloat,
+                  nodeDescription: AnyNodeDescription) -> [String: CGRect]? {
+    
     let nodeHash = ObjectIdentifier(type(of: nodeDescription)).hashValue
     
     let key = CacheKey(

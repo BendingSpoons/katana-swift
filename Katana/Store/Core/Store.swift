@@ -75,7 +75,8 @@ extension Store: AnyStore {
   }
 }
 
-private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void], storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
+private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void],
+                     storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
   guard middlewares.count > 0 else {
     return storeDispatch
   }
@@ -91,4 +92,3 @@ private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ act
     return middleware(chain)
   })
 }
-

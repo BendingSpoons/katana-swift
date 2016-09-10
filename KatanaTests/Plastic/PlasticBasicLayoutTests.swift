@@ -286,7 +286,8 @@ y v
      |    +-----+
    y v
      
-     In order to center Y align v2 to v1 we should calculate the y coordinate of the middle point of v1 which is origin.y + height / 2
+     In order to center Y align v2 to v1 we should calculate the y coordinate 
+     of the middle point of v1 which is origin.y + height / 2
      We then subtract half of the height of v2 and this way we have found the y coordinate of the origin of v1
      
      In addition to this we can add/remove margins
@@ -312,11 +313,13 @@ y v
     
     // margin scalable
     v1.setCenterY(v2.centerY, .scalable(50))
-    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50 * multiplier)
+    XCTAssertEqual(v1.frame.origin.y,
+                   v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50 * multiplier)
     
     // negative margin
     v1.setCenterY(v2.centerY, .scalable(-50))
-    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 - 50 * multiplier)
+    XCTAssertEqual(v1.frame.origin.y,
+                   v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 - 50 * multiplier)
   }
   
   func testShouldSetSize() {

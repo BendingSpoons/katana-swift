@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AnySmartActionWithSideEffect : Action {
+public protocol AnySmartActionWithSideEffect: Action {
   
   static func anySideEffect(action: Action,
                             state: State,
@@ -17,11 +17,10 @@ public protocol AnySmartActionWithSideEffect : Action {
 }
 
 public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect {
-  associatedtype StateType : State
+  associatedtype StateType: State
 
   static func sideEffect(action: Self,
                          state: StateType,
                          dispatch: StoreDispatch,
                          dependencies: SideEffectsDependencies<StateType>?)
 }
-

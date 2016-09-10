@@ -8,13 +8,13 @@
 
 import Katana
 
-struct ToDoCellProps : NodeProps {
+struct ToDoCellProps: NodeProps {
   var frame = CGRect.zero
   var index = 0
   var name = ""
   var completed = false
   
-  static func ==(lhs: ToDoCellProps, rhs: ToDoCellProps) -> Bool {
+  static func == (lhs: ToDoCellProps, rhs: ToDoCellProps) -> Bool {
     return lhs.frame == rhs.frame &&
       lhs.index == rhs.index &&
       lhs.name == rhs.name &&
@@ -28,12 +28,12 @@ struct ToDoCellProps : NodeProps {
   }
 }
 
-enum ToDoCellKeys: String,NodeDescriptionKeys {
+enum ToDoCellKeys: String, NodeDescriptionKeys {
   case name, delete
 }
 
-struct ToDoCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
-  var props : ToDoCellProps
+struct ToDoCell: CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
+  var props: ToDoCellProps
     
   static func render(props: ToDoCellProps,
     state: EmptyHighlightableState,
@@ -41,10 +41,10 @@ struct ToDoCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDesc
     dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     let text = NSMutableAttributedString(string: props.name, attributes: [
-      NSFontAttributeName : UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
+      NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
       NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
-      NSForegroundColorAttributeName : UIColor.black,
-      NSStrikethroughStyleAttributeName : props.completed
+      NSForegroundColorAttributeName: UIColor.black,
+      NSStrikethroughStyleAttributeName: props.completed
       ])
     
     return [
@@ -82,8 +82,7 @@ struct ToDoCell : CellNodeDescription, ConnectedNodeDescription, PlasticNodeDesc
   
   static func connect(props: inout ToDoCellProps, storageState: ToDoState) {
     
-    //FIXME
-    if props.index < storageState.todos.count   {
+    if props.index < storageState.todos.count {
       props.name = storageState.todos[props.index]
       props.completed = storageState.todosCompleted[props.index]
     }

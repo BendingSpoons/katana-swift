@@ -14,7 +14,7 @@ import XCTest
 @testable import Katana
 
 class PlasticConvenienceLayoutTests: XCTestCase {
-  private let CALCULATION_ACCURACY: CGFloat = 0.01
+  private let CALCULATIONACCURACY: CGFloat = 0.01
   
   func testShouldFillViewHorizontally() {
     let hM = DummyHierarchyManager()
@@ -37,8 +37,8 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     // scalable insets
     v1.fillHorizontally(v2, insets: .scalable(0, 10, 0, 10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.fillHorizontally(v2, insets: .fixed(0, -10, 0, -10))
@@ -63,18 +63,18 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     // with insets
     v1.fillVertically(v2, insets: .fixed(10, 0, 10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.fillVertically(v2, insets: .scalable(10, 0, 10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.fillVertically(v2, insets: .fixed(-10, 0, -10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATIONACCURACY)
   }
   
   func testShouldFillView() {
@@ -93,24 +93,24 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     // with insets
     v1.fill(v2, insets: .fixed(10, 10, 10, 10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.fill(v2, insets: .scalable(10, 10, 10, 10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.fill(v2, insets: .fixed(-10, -10, -10, -10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 20, accuracy: CALCULATIONACCURACY)
   }
   
   func testShouldCenterBetweenLeftAndRight() {
@@ -130,7 +130,8 @@ class PlasticConvenienceLayoutTests: XCTestCase {
      y v
      
      
-     When we center v2 between two anchors we have that the origin.x of v2 will be the origin of the left anchor plus half of the space between the two anchors
+     When we center v2 between two anchors we have that the origin.x of v2 will be the origin of the left anchor 
+     // plus half of the space between the two anchors
      
      */
     let hM = DummyHierarchyManager()
@@ -168,7 +169,8 @@ class PlasticConvenienceLayoutTests: XCTestCase {
      
      
      
-     When we center v2 between two anchors we have that the origin.y of v2 will be the origin of the top anchor plus half of the space between the two anchors
+     When we center v2 between two anchors we have that the origin.y of v2 will be the origin of the top anchor 
+     plus half of the space between the two anchors
      */
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
@@ -216,28 +218,29 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     // no insets
     v1.coverLeft(v2)
     XCTAssertEqual(v1.frame.origin, v2.frame.origin)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height, accuracy: CALCULATIONACCURACY)
     
     // fixed insets
     v1.coverLeft(v2, insets: .fixed(10, 10, 10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.coverLeft(v2, insets: .scalable(10, 10, 10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 20 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.coverLeft(v2, insets: .fixed(-10, -10, -10, 0))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATIONACCURACY)
   }
   
   func testShouldCoverRight() {
+    
     /*
      x
      +----------------------------------->
@@ -256,15 +259,16 @@ class PlasticConvenienceLayoutTests: XCTestCase {
      When we cover right v1 with respect to v2 we need to calculate the origin of v1.
      In order to calculate it we need to calculate the right corner of v2, which is v1.origin.x + v1.origin.width.
      At this point we subtract the width of v1
-     
      The y coordinate is just the same
      */
+    
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
     
     let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     // here we need to define the width otherwise plastic won't be able to calculate the origin
-    // (To be honest it works anyway, but it resolves the origin when the width is set. We set it upfront since we are in a testing environment)
+    //(To be honest it works anyway, but it resolves the origin when the width is set.
+    //We set it upfront since we are in a testing environment)
     v1.width = .fixed(50)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 500, height: 50)
@@ -273,27 +277,30 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     // no insets
     v1.coverRight(v2)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height, accuracy: CALCULATIONACCURACY)
     
     // fixed insets
     v1.coverRight(v2, insets: .fixed(20, 0, 10, 50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width - 50, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 20, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 30, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width - 50, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 20, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 30, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.coverRight(v2, insets: .scalable(20, 0, 10, 50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width - 50 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 20 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 30 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x,
+                               v2RightPoint - v1.frame.size.width - 50 * multiplier,
+                               accuracy: CALCULATIONACCURACY)
+    
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 20 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height - 30 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.coverRight(v2, insets: .fixed(-20, 0, -10, -50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width + 50, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 20, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 30, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2RightPoint - v1.frame.size.width + 50, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 20, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 30, accuracy: CALCULATIONACCURACY)
   }
   
   func testShouldSetAsHeader() {
@@ -308,25 +315,25 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     // no insets
     v1.asHeader(v2)
     XCTAssertEqual(v1.frame.origin, v2.frame.origin)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width, accuracy: CALCULATIONACCURACY)
     
     // fixed insets
     v1.asHeader(v2, insets: .fixed(10, 10, 0, 10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.asHeader(v2, insets: .scalable(10, 10, 0, 10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y + 10 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 20 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.asHeader(v2, insets: .fixed(-10, -10, 0, -10))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 20, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2.frame.origin.y - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 20, accuracy: CALCULATIONACCURACY)
   }
   
   func testShouldSetAsFooter() {
@@ -357,7 +364,8 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
     // here we need to define the height otherwise plastic won't be able to calculate the origin
-    // (To be honest it works anyway, but it resolves the origin when the width is set. We set it upfront since we are in a testing environment)
+    // (To be honest it works anyway, but it resolves the origin when the width is set.
+    // We set it upfront since we are in a testing environment)
     v1.height = .fixed(50)
     
     let v2Frame = CGRect(x: 20, y: 50, width: 500, height: 50)
@@ -372,20 +380,23 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     
     // fixed insets
     v1.asFooter(v2, insets: .fixed(0, 30, 10, 50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2BottomPoint - v1.frame.size.height - 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 30, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 80, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2BottomPoint - v1.frame.size.height - 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 30, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 80, accuracy: CALCULATIONACCURACY)
     
     // scalable insets
     v1.asFooter(v2, insets: .scalable(0, 30, 10, 50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2BottomPoint - v1.frame.size.height - 10 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 30 * multiplier, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 80 * multiplier, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y,
+                               v2BottomPoint - v1.frame.size.height - 10 * multiplier,
+                               accuracy: CALCULATIONACCURACY)
+    
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x + 30 * multiplier, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width - 80 * multiplier, accuracy: CALCULATIONACCURACY)
     
     // negative insets
     v1.asFooter(v2, insets: .fixed(0, -30, -10, -50))
-    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2BottomPoint - v1.frame.size.height + 10, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 30, accuracy: CALCULATION_ACCURACY)
-    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 80, accuracy: CALCULATION_ACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y, v2BottomPoint - v1.frame.size.height + 10, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x, v2.frame.origin.x - 30, accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 80, accuracy: CALCULATIONACCURACY)
   }
 }

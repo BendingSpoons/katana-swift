@@ -15,7 +15,7 @@ struct ToDoProps: NodeProps {
   var frame: CGRect = CGRect.zero
   var todos: [String] = []
   
-  static func ==(lhs: ToDoProps, rhs: ToDoProps) -> Bool {
+  static func == (lhs: ToDoProps, rhs: ToDoProps) -> Bool {
     
     return lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
@@ -24,13 +24,13 @@ struct ToDoProps: NodeProps {
   }
 }
 
-enum ToDoKeys: String,NodeDescriptionKeys {
+enum ToDoKeys: String, NodeDescriptionKeys {
   case title, add, list
 }
 
-struct ToDo : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct ToDo: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
   
-  var props : ToDoProps
+  var props: ToDoProps
   
   static var referenceSize: CGSize {
     return CGSize(width: 640, height: 960)
@@ -90,12 +90,12 @@ struct ToDo : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription,
     list.bottom = root.bottom
   }
   
-  static func connect(props: inout ToDoProps, storageState: ToDoState){
+  static func connect(props: inout ToDoProps, storageState: ToDoState) {
     props.todos = storageState.todos
   }
 }
 
-struct ToDoListDelegate  : TableDelegate {
+struct ToDoListDelegate: TableDelegate {
   var todos: [String]
   
   func numberOfSections() -> Int {
@@ -114,4 +114,3 @@ struct ToDoListDelegate  : TableDelegate {
     return .scalable(100)
   }
 }
-

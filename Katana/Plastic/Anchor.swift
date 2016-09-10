@@ -48,7 +48,7 @@ public struct Anchor: Equatable {
     }
   }
   
-  public static func ==(lhs: Anchor, rhs: Anchor) -> Bool {
+  public static func == (lhs: Anchor, rhs: Anchor) -> Bool {
     return lhs.kind == rhs.kind && lhs.view === rhs.view
   }
 }

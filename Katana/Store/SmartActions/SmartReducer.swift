@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct SmartReducer<ReducerState: State> : Reducer {
+public struct SmartReducer<ReducerState: State>: Reducer {
   public static func reduce(action: Action, state: ReducerState) -> ReducerState {
     
     if let action = action as? AnySyncSmartAction {

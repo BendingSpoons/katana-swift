@@ -79,7 +79,6 @@
 		81911DC71D7D916B00123C54 /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* states.swift */; };
 		81C3A44C1D8354760079AD32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A42F1D8354760079AD32 /* AppDelegate.swift */; };
 		81C3A4561D8354760079AD32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A43F1D8354760079AD32 /* Assets.xcassets */; };
-		81C3A4571D8354760079AD32 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4401D8354760079AD32 /* Info.plist */; };
 		81C3A4581D8354760079AD32 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4411D8354760079AD32 /* Launch Screen.storyboard */; };
 		81C3A4591D8354760079AD32 /* AddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4441D8354760079AD32 /* AddTodo.swift */; };
 		81C3A45A1D8354760079AD32 /* RemoveTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4451D8354760079AD32 /* RemoveTodo.swift */; };
@@ -94,6 +93,7 @@
 		81C3A48C1D8357880079AD32 /* MineFieldGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4831D8357880079AD32 /* MineFieldGrid.swift */; };
 		81C3A48D1D8357880079AD32 /* MineFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4851D8357880079AD32 /* MineFieldState.swift */; };
 		81C3A48F1D8357BE0079AD32 /* actionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A48E1D8357BE0079AD32 /* actionLogger.swift */; };
+		81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4971D8430AA0079AD32 /* .swiftlint.yml */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
@@ -204,6 +204,7 @@
 		81C3A4831D8357880079AD32 /* MineFieldGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineFieldGrid.swift; sourceTree = "<group>"; };
 		81C3A4851D8357880079AD32 /* MineFieldState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineFieldState.swift; sourceTree = "<group>"; };
 		81C3A48E1D8357BE0079AD32 /* actionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionLogger.swift; sourceTree = "<group>"; };
+		81C3A4971D8430AA0079AD32 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
 		81EA56CB1D5F3A6000B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -564,6 +565,7 @@
 		81EA56BD1D5F3A6000B6290E = {
 			isa = PBXGroup;
 			children = (
+				81C3A4971D8430AA0079AD32 /* .swiftlint.yml */,
 				81EA56C91D5F3A6000B6290E /* Katana */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				81EA56E61D5F3A8A00B6290E /* Demo */,
@@ -642,6 +644,7 @@
 				81EA56C31D5F3A6000B6290E /* Frameworks */,
 				81EA56C41D5F3A6000B6290E /* Headers */,
 				81EA56C51D5F3A6000B6290E /* Resources */,
+				81C3A4941D842F7F0079AD32 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -739,6 +742,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -754,12 +758,28 @@
 			buildActionMask = 2147483647;
 			files = (
 				81C3A4581D8354760079AD32 /* Launch Screen.storyboard in Resources */,
-				81C3A4571D8354760079AD32 /* Info.plist in Resources */,
 				81C3A4561D8354760079AD32 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		81C3A4941D842F7F0079AD32 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		81EA56C21D5F3A6000B6290E /* Sources */ = {

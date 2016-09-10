@@ -9,13 +9,13 @@
 import Katana
 
 enum MineFieldDifficulty {
-  case easy,medium,hard
+  case easy, medium, hard
 }
 
-struct MineFieldState : State  {
+struct MineFieldState: State {
   var gameOver: Bool
-  let rows : Int
-  let cols : Int
+  let rows: Int
+  let cols: Int
   var mines: [Bool]
   var disclosed: [Bool]
   
@@ -35,20 +35,20 @@ struct MineFieldState : State  {
     }
   }
   
-  private init(cols : Int, rows : Int, mines: Int) {
+  private init(cols: Int, rows: Int, mines: Int) {
     self.gameOver = false
     self.rows = rows
     self.cols = cols
-    self.mines = Array(repeating : false, count : rows * cols)
-    self.disclosed = Array(repeating : false, count : rows * cols)
+    self.mines = Array(repeating: false, count: rows * cols)
+    self.disclosed = Array(repeating: false, count: rows * cols)
     
     var i = 0
     while i < mines {
       let r = Int(arc4random_uniform(UInt32(rows)))
       let c = Int(arc4random_uniform(UInt32(cols)))
-      if( self[c,r] != true) {
+      if( self[c, r] != true) {
         i += 1
-        self[c,r] = true
+        self[c, r] = true
       }
     }
     
@@ -56,27 +56,37 @@ struct MineFieldState : State  {
   }
   
   func minesNearbyCellAt(col: Int, row: Int) -> Int {
-    var mines = 0;
+    var mines = 0
     for index in self.nearbyCellsIndicesAt(col: col, row: row) {
-      if(self[index.0,index.1]){
+      if(self[index.0, index.1]) {
         mines += 1
       }
     }
     return mines
   }
   
-  func nearbyCellsIndicesAt(col:Int, row:Int) -> [(Int,Int)] {
-    var indices:[(Int,Int)]=[]
+  func nearbyCellsIndicesAt(col: Int, row: Int) -> [(Int, Int)] {
+    var indices: [(Int, Int)] = []
     let startCol = col - 1
     let endCol = col + 1
     let startRow = row - 1
     let endRow = row + 1
     for currentCol in startCol...endCol {
       for currentRow in startRow...endRow {
-        guard (currentCol >= 0 && currentCol < cols) else { continue }
-        guard (currentRow >= 0 && currentRow < rows) else { continue }
-        if(currentRow == row && currentCol == col) { continue }
-        indices.append((currentCol,currentRow))
+        
+        guard currentCol >= 0 && currentCol < cols else {
+          continue
+        }
+        
+        guard currentRow >= 0 && currentRow < rows else {
+          continue
+        }
+        
+        if currentRow == row && currentCol == col {
+          continue
+        }
+        
+        indices.append((currentCol, currentRow))
       }
     }
     return indices
@@ -90,13 +100,12 @@ struct MineFieldState : State  {
     return disclosed[cols*row+col]
   }
   
-  subscript(col : Int, row : Int) -> Bool {
+  subscript(col: Int, row: Int) -> Bool {
     get { return mines[cols * row + col] }
     set { mines[cols*row+col] = newValue }
   }
   
-  static func ==(lhs: MineFieldState, rhs:MineFieldState) -> Bool {
+  static func == (lhs: MineFieldState, rhs: MineFieldState) -> Bool {
     return lhs.mines == rhs.mines && lhs.disclosed == rhs.disclosed
   }
 }
-

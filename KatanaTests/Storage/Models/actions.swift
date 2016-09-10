@@ -13,7 +13,7 @@ public struct AddTodoAction: Action, Equatable {
   public let actionName = "AddTodo"
   public let title: String
   
-  public static func ==(lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
+  public static func == (lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title
   }
 }

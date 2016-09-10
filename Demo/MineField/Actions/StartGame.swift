@@ -9,7 +9,7 @@
 import Katana
 
 
-struct StartGame : SyncSmartAction {
+struct StartGame: SyncSmartAction {
   var payload: MineFieldDifficulty
   
   static func reduce(state: inout MineFieldState, action: StartGame) {

@@ -8,7 +8,7 @@
 
 import Foundation
 
-private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
+private let CELLIDENTIFIER = "KATANA_CELLIDENTIFIER"
 
 public class NativeGridView: UICollectionView {
   private(set) weak var parent: AnyNode?
@@ -24,7 +24,7 @@ public class NativeGridView: UICollectionView {
     self.delegate = self
     self.dataSource = self
     
-    self.register(NativeGridViewCell.self, forCellWithReuseIdentifier: CELL_IDENTIFIER)
+    self.register(NativeGridViewCell.self, forCellWithReuseIdentifier: CELLIDENTIFIER)
   }
   
   public required init?(coder aDecoder: NSCoder) {
@@ -62,7 +62,7 @@ extension NativeGridView: UICollectionViewDataSource {
   }
   
   public func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeGridViewCell
+    let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CELLIDENTIFIER, for: indexPath) as! NativeGridViewCell
     
     if let parent = self.parent, let delegate = self.katanaDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)

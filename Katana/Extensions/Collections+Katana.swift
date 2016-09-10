@@ -24,7 +24,7 @@ extension Collection where Iterator.Element: Comparable {
 }
 
 public func ==<T: Comparable>(lhs: [T]?, rhs: [T]?) -> Bool {
-  switch (lhs,rhs) {
+  switch (lhs, rhs) {
   case (.some(let lhs), .some(let rhs)):
     return lhs == rhs
   case (.none, .none):

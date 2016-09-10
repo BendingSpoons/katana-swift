@@ -15,7 +15,7 @@ import UIKit
  - This may be a security hole, we should adress this issue with obfuscation
  */
 
-private let CELL_IDENTIFIER = "KATANA_CELL_IDENTIFIER"
+private let CELLIDENTIFIER = "KATANA_CELLIDENTIFIER"
 
 public class NativeTableView: UITableView {
   private(set) weak var parent: AnyNode?
@@ -24,7 +24,7 @@ public class NativeTableView: UITableView {
   override public init(frame: CGRect, style: UITableViewStyle) {
     super.init(frame: frame, style: style)
    
-    self.register(NativeTableViewCell.self, forCellReuseIdentifier: CELL_IDENTIFIER)
+    self.register(NativeTableViewCell.self, forCellReuseIdentifier: CELLIDENTIFIER)
     self.tableFooterView = UIView()
     self.separatorStyle = .none
     
@@ -45,7 +45,7 @@ public class NativeTableView: UITableView {
 }
 
 
-extension NativeTableView: UITableViewDataSource  {
+extension NativeTableView: UITableViewDataSource {
   public func numberOfSections(in tableView: UITableView) -> Int {
     if let delegate = self.katanaDelegate {
       return delegate.numberOfSections()
@@ -62,8 +62,9 @@ extension NativeTableView: UITableViewDataSource  {
     return 0
   }
   
-  @objc(tableView:cellForRowAtIndexPath:) public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CELL_IDENTIFIER, for: indexPath) as! NativeTableViewCell
+  @objc(tableView:cellForRowAtIndexPath:) public func tableView(_ tableView: UITableView,
+                                                                cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    let cell = tableView.dequeueReusableCell(withIdentifier: CELLIDENTIFIER, for: indexPath) as! NativeTableViewCell
     
     if let parent = self.parent, let delegate = self.katanaDelegate {
       let description = delegate.nodeDescription(forRowAt: indexPath)
@@ -73,7 +74,9 @@ extension NativeTableView: UITableViewDataSource  {
     return cell
   }
   
-  @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+  @objc(tableView:heightForRowAtIndexPath:) public func tableView(_ tableView: UITableView,
+                                                     heightForRowAt indexPath: IndexPath) -> CGFloat {
+    
     if let parent = self.parent, let delegate = self.katanaDelegate {
       let height = delegate.height(forRowAt: indexPath)
       return height.scale(parent.plasticMultipler)

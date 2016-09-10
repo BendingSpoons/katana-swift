@@ -20,7 +20,7 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisab
  
   public init() {}
 
-  public static func ==(lhs: ViewProps, rhs: ViewProps) -> Bool {
+  public static func == (lhs: ViewProps, rhs: ViewProps) -> Bool {
     if lhs.children.count + rhs.children.count > 0 {
       // Euristic, we always rerender when there is at least 1 child
       return false
@@ -34,14 +34,15 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisab
 }
 
 
-public struct View : NodeDescription, NodeWithChildrenDescription {
-  public var props : ViewProps
+public struct View: NodeDescription, NodeWithChildrenDescription {
+  
+  public var props: ViewProps
 
   public static func applyPropsToNativeView(props: ViewProps,
                                             state: EmptyState,
                                             view: UIView,
                                             update: @escaping (EmptyState)->(),
-                                            node: AnyNode)  {
+                                            node: AnyNode) {
     view.frame = props.frame
     view.backgroundColor = props.color
     view.isUserInteractionEnabled = !props.touchDisabled
@@ -67,4 +68,3 @@ public struct View : NodeDescription, NodeWithChildrenDescription {
     self.props.children = children()
   }
 }
-
