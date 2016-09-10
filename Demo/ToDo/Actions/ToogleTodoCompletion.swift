@@ -11,7 +11,7 @@ import Katana
 struct ToogleTodoCompletion : SyncSmartAction {
   var payload: Int
   
-  static func reduce(state: inout AppState, action: ToogleTodoCompletion) {
+  static func reduce(state: inout ToDoState, action: ToogleTodoCompletion) {
     state.todosCompleted[action.payload] = !state.todosCompleted[action.payload]
 
   }

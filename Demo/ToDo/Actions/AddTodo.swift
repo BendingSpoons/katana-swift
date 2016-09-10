@@ -11,7 +11,7 @@ import Katana
 struct AddTodo : SyncSmartAction {
   var payload: String
   
-  static func reduce(state: inout AppState, action: AddTodo) {
+  static func reduce(state: inout ToDoState, action: AddTodo) {
     state.todos.append(action.payload)
     state.todosCompleted.append(false)
 

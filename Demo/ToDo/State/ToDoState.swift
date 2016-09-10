@@ -1,5 +1,5 @@
 //
-//  AppState.swift
+//  ToDoState.swift
 //  Katana
 //
 //  Created by Luca Querella on 24/08/16.
@@ -9,7 +9,7 @@
 import Katana
 
 
-struct AppState : State {
+struct ToDoState : State {
   var todos: [String] = []
   var todosCompleted: [Bool] = []
 

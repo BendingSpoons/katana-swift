@@ -22,20 +22,40 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController = UIViewController()
     self.window?.rootViewController?.view.backgroundColor = UIColor.white
     self.window?.makeKeyAndVisible()
-    
-    let view = (self.window?.rootViewController?.view)!
-    let rootBounds = UIScreen.main.bounds
-    
-    let sideEffects = sideEffectsMiddleware(state: AppState.self, dependencies: nil)
-    let actionLogger = actionLoggerMiddleware(state: AppState.self)
 
-    let store = Store<SmartReducer<AppState>>(middlewares: [sideEffects,actionLogger])
-    
-    self.root = App(props: AppProps().frame(rootBounds)).root(store: store)
-    self.root!.draw(container: view)
+    //mineField()
+    toDoDemo()
     
     
     return true
+  }
+
+  private func mineField() {
+    let view = (self.window?.rootViewController?.view)!
+    let rootBounds = UIScreen.main.bounds
+    
+    let sideEffects = sideEffectsMiddleware(state: MineFieldState.self, dependencies: nil)
+    let actionLogger = actionLoggerMiddleware(state: MineFieldState.self)
+    
+    let store = Store<SmartReducer<MineFieldState>>(middlewares: [sideEffects,actionLogger])
+    
+    self.root = MineField(props: MineFieldProps().frame(rootBounds)).root(store: store)
+    self.root!.draw(container: view)
+    
+  }
+  
+  private func toDoDemo() {
+    let view = (self.window?.rootViewController?.view)!
+    let rootBounds = UIScreen.main.bounds
+    
+    let sideEffects = sideEffectsMiddleware(state: ToDoState.self, dependencies: nil)
+    let actionLogger = actionLoggerMiddleware(state: ToDoState.self)
+    
+    let store = Store<SmartReducer<ToDoState>>(middlewares: [sideEffects,actionLogger])
+    
+    self.root = ToDo(props: ToDoProps().frame(rootBounds)).root(store: store)
+    self.root!.draw(container: view)
+    
   }
 }
 

@@ -11,7 +11,7 @@ import Katana
 struct RemoveTodo : SyncSmartAction {
   var payload: Int
   
-  static func reduce(state: inout AppState, action: RemoveTodo) {
+  static func reduce(state: inout ToDoState, action: RemoveTodo) {
     state.todos.remove(at: action.payload)
     state.todosCompleted.remove(at: action.payload)
 

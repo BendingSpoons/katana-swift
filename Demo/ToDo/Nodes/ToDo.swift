@@ -1,5 +1,5 @@
 //
-//  App.swift
+//  ToDo.swift
 //  Katana
 //
 //  Created by Luca Querella on 25/08/16.
@@ -9,13 +9,13 @@
 import UIKit
 import Katana
 
-struct AppProps: NodeProps {
+struct ToDoProps: NodeProps {
   var showPopup = false
   var showCalculator = false
   var frame: CGRect = CGRect.zero
   var todos: [String] = []
   
-  static func ==(lhs: AppProps, rhs: AppProps) -> Bool {
+  static func ==(lhs: ToDoProps, rhs: ToDoProps) -> Bool {
     
     return lhs.showPopup == rhs.showPopup &&
       lhs.showCalculator == rhs.showCalculator &&
@@ -24,20 +24,20 @@ struct AppProps: NodeProps {
   }
 }
 
-enum AppKeys: String,NodeDescriptionKeys {
+enum ToDoKeys: String,NodeDescriptionKeys {
   case title, add, list
 }
 
-struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
+struct ToDo : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize  {
   
-  var props : AppProps
+  var props : ToDoProps
   
   static var referenceSize: CGSize {
     return CGSize(width: 640, height: 960)
   }
   
   
-  static func render(props: AppProps,
+  static func render(props: ToDoProps,
                      state: EmptyState,
                      update: @escaping (EmptyState) -> (),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
@@ -50,14 +50,14 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     
     return [
       Text(props: TextProps()
-        .key(AppKeys.title)
+        .key(ToDoKeys.title)
         .text("My awesome todos", fontSize: 15)
         .borderColor(UIColor(0xC42900))
         .borderWidth(2)
       ),
       
       Button(props: ButtonProps()
-        .key(AppKeys.add)
+        .key(ToDoKeys.add)
         .color(0xEE6502)
         .color(UIColor(0xC42900), state: .highlighted)
         .text("+", fontSize: 10)
@@ -65,14 +65,14 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
       ),
       
       Table(props: TableProps()
-        .key(AppKeys.list)
-        .delegate(AppListDelegate(todos: props.todos ))
+        .key(ToDoKeys.list)
+        .delegate(ToDoListDelegate(todos: props.todos ))
       )
     ]
     
   }
   
-  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) {
+  static func layout(views: ViewsContainer<ToDoKeys>, props: ToDoProps, state: EmptyState) {
     
     let root = views.nativeView
     let title = views[.title]!
@@ -90,12 +90,12 @@ struct App : NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     list.bottom = root.bottom
   }
   
-  static func connect(props: inout AppProps, storageState: AppState){
+  static func connect(props: inout ToDoProps, storageState: ToDoState){
     props.todos = storageState.todos
   }
 }
 
-struct AppListDelegate  : TableDelegate {
+struct ToDoListDelegate  : TableDelegate {
   var todos: [String]
   
   func numberOfSections() -> Int {
@@ -107,7 +107,7 @@ struct AppListDelegate  : TableDelegate {
   }
   
   func nodeDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
-    return AppCell(props: AppCellProps().index(indexPath.item))
+    return ToDoCell(props: ToDoCellProps().index(indexPath.item))
   }
   
   func height(forRowAt indexPath: IndexPath) -> Value {
