@@ -38,7 +38,7 @@ public extension SyncSmartAction where Self: SmartActionWithSideEffect {
     
     static func anySideEffect(action: Action,
                               state: State,
-                              dispatch: StoreDispatch,
+                              dispatch: @escaping StoreDispatch,
                               dependencies: Any?) {
       
       let action = action as! Self

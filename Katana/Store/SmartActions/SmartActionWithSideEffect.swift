@@ -12,7 +12,7 @@ public protocol AnySmartActionWithSideEffect: Action {
   
   static func anySideEffect(action: Action,
                             state: State,
-                            dispatch: StoreDispatch, 
+                            dispatch: @escaping StoreDispatch,
                             dependencies: Any?)
 }
 
@@ -21,6 +21,6 @@ public protocol SmartActionWithSideEffect: Action, AnySmartActionWithSideEffect 
 
   static func sideEffect(action: Self,
                          state: StateType,
-                         dispatch: StoreDispatch,
+                         dispatch: @escaping StoreDispatch,
                          dependencies: SideEffectsDependencies<StateType>?)
 }
