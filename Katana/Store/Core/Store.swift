@@ -21,9 +21,14 @@ public class Store<RootReducer: Reducer> {
   
   lazy private var dispatchFunction: StoreDispatch = {
     let m = self.middlewares.map { middleware in
-      middleware(self.state, self.dispatch)
+      middleware(self.getState, self.dispatch)
     }
     return compose(m, storeDispatch: self.performDispatch)
+  }()
+  
+  lazy private var dispatchQueue: DispatchQueue = {
+    // serial by default
+    return DispatchQueue(label: "katana.store.queue")
   }()
   
   public init() {
@@ -48,24 +53,22 @@ public class Store<RootReducer: Reducer> {
   }
   
   public func dispatch(_ action: Action) {
-    self.dispatchFunction(action)
+    self.dispatchQueue.async {
+      self.dispatchFunction(action)
+    }
+  }
+  
+  public func getState() -> RootReducer.StateType {
+    return self.state
   }
   
   private func performDispatch(_ action: Action) {
-    // we dispatch everything in the main queue to avoid any possible issue
-    // with multiple actions.
-    // we can remove this limitation by adding an (atomic) FIFO queue where actions are added
-    // while the current action has been completed
-    
-    if #available(iOS 10.0, *) {
-      dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-    } else {
-      //FIXME
-    }
-    
     self.state = RootReducer.reduce(action: action, state: self.state)
-
-    self.listeners.forEach { $0() }
+    
+    // listener are always invoked in the main queue
+    DispatchQueue.main.async {
+      self.listeners.forEach { $0() }
+    }
   }
 }
 

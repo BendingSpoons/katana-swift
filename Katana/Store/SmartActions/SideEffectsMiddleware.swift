@@ -19,17 +19,15 @@ open class SideEffectsDependencies<S: State> {
 }
 
 public func sideEffectsMiddleware<S: State>(state _: S.Type,
-                                  dependencies: SideEffectsDependencies<S>.Type?) -> StoreMiddleware<S> {
+                                            dependencies: SideEffectsDependencies<S>.Type?) -> StoreMiddleware<S> {
   
-  return { state, dispatch in
+  return { getState, dispatch in
     return { next in
       return { action in
         
         if let action = action as? AnySmartActionWithSideEffect {
-          
+          let state = getState()
           let dependencies = dependencies?.init(dispatch: dispatch, state: state)
-          
-          
           type(of: action).anySideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
         }
 
