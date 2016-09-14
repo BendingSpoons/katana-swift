@@ -8,9 +8,10 @@
 
 import UIKit
 
-public struct TouchHandlerProps: NodeProps, Childrenable {
+public struct TouchHandlerProps: NodeProps, Childrenable, Keyable {
   public var frame = CGRect.zero
   public var children: [AnyNodeDescription] = []
+  public var key: String?
 
   var touchHandler: ((Bool) -> ())?
   
