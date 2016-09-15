@@ -85,12 +85,12 @@ public struct Grid: NodeDescription {
                                             state: EmptyState,
                                             view: NativeGridView,
                                             update: @escaping (EmptyState)->(),
-                                            concreteNode: AnyNode) {
+                                            node: AnyNode) {
     
     let delegate = props.delegate ?? EmptyGridDelegate()
     
     view.frame = props.frame
-    view.update(withParent: concreteNode, delegate: delegate, props: props)
+    view.update(withParent: node, delegate: delegate, props: props)
   }
   
   
