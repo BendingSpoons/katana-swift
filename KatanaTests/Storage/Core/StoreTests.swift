@@ -20,32 +20,56 @@ class StoreTests: XCTestCase {
   }
   
   func testDispatch() {
+    
+    let expectation = self.expectation(description: "Store listener")
+    
     let store = Store<AppReducer>()
+    _ = store.addListener { expectation.fulfill() }
     store.dispatch(AddTodoAction(title: "New Todo"))
-    let newState = store.state
-
-    XCTAssertEqual(newState.todo.todos.count, 1)
-    XCTAssertEqual(newState.todo.todos[0].title, "New Todo")
+    
+    self.waitForExpectations(timeout: 2.0) { (err: Error?) in
+      let newState = store.state
+      
+      XCTAssertEqual(newState.todo.todos.count, 1)
+      XCTAssertEqual(newState.todo.todos[0].title, "New Todo")
+    }
   }
   
   func testListener() {
+    let expectation = self.expectation(description: "Store listener")
     let store = Store<AppReducer>()
     var newState: AppState? = nil
     
     _ = store.addListener { [unowned store] in
       newState = store.state
+      expectation.fulfill()
     }
     
     store.dispatch(AddTodoAction(title: "New Todo"))
     
-    XCTAssertEqual(newState?.todo.todos.count, 1)
-    XCTAssertEqual(newState?.todo.todos[0].title, "New Todo")
+    self.waitForExpectations(timeout: 2.0) { (err: Error?) in
+      XCTAssertEqual(newState?.todo.todos.count, 1)
+      XCTAssertEqual(newState?.todo.todos[0].title, "New Todo")
+    }
   }
   
   func testListenerRemove() {
+    let expectation = self.expectation(description: "Store listener")
+    let secondExpectation = self.expectation(description: "Second Store listener")
+    
     let store = Store<AppReducer>()
     var firstState: AppState? = nil
     var secondState: AppState? = nil
+    
+    // listener just to fullfill expectations
+    _ = store.addListener {
+      if firstState != nil {
+        secondExpectation.fulfill()
+        
+      } else {
+        expectation.fulfill()
+      }
+    }
     
     let unsubscribe = store.addListener { [unowned store] in
       if firstState != nil {
@@ -57,21 +81,26 @@ class StoreTests: XCTestCase {
     }
     
     store.dispatch(AddTodoAction(title: "New Todo"))
-    unsubscribe()
-    store.dispatch(AddTodoAction(title: "Second Todo"))
     
-    // first callback invoked
-    XCTAssertEqual(firstState?.todo.todos.count, 1)
-    XCTAssertEqual(firstState?.todo.todos[0].title, "New Todo")
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+      unsubscribe()
+      store.dispatch(AddTodoAction(title: "Second Todo"))
+    })
     
-    // no second callback invoked
-    XCTAssertNil(secondState)
-    
-    // state is ok
-    let lastState = store.state
-    let titles = lastState.todo.todos.map { $0.title }
-    XCTAssertEqual(lastState.todo.todos.count, 2)
-    XCTAssertEqual(titles.contains("New Todo"), true)
-    XCTAssertEqual(titles.contains("Second Todo"), true)
+    self.waitForExpectations(timeout: 2) { (err: Error?) in
+      // first callback invoked
+      XCTAssertEqual(firstState?.todo.todos.count, 1)
+      XCTAssertEqual(firstState?.todo.todos[0].title, "New Todo")
+      
+      // no second callback invoked
+      XCTAssertNil(secondState)
+      
+      // state is ok
+      let lastState = store.state
+      let titles = lastState.todo.todos.map { $0.title }
+      XCTAssertEqual(lastState.todo.todos.count, 2)
+      XCTAssertEqual(titles.contains("New Todo"), true)
+      XCTAssertEqual(titles.contains("Second Todo"), true)
+    }
   }
 }

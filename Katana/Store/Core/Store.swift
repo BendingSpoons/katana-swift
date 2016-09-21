@@ -44,7 +44,7 @@ public class Store<RootReducer: Reducer> {
   }
 
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
-    listeners.append(listener)
+    self.listeners.append(listener)
     let idx = listeners.count - 1
     
     return { [weak self] in

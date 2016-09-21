@@ -5,8 +5,8 @@ import XCTest
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
 
-
-    let node = App(props: AppProps(i:0), children: []).root(store: nil).node!
+    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let node = root.node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 6)
