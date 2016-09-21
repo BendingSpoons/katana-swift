@@ -24,7 +24,7 @@ struct ToDoProps: NodeProps {
   }
 }
 
-enum ToDoKeys: String, NodeDescriptionKeys {
+enum ToDoKeys {
   case title, add, list
 }
 

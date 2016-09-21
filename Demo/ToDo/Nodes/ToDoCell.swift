@@ -28,7 +28,7 @@ struct ToDoCellProps: NodeProps {
   }
 }
 
-enum ToDoCellKeys: String, NodeDescriptionKeys {
+enum ToDoCellKeys {
   case name, delete
 }
 

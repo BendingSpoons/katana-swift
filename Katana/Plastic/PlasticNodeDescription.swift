@@ -8,16 +8,6 @@
 
 import Foundation
 
-public protocol NodeDescriptionKeys: RawRepresentable, Hashable, Comparable {
-  init?(rawValue: String)
-}
-
-public extension NodeDescriptionKeys where RawValue: Comparable {
-  public static func < (lhs: Self, rhs: Self) -> Bool {
-    return lhs.rawValue < rhs.rawValue
-  }
-}
-
 // type erasure for PlasticNodeDescription
 public protocol AnyPlasticNodeDescription {
   static func anyLayout(views: Any, props: Any, state: Any) -> Void
@@ -25,7 +15,7 @@ public protocol AnyPlasticNodeDescription {
 
 // a node that leverages plastic to layout
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
-  associatedtype Keys: NodeDescriptionKeys
+  associatedtype Keys
   
   static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
   static func layoutHash(props: PropsType, state: StateType) -> Int?

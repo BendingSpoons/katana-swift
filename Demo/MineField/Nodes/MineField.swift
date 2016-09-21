@@ -19,7 +19,7 @@ struct MineFieldProps: NodeProps {
   }
 }
 
-enum MineFieldKeys: String, NodeDescriptionKeys {
+enum MineFieldKeys {
   case title, field
 }
 

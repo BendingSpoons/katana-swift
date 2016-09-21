@@ -76,7 +76,7 @@ class PlasticNodeTests: XCTestCase {
 }
 
 
-private enum Keys: String, NodeDescriptionKeys {
+private enum Keys {
   case One
 }
 
@@ -203,7 +203,7 @@ fileprivate struct App: NodeDescription {
   }
 }
 
-fileprivate enum AppKeys: String, NodeDescriptionKeys {
+fileprivate enum AppKeys {
   case container, button, otherView
 }
 

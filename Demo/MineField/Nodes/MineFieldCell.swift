@@ -42,7 +42,7 @@ struct MineFieldCellProps: NodeProps, Keyable {
   }
 }
 
-enum MineFieldCellKeys: String, NodeDescriptionKeys {
+enum MineFieldCellKeys {
   case button
   case text
 }

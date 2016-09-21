@@ -37,7 +37,7 @@ public extension Frameable {
 public protocol Keyable {
   var key: String? { get set }
   func key(_ key: String?) -> Self
-  func key<Key>(_ key: Key) -> Self where Key: RawRepresentable, Key.RawValue == String
+  func key<Key>(_ key: Key) -> Self
 }
 
 public extension Keyable {
@@ -47,9 +47,9 @@ public extension Keyable {
     return copy
   }
   
-  func key<Key>(_ key: Key) -> Self where Key: RawRepresentable, Key.RawValue == String {
+  func key<Key>(_ key: Key) -> Self {
     var copy = self
-    copy.key = key.rawValue
+    copy.key = "\(key)"
     return copy
   }
 }

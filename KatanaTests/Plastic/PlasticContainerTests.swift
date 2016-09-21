@@ -9,7 +9,7 @@
 import XCTest
 @testable import Katana
 
-private enum Keys: String, NodeDescriptionKeys {
+private enum Keys {
   case One, OneA, OneB, OneAInner
   case Two
   case Four
@@ -32,7 +32,7 @@ class PlasticViewsContainerTests: XCTestCase {
         [
           View(props: ViewProps().key(Keys.OneA)),
           View(props: ViewProps().key(Keys.OneB)),
-        ]
+          ]
       },
       
       View(props: ViewProps().key(Keys.Two)),
@@ -88,7 +88,7 @@ class PlasticViewsContainerTests: XCTestCase {
           View(props: ViewProps().key(Keys.OneA)) {
             [
               View(props: ViewProps().key(Keys.OneAInner)),
-            ]
+              ]
           }
         ]
       }
@@ -115,32 +115,32 @@ class PlasticViewsContainerTests: XCTestCase {
     viewOneAInner.height = .fixed(100)
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       100 - viewOneA.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       100 - viewOneA.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneA)"),
       100 - viewOne.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneA)"),
       100 - viewOne.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.y
     )
   }
@@ -179,37 +179,37 @@ class PlasticViewsContainerTests: XCTestCase {
     viewOneAInner.height = .fixed(100)
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       100 - viewOneA.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       100 - viewOneA.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneA)"),
       100 - viewOne.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.OneA.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.OneA)"),
       100 - viewOne.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.y
     )
   }
-
-
+  
+  
   func testShouldManageHierarchyWithoutKeys() {
     
     let oneAFrame = CGRect(x: 10, y: 10, width: 200, height: 200)
@@ -242,22 +242,22 @@ class PlasticViewsContainerTests: XCTestCase {
     viewOneAInner.height = .fixed(100)
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getXCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.x
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: Keys.One.rawValue),
+      plasticViewsContainer.getYCoordinate(100, inCoordinateSystemOfParentOfKey: "\(Keys.One)"),
       100 - root.absoluteOrigin.y
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getXCoordinate(600, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getXCoordinate(600, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       -10
     )
     
     XCTAssertEqual(
-      plasticViewsContainer.getYCoordinate(900, inCoordinateSystemOfParentOfKey: Keys.OneAInner.rawValue),
+      plasticViewsContainer.getYCoordinate(900, inCoordinateSystemOfParentOfKey: "\(Keys.OneAInner)"),
       890
     )
   }

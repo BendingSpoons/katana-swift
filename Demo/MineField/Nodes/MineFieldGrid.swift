@@ -34,29 +34,8 @@ struct MineFieldGridProps: NodeProps, Keyable {
 }
 
 
-enum MineFieldGridKeys: NodeDescriptionKeys {
+enum MineFieldGridKeys {
   case button(column: Int, row: Int)
-  
-  init?(rawValue: String) {
-    let components = rawValue.components(separatedBy: ".")
-    
-    if let col = Int(components[0]), let row = Int(components[1]) {
-      self = .button(column: col, row: row)
-    } else {
-      return nil
-    }
-  }
-  
-  var rawValue: String {
-    switch self {
-    case let .button(column: column, row: row):
-      return "\(column).\(row)"
-    }
-  }
-  
-  var hashValue: Int {
-    return self.rawValue.hashValue
-  }
 }
 
 
