@@ -19,9 +19,9 @@ private enum ConstraintY {
 public class PlasticView {
   public let key: String
   
-  private(set) var frame: CGRect
-  private(set) var absoluteOrigin: CGPoint
+  public private(set) var frame: CGRect
   private let multiplier: CGFloat
+  private(set) var absoluteOrigin: CGPoint
   private unowned let hierarchyManager: HierarchyManager
   
   private var oldestConstraintX = ConstraintX.none
