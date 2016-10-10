@@ -2,3 +2,4 @@
 Katana.xcodeproj/xcuserdata/
 Katana.xcodeproj/project.xcworkspace/xcuserdata/
 .DS_Store
+/Carthage
