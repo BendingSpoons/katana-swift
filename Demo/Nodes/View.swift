@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Katana
 
 public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisableable, CornerRadiusable, Bordable {
   public var frame = CGRect.zero

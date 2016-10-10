@@ -12,7 +12,7 @@ public struct Value: Equatable {
   public let scalable: CGFloat
   public let fixed: CGFloat
   
-  var unscaledValue: CGFloat {
+  public var unscaledValue: CGFloat {
     return scalable + fixed
   }
   

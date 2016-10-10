@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Katana
 
 public struct TouchHandlerProps: NodeProps, Childrenable, Keyable {
   public var frame = CGRect.zero

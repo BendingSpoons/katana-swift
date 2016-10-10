@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Katana
 
 public struct TableProps: NodeProps, Keyable {
   public var frame = CGRect.zero

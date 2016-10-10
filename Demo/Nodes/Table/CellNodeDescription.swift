@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Katana
 
 public protocol AnyCellNodeDescription: AnyNodeDescription {
   static func anyDidTap(dispatch: StoreDispatch, props: Any, indexPath: IndexPath)

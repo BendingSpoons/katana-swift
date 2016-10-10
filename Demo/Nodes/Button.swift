@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Katana
 
 public struct ButtonProps: NodeProps, Colorable, Textable, Tappable, Bordable, Keyable {
   public enum State {

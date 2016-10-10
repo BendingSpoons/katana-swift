@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Katana
 
 private let CELLIDENTIFIER = "KATANA_CELLIDENTIFIER"
 

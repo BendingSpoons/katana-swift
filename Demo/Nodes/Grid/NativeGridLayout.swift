@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Katana
 
 private enum LayoutType {
   case variableNumberCellsOnline, constantNumberCellsOnline

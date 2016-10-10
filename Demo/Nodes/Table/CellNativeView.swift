@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Katana
 
 public class CellNativeView: UIView {
   var update: ((Bool) -> Void)?

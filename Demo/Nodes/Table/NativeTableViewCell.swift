@@ -1,26 +1,27 @@
 //
-//  NativeGridViewCell.swift
+//  KatanaTableViewCell.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 23/08/16.
+//  Created by Mauro Bolis on 22/08/16.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
 import Foundation
+import UIKit
+import Katana
 
-class NativeGridViewCell: UICollectionViewCell {
-  private var node: AnyNode? = nil
-
+class NativeTableViewCell: UITableViewCell {
+  private var node: AnyNode?
   
-  override var isHighlighted: Bool {
-    didSet {
-      // let's see if in our subviews there is a CellNativeView, which we can use
-      // to properly update the state
-      // it there is such view, it is the only subview of contentview
-      if let view = self.contentView.subviews.first as? CellNativeView {
-        view.setHighlighted(self.isHighlighted)
-      }
-    }
+  
+  override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    super.init(style: style, reuseIdentifier: reuseIdentifier)
+    
+    self.selectionStyle = .none
+  }
+  
+  required init?(coder aDecoder: NSCoder) {
+    fatalError("init(coder:) has not been implemented")
   }
   
   func update(withparent parent: AnyNode, description: AnyNodeDescription) {
@@ -47,16 +48,25 @@ class NativeGridViewCell: UICollectionViewCell {
     }
     
     self.node?.parent?.removeManagedChild(node: node!)
-    
     self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-
     if let description = self.node?.anyDescription as? AnyCellNodeDescription {
       let store = self.node?.treeRoot.store
       let dispatch =  store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
       type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
+    }
+  }
+  
+  override func setHighlighted(_ highlighted: Bool, animated: Bool) {
+    super.setHighlighted(highlighted, animated: animated)
+    
+    // let's see if in our subviews there is a CellNativeView, which we can use
+    // to properly update the state
+    // it there is such view, it is the only subview of contentview
+    if let view = self.contentView.subviews.first as? CellNativeView {
+      view.setHighlighted(highlighted)
     }
   }
   

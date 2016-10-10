@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import Katana
 
 public protocol Textable {
   var text: NSAttributedString {get set}
