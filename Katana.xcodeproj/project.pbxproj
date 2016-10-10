@@ -80,27 +80,8 @@
 		81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4971D8430AA0079AD32 /* .swiftlint.yml */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
-		A1327E4D1DABC575003FFCA3 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1327E4B1DABC575003FFCA3 /* Button.swift */; };
-		A1327E4E1DABC575003FFCA3 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1327E4C1DABC575003FFCA3 /* View.swift */; };
-		A1327E501DABC5F8003FFCA3 /* NodesCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1327E4F1DABC5F8003FFCA3 /* NodesCommons.swift */; };
-		A14C72561DABC6650018BFDE /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72551DABC6650018BFDE /* TouchHandler.swift */; };
-		A14C72581DABC6850018BFDE /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72571DABC6850018BFDE /* Text.swift */; };
-		A14C726C1DABC69B0018BFDE /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C725A1DABC69B0018BFDE /* Button.swift */; };
-		A14C726D1DABC69B0018BFDE /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C725C1DABC69B0018BFDE /* Grid.swift */; };
-		A14C726E1DABC69B0018BFDE /* GridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C725D1DABC69B0018BFDE /* GridDelegate.swift */; };
-		A14C726F1DABC69B0018BFDE /* NativeGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C725E1DABC69B0018BFDE /* NativeGridLayout.swift */; };
-		A14C72701DABC69B0018BFDE /* NativeGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C725F1DABC69B0018BFDE /* NativeGridView.swift */; };
-		A14C72711DABC69B0018BFDE /* NativeGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72601DABC69B0018BFDE /* NativeGridViewCell.swift */; };
-		A14C72721DABC69B0018BFDE /* NodesCommons.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72611DABC69B0018BFDE /* NodesCommons.swift */; };
-		A14C72731DABC69B0018BFDE /* CellNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72631DABC69B0018BFDE /* CellNativeView.swift */; };
-		A14C72741DABC69B0018BFDE /* CellNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72641DABC69B0018BFDE /* CellNodeDescription.swift */; };
-		A14C72751DABC69B0018BFDE /* NativeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72651DABC69B0018BFDE /* NativeTableView.swift */; };
-		A14C72761DABC69B0018BFDE /* NativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72661DABC69B0018BFDE /* NativeTableViewCell.swift */; };
-		A14C72771DABC69B0018BFDE /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72671DABC69B0018BFDE /* Table.swift */; };
-		A14C72781DABC69B0018BFDE /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72681DABC69B0018BFDE /* TableDelegate.swift */; };
-		A14C72791DABC69B0018BFDE /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C72691DABC69B0018BFDE /* Text.swift */; };
-		A14C727A1DABC69B0018BFDE /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C726A1DABC69B0018BFDE /* TouchHandler.swift */; };
-		A14C727B1DABC69B0018BFDE /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14C726B1DABC69B0018BFDE /* View.swift */; };
+		A1503A0A1DABE88F005A5C46 /* KatanaNodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1503A091DABE88F005A5C46 /* KatanaNodes.framework */; };
+		A1503A0C1DABE937005A5C46 /* KatanaNodes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1503A091DABE88F005A5C46 /* KatanaNodes.framework */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -200,27 +181,7 @@
 		81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56DA1D5F3A6E00B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EA56E51D5F3A8A00B6290E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A1327E4B1DABC575003FFCA3 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		A1327E4C1DABC575003FFCA3 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
-		A1327E4F1DABC5F8003FFCA3 /* NodesCommons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodesCommons.swift; sourceTree = "<group>"; };
-		A14C72551DABC6650018BFDE /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
-		A14C72571DABC6850018BFDE /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
-		A14C725A1DABC69B0018BFDE /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		A14C725C1DABC69B0018BFDE /* Grid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		A14C725D1DABC69B0018BFDE /* GridDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GridDelegate.swift; sourceTree = "<group>"; };
-		A14C725E1DABC69B0018BFDE /* NativeGridLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeGridLayout.swift; sourceTree = "<group>"; };
-		A14C725F1DABC69B0018BFDE /* NativeGridView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeGridView.swift; sourceTree = "<group>"; };
-		A14C72601DABC69B0018BFDE /* NativeGridViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeGridViewCell.swift; sourceTree = "<group>"; };
-		A14C72611DABC69B0018BFDE /* NodesCommons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodesCommons.swift; sourceTree = "<group>"; };
-		A14C72631DABC69B0018BFDE /* CellNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellNativeView.swift; sourceTree = "<group>"; };
-		A14C72641DABC69B0018BFDE /* CellNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellNodeDescription.swift; sourceTree = "<group>"; };
-		A14C72651DABC69B0018BFDE /* NativeTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableView.swift; sourceTree = "<group>"; };
-		A14C72661DABC69B0018BFDE /* NativeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableViewCell.swift; sourceTree = "<group>"; };
-		A14C72671DABC69B0018BFDE /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
-		A14C72681DABC69B0018BFDE /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
-		A14C72691DABC69B0018BFDE /* Text.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
-		A14C726A1DABC69B0018BFDE /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
-		A14C726B1DABC69B0018BFDE /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		A1503A091DABE88F005A5C46 /* KatanaNodes.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = KatanaNodes.framework; path = Carthage/Build/iOS/KatanaNodes.framework; sourceTree = "<group>"; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -237,6 +198,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */,
+				A1503A0A1DABE88F005A5C46 /* KatanaNodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -245,6 +207,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */,
+				A1503A0C1DABE937005A5C46 /* KatanaNodes.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -541,6 +504,7 @@
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				81EA56E61D5F3A8A00B6290E /* Demo */,
 				81EA56C81D5F3A6000B6290E /* Products */,
+				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -570,7 +534,6 @@
 		81EA56D71D5F3A6E00B6290E /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
-				A1327E4A1DABC55F003FFCA3 /* Nodes */,
 				81911D9B1D7D916B00123C54 /* Core */,
 				81911DA01D7D916B00123C54 /* Extensions */,
 				81911DA31D7D916B00123C54 /* Plastic */,
@@ -583,7 +546,6 @@
 		81EA56E61D5F3A8A00B6290E /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				A14C72591DABC69B0018BFDE /* Nodes */,
 				81C3A4671D83574C0079AD32 /* MineField */,
 				81C3A4421D8354760079AD32 /* ToDo */,
 				81C3A45F1D83571E0079AD32 /* Shared */,
@@ -594,55 +556,12 @@
 			path = Demo;
 			sourceTree = "<group>";
 		};
-		A1327E4A1DABC55F003FFCA3 /* Nodes */ = {
+		A1503A081DABE88F005A5C46 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				A14C72571DABC6850018BFDE /* Text.swift */,
-				A14C72551DABC6650018BFDE /* TouchHandler.swift */,
-				A1327E4F1DABC5F8003FFCA3 /* NodesCommons.swift */,
-				A1327E4B1DABC575003FFCA3 /* Button.swift */,
-				A1327E4C1DABC575003FFCA3 /* View.swift */,
+				A1503A091DABE88F005A5C46 /* KatanaNodes.framework */,
 			);
-			path = Nodes;
-			sourceTree = "<group>";
-		};
-		A14C72591DABC69B0018BFDE /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				A14C725A1DABC69B0018BFDE /* Button.swift */,
-				A14C725B1DABC69B0018BFDE /* Grid */,
-				A14C72611DABC69B0018BFDE /* NodesCommons.swift */,
-				A14C72621DABC69B0018BFDE /* Table */,
-				A14C72691DABC69B0018BFDE /* Text.swift */,
-				A14C726A1DABC69B0018BFDE /* TouchHandler.swift */,
-				A14C726B1DABC69B0018BFDE /* View.swift */,
-			);
-			path = Nodes;
-			sourceTree = "<group>";
-		};
-		A14C725B1DABC69B0018BFDE /* Grid */ = {
-			isa = PBXGroup;
-			children = (
-				A14C725C1DABC69B0018BFDE /* Grid.swift */,
-				A14C725D1DABC69B0018BFDE /* GridDelegate.swift */,
-				A14C725E1DABC69B0018BFDE /* NativeGridLayout.swift */,
-				A14C725F1DABC69B0018BFDE /* NativeGridView.swift */,
-				A14C72601DABC69B0018BFDE /* NativeGridViewCell.swift */,
-			);
-			path = Grid;
-			sourceTree = "<group>";
-		};
-		A14C72621DABC69B0018BFDE /* Table */ = {
-			isa = PBXGroup;
-			children = (
-				A14C72631DABC69B0018BFDE /* CellNativeView.swift */,
-				A14C72641DABC69B0018BFDE /* CellNodeDescription.swift */,
-				A14C72651DABC69B0018BFDE /* NativeTableView.swift */,
-				A14C72661DABC69B0018BFDE /* NativeTableViewCell.swift */,
-				A14C72671DABC69B0018BFDE /* Table.swift */,
-				A14C72681DABC69B0018BFDE /* TableDelegate.swift */,
-			);
-			path = Table;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -685,6 +604,7 @@
 				81EA56D21D5F3A6E00B6290E /* Sources */,
 				81EA56D31D5F3A6E00B6290E /* Frameworks */,
 				81EA56D41D5F3A6E00B6290E /* Resources */,
+				A1503A0B1DABE895005A5C46 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -703,6 +623,7 @@
 				81EA56E11D5F3A8A00B6290E /* Sources */,
 				81EA56E21D5F3A8A00B6290E /* Frameworks */,
 				81EA56E31D5F3A8A00B6290E /* Resources */,
+				A1503A0D1DABE93C005A5C46 /* Carthage */,
 			);
 			buildRules = (
 			);
@@ -802,6 +723,36 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
+		A1503A0B1DABE895005A5C46 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/KatanaNodes.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		A1503A0D1DABE93C005A5C46 /* Carthage */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/KatanaNodes.framework",
+			);
+			name = Carthage;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -852,25 +803,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */,
-				A14C72561DABC6650018BFDE /* TouchHandler.swift in Sources */,
 				81911DBA1D7D916B00123C54 /* UIColorTest.swift in Sources */,
 				81911DC51D7D916B00123C54 /* actions.swift in Sources */,
 				81911DBF1D7D916B00123C54 /* PlasticDimensionsTests.swift in Sources */,
 				81911DBB1D7D916B00123C54 /* hierarchyManagers.swift in Sources */,
-				A1327E4E1DABC575003FFCA3 /* View.swift in Sources */,
 				81911DBC1D7D916B00123C54 /* PlasticBasicLayoutTests.swift in Sources */,
 				81911DC21D7D916B00123C54 /* MiddlewareTests.swift in Sources */,
 				81911DC31D7D916B00123C54 /* ReducerTests.swift in Sources */,
-				A14C72581DABC6850018BFDE /* Text.swift in Sources */,
 				81911DB61D7D916B00123C54 /* NodeDescriptionTest.swift in Sources */,
 				81911DC71D7D916B00123C54 /* states.swift in Sources */,
 				81911DBD1D7D916B00123C54 /* PlasticContainerTests.swift in Sources */,
-				A1327E501DABC5F8003FFCA3 /* NodesCommons.swift in Sources */,
 				81911DB51D7D916B00123C54 /* CommonsTest.swift in Sources */,
 				81911DB81D7D916B00123C54 /* RenderContainersTest.swift in Sources */,
 				81911DC41D7D916B00123C54 /* StoreTests.swift in Sources */,
 				81911DBE1D7D916B00123C54 /* PlasticConvenienceLayoutTests.swift in Sources */,
-				A1327E4D1DABC575003FFCA3 /* Button.swift in Sources */,
 				81911DC61D7D916B00123C54 /* reducers.swift in Sources */,
 				81911DC01D7D916B00123C54 /* PlasticNodeTests.swift in Sources */,
 				81911DC11D7D916B00123C54 /* CombinedReducerTests.swift in Sources */,
@@ -884,32 +830,16 @@
 			files = (
 				81C3A48A1D8357880079AD32 /* MineField.swift in Sources */,
 				81C3A4871D8357880079AD32 /* StartGame.swift in Sources */,
-				A14C727B1DABC69B0018BFDE /* View.swift in Sources */,
 				81C3A45D1D8354760079AD32 /* ToDoCell.swift in Sources */,
 				81C3A4861D8357880079AD32 /* DiscloseCell.swift in Sources */,
-				A14C72761DABC69B0018BFDE /* NativeTableViewCell.swift in Sources */,
-				A14C72721DABC69B0018BFDE /* NodesCommons.swift in Sources */,
-				A14C727A1DABC69B0018BFDE /* TouchHandler.swift in Sources */,
 				81C3A48C1D8357880079AD32 /* MineFieldGrid.swift in Sources */,
 				81C3A44C1D8354760079AD32 /* AppDelegate.swift in Sources */,
 				81C3A45B1D8354760079AD32 /* ToogleTodoCompletion.swift in Sources */,
-				A14C72711DABC69B0018BFDE /* NativeGridViewCell.swift in Sources */,
-				A14C72791DABC69B0018BFDE /* Text.swift in Sources */,
 				81C3A45C1D8354760079AD32 /* ToDo.swift in Sources */,
-				A14C72751DABC69B0018BFDE /* NativeTableView.swift in Sources */,
-				A14C72741DABC69B0018BFDE /* CellNodeDescription.swift in Sources */,
 				81C3A48B1D8357880079AD32 /* MineFieldCell.swift in Sources */,
-				A14C72701DABC69B0018BFDE /* NativeGridView.swift in Sources */,
 				81C3A48D1D8357880079AD32 /* MineFieldState.swift in Sources */,
-				A14C726C1DABC69B0018BFDE /* Button.swift in Sources */,
-				A14C726D1DABC69B0018BFDE /* Grid.swift in Sources */,
 				81C3A48F1D8357BE0079AD32 /* actionLogger.swift in Sources */,
 				81C3A45A1D8354760079AD32 /* RemoveTodo.swift in Sources */,
-				A14C726F1DABC69B0018BFDE /* NativeGridLayout.swift in Sources */,
-				A14C726E1DABC69B0018BFDE /* GridDelegate.swift in Sources */,
-				A14C72781DABC69B0018BFDE /* TableDelegate.swift in Sources */,
-				A14C72771DABC69B0018BFDE /* Table.swift in Sources */,
-				A14C72731DABC69B0018BFDE /* CellNativeView.swift in Sources */,
 				81C3A45E1D8354760079AD32 /* ToDoState.swift in Sources */,
 				81C3A4591D8354760079AD32 /* AddTodo.swift in Sources */,
 			);
@@ -1075,6 +1005,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KatanaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaTests;
@@ -1087,6 +1021,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = KatanaTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaTests;
@@ -1101,6 +1039,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;
@@ -1117,6 +1059,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				DEVELOPMENT_TEAM = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;

@@ -1,6 +1,6 @@
 import XCTest
 @testable import Katana
-
+import KatanaNodes
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {

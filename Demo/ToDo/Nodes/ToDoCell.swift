@@ -7,6 +7,7 @@
 //
 
 import Katana
+import KatanaNodes
 
 struct ToDoCellProps: NodeProps {
   var frame = CGRect.zero

@@ -1,5 +1,6 @@
 import XCTest
 import Katana
+import KatanaNodes
 
 class NodeDescriptionTest: XCTestCase {
   
