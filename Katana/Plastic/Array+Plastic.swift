@@ -23,7 +23,7 @@ extension Array where Element: PlasticView {
     
     let scaledSpacings = zip(otherViews, spacings).map { (view, spacing) -> CGFloat in
       let scaled = view.scaleValue(spacing)
-      totalWidth = totalWidth + scaled
+      totalWidth = totalWidth + scaled + view.frame.size.width
       return scaled
     }
     
