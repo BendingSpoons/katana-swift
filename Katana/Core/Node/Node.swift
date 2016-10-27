@@ -12,7 +12,7 @@ private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 public protocol AnyNode: class {
   var anyDescription: AnyNodeDescription { get }
-  var children: [AnyNode]? { get }
+  var children: [AnyNode]! { get }
   var managedChildren: [AnyNode] { get }
 
   var parent: AnyNode? {get}
@@ -35,7 +35,7 @@ protocol InternalAnyNode: AnyNode {
 
 public class Node<Description: NodeDescription> {
   
-  public private(set) var children: [AnyNode]?
+  public private(set) var children: [AnyNode]!
   private(set) var state: Description.StateType
   private(set) var description: Description
   private var container: DrawableContainer?
@@ -58,9 +58,9 @@ public class Node<Description: NodeDescription> {
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
 
     
-    let children  = renderChildren()
+    let children  = self.renderChildren()
         
-    self.children =  self.processChildrenBeforeDraw(children).map {
+    self.children = self.processChildrenBeforeDraw(children).map {
       $0.node(parent: self)
     }
   }
@@ -73,7 +73,9 @@ public class Node<Description: NodeDescription> {
   private func renderChildren() -> [AnyNodeDescription] {
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      DispatchQueue.main.async {
+        self?.update(state: state)
+      }
     }
     
     let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
@@ -109,10 +111,6 @@ public class Node<Description: NodeDescription> {
                     description: Description,
                 parentAnimation: Animation,
                           force: Bool = false) {
-    
-    guard let children = self.children else {
-      fatalError("update should not be called at this time")
-    }
     
     guard force || self.description.props != description.props || self.state != state else {
       return
@@ -180,10 +178,6 @@ public class Node<Description: NodeDescription> {
 
   public func draw(container: DrawableContainer) {
     
-    guard let children = self.children else {
-      fatalError("draw cannot be called at this time")
-    }
-    
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -191,7 +185,9 @@ public class Node<Description: NodeDescription> {
     self.container = container.add { Description.NativeView() }
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      DispatchQueue.main.async {
+        self?.update(state: state)
+      }
     }
     
     self.container?.update { view in
@@ -214,7 +210,7 @@ public class Node<Description: NodeDescription> {
       return
     }
     
-    assert(viewIndexes.count == self.children?.count)
+    assert(viewIndexes.count == self.children.count)
     
     let update = { [weak self] (state: Description.StateType) -> Void in
       self?.update(state: state)

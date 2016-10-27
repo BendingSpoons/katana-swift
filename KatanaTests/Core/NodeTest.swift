@@ -143,7 +143,7 @@ fileprivate class WeakView {
 }
 
 fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
-  return (node.children!.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children!
+  return (node.children.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children
 }
 
 fileprivate func collectView(view: UIView) -> [UIView] {
