@@ -164,7 +164,7 @@ fileprivate extension Node {
       }
     }
     
-    let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    let dispatch =  self.root.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).render(props: self.description.props,
                                         state: self.state,
@@ -176,7 +176,7 @@ fileprivate extension Node {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.treeRoot.store else {
+      guard let store = self.root.store else {
         fatalError("connected not lacks store")
       }
       

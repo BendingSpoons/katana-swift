@@ -73,7 +73,7 @@ open class Root {
 
 
 public extension AnyNode {
-  public var treeRoot: Root {
+  public var root: Root {
     var node: AnyNode = self
     while node.parent != nil {
       node = node.parent!
