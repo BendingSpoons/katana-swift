@@ -73,7 +73,9 @@ public class Node<Description: NodeDescription> {
   private func renderChildren() -> [AnyNodeDescription] {
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      DispatchQueue.main.async {
+        self?.update(state: state)
+      }
     }
     
     let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
@@ -191,7 +193,9 @@ public class Node<Description: NodeDescription> {
     self.container = container.add { Description.NativeView() }
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      DispatchQueue.main.async {
+        self?.update(state: state)
+      }
     }
     
     self.container?.update { view in
