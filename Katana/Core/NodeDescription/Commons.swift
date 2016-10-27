@@ -36,17 +36,10 @@ public extension Frameable {
 
 public protocol Keyable {
   var key: String? { get set }
-  func key(_ key: String?) -> Self
   func key<Key>(_ key: Key) -> Self
 }
 
 public extension Keyable {
-  public func key(_ key: String?) -> Self {
-    var copy = self
-    copy.key = key
-    return copy
-  }
-  
   func key<Key>(_ key: Key) -> Self {
     var copy = self
     copy.key = "\(key)"
