@@ -113,10 +113,6 @@ public class Node<Description: NodeDescription> {
                 parentAnimation: Animation,
                           force: Bool = false) {
     
-//    guard let children = self.children else {
-//      fatalError("update should not be called at this time")
-//    }
-    
     guard force || self.description.props != description.props || self.state != state else {
       return
     }
@@ -182,10 +178,6 @@ public class Node<Description: NodeDescription> {
   
 
   public func draw(container: DrawableContainer) {
-    
-//    guard let children = self.children else {
-//      fatalError("draw cannot be called at this time")
-//    }
     
     if self.container != nil {
       fatalError("draw can only be call once on a node")
