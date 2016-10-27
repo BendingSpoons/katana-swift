@@ -12,7 +12,7 @@ private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 public protocol AnyNode: class {
   var anyDescription: AnyNodeDescription { get }
-  var children: [AnyNode] { get }
+  var children: [AnyNode]! { get }
   var managedChildren: [AnyNode] { get }
 
   var parent: AnyNode? {get}
@@ -35,7 +35,7 @@ protocol InternalAnyNode: AnyNode {
 
 public class Node<Description: NodeDescription> {
   
-  public private(set) var children: [AnyNode]
+  public private(set) var children: [AnyNode]!
   private(set) var state: Description.StateType
   private(set) var description: Description
   private var container: DrawableContainer?
@@ -54,7 +54,6 @@ public class Node<Description: NodeDescription> {
     self.state = Description.StateType.init()
     self.parent = parent
     self.root = root
-    self.children = []
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
 
