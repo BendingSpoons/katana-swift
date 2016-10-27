@@ -34,13 +34,14 @@ protocol InternalAnyNode: AnyNode {
 }
 
 public class Node<Description: NodeDescription> {
+  public fileprivate(set) var children: [AnyNode]!
+  fileprivate var container: DrawableContainer?
+  fileprivate(set) var state: Description.StateType
+  fileprivate(set) var description: Description
   
-  public private(set) var children: [AnyNode]!
-  private(set) var state: Description.StateType
-  private(set) var description: Description
-  private var container: DrawableContainer?
-  public private(set) weak var parent: AnyNode?
-  public private(set) weak var root: Root?
+  public fileprivate(set) weak var parent: AnyNode?
+  public fileprivate(set) weak var root: Root?
+  
   public var managedChildren: [AnyNode] = []
 
   
@@ -56,7 +57,6 @@ public class Node<Description: NodeDescription> {
     self.root = root
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
-
     
     let children  = self.renderChildren()
         
@@ -66,12 +66,98 @@ public class Node<Description: NodeDescription> {
   }
   
   // Customization point for sublcasses. It allowes to update the children before they get drawn
-  func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+  public func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
   
-  private func renderChildren() -> [AnyNodeDescription] {
+  public func draw(container: DrawableContainer) {
+    if self.container != nil {
+      fatalError("draw can only be call once on a node")
+    }
     
+    self.container = container.add { Description.NativeView() }
+    
+    let update = { [weak self] (state: Description.StateType) -> Void in
+      DispatchQueue.main.async {
+        self?.update(state: state)
+      }
+    }
+    
+    self.container?.update { view in
+      Description.applyPropsToNativeView(props: self.description.props,
+                                         state: self.state,
+                                         view: view as! Description.NativeView,
+                                         update: update,
+                                         node: self)
+    }
+    
+    
+    children.forEach { child in
+      let child = child as! InternalAnyNode
+      child.draw(container: self.container!)
+    }
+  }
+  
+  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
+    let node = description.node(parent: self) as! InternalAnyNode
+    self.managedChildren.append(node)
+    node.draw(container: container)
+    return node
+  }
+  
+  public func removeManagedChild(node: AnyNode) {
+    let index = self.managedChildren.index { node === $0 }
+    self.managedChildren.remove(at: index!)
+  }
+
+}
+
+fileprivate extension Node {
+  fileprivate func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
+    guard let container = self.container else {
+      return
+    }
+    
+    assert(viewIndexes.count == self.children.count)
+    
+    let update = { [weak self] (state: Description.StateType) -> Void in
+      self?.update(state: state)
+    }
+    
+    animation.animateBlock {
+      container.update { view in
+        Description.applyPropsToNativeView(props: self.description.props,
+                                           state: self.state,
+                                           view: view as! Description.NativeView,
+                                           update: update,
+                                           node: self)
+      }
+    }
+    
+    childrenToAdd.forEach { node in
+      let node = node as! InternalAnyNode
+      return node.draw(container: container)
+    }
+    
+    var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
+    let sorted = viewIndexes.isSorted
+    
+    for viewIndex in viewIndexes {
+      let currentSubview = currentSubviews[viewIndex]!
+      if !sorted {
+        container.bringToFront(child: currentSubview)
+      }
+      currentSubviews[viewIndex] = nil
+    }
+    
+    for view in currentSubviews {
+      if let viewToRemove = view {
+        self.container?.remove(child: viewToRemove)
+      }
+    }
+  }
+  
+  fileprivate func renderChildren() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
         self?.update(state: state)
@@ -81,35 +167,33 @@ public class Node<Description: NodeDescription> {
     let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).render(props: self.description.props,
-                                           state: self.state,
-                                           update: update,
-                                           dispatch: dispatch)
+                                        state: self.state,
+                                        update: update,
+                                        dispatch: dispatch)
   }
   
-  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
-    
+  fileprivate func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
     if let desc = description as? AnyConnectedNodeDescription {
-     // description is connected to the store, we need to update it
-     
-     
-     guard let store = self.treeRoot.store else {
-      fatalError("connected not lacks store")
-     }
-     
-     let state = store.anyState
-     return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
-     }
+      // description is connected to the store, we need to update it
+      
+      guard let store = self.treeRoot.store else {
+        fatalError("connected not lacks store")
+      }
+      
+      let state = store.anyState
+      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
+    }
     
     return props
   }
-
-  private func update(state: Description.StateType) {
+  
+  fileprivate func update(state: Description.StateType) {
     self.update(state: state, description: self.description, parentAnimation: .none)
   }
   
   fileprivate func update(state: Description.StateType,
-                    description: Description,
-                parentAnimation: Animation,
+                          description: Description,
+                          parentAnimation: Animation,
                           force: Bool = false) {
     
     guard force || self.description.props != description.props || self.state != state else {
@@ -174,93 +258,6 @@ public class Node<Description: NodeDescription> {
     self.children = nodes
     self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
-  
-
-  public func draw(container: DrawableContainer) {
-    
-    if self.container != nil {
-      fatalError("draw can only be call once on a node")
-    }
-    
-    self.container = container.add { Description.NativeView() }
-    
-    let update = { [weak self] (state: Description.StateType) -> Void in
-      DispatchQueue.main.async {
-        self?.update(state: state)
-      }
-    }
-    
-    self.container?.update { view in
-      Description.applyPropsToNativeView(props: self.description.props,
-                                         state: self.state,
-                                         view: view as! Description.NativeView,
-                                         update: update,
-                                         node: self)
-    }
-    
-    
-    children.forEach { child in
-      let child = child as! InternalAnyNode
-      child.draw(container: self.container!)
-    }
-  }
-  
-  private func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
-    guard let container = self.container else {
-      return
-    }
-    
-    assert(viewIndexes.count == self.children.count)
-    
-    let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
-    }
-    
-    animation.animateBlock {
-      container.update { view in
-        Description.applyPropsToNativeView(props: self.description.props,
-                                           state: self.state,
-                                           view: view as! Description.NativeView,
-                                           update: update,
-                                           node: self)
-      }
-    }
-    
-    childrenToAdd.forEach { node in
-      let node = node as! InternalAnyNode
-      return node.draw(container: container)
-    }
-    
-    var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
-    let sorted = viewIndexes.isSorted
-    
-    for viewIndex in viewIndexes {
-      let currentSubview = currentSubviews[viewIndex]!
-      if !sorted {
-        container.bringToFront(child: currentSubview)
-      }
-      currentSubviews[viewIndex] = nil
-    }
-    
-    for view in currentSubviews {
-      if let viewToRemove = view {
-        self.container?.remove(child: viewToRemove)
-      }
-    }
-  }
-  
-  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
-    let node = description.node(parent: self) as! InternalAnyNode
-    self.managedChildren.append(node)
-    node.draw(container: container)
-    return node
-  }
-  
-  public func removeManagedChild(node: AnyNode) {
-    let index = self.managedChildren.index { node === $0 }
-    self.managedChildren.remove(at: index!)
-  }
-
 }
 
 extension Node: AnyNode {

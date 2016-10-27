@@ -9,7 +9,7 @@
 import Foundation
 
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description> {
-  override func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+  override public func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     let newChildren = super.processChildrenBeforeDraw(children)
     return self.applyLayout(to: newChildren, description: self.description)
   }
