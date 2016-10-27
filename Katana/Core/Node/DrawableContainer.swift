@@ -34,11 +34,11 @@ extension UIView: DrawableContainer {
   }
   
   public func removeAll() {
-    
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+    
     } else {
-      //FIXME
+      assert(Thread.isMainThread)
     }
 
     self.subviews
@@ -47,11 +47,11 @@ extension UIView: DrawableContainer {
   }
   
   public func add(child: () -> UIView) -> DrawableContainer {
-    
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      
     } else {
-      //FIXME
+      assert(Thread.isMainThread)
     }
     
     let child = child()
@@ -63,8 +63,9 @@ extension UIView: DrawableContainer {
   public func update(view: (UIView)->()) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      
     } else {
-      //FIXME
+      assert(Thread.isMainThread)
     }
     
     view(self)
@@ -75,11 +76,11 @@ extension UIView: DrawableContainer {
   }
   
   public func bringToFront(child: DrawableContainerChild) {
-    
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      
     } else {
-      //FIXME
+      assert(Thread.isMainThread)
     }
 
     let child = child as! UIViewDrawableContainerChild
@@ -87,11 +88,11 @@ extension UIView: DrawableContainer {
   }
   
   public func remove(child: DrawableContainerChild) {
-
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      
     } else {
-      //FIXME
+      assert(Thread.isMainThread)
     }
     
     let child = child as! UIViewDrawableContainerChild
