@@ -12,31 +12,6 @@ disabled_rules:
 opt_in_rules:
   - no_multiple_newlines
 
-# whitelist_rules:
-#   - closing_brace
-#   - colon
-#   - comma
-#   - conditional_binding_cascade
-#   - control_statement
-#   - cyclomatic_complexity
-#   - empty_count
-#   - file_length  
-#   - function_body_length
-#   - leading_whitespace
-#   - legacy_constant
-#   - legacy_constructor
-#   - line_length
-#   - nesting
-#   - opening_brace
-#   - operator_whitespace
-#   - return_arrow_whitespace
-#   - statement_position
-#   - todo
-#   - trailing_newline
-#   - trailing_semicolon
-#   - type_body_length
-#   - variable_name
-
 
 line_length: 130
 
@@ -50,35 +25,5 @@ function_body_length:
   warning: 100
   error: 200
 
-# closing_brace               | no     | yes         | yes                    | warning                                          |
-# | colon                       | no     | yes         | yes                    | warning                                          |
-# | comma                       | no     | yes         | yes                    | warning                                          |
-# | conditional_binding_cascade | no     | no          | yes                    | warning                                          |
-# | control_statement           | no     | no          | yes                    | warning                                          |
-# | custom_rules                | no     | no          | yes                    | user-defined                                     |
-# | cyclomatic_complexity       | no     | no          | yes                    | warning: 10, error: 20                           |
-# | empty_count                 | yes    | no          | no                     | error                                            |
-# | file_length                 | no     | no          | yes                    | warning: 600                                     |
-# | force_cast                  | no     | no          | yes                    | error                                            |
-# | force_try                   | no     | no          | yes                    | error                                            |
-# | force_unwrapping            | yes    | no          | no                     | warning                                          |
-# | function_body_length        | no     | no          | yes                    | warning: 40, error: 100                          |
-# | function_parameter_count    | no     | no          | yes                    | warning: 5, error: 8                             |
-# | leading_whitespace          | no     | no          | yes                    | warning                                          |
-# | legacy_constant             | no     | yes         | yes                    | warning                                          |
-# | legacy_constructor          | no     | yes         | yes                    | warning                                          |
-# | line_length                 | no     | no          | yes                    | warning: 110                                     |
-# | missing_docs                | yes    | no          | no                     | warning: public                                  |
-# | nesting                     | no     | no          | yes                    | warning                                          |
-# | opening_brace               | no     | yes         | yes                    | warning                                          |
-# | operator_whitespace         | no     | no          | yes                    | warning                                          |
-# | return_arrow_whitespace     | no     | no          | yes                    | warning                                          |
-# | statement_position          | no     | yes         | yes                    | warning                                          |
-# | todo                        | no     | no          | yes                    | warning                                          |
-# | trailing_newline            | no     | yes         | yes                    | warning                                          |
-# | trailing_semicolon          | no     | yes         | yes                    | warning                                          |
-# | trailing_whitespace         | no     | yes         | yes                    | warning                                          |
-# | type_body_length            | no     | no          | yes                    | warning: 200, error: 350                         |
-# | type_name                   | no     | no          | yes                    | (min_length) w/e: 3/0, (max_length) w/e: 40/1000 |
-# | valid_docs                  | no     | no          | yes                    | warning                                          |
-# | variable_name               | no     | no          | yes                    | (min_length) w/e: 3/2, (max_length) w/e: 40/60 
+excluded:
+- Carthage
