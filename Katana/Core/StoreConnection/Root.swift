@@ -48,13 +48,9 @@ open class Root {
   }
   
   private func explore(_ node: AnyNode) -> Void {
-    guard let children = node.children else {
-      fatalError("Impossibile to retrieve children")
-    }
-
     var childrenTable = [Int: AnyNode]()
     
-    for node in children {
+    for node in node.children {
       childrenTable[ObjectIdentifier(node).hashValue] = node
     }
     
@@ -63,7 +59,7 @@ open class Root {
       try! node.update(description: node.anyDescription)
     }
     
-    node.children?
+    node.children
       .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
       .forEach { explore($0) }
     
