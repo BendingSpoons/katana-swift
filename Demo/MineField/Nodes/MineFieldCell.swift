@@ -8,7 +8,7 @@
 
 import UIKit
 import Katana
-import KatanaNodes
+import KatanaElements
 
 struct MineFieldCellProps: NodeProps, Keyable {
   public var frame: CGRect = CGRect.zero
