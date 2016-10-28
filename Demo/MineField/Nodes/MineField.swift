@@ -33,7 +33,7 @@ struct MineField: NodeDescription, ConnectedNodeDescription, PlasticNodeDescript
     return CGSize(width: 640, height: 960)
   }
   
-  static func render(props: MineFieldProps,
+  static func childrenDescriptions(props: MineFieldProps,
                      state: EmptyState,
                      update: @escaping  (EmptyState) -> (),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

@@ -81,7 +81,7 @@ fileprivate struct App: NodeDescription {
   var children: [AnyNodeDescription] = []
   
   
-  public static func render(props: AppProps,
+  public static func childrenDescriptions(props: AppProps,
                             state: EmptyState,
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

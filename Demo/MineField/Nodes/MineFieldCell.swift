@@ -53,7 +53,7 @@ struct MineFieldCell: NodeDescription, ConnectedNodeDescription, PlasticNodeDesc
   
   var props: MineFieldCellProps
 
-  static func render(props: MineFieldCellProps,
+  static func childrenDescriptions(props: MineFieldCellProps,
                      state: EmptyState,
                      update: @escaping  (EmptyState) -> (),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

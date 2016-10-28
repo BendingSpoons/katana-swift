@@ -47,7 +47,7 @@ public struct Text: NodeDescription {
     view.layer.borderColor = props.borderColor.cgColor
   }
   
-  public static func render(props: TextProps,
+  public static func childrenDescriptions(props: TextProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

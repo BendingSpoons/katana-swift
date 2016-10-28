@@ -49,7 +49,7 @@ public protocol NodeDescription: AnyNodeDescription {
                                      update: @escaping (StateType)->(),
                                      node: AnyNode) -> Void
   
-  static func render(props: PropsType,
+  static func childrenDescriptions(props: PropsType,
                      state: StateType,
                      update: @escaping (StateType)->(),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]

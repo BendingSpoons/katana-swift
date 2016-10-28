@@ -95,7 +95,7 @@ public struct Grid: NodeDescription {
   }
   
   
-  public static func render(props: GridProps,
+  public static func childrenDescriptions(props: GridProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

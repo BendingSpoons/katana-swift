@@ -51,7 +51,7 @@ public struct Button: NodeDescription {
     self.props = props
   }
   
-  public static func render(props: ButtonProps,
+  public static func childrenDescriptions(props: ButtonProps,
                             state: EmptyHighlightableState,
                             update: @escaping (EmptyHighlightableState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

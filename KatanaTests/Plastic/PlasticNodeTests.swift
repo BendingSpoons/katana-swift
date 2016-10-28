@@ -91,7 +91,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
   
-  public static func render(props: EmptyProps,
+  public static func childrenDescriptions(props: EmptyProps,
                             state: EmptyState,
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
@@ -128,7 +128,7 @@ fileprivate struct App: NodeDescription {
   var children: [AnyNodeDescription] = []
   
   
-  fileprivate static func render(props: AppProps,
+  fileprivate static func childrenDescriptions(props: AppProps,
                                  state: EmptyState,
                                  update: @escaping (EmptyState) -> (),
                                  dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {

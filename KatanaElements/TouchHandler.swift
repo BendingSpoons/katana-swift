@@ -48,7 +48,7 @@ public struct TouchHandler: NodeDescription, NodeWithChildrenDescription {
     view.handler = props.touchHandler
   }
   
-  public static func render(props: TouchHandlerProps,
+  public static func childrenDescriptions(props: TouchHandlerProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

@@ -36,7 +36,7 @@ enum ToDoCellKeys {
 struct ToDoCell: CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescription {
   var props: ToDoCellProps
     
-  static func render(props: ToDoCellProps,
+  static func childrenDescriptions(props: ToDoCellProps,
     state: EmptyHighlightableState,
     update: @escaping (EmptyHighlightableState) -> (),
     dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

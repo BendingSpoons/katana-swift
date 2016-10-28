@@ -38,7 +38,7 @@ struct ToDo: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
   }
   
   
-  static func render(props: ToDoProps,
+  static func childrenDescriptions(props: ToDoProps,
                      state: EmptyState,
                      update: @escaping (EmptyState) -> (),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

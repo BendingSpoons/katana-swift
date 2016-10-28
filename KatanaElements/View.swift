@@ -53,7 +53,7 @@ public struct View: NodeDescription, NodeWithChildrenDescription {
     view.layer.borderColor = props.borderColor.cgColor
   }
   
-  public static func render(props: ViewProps,
+  public static func childrenDescriptions(props: ViewProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

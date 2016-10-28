@@ -166,7 +166,7 @@ fileprivate extension Node {
     
     let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
-    return type(of: description).render(props: self.description.props,
+    return type(of: description).childrenDescriptions(props: self.description.props,
                                         state: self.state,
                                         update: update,
                                         dispatch: dispatch)
