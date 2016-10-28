@@ -180,7 +180,7 @@ fileprivate extension Node {
         fatalError("connected not lacks store")
       }
       
-      let state = store.anyState
+      let state = store.getAnyState()
       return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
     }
     

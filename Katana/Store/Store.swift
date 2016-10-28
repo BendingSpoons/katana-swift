@@ -11,7 +11,7 @@ import Foundation
 public protocol AnyStore: class {
   func dispatch(_ action: AnyAction)
   func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
-  var anyState: State { get }
+  func getAnyState() -> State
 }
 
 public class Store<StateType: State> {
@@ -78,7 +78,7 @@ public class Store<StateType: State> {
 }
 
 extension Store: AnyStore {
-  public var anyState: State {
+  public func getAnyState() -> State {
     return self.state
   }
 }
