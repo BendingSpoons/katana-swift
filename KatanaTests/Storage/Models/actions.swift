@@ -10,8 +10,16 @@ import Foundation
 @testable import Katana
 
 public struct AddTodoAction: Action, Equatable {
-  public let actionName = "AddTodo"
   public let title: String
+  
+  public static func reduce(state: State, action: AddTodoAction) -> State {
+    guard var s = state as? AppState else { return state }
+    
+    let todo = Todo(title: action.title, id: UUID().uuidString)
+    s.todo.todos = s.todo.todos + [todo]
+    
+    return s
+  }
   
   public static func == (lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title
@@ -19,11 +27,14 @@ public struct AddTodoAction: Action, Equatable {
 }
 
 struct RemoveTodoAction: Action {
-  let actionName = "RemoveTodo"
   let id: String
-}
-
-
-struct ExternalAction: Action {
-  let actionName = "External"
+  
+  static func reduce(state: State, action: RemoveTodoAction) -> State {
+    guard var s = state as? AppState else { return state }
+    
+    let todos = s.todo.todos.filter { $0.id != action.id }
+    s.todo.todos = todos
+    
+    return s
+  }
 }

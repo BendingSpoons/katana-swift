@@ -12,23 +12,22 @@ import XCTest
 
 class StoreTests: XCTestCase {
   func testInitialState() {
-    let store = Store<AppReducer>()
-    let state = store.state
+    let store = Store<AppState>()
+    let state = store.getState()
     
     XCTAssertEqual(state.todo, TodoState())
     XCTAssertEqual(state.user, UserState())
   }
   
   func testDispatch() {
-    
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<AppReducer>()
+    let store = Store<AppState>()
     _ = store.addListener { expectation.fulfill() }
     store.dispatch(AddTodoAction(title: "New Todo"))
     
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
+      let newState = store.getState()
       
       XCTAssertEqual(newState.todo.todos.count, 1)
       XCTAssertEqual(newState.todo.todos[0].title, "New Todo")
@@ -37,11 +36,12 @@ class StoreTests: XCTestCase {
   
   func testListener() {
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppReducer>()
+    let store = Store<AppState>()
     var newState: AppState? = nil
     
     _ = store.addListener { [unowned store] in
-      newState = store.state
+      newState = store.getState()
+      dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       expectation.fulfill()
     }
     
@@ -57,7 +57,7 @@ class StoreTests: XCTestCase {
     let expectation = self.expectation(description: "Store listener")
     let secondExpectation = self.expectation(description: "Second Store listener")
     
-    let store = Store<AppReducer>()
+    let store = Store<AppState>()
     var firstState: AppState? = nil
     var secondState: AppState? = nil
     
@@ -73,10 +73,10 @@ class StoreTests: XCTestCase {
     
     let unsubscribe = store.addListener { [unowned store] in
       if firstState != nil {
-        secondState = store.state
+        secondState = store.getState()
         
       } else {
-        firstState = store.state
+        firstState = store.getState()
       }
     }
     
@@ -96,7 +96,7 @@ class StoreTests: XCTestCase {
       XCTAssertNil(secondState)
       
       // state is ok
-      let lastState = store.state
+      let lastState = store.getState()
       let titles = lastState.todo.todos.map { $0.title }
       XCTAssertEqual(lastState.todo.todos.count, 2)
       XCTAssertEqual(titles.contains("New Todo"), true)

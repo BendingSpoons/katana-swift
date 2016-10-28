@@ -9,22 +9,23 @@
 import Foundation
 
 public protocol AnyStore: class {
-  func dispatch(_ action: Action)
+  func dispatch(_ action: AnyAction)
   func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
-  var anyState: Any { get }
+  var anyState: State { get }
 }
 
-public class Store<RootReducer: Reducer> {
-  public private(set) var state: RootReducer.StateType
-  private var listeners: [StoreListener]
-  private let middlewares: [StoreMiddleware<RootReducer.StateType>]
+public class Store<StateType: State> {
+  fileprivate var state: StateType
+  fileprivate var listeners: [StoreListener]
+//  private let middlewares: [StoreMiddleware<RootReducer.StateType>]
   
-  lazy private var dispatchFunction: StoreDispatch = {
-    let m = self.middlewares.map { middleware in
-      middleware(self.getState, self.dispatch)
-    }
-    return compose(m, storeDispatch: self.performDispatch)
-  }()
+//  lazy private var dispatchFunction: StoreDispatch = {
+//    let m = self.middlewares.map { middleware in
+//      middleware(self.getState, self.dispatch)
+//    }
+//    return compose(m, storeDispatch: self.performDispatch)
+//    return self.performDispatch
+//  }()
   
   lazy private var dispatchQueue: DispatchQueue = {
     // serial by default
@@ -33,15 +34,15 @@ public class Store<RootReducer: Reducer> {
   
   public init() {
     self.listeners = []
-    self.state = RootReducer.StateType()
-    self.middlewares = []
+    self.state = StateType.init()
+//    self.middlewares = []
   }
   
-  public init(middlewares: [StoreMiddleware<RootReducer.StateType>]) {
-    self.listeners = []
-    self.state = RootReducer.StateType()
-    self.middlewares = middlewares
-  }
+//  public init(middlewares: [StoreMiddleware<RootReducer.StateType>]) {
+//    self.listeners = []
+//    self.state = RootReducer.StateType()
+//    self.middlewares = middlewares
+//  }
 
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     self.listeners.append(listener)
@@ -52,18 +53,25 @@ public class Store<RootReducer: Reducer> {
     }
   }
   
-  public func dispatch(_ action: Action) {
+  public func dispatch(_ action: AnyAction) {
     self.dispatchQueue.async {
-      self.dispatchFunction(action)
+//      self.dispatchFunction(action)
+      self.performDispatch(action)
     }
   }
   
-  public func getState() -> RootReducer.StateType {
+  public func getState() -> StateType {
     return self.state
   }
   
-  private func performDispatch(_ action: Action) {
-    self.state = RootReducer.reduce(action: action, state: self.state)
+  private func performDispatch(_ action: AnyAction) {
+    let newState = type(of: action).anyReduce(state: self.state, action: action)
+    
+    guard let typedNewState = newState as? StateType else {
+      preconditionFailure("Action reducer returned a wrong state type")
+    }
+    
+    self.state = typedNewState
     
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
@@ -73,25 +81,25 @@ public class Store<RootReducer: Reducer> {
 }
 
 extension Store: AnyStore {
-  public var anyState: Any {
+  public var anyState: State {
     return self.state
   }
 }
 
-private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void],
-                     storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
-  guard middlewares.count > 0 else {
-    return storeDispatch
-  }
-  
-  guard middlewares.count > 1 else {
-    return middlewares.first!(storeDispatch)
-  }
-  
-  var m = middlewares
-  let last = m.removeLast()
-  
-  return m.reduce(last(storeDispatch), { chain, middleware in
-    return middleware(chain)
-  })
-}
+//private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void],
+//                     storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
+//  guard middlewares.count > 0 else {
+//    return storeDispatch
+//  }
+//  
+//  guard middlewares.count > 1 else {
+//    return middlewares.first!(storeDispatch)
+//  }
+//  
+//  var m = middlewares
+//  let last = m.removeLast()
+//  
+//  return m.reduce(last(storeDispatch), { chain, middleware in
+//    return middleware(chain)
+//  })
+//}

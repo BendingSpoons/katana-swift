@@ -8,4 +8,20 @@
 
 import Foundation
 
-public protocol Action {}
+public protocol AnyAction {
+  static func anyReduce(state: State, action: AnyAction) -> State
+}
+
+public protocol Action: AnyAction {
+  static func reduce(state: State, action: Self) -> State
+}
+
+public extension Action {
+  static func anyReduce(state: State, action: AnyAction) -> State {
+    guard let a = action as? Self else {
+      preconditionFailure("Action reducer invoked with a wrong 'action' parameter")
+    }
+    
+    return self.reduce(state: state, action: a)
+  }
+}
