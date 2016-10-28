@@ -32,7 +32,7 @@ public protocol AnyNodeDescription {
   var anyProps: Any { get }
   var replaceKey: Int { get }
   
-  func node(parent: AnyNode?) -> AnyNode
+  func makeNode(parent: AnyNode?) -> AnyNode
   func makeRoot(store: AnyStore?) -> Root
 }
 
@@ -105,7 +105,7 @@ extension AnyNodeDescription where Self: NodeDescription {
     return self.props
   }
   
-  public func node(parent: AnyNode?) -> AnyNode {
+  public func makeNode(parent: AnyNode?) -> AnyNode {
     return Node(description: self, parent: parent)
   }
   

@@ -32,7 +32,7 @@ public extension PlasticNodeDescription {
     return nil
   }
   
-  public func node(parent: AnyNode?) -> AnyNode {
+  public func makeNode(parent: AnyNode?) -> AnyNode {
     return PlasticNode(description: self, parent: parent, root: nil)
   }
   

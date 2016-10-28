@@ -61,7 +61,7 @@ public class Node<Description: NodeDescription> {
     let children  = self.renderChildren()
         
     self.children = self.processChildrenBeforeDraw(children).map {
-      $0.node(parent: self)
+      $0.makeNode(parent: self)
     }
   }
   
@@ -99,7 +99,7 @@ public class Node<Description: NodeDescription> {
   }
   
   public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
-    let node = description.node(parent: self) as! InternalAnyNode
+    let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
     node.draw(container: container)
     return node
@@ -248,7 +248,7 @@ fileprivate extension Node {
         
       } else {
         //else create a new node
-        let node = newChild.node(parent: self)
+        let node = newChild.makeNode(parent: self)
         viewIndexes.append(children.count + childrenToAdd.count)
         nodes.append(node)
         childrenToAdd.append(node)
