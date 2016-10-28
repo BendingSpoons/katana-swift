@@ -38,3 +38,12 @@ struct RemoveTodoAction: Action {
     return s
   }
 }
+
+struct SyncAddTodoAction: SyncAction {
+  var payload: String
+
+  static func reduce(state: inout AppState, action: SyncAddTodoAction) {
+    let todo = Todo(title: action.payload, id: UUID().uuidString)
+    state.todo.todos = state.todo.todos + [todo]
+  }
+}
