@@ -10,9 +10,10 @@ import Foundation
 
 public typealias StoreListener = () -> Void
 public typealias StoreUnsubscribe = () -> ()
-//public typealias StoreMiddleware<StorageState: State> =
-//  (_ getState: @escaping () -> StorageState, _ dispatch: @escaping StoreDispatch) ->
-//    (_ next: @escaping StoreDispatch) ->
-//      (_ action: Action) -> Void
+
+public typealias StoreMiddleware<StateType: State> =
+  (_ getState: @escaping () -> StateType, _ dispatch: @escaping StoreDispatch) ->
+    (_ next: @escaping StoreDispatch) ->
+      (_ action: AnyAction) -> Void
 
 public typealias StoreDispatch = (_: AnyAction) -> Void

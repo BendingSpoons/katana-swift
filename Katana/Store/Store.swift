@@ -17,32 +17,29 @@ public protocol AnyStore: class {
 public class Store<StateType: State> {
   fileprivate var state: StateType
   fileprivate var listeners: [StoreListener]
-//  private let middlewares: [StoreMiddleware<RootReducer.StateType>]
+  fileprivate let middlewares: [StoreMiddleware<StateType>]
   
-//  lazy private var dispatchFunction: StoreDispatch = {
-//    let m = self.middlewares.map { middleware in
-//      middleware(self.getState, self.dispatch)
-//    }
-//    return compose(m, storeDispatch: self.performDispatch)
-//    return self.performDispatch
-//  }()
+  lazy private var dispatchFunction: StoreDispatch = {
+    let m = self.middlewares.map { middleware in
+      middleware(self.getState, self.dispatch)
+    }
+    return self.compose(m, with: self.performDispatch)
+  }()
   
   lazy private var dispatchQueue: DispatchQueue = {
     // serial by default
     return DispatchQueue(label: "katana.store.queue")
   }()
   
-  public init() {
-    self.listeners = []
-    self.state = StateType.init()
-//    self.middlewares = []
+  convenience public init() {
+    self.init(middlewares: [])
   }
   
-//  public init(middlewares: [StoreMiddleware<RootReducer.StateType>]) {
-//    self.listeners = []
-//    self.state = RootReducer.StateType()
-//    self.middlewares = middlewares
-//  }
+  public init(middlewares: [StoreMiddleware<StateType>]) {
+    self.listeners = []
+    self.state = StateType.init()
+    self.middlewares = middlewares
+  }
 
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     self.listeners.append(listener)
@@ -55,8 +52,7 @@ public class Store<StateType: State> {
   
   public func dispatch(_ action: AnyAction) {
     self.dispatchQueue.async {
-//      self.dispatchFunction(action)
-      self.performDispatch(action)
+      self.dispatchFunction(action)
     }
   }
   
@@ -71,6 +67,7 @@ public class Store<StateType: State> {
       preconditionFailure("Action reducer returned a wrong state type")
     }
     
+    print(typedNewState)
     self.state = typedNewState
     
     // listener are always invoked in the main queue
@@ -86,20 +83,25 @@ extension Store: AnyStore {
   }
 }
 
-//private func compose(_ middlewares: [(_ next: @escaping StoreDispatch) -> (_ action: Action) -> Void],
-//                     storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
-//  guard middlewares.count > 0 else {
-//    return storeDispatch
-//  }
-//  
-//  guard middlewares.count > 1 else {
-//    return middlewares.first!(storeDispatch)
-//  }
-//  
-//  var m = middlewares
-//  let last = m.removeLast()
-//  
-//  return m.reduce(last(storeDispatch), { chain, middleware in
-//    return middleware(chain)
-//  })
-//}
+fileprivate extension Store {
+  fileprivate typealias PariallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> Void
+
+  fileprivate func compose(_ middlewares: [PariallyAppliedMiddleware],
+                       with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
+
+    guard middlewares.count > 0 else {
+      return storeDispatch
+    }
+  
+    guard middlewares.count > 1 else {
+      return middlewares.first!(storeDispatch)
+    }
+  
+    var m = middlewares
+    let last = m.removeLast()
+  
+    return m.reduce(last(storeDispatch), { chain, middleware in
+      return middleware(chain)
+    })
+  }
+}
