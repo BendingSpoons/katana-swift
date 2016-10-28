@@ -8,7 +8,7 @@
 
 import XCTest
 @testable import Katana
-import KatanaNodes
+import KatanaElements
 
 class PlasticNodeTests: XCTestCase {
   override func setUp() {

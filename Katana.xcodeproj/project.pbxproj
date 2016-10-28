@@ -25,6 +25,7 @@
 		6513096A1DC352D800007B6B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309481DC351DB00007B6B /* TouchHandler.swift */; };
 		6513096B1DC352D800007B6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309491DC351DB00007B6B /* View.swift */; };
 		6513096E1DC3678600007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
+		651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		8133155A1D7B726000FBE210 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151D1D7B726000FBE210 /* Animation.swift */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
@@ -110,6 +111,13 @@
 			remoteInfo = Katana;
 		};
 		6513096F1DC367A700007B6B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
+			remoteInfo = KatanaElements;
+		};
+		651309711DC36B0400007B6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
 			proxyType = 1;
@@ -252,6 +260,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */,
 				81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,6 +753,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				651309721DC36B0400007B6B /* PBXTargetDependency */,
 				81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */,
 			);
 			name = KatanaTests;
@@ -877,7 +887,6 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/KatanaNodes.framework",
 			);
 			name = Carthage;
 			outputPaths = (
@@ -1027,6 +1036,11 @@
 			isa = PBXTargetDependency;
 			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
 			targetProxy = 6513096F1DC367A700007B6B /* PBXContainerItemProxy */;
+		};
+		651309721DC36B0400007B6B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
+			targetProxy = 651309711DC36B0400007B6B /* PBXContainerItemProxy */;
 		};
 		813F4D251D5F3E93007CDB53 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1302,6 +1316,7 @@
 				6513095A1DC3529F00007B6B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */ = {
 			isa = XCConfigurationList;
