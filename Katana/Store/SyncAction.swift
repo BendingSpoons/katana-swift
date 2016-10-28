@@ -19,14 +19,12 @@ public protocol SyncAction: Action {
 
 public extension SyncAction {
   static func reduce(state: State, action: Self) -> State {
-    guard let s = state as? StateType,
-          let a = action as? Self
-      else {
-        preconditionFailure("Given state or action are not compatible with the current action type")
+    guard let s = state as? StateType else {
+      preconditionFailure("Given state or action are not compatible with the current action type")
     }
     
     var mutableState = s
-    self.reduce(state: &mutableState, action: a)
+    self.reduce(state: &mutableState, action: action)
     return mutableState
   }
 }
