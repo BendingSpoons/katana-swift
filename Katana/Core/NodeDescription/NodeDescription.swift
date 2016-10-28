@@ -33,7 +33,7 @@ public protocol AnyNodeDescription {
   var replaceKey: Int { get }
   
   func node(parent: AnyNode?) -> AnyNode
-  func root(store: AnyStore?) -> Root
+  func makeRoot(store: AnyStore?) -> Root
 }
 
 public protocol NodeDescription: AnyNodeDescription {
@@ -109,7 +109,7 @@ extension AnyNodeDescription where Self: NodeDescription {
     return Node(description: self, parent: parent)
   }
   
-  public func root(store: AnyStore?) -> Root {
+  public func makeRoot(store: AnyStore?) -> Root {
     let root = Root(store: store)
     let node = Node(description: self, parent: nil, root: root)
     root.node = node

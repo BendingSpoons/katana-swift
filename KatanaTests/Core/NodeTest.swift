@@ -5,7 +5,7 @@ import KatanaElements
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
 
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     let node = root.node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
@@ -33,7 +33,7 @@ class NodeTest: XCTestCase {
   
   func testViewDeallocation() {
     
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     let node = root.node!
     
     let rootVew = UIView()

@@ -16,14 +16,14 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let root = TestNode(props: EmptyProps()).root(store: nil)
+    let root = TestNode(props: EmptyProps()).makeRoot(store: nil)
     root.draw(container: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
   
   func testNodeDeallocationPlastic() {
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     
   
     var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
@@ -49,7 +49,7 @@ class PlasticNodeTests: XCTestCase {
   
   func testViewDeallocationWithPlastic() {
 
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     
     let rootVew = UIView()
     root.draw(container: rootVew)

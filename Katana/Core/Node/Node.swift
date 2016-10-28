@@ -29,7 +29,7 @@ public protocol AnyNode: class {
 
 protocol InternalAnyNode: AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
-  //use Description().root(..).draw(..)
+  //use Description().makeRoot(..).draw(..)
   func draw(container: DrawableContainer)
 }
 
