@@ -133,7 +133,7 @@ public class ViewsContainer<Key>: HierarchyManager {
 internal extension ViewsContainer {
   internal func flattenChildren(_ children: [AnyNodeDescription], accumulator: inout [(String, AnyNodeDescription)]) {
     for node in children {
-      if let n = node as? AnyNodeWithChildrenDescription {
+      if let n = node as? AnyNodeDescriptionWithChildren {
         self.flattenChildren(n.children, accumulator: &accumulator)
       }
       
@@ -170,7 +170,7 @@ internal extension ViewsContainer {
         accumulator[key] = parentRepresentation
       }
       
-      if let n = node as? AnyNodeWithChildrenDescription {
+      if let n = node as? AnyNodeDescriptionWithChildren {
         nodeChildrenHierarchy(n.children, parentRepresentation: currentNode, accumulator: &accumulator)
       }
     }

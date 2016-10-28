@@ -60,7 +60,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
         }
       }
       
-      if var n = newChild as? AnyNodeWithChildrenDescription {
+      if var n = newChild as? AnyNodeDescriptionWithChildren {
         n.children = self.getFramedChildren(fromChildren: n.children, frames: frames)
         return n as AnyNodeDescription
         

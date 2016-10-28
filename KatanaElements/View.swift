@@ -35,7 +35,7 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisab
 }
 
 
-public struct View: NodeDescription, NodeWithChildrenDescription {
+public struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public var props: ViewProps
 

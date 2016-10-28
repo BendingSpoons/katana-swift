@@ -8,15 +8,15 @@
 
 import Foundation
 
-public protocol AnyNodeWithChildrenDescription: AnyNodeDescription {
+public protocol AnyNodeDescriptionWithChildren: AnyNodeDescription {
   var children: [AnyNodeDescription] { get set }
 }
 
-public protocol NodeWithChildrenDescription: NodeDescription, AnyNodeWithChildrenDescription {
+public protocol NodeDescriptionWithChildren: NodeDescription, AnyNodeDescriptionWithChildren {
   associatedtype PropsType: Childrenable
 }
 
-public extension NodeWithChildrenDescription {
+public extension NodeDescriptionWithChildren {
   public var children: [AnyNodeDescription] {
     get {
       return self.props.children

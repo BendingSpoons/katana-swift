@@ -34,7 +34,7 @@ public struct TouchHandlerProps: NodeProps, Childrenable, Keyable {
   public init() {}
 }
 
-public struct TouchHandler: NodeDescription, NodeWithChildrenDescription {
+public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
   public typealias NativeView = TouchHandlerView
   
   public var props: TouchHandlerProps
