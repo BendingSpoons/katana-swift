@@ -58,15 +58,15 @@ public class Node<Description: NodeDescription> {
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
-    let children  = self.renderChildren()
+    let childrenDescriptions  = self.childrenDescriptions() // should be renderedChildren()
         
-    self.children = self.processChildrenBeforeDraw(children).map {
+    self.children = self.processedChildrenBeforeDraw(childrenDescriptions).map {
       $0.makeNode(parent: self)
     }
   }
   
   // Customization point for sublcasses. It allowes to update the children before they get drawn
-  public func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+  public func processedChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
   
@@ -157,7 +157,7 @@ fileprivate extension Node {
     }
   }
   
-  fileprivate func renderChildren() -> [AnyNodeDescription] {
+  fileprivate func childrenDescriptions() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
         self?.update(state: state)
@@ -224,31 +224,31 @@ fileprivate extension Node {
       }
     }
     
-    var newChildren = self.renderChildren()
+    var newChildrenDescriptions = self.childrenDescriptions()
     
-    newChildren = self.processChildrenBeforeDraw(newChildren)
+    newChildrenDescriptions = self.processedChildrenBeforeDraw(newChildrenDescriptions)
     
     var nodes: [AnyNode] = []
     var viewIndexes: [Int] = []
     var childrenToAdd: [AnyNode] = []
     
-    for newChild in newChildren {
-      let key = newChild.replaceKey
+    for newChildDescription in newChildrenDescriptions {
+      let key = newChildDescription.replaceKey
       
       let childrenCount = currentChildren[key]?.count ?? 0
       
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.anyDescription.replaceKey == newChild.replaceKey)
+        assert(replacement.node.anyDescription.replaceKey == newChildDescription.replaceKey)
         
-        try! replacement.node.update(description: newChild, parentAnimation: childrenAnimation)
+        try! replacement.node.update(description: newChildDescription, parentAnimation: childrenAnimation)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
         
       } else {
         //else create a new node
-        let node = newChild.makeNode(parent: self)
+        let node = newChildDescription.makeNode(parent: self)
         viewIndexes.append(children.count + childrenToAdd.count)
         nodes.append(node)
         childrenToAdd.append(node)
