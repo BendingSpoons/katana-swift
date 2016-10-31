@@ -30,7 +30,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssert(references.count == 6)
     XCTAssert(references.filter { $0.value != nil }.count == 6)
     
-    try! root.node!.update(description: App(props: AppProps(i:1), children: []))
+    try! root.node!.update(with: App(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 6)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
@@ -38,7 +38,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
     
-    try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+    try! root.node!.update(with: App(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 5)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -59,7 +59,7 @@ class PlasticNodeTests: XCTestCase {
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+      try! root.node!.update(with: App(props: AppProps(i:2), children: []))
     }
     
     
