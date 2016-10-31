@@ -1,5 +1,5 @@
 //
-//  typealiases.swift
+//  Typealiases.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 29/08/16.
