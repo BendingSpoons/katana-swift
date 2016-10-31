@@ -9,11 +9,6 @@
 /* Begin PBXBuildFile section */
 		651309531DC3529F00007B6B /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 651309511DC3529F00007B6B /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6513095C1DC352C600007B6B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309381DC351DB00007B6B /* Button.swift */; };
-		6513095D1DC352CC00007B6B /* Grid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513093A1DC351DB00007B6B /* Grid.swift */; };
-		6513095E1DC352CC00007B6B /* GridDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513093B1DC351DB00007B6B /* GridDelegate.swift */; };
-		6513095F1DC352CC00007B6B /* NativeGridLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513093C1DC351DB00007B6B /* NativeGridLayout.swift */; };
-		651309601DC352CC00007B6B /* NativeGridView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513093D1DC351DB00007B6B /* NativeGridView.swift */; };
-		651309611DC352CC00007B6B /* NativeGridViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6513093E1DC351DB00007B6B /* NativeGridViewCell.swift */; };
 		651309631DC352D800007B6B /* CellNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309411DC351DB00007B6B /* CellNativeView.swift */; };
 		651309641DC352D800007B6B /* CellNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309421DC351DB00007B6B /* CellNodeDescription.swift */; };
 		651309651DC352D800007B6B /* NativeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309431DC351DB00007B6B /* NativeTableView.swift */; };
@@ -146,11 +141,6 @@
 
 /* Begin PBXFileReference section */
 		651309381DC351DB00007B6B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = KatanaElements/Button.swift; sourceTree = SOURCE_ROOT; };
-		6513093A1DC351DB00007B6B /* Grid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Grid.swift; sourceTree = "<group>"; };
-		6513093B1DC351DB00007B6B /* GridDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridDelegate.swift; sourceTree = "<group>"; };
-		6513093C1DC351DB00007B6B /* NativeGridLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeGridLayout.swift; sourceTree = "<group>"; };
-		6513093D1DC351DB00007B6B /* NativeGridView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeGridView.swift; sourceTree = "<group>"; };
-		6513093E1DC351DB00007B6B /* NativeGridViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeGridViewCell.swift; sourceTree = "<group>"; };
 		651309411DC351DB00007B6B /* CellNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellNativeView.swift; sourceTree = "<group>"; };
 		651309421DC351DB00007B6B /* CellNodeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellNodeDescription.swift; sourceTree = "<group>"; };
 		651309431DC351DB00007B6B /* NativeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableView.swift; sourceTree = "<group>"; };
@@ -290,7 +280,6 @@
 			children = (
 				A1576C371DC73CC9008281C0 /* Common */,
 				A1576C301DC73BC9008281C0 /* TouchHandler */,
-				651309391DC351DB00007B6B /* Grid */,
 				651309401DC351DB00007B6B /* Table */,
 				651309471DC351DB00007B6B /* Label.swift */,
 				651309381DC351DB00007B6B /* Button.swift */,
@@ -300,19 +289,6 @@
 			name = KatanaElements;
 			path = Katana;
 			sourceTree = "<group>";
-		};
-		651309391DC351DB00007B6B /* Grid */ = {
-			isa = PBXGroup;
-			children = (
-				6513093A1DC351DB00007B6B /* Grid.swift */,
-				6513093B1DC351DB00007B6B /* GridDelegate.swift */,
-				6513093C1DC351DB00007B6B /* NativeGridLayout.swift */,
-				6513093D1DC351DB00007B6B /* NativeGridView.swift */,
-				6513093E1DC351DB00007B6B /* NativeGridViewCell.swift */,
-			);
-			name = Grid;
-			path = KatanaElements/Grid;
-			sourceTree = SOURCE_ROOT;
 		};
 		651309401DC351DB00007B6B /* Table */ = {
 			isa = PBXGroup;
@@ -945,11 +921,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6513095C1DC352C600007B6B /* Button.swift in Sources */,
-				6513095D1DC352CC00007B6B /* Grid.swift in Sources */,
-				6513095E1DC352CC00007B6B /* GridDelegate.swift in Sources */,
-				6513095F1DC352CC00007B6B /* NativeGridLayout.swift in Sources */,
-				651309601DC352CC00007B6B /* NativeGridView.swift in Sources */,
-				651309611DC352CC00007B6B /* NativeGridViewCell.swift in Sources */,
 				651309631DC352D800007B6B /* CellNativeView.swift in Sources */,
 				651309641DC352D800007B6B /* CellNodeDescription.swift in Sources */,
 				A1576C3E1DC75095008281C0 /* Image.swift in Sources */,
