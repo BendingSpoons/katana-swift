@@ -27,7 +27,7 @@ struct User: Equatable {
 }
 
 struct TodoState: State, Equatable {
-  let todos: [Todo]
+  var todos: [Todo]
   
   static func == (lhs: TodoState, rhs: TodoState) -> Bool {
     return lhs.todos == rhs.todos
@@ -41,7 +41,7 @@ extension TodoState {
 }
 
 struct UserState: State, Equatable {
-  let users: [User]
+  var users: [User]
 
   static func == (lhs: UserState, rhs: UserState) -> Bool {
     return lhs.users == rhs.users
@@ -55,8 +55,8 @@ extension UserState {
 }
 
 struct AppState: State, Equatable {
-  let todo: TodoState
-  let user: UserState
+  var todo: TodoState
+  var user: UserState
   
   static func == (lhs: AppState, rhs: AppState) -> Bool {
     return lhs.todo == rhs.todo && lhs.user == rhs.user

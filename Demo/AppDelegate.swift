@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController?.view.backgroundColor = UIColor.white
     self.window?.makeKeyAndVisible()
 
-    //mineField()
+//    mineField()
     toDoDemo()
 
     return true
@@ -34,27 +34,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
     
-    let sideEffects = sideEffectsMiddleware(state: MineFieldState.self, dependencies: nil)
-    let actionLogger = actionLoggerMiddleware(state: MineFieldState.self)
-    
-    let store = Store<SmartReducer<MineFieldState>>(middlewares: [sideEffects, actionLogger])
+    let actionLogger = actionLoggerMiddleware(MineFieldState.self)
+    let store = Store<MineFieldState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = MineField(props: MineFieldProps().frame(rootBounds)).root(store: store)
-    self.root!.draw(container: view)
-    
+    self.root!.draw(container: view) 
   }
   
   private func toDoDemo() {
     let view = (self.window?.rootViewController?.view)!
     let rootBounds = UIScreen.main.bounds
     
-    let sideEffects = sideEffectsMiddleware(state: ToDoState.self, dependencies: nil)
-    let actionLogger = actionLoggerMiddleware(state: ToDoState.self)
-    
-    let store = Store<SmartReducer<ToDoState>>(middlewares: [sideEffects, actionLogger])
+    let actionLogger = actionLoggerMiddleware(ToDoState.self)
+    let store = Store<ToDoState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = ToDo(props: ToDoProps().frame(rootBounds)).root(store: store)
     self.root!.draw(container: view)
-    
   }
 }

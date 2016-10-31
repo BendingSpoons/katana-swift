@@ -8,7 +8,7 @@
 
 import Katana
 
-public func actionLoggerMiddleware<S: State>(state _: S.Type) -> StoreMiddleware<S> {
+public func actionLoggerMiddleware<S: State>(_ type: S.Type) -> StoreMiddleware<S> {
   return { state, dispatch in
     return { next in
       return { action in
