@@ -37,7 +37,7 @@ class NodeTest: XCTestCase {
     let node = root.node!
     
     let rootVew = UIView()
-    root.draw(container: rootVew)
+    root.draw(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }
