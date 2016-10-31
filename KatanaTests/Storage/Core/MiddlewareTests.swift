@@ -31,7 +31,7 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let store = Store<AppState>(middlewares: [middleware])
+    let store = Store<AppState>(middlewares: [middleware], dependencyContainer: EmptySideEffectDependencyContainer.self)
     let initialState = store.getState()
     let action = AddTodoAction(title: "New Todo")
     store.dispatch(action)
@@ -69,7 +69,10 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let store = Store<AppState>(middlewares: [basicMiddleware, secondMiddleware])
+    let store = Store<AppState>(
+      middlewares: [basicMiddleware, secondMiddleware],
+      dependencyContainer: EmptySideEffectDependencyContainer.self
+    )
     
     let action = AddTodoAction(title: "New Todo")
     let initialState = store.getState()
@@ -113,7 +116,10 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let store = Store<AppState>(middlewares: [basicMiddleware, secondMiddleware])
+    let store = Store<AppState>(
+      middlewares: [basicMiddleware, secondMiddleware],
+      dependencyContainer: EmptySideEffectDependencyContainer.self
+    )
     
     let initialState = store.getState()
     let action = AddTodoAction(title: "New Todo")
@@ -154,7 +160,10 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let store = Store<AppState>(middlewares: [basicMiddleware, secondMiddleware])
+    let store = Store<AppState>(
+      middlewares: [basicMiddleware, secondMiddleware],
+      dependencyContainer: EmptySideEffectDependencyContainer.self
+    )
     
     let action = AddTodoAction(title: "New Todo")
     store.dispatch(action)

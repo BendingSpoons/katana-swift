@@ -47,3 +47,27 @@ struct SyncAddTodoAction: SyncAction {
     state.todo.todos = state.todo.todos + [todo]
   }
 }
+
+struct SpyActionWithSideEffect: Action, SideEffectable {
+  typealias ActionWithSideEffectCallback = (
+    _ action: SpyActionWithSideEffect,
+    _ state: State,
+    _ dispatch: @escaping StoreDispatch,
+    _ dependencies: SideEffectDependencyContainer) -> Void
+  
+  var sideEffectInvokedClosure: ActionWithSideEffectCallback?
+  var reduceInvokedClosure: (() -> Void)?
+  
+  public static func reduce(state: State, action: SpyActionWithSideEffect) -> State {
+    action.reduceInvokedClosure?()
+    return state
+  }
+  
+  static func sideEffect(action: SpyActionWithSideEffect,
+                         state: State,
+                         dispatch: @escaping StoreDispatch,
+                         dependencies: SideEffectDependencyContainer
+    ) {
+    action.sideEffectInvokedClosure?(action, state, dispatch, dependencies)
+  }
+}
