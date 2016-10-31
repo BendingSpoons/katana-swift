@@ -9,11 +9,10 @@
 import Katana
 
 
-struct StartGame: SyncSmartAction {
+struct StartGame: SyncAction {
   var payload: MineFieldDifficulty
   
   static func reduce(state: inout MineFieldState, action: StartGame) {
     state = MineFieldState(difficulty: action.payload)
   }
-  
 }

@@ -8,7 +8,7 @@
 
 import Katana
 
-struct DiscloseCell: SyncSmartAction {
+struct DiscloseCell: SyncAction {
   var payload: (col: Int, raw: Int)
   
   static func reduce(state: inout MineFieldState, action: DiscloseCell) {
@@ -30,8 +30,7 @@ struct DiscloseCell: SyncSmartAction {
         
       }
     }
-    state.disclose(col: col, row: row)
     
+    state.disclose(col: col, row: row)
   }
-  
 }
