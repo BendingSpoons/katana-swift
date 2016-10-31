@@ -18,10 +18,10 @@ public protocol Action: AnyAction {
 
 public extension Action {
   static func anyReduce(state: State, action: AnyAction) -> State {
-    guard let a = action as? Self else {
+    guard let action = action as? Self else {
       preconditionFailure("Action reducer invoked with a wrong 'action' parameter")
     }
     
-    return self.reduce(state: state, action: a)
+    return self.reduce(state: state, action: action)
   }
 }

@@ -34,10 +34,10 @@ public extension SideEffectable {
     dependencies: SideEffectDependencyContainer
   ) {
    
-    guard let a = action as? Self else {
+    guard let action = action as? Self else {
       preconditionFailure("Action side effect invoked with a wrong 'action' parameter")
     }
     
-    self.sideEffect(action: a, state: state, dispatch: dispatch, dependencies: dependencies)
+    self.sideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
   }
 }
