@@ -11,9 +11,13 @@ import Katana
 struct RemoveTodo: SyncAction {
   var payload: Int
   
-  static func reduce(state: inout ToDoState, action: RemoveTodo) {
+  static func reduce(state: State, action: RemoveTodo) -> State {
+    guard var state = state as? ToDoState else {
+      fatalError()
+    }
+    
     state.todos.remove(at: action.payload)
     state.todosCompleted.remove(at: action.payload)
-
+    return state
   }
 }

@@ -11,7 +11,12 @@ import Katana
 struct ToogleTodoCompletion: SyncAction {
   var payload: Int
   
-  static func reduce(state: inout ToDoState, action: ToogleTodoCompletion) {
+  static func reduce(state: State, action: ToogleTodoCompletion) -> State {
+    guard var state = state as? ToDoState else {
+      fatalError()
+    }
+
     state.todosCompleted[action.payload] = !state.todosCompleted[action.payload]
+    return state
   }
 }

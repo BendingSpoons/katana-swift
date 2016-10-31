@@ -11,8 +11,13 @@ import Katana
 struct AddTodo: SyncAction {
   var payload: String
   
-  static func reduce(state: inout ToDoState, action: AddTodo) {
+  static func reduce(state: State, action: AddTodo) -> State {
+    guard var state = state as? ToDoState else {
+      fatalError()
+    }
+
     state.todos.append(action.payload)
     state.todosCompleted.append(false)
+    return state
   }
 }

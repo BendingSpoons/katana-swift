@@ -12,7 +12,7 @@ import Katana
 struct StartGame: SyncAction {
   var payload: MineFieldDifficulty
   
-  static func reduce(state: inout MineFieldState, action: StartGame) {
-    state = MineFieldState(difficulty: action.payload)
+  static func reduce(state: State, action: StartGame) -> State {
+    return MineFieldState(difficulty: action.payload)
   }
 }

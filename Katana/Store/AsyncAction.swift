@@ -13,7 +13,6 @@ public enum AsyncActionState {
 }
 
 public protocol AsyncAction: Action {
-  associatedtype StateType: State
   associatedtype LoadingPayload
   associatedtype CompletedPayload
   associatedtype FailedPayload
@@ -23,9 +22,9 @@ public protocol AsyncAction: Action {
   var completedPayload: CompletedPayload? { get set }
   var failedPayload: FailedPayload? { get set }
   
-  static func loadingReduce(state: inout StateType, action: Self)
-  static func completedReduce(state: inout StateType, action: Self)
-  static func failedReduce(state: inout StateType, action: Self)
+  static func loadingReduce(state: State, action: Self) -> State
+  static func completedReduce(state: State, action: Self) -> State
+  static func failedReduce(state: State, action: Self) -> State
   
   init(payload: LoadingPayload)
 
@@ -35,24 +34,16 @@ public protocol AsyncAction: Action {
 
 public extension AsyncAction {
   public static func reduce(state: State, action: Self) -> State {
-    guard let s = state as? StateType else {
-      preconditionFailure("Given state or action are not compatible with the current action type")
-    }
-    
-    var mutableState = s
-    
     switch action.state {
     case .loading:
-      self.loadingReduce(state: &mutableState, action: action)
+      return self.loadingReduce(state: state, action: action)
       
     case .completed:
-      self.completedReduce(state: &mutableState, action: action)
+      return self.completedReduce(state: state, action: action)
       
     case .failed:
-      self.failedReduce(state: &mutableState, action: action)
+      return self.failedReduce(state: state, action: action)
     }
-    
-    return mutableState
   }
   
   public func completedAction(payload: CompletedPayload) -> Self {
