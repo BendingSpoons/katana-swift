@@ -2,7 +2,7 @@
 //  TableDelegate.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 22/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
@@ -12,8 +12,9 @@ import Katana
 public protocol TableDelegate {
   func numberOfSections() -> Int
   func numberOfRows(forSection section: Int) -> Int
-  func nodeDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription
-  func height(forRowAt indexPath: IndexPath) -> Value
+  func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription
+  func height(forRowAt indexPath: IndexPath) -> CGFloat
+  func isEqual(to anotherDelegate: TableDelegate) -> Bool
 }
 
 public extension TableDelegate {
@@ -22,20 +23,24 @@ public extension TableDelegate {
   }
 }
 
-struct EmptyTableDelegate: TableDelegate {
-  func numberOfSections() -> Int {
+public struct EmptyTableDelegate: TableDelegate {
+  public func numberOfSections() -> Int {
     return 0
   }
 
-  func numberOfRows(forSection section: Int) -> Int {
+  public func numberOfRows(forSection section: Int) -> Int {
     return 0
   }
   
-  func nodeDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
+  public func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
     fatalError()
   }
 
-  func height(forRowAt indexPath: IndexPath) -> Value {
+  public func height(forRowAt indexPath: IndexPath) -> CGFloat {
     fatalError()
+  }
+  
+  public func isEqual(to anotherDelegate: TableDelegate) -> Bool {
+    return anotherDelegate is EmptyTableDelegate
   }
 }

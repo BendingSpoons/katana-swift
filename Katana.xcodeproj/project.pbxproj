@@ -9,10 +9,9 @@
 /* Begin PBXBuildFile section */
 		651309531DC3529F00007B6B /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 651309511DC3529F00007B6B /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		6513095C1DC352C600007B6B /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309381DC351DB00007B6B /* Button.swift */; };
-		651309631DC352D800007B6B /* CellNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309411DC351DB00007B6B /* CellNativeView.swift */; };
-		651309641DC352D800007B6B /* CellNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309421DC351DB00007B6B /* CellNodeDescription.swift */; };
-		651309651DC352D800007B6B /* NativeTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309431DC351DB00007B6B /* NativeTableView.swift */; };
-		651309661DC352D800007B6B /* NativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309441DC351DB00007B6B /* NativeTableViewCell.swift */; };
+		651309641DC352D800007B6B /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309421DC351DB00007B6B /* TableCell.swift */; };
+		651309651DC352D800007B6B /* NativeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309431DC351DB00007B6B /* NativeTable.swift */; };
+		651309661DC352D800007B6B /* NativeTableWrapperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309441DC351DB00007B6B /* NativeTableWrapperCell.swift */; };
 		651309671DC352D800007B6B /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309451DC351DB00007B6B /* Table.swift */; };
 		651309681DC352D800007B6B /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309461DC351DB00007B6B /* TableDelegate.swift */; };
 		651309691DC352D800007B6B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309471DC351DB00007B6B /* Label.swift */; };
@@ -141,10 +140,9 @@
 
 /* Begin PBXFileReference section */
 		651309381DC351DB00007B6B /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Button.swift; path = KatanaElements/Button.swift; sourceTree = SOURCE_ROOT; };
-		651309411DC351DB00007B6B /* CellNativeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellNativeView.swift; sourceTree = "<group>"; };
-		651309421DC351DB00007B6B /* CellNodeDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellNodeDescription.swift; sourceTree = "<group>"; };
-		651309431DC351DB00007B6B /* NativeTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableView.swift; sourceTree = "<group>"; };
-		651309441DC351DB00007B6B /* NativeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableViewCell.swift; sourceTree = "<group>"; };
+		651309421DC351DB00007B6B /* TableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		651309431DC351DB00007B6B /* NativeTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTable.swift; sourceTree = "<group>"; };
+		651309441DC351DB00007B6B /* NativeTableWrapperCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableWrapperCell.swift; sourceTree = "<group>"; };
 		651309451DC351DB00007B6B /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		651309461DC351DB00007B6B /* TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
 		651309471DC351DB00007B6B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = KatanaElements/Label.swift; sourceTree = SOURCE_ROOT; };
@@ -293,10 +291,9 @@
 		651309401DC351DB00007B6B /* Table */ = {
 			isa = PBXGroup;
 			children = (
-				651309411DC351DB00007B6B /* CellNativeView.swift */,
-				651309421DC351DB00007B6B /* CellNodeDescription.swift */,
-				651309431DC351DB00007B6B /* NativeTableView.swift */,
-				651309441DC351DB00007B6B /* NativeTableViewCell.swift */,
+				651309421DC351DB00007B6B /* TableCell.swift */,
+				651309431DC351DB00007B6B /* NativeTable.swift */,
+				651309441DC351DB00007B6B /* NativeTableWrapperCell.swift */,
 				651309451DC351DB00007B6B /* Table.swift */,
 				651309461DC351DB00007B6B /* TableDelegate.swift */,
 			);
@@ -921,11 +918,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				6513095C1DC352C600007B6B /* Button.swift in Sources */,
-				651309631DC352D800007B6B /* CellNativeView.swift in Sources */,
-				651309641DC352D800007B6B /* CellNodeDescription.swift in Sources */,
+				651309641DC352D800007B6B /* TableCell.swift in Sources */,
 				A1576C3E1DC75095008281C0 /* Image.swift in Sources */,
-				651309651DC352D800007B6B /* NativeTableView.swift in Sources */,
-				651309661DC352D800007B6B /* NativeTableViewCell.swift in Sources */,
+				651309651DC352D800007B6B /* NativeTable.swift in Sources */,
+				651309661DC352D800007B6B /* NativeTableWrapperCell.swift in Sources */,
 				651309671DC352D800007B6B /* Table.swift in Sources */,
 				651309681DC352D800007B6B /* TableDelegate.swift in Sources */,
 				651309691DC352D800007B6B /* Label.swift in Sources */,
