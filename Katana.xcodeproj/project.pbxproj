@@ -22,7 +22,6 @@
 		651309671DC352D800007B6B /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309451DC351DB00007B6B /* Table.swift */; };
 		651309681DC352D800007B6B /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309461DC351DB00007B6B /* TableDelegate.swift */; };
 		651309691DC352D800007B6B /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309471DC351DB00007B6B /* Text.swift */; };
-		6513096A1DC352D800007B6B /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309481DC351DB00007B6B /* TouchHandler.swift */; };
 		6513096B1DC352D800007B6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309491DC351DB00007B6B /* View.swift */; };
 		6513096E1DC3678600007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
@@ -99,6 +98,10 @@
 		81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4971D8430AA0079AD32 /* .swiftlint.yml */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
+		A1576C341DC73C05008281C0 /* NativeTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C311DC73C05008281C0 /* NativeTouchHandler.swift */; };
+		A1576C351DC73C05008281C0 /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C321DC73C05008281C0 /* TouchHandler.swift */; };
+		A1576C361DC73C05008281C0 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */; };
+		A1576C391DC73CE2008281C0 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C381DC73CE2008281C0 /* Buildable.swift */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -155,7 +158,6 @@
 		651309451DC351DB00007B6B /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		651309461DC351DB00007B6B /* TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
 		651309471DC351DB00007B6B /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Text.swift; path = KatanaElements/Text.swift; sourceTree = SOURCE_ROOT; };
-		651309481DC351DB00007B6B /* TouchHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TouchHandler.swift; path = KatanaElements/TouchHandler.swift; sourceTree = SOURCE_ROOT; };
 		651309491DC351DB00007B6B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = KatanaElements/View.swift; sourceTree = SOURCE_ROOT; };
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		651309511DC3529F00007B6B /* KatanaElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
@@ -238,6 +240,10 @@
 		81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56DA1D5F3A6E00B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EA56E51D5F3A8A00B6290E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1576C311DC73C05008281C0 /* NativeTouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTouchHandler.swift; sourceTree = "<group>"; };
+		A1576C321DC73C05008281C0 /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
+		A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
+		A1576C381DC73CE2008281C0 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -280,12 +286,13 @@
 		651309371DC350F000007B6B /* KatanaElements */ = {
 			isa = PBXGroup;
 			children = (
+				A1576C371DC73CC9008281C0 /* Common */,
+				A1576C301DC73BC9008281C0 /* TouchHandler */,
 				651309381DC351DB00007B6B /* Button.swift */,
 				651309391DC351DB00007B6B /* Grid */,
 				6513093F1DC351DB00007B6B /* NodesCommons.swift */,
 				651309401DC351DB00007B6B /* Table */,
 				651309471DC351DB00007B6B /* Text.swift */,
-				651309481DC351DB00007B6B /* TouchHandler.swift */,
 				651309491DC351DB00007B6B /* View.swift */,
 			);
 			name = KatanaElements;
@@ -681,6 +688,24 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		A1576C301DC73BC9008281C0 /* TouchHandler */ = {
+			isa = PBXGroup;
+			children = (
+				A1576C311DC73C05008281C0 /* NativeTouchHandler.swift */,
+				A1576C321DC73C05008281C0 /* TouchHandler.swift */,
+				A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */,
+			);
+			path = TouchHandler;
+			sourceTree = "<group>";
+		};
+		A1576C371DC73CC9008281C0 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				A1576C381DC73CE2008281C0 /* Buildable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -930,7 +955,6 @@
 				651309671DC352D800007B6B /* Table.swift in Sources */,
 				651309681DC352D800007B6B /* TableDelegate.swift in Sources */,
 				651309691DC352D800007B6B /* Text.swift in Sources */,
-				6513096A1DC352D800007B6B /* TouchHandler.swift in Sources */,
 				6513096B1DC352D800007B6B /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -948,20 +972,24 @@
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
 				813315861D7B726000FBE210 /* SideEffectsMiddleware.swift in Sources */,
 				813315891D7B726000FBE210 /* SyncSmartAction.swift in Sources */,
+				A1576C361DC73C05008281C0 /* TouchHandlerEvent.swift in Sources */,
 				8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */,
 				8133157C1D7B726000FBE210 /* Size.swift in Sources */,
 				813315761D7B726000FBE210 /* HierarchyManager.swift in Sources */,
 				813315771D7B726000FBE210 /* PlasticNode.swift in Sources */,
+				A1576C351DC73C05008281C0 /* TouchHandler.swift in Sources */,
 				813315621D7B726000FBE210 /* Root.swift in Sources */,
 				8133155A1D7B726000FBE210 /* Animation.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */,
+				A1576C391DC73CE2008281C0 /* Buildable.swift in Sources */,
 				813315801D7B726000FBE210 /* Action.swift in Sources */,
 				813315791D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */,
 				813315831D7B726000FBE210 /* Store.swift in Sources */,
 				813315731D7B726000FBE210 /* Anchor.swift in Sources */,
 				813315741D7B726000FBE210 /* Array+Plastic.swift in Sources */,
+				A1576C341DC73C05008281C0 /* NativeTouchHandler.swift in Sources */,
 				8133157A1D7B726000FBE210 /* PlasticView+Convenience.swift in Sources */,
 				813315851D7B726000FBE210 /* AsyncSmartAction.swift in Sources */,
 				813315841D7B726000FBE210 /* typealiases.swift in Sources */,
