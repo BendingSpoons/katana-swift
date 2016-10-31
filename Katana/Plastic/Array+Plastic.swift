@@ -10,7 +10,7 @@ import UIKit
 
 extension Array where Element: PlasticView {
  
-  public func center(betweenLeft left: Anchor, andRight right: Anchor, spacings s: [Value]? = nil) -> Void {
+  public func centerBetween(left: Anchor, right: Anchor, spacings s: [Value]? = nil) -> Void {
     let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
@@ -38,7 +38,7 @@ extension Array where Element: PlasticView {
     }
   }
   
-  public func center(betweenTop top: Anchor, andBottom bottom: Anchor, spacings s: [Value]? = nil) -> Void {
+  public func centerBetween(top: Anchor, bottom: Anchor, spacings s: [Value]? = nil) -> Void {
     let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
