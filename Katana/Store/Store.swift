@@ -18,7 +18,7 @@ public class Store<StateType: State> {
   fileprivate var state: StateType
   fileprivate var listeners: [StoreListener]
   fileprivate let middlewares: [StoreMiddleware<StateType>]
-  fileprivate let dependencyContainerType: SideEffectDependencyContainer.Type
+  fileprivate let dependencies: SideEffectDependencyContainer.Type
   
   lazy fileprivate var dispatchFunction: StoreDispatch = {
     var m = self.middlewares.map { middleware in
@@ -37,14 +37,14 @@ public class Store<StateType: State> {
   }()
   
   convenience public init() {
-    self.init(middlewares: [], dependencyContainer: EmptySideEffectDependencyContainer.self)
+    self.init(middlewares: [], dependencies: EmptySideEffectDependencyContainer.self)
   }
   
-  public init(middlewares: [StoreMiddleware<StateType>], dependencyContainer: SideEffectDependencyContainer.Type) {
+  public init(middlewares: [StoreMiddleware<StateType>], dependencies: SideEffectDependencyContainer.Type) {
     self.listeners = []
     self.state = StateType.init()
     self.middlewares = middlewares
-    self.dependencyContainerType = dependencyContainer
+    self.dependencies = dependencies
   }
 
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
@@ -116,7 +116,7 @@ fileprivate extension Store {
       
       let state = self.getState()
       let dispatch = self.dispatch
-      let container = self.dependencyContainerType.init(state: state, dispatch: dispatch)
+      let container = self.dependencies.init(state: state, dispatch: dispatch)
       
       type(of: action).anySideEffect(
         action: action,

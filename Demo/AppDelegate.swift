@@ -35,7 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
     
     let actionLogger = actionLoggerMiddleware(MineFieldState.self)
-    let store = Store<MineFieldState>(middlewares: [actionLogger], dependencyContainer: EmptySideEffectDependencyContainer.self)
+    let store = Store<MineFieldState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = MineField(props: MineFieldProps().frame(rootBounds)).root(store: store)
     self.root!.draw(container: view) 
@@ -46,7 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
     
     let actionLogger = actionLoggerMiddleware(ToDoState.self)
-    let store = Store<ToDoState>(middlewares: [actionLogger], dependencyContainer: EmptySideEffectDependencyContainer.self)
+    let store = Store<ToDoState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = ToDo(props: ToDoProps().frame(rootBounds)).root(store: store)
     self.root!.draw(container: view)
