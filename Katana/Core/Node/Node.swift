@@ -124,7 +124,7 @@ fileprivate extension Node {
       self?.update(state: state)
     }
     
-    animation.animateBlock {
+    animation.animate {
       container.update { view in
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,

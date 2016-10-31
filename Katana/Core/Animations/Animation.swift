@@ -35,7 +35,7 @@ public enum Animation {
                  delay: TimeInterval)
   
   
-  func animateBlock(_ block: @escaping ()->() ) {
+  func animate(_ block: @escaping ()->() ) {
     switch self {
     case .none:
       UIView.performWithoutAnimation(block)
