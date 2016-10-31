@@ -96,7 +96,6 @@ fileprivate extension Store {
       preconditionFailure("Action reducer returned a wrong state type")
     }
     
-    print(typedNewState)
     self.state = typedNewState
     
     // listener are always invoked in the main queue
