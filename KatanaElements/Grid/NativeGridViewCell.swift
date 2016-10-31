@@ -55,7 +55,7 @@ class NativeGridViewCell: UICollectionViewCell {
   func didTap(atIndexPath indexPath: IndexPath) {
 
     if let description = self.node?.anyDescription as? AnyCellNodeDescription {
-      let store = self.node?.root.store
+      let store = self.node?.treeRoot.store
       let dispatch =  store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
       type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
     }
