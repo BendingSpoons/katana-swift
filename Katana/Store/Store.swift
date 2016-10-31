@@ -68,10 +68,10 @@ public class Store<StateType: State> {
 }
 
 fileprivate extension Store {
-  fileprivate typealias PariallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> Void
+  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> Void
 
-  fileprivate func compose(_ middlewares: [PariallyAppliedMiddleware],
-                       with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
+  fileprivate func compose(_ middlewares: [PartiallyAppliedMiddleware],
+                           with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
 
     guard middlewares.count > 0 else {
       return storeDispatch
