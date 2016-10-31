@@ -18,10 +18,10 @@ public protocol AnyNode: class {
   var parent: AnyNode? {get}
   var root: Root? {get}
   
-  func update(description: AnyNodeDescription) throws
-  func update(description: AnyNodeDescription, parentAnimation: Animation) throws
+  func update(with description: AnyNodeDescription) throws
+  func update(with description: AnyNodeDescription, parentAnimation: Animation) throws
   
-  func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode
+  func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode
   func removeManagedChild(node: AnyNode)
   
   func forceReload()
@@ -30,7 +30,7 @@ public protocol AnyNode: class {
 protocol InternalAnyNode: AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
   //use Description().makeRoot(..).draw(..)
-  func draw(container: DrawableContainer)
+  func draw(in container: DrawableContainer)
 }
 
 public class Node<Description: NodeDescription> {
@@ -70,7 +70,7 @@ public class Node<Description: NodeDescription> {
     return children
   }
   
-  public func draw(container: DrawableContainer) {
+  public func draw(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -79,7 +79,7 @@ public class Node<Description: NodeDescription> {
     
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
-        self?.update(state: state)
+        self?.update(for: state)
       }
     }
     
@@ -94,14 +94,14 @@ public class Node<Description: NodeDescription> {
     
     children.forEach { child in
       let child = child as! InternalAnyNode
-      child.draw(container: self.container!)
+      child.draw(in: self.container!)
     }
   }
   
-  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
+  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
     let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
-    node.draw(container: container)
+    node.draw(in: container)
     return node
   }
   
@@ -121,7 +121,7 @@ fileprivate extension Node {
     assert(viewIndexes.count == self.children.count)
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      self?.update(for: state)
     }
     
     animation.animate {
@@ -136,7 +136,7 @@ fileprivate extension Node {
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
-      return node.draw(container: container)
+      return node.draw(in: container)
     }
     
     var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
@@ -160,7 +160,7 @@ fileprivate extension Node {
   fileprivate func childrenDescriptions() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
-        self?.update(state: state)
+        self?.update(for: state)
       }
     }
     
@@ -187,11 +187,11 @@ fileprivate extension Node {
     return props
   }
   
-  fileprivate func update(state: Description.StateType) {
-    self.update(state: state, description: self.description, parentAnimation: .none)
+  fileprivate func update(for state: Description.StateType) {
+    self.update(for: state, description: self.description, parentAnimation: .none)
   }
   
-  fileprivate func update(state: Description.StateType,
+  fileprivate func update(for state: Description.StateType,
                           description: Description,
                           parentAnimation: Animation,
                           force: Bool = false) {
@@ -240,8 +240,7 @@ fileprivate extension Node {
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.anyDescription.replaceKey == newChildDescription.replaceKey)
-        
-        try! replacement.node.update(description: newChildDescription, parentAnimation: childrenAnimation)
+        try! replacement.node.update(with: newChildDescription, parentAnimation: childrenAnimation)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
@@ -267,18 +266,18 @@ extension Node: AnyNode {
     }
   }
   
-  public func update(description: AnyNodeDescription) throws {
-    try self.update(description: description, parentAnimation: .none)
+  public func update(with description: AnyNodeDescription) throws {
+    try self.update(with: description, parentAnimation: .none)
   }
   
-  public func update(description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
+  public func update(with description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
     var description = description as! Description
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(state: self.state, description: description, parentAnimation: animation)
+    self.update(for: self.state, description: description, parentAnimation: animation)
   }
   
   public func forceReload() {
-    self.update(state: self.state, description: self.description, parentAnimation: .none, force: true)
+    self.update(for: self.state, description: self.description, parentAnimation: .none, force: true)
   }
 }
 

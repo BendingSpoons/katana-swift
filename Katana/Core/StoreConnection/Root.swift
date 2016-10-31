@@ -38,7 +38,7 @@ open class Root {
     }
     
     let n = node as! InternalAnyNode
-    n.draw(container: container)
+    n.draw(in: container)
   }
   
   private func storeDidChange() -> Void {
@@ -56,7 +56,7 @@ open class Root {
     
     if node.anyDescription is AnyConnectedNodeDescription {
       // ok the description is connected to the node, let's trigger an update
-      try! node.update(description: node.anyDescription)
+      try! node.update(with: node.anyDescription)
     }
     
     node.children

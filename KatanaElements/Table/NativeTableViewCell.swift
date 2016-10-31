@@ -36,7 +36,7 @@ class NativeTableViewCell: UITableViewCell {
     if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
-        try! node.update(description: newDescription)
+        try! node.update(with: newDescription)
         return
       }
     }
@@ -48,7 +48,7 @@ class NativeTableViewCell: UITableViewCell {
     }
     
     self.node?.parent?.removeManagedChild(node: node!)
-    self.node = parent.addManagedChild(description: newDescription, container: self.contentView)
+    self.node = parent.addManagedChild(with: newDescription, in: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
