@@ -7,7 +7,7 @@ class DrawableContainersTest: XCTestCase {
     
     let r = UIView()
     
-    let child = r.add { UIView() }
+    let child = r.addChild { UIView() }
     XCTAssert(r.children().count == 1)
     XCTAssert(child.children().count == 0)
     
@@ -18,10 +18,10 @@ class DrawableContainersTest: XCTestCase {
   func testRemove() {
     
     let r = UIView()
-    _ = r.add { UIView() }
-    _ = r.add { UIView() }
-    _ = r.add { UIView() }
-    r.remove(child: r.children()[0])
+    _ = r.addChild { UIView() }
+    _ = r.addChild { UIView() }
+    _ = r.addChild { UIView() }
+    r.removeChild(r.children()[0])
     let children = r.children()
     XCTAssert(children.count == 2)
   }

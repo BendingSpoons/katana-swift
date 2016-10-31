@@ -14,15 +14,15 @@ public protocol DrawableContainer {
   
   func removeAll()
   
-  func add(child: () -> UIView) -> DrawableContainer
+  @discardableResult func addChild(_ child: () -> UIView) -> DrawableContainer
   
   func update(with updateView: (UIView)->())
   
   func children () -> [DrawableContainerChild]
   
-  func bringToFront(child: DrawableContainerChild)
+  func bringChildToFront(_ child: DrawableContainerChild)
   
-  func remove(child: DrawableContainerChild)
+  func removeChild(_ child: DrawableContainerChild)
 }
 
 internal let VIEWTAG = 999987
@@ -46,7 +46,7 @@ extension UIView: DrawableContainer {
       .forEach { $0.removeFromSuperview() }
   }
   
-  public func add(child: () -> UIView) -> DrawableContainer {
+  public func addChild(_ child: () -> UIView) -> DrawableContainer {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -75,7 +75,7 @@ extension UIView: DrawableContainer {
     return self.subviews.filter {$0.tag == VIEWTAG}.map { UIViewDrawableContainerChild(view: $0) }
   }
   
-  public func bringToFront(child: DrawableContainerChild) {
+  public func bringChildToFront(_ child: DrawableContainerChild) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -87,7 +87,7 @@ extension UIView: DrawableContainer {
     self.bringSubview(toFront: child.view)
   }
   
-  public func remove(child: DrawableContainerChild) {
+  public func removeChild(_ child: DrawableContainerChild) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       

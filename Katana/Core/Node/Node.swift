@@ -75,7 +75,7 @@ public class Node<Description: NodeDescription> {
       fatalError("draw can only be call once on a node")
     }
     
-    self.container = container.add { Description.NativeView() }
+    self.container = container.addChild() { Description.NativeView() }
     
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
@@ -145,14 +145,14 @@ fileprivate extension Node {
     for viewIndex in viewIndexes {
       let currentSubview = currentSubviews[viewIndex]!
       if !sorted {
-        container.bringToFront(child: currentSubview)
+        container.bringChildToFront(currentSubview)
       }
       currentSubviews[viewIndex] = nil
     }
     
     for view in currentSubviews {
       if let viewToRemove = view {
-        self.container?.remove(child: viewToRemove)
+        self.container?.removeChild(viewToRemove)
       }
     }
   }
