@@ -1,5 +1,5 @@
 //
-//  dependencyContainer.swift
+//  DependencyContainer.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 31/10/2016.
