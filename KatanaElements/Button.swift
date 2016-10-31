@@ -65,21 +65,21 @@ public struct Button: NodeDescription {
     }
     
     return [
-      TouchHandler(props: TouchHandlerProps().frame(props.frame.size).touchHandler(touchHandler)) {
-        [
-          View(props: ViewProps()
-            .frame(props.frame.size)
-            .color(state.highlighted ? props.highlightedColor : props.color)
-            .borderColor(props.borderColor)
-            .borderWidth(props.borderWidth)
-            .disableTouch())
-        ]
-      },
-
-      Text(props: TextProps()
-        .frame(props.frame.size)
-        .text(props.text)
-        .color(.clear))
+//      TouchHandler(props: TouchHandlerProps().frame(props.frame.size).touchHandler(touchHandler)) {
+//        [
+//          View(props: ViewProps()
+//            .frame(props.frame.size)
+//            .color(state.highlighted ? props.highlightedColor : props.color)
+//            .borderColor(props.borderColor)
+//            .borderWidth(props.borderWidth)
+//            .disableTouch())
+//        ]
+//      },
+//
+//      Text(props: TextProps()
+//        .frame(props.frame.size)
+//        .text(props.text)
+//        .color(.clear))
       ]
   }
 }
