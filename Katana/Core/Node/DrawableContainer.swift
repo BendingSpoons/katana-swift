@@ -16,7 +16,7 @@ public protocol DrawableContainer {
   
   func add(child: () -> UIView) -> DrawableContainer
   
-  func update(view: (UIView)->())
+  func update(with updateView: (UIView)->())
   
   func children () -> [DrawableContainerChild]
   
@@ -60,7 +60,7 @@ extension UIView: DrawableContainer {
     return child
   }
   
-  public func update(view: (UIView)->()) {
+  public func update(with updateView: (UIView)->()) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -68,7 +68,7 @@ extension UIView: DrawableContainer {
       assert(Thread.isMainThread)
     }
     
-    view(self)
+    updateView(self)
   }
   
   public func children () -> [DrawableContainerChild] {
