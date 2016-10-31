@@ -32,7 +32,7 @@ open class Root {
   }
 
   
-  public func draw(container: DrawableContainer) {
+  public func draw(in container: DrawableContainer) {
     guard let node = self.node else {
       fatalError("the node should be provided firt")
     }
