@@ -14,8 +14,8 @@ public struct ImageProps: NodeProps, Keyable, Buildable {
   public var key: String?
   
   public var backgroundColor = UIColor.white
-  public var cornerRadius: Value = .zero
-  public var borderWidth: Value = .zero
+  public var cornerRadius: CGFloat = 0.0
+  public var borderWidth: CGFloat = 0.0
   public var borderColor = UIColor.clear
   public var clipsToBounds = true
   public var isUserInteractionEnabled = false
@@ -51,13 +51,11 @@ public struct Image: NodeDescription {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
-    let multiplier = node.plasticMultipler
-    
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(multiplier)
+    view.layer.cornerRadius = props.cornerRadius
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth.scale(multiplier)
+    view.layer.borderWidth = props.borderWidth
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
     view.image = props.image
