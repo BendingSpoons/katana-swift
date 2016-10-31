@@ -32,14 +32,14 @@ class MiddlewareTests: XCTestCase {
     }
     
     let store = Store<AppState>(middlewares: [middleware], dependencies: EmptySideEffectDependencyContainer.self)
-    let initialState = store.getState()
+    let initialState = store.state
     let action = AddTodoAction(title: "New Todo")
     store.dispatch(action)
     
     self.waitForExpectations(timeout: 5) { (error) in
       XCTAssertNil(error)
       
-      let newState = store.getState()
+      let newState = store.state
       XCTAssertEqual(dispatchedAction as? AddTodoAction, action)
       XCTAssertEqual(storeBefore as? AppState, initialState)
       XCTAssertEqual(storeAfter as? AppState, newState)
@@ -75,13 +75,13 @@ class MiddlewareTests: XCTestCase {
     )
     
     let action = AddTodoAction(title: "New Todo")
-    let initialState = store.getState()
+    let initialState = store.state
     store.dispatch(action)
     
     self.waitForExpectations(timeout: 5) { (error) in
       XCTAssertNil(error)
       XCTAssertEqual(invokationOrder, ["basic", "second"])
-      XCTAssertEqual(store.getState(), initialState)
+      XCTAssertEqual(store.state, initialState)
     }
   }
   
@@ -121,14 +121,14 @@ class MiddlewareTests: XCTestCase {
       dependencies: EmptySideEffectDependencyContainer.self
     )
     
-    let initialState = store.getState()
+    let initialState = store.state
     let action = AddTodoAction(title: "New Todo")
     store.dispatch(action)
     
     self.waitForExpectations(timeout: 5) { (error) in
       XCTAssertNil(error)
     
-      let newState = store.getState()
+      let newState = store.state
       XCTAssertEqual(invokationOrder, ["basic", "second"])
       XCTAssertEqual(dispatchedAction as? AddTodoAction, action)
       XCTAssertEqual(storeBefore as? AppState, initialState)

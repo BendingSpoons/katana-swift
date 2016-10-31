@@ -9,20 +9,25 @@
 import Foundation
 
 public protocol AnyStore: class {
+  var anyState: State { get }
+
   func dispatch(_ action: AnyAction)
   func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
-  func getAnyState() -> State
 }
 
 public class Store<StateType: State> {
-  fileprivate var state: StateType
+  public fileprivate(set) var state: StateType
   fileprivate var listeners: [StoreListener]
   fileprivate let middlewares: [StoreMiddleware<StateType>]
   fileprivate let dependencies: SideEffectDependencyContainer.Type
   
   lazy fileprivate var dispatchFunction: StoreDispatch = {
+    var getState = { [unowned self] () -> StateType in
+      return self.state
+    }
+    
     var m = self.middlewares.map { middleware in
-      middleware(self.getState, self.dispatch)
+      middleware(getState, self.dispatch)
     }
     
     // add the side effect function as the first in the chain
@@ -60,10 +65,6 @@ public class Store<StateType: State> {
     self.dispatchQueue.async {
       self.dispatchFunction(action)
     }
-  }
-  
-  public func getState() -> StateType {
-    return self.state
   }
 }
 
@@ -114,7 +115,7 @@ fileprivate extension Store {
         return
       }
       
-      let state = self.getState()
+      let state = self.state
       let dispatch = self.dispatch
       let container = self.dependencies.init(state: state, dispatch: dispatch)
       
@@ -129,7 +130,7 @@ fileprivate extension Store {
 }
 
 extension Store: AnyStore {
-  public func getAnyState() -> State {
+  public var anyState: State {
     return self.state
   }
 }

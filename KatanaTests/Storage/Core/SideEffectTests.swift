@@ -47,7 +47,7 @@ class SideEffectTests: XCTestCase {
 
     
     let store = Store<AppState>(middlewares: [], dependencies: EmptySideEffectDependencyContainer.self)
-    let initialState = store.getState()
+    let initialState = store.state
     store.dispatch(action)
     
     self.waitForExpectations(timeout: 10) { (error) in
@@ -70,7 +70,7 @@ class SideEffectTests: XCTestCase {
     }, reduceInvokedClosure: nil)
     
     let store = Store<AppState>(middlewares: [], dependencies: SimpleDependencyContainer.self)
-    let initialState = store.getState()
+    let initialState = store.state
     store.dispatch(action)
     
     self.waitForExpectations(timeout: 10) { (error) in
