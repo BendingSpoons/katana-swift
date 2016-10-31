@@ -9,28 +9,35 @@
 import UIKit
 import Katana
 
-public struct ViewProps: NodeProps, Keyable, Childrenable, Colorable, TouchDisableable, CornerRadiusable, Bordable {
+public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
   public var frame = CGRect.zero
-  public var color = UIColor.white
-  public var touchDisabled =  false
-  public var cornerRadius = CGFloat(0)
-  public var borderColor = UIColor.black
-  public var borderWidth = CGFloat(0)
   public var key: String?
   public var children: [AnyNodeDescription] = []
+  
+  public var backgroundColor = UIColor.white
+  public var cornerRadius: CGFloat = 0.0
+  public var borderWidth: CGFloat = 0.0
+  public var borderColor = UIColor.clear
+  public var clipsToBounds = true
+  public var isUserInteractionEnabled = false
  
   public init() {}
 
   public static func == (lhs: ViewProps, rhs: ViewProps) -> Bool {
     if lhs.children.count + rhs.children.count > 0 {
-      // Euristic, we always rerender when there is at least 1 child
+      // Heuristic, we always rerender when there is at least 1 child
       return false
     }
     
-    return lhs.frame == rhs.frame &&
-      lhs.color == rhs.color &&
-      lhs.touchDisabled == rhs.touchDisabled &&
-      lhs.cornerRadius == rhs.cornerRadius
+    return
+      lhs.frame == rhs.frame &&
+      lhs.key == rhs.key &&
+      lhs.backgroundColor == rhs.backgroundColor &&
+      lhs.cornerRadius == rhs.cornerRadius &&
+      lhs.borderWidth == rhs.borderWidth &&
+      lhs.borderColor == rhs.borderColor &&
+      lhs.clipsToBounds == rhs.clipsToBounds &&
+      lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled
   }
 }
 
@@ -44,13 +51,14 @@ public struct View: NodeDescription, NodeWithChildrenDescription {
                                             view: UIView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
+    
     view.frame = props.frame
-    view.backgroundColor = props.color
-    view.isUserInteractionEnabled = !props.touchDisabled
-    view.clipsToBounds = true
+    view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius
-    view.layer.borderWidth = props.borderWidth
     view.layer.borderColor = props.borderColor.cgColor
+    view.layer.borderWidth = props.borderWidth
+    view.clipsToBounds = props.clipsToBounds
+    view.isUserInteractionEnabled = props.isUserInteractionEnabled
   }
   
   public static func render(props: ViewProps,

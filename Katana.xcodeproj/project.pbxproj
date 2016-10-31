@@ -102,6 +102,7 @@
 		A1576C351DC73C05008281C0 /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C321DC73C05008281C0 /* TouchHandler.swift */; };
 		A1576C361DC73C05008281C0 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */; };
 		A1576C391DC73CE2008281C0 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C381DC73CE2008281C0 /* Buildable.swift */; };
+		A1576C3B1DC74536008281C0 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C3A1DC74536008281C0 /* Highlightable.swift */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -244,6 +245,7 @@
 		A1576C321DC73C05008281C0 /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
 		A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
 		A1576C381DC73CE2008281C0 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
+		A1576C3A1DC74536008281C0 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -702,6 +704,7 @@
 			isa = PBXGroup;
 			children = (
 				A1576C381DC73CE2008281C0 /* Buildable.swift */,
+				A1576C3A1DC74536008281C0 /* Highlightable.swift */,
 			);
 			path = Common;
 			sourceTree = "<group>";
@@ -965,6 +968,7 @@
 			files = (
 				813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */,
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
+				A1576C3B1DC74536008281C0 /* Highlightable.swift in Sources */,
 				813315821D7B726000FBE210 /* State.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeWithChildrenDescription.swift in Sources */,
 				813315811D7B726000FBE210 /* Reducer.swift in Sources */,
