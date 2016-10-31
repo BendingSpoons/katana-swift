@@ -61,7 +61,7 @@ public class PlasticView {
 
   
   func scaleValue(_ value: Value) -> CGFloat {
-    return value.scale(multiplier)
+    return value.scale(by: multiplier)
   }
 
   

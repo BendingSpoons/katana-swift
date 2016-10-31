@@ -93,9 +93,9 @@ extension NativeGridLayout {
       preconditionFailure("Plastic multiplier is not yet available")
     }
     
-    self.sectionInset = self.scalableSectionInsets.scale(multiplier)
-    self.minimumLineSpacing = self.scalableLineSpacing.scale(multiplier)
-    self.minimumInteritemSpacing = self.scalableInterCellSpacing.scale(multiplier)
+    self.sectionInset = self.scalableSectionInsets.scale(by: multiplier)
+    self.minimumLineSpacing = self.scalableLineSpacing.scale(by: multiplier)
+    self.minimumInteritemSpacing = self.scalableInterCellSpacing.scale(by: multiplier)
     self.itemSize = self.scaledCellSize()
   }
   
@@ -111,7 +111,7 @@ extension NativeGridLayout {
     
     switch (self.layoutType, self.scrollDirection) {
     case (.variableNumberCellsOnline, .vertical):
-      let scaledMinimumCellLength = self.minimumCellLenghtOnline.scale(multiplier)
+      let scaledMinimumCellLength = self.minimumCellLenghtOnline.scale(by: multiplier)
       
       let cellsNumber = max(1, floor(
         (viewSize.width - horizontalInsetSum + self.minimumInteritemSpacing) /
@@ -127,7 +127,7 @@ extension NativeGridLayout {
       
       
     case (.variableNumberCellsOnline, .horizontal):
-      let scaledMinimumCellLength = self.minimumCellLenghtOnline.scale(multiplier)
+      let scaledMinimumCellLength = self.minimumCellLenghtOnline.scale(by: multiplier)
       
       let cellsNumber = max(1, floor(
           (viewSize.height - verticalInsetSum + self.minimumInteritemSpacing) /
