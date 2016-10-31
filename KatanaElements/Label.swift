@@ -59,6 +59,7 @@ public struct Label: NodeDescription {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
 
+    view.frame = props.frame
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
     view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
