@@ -2,7 +2,7 @@
 //  View.swift
 //  Katana
 //
-//  Created by Luca Querella on 10/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 

@@ -103,6 +103,7 @@
 		A1576C361DC73C05008281C0 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */; };
 		A1576C391DC73CE2008281C0 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C381DC73CE2008281C0 /* Buildable.swift */; };
 		A1576C3B1DC74536008281C0 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C3A1DC74536008281C0 /* Highlightable.swift */; };
+		A1576C3E1DC75095008281C0 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C3C1DC74FA7008281C0 /* Image.swift */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -246,6 +247,7 @@
 		A1576C331DC73C05008281C0 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
 		A1576C381DC73CE2008281C0 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
 		A1576C3A1DC74536008281C0 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
+		A1576C3C1DC74FA7008281C0 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -290,12 +292,13 @@
 			children = (
 				A1576C371DC73CC9008281C0 /* Common */,
 				A1576C301DC73BC9008281C0 /* TouchHandler */,
-				651309381DC351DB00007B6B /* Button.swift */,
 				651309391DC351DB00007B6B /* Grid */,
 				6513093F1DC351DB00007B6B /* NodesCommons.swift */,
 				651309401DC351DB00007B6B /* Table */,
 				651309471DC351DB00007B6B /* Label.swift */,
+				651309381DC351DB00007B6B /* Button.swift */,
 				651309491DC351DB00007B6B /* View.swift */,
+				A1576C3C1DC74FA7008281C0 /* Image.swift */,
 			);
 			name = KatanaElements;
 			path = Katana;
@@ -953,6 +956,7 @@
 				651309611DC352CC00007B6B /* NativeGridViewCell.swift in Sources */,
 				651309631DC352D800007B6B /* CellNativeView.swift in Sources */,
 				651309641DC352D800007B6B /* CellNodeDescription.swift in Sources */,
+				A1576C3E1DC75095008281C0 /* Image.swift in Sources */,
 				651309651DC352D800007B6B /* NativeTableView.swift in Sources */,
 				651309661DC352D800007B6B /* NativeTableViewCell.swift in Sources */,
 				651309671DC352D800007B6B /* Table.swift in Sources */,
