@@ -1,17 +1,16 @@
 //
-//  UIColor+Katana.swift
+//  UIColor+Demo.swift
 //  Katana
 //
-//  Created by Luca Querella on 15/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 extension UIColor {
-  
   convenience public init(_ hex: Int) {
-    
     let red = (hex >> 16) & 0xff
     let green = (hex >> 8) & 0xff
     let blue = hex & 0xff

@@ -41,9 +41,12 @@ struct ToDoCell: CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
     update: @escaping (EmptyHighlightableState) -> (),
     dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.alignment = .center
+    
     let text = NSMutableAttributedString(string: props.name, attributes: [
       NSFontAttributeName: UIFont.systemFont(ofSize: 18, weight: UIFontWeightLight),
-      NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
+      NSParagraphStyleAttributeName: paragraphStyle,
       NSForegroundColorAttributeName: UIColor.black,
       NSStrikethroughStyleAttributeName: props.completed
       ])
@@ -57,7 +60,7 @@ struct ToDoCell: CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
       
       Button(props: ButtonProps()
         .key(ToDoCellKeys.delete)
-        .color(0x1D9F9F)
+        .color(UIColor(0x1D9F9F))
         .text("-", fontSize: 10)
         .onTap({dispatch(RemoveTodo(payload: props.index))})
       )

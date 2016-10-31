@@ -23,13 +23,14 @@ extension Textable {
   }
   
   public func text(_ text: String, fontSize: CGFloat) -> Self {
+    let paragraphStyle = NSMutableParagraphStyle()
+    paragraphStyle.alignment = .center
     
     let attriburedText = NSMutableAttributedString(string: text as String, attributes: [
       NSFontAttributeName: UIFont.systemFont(ofSize: 17, weight: UIFontWeightRegular),
-      NSParagraphStyleAttributeName: NSParagraphStyle.centerAlignment,
-      NSForegroundColorAttributeName: UIColor(0x000000)
-      ])
-    
+      NSParagraphStyleAttributeName: paragraphStyle,
+      NSForegroundColorAttributeName: UIColor.black
+    ])
     
     var copy = self
     copy.text = attriburedText
@@ -43,16 +44,10 @@ public protocol Colorable {
 }
 
 extension Colorable {
-  
-  
   public func color(_ color: UIColor) -> Self {
     var copy = self
     copy.color = color
     return copy
-  }
-  
-  public func color(_ hex: Int) -> Self {
-    return color(UIColor(hex))
   }
 }
 

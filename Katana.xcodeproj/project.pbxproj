@@ -48,15 +48,12 @@
 		8133157E1D7B726000FBE210 /* ViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */; };
 		8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315491D7B726000FBE210 /* ViewsContainer.swift */; };
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
-		8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */; };
-		813315901D7B728900FBE210 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158D1D7B728900FBE210 /* UIColor+Katana.swift */; };
 		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81911DB51D7D916B00123C54 /* CommonsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9C1D7D916B00123C54 /* CommonsTest.swift */; };
 		81911DB61D7D916B00123C54 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */; };
 		81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9E1D7D916B00123C54 /* NodeTest.swift */; };
 		81911DB81D7D916B00123C54 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9F1D7D916B00123C54 /* RenderContainersTest.swift */; };
 		81911DB91D7D916B00123C54 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DA11D7D916B00123C54 /* Collections.swift */; };
-		81911DBA1D7D916B00123C54 /* UIColorTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DA21D7D916B00123C54 /* UIColorTest.swift */; };
 		81911DBB1D7D916B00123C54 /* hierarchyManagers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DA51D7D916B00123C54 /* hierarchyManagers.swift */; };
 		81911DBC1D7D916B00123C54 /* PlasticBasicLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DA61D7D916B00123C54 /* PlasticBasicLayoutTests.swift */; };
 		81911DBD1D7D916B00123C54 /* PlasticContainerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DA71D7D916B00123C54 /* PlasticContainerTests.swift */; };
@@ -88,6 +85,7 @@
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
+		A11994061DC7CDF900314107 /* UIColor+Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A11994051DC7CDF900314107 /* UIColor+Demo.swift */; };
 		A14EB8C01DC3A62B00DE0BD9 /* AsyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14EB8BF1DC3A62B00DE0BD9 /* AsyncActionTests.swift */; };
 		A1576C2D1DC72E03008281C0 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2C1DC72E03008281C0 /* SideEffectTests.swift */; };
 		A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
@@ -181,14 +179,11 @@
 		813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
 		813315491D7B726000FBE210 /* ViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsContainer.swift; sourceTree = "<group>"; };
 		8133158B1D7B728900FBE210 /* Collections+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collections+Katana.swift"; sourceTree = "<group>"; };
-		8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSParagraphStyle+Katana.swift"; sourceTree = "<group>"; };
-		8133158D1D7B728900FBE210 /* UIColor+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Katana.swift"; sourceTree = "<group>"; };
 		81911D9C1D7D916B00123C54 /* CommonsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommonsTest.swift; sourceTree = "<group>"; };
 		81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
 		81911D9E1D7D916B00123C54 /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
 		81911D9F1D7D916B00123C54 /* RenderContainersTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RenderContainersTest.swift; sourceTree = "<group>"; };
 		81911DA11D7D916B00123C54 /* Collections.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Collections.swift; sourceTree = "<group>"; };
-		81911DA21D7D916B00123C54 /* UIColorTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIColorTest.swift; sourceTree = "<group>"; };
 		81911DA51D7D916B00123C54 /* hierarchyManagers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = hierarchyManagers.swift; sourceTree = "<group>"; };
 		81911DA61D7D916B00123C54 /* PlasticBasicLayoutTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticBasicLayoutTests.swift; sourceTree = "<group>"; };
 		81911DA71D7D916B00123C54 /* PlasticContainerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticContainerTests.swift; sourceTree = "<group>"; };
@@ -226,6 +221,7 @@
 		81EA56E51D5F3A8A00B6290E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithSideEffect.swift; sourceTree = "<group>"; };
 		A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
+		A11994051DC7CDF900314107 /* UIColor+Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Demo.swift"; sourceTree = "<group>"; };
 		A14EB8BF1DC3A62B00DE0BD9 /* AsyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncActionTests.swift; sourceTree = "<group>"; };
 		A1576C2C1DC72E03008281C0 /* SideEffectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectTests.swift; sourceTree = "<group>"; };
 		A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
@@ -414,8 +410,6 @@
 			isa = PBXGroup;
 			children = (
 				8133158B1D7B728900FBE210 /* Collections+Katana.swift */,
-				8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */,
-				8133158D1D7B728900FBE210 /* UIColor+Katana.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -435,7 +429,6 @@
 			isa = PBXGroup;
 			children = (
 				81911DA11D7D916B00123C54 /* Collections.swift */,
-				81911DA21D7D916B00123C54 /* UIColorTest.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -543,6 +536,7 @@
 			isa = PBXGroup;
 			children = (
 				81C3A4601D83571E0079AD32 /* Middelwares */,
+				A11994051DC7CDF900314107 /* UIColor+Demo.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -945,9 +939,7 @@
 				A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */,
 				A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */,
 				8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */,
-				8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */,
 				8133157B1D7B726000FBE210 /* PlasticView.swift in Sources */,
-				813315901D7B728900FBE210 /* UIColor+Katana.swift in Sources */,
 				813315781D7B726000FBE210 /* PlasticNodeDescription.swift in Sources */,
 				8133157E1D7B726000FBE210 /* ViewsContainer+Helpers.swift in Sources */,
 				A1CA31541DC37DBF00982BE9 /* Store.swift in Sources */,
@@ -961,7 +953,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */,
-				81911DBA1D7D916B00123C54 /* UIColorTest.swift in Sources */,
 				A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */,
 				A14EB8C01DC3A62B00DE0BD9 /* AsyncActionTests.swift in Sources */,
 				81911DC51D7D916B00123C54 /* actions.swift in Sources */,
@@ -994,6 +985,7 @@
 				81C3A48C1D8357880079AD32 /* MineFieldGrid.swift in Sources */,
 				81C3A44C1D8354760079AD32 /* AppDelegate.swift in Sources */,
 				81C3A45B1D8354760079AD32 /* ToogleTodoCompletion.swift in Sources */,
+				A11994061DC7CDF900314107 /* UIColor+Demo.swift in Sources */,
 				81C3A45C1D8354760079AD32 /* ToDo.swift in Sources */,
 				81C3A48B1D8357880079AD32 /* MineFieldCell.swift in Sources */,
 				81C3A48D1D8357880079AD32 /* MineFieldState.swift in Sources */,

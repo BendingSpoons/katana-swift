@@ -59,7 +59,7 @@ struct ToDo: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
       
       Button(props: ButtonProps()
         .key(ToDoKeys.add)
-        .color(0xEE6502)
+        .color(UIColor(0xEE6502))
         .color(UIColor(0xC42900), state: .highlighted)
         .text("+", fontSize: 10)
         .onTap(addTodo)
