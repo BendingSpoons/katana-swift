@@ -15,7 +15,6 @@
 		651309681DC352D800007B6B /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309461DC351DB00007B6B /* TableDelegate.swift */; };
 		651309691DC352D800007B6B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309471DC351DB00007B6B /* Label.swift */; };
 		6513096B1DC352D800007B6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309491DC351DB00007B6B /* View.swift */; };
-		6513096E1DC3678600007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		8133155A1D7B726000FBE210 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151D1D7B726000FBE210 /* Animation.swift */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
@@ -51,7 +50,6 @@
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
 		8133158F1D7B728900FBE210 /* NSParagraphStyle+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158C1D7B728900FBE210 /* NSParagraphStyle+Katana.swift */; };
 		813315901D7B728900FBE210 /* UIColor+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158D1D7B728900FBE210 /* UIColor+Katana.swift */; };
-		813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81911DB61D7D916B00123C54 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */; };
 		81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9E1D7D916B00123C54 /* NodeTest.swift */; };
 		81911DB81D7D916B00123C54 /* RenderContainersTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9F1D7D916B00123C54 /* RenderContainersTest.swift */; };
@@ -70,22 +68,6 @@
 		81911DC51D7D916B00123C54 /* actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB21D7D916B00123C54 /* actions.swift */; };
 		81911DC61D7D916B00123C54 /* reducers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB31D7D916B00123C54 /* reducers.swift */; };
 		81911DC71D7D916B00123C54 /* states.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* states.swift */; };
-		81C3A44C1D8354760079AD32 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A42F1D8354760079AD32 /* AppDelegate.swift */; };
-		81C3A4561D8354760079AD32 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A43F1D8354760079AD32 /* Assets.xcassets */; };
-		81C3A4581D8354760079AD32 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4411D8354760079AD32 /* Launch Screen.storyboard */; };
-		81C3A4591D8354760079AD32 /* AddTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4441D8354760079AD32 /* AddTodo.swift */; };
-		81C3A45A1D8354760079AD32 /* RemoveTodo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4451D8354760079AD32 /* RemoveTodo.swift */; };
-		81C3A45B1D8354760079AD32 /* ToogleTodoCompletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4461D8354760079AD32 /* ToogleTodoCompletion.swift */; };
-		81C3A45C1D8354760079AD32 /* ToDo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4481D8354760079AD32 /* ToDo.swift */; };
-		81C3A45D1D8354760079AD32 /* ToDoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4491D8354760079AD32 /* ToDoCell.swift */; };
-		81C3A45E1D8354760079AD32 /* ToDoState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A44B1D8354760079AD32 /* ToDoState.swift */; };
-		81C3A4861D8357880079AD32 /* DiscloseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A47C1D8357880079AD32 /* DiscloseCell.swift */; };
-		81C3A4871D8357880079AD32 /* StartGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A47D1D8357880079AD32 /* StartGame.swift */; };
-		81C3A48A1D8357880079AD32 /* MineField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4811D8357880079AD32 /* MineField.swift */; };
-		81C3A48B1D8357880079AD32 /* MineFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4821D8357880079AD32 /* MineFieldCell.swift */; };
-		81C3A48C1D8357880079AD32 /* MineFieldGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4831D8357880079AD32 /* MineFieldGrid.swift */; };
-		81C3A48D1D8357880079AD32 /* MineFieldState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A4851D8357880079AD32 /* MineFieldState.swift */; };
-		81C3A48F1D8357BE0079AD32 /* actionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81C3A48E1D8357BE0079AD32 /* actionLogger.swift */; };
 		81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = 81C3A4971D8430AA0079AD32 /* .swiftlint.yml */; };
 		81EA56CC1D5F3A6000B6290E /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81EA56CA1D5F3A6000B6290E /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
@@ -110,26 +92,12 @@
 			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
 			remoteInfo = Katana;
 		};
-		6513096F1DC367A700007B6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
-			remoteInfo = KatanaElements;
-		};
 		651309711DC36B0400007B6B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
-		};
-		813F4D241D5F3E93007CDB53 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
-			remoteInfo = Katana;
 		};
 		81EA56DC1D5F3A6E00B6290E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -202,31 +170,12 @@
 		81911DB21D7D916B00123C54 /* actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actions.swift; sourceTree = "<group>"; };
 		81911DB31D7D916B00123C54 /* reducers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = reducers.swift; sourceTree = "<group>"; };
 		81911DB41D7D916B00123C54 /* states.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = states.swift; sourceTree = "<group>"; };
-		81C3A42E1D8354760079AD32 /* Demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Demo-Bridging-Header.h"; sourceTree = "<group>"; };
-		81C3A42F1D8354760079AD32 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		81C3A43F1D8354760079AD32 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		81C3A4401D8354760079AD32 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81C3A4411D8354760079AD32 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		81C3A4441D8354760079AD32 /* AddTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTodo.swift; sourceTree = "<group>"; };
-		81C3A4451D8354760079AD32 /* RemoveTodo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoveTodo.swift; sourceTree = "<group>"; };
-		81C3A4461D8354760079AD32 /* ToogleTodoCompletion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToogleTodoCompletion.swift; sourceTree = "<group>"; };
-		81C3A4481D8354760079AD32 /* ToDo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDo.swift; sourceTree = "<group>"; };
-		81C3A4491D8354760079AD32 /* ToDoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoCell.swift; sourceTree = "<group>"; };
-		81C3A44B1D8354760079AD32 /* ToDoState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ToDoState.swift; sourceTree = "<group>"; };
-		81C3A47C1D8357880079AD32 /* DiscloseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscloseCell.swift; sourceTree = "<group>"; };
-		81C3A47D1D8357880079AD32 /* StartGame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StartGame.swift; sourceTree = "<group>"; };
-		81C3A4811D8357880079AD32 /* MineField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineField.swift; sourceTree = "<group>"; };
-		81C3A4821D8357880079AD32 /* MineFieldCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineFieldCell.swift; sourceTree = "<group>"; };
-		81C3A4831D8357880079AD32 /* MineFieldGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineFieldGrid.swift; sourceTree = "<group>"; };
-		81C3A4851D8357880079AD32 /* MineFieldState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineFieldState.swift; sourceTree = "<group>"; };
-		81C3A48E1D8357BE0079AD32 /* actionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = actionLogger.swift; sourceTree = "<group>"; };
 		81C3A4971D8430AA0079AD32 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56CA1D5F3A6000B6290E /* Katana.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana.h; sourceTree = "<group>"; };
 		81EA56CB1D5F3A6000B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56DA1D5F3A6E00B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		81EA56E51D5F3A8A00B6290E /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
 		A18391871DC78DDB0072827A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A18391881DC78DDB0072827A /* KatanaElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
@@ -261,15 +210,6 @@
 			files = (
 				651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */,
 				81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		81EA56E21D5F3A8A00B6290E /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6513096E1DC3678600007B6B /* KatanaElements.framework in Frameworks */,
-				813F4D261D5F3E98007CDB53 /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,106 +426,6 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		81C3A43E1D8354760079AD32 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A43F1D8354760079AD32 /* Assets.xcassets */,
-				81C3A4401D8354760079AD32 /* Info.plist */,
-				81C3A4411D8354760079AD32 /* Launch Screen.storyboard */,
-			);
-			path = "Support Files";
-			sourceTree = "<group>";
-		};
-		81C3A4421D8354760079AD32 /* ToDo */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4431D8354760079AD32 /* Actions */,
-				81C3A4471D8354760079AD32 /* Nodes */,
-				81C3A44A1D8354760079AD32 /* State */,
-			);
-			path = ToDo;
-			sourceTree = "<group>";
-		};
-		81C3A4431D8354760079AD32 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4441D8354760079AD32 /* AddTodo.swift */,
-				81C3A4451D8354760079AD32 /* RemoveTodo.swift */,
-				81C3A4461D8354760079AD32 /* ToogleTodoCompletion.swift */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
-		81C3A4471D8354760079AD32 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4481D8354760079AD32 /* ToDo.swift */,
-				81C3A4491D8354760079AD32 /* ToDoCell.swift */,
-			);
-			path = Nodes;
-			sourceTree = "<group>";
-		};
-		81C3A44A1D8354760079AD32 /* State */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A44B1D8354760079AD32 /* ToDoState.swift */,
-			);
-			path = State;
-			sourceTree = "<group>";
-		};
-		81C3A45F1D83571E0079AD32 /* Shared */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4601D83571E0079AD32 /* Middelwares */,
-			);
-			path = Shared;
-			sourceTree = "<group>";
-		};
-		81C3A4601D83571E0079AD32 /* Middelwares */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A48E1D8357BE0079AD32 /* actionLogger.swift */,
-			);
-			path = Middelwares;
-			sourceTree = "<group>";
-		};
-		81C3A4671D83574C0079AD32 /* MineField */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A47B1D8357880079AD32 /* Actions */,
-				81C3A4801D8357880079AD32 /* Nodes */,
-				81C3A4841D8357880079AD32 /* State */,
-			);
-			path = MineField;
-			sourceTree = "<group>";
-		};
-		81C3A47B1D8357880079AD32 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A47C1D8357880079AD32 /* DiscloseCell.swift */,
-				81C3A47D1D8357880079AD32 /* StartGame.swift */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
-		81C3A4801D8357880079AD32 /* Nodes */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4811D8357880079AD32 /* MineField.swift */,
-				81C3A4821D8357880079AD32 /* MineFieldCell.swift */,
-				81C3A4831D8357880079AD32 /* MineFieldGrid.swift */,
-			);
-			path = Nodes;
-			sourceTree = "<group>";
-		};
-		81C3A4841D8357880079AD32 /* State */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4851D8357880079AD32 /* MineFieldState.swift */,
-			);
-			path = State;
-			sourceTree = "<group>";
-		};
 		81EA56BD1D5F3A6000B6290E = {
 			isa = PBXGroup;
 			children = (
@@ -593,7 +433,6 @@
 				81EA56C91D5F3A6000B6290E /* Katana */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				651309371DC350F000007B6B /* KatanaElements */,
-				81EA56E61D5F3A8A00B6290E /* Demo */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
@@ -604,7 +443,6 @@
 			children = (
 				81EA56C71D5F3A6000B6290E /* Katana.framework */,
 				81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */,
-				81EA56E51D5F3A8A00B6290E /* Demo.app */,
 				6513094F1DC3529F00007B6B /* KatanaElements.framework */,
 			);
 			name = Products;
@@ -634,19 +472,6 @@
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
 			);
 			path = KatanaTests;
-			sourceTree = "<group>";
-		};
-		81EA56E61D5F3A8A00B6290E /* Demo */ = {
-			isa = PBXGroup;
-			children = (
-				81C3A4671D83574C0079AD32 /* MineField */,
-				81C3A4421D8354760079AD32 /* ToDo */,
-				81C3A45F1D83571E0079AD32 /* Shared */,
-				81C3A43E1D8354760079AD32 /* Support Files */,
-				81C3A42F1D8354760079AD32 /* AppDelegate.swift */,
-				81C3A42E1D8354760079AD32 /* Demo-Bridging-Header.h */,
-			);
-			path = Demo;
 			sourceTree = "<group>";
 		};
 		A1503A081DABE88F005A5C46 /* Frameworks */ = {
@@ -764,26 +589,6 @@
 			productReference = 81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		81EA56E41D5F3A8A00B6290E /* Demo */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 81EA56F41D5F3A8A00B6290E /* Build configuration list for PBXNativeTarget "Demo" */;
-			buildPhases = (
-				81EA56E11D5F3A8A00B6290E /* Sources */,
-				81EA56E21D5F3A8A00B6290E /* Frameworks */,
-				81EA56E31D5F3A8A00B6290E /* Resources */,
-				A1503A0D1DABE93C005A5C46 /* Carthage */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				651309701DC367A700007B6B /* PBXTargetDependency */,
-				813F4D251D5F3E93007CDB53 /* PBXTargetDependency */,
-			);
-			name = Demo;
-			productName = Demo;
-			productReference = 81EA56E51D5F3A8A00B6290E /* Demo.app */;
-			productType = "com.apple.product-type.application";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -807,11 +612,6 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
-					81EA56E41D5F3A8A00B6290E = {
-						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0800;
-						ProvisioningStyle = Manual;
-					};
 				};
 			};
 			buildConfigurationList = 81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */;
@@ -830,7 +630,6 @@
 				81EA56C61D5F3A6000B6290E /* Katana */,
 				81EA56D51D5F3A6E00B6290E /* KatanaTests */,
 				6513094E1DC3529F00007B6B /* KatanaElements */,
-				81EA56E41D5F3A8A00B6290E /* Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -859,15 +658,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81EA56E31D5F3A8A00B6290E /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81C3A4581D8354760079AD32 /* Launch Screen.storyboard in Resources */,
-				81C3A4561D8354760079AD32 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
@@ -886,20 +676,6 @@
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		A1503A0B1DABE895005A5C46 /* Carthage */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Carthage;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		A1503A0D1DABE93C005A5C46 /* Carthage */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1006,27 +782,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		81EA56E11D5F3A8A00B6290E /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				81C3A48A1D8357880079AD32 /* MineField.swift in Sources */,
-				81C3A4871D8357880079AD32 /* StartGame.swift in Sources */,
-				81C3A45D1D8354760079AD32 /* ToDoCell.swift in Sources */,
-				81C3A4861D8357880079AD32 /* DiscloseCell.swift in Sources */,
-				81C3A48C1D8357880079AD32 /* MineFieldGrid.swift in Sources */,
-				81C3A44C1D8354760079AD32 /* AppDelegate.swift in Sources */,
-				81C3A45B1D8354760079AD32 /* ToogleTodoCompletion.swift in Sources */,
-				81C3A45C1D8354760079AD32 /* ToDo.swift in Sources */,
-				81C3A48B1D8357880079AD32 /* MineFieldCell.swift in Sources */,
-				81C3A48D1D8357880079AD32 /* MineFieldState.swift in Sources */,
-				81C3A48F1D8357BE0079AD32 /* actionLogger.swift in Sources */,
-				81C3A45A1D8354760079AD32 /* RemoveTodo.swift in Sources */,
-				81C3A45E1D8354760079AD32 /* ToDoState.swift in Sources */,
-				81C3A4591D8354760079AD32 /* AddTodo.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1035,20 +790,10 @@
 			target = 81EA56C61D5F3A6000B6290E /* Katana */;
 			targetProxy = 6513096C1DC3537B00007B6B /* PBXContainerItemProxy */;
 		};
-		651309701DC367A700007B6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
-			targetProxy = 6513096F1DC367A700007B6B /* PBXContainerItemProxy */;
-		};
 		651309721DC36B0400007B6B /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
 			targetProxy = 651309711DC36B0400007B6B /* PBXContainerItemProxy */;
-		};
-		813F4D251D5F3E93007CDB53 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 81EA56C61D5F3A6000B6290E /* Katana */;
-			targetProxy = 813F4D241D5F3E93007CDB53 /* PBXContainerItemProxy */;
 		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1270,45 +1015,6 @@
 			};
 			name = Release;
 		};
-		81EA56F51D5F3A8A00B6290E /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Debug;
-		};
-		81EA56F61D5F3A8A00B6290E /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				DEVELOPMENT_TEAM = "";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Demo/Support Files/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_OBJC_BRIDGING_HEADER = "Demo/Demo-Bridging-Header.h";
-				SWIFT_VERSION = 3.0;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1344,15 +1050,6 @@
 			buildConfigurations = (
 				81EA56DF1D5F3A6E00B6290E /* Debug */,
 				81EA56E01D5F3A6E00B6290E /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		81EA56F41D5F3A8A00B6290E /* Build configuration list for PBXNativeTarget "Demo" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				81EA56F51D5F3A8A00B6290E /* Debug */,
-				81EA56F61D5F3A8A00B6290E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
