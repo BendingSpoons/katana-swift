@@ -60,13 +60,13 @@ public class Node<Description: NodeDescription> {
     
     let childrenDescriptions  = self.childrenDescriptions() // should be renderedChildren()
         
-    self.children = self.processedChildrenBeforeDraw(childrenDescriptions).map {
+    self.children = self.processedChildrenDescriptionsBeforeDraw(childrenDescriptions).map {
       $0.makeNode(parent: self)
     }
   }
   
   // Customization point for sublcasses. It allowes to update the children before they get drawn
-  public func processedChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
   
@@ -226,7 +226,7 @@ fileprivate extension Node {
     
     var newChildrenDescriptions = self.childrenDescriptions()
     
-    newChildrenDescriptions = self.processedChildrenBeforeDraw(newChildrenDescriptions)
+    newChildrenDescriptions = self.processedChildrenDescriptionsBeforeDraw(newChildrenDescriptions)
     
     var nodes: [AnyNode] = []
     var viewIndexes: [Int] = []

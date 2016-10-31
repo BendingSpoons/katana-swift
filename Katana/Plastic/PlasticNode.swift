@@ -9,15 +9,17 @@
 import Foundation
 
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description> {
-  override public func processedChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let newChildren = super.processedChildrenBeforeDraw(children)
+  override public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    let newChildren = super.processedChildrenDescriptionsBeforeDraw(children)
     return self.applyLayout(to: newChildren, description: self.description)
   }
   
-  func applyLayout(to children: [AnyNodeDescription], description: Description) -> [AnyNodeDescription] {
+  func applyLayout(to childrenDescriptions: [AnyNodeDescription], description: Description) -> [AnyNodeDescription] {
     let multiplier = self.plasticMultipler
     let frame = self.description.props.frame
-    let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame, children: children, multiplier: multiplier)
+    let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame,
+                                                     children: childrenDescriptions,
+                                                     multiplier: multiplier)
     let selfType = type(of: description)
     let layoutHash = selfType.layoutHash(props: self.description.props, state: self.state)
     
@@ -28,7 +30,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                                           multiplier: multiplier,
                                                      nodeDescription: self.description) {
         
-        return self.getFramedChildren(fromChildren: children, frames: frames)
+        return self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: childrenDescriptions, newFrames: frames)
       }
     }
     
@@ -47,25 +49,26 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                           frames: frames)
     }
     
-    return self.getFramedChildren(fromChildren: children, frames: frames)
+    return self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: childrenDescriptions, newFrames: frames)
   }
   
-  private func getFramedChildren(fromChildren children: [AnyNodeDescription], frames: [String: CGRect]) -> [AnyNodeDescription] {
-    return children.map {
-      var newChild = $0
+  private func updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: [AnyNodeDescription],
+                                                        newFrames: [String: CGRect]) -> [AnyNodeDescription] {
+    return childrenDescriptions.map {
+      var newChildDescription = $0
       
-      if let key = newChild.key {
-        if let frame = frames[key] {
-          newChild.frame = frame
+      if let key = newChildDescription.key {
+        if let frame = newFrames[key] {
+          newChildDescription.frame = frame
         }
       }
       
-      if var n = newChild as? AnyNodeDescriptionWithChildren {
-        n.children = self.getFramedChildren(fromChildren: n.children, frames: frames)
+      if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
+        n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
         return n as AnyNodeDescription
         
       } else {
-        return newChild
+        return newChildDescription
       }
     }
   }
