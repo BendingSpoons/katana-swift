@@ -48,7 +48,7 @@ struct SyncAddTodoAction: SyncAction {
   }
 }
 
-struct SpyActionWithSideEffect: Action, SideEffectable {
+struct SpyActionWithSideEffect: ActionWithSideEffect {
   typealias ActionWithSideEffectCallback = (
     _ action: SpyActionWithSideEffect,
     _ state: State,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AnySideEffectable: AnyAction {
+public protocol AnyActionWithSideEffect: AnyAction {
   static func anySideEffect(
     action: AnyAction,
     state: State,
@@ -17,7 +17,7 @@ public protocol AnySideEffectable: AnyAction {
   )
 }
 
-public protocol SideEffectable: Action, AnySideEffectable {
+public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
   static func sideEffect(
     action: Self,
     state: State,
@@ -26,7 +26,7 @@ public protocol SideEffectable: Action, AnySideEffectable {
   )
 }
 
-public extension SideEffectable {
+public extension ActionWithSideEffect {
   static func anySideEffect(
     action: AnyAction,
     state: State,

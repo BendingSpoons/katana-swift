@@ -111,7 +111,7 @@ fileprivate extension Store {
         next(action)
       }
       
-      guard let action = action as? AnySideEffectable else {
+      guard let action = action as? AnyActionWithSideEffect else {
         return
       }
       
