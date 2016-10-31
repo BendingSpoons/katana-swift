@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import Katana
+
 public protocol Highlightable {
   var highlighted: Bool { get set }
 }

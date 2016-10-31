@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Katana
 
 public typealias TouchHandlerClosure = () -> Void
 
