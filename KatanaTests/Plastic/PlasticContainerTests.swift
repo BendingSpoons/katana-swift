@@ -29,17 +29,17 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldCreateChildren() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key(Keys.One)) {
+      View(props: ViewProps(Keys.One)) {
         [
-          View(props: ViewProps().key(Keys.OneA)),
-          View(props: ViewProps().key(Keys.OneB)),
-          ]
+          View(props: ViewProps(Keys.OneA)),
+          View(props: ViewProps(Keys.OneB)),
+        ]
       },
       
-      View(props: ViewProps().key(Keys.Two)),
+      View(props: ViewProps(Keys.Two)),
       View(props: ViewProps()),
-      View(props: ViewProps().key(Keys.Four)),
-      ]
+      View(props: ViewProps(Keys.Four)),
+    ]
     
     
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
@@ -59,17 +59,17 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneBFrame = CGRect(x: 10, y: 10, width: 10, height: 10)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key(Keys.One).frame(oneFrame)) {
+      View(props: ViewProps(Keys.One, frame: oneFrame)) {
         [
-          View(props: ViewProps().key(Keys.OneA)),
-          View(props: ViewProps().key(Keys.OneB).frame(oneBFrame))
+          View(props: ViewProps(Keys.OneA)),
+          View(props: ViewProps(Keys.OneB, frame: oneBFrame))
         ]
       },
       
-      View(props: ViewProps().key(Keys.Two)),
+      View(props: ViewProps(Keys.Two)),
       View(props: ViewProps()),
-      View(props: ViewProps().key(Keys.Four)),
-      ]
+      View(props: ViewProps(Keys.Four)),
+    ]
     
     
     let plasticViewsContainer = ViewsContainer<Keys>(nativeViewFrame: CGRect.zero, children: hierarchy, multiplier: 1)
@@ -84,12 +84,12 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldManageHierarchy() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key(Keys.One)) {
+      View(props: ViewProps(Keys.One)) {
         [
-          View(props: ViewProps().key(Keys.OneA)) {
+          View(props: ViewProps(Keys.OneA)) {
             [
-              View(props: ViewProps().key(Keys.OneAInner)),
-              ]
+              View(props: ViewProps(Keys.OneAInner)),
+            ]
           }
         ]
       }
@@ -148,12 +148,12 @@ class PlasticViewsContainerTests: XCTestCase {
   
   func testShouldManageHierarchyWithNonZeroRootOrigin() {
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key(Keys.One)) {
+      View(props: ViewProps(Keys.One)) {
         [
-          View(props: ViewProps().key(Keys.OneA)) {
+          View(props: ViewProps(Keys.OneA)) {
             [
-              View(props: ViewProps().key(Keys.OneAInner)),
-              ]
+              View(props: ViewProps(Keys.OneAInner)),
+            ]
           }
         ]
       }
@@ -216,11 +216,11 @@ class PlasticViewsContainerTests: XCTestCase {
     let oneAFrame = CGRect(x: 10, y: 10, width: 200, height: 200)
     
     let hierarchy: [AnyNodeDescription] = [
-      View(props: ViewProps().key(Keys.One)) {
+      View(props: ViewProps(Keys.One)) {
         [
-          View(props: ViewProps().frame(oneAFrame)) {
+          View(props: ViewProps(oneAFrame)) {
             [
-              View(props: ViewProps().key(Keys.OneAInner))
+              View(props: ViewProps(Keys.OneAInner))
             ]
           }
         ]
