@@ -2,84 +2,150 @@
 //  Button.swift
 //  Katana
 //
-//  Created by Luca Querella on 10/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
 import UIKit
 import Katana
 
-public struct ButtonProps: NodeProps, Colorable, Textable, Tappable, Bordable, Keyable {
-  public enum State {
-    case normal
-    case highlighted
-  }
-  
+public struct ButtonProps: NodeProps, Keyable, Buildable {
   public var frame = CGRect.zero
-  public var color = UIColor.white
-  public var highlightedColor = UIColor.white
-  public var onTap: (() -> ())?
-  public var text = NSAttributedString()
-  public var borderColor = UIColor.black
-  public var borderWidth = CGFloat(0)
   public var key: String?
   
-  public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
-    return false
-  }
-  
-  public func color(_ color: UIColor, state: State) -> ButtonProps {
-    var copy = self
-    switch state {
-    case .highlighted:
-      copy.highlightedColor = color
-      break
-    default:
-      copy.color = color
-    }
-    
-    return copy
-  }
+  public var backgroundColor = UIColor.white
+  public var cornerRadius: CGFloat = 0.0
+  public var borderWidth: CGFloat = 0.0
+  public var borderColor = UIColor.clear
+  public var clipsToBounds = true
+  public var isUserInteractionEnabled = false
+  public var contentEdgeInsets: UIEdgeInsets = .zero
+  public var titleEdgeInsets: UIEdgeInsets = .zero
+  public var imageEdgeInsets: UIEdgeInsets = .zero
+  public var adjustsImageWhenHighlighted = true
+  public var adjustsImageWhenDisabled = true
+  public var showsTouchWhenHighlighted = false
+  public var titles: [UIControlState: String] = [:]
+  public var titleColors: [UIControlState: UIColor] = [:]
+  public var titleShadowColors: [UIControlState: UIColor] = [:]
+  public var images: [UIControlState: UIImage] = [:]
+  public var backgroundImages: [UIControlState: UIImage] = [:]
+  public var attributedTitles: [UIControlState: NSAttributedString] = [:]
   
   public init() {}
+  
+  public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
+    return
+      lhs.backgroundColor == rhs.backgroundColor &&
+      lhs.cornerRadius == rhs.cornerRadius &&
+      lhs.borderWidth == rhs.borderWidth &&
+      lhs.borderColor == rhs.borderColor &&
+      lhs.clipsToBounds == rhs.clipsToBounds &&
+      lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
+      lhs.contentEdgeInsets == rhs.contentEdgeInsets &&
+      lhs.titleEdgeInsets == rhs.titleEdgeInsets &&
+      lhs.imageEdgeInsets == rhs.imageEdgeInsets &&
+      lhs.adjustsImageWhenHighlighted == rhs.adjustsImageWhenHighlighted &&
+      lhs.adjustsImageWhenDisabled == rhs.adjustsImageWhenDisabled &&
+      lhs.showsTouchWhenHighlighted == rhs.showsTouchWhenHighlighted &&
+      lhs.titles == rhs.titles &&
+      lhs.titleColors == rhs.titleColors &&
+      lhs.titleShadowColors == rhs.titleShadowColors &&
+      lhs.images == rhs.images &&
+      lhs.backgroundImages == rhs.backgroundImages &&
+      lhs.attributedTitles == rhs.attributedTitles
+  }
 }
 
+
 public struct Button: NodeDescription {
+  public typealias NativeView = UIButton
+  
   public var props: ButtonProps
+  
+  public static func applyPropsToNativeView(props: ButtonProps,
+                                            state: EmptyState,
+                                            view: UIButton,
+                                            update: @escaping (EmptyState)->(),
+                                            node: AnyNode) {
+    
+    view.frame = props.frame
+    view.backgroundColor = props.backgroundColor
+    view.layer.cornerRadius = props.cornerRadius
+    view.layer.borderWidth = props.borderWidth
+    view.layer.borderColor = props.borderColor.cgColor
+    view.clipsToBounds = props.clipsToBounds
+    view.isUserInteractionEnabled = props.isUserInteractionEnabled
+    view.contentEdgeInsets = props.contentEdgeInsets
+    view.titleEdgeInsets = props.contentEdgeInsets
+    view.imageEdgeInsets = props.imageEdgeInsets
+    view.imageEdgeInsets = props.imageEdgeInsets
+    view.adjustsImageWhenHighlighted = props.adjustsImageWhenHighlighted
+    view.adjustsImageWhenDisabled = props.adjustsImageWhenDisabled
+    view.showsTouchWhenHighlighted = props.showsTouchWhenHighlighted
+    
+    
+    // reset UIButton state
+    for state in UIControlState.allValues {
+      view.setTitle(nil, for: state)
+      view.setTitleColor(nil, for: state)
+      view.setTitleShadowColor(nil, for: state)
+      view.setImage(nil, for: state)
+      view.setBackgroundImage(nil, for: state)
+      view.setAttributedTitle(nil, for: state)
+    }
+    
+    // set items from props
+    for (state, title) in props.titles {
+      view.setTitle(title, for: state)
+    }
+    
+    for (state, color) in props.titleColors {
+      view.setTitleColor(color, for: state)
+    }
+    
+    for (state, color) in props.titleShadowColors {
+      view.setTitleShadowColor(color, for: state)
+    }
+    
+    for (state, image) in props.images {
+      view.setImage(image, for: state)
+    }
+    
+    for (state, image) in props.backgroundImages {
+      view.setBackgroundImage(image, for: state)
+    }
+    
+    for (state, title) in props.attributedTitles {
+      view.setAttributedTitle(title, for: state)
+    }
+  }
+  
+  public static func render(props: ButtonProps,
+                            state: EmptyState,
+                            update: @escaping (EmptyState)->(),
+                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+    return []
+  }
   
   public init(props: ButtonProps) {
     self.props = props
   }
-  
-  public static func render(props: ButtonProps,
-                            state: EmptyHighlightableState,
-                            update: @escaping (EmptyHighlightableState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+}
+
+extension UIControlState: Hashable {
+  public var hashValue: Int {
+    return Int(self.rawValue)
+  }
+}
+
+fileprivate extension UIControlState {
+  fileprivate static var allValues: [UIControlState] {
+    if #available(iOS 9.0, *) {
+      return [.normal, .highlighted, .disabled, .selected, .application, .reserved, .focused]
     
-    func touchHandler(pressed: Bool) {
-      update(EmptyHighlightableState(highlighted: pressed))
-      
-      if !pressed {
-        props.onTap?()
-      }
+    } else {
+      return [.normal, .highlighted, .disabled, .selected, .application, .reserved]
     }
-    
-    return [
-//      TouchHandler(props: TouchHandlerProps().frame(props.frame.size).touchHandler(touchHandler)) {
-//        [
-//          View(props: ViewProps()
-//            .frame(props.frame.size)
-//            .color(state.highlighted ? props.highlightedColor : props.color)
-//            .borderColor(props.borderColor)
-//            .borderWidth(props.borderWidth)
-//            .disableTouch())
-//        ]
-//      },
-//
-//      Text(props: TextProps()
-//        .frame(props.frame.size)
-//        .text(props.text)
-//        .color(.clear))
-      ]
   }
 }
