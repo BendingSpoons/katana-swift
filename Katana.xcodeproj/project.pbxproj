@@ -21,7 +21,7 @@
 		651309661DC352D800007B6B /* NativeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309441DC351DB00007B6B /* NativeTableViewCell.swift */; };
 		651309671DC352D800007B6B /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309451DC351DB00007B6B /* Table.swift */; };
 		651309681DC352D800007B6B /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309461DC351DB00007B6B /* TableDelegate.swift */; };
-		651309691DC352D800007B6B /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309471DC351DB00007B6B /* Text.swift */; };
+		651309691DC352D800007B6B /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309471DC351DB00007B6B /* Label.swift */; };
 		6513096B1DC352D800007B6B /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 651309491DC351DB00007B6B /* View.swift */; };
 		6513096E1DC3678600007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		651309731DC36B0900007B6B /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
@@ -158,7 +158,7 @@
 		651309441DC351DB00007B6B /* NativeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NativeTableViewCell.swift; sourceTree = "<group>"; };
 		651309451DC351DB00007B6B /* Table.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
 		651309461DC351DB00007B6B /* TableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
-		651309471DC351DB00007B6B /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Text.swift; path = KatanaElements/Text.swift; sourceTree = SOURCE_ROOT; };
+		651309471DC351DB00007B6B /* Label.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Label.swift; path = KatanaElements/Label.swift; sourceTree = SOURCE_ROOT; };
 		651309491DC351DB00007B6B /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = View.swift; path = KatanaElements/View.swift; sourceTree = SOURCE_ROOT; };
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		651309511DC3529F00007B6B /* KatanaElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
@@ -294,7 +294,7 @@
 				651309391DC351DB00007B6B /* Grid */,
 				6513093F1DC351DB00007B6B /* NodesCommons.swift */,
 				651309401DC351DB00007B6B /* Table */,
-				651309471DC351DB00007B6B /* Text.swift */,
+				651309471DC351DB00007B6B /* Label.swift */,
 				651309491DC351DB00007B6B /* View.swift */,
 			);
 			name = KatanaElements;
@@ -957,7 +957,7 @@
 				651309661DC352D800007B6B /* NativeTableViewCell.swift in Sources */,
 				651309671DC352D800007B6B /* Table.swift in Sources */,
 				651309681DC352D800007B6B /* TableDelegate.swift in Sources */,
-				651309691DC352D800007B6B /* Text.swift in Sources */,
+				651309691DC352D800007B6B /* Label.swift in Sources */,
 				6513096B1DC352D800007B6B /* View.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
