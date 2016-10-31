@@ -15,8 +15,8 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
   public var children: [AnyNodeDescription] = []
   
   public var backgroundColor = UIColor.white
-  public var cornerRadius: CGFloat = 0.0
-  public var borderWidth: CGFloat = 0.0
+  public var cornerRadius: Value = .zero
+  public var borderWidth: Value = .zero
   public var borderColor = UIColor.clear
   public var clipsToBounds = true
   public var isUserInteractionEnabled = false
@@ -52,11 +52,13 @@ public struct View: NodeDescription, NodeWithChildrenDescription {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
+    let multiplier = node.plasticMultipler
+    
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius
+    view.layer.cornerRadius = props.cornerRadius.scale(multiplier)
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth
+    view.layer.borderWidth = props.borderWidth.scale(multiplier)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
   }
