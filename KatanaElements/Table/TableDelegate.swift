@@ -13,7 +13,7 @@ public protocol TableDelegate {
   func numberOfSections() -> Int
   func numberOfRows(forSection section: Int) -> Int
   func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription
-  func height(forRowAt indexPath: IndexPath) -> CGFloat
+  func height(forRowAt indexPath: IndexPath) -> Value
   func isEqual(to anotherDelegate: TableDelegate) -> Bool
 }
 
@@ -36,7 +36,7 @@ public struct EmptyTableDelegate: TableDelegate {
     fatalError()
   }
 
-  public func height(forRowAt indexPath: IndexPath) -> CGFloat {
+  public func height(forRowAt indexPath: IndexPath) -> Value {
     fatalError()
   }
   

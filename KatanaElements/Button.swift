@@ -14,14 +14,14 @@ public struct ButtonProps: NodeProps, Keyable, Buildable {
   public var key: String?
   
   public var backgroundColor = UIColor.white
-  public var cornerRadius: CGFloat = 0.0
-  public var borderWidth: CGFloat = 0.0
+  public var cornerRadius: Value = .zero
+  public var borderWidth: Value = .zero
   public var borderColor = UIColor.clear
   public var clipsToBounds = true
   public var isUserInteractionEnabled = false
-  public var contentEdgeInsets: UIEdgeInsets = .zero
-  public var titleEdgeInsets: UIEdgeInsets = .zero
-  public var imageEdgeInsets: UIEdgeInsets = .zero
+  public var contentEdgeInsets: EdgeInsets = .zero
+  public var titleEdgeInsets: EdgeInsets = .zero
+  public var imageEdgeInsets: EdgeInsets = .zero
   public var adjustsImageWhenHighlighted = true
   public var adjustsImageWhenDisabled = true
   public var showsTouchWhenHighlighted = false
@@ -71,15 +71,15 @@ public struct Button: NodeDescription {
     
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius
-    view.layer.borderWidth = props.borderWidth
+    view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
-    view.contentEdgeInsets = props.contentEdgeInsets
-    view.titleEdgeInsets = props.contentEdgeInsets
-    view.imageEdgeInsets = props.imageEdgeInsets
-    view.imageEdgeInsets = props.imageEdgeInsets
+    view.contentEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
+    view.titleEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(node.plasticMultipler)
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(node.plasticMultipler)
     view.adjustsImageWhenHighlighted = props.adjustsImageWhenHighlighted
     view.adjustsImageWhenDisabled = props.adjustsImageWhenDisabled
     view.showsTouchWhenHighlighted = props.showsTouchWhenHighlighted
