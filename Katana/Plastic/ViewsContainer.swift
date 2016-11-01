@@ -8,7 +8,7 @@
 
 import UIKit
 
-private let NATIVEVIEWKEY = "//NATIVEVIEWKEY\\"
+private let nativeViewKey = "//NATIVEVIEWKEY\\"
 
 internal enum HierarchyNode {
   // the node is the native node
@@ -39,7 +39,7 @@ public class ViewsContainer<Key>: HierarchyManager {
   lazy public var nativeView: PlasticView = {
     return PlasticView(
       hierarchyManager: self,
-      key: NATIVEVIEWKEY,
+      key: nativeViewKey,
       multiplier: self.multiplier,
       frame: self.nativeViewFrame
     )
