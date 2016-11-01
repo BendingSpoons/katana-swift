@@ -19,7 +19,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     return newChildrenDescriptions
   }
   
-  func updatedFrames(for childrenDescriptions: [AnyNodeDescription]) -> [String: CGRect] {
+  private func updatedFrames(for childrenDescriptions: [AnyNodeDescription]) -> [String: CGRect] {
     let multiplier = self.plasticMultipler
     let frame = self.description.props.frame
     let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame,
