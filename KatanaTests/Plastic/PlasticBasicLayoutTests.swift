@@ -69,15 +69,15 @@ class PlasticBasicLayoutTests: XCTestCase {
     XCTAssertEqual(v1.frame.origin.y, v2Frame.origin.y)
     
     // margin fixed
-    v1.setTop(v2.top, .fixed(50))
+    v1.setTop(v2.top, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.y, v2Frame.origin.y + 50)
     
     // margin scalable
-    v1.setTop(v2.top, .scalable(50))
+    v1.setTop(v2.top, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.y, v2Frame.origin.y + 50 * multiplier)
 
     // negative margin
-    v1.setTop(v2.top, .scalable(-50))
+    v1.setTop(v2.top, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.y, v2Frame.origin.y - 50 * multiplier)
   }
   
@@ -95,15 +95,15 @@ class PlasticBasicLayoutTests: XCTestCase {
     XCTAssertEqual(v1.frame.origin.x, v2Frame.origin.x)
     
     // margin fixed
-    v1.setLeft(v2.left, .fixed(50))
+    v1.setLeft(v2.left, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.x, v2Frame.origin.x + 50)
     
     // margin scalable
-    v1.setLeft(v2.left, .scalable(50))
+    v1.setLeft(v2.left, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.x, v2Frame.origin.x + 50 * multiplier)
     
     // negative margin
-    v1.setLeft(v2.left, .scalable(-50))
+    v1.setLeft(v2.left, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.x, v2Frame.origin.x - 50 * multiplier)
   }
   
@@ -148,15 +148,15 @@ y  v   |              |  |          |
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height - v1.frame.size.height)
     
     // margin fixed
-    v1.setBottom(v2.bottom, .fixed(50))
+    v1.setBottom(v2.bottom, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height - v1.frame.size.height + 50)
     
     // margin scalable
-    v1.setBottom(v2.bottom, .scalable(50))
+    v1.setBottom(v2.bottom, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height - v1.frame.size.height + 50 * multiplier)
     
     // negative margin
-    v1.setBottom(v2.bottom, .scalable(-50))
+    v1.setBottom(v2.bottom, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height - v1.frame.size.height - 50 * multiplier)
     
   }
@@ -200,15 +200,15 @@ y  v
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width)
     
     // margin fixed
-    v1.setRight(v2.right, .fixed(50))
+    v1.setRight(v2.right, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width + 50)
     
     // margin scalable
-    v1.setRight(v2.right, .scalable(50))
+    v1.setRight(v2.right, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width + 50 * multiplier)
     
     // negative
-    v1.setRight(v2.right, .scalable(-50))
+    v1.setRight(v2.right, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width - v1.frame.size.width - 50 * multiplier)
   }
   
@@ -254,15 +254,15 @@ y v
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0)
     
     // margin fixed
-    v1.setCenterX(v2.centerX, .fixed(50))
+    v1.setCenterX(v2.centerX, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 + 50)
     
     // margin scalable
-    v1.setCenterX(v2.centerX, .scalable(50))
+    v1.setCenterX(v2.centerX, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 + 50 * multiplier)
     
     // negative margin
-    v1.setCenterX(v2.centerX, .scalable(-50))
+    v1.setCenterX(v2.centerX, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + v2.frame.size.width / 2.0 - v1.frame.size.width / 2.0 - 50 * multiplier)
   }
   
@@ -308,16 +308,16 @@ y v
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0)
     
     // margin fixed
-    v1.setCenterY(v2.centerY, .fixed(50))
+    v1.setCenterY(v2.centerY, offset: .fixed(50))
     XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50)
     
     // margin scalable
-    v1.setCenterY(v2.centerY, .scalable(50))
+    v1.setCenterY(v2.centerY, offset: .scalable(50))
     XCTAssertEqual(v1.frame.origin.y,
                    v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50 * multiplier)
     
     // negative margin
-    v1.setCenterY(v2.centerY, .scalable(-50))
+    v1.setCenterY(v2.centerY, offset: .scalable(-50))
     XCTAssertEqual(v1.frame.origin.y,
                    v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 - 50 * multiplier)
   }
