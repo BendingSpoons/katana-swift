@@ -33,7 +33,7 @@ public class Store<StateType: State> {
     // add the side effect function as the first in the chain
     m = [self.triggerSideEffect] + m
     
-    return self.compose(m, with: self.performDispatch)
+    return self.composeMiddlewares(m, with: self.performDispatch)
   }()
   
   lazy private var dispatchQueue: DispatchQueue = {
@@ -71,7 +71,7 @@ public class Store<StateType: State> {
 fileprivate extension Store {
   fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> Void
 
-  fileprivate func compose(_ middlewares: [PartiallyAppliedMiddleware],
+  fileprivate func composeMiddlewares(_ middlewares: [PartiallyAppliedMiddleware],
                            with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
 
     guard middlewares.count > 0 else {
