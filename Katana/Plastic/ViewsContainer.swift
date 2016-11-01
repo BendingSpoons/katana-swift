@@ -30,8 +30,8 @@ public class ViewsContainer<Key>: HierarchyManager {
   
   // the key is the node key while the value is a parent node representation
   private var hierarchy: [String: HierarchyNode] = [:]
-  private var flatChildren: [(String, AnyNodeDescription)]
-  private var children: [AnyNodeDescription]
+  private var flatChildrenDescriptions: [(String, AnyNodeDescription)]
+  private var childrenDescriptions: [AnyNodeDescription]
   
   private let nativeViewFrame: CGRect
   private let multiplier: CGFloat
@@ -46,7 +46,7 @@ public class ViewsContainer<Key>: HierarchyManager {
   }()
   
   var childrenKeys: [String] {
-    return self.flatChildren.map { $0.0 }
+    return self.flatChildrenDescriptions.map { $0.0 }
   }
   
   var frames: [String: CGRect] {
@@ -59,18 +59,18 @@ public class ViewsContainer<Key>: HierarchyManager {
     return frames
   }
   
-  init(nativeViewFrame: CGRect, children: [AnyNodeDescription], multiplier: CGFloat) {
+  init(nativeViewFrame: CGRect, childrenDescriptions: [AnyNodeDescription], multiplier: CGFloat) {
     self.nativeViewFrame = nativeViewFrame
     self.multiplier = multiplier
-    self.children = children
+    self.childrenDescriptions = childrenDescriptions
     
     // create children placeholders
-    self.flatChildren = [(String, AnyNodeDescription)]()
-    flattenChildren(children, accumulator: &self.flatChildren)
+    self.flatChildrenDescriptions = [(String, AnyNodeDescription)]()
+    flattenChildren(childrenDescriptions, accumulator: &self.flatChildrenDescriptions)
   }
   
   func initialize() {
-    self.flatChildren.forEach { key, node in
+    self.flatChildrenDescriptions.forEach { key, node in
       self.views[key] = PlasticView(
         hierarchyManager: self,
         key: key,
@@ -78,8 +78,7 @@ public class ViewsContainer<Key>: HierarchyManager {
         frame: node.frame
       )
     }
-    
-    self.nodeChildrenHierarchy(self.children, parentRepresentation: .nativeView, accumulator: &hierarchy)
+    self.createChildrenHierarchy(for: self.childrenDescriptions, parentRepresentation: .nativeView, accumulator: &hierarchy)
   }
   
   public subscript(key: Key) -> PlasticView? {
@@ -151,27 +150,27 @@ internal extension ViewsContainer {
    - StaticFrame: the parent is a node without key, we assume that the frame is static
    - DynamicFrame: the parent is a node with a key, it is managed by plastic
    */
-  internal func nodeChildrenHierarchy(_ children: [AnyNodeDescription],
+  internal func createChildrenHierarchy(for childrenDescriptions: [AnyNodeDescription],
                             parentRepresentation: HierarchyNode,
                                      accumulator: inout [String: HierarchyNode]) -> Void {
     
-    children.forEach { node in
+    childrenDescriptions.forEach { nodeDescription in
       
-      let currentNode: HierarchyNode = {
-        if let key = node.key {
+      let currentRepresentation: HierarchyNode = {
+        if let key = nodeDescription.key {
           return .dynamicFrame(key)
         }
         
-        return .staticFrame(node.frame, parentRepresentation)
+        return .staticFrame(nodeDescription.frame, parentRepresentation)
       }()
       
       
-      if let key = node.key {
+      if let key = nodeDescription.key {
         accumulator[key] = parentRepresentation
       }
       
-      if let n = node as? AnyNodeDescriptionWithChildren {
-        nodeChildrenHierarchy(n.children, parentRepresentation: currentNode, accumulator: &accumulator)
+      if let nodeDescription = nodeDescription as? AnyNodeDescriptionWithChildren {
+        createChildrenHierarchy(for: nodeDescription.children, parentRepresentation: currentRepresentation, accumulator: &accumulator)
       }
     }
   }

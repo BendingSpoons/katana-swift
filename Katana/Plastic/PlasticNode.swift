@@ -23,7 +23,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     let multiplier = self.plasticMultipler
     let frame = self.description.props.frame
     let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame,
-                                                     children: childrenDescriptions,
+                                                     childrenDescriptions: childrenDescriptions,
                                                      multiplier: multiplier)
     let selfType = type(of: description)
     let layoutHash = selfType.layoutHash(props: self.description.props, state: self.state)
