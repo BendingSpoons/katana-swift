@@ -54,7 +54,7 @@ public protocol NodeDescription: AnyNodeDescription {
                      update: @escaping (StateType)->(),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]
   
-  static func childrenAnimationForNextRender(currentProps: PropsType,
+  static func childrenAnimation(currentProps: PropsType,
                                              nextProps: PropsType,
                                              currentState: StateType,
                                              nextState: StateType,
@@ -72,7 +72,7 @@ extension NodeDescription {
     view.frame = props.frame
   }
   
-  public static func childrenAnimationForNextRender(currentProps: PropsType,
+  public static func childrenAnimation(currentProps: PropsType,
                                                     nextProps: PropsType,
                                                     currentState: StateType,
                                                     nextState: StateType,

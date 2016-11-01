@@ -200,7 +200,7 @@ fileprivate extension Node {
       return
     }
     
-    let childrenAnimation = type(of: self.description).childrenAnimationForNextRender(
+    let childrenAnimation = type(of: self.description).childrenAnimation(
       currentProps: self.description.props,
       nextProps: description.props,
       currentState: self.state,
