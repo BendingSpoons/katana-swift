@@ -91,7 +91,7 @@ public class ViewsContainer<Key>: HierarchyManager {
       fatalError("\(key) is not a valid node key")
     }
     
-    let origin = self.resolveAbsoluteOrigin(fromNode: node)
+    let origin = self.resolvedAbsoluteOrigin(for: node)
     return absoluteValue - origin.x
   }
   
@@ -100,7 +100,7 @@ public class ViewsContainer<Key>: HierarchyManager {
       fatalError("\(key) is not a valid node key")
     }
     
-    let origin = self.resolveAbsoluteOrigin(fromNode: node)
+    let origin = self.resolvedAbsoluteOrigin(for: node)
     return absoluteValue - origin.y
   }
   
@@ -109,7 +109,7 @@ public class ViewsContainer<Key>: HierarchyManager {
    Two cases are trivial: root and managed by plastic (since plastic already holds an absolute value).
    When we have static frames (node without keys) we need to explore the hierarchy until we either find the root or a plastic node
    */
-  private func resolveAbsoluteOrigin(fromNode node: HierarchyNode) -> CGPoint {
+  private func resolvedAbsoluteOrigin(for node: HierarchyNode) -> CGPoint {
     switch node {
     case .nativeView:
       return self.nativeViewFrame.origin
@@ -123,7 +123,7 @@ public class ViewsContainer<Key>: HierarchyManager {
       
       
     case let .staticFrame(frame, parent):
-      let parentOrigin = self.resolveAbsoluteOrigin(fromNode: parent)
+      let parentOrigin = self.resolvedAbsoluteOrigin(for: parent)
       let currentOrigin = frame.origin
       return CGPoint(x: parentOrigin.x + currentOrigin.x, y: parentOrigin.y + currentOrigin.y)
     }
