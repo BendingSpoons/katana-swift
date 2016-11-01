@@ -22,7 +22,7 @@ internal enum HierarchyNode {
   case dynamicFrame(String)
 }
 
-public class ViewsContainer<Key>: HierarchyManager {
+public class ViewsContainer<Key>: CoordinateConvertible {
 //where Key: RawRepresentable & Hashable & Comparable {
 
   // an association between the key and the plastic view

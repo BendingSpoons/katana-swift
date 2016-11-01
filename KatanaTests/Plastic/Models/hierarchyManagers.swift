@@ -11,7 +11,7 @@ import Foundation
 
 // dummy hierarchy manager that always like the view
 // is the top one.. it always returns the passed value
-class DummyHierarchyManager: HierarchyManager {
+class DummyHierarchyManager: CoordinateConvertible {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     return absoluteValue
   }

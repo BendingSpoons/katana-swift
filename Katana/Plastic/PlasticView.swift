@@ -22,7 +22,7 @@ public class PlasticView {
   public private(set) var frame: CGRect
   private let multiplier: CGFloat
   private(set) var absoluteOrigin: CGPoint
-  private unowned let hierarchyManager: HierarchyManager
+  private unowned let hierarchyManager: CoordinateConvertible
   
   private var oldestConstraintX = ConstraintX.none
   private var newestConstraintX = ConstraintX.none
@@ -51,7 +51,7 @@ public class PlasticView {
     }
   }
 
-  init(hierarchyManager: HierarchyManager, key: String, multiplier: CGFloat, frame: CGRect) {
+  init(hierarchyManager: CoordinateConvertible, key: String, multiplier: CGFloat, frame: CGRect) {
     self.key = key
     self.frame = frame
     self.absoluteOrigin = frame.origin
