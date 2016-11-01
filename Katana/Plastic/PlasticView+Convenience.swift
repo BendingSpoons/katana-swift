@@ -43,21 +43,21 @@ extension PlasticView {
     let height = self.height.unscaledValue
     
     if width / height < aspectRatio {
-      self.center(betweenTop: top, andBottom: bottom)
+      self.centerBetween(top: top, bottom: bottom)
       self.height = Value.fixed(width / aspectRatio)
       
     } else {
-      self.center(betweenLeft: left, andRight: right)
+      self.centerBetween(left: left, right: right)
       self.width = Value.fixed(height * aspectRatio)
     }
   }
   
-  public func center(betweenLeft left: Anchor, andRight right: Anchor) -> Void {
+  public func centerBetween(left: Anchor, right: Anchor) -> Void {
     let offset: Value = .fixed((right.coordinate - left.coordinate) / 2.0)
     self.setCenterX(left, offset)
   }
   
-  public func center(betweenTop top: Anchor, andBottom bottom: Anchor) -> Void {
+  public func centerBetween(top: Anchor, bottom: Anchor) -> Void {
     let offset: Value = .fixed((bottom.coordinate - top.coordinate) / 2.0)
     self.setCenterY(top, offset)
   }
