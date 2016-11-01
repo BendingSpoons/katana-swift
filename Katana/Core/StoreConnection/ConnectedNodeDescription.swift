@@ -16,7 +16,7 @@ public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
   associatedtype PropsType: NodeProps = EmptyProps
   associatedtype StorageState: State
 
-  static func connect(props: inout PropsType, storageState: StorageState)
+  static func connect(props: inout PropsType, to storageState: StorageState)
 }
 
 public extension ConnectedNodeDescription {
@@ -27,7 +27,7 @@ public extension ConnectedNodeDescription {
     }
     
     var parentPropsCopy = parentProps
-    self.connect(props: &parentPropsCopy, storageState: s)
+    self.connect(props: &parentPropsCopy, to: s)
     return parentPropsCopy
 
   }

@@ -91,7 +91,7 @@ struct ToDo: NodeDescription, ConnectedNodeDescription, PlasticNodeDescription, 
     list.bottom = root.bottom
   }
   
-  static func connect(props: inout ToDoProps, storageState: ToDoState) {
+  static func connect(props: inout ToDoProps, to storageState: ToDoState) {
     props.todos = storageState.todos
   }
 }

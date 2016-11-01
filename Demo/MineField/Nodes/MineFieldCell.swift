@@ -104,7 +104,7 @@ struct MineFieldCell: NodeDescription, ConnectedNodeDescription, PlasticNodeDesc
     button?.fill(root)
   }
   
-  static func connect(props: inout MineFieldCellProps, storageState: MineFieldState) {
+  static func connect(props: inout MineFieldCellProps, to storageState: MineFieldState) {
     let column = props.col
     let row = props.row
     props.hasMine = storageState[column, row]
