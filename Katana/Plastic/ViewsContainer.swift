@@ -170,7 +170,9 @@ internal extension ViewsContainer {
       }
       
       if let nodeDescription = nodeDescription as? AnyNodeDescriptionWithChildren {
-        createChildrenHierarchy(for: nodeDescription.children, parentRepresentation: currentRepresentation, accumulator: &accumulator)
+        createChildrenHierarchy(for: nodeDescription.children,
+                                parentRepresentation: currentRepresentation,
+                                accumulator: &accumulator)
       }
     }
   }
