@@ -9,7 +9,7 @@
 import Foundation
 
 public extension ViewsContainer {
-  public func filtered(_ filter: (String) -> Bool) -> [String: PlasticView] {
+  public func filtered(with filter: (String) -> Bool) -> [String: PlasticView] {
     var newDict = [String: PlasticView]()
     
     for (key, view) in self.views {
@@ -25,7 +25,7 @@ public extension ViewsContainer {
   // return an ordered array of items that have a certain prefix
   public func orderedViews(filter: (String) -> Bool, sortedBy sort: (String, String) -> Bool) -> [PlasticView] {
     return self
-      .filtered(filter)
+      .filtered(with: filter)
       .map { $0.key }
       .sorted()
       .flatMap { self.views[$0] }
