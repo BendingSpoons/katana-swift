@@ -58,7 +58,7 @@ public class Node<Description: NodeDescription> {
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
-    let childrenDescriptions  = self.childrenDescriptions() // should be renderedChildren()
+    let childrenDescriptions  = self.childrenDescriptions()
         
     self.children = self.processedChildrenDescriptionsBeforeDraw(childrenDescriptions).map {
       $0.makeNode(parent: self)
