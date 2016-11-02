@@ -18,7 +18,7 @@ public struct ButtonProps: NodeProps, Keyable, Buildable {
   public var borderWidth: Value = .zero
   public var borderColor = UIColor.clear
   public var clipsToBounds = true
-  public var isUserInteractionEnabled = false
+  public var isEnabled = true
   public var contentEdgeInsets: EdgeInsets = .zero
   public var titleEdgeInsets: EdgeInsets = .zero
   public var imageEdgeInsets: EdgeInsets = .zero
@@ -41,7 +41,7 @@ public struct ButtonProps: NodeProps, Keyable, Buildable {
       lhs.borderWidth == rhs.borderWidth &&
       lhs.borderColor == rhs.borderColor &&
       lhs.clipsToBounds == rhs.clipsToBounds &&
-      lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
+      lhs.isEnabled == rhs.isEnabled &&
       lhs.contentEdgeInsets == rhs.contentEdgeInsets &&
       lhs.titleEdgeInsets == rhs.titleEdgeInsets &&
       lhs.imageEdgeInsets == rhs.imageEdgeInsets &&
@@ -75,7 +75,7 @@ public struct Button: NodeDescription {
     view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
     view.clipsToBounds = props.clipsToBounds
-    view.isUserInteractionEnabled = props.isUserInteractionEnabled
+    view.isEnabled = props.isEnabled
     view.contentEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
     view.titleEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
     view.imageEdgeInsets = props.imageEdgeInsets.scale(node.plasticMultipler)
