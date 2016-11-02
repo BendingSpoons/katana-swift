@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Katana
-import KatanaElements
 
 private enum Keys {
   case One, OneA, OneB, OneAInner
