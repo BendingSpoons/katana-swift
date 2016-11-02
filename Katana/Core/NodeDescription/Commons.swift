@@ -47,19 +47,6 @@ public extension Keyable {
   }
 }
 
-public protocol Childrenable {
-  var children: [AnyNodeDescription] { get set }
-  func children(_ children: [AnyNodeDescription]) -> Self
-}
-
-extension Childrenable {
-  public func children(_ children: [AnyNodeDescription]) -> Self {
-    var copy = self
-    copy.children = children
-    return copy
-  }
-}
-
 public struct EmptyProps: NodeProps, Keyable {
   public var key: String?
   public var frame: CGRect = CGRect.zero
