@@ -9,20 +9,20 @@
 import Foundation
 
 public protocol AnyConnectedNodeDescription {
-  static func anyConnect(parentProps: Any, storageState: Any) -> Any
+  static func anyConnect(parentProps: Any, storeState: Any) -> Any
 }
 
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription {
   associatedtype PropsType: NodeProps = EmptyProps
-  associatedtype StorageState: State
+  associatedtype StoreState: State
 
-  static func connect(props: inout PropsType, to storageState: StorageState)
+  static func connect(props: inout PropsType, to storeState: StoreState)
 }
 
 public extension ConnectedNodeDescription {
-  static func anyConnect(parentProps: Any, storageState: Any) -> Any {
+  static func anyConnect(parentProps: Any, storeState: Any) -> Any {
     
-    guard let parentProps = parentProps as? PropsType, let s = storageState as? StorageState else {
+    guard let parentProps = parentProps as? PropsType, let s = storeState as? StoreState else {
       fatalError("invalid signature of the connect function of \(type(of: self))")
     }
     

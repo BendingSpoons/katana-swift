@@ -76,7 +76,7 @@ struct MineField: NodeDescription, ConnectedNodeDescription, PlasticNodeDescript
     field.bottom = root.bottom
   }
   
-  static func connect(props: inout MineFieldProps, to storageState: MineFieldState) {
-    props.gameover = storageState.gameOver
+  static func connect(props: inout MineFieldProps, to storeState: MineFieldState) {
+    props.gameover = storeState.gameOver
   }
 }
