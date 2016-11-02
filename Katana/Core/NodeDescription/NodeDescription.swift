@@ -76,8 +76,9 @@ public protocol AnyNodeDescription {
   
   /**
     The replace key of the description. When two descriptions have the same replaceKey, Katana consider them interchangeable.
-    During an UI update, Katana will try to minimise the creation of new nodes (and therefore UIView instances) by reusing old nodes.
-    This is only possible when the old node description is interchangeable with the node that Katana is trying to render.
+    During an UI update, Katana will try to minimise the creation of new nodes
+    (and therefore UIView instances) by reusing old nodes. This is only possible when the old node description
+    is interchangeable with the node that Katana is trying to render.
    
     You can customise the replace key to control the reuse of nodes and views.
   */
