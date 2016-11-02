@@ -11,7 +11,7 @@ class DrawableContainersTest: XCTestCase {
     XCTAssert(r.children().count == 1)
     XCTAssert(child.children().count == 0)
     
-    r.removeAll()
+    r.removeAllChildren()
     XCTAssert(r.children().count == 0)
   }
   

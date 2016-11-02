@@ -12,7 +12,7 @@ public protocol DrawableContainerChild {}
 
 public protocol DrawableContainer {
   
-  func removeAll()
+  func removeAllChildren()
   
   @discardableResult func addChild(_ child: () -> UIView) -> DrawableContainer
   
@@ -33,7 +33,7 @@ extension UIView: DrawableContainer {
     private(set) var view: UIView
   }
   
-  public func removeAll() {
+  public func removeAllChildren() {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
     
