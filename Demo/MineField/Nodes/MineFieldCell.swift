@@ -104,11 +104,11 @@ struct MineFieldCell: NodeDescription, ConnectedNodeDescription, PlasticNodeDesc
     button?.fill(root)
   }
   
-  static func connect(props: inout MineFieldCellProps, to storageState: MineFieldState) {
+  static func connect(props: inout MineFieldCellProps, to storeState: MineFieldState) {
     let column = props.col
     let row = props.row
-    props.hasMine = storageState[column, row]
-    props.disclosed = storageState.isDisclosed(col: column, row: row)
-    props.minesNearby = storageState.minesNearbyCellAt(col: column, row: row)
+    props.hasMine = storeState[column, row]
+    props.disclosed = storeState.isDisclosed(col: column, row: row)
+    props.minesNearby = storeState.minesNearbyCellAt(col: column, row: row)
   }
 }

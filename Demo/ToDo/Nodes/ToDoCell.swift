@@ -84,11 +84,11 @@ struct ToDoCell: CellNodeDescription, ConnectedNodeDescription, PlasticNodeDescr
     delete.width = .scalable(60)
   }
   
-  static func connect(props: inout ToDoCellProps, to storageState: ToDoState) {
+  static func connect(props: inout ToDoCellProps, to storeState: ToDoState) {
     
-    if props.index < storageState.todos.count {
-      props.name = storageState.todos[props.index]
-      props.completed = storageState.todosCompleted[props.index]
+    if props.index < storeState.todos.count {
+      props.name = storeState.todos[props.index]
+      props.completed = storeState.todosCompleted[props.index]
     }
 
   }

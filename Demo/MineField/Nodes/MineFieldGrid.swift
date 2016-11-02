@@ -89,8 +89,8 @@ struct MineFieldGrid: NodeDescription, ConnectedNodeDescription, PlasticNodeDesc
     }
   }
   
-  static func connect(props: inout MineFieldGridProps, to storageState: MineFieldState) {
-    props.cols = storageState.cols
-    props.rows = storageState.rows
+  static func connect(props: inout MineFieldGridProps, to storeState: MineFieldState) {
+    props.cols = storeState.cols
+    props.rows = storeState.rows
   }
 }

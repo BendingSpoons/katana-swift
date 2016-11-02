@@ -351,7 +351,7 @@ fileprivate extension Node {
       }
       
       let state = store.anyState
-      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
+      return type(of: desc).anyConnect(parentProps: description.props, storeState: state) as! Description.PropsType
     }
     
     return props

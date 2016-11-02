@@ -15,7 +15,7 @@ public protocol AnyConnectedNodeDescription {
    
    - seeAlso: `ConnectedNodeDescription`, `connect(props:to:)` method
   */
-  static func anyConnect(parentProps: Any, storageState: Any) -> Any
+  static func anyConnect(parentProps: Any, storeState: Any) -> Any
 }
 
 /**
@@ -42,7 +42,7 @@ public protocol AnyConnectedNodeDescription {
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription, NodeDescription {
   
   /// The State used in the application
-  associatedtype StorageState: State
+  associatedtype StoreState: State
   
   /**
    This method is used to update the properties with pieces of information taken from the 
@@ -54,20 +54,21 @@ public protocol ConnectedNodeDescription: AnyConnectedNodeDescription, NodeDescr
    render the UI.
    
    - parameter props:        the props defined by the parent
-   - parameter storageState: the state of the Store
+   - parameter storeState:   the state of the Store
   */
-  static func connect(props: inout PropsType, to storageState: StorageState)
+  static func connect(props: inout PropsType, to storeState: StoreState)
 }
 
 public extension ConnectedNodeDescription {
   /**
-    Default implementation of `anyConnect`. It invokes `connect(props:to:)` by casting the parameters
-    to the proper types.
- 
-    - seeAlso: `AnyConnectedNodeDescription`
+   Default implementation of `anyConnect`. It invokes `connect(props:to:)` by casting the parameters
+   to the proper types.
+   
+   - seeAlso: `AnyConnectedNodeDescription`
   */
-  static func anyConnect(parentProps: Any, storageState: Any) -> Any {
-    guard let parentProps = parentProps as? PropsType, let s = storageState as? StorageState else {
+  static func anyConnect(parentProps: Any, storeState: Any) -> Any {
+    
+    guard let parentProps = parentProps as? PropsType, let s = storeState as? StoreState else {
       fatalError("invalid signature of the connect function of \(type(of: self))")
     }
     
