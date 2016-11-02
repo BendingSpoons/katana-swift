@@ -37,7 +37,7 @@
 		813315731D7B726000FBE210 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153D1D7B726000FBE210 /* Anchor.swift */; };
 		813315741D7B726000FBE210 /* Array+Plastic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153E1D7B726000FBE210 /* Array+Plastic.swift */; };
 		813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153F1D7B726000FBE210 /* EdgeInsets.swift */; };
-		813315761D7B726000FBE210 /* HierarchyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315401D7B726000FBE210 /* HierarchyManager.swift */; };
+		813315761D7B726000FBE210 /* CoordinateConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315401D7B726000FBE210 /* CoordinateConvertible.swift */; };
 		813315771D7B726000FBE210 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315411D7B726000FBE210 /* PlasticNode.swift */; };
 		813315781D7B726000FBE210 /* PlasticNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315421D7B726000FBE210 /* PlasticNodeDescription.swift */; };
 		813315791D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */; };
@@ -168,7 +168,7 @@
 		8133153D1D7B726000FBE210 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		8133153E1D7B726000FBE210 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		8133153F1D7B726000FBE210 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
-		813315401D7B726000FBE210 /* HierarchyManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HierarchyManager.swift; sourceTree = "<group>"; };
+		813315401D7B726000FBE210 /* CoordinateConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateConvertible.swift; sourceTree = "<group>"; };
 		813315411D7B726000FBE210 /* PlasticNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNode.swift; sourceTree = "<group>"; };
 		813315421D7B726000FBE210 /* PlasticNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescription.swift; sourceTree = "<group>"; };
 		813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescriptionWithReferenceSize.swift; sourceTree = "<group>"; };
@@ -376,7 +376,7 @@
 				8133153D1D7B726000FBE210 /* Anchor.swift */,
 				8133153E1D7B726000FBE210 /* Array+Plastic.swift */,
 				8133153F1D7B726000FBE210 /* EdgeInsets.swift */,
-				813315401D7B726000FBE210 /* HierarchyManager.swift */,
+				813315401D7B726000FBE210 /* CoordinateConvertible.swift */,
 				813315411D7B726000FBE210 /* PlasticNode.swift */,
 				813315421D7B726000FBE210 /* PlasticNodeDescription.swift */,
 				813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */,
@@ -921,7 +921,7 @@
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
 				8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */,
 				8133157C1D7B726000FBE210 /* Size.swift in Sources */,
-				813315761D7B726000FBE210 /* HierarchyManager.swift in Sources */,
+				813315761D7B726000FBE210 /* CoordinateConvertible.swift in Sources */,
 				813315771D7B726000FBE210 /* PlasticNode.swift in Sources */,
 				813315621D7B726000FBE210 /* Root.swift in Sources */,
 				A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */,
