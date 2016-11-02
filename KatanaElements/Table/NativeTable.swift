@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Katana
 
-private let CELLIDENTIFIER = "KATANA_CELLIDENTIFIER"
+private let cellIdentifier = "KATANA_CELLIDENTIFIER"
 
 public class NativeTable: UITableView {
   private(set) weak var parent: AnyNode?
@@ -19,7 +19,7 @@ public class NativeTable: UITableView {
   override public init(frame: CGRect, style: UITableViewStyle) {
     super.init(frame: frame, style: style)
    
-    self.register(NativeTableWrapperCell.self, forCellReuseIdentifier: CELLIDENTIFIER)
+    self.register(NativeTableWrapperCell.self, forCellReuseIdentifier: cellIdentifier)
     self.tableFooterView = UIView()
     self.separatorStyle = .none
     
@@ -63,7 +63,7 @@ extension NativeTable: UITableViewDataSource {
   
   @objc(tableView:cellForRowAtIndexPath:)
   public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-    let cell = tableView.dequeueReusableCell(withIdentifier: CELLIDENTIFIER, for: indexPath) as! NativeTableWrapperCell
+    let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! NativeTableWrapperCell
     
     if let parent = self.parent, let delegate = self.katanaDelegate {
       let description = delegate.cellDescription(forRowAt: indexPath)
