@@ -1,5 +1,5 @@
 //
-//  HierarchyManager.swift
+//  CoordinateConvertible.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 16/08/16.
