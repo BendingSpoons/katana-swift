@@ -1,38 +1,33 @@
 import XCTest
 @testable import Katana
-import KatanaElements
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-
     let root = App(props: AppProps(i:0), children: []).root(store: nil)
     let node = root.node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
-    XCTAssert(references.count == 6)
-    XCTAssert(references.filter { $0.value != nil }.count == 6)
+    XCTAssert(references.count == 3)
+    XCTAssert(references.filter { $0.value != nil }.count == 3)
     
     try! node.update(description: App(props: AppProps(i:1), children: []))
-    XCTAssert(references.count == 6)
-    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    XCTAssert(references.count == 3)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
   
     references = collectNodes(node: node).map { WeakNode(value: $0) }
-    XCTAssert(references.count == 5)
-    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    XCTAssert(references.count == 2)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
     try! node.update(description: App(props: AppProps(i:2), children: []))
-    XCTAssert(references.count == 5)
+    XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
     references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
-    
-    
   }
   
   func testViewDeallocation() {
-    
     let root = App(props: AppProps(i:0), children: []).root(store: nil)
     let node = root.node!
     
@@ -85,40 +80,40 @@ fileprivate struct App: NodeDescription {
                             state: EmptyState,
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-    
-    
+
     let i = props.i
     
     if i == 0 {
+      var imageProps = ImageProps()
+      imageProps.backgroundColor = .blue
+      let image = Image(props: imageProps)
+
+      var innerViewProps = ViewProps()
+      innerViewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      innerViewProps.backgroundColor = .gray
+      let innerView = View(props: innerViewProps)
       
-      return [
-        View(props: ViewProps().frame(0, 0, 150, 150).color(.gray)) {
-          [
-            Button(props: ButtonProps().frame(50, 50, 100, 100)
-              .color(.orange, state: .normal)
-              .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 10)
-              .onTap({ update(EmptyState()) })
-            ),
-            
-            View(props: ViewProps().frame(0, 0, 150, 150).color(.gray))
-          ]
-        }
-      ]
+      var viewProps = ViewProps()
+      viewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      viewProps.backgroundColor = .gray
+      viewProps.children = [image, innerView]
+      let view = View(props: viewProps)
+      
+      return [view]
       
     } else if i == 1 {
-      return [
-        View(props: ViewProps().frame(0, 0, 150, 150).color(.gray)) {
-          [
-            Button(props: ButtonProps().frame(50, 50, 100, 100)
-              .color(.orange, state: .normal)
-              .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 10)
-              .onTap({ update(EmptyState()) })
-            )
-          ]
-        }
-      ]
+      
+      var imageProps = ImageProps()
+      imageProps.backgroundColor = .blue
+      let image = Image(props: imageProps)
+      
+      var viewProps = ViewProps()
+      viewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      viewProps.backgroundColor = .gray
+      viewProps.children = [image]
+      let view = View(props: viewProps)
+      
+      return [view]
       
     } else {
       return []

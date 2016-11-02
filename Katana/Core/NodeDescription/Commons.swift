@@ -10,54 +10,21 @@ import UIKit
 
 public protocol Frameable {
   var frame: CGRect {get set}
-  func frame(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> Self
-  func frame(_: CGRect) -> Self  
-}
-
-public extension Frameable {
-  func frame(_ x: CGFloat, _ y: CGFloat, _ width: CGFloat, _ height: CGFloat) -> Self {
-    var copy = self
-    copy.frame = CGRect(x: x, y: y, width: width, height: height)
-    return copy
-  }
-  
-  func frame(_ frame: CGRect) -> Self {
-    var copy = self
-    copy.frame = frame
-    return copy
-  }
-  
-  func frame(_ size: CGSize) -> Self {
-    var copy = self
-    copy.frame = CGRect(origin: CGPoint.zero, size: size)
-    return copy
-  }
 }
 
 public protocol Keyable {
   var key: String? { get set }
-  func key<Key>(_ key: Key) -> Self
+  mutating func setKey<K>(_ key: K)
 }
 
 public extension Keyable {
-  func key<Key>(_ key: Key) -> Self {
-    var copy = self
-    copy.key = "\(key)"
-    return copy
+  public mutating func setKey<Key>(_ key: Key) {
+    self.key = "\(key)"
   }
 }
 
 public protocol Childrenable {
   var children: [AnyNodeDescription] { get set }
-  func children(_ children: [AnyNodeDescription]) -> Self
-}
-
-extension Childrenable {
-  public func children(_ children: [AnyNodeDescription]) -> Self {
-    var copy = self
-    copy.children = children
-    return copy
-  }
 }
 
 public struct EmptyProps: NodeProps, Keyable {
@@ -65,14 +32,15 @@ public struct EmptyProps: NodeProps, Keyable {
   public var frame: CGRect = CGRect.zero
   
   public static func == (lhs: EmptyProps, rhs: EmptyProps) -> Bool {
-    return lhs.frame == rhs.frame
+    return
+      lhs.frame == rhs.frame &&
+      lhs.key == rhs.key
   }
   
   public init() {}
 }
 
 public struct EmptyState: NodeState {
-
   public static func == (lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true
   }

@@ -1,37 +1,44 @@
 import XCTest
 import Katana
-import KatanaElements
 
 class NodeDescriptionTest: XCTestCase {
+  private func view(withBackground color: UIColor, key: String?) -> View {
+    var props = ViewProps()
+    props.backgroundColor = color
+    props.key = key
+    return View(props: props)
+  }
+  
+  private func image(withBackground color: UIColor, key: String?) -> Image {
+    var props = ImageProps()
+    props.backgroundColor = color
+    props.key = key
+    return Image(props: props)
+  }
   
   func testreplaceKey() {
-    
-    let view1 = View(props: ViewProps().color(.blue))
-    let view2 = View(props: ViewProps().color(.blue))
-    let button = Button(props: ButtonProps().color(.blue))
+    let view1 = view(withBackground: .blue, key: nil)
+    let view2 = view(withBackground: .blue, key: nil)
+    let img = image(withBackground: .blue, key: nil)
 
     XCTAssert(view1.replaceKey == view1.replaceKey)
     XCTAssert(view1.replaceKey == view2.replaceKey)
-    XCTAssert(button.replaceKey == button.replaceKey)
-    XCTAssert(button.replaceKey != view1.replaceKey)
-
+    XCTAssert(img.replaceKey == img.replaceKey)
+    XCTAssert(img.replaceKey != view1.replaceKey)
   }
   
   func testReplaceKeyWihtKeyableProps() {
-    
-    let view1 = View(props: ViewProps().color(.blue).key("a"))
-    let view2 = View(props: ViewProps().color(.blue).key("a"))
-    let view3 = View(props: ViewProps().color(.blue).key("b"))
-    let button1 = Button(props: ButtonProps().color(.blue).key("a"))
-    let button2 = Button(props: ButtonProps().color(.blue).key("d"))
+    let view1 = view(withBackground: .blue, key: "a")
+    let view2 = view(withBackground: .blue, key: "a")
+    let view3 = view(withBackground: .blue, key: "b")
+    let image1 = image(withBackground: .blue, key: "a")
+    let image2 = image(withBackground: .blue, key: "d")
 
     
     XCTAssert(view1.replaceKey == view1.replaceKey)
     XCTAssert(view1.replaceKey == view2.replaceKey)
     XCTAssert(view1.replaceKey != view3.replaceKey)
-    XCTAssert(view1.replaceKey != button1.replaceKey)
-    XCTAssert(view1.replaceKey != button2.replaceKey)
-
+    XCTAssert(view1.replaceKey != image1.replaceKey)
+    XCTAssert(view1.replaceKey != image2.replaceKey)
   }
-
 }

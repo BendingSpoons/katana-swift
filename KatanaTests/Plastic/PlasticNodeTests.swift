@@ -8,7 +8,6 @@
 
 import XCTest
 @testable import Katana
-import KatanaElements
 
 class PlasticNodeTests: XCTestCase {
   override func setUp() {
@@ -27,19 +26,19 @@ class PlasticNodeTests: XCTestCase {
     
   
     var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
-    XCTAssert(references.count == 6)
-    XCTAssert(references.filter { $0.value != nil }.count == 6)
+    XCTAssert(references.count == 3)
+    XCTAssert(references.filter { $0.value != nil }.count == 3)
     
     try! root.node!.update(description: App(props: AppProps(i:1), children: []))
-    XCTAssert(references.count == 6)
-    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    XCTAssert(references.count == 3)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
     references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
-    XCTAssert(references.count == 5)
-    XCTAssertEqual(references.filter { $0.value != nil }.count, 5)
+    XCTAssert(references.count == 2)
+    XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
     try! root.node!.update(description: App(props: AppProps(i:2), children: []))
-    XCTAssert(references.count == 5)
+    XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
     references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
@@ -96,9 +95,11 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
    
+    var props = ViewProps()
+    props.setKey(Keys.One)
     
     return [
-      View(props: ViewProps().key(Keys.One))
+      View(props: props)
     ]
   }
   
@@ -138,52 +139,40 @@ fileprivate struct App: NodeDescription {
     let i = props.i
     
     if i == 0 {
+      var imageProps = ImageProps()
+      imageProps.backgroundColor = .blue
+      imageProps.setKey(AppKeys.image)
+      let image = Image(props: imageProps)
       
-      return [
-        View(props: ViewProps()
-          .frame(0, 0, 150, 150)
-          .color(.gray)
-          .key(AppKeys.container)
-        ) {
-          [
-            Button(props: ButtonProps()
-              .key(AppKeys.button)
-              .frame(50, 50, 100, 100)
-              .color(.orange, state: .normal)
-              .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 10)
-              .onTap({ update(EmptyState()) })
-            ),
-            
-            View(props: ViewProps()
-              .frame(0, 0, 150, 150)
-              .color(.gray)
-              .key(AppKeys.otherView)
-              
-            )
-          ]
-        }
-      ]
+      var innerViewProps = ViewProps()
+      innerViewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      innerViewProps.backgroundColor = .gray
+      innerViewProps.setKey(AppKeys.innerView)
+      let innerView = View(props: innerViewProps)
+      
+      var viewProps = ViewProps()
+      viewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      viewProps.backgroundColor = .gray
+      viewProps.children = [image, innerView]
+      viewProps.setKey(AppKeys.container)
+      let view = View(props: viewProps)
+      
+      return [view]
       
     } else if i == 1 {
-      return [
-        View(props: ViewProps()
-          .frame(0, 0, 150, 150)
-          .color(.gray)
-          .key(AppKeys.container)
-        ) {
-          [
-            Button(props: ButtonProps()
-              .frame(50, 50, 100, 100)
-              .key(AppKeys.button)
-              .color(.orange, state: .normal)
-              .color(.orange, state: .highlighted)
-              .text("state \(i)", fontSize: 10)
-              .onTap({ update(EmptyState()) })
-            )
-          ]
-        }
-      ]
+      var imageProps = ImageProps()
+      imageProps.backgroundColor = .blue
+      imageProps.setKey(AppKeys.image)
+      let image = Image(props: imageProps)
+      
+      var viewProps = ViewProps()
+      viewProps.frame = CGRect(x: 0, y: 0, width: 150, height: 150)
+      viewProps.backgroundColor = .gray
+      viewProps.children = [image]
+      viewProps.setKey(AppKeys.container)
+      let view = View(props: viewProps)
+      
+      return [view]
       
     } else {
       return []
@@ -193,18 +182,17 @@ fileprivate struct App: NodeDescription {
   
   static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) -> Void {
     let container = views[.container]
-    let button = views[.button]
-    let otherView = views[.otherView]
-    
+    let image = views[.image]
+    let innerView = views[.innerView]
     
     container?.size = .fixed(150, 150)
-    button?.size = .fixed(150, 150)
-    otherView?.size = .fixed(150, 150)
+    image?.size = .fixed(150, 150)
+    innerView?.size = .fixed(150, 150)
   }
 }
 
-fileprivate enum AppKeys {
-  case container, button, otherView
+fileprivate enum AppKeys: String {
+  case container, image, innerView
 }
 
 

@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  Image.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 31/10/2016.
@@ -9,10 +9,9 @@
 import UIKit
 import Katana
 
-public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
+public struct ImageProps: NodeProps, Keyable, Buildable {
   public var frame = CGRect.zero
   public var key: String?
-  public var children: [AnyNodeDescription] = []
   
   public var backgroundColor = UIColor.white
   public var cornerRadius: Value = .zero
@@ -20,35 +19,35 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
   public var borderColor = UIColor.clear
   public var clipsToBounds = true
   public var isUserInteractionEnabled = false
- 
+  public var image: UIImage? = nil
+  public var tintColor: UIColor = .clear
+  
   public init() {}
-
-  public static func == (lhs: ViewProps, rhs: ViewProps) -> Bool {
-    if lhs.children.count + rhs.children.count > 0 {
-      // Heuristic, we always rerender when there is at least 1 child
-      return false
-    }
-    
+  
+  public static func == (lhs: ImageProps, rhs: ImageProps) -> Bool {
     return
       lhs.frame == rhs.frame &&
-      lhs.key == rhs.key &&
-      lhs.backgroundColor == rhs.backgroundColor &&
-      lhs.cornerRadius == rhs.cornerRadius &&
-      lhs.borderWidth == rhs.borderWidth &&
-      lhs.borderColor == rhs.borderColor &&
-      lhs.clipsToBounds == rhs.clipsToBounds &&
-      lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled
+        lhs.key == rhs.key &&
+        lhs.backgroundColor == rhs.backgroundColor &&
+        lhs.cornerRadius == rhs.cornerRadius &&
+        lhs.borderWidth == rhs.borderWidth &&
+        lhs.borderColor == rhs.borderColor &&
+        lhs.clipsToBounds == rhs.clipsToBounds &&
+        lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
+        lhs.image == rhs.image &&
+        lhs.tintColor == rhs.tintColor
   }
 }
 
 
-public struct View: NodeDescription, NodeWithChildrenDescription {
-  
-  public var props: ViewProps
+public struct Image: NodeDescription {
+  public typealias NativeView = UIImageView
 
-  public static func applyPropsToNativeView(props: ViewProps,
+  public var props: ImageProps
+  
+  public static func applyPropsToNativeView(props: ImageProps,
                                             state: EmptyState,
-                                            view: UIView,
+                                            view: UIImageView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
@@ -59,21 +58,18 @@ public struct View: NodeDescription, NodeWithChildrenDescription {
     view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
+    view.image = props.image
+    view.tintColor = props.tintColor
   }
   
-  public static func render(props: ViewProps,
+  public static func render(props: ImageProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-    return props.children
+    return []
   }
   
-  public init(props: ViewProps) {
+  public init(props: ImageProps) {
     self.props = props
-  }
-  
-  public init(props: ViewProps, _ children: () -> [AnyNodeDescription]) {
-    self.props = props
-    self.props.children = children()
   }
 }

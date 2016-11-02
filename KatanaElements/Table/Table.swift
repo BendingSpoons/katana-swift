@@ -2,7 +2,7 @@
 //  Table.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 22/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
@@ -13,25 +13,31 @@ import Katana
 public struct TableProps: NodeProps, Keyable {
   public var frame = CGRect.zero
   public var key: String?
-  public var delegate: TableDelegate?
+  
+  public var delegate: TableDelegate = EmptyTableDelegate()
+  public var backgroundColor = UIColor.white
+  public var cornerRadius: CGFloat = 0.0
+  public var borderWidth: CGFloat = 0.0
+  public var borderColor = UIColor.clear
+  public var clipsToBounds = true
   
   public init() {}
   
-  public func delegate(_ delegate: TableDelegate) -> TableProps {
-    var copy = self
-    copy.delegate = delegate
-    return copy
-  }
-  
   public static func == (lhs: TableProps, rhs: TableProps) -> Bool {
-    // delegate to the table mechanism any optimization here
-    return false
+    return
+      lhs.frame == rhs.frame &&
+      lhs.key == rhs.key &&
+      lhs.backgroundColor == rhs.backgroundColor &&
+      lhs.cornerRadius == rhs.cornerRadius &&
+      lhs.borderWidth == rhs.borderWidth &&
+      lhs.borderColor == rhs.borderColor &&
+      lhs.clipsToBounds == rhs.clipsToBounds &&
+      lhs.delegate.isEqual(to: rhs.delegate)
   }
 }
 
-
 public struct Table: NodeDescription {
-  public typealias NativeView = NativeTableView
+  public typealias NativeView = NativeTable
   
   public var props: TableProps
   
@@ -41,13 +47,17 @@ public struct Table: NodeDescription {
   
   public static func applyPropsToNativeView(props: TableProps,
                                             state: EmptyState,
-                                            view: NativeTableView,
+                                            view: NativeTable,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
-    let delegate = props.delegate ?? EmptyTableDelegate()
     view.frame = props.frame
-    view.update(withparent: node, delegate: delegate)
+    view.backgroundColor = props.backgroundColor
+    view.layer.cornerRadius = props.cornerRadius
+    view.layer.borderWidth = props.borderWidth
+    view.layer.borderColor = props.borderColor.cgColor
+    view.clipsToBounds = props.clipsToBounds
+    view.update(withparent: node, delegate: props.delegate)
   }
   
   
