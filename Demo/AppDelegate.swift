@@ -38,7 +38,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let store = Store<MineFieldState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = MineField(props: MineFieldProps().frame(rootBounds)).makeRoot(store: store)
-    self.root!.draw(in: view)
+    self.root!.render(in: view)
     
   }
   
@@ -50,6 +50,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let store = Store<ToDoState>(middlewares: [actionLogger], dependencies: EmptySideEffectDependencyContainer.self)
     
     self.root = ToDo(props: ToDoProps().frame(rootBounds)).makeRoot(store: store)
-    self.root!.draw(in: view)
+    self.root!.render(in: view)
   }
 }

@@ -81,10 +81,10 @@ public protocol AnyNode: class {
 */
 protocol InternalAnyNode: AnyNode {
   /**
-    Draws the node in the given container
+    Renders the node in the given container
     - parameter container: the container to use to draw the node
   */
-  func draw(in container: DrawableContainer)
+  func render(in container: DrawableContainer)
 }
 
 /**
@@ -187,9 +187,8 @@ public class Node<Description: NodeDescription> {
     return children
   }
   
-  
   /**
-    Draws the node in a given container. Draws a node basically means create
+    Renders the node in a given container. Draws a node basically means create
     the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
    
     -note:
@@ -198,7 +197,7 @@ public class Node<Description: NodeDescription> {
     
     - parameter container: the container in which the node should be drawn
   */
-  public func draw(in container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -222,7 +221,7 @@ public class Node<Description: NodeDescription> {
     
     children.forEach { child in
       let child = child as! InternalAnyNode
-      child.draw(in: self.container!)
+      child.render(in: self.container!)
     }
   }
   
@@ -237,7 +236,7 @@ public class Node<Description: NodeDescription> {
   public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
     let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
-    node.draw(in: container)
+    node.render(in: container)
     return node
   }
   
@@ -255,7 +254,7 @@ public class Node<Description: NodeDescription> {
 
 fileprivate extension Node {
   /**
-    Redraws a node.
+    ReRender a node.
    
     After the invocation of `draw`, it may be necessary to update the UI (e.g., because props or state are changed).
     This method takes care of updating the the UI based on the new description
@@ -266,7 +265,7 @@ fileprivate extension Node {
    
     - parameter animation:     the animation to use to transition from the previous UI to the new one
   */
-  fileprivate func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
+  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
     guard let container = self.container else {
       return
     }
@@ -289,7 +288,7 @@ fileprivate extension Node {
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
-      return node.draw(in: container)
+      return node.render(in: container)
     }
     
     var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
@@ -442,7 +441,7 @@ fileprivate extension Node {
     }
     
     self.children = nodes
-    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
+    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
 }
 

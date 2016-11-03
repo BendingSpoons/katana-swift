@@ -19,9 +19,9 @@ import Foundation
  let store = getStore()
  
  // root should be retained, otherwise the all tree will be removed
- // get the root and draw it
+ // get the root and renders it
  self.root = Description(props: props).makeRoot(store: store)
- self.root!.draw(in: view)
+ self.root!.render(in: view)
  ```
 */
 open class Root {
@@ -61,19 +61,19 @@ open class Root {
   }
 
   /**
-   Draws the root in a container
+   Renders the root in a container
    
-   - parameter container: the container that will be used to draw the root node
+   - parameter container: the container that will be used to render the root node
    
    - warning: It is possible to invoke this method only after `node` has been setted.
   */
-  public func draw(in container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     guard let node = self.node else {
       fatalError("the node should be provided firt")
     }
     
     let n = node as! InternalAnyNode
-    n.draw(in: container)
+    n.render(in: container)
   }
   
   /**
