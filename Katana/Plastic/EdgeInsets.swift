@@ -55,7 +55,7 @@ public struct EdgeInsets: Equatable {
   }
   
   /**
-   Creates an instance of `EdgeInsets` where all the insets are not scalable
+   Creates an instance of `EdgeInsets` where all the insets are scalable
    
    - parameter top:    the value of the top inset
    - parameter left:   the value of the left inset
@@ -65,7 +65,7 @@ public struct EdgeInsets: Equatable {
    - returns: an instance of `EdgeInsets` where all the insets are not scalable
    
    - warning: Always prefer the static methdo `scalable(_:_:_:_:)` instead of this constructor
-   */
+  */
   public init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
     self.top = Value(top)
     self.left = Value(left)
