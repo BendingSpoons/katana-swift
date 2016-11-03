@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Type Erasure for `Store`
+/// Type Erasure for `Store`
 public protocol AnyStore: class {
   /// Type Erasure for the `Store` `state`
   var anyState: State { get }
