@@ -27,7 +27,12 @@ public protocol AnyAction {
 */
 public protocol Action: AnyAction {
   /**
-   Creates the new state starting from the current state and the action
+   Creates the new state starting from the current state and the action. It is important
+   to node that reduce should be a [pure function](https://en.wikipedia.org/wiki/Pure_function), that is
+   a function that given the same input always returns the same output and it also
+   doesn't have any side effect. This is really important because it is an assumption
+   that Katana (an related tools) make in order to implement some functionalities
+   (e.g., not implemented yet, but possible in the future: time travel)
    
    - parameter state:  the current state
    - parameter action: the action that has been dispatched
