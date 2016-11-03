@@ -32,13 +32,13 @@ open class Root {
   }
 
   
-  public func draw(in container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     guard let node = self.node else {
       fatalError("the node should be provided firt")
     }
     
     let n = node as! InternalAnyNode
-    n.draw(in: container)
+    n.render(in: container)
   }
   
   private func storeDidChange() -> Void {

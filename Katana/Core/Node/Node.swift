@@ -30,7 +30,7 @@ public protocol AnyNode: class {
 protocol InternalAnyNode: AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
   //use Description().makeRoot(..).draw(..)
-  func draw(in container: DrawableContainer)
+  func render(in container: DrawableContainer)
 }
 
 public class Node<Description: NodeDescription> {
@@ -70,7 +70,7 @@ public class Node<Description: NodeDescription> {
     return children
   }
   
-  public func draw(in container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -94,14 +94,14 @@ public class Node<Description: NodeDescription> {
     
     children.forEach { child in
       let child = child as! InternalAnyNode
-      child.draw(in: self.container!)
+      child.render(in: self.container!)
     }
   }
   
   public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
     let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
-    node.draw(in: container)
+    node.render(in: container)
     return node
   }
   
@@ -113,7 +113,7 @@ public class Node<Description: NodeDescription> {
 }
 
 fileprivate extension Node {
-  fileprivate func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
+  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
     guard let container = self.container else {
       return
     }
@@ -136,7 +136,7 @@ fileprivate extension Node {
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
-      return node.draw(in: container)
+      return node.render(in: container)
     }
     
     var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
@@ -255,7 +255,7 @@ fileprivate extension Node {
     }
     
     self.children = nodes
-    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
+    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
 }
 

@@ -17,7 +17,7 @@ class PlasticNodeTests: XCTestCase {
   
   func testLayoutInvoked() {
     let root = TestNode(props: EmptyProps()).makeRoot(store: nil)
-    root.draw(in: UIView())
+    root.render(in: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
@@ -52,7 +52,7 @@ class PlasticNodeTests: XCTestCase {
     let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     
     let rootVew = UIView()
-    root.draw(in: rootVew)
+    root.render(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }
