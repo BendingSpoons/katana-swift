@@ -136,12 +136,39 @@ public protocol AsyncAction: Action {
    - returns: an instance of the action where the state must be `loading`
   */
   init(payload: LoadingPayload)
-
+  
+  /**
+   Creates a new action in the `completed` state
+   
+   - parameter payload: the payload of the completed action
+   - returns: a new instance of the action, where the state is `completed`.
+              This new action will have the loading payload inerithed from the initial
+              loading action and the provided completed payload
+  */
   func completedAction(payload: CompletedPayload) -> Self
+  
+  /**
+   Creates a new action in the `failed` state
+   
+   - parameter payload: the payload of the failed action
+   - returns: a new instance of the action, where the state is `failed`.
+              This new action will have the loading payload inerithed from the initial
+              loading action and the provided failed payload
+  */
   func failedAction(payload: FailedPayload) -> Self
 }
 
 public extension AsyncAction {
+  /**
+   Creates a new state starting from the current state and the dispatched action.
+   `AsyncAction` implements a default behaviour that invokes 
+   `loadingReduce(state: action:)`, `completedReduce(state: action:)`
+   or `failedReduce(state: action:)` based on the action's state
+   
+   - parameter state:  the current state
+   - parameter action: the action that has been dispatched
+   - returns: the new state
+  */
   public static func reduce(state: State, action: Self) -> State {
     switch action.state {
     case .loading:
@@ -155,6 +182,14 @@ public extension AsyncAction {
     }
   }
   
+  /**
+   Creates a new action in the `completed` state
+   
+   - parameter payload: the payload of the completed action
+   - returns: a new instance of the action, where the state is `completed`.
+   This new action will have the loading payload inerithed from the initial
+   loading action and the provided completed payload
+  */
   public func completedAction(payload: CompletedPayload) -> Self {
     var copy = self
     copy.completedPayload = payload
@@ -162,6 +197,14 @@ public extension AsyncAction {
     return copy
   }
 
+  /**
+   Creates a new action in the `failed` state
+   
+   - parameter payload: the payload of the failed action
+   - returns: a new instance of the action, where the state is `failed`.
+   This new action will have the loading payload inerithed from the initial
+   loading action and the provided failed payload
+  */
   public func failedAction(payload: FailedPayload) -> Self {
     var copy = self
     copy.failedPayload = payload
