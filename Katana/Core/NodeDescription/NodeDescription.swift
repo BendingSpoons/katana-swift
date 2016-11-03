@@ -123,7 +123,7 @@ public protocol AnyNodeDescription {
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
- to describe the UI in the `childrenDescriptions` method.
+ to describe the UI in the `childrenDescriptions(props:state:update:dispatch:)` method.
  These instances are used by Katana to understand how update the UI (update, remove and add views) and then thrown away.
  
 */
