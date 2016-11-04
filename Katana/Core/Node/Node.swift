@@ -70,7 +70,7 @@ public class Node<Description: NodeDescription> {
     return children
   }
   
-  public func render(in container: DrawableContainer) {
+  func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
