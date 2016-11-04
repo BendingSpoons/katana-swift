@@ -91,7 +91,7 @@ fileprivate extension Store {
   }
   
   fileprivate func performDispatch(_ action: AnyAction) {
-    let newState = type(of: action).anyReduce(state: self.state, action: action)
+    let newState = type(of: action).anyUpdatedState(currentState: self.state, action: action)
     
     guard let typedNewState = newState as? StateType else {
       preconditionFailure("Action reducer returned a wrong state type")

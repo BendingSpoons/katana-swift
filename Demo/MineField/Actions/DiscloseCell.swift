@@ -11,8 +11,8 @@ import Katana
 struct DiscloseCell: SyncAction {
   var payload: (col: Int, raw: Int)
   
-  static func reduce(state: State, action: DiscloseCell) -> State {
-    guard var state = state as? MineFieldState else {
+  static func updatedState(currentState: State, action: DiscloseCell) -> State {
+    guard var state = currentState as? MineFieldState else {
       fatalError()
     }
     

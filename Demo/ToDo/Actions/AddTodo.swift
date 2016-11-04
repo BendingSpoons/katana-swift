@@ -11,8 +11,8 @@ import Katana
 struct AddTodo: SyncAction {
   var payload: String
   
-  static func reduce(state: State, action: AddTodo) -> State {
-    guard var state = state as? ToDoState else {
+  static func updatedState(currentState: State, action: AddTodo) -> State {
+    guard var state = currentState as? ToDoState else {
       fatalError()
     }
 
