@@ -10,7 +10,7 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    try! node.update(with: App(props: AppProps(i:1), children: []))
+    node.update(with: App(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
   
@@ -18,7 +18,7 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    try! node.update(with: App(props: AppProps(i:2), children: []))
+    node.update(with: App(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -39,7 +39,7 @@ class NodeTest: XCTestCase {
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! node.update(with: App(props: AppProps(i:2), children: []))
+      node.update(with: App(props: AppProps(i:2), children: []))
     }
 
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)

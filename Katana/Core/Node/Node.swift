@@ -35,7 +35,7 @@ public protocol AnyNode: class {
    - parameter description: the new description to use to describe the UI
    - throws: this method throw an exception if the given description is not compatible with the node
   */
-  func update(with description: AnyNodeDescription) throws
+  func update(with description: AnyNodeDescription)
   
   /**
    Updates the node with a new description. Invoking this method will cause an update of the piece of the UI managed by the node
@@ -46,7 +46,7 @@ public protocol AnyNode: class {
   
    - throws: this method throw an exception if the given description is not compatible with the node
   */
-  func update(with description: AnyNodeDescription, parentAnimation: Animation) throws
+  func update(with description: AnyNodeDescription, parentAnimation: Animation)
   
   /**
    Adds a managed child to the node. For more information about managed children see the `Node` class
@@ -426,7 +426,7 @@ fileprivate extension Node {
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.anyDescription.replaceKey == newChildDescription.replaceKey)
-        try! replacement.node.update(with: newChildDescription, parentAnimation: childrenAnimation)
+        replacement.node.update(with: newChildDescription, parentAnimation: childrenAnimation)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
