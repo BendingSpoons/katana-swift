@@ -8,39 +8,91 @@
 
 import CoreGraphics
 
+/// `Size` is the scalable counterpart of `CGSize`
 public struct Size: Equatable {
+  
+  /// The width value
   public let width: Value
+  
+  /// The height value
   public let height: Value
   
+  /// an instance of `Size` where both the width and the height are zero
   public static let zero = Size(0, 0)
   
+  /**
+   Creates an instance of `Size` where both widht and height are fixed
+   
+   - parameter width:    the value of the width
+   - parameter height:   the value of the height
+   
+   - returns: an instance of `Size` where both width and height are fixed
+  */
   public static func fixed(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .fixed(width), height: .fixed(height))
   }
-  
+
+  /**
+   Creates an instance of `Size` where both widht and height are scalable
+   
+   - parameter width:    the value of the width
+   - parameter height:   the value of the height
+   
+   - returns: an instance of `Size` where both width and height are scalable
+  */
   public static func scalable(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .scalable(width), height: .scalable(height))
   }
   
-  public static func scalable(_ scalable: CGFloat) -> Value {
-    return Value.init(scalable: scalable, fixed: 0)
-  }
-  
+  /**
+   Creates an instance of `Size` where both widht and height are scalable
+   
+   - parameter width:    the value of the width
+   - parameter height:   the value of the height
+   
+   - returns: an instance of `Size` where both width and height are scalable
+   
+   - warning: Always prefer the static methdo `scalable(_:_:)` instead of this constructor
+  */
   public init(_ width: CGFloat, _ height: CGFloat) {
     self.width = Value(width)
     self.height = Value(height)
   }
-  
+
+  /**
+   Creates an instance of `Size` with the given values
+   
+   - parameter scalableWidth:    the scalable part of width
+   - parameter fixedWidth:       the fixed part of width
+   - parameter scalableHeight:   the scalable part of height
+   - parameter fixedHeight:      the fixed part of height
+   
+   - returns: an instance of `Size` with the given values
+  */
   public init(scalableWidth: CGFloat, fixedWidth: CGFloat, scalableHeight: CGFloat, fixedHeight: CGFloat) {
     self.width = Value(scalable: scalableWidth, fixed: fixedWidth)
     self.height = Value(scalable: scalableHeight, fixed: fixedHeight)
   }
   
+  /**
+   Creates an instance of `Size` with the given value
+   
+   - parameter width:    the width to use
+   - parameter height:   the height to use
+   
+   - returns: an instance of `Size` with the given value
+  */
   public init(width: Value, height: Value) {
     self.width = width
     self.height = height
   }
   
+  /**
+   Scales the size using a multiplier
+   
+   - parameter multiplier: the multiplier to use to scale the size
+   - returns: an instance of `CGSize` that is the result of the scaling process
+  */
   public func scale(by multiplier: CGFloat) -> CGSize {
     return CGSize(
       width: self.width.scale(by: multiplier),
@@ -48,18 +100,51 @@ public struct Size: Equatable {
     )
   }
   
+  /**
+   Implements the multiplication for the `Size` instances
+   
+   - parameter lhs: the `Size` instance
+   - parameter rhs: the the mutliplier to apply
+   - returns: an instance of `Size` where the values are multiplied by `rhs`
+   
+   - warning: this method is different from `scale(by:)` since it scales both
+              scalable and fixed values, whereas `scale(by:)` scales only the scalable
+              values
+  */
   public static func * (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width * rhs, height: lhs.height * rhs)
   }
   
+  /**
+   Implements the addition for the `Size` instances
+   
+   - parameter lhs: the first instance
+   - parameter rhs: the second instance
+   - returns: an instance of `Size` where the width and the height are the sum of the insets of      
+              the two operators
+  */
   public static func + (lhs: Size, rhs: Size) -> Size {
     return Size(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
   }
   
+  /**
+   Implements the division for the `Size` instances
+   
+   - parameter lhs: the first instance
+   - parameter rhs: the value that will be used in the division
+   - returns: an instance of `Size` where the insets are divided by `rhs`
+  */
   public static func / (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width / rhs, height: lhs.height / rhs)
   }
   
+  /**
+   Imlementation of the `Equatable` protocol.
+   
+   - parameter lhs: the first instance
+   - parameter rhs: the second instance
+   - returns: true if the two instances are equal, which means that both width and height are equal
+  */
   public static func == (lhs: Size, rhs: Size) -> Bool {
     return lhs.width == rhs.width && lhs.height == rhs.height
   }

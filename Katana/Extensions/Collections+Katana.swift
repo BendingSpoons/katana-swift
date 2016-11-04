@@ -9,6 +9,8 @@
 import Foundation
 
 extension Collection where Iterator.Element: Comparable {
+
+  /// Returns true if the collection is sorted
   var isSorted: Bool {
     var iterator = makeIterator()
     if var previous = iterator.next() {
