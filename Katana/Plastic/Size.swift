@@ -41,10 +41,10 @@ public struct Size: Equatable {
     self.height = height
   }
   
-  public func scale(_ multiplier: CGFloat) -> CGSize {
+  public func scale(by multiplier: CGFloat) -> CGSize {
     return CGSize(
-      width: self.width.scale(multiplier),
-      height: self.height.scale(multiplier)
+      width: self.width.scale(by: multiplier),
+      height: self.height.scale(by: multiplier)
     )
   }
   

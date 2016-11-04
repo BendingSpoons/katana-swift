@@ -44,7 +44,7 @@ struct ViewProps: NodeProps, Keyable, Childrenable {
 }
 
 
-struct View: NodeDescription, NodeWithChildrenDescription {
+struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public var props: ViewProps
   
@@ -58,10 +58,10 @@ struct View: NodeDescription, NodeWithChildrenDescription {
     view.backgroundColor = props.backgroundColor
   }
   
-  public static func render(props: ViewProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: ViewProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return props.children
   }
   

@@ -78,7 +78,7 @@ extension NativeTable: UITableViewDataSource {
     
     if let delegate = self.katanaDelegate, let node = self.parent {
       let value = delegate.height(forRowAt: indexPath)
-      return value.scale(node.plasticMultipler)
+      return value.scale(by: node.plasticMultipler)
     }
     
     return 0

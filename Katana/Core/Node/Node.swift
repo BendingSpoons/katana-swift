@@ -18,10 +18,10 @@ public protocol AnyNode: class {
   var parent: AnyNode? {get}
   var root: Root? {get}
   
-  func update(description: AnyNodeDescription) throws
-  func update(description: AnyNodeDescription, parentAnimation: Animation) throws
+  func update(with description: AnyNodeDescription) throws
+  func update(with description: AnyNodeDescription, parentAnimation: Animation) throws
   
-  func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode
+  func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode
   func removeManagedChild(node: AnyNode)
   
   func forceReload()
@@ -29,8 +29,8 @@ public protocol AnyNode: class {
 
 protocol InternalAnyNode: AnyNode {
   //draw should never be called on a node directly, it should only be called from the Root.
-  //use Description().root(..).draw(..)
-  func draw(container: DrawableContainer)
+  //use Description().makeRoot(..).draw(..)
+  func render(in container: DrawableContainer)
 }
 
 public class Node<Description: NodeDescription> {
@@ -58,28 +58,28 @@ public class Node<Description: NodeDescription> {
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
-    let children  = self.renderChildren()
+    let childrenDescriptions  = self.childrenDescriptions()
         
-    self.children = self.processChildrenBeforeDraw(children).map {
-      $0.node(parent: self)
+    self.children = self.processedChildrenDescriptionsBeforeDraw(childrenDescriptions).map {
+      $0.makeNode(parent: self)
     }
   }
   
   // Customization point for sublcasses. It allowes to update the children before they get drawn
-  public func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
   
-  public func draw(container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
     
-    self.container = container.add { Description.NativeView() }
+    self.container = container.addChild() { Description.NativeView() }
     
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
-        self?.update(state: state)
+        self?.update(for: state)
       }
     }
     
@@ -94,14 +94,14 @@ public class Node<Description: NodeDescription> {
     
     children.forEach { child in
       let child = child as! InternalAnyNode
-      child.draw(container: self.container!)
+      child.render(in: self.container!)
     }
   }
   
-  public func addManagedChild(description: AnyNodeDescription, container: DrawableContainer) -> AnyNode {
-    let node = description.node(parent: self) as! InternalAnyNode
+  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
+    let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
-    node.draw(container: container)
+    node.render(in: container)
     return node
   }
   
@@ -113,7 +113,7 @@ public class Node<Description: NodeDescription> {
 }
 
 fileprivate extension Node {
-  fileprivate func redraw(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
+  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
     guard let container = self.container else {
       return
     }
@@ -121,10 +121,10 @@ fileprivate extension Node {
     assert(viewIndexes.count == self.children.count)
     
     let update = { [weak self] (state: Description.StateType) -> Void in
-      self?.update(state: state)
+      self?.update(for: state)
     }
     
-    animation.animateBlock {
+    animation.animate {
       container.update { view in
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
@@ -136,7 +136,7 @@ fileprivate extension Node {
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
-      return node.draw(container: container)
+      return node.render(in: container)
     }
     
     var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
@@ -145,28 +145,28 @@ fileprivate extension Node {
     for viewIndex in viewIndexes {
       let currentSubview = currentSubviews[viewIndex]!
       if !sorted {
-        container.bringToFront(child: currentSubview)
+        container.bringChildToFront(currentSubview)
       }
       currentSubviews[viewIndex] = nil
     }
     
     for view in currentSubviews {
       if let viewToRemove = view {
-        self.container?.remove(child: viewToRemove)
+        self.container?.removeChild(viewToRemove)
       }
     }
   }
   
-  fileprivate func renderChildren() -> [AnyNodeDescription] {
+  fileprivate func childrenDescriptions() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
-        self?.update(state: state)
+        self?.update(for: state)
       }
     }
     
     let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
-    return type(of: description).render(props: self.description.props,
+    return type(of: description).childrenDescriptions(props: self.description.props,
                                         state: self.state,
                                         update: update,
                                         dispatch: dispatch)
@@ -181,17 +181,17 @@ fileprivate extension Node {
       }
       
       let state = store.anyState
-      return type(of: desc).anyConnect(parentProps: description.props, storageState: state) as! Description.PropsType
+      return type(of: desc).anyConnect(parentProps: description.props, storeState: state) as! Description.PropsType
     }
     
     return props
   }
   
-  fileprivate func update(state: Description.StateType) {
-    self.update(state: state, description: self.description, parentAnimation: .none)
+  fileprivate func update(for state: Description.StateType) {
+    self.update(for: state, description: self.description, parentAnimation: .none)
   }
   
-  fileprivate func update(state: Description.StateType,
+  fileprivate func update(for state: Description.StateType,
                           description: Description,
                           parentAnimation: Animation,
                           force: Bool = false) {
@@ -200,7 +200,7 @@ fileprivate extension Node {
       return
     }
     
-    let childrenAnimation = type(of: self.description).childrenAnimationForNextRender(
+    let childrenAnimation = type(of: self.description).childrenAnimation(
       currentProps: self.description.props,
       nextProps: description.props,
       currentState: self.state,
@@ -224,31 +224,30 @@ fileprivate extension Node {
       }
     }
     
-    var newChildren = self.renderChildren()
+    var newChildrenDescriptions = self.childrenDescriptions()
     
-    newChildren = self.processChildrenBeforeDraw(newChildren)
+    newChildrenDescriptions = self.processedChildrenDescriptionsBeforeDraw(newChildrenDescriptions)
     
     var nodes: [AnyNode] = []
     var viewIndexes: [Int] = []
     var childrenToAdd: [AnyNode] = []
     
-    for newChild in newChildren {
-      let key = newChild.replaceKey
+    for newChildDescription in newChildrenDescriptions {
+      let key = newChildDescription.replaceKey
       
       let childrenCount = currentChildren[key]?.count ?? 0
       
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
-        assert(replacement.node.anyDescription.replaceKey == newChild.replaceKey)
-        
-        try! replacement.node.update(description: newChild, parentAnimation: childrenAnimation)
+        assert(replacement.node.anyDescription.replaceKey == newChildDescription.replaceKey)
+        try! replacement.node.update(with: newChildDescription, parentAnimation: childrenAnimation)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
         
       } else {
         //else create a new node
-        let node = newChild.node(parent: self)
+        let node = newChildDescription.makeNode(parent: self)
         viewIndexes.append(children.count + childrenToAdd.count)
         nodes.append(node)
         childrenToAdd.append(node)
@@ -256,7 +255,7 @@ fileprivate extension Node {
     }
     
     self.children = nodes
-    self.redraw(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
+    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
   }
 }
 
@@ -267,18 +266,18 @@ extension Node: AnyNode {
     }
   }
   
-  public func update(description: AnyNodeDescription) throws {
-    try self.update(description: description, parentAnimation: .none)
+  public func update(with description: AnyNodeDescription) throws {
+    try self.update(with: description, parentAnimation: .none)
   }
   
-  public func update(description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
+  public func update(with description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
     var description = description as! Description
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(state: self.state, description: description, parentAnimation: animation)
+    self.update(for: self.state, description: description, parentAnimation: animation)
   }
   
   public func forceReload() {
-    self.update(state: self.state, description: self.description, parentAnimation: .none, force: true)
+    self.update(for: self.state, description: self.description, parentAnimation: .none, force: true)
   }
 }
 

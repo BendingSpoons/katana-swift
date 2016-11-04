@@ -71,15 +71,15 @@ public struct Button: NodeDescription {
     
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
-    view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
     view.clipsToBounds = props.clipsToBounds
     view.isEnabled = props.isEnabled
-    view.contentEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
-    view.titleEdgeInsets = props.contentEdgeInsets.scale(node.plasticMultipler)
-    view.imageEdgeInsets = props.imageEdgeInsets.scale(node.plasticMultipler)
-    view.imageEdgeInsets = props.imageEdgeInsets.scale(node.plasticMultipler)
+    view.contentEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler)
+    view.titleEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler)
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler)
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler)
     view.adjustsImageWhenHighlighted = props.adjustsImageWhenHighlighted
     view.adjustsImageWhenDisabled = props.adjustsImageWhenDisabled
     view.showsTouchWhenHighlighted = props.showsTouchWhenHighlighted
@@ -121,10 +121,10 @@ public struct Button: NodeDescription {
     }
   }
   
-  public static func render(props: ButtonProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: ButtonProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   

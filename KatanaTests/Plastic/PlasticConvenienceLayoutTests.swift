@@ -147,7 +147,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let v3 = PlasticView(hierarchyManager: hM, key: "C", multiplier: multiplier, frame: v3Frame)
     
     
-    v1.center(betweenLeft: v2.right, andRight: v3.left)
+    v1.centerBetween(left: v2.right, right: v3.left)
     XCTAssertEqual(v1.frame.origin.x, v2RightX + (v3.frame.origin.x - v2RightX) / 2.0)
   }
   
@@ -184,7 +184,7 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     let v3Frame = CGRect(x: 400, y: 50, width: 50, height: 50)
     let v3 = PlasticView(hierarchyManager: hM, key: "C", multiplier: multiplier, frame: v3Frame)
     
-    v1.center(betweenTop: v2.bottom, andBottom: v3.top)
+    v1.centerBetween(top: v2.bottom, bottom: v3.top)
     XCTAssertEqual(v1.frame.origin.y, v2BottomY + (v3.frame.origin.y - v2BottomY) / 2.0)
   }
   

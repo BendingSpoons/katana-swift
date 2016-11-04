@@ -18,7 +18,7 @@ class PlasticDimensionsTests: XCTestCase {
   
   func testValueShouldBeScalable() {
     let value = Value(scalable: 10, fixed: 20)
-    XCTAssertEqual(value.scale(20), 10 * 20 + 20)
+    XCTAssertEqual(value.scale(by: 20), 10 * 20 + 20)
   }
   
   func testValueShouldHaveUnscaledValue() {
@@ -64,7 +64,7 @@ class PlasticDimensionsTests: XCTestCase {
   
   func testSizeShouldBeScalable() {
     let size = Size(scalableWidth: 10, fixedWidth: 20, scalableHeight: 100, fixedHeight: 300)
-    let scaled = size.scale(100)
+    let scaled = size.scale(by: 100)
     XCTAssertEqual(scaled.width, 10 * 100 + 20)
     XCTAssertEqual(scaled.height, 100 * 100 + 300)
   }
@@ -118,7 +118,7 @@ class PlasticDimensionsTests: XCTestCase {
       fixedRight: 99
     )
     
-    let scaled = insets.scale(5)
+    let scaled = insets.scale(by: 5)
     XCTAssertEqual(scaled.top, 10 * 5 + 20)
     XCTAssertEqual(scaled.left, 100 * 5 + 300)
     XCTAssertEqual(scaled.bottom, 200 * 5 + 50)

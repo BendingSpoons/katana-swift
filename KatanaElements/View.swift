@@ -42,7 +42,7 @@ public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
 }
 
 
-public struct View: NodeDescription, NodeWithChildrenDescription {
+public struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public var props: ViewProps
 
@@ -54,17 +54,17 @@ public struct View: NodeDescription, NodeWithChildrenDescription {
     
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
   }
   
-  public static func render(props: ViewProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: ViewProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return props.children
   }
   

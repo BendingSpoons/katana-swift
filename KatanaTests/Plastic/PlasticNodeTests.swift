@@ -15,21 +15,21 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let root = TestNode(props: EmptyProps()).root(store: nil)
-    root.draw(container: UIView())
+    let root = TestNode(props: EmptyProps()).makeRoot(store: nil)
+    root.render(in: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
   
   func testNodeDeallocationPlastic() {
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     
   
     var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    try! root.node!.update(description: App(props: AppProps(i:1), children: []))
+    try! root.node!.update(with: App(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
@@ -37,7 +37,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+    try! root.node!.update(with: App(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -48,17 +48,17 @@ class PlasticNodeTests: XCTestCase {
   
   func testViewDeallocationWithPlastic() {
 
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     
     let rootVew = UIView()
-    root.draw(container: rootVew)
+    root.render(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! root.node!.update(description: App(props: AppProps(i:2), children: []))
+      try! root.node!.update(with: App(props: AppProps(i:2), children: []))
     }
     
     
@@ -90,7 +90,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
   
-  public static func render(props: EmptyProps,
+  public static func childrenDescriptions(props: EmptyProps,
                             state: EmptyState,
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
@@ -129,7 +129,7 @@ fileprivate struct App: NodeDescription {
   var children: [AnyNodeDescription] = []
   
   
-  fileprivate static func render(props: AppProps,
+  fileprivate static func childrenDescriptions(props: AppProps,
                                  state: EmptyState,
                                  update: @escaping (EmptyState) -> (),
                                  dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {

@@ -12,8 +12,8 @@ import Foundation
 public struct AddTodoAction: Action, Equatable {
   public let title: String
   
-  public static func reduce(state: State, action: AddTodoAction) -> State {
-    guard var s = state as? AppState else { return state }
+  public static func updatedState(currentState: State, action: AddTodoAction) -> State {
+    guard var s = currentState as? AppState else { return currentState }
     
     let todo = Todo(title: action.title, id: UUID().uuidString)
     s.todo.todos = s.todo.todos + [todo]
@@ -29,8 +29,8 @@ public struct AddTodoAction: Action, Equatable {
 struct RemoveTodoAction: Action {
   let id: String
   
-  static func reduce(state: State, action: RemoveTodoAction) -> State {
-    guard var s = state as? AppState else { return state }
+  static func updatedState(currentState: State, action: RemoveTodoAction) -> State {
+    guard var s = currentState as? AppState else { return currentState }
     
     let todos = s.todo.todos.filter { $0.id != action.id }
     s.todo.todos = todos
@@ -42,8 +42,8 @@ struct RemoveTodoAction: Action {
 struct SyncAddTodoAction: SyncAction {
   var payload: String
 
-  static func reduce(state: State, action: SyncAddTodoAction) -> State {
-    guard var state = state as? AppState else {
+  static func updatedState(currentState: State, action: SyncAddTodoAction) -> State {
+    guard var state = currentState as? AppState else {
       fatalError()
     }
     
@@ -63,9 +63,9 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
   var sideEffectInvokedClosure: ActionWithSideEffectCallback?
   var reduceInvokedClosure: (() -> Void)?
   
-  public static func reduce(state: State, action: SpyActionWithSideEffect) -> State {
+  public static func updatedState(currentState: State, action: SpyActionWithSideEffect) -> State {
     action.reduceInvokedClosure?()
-    return state
+    return currentState
   }
   
   static func sideEffect(action: SpyActionWithSideEffect,

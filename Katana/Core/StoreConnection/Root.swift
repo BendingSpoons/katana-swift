@@ -32,13 +32,13 @@ open class Root {
   }
 
   
-  public func draw(container: DrawableContainer) {
+  public func render(in container: DrawableContainer) {
     guard let node = self.node else {
       fatalError("the node should be provided firt")
     }
     
     let n = node as! InternalAnyNode
-    n.draw(container: container)
+    n.render(in: container)
   }
   
   private func storeDidChange() -> Void {
@@ -56,7 +56,7 @@ open class Root {
     
     if node.anyDescription is AnyConnectedNodeDescription {
       // ok the description is connected to the node, let's trigger an update
-      try! node.update(description: node.anyDescription)
+      try! node.update(with: node.anyDescription)
     }
     
     node.children

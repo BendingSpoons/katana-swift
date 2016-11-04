@@ -61,7 +61,7 @@ public struct Table: NodeDescription {
   }
   
   
-  public static func render(props: TableProps,
+  public static func childrenDescriptions(props: TableProps,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

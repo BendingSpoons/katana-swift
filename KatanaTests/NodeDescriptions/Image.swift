@@ -44,10 +44,10 @@ public struct Image: NodeDescription {
     view.image = props.image
   }
   
-  public static func render(props: ImageProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: ImageProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   

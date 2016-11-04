@@ -12,17 +12,17 @@ public protocol DrawableContainerChild {}
 
 public protocol DrawableContainer {
   
-  func removeAll()
+  func removeAllChildren()
   
-  func add(child: () -> UIView) -> DrawableContainer
+  @discardableResult func addChild(_ child: () -> UIView) -> DrawableContainer
   
-  func update(view: (UIView)->())
+  func update(with updateView: (UIView)->())
   
   func children () -> [DrawableContainerChild]
   
-  func bringToFront(child: DrawableContainerChild)
+  func bringChildToFront(_ child: DrawableContainerChild)
   
-  func remove(child: DrawableContainerChild)
+  func removeChild(_ child: DrawableContainerChild)
 }
 
 internal let VIEWTAG = 999987
@@ -33,7 +33,7 @@ extension UIView: DrawableContainer {
     private(set) var view: UIView
   }
   
-  public func removeAll() {
+  public func removeAllChildren() {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
     
@@ -46,7 +46,7 @@ extension UIView: DrawableContainer {
       .forEach { $0.removeFromSuperview() }
   }
   
-  public func add(child: () -> UIView) -> DrawableContainer {
+  public func addChild(_ child: () -> UIView) -> DrawableContainer {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -60,7 +60,7 @@ extension UIView: DrawableContainer {
     return child
   }
   
-  public func update(view: (UIView)->()) {
+  public func update(with updateView: (UIView)->()) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -68,14 +68,14 @@ extension UIView: DrawableContainer {
       assert(Thread.isMainThread)
     }
     
-    view(self)
+    updateView(self)
   }
   
   public func children () -> [DrawableContainerChild] {
     return self.subviews.filter {$0.tag == VIEWTAG}.map { UIViewDrawableContainerChild(view: $0) }
   }
   
-  public func bringToFront(child: DrawableContainerChild) {
+  public func bringChildToFront(_ child: DrawableContainerChild) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -87,7 +87,7 @@ extension UIView: DrawableContainer {
     self.bringSubview(toFront: child.view)
   }
   
-  public func remove(child: DrawableContainerChild) {
+  public func removeChild(_ child: DrawableContainerChild) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       

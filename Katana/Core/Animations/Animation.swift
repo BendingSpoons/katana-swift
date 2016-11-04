@@ -12,35 +12,35 @@ public enum Animation {
   case none
   
   // linear
-  case simpleLinear(duration: TimeInterval)
+  case linear(duration: TimeInterval)
   case linearWithOptions(duration: TimeInterval,
                           options: UIViewAnimationOptions)
   
-  case linear(duration: TimeInterval,
+  case linearWithDelay(duration: TimeInterval,
                options: UIViewAnimationOptions,
                  delay: TimeInterval)
   
   // spring
-  case simpleSpring(duration: TimeInterval, damping: CGFloat, initialVelocity: CGFloat)
+  case spring(duration: TimeInterval, damping: CGFloat, initialVelocity: CGFloat)
   
   case springWithOptions(duration: TimeInterval,
                           damping: CGFloat,
                   initialVelocity: CGFloat,
                           options: UIViewAnimationOptions)
   
-  case spring(duration: TimeInterval,
+  case springWithDelay(duration: TimeInterval,
                damping: CGFloat,
        initialVelocity: CGFloat,
                options: UIViewAnimationOptions,
                  delay: TimeInterval)
   
   
-  func animateBlock(_ block: @escaping ()->() ) {
+  func animate(_ block: @escaping ()->() ) {
     switch self {
     case .none:
       UIView.performWithoutAnimation(block)
      
-    case let .simpleLinear(duration):
+    case let .linear(duration):
       UIView.animate(withDuration: duration,
                        animations: block)
       
@@ -51,14 +51,14 @@ public enum Animation {
                        animations: block,
                        completion: nil)
       
-    case let .linear(duration, options, delay):
+    case let .linearWithDelay(duration, options, delay):
       UIView.animate(withDuration: duration,
                             delay: delay,
                           options: options,
                        animations: block,
                        completion: nil)
       
-    case let .simpleSpring(duration, damping, initialVelocity):
+    case let .spring(duration, damping, initialVelocity):
       UIView.animate(withDuration: duration,
                             delay: 0,
            usingSpringWithDamping: damping,
@@ -76,7 +76,7 @@ public enum Animation {
                        animations: block,
                        completion: nil)
       
-    case let .spring(duration, damping, initialVelocity, options, delay):
+    case let .springWithDelay(duration, damping, initialVelocity, options, delay):
       UIView.animate(withDuration: duration,
                             delay: delay,
            usingSpringWithDamping: damping,

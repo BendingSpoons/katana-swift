@@ -9,63 +9,64 @@
 import Foundation
 
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description> {
-  override public func processChildrenBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    let newChildren = super.processChildrenBeforeDraw(children)
-    return self.applyLayout(to: newChildren, description: self.description)
+  
+  override public func processedChildrenDescriptionsBeforeDraw(_ childrenDescriptions: [AnyNodeDescription])
+    -> [AnyNodeDescription] {
+    let childrenDescriptions = super.processedChildrenDescriptionsBeforeDraw(childrenDescriptions)
+    let updatedFrames = self.updatedFrames(for: childrenDescriptions)
+    let newChildrenDescriptions = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: childrenDescriptions,
+                                                                                newFrames: updatedFrames)
+    return newChildrenDescriptions
   }
   
-  func applyLayout(to children: [AnyNodeDescription], description: Description) -> [AnyNodeDescription] {
+  private func updatedFrames(for childrenDescriptions: [AnyNodeDescription]) -> [String: CGRect] {
     let multiplier = self.plasticMultipler
     let frame = self.description.props.frame
-    let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame, children: children, multiplier: multiplier)
+    let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame,
+                                                     childrenDescriptions: childrenDescriptions,
+                                                     multiplier: multiplier)
     let selfType = type(of: description)
     let layoutHash = selfType.layoutHash(props: self.description.props, state: self.state)
     
-    if let layoutHash = layoutHash {
-      // cache enabled, let's see if we have something cached
-      if let frames = LayoutsCache.shared.getCachedLayout(layoutHash: layoutHash,
-                                                     nativeViewFrame: frame,
-                                                          multiplier: multiplier,
-                                                     nodeDescription: self.description) {
-        
-        return self.getFramedChildren(fromChildren: children, frames: frames)
-      }
+    // check if we have cache enabled, and there is a layout cached
+    if let layoutHash = layoutHash, let newFrames = LayoutsCache.shared.getCachedLayout(layoutHash: layoutHash,
+                                                                                        nativeViewFrame: frame,
+                                                                                        multiplier: multiplier,
+                                                                                        nodeDescription: self.description) {
+        return newFrames
     }
     
     // no cache enabled or no layout cached yet
     container.initialize()
     type(of: description).anyLayout(views: container, props: self.description.props, state: self.state)
-    let frames = container.frames
-    
+    let newFrames = container.frames
     if let layoutHash = layoutHash {
-      
       // save only if layout cache is enabled
       LayoutsCache.shared.cacheLayout(layoutHash: layoutHash,
-                                 nativeViewFrame: frame,
+                                      nativeViewFrame: frame,
                                       multiplier: multiplier,
-                                 nodeDescription: self.description,
-                                          frames: frames)
+                                      nodeDescription: self.description,
+                                      frames: newFrames)
     }
-    
-    return self.getFramedChildren(fromChildren: children, frames: frames)
+    return newFrames
   }
   
-  private func getFramedChildren(fromChildren children: [AnyNodeDescription], frames: [String: CGRect]) -> [AnyNodeDescription] {
-    return children.map {
-      var newChild = $0
+  private func updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: [AnyNodeDescription],
+                                                        newFrames: [String: CGRect]) -> [AnyNodeDescription] {
+    return childrenDescriptions.map {
+      var newChildDescription = $0
       
-      if let key = newChild.key {
-        if let frame = frames[key] {
-          newChild.frame = frame
+      if let key = newChildDescription.key {
+        if let frame = newFrames[key] {
+          newChildDescription.frame = frame
         }
       }
       
-      if var n = newChild as? AnyNodeWithChildrenDescription {
-        n.children = self.getFramedChildren(fromChildren: n.children, frames: frames)
+      if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
+        n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
         return n as AnyNodeDescription
-        
       } else {
-        return newChild
+        return newChildDescription
       }
     }
   }

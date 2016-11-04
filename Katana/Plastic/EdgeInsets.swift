@@ -53,12 +53,12 @@ public struct EdgeInsets: Equatable {
     self.right = right
   }
   
-  public func scale(_ multiplier: CGFloat) -> UIEdgeInsets {
+  public func scale(by multiplier: CGFloat) -> UIEdgeInsets {
     return UIEdgeInsets(
-      top: self.top.scale(multiplier),
-      left: self.left.scale(multiplier),
-      bottom: self.bottom.scale(multiplier),
-      right: self.right.scale(multiplier)
+      top: self.top.scale(by: multiplier),
+      left: self.left.scale(by: multiplier),
+      bottom: self.bottom.scale(by: multiplier),
+      right: self.right.scale(by: multiplier)
     )
   }
   

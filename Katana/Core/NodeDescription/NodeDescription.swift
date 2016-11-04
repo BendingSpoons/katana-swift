@@ -32,8 +32,8 @@ public protocol AnyNodeDescription {
   var anyProps: Any { get }
   var replaceKey: Int { get }
   
-  func node(parent: AnyNode?) -> AnyNode
-  func root(store: AnyStore?) -> Root
+  func makeNode(parent: AnyNode?) -> AnyNode
+  func makeRoot(store: AnyStore?) -> Root
 }
 
 public protocol NodeDescription: AnyNodeDescription {
@@ -49,12 +49,12 @@ public protocol NodeDescription: AnyNodeDescription {
                                      update: @escaping (StateType)->(),
                                      node: AnyNode) -> Void
   
-  static func render(props: PropsType,
+  static func childrenDescriptions(props: PropsType,
                      state: StateType,
                      update: @escaping (StateType)->(),
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]
   
-  static func childrenAnimationForNextRender(currentProps: PropsType,
+  static func childrenAnimation(currentProps: PropsType,
                                              nextProps: PropsType,
                                              currentState: StateType,
                                              nextState: StateType,
@@ -72,7 +72,7 @@ extension NodeDescription {
     view.frame = props.frame
   }
   
-  public static func childrenAnimationForNextRender(currentProps: PropsType,
+  public static func childrenAnimation(currentProps: PropsType,
                                                     nextProps: PropsType,
                                                     currentState: StateType,
                                                     nextState: StateType,
@@ -105,11 +105,11 @@ extension AnyNodeDescription where Self: NodeDescription {
     return self.props
   }
   
-  public func node(parent: AnyNode?) -> AnyNode {
+  public func makeNode(parent: AnyNode?) -> AnyNode {
     return Node(description: self, parent: parent)
   }
   
-  public func root(store: AnyStore?) -> Root {
+  public func makeRoot(store: AnyStore?) -> Root {
     let root = Root(store: store)
     let node = Node(description: self, parent: nil, root: root)
     root.node = node

@@ -53,19 +53,19 @@ public struct Image: NodeDescription {
     
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
     view.image = props.image
     view.tintColor = props.tintColor
   }
   
-  public static func render(props: ImageProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: ImageProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   

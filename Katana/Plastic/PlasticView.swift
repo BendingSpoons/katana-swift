@@ -22,7 +22,7 @@ public class PlasticView {
   public private(set) var frame: CGRect
   private let multiplier: CGFloat
   private(set) var absoluteOrigin: CGPoint
-  private unowned let hierarchyManager: HierarchyManager
+  private unowned let hierarchyManager: CoordinateConvertible
   
   private var oldestConstraintX = ConstraintX.none
   private var newestConstraintX = ConstraintX.none
@@ -51,7 +51,7 @@ public class PlasticView {
     }
   }
 
-  init(hierarchyManager: HierarchyManager, key: String, multiplier: CGFloat, frame: CGRect) {
+  init(hierarchyManager: CoordinateConvertible, key: String, multiplier: CGFloat, frame: CGRect) {
     self.key = key
     self.frame = frame
     self.absoluteOrigin = frame.origin
@@ -61,7 +61,7 @@ public class PlasticView {
 
   
   func scaleValue(_ value: Value) -> CGFloat {
-    return value.scale(multiplier)
+    return value.scale(by: multiplier)
   }
 
   
@@ -152,7 +152,7 @@ public class PlasticView {
     }
   }
   
-  public func setBottom(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setBottom(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintY = .bottom
     
     let newBottom = anchor.coordinate + scaleValue(offset)
@@ -180,7 +180,7 @@ public class PlasticView {
     }
   }
   
-  public func setTop(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setTop(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintY = .top
 
     let newTop = anchor.coordinate + scaleValue(offset)
@@ -208,7 +208,7 @@ public class PlasticView {
     }
   }
   
-  public func setRight(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setRight(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintX = .right
     
     let newRight = anchor.coordinate + scaleValue(offset)
@@ -236,7 +236,7 @@ public class PlasticView {
     }
   }
   
-  public func setLeft(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setLeft(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintX = .left
     
     let newLeft = anchor.coordinate + scaleValue(offset)
@@ -265,7 +265,7 @@ public class PlasticView {
     }
   }
   
-  public func setCenterX(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setCenterX(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintX = .centerX
     
     let newCenterX = anchor.coordinate + scaleValue(offset)
@@ -294,7 +294,7 @@ public class PlasticView {
     }
   }
   
-  public func setCenterY(_ anchor: Anchor, _ offset: Value = Value.zero) -> Void {
+  public func setCenterY(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
     self.constraintY = .centerY
     
     let newCenterY = anchor.coordinate + scaleValue(offset)

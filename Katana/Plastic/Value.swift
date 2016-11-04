@@ -36,7 +36,7 @@ public struct Value: Equatable {
     self.fixed = fixed
   }
   
-  public func scale(_ multiplier: CGFloat) -> CGFloat {
+  public func scale(by multiplier: CGFloat) -> CGFloat {
     return self.scalable * multiplier + self.fixed
   }
   

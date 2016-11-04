@@ -61,8 +61,8 @@ public struct Label: NodeDescription {
 
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(node.plasticMultipler)
-    view.layer.borderWidth = props.borderWidth.scale(node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
@@ -78,10 +78,10 @@ public struct Label: NodeDescription {
     }
   }
   
-  public static func render(props: LabelProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+  public static func childrenDescriptions(props: LabelProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   

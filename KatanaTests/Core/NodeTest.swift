@@ -3,14 +3,14 @@ import XCTest
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     let node = root.node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    try! node.update(description: App(props: AppProps(i:1), children: []))
+    try! node.update(with: App(props: AppProps(i:1), children: []))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
   
@@ -18,7 +18,7 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    try! node.update(description: App(props: AppProps(i:2), children: []))
+    try! node.update(with: App(props: AppProps(i:2), children: []))
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -28,18 +28,18 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).root(store: nil)
+    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
     let node = root.node!
     
     let rootVew = UIView()
-    root.draw(container: rootVew)
+    root.render(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      try! node.update(description: App(props: AppProps(i:2), children: []))
+      try! node.update(with: App(props: AppProps(i:2), children: []))
     }
 
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
@@ -76,7 +76,7 @@ fileprivate struct App: NodeDescription {
   var children: [AnyNodeDescription] = []
   
   
-  public static func render(props: AppProps,
+  public static func childrenDescriptions(props: AppProps,
                             state: EmptyState,
                             update: @escaping (EmptyState) -> (),
                             dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {

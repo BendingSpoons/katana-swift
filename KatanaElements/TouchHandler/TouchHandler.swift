@@ -26,7 +26,7 @@ public struct TouchHandlerProps: NodeProps, Childrenable, Keyable, Buildable {
   }
 }
 
-public struct TouchHandler: NodeDescription, NodeWithChildrenDescription {
+public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
   public typealias NativeView = NativeTouchHandler
   
   public var props: TouchHandlerProps
@@ -40,11 +40,11 @@ public struct TouchHandler: NodeDescription, NodeWithChildrenDescription {
     view.handlers = props.handlers
     view.hitTestInsets = props.hitTestInsets
   }
-  
-  public static func render(props: TouchHandlerProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState)->(),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+
+  public static func childrenDescriptions(props: TouchHandlerProps,
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState)->(),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     return props.children
   }
