@@ -259,6 +259,7 @@ fileprivate extension Node {
   }
 }
 
+
 extension Node: AnyNode {
   public var anyDescription: AnyNodeDescription {
     get {
@@ -266,12 +267,16 @@ extension Node: AnyNode {
     }
   }
   
-  public func update(with description: AnyNodeDescription) throws {
-    try self.update(with: description, parentAnimation: .none)
+  public func update(with description: AnyNodeDescription) {
+    self.update(with: description, parentAnimation: .none)
   }
   
-  public func update(with description: AnyNodeDescription, parentAnimation animation: Animation = .none) throws {
-    var description = description as! Description
+  public func update(with description: AnyNodeDescription, parentAnimation animation: Animation = .none)  {
+    
+    guard var description = description as? Description else {
+      fatalError("Impossible to use the provided description to update the node")
+    }
+    
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
     self.update(for: self.state, description: description, parentAnimation: animation)
   }
