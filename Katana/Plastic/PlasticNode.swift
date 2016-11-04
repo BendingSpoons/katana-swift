@@ -8,8 +8,20 @@
 
 import Foundation
 
+/**
+  Subclass of `Node` that implements all the logic needed to use the Plastic layout system.
+ 
+  - seeAlso: `PlasticNodeDescription`
+*/
 public class PlasticNode<Description: PlasticNodeDescription>: Node<Description> {
-  
+  /**
+   This method implements the logic to invoke the layout logic provided by Plastic
+   
+   - parameter children: The children to process
+   - returns: the processed children
+   
+   - seeAlso: `Node`, `processedChildrenDescriptionsBeforeDraw(:)` method
+  */
   override public func processedChildrenDescriptionsBeforeDraw(_ childrenDescriptions: [AnyNodeDescription])
     -> [AnyNodeDescription] {
     let childrenDescriptions = super.processedChildrenDescriptionsBeforeDraw(childrenDescriptions)
@@ -19,6 +31,14 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     return newChildrenDescriptions
   }
   
+  /**
+   Calculates the frames for the given node description.
+   This method basically invokes the `layout` method of `PlasticNodeDescription`
+   
+   - parameter childrenDescriptions: the children descriptions for which we need to calculate the frame
+   - returns: a dictionary where the key is the key is the description key and the value
+              is the frame that has been calculated for it
+  */
   private func updatedFrames(for childrenDescriptions: [AnyNodeDescription]) -> [String: CGRect] {
     let multiplier = self.plasticMultipler
     let frame = self.description.props.frame
@@ -51,6 +71,13 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     return newFrames
   }
   
+  /**
+   Updates the given node descriptions with the provided frames.
+  
+   - parameter childrenDescriptions: the children descriptions to update
+   - parameter newFrames:            the frame to assign to the descriptions
+   - returns: the updated descriptions
+  */
   private func updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: [AnyNodeDescription],
                                                         newFrames: [String: CGRect]) -> [AnyNodeDescription] {
     return childrenDescriptions.map {
@@ -73,6 +100,14 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
 }
 
 public extension AnyNode {
+  /**
+   The Plastic multiplier that will be used in the current `Node`. If the description associated with the node
+   implements the `PlasticNodeDescriptionWithReferenceSize`, then the multiplier is calculated using the
+   current node information (e.g., the reference size and the current size). In any other case, the method
+   will request the parent plastic multiplier
+   
+   - seeAlso: `PlasticNodeDescriptionWithReferenceSize`
+  */
   public var plasticMultipler: CGFloat {
     
     guard let description = self.anyDescription as? PlasticNodeDescriptionWithReferenceSize else {

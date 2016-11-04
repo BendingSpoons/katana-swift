@@ -25,19 +25,19 @@ fileprivate struct AsyncTestAction: AsyncAction {
     self.state = .loading
   }
   
-  static func loadingReduce(state: State, action: AsyncTestAction) -> State {
+  static func updatedStateForLoading(currentState: State, action: AsyncTestAction) -> State {
     action.invokedLoadingClosure()
-    return state
+    return currentState
   }
   
-  static func completedReduce(state: State, action: AsyncTestAction) -> State {
+  static func updatedStateForCompleted(currentState: State, action: AsyncTestAction) -> State {
     action.invokedCompletedClosure()
-    return state
+    return currentState
   }
   
-  static func failedReduce(state: State, action: AsyncTestAction) -> State {
+  static func updatedStateForFailed(currentState: State, action: AsyncTestAction) -> State {
     action.invokedFailedClosure()
-    return state
+    return currentState
   }
 }
 

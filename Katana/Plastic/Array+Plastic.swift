@@ -8,10 +8,22 @@
 
 import UIKit
 
+/// Utilities methods for Array of `PlasticView` instances
 extension Array where Element: PlasticView {
- 
-  public func centerBetween(left: Anchor, right: Anchor, spacings s: [Value]? = nil) -> Void {
-    let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
+  
+  /**
+   Centers the view instances in the array together with a collection of inter-view spacings horizontally so that
+   their sizes, top edges and bottom edges are preserved.
+   
+   - parameter left:     the left view anchor used for the horizontal centering
+   - parameter right:    the right view anchor used for the horizontal centering
+   - parameter spacings: individual spacings to use between the views.
+                         Must be an array of N-1 `Value` instances where N is the number
+                         of views in the view array. If `nil`, an array of `Value.zero` is used instead
+   
+  */
+  public func centerBetween(left: Anchor, right: Anchor, spacings: [Value]? = nil) -> Void {
+    let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
       fatalError("The number of spacings values should be equal to the number of views minus 1")
@@ -38,8 +50,19 @@ extension Array where Element: PlasticView {
     }
   }
   
-  public func centerBetween(top: Anchor, bottom: Anchor, spacings s: [Value]? = nil) -> Void {
-    let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
+  /**
+   Centers the view instances in the array together with a collection of inter-view spacings vertically so that
+   their sizes, left edges and right edges are preserved.
+   
+   - parameter left:     the top view anchor used for the vertical centering
+   - parameter right:    the bottom view anchor used for the vertical centering
+   - parameter spacings: individual spacings to use between the views.
+                         Must be an array of N-1 `Value` instances where N is the number
+                         of views in the view array. If `nil`, an array of `Value.zero` is used instead
+   
+  */
+  public func centerBetween(top: Anchor, bottom: Anchor, spacings: [Value]? = nil) -> Void {
+    let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
@@ -67,14 +90,32 @@ extension Array where Element: PlasticView {
     }
   }
   
+  /**
+   Fills the horizontal space between two view anchors with the view instances in the array given a collection of
+   inter-view spacings and insets. The final widths of the views will be determined by a collection of relational view
+   widths.
+   
+   - parameter left:     the left view anchor for the horizontal distribution of the views
+   - parameter right:    the right view anchor for the horizontal distribution of the views
+   - parameter insets:   the insets for the left and right view anchors. The default value is `.zero`
+   - parameter spacings: a collection of `Value` intances used to calculate the spacings between the views.
+                         Must be an array of N-1 `Value` instances where N is the number
+                         of views in the view array. If `nil`, an array of `Value.zero` is used instead
+   - parameter widths:   a collection of CGFloats that are the view widths in relation
+                         to eachother. For example, by passing `[1, 2]` the method will give to the second
+                         view a width that is two times the width of the first view.
+                         Must contain N values where N is the number of views in the array. If `nil` all the views
+                         will have the same width
+   
+  */
   public func fill(left: Anchor,
-                  right: Anchor,
-                 insets: EdgeInsets = .zero,
-             spacings s: [Value]? = nil,
-               widths w: [CGFloat]? = nil) -> Void {
+                   right: Anchor,
+                   insets: EdgeInsets = .zero,
+                   spacings: [Value]? = nil,
+                   widths: [CGFloat]? = nil) -> Void {
     
-    let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
-    let widths = w ?? (0..<self.count).map { _ in 1 }
+    let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
+    let widths = widths ?? (0..<self.count).map { _ in 1 }
     
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
@@ -113,14 +154,31 @@ extension Array where Element: PlasticView {
     }
   }
   
+  /**
+   Fills the vertical space between two view anchors with the view instances in the array given a collection of
+   inter-view spacings and insets. The final heights of the array views will be determined by a collection of relational view
+   heights.
+   
+   - parameter top:      the top view anchor for the vertical distribution of the views
+   - parameter bottom:   the bottom view anchor for the vertical distribution of the views
+   - parameter insets:   the insets for the top and bottom view anchors. The default value is `.zero`
+   - parameter spacings: a collection of `Value` intances used to calculate the spacings between the views.
+                         Must be an array of N-1 `Value` instances where N is the number
+                         of views in the view array. If `nil`, an array of `Value.zero` is used instead
+   - parameter heights:  a collection of CGFloats that are the view heights in relation
+                         to eachother. For example, by passing `[1, 2]` the method will give to the second
+                         view an height that is two times the height of the first view.
+                         Must contain N values where N is the number of views in the array. If `nil` all the views
+                         will have the same height
+   */
   public func fill(top: Anchor,
                 bottom: Anchor,
                 insets: EdgeInsets = .zero,
-            spacings s: [Value]? = nil,
-             heights h: [CGFloat]? = nil) -> Void {
+                spacings: [Value]? = nil,
+                heights: [CGFloat]? = nil) -> Void {
     
-    let spacings = s ?? (0..<self.count - 1).map { _ in .zero }
-    let heights = h ?? (0..<self.count).map { _ in 1 }
+    let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
+    let heights = heights ?? (0..<self.count).map { _ in 1 }
     
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
