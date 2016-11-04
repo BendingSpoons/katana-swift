@@ -76,7 +76,7 @@ public protocol AnyNode: class {
  to call draw only on the root node by invoking
  
  ```
- Description().makeRoot(..).draw(..)
+ Description().makeRoot(..).render(..)
  ```
 */
 protocol InternalAnyNode: AnyNode {
@@ -109,7 +109,7 @@ protocol InternalAnyNode: AnyNode {
   That being said, there are cases where this is not possible
   (e.g., in a table, when you need to generate and handle the nodes contained in the cells).
   In order to maintain an unique tree to represent the UI, we ask to handle these
-  cases manually by invoking two methods: `addManagedChildren(with:in:)` and `removeManagedChild(node:)`.
+  cases manually by invoking two methods: `addManagedChild(with:in:)` and `removeManagedChild(node:)`.
   
   Having a single tree is important for several reasons.
   For example we may want to run automatic tests on the tree and verify some conditions (e.g., there is a button).
