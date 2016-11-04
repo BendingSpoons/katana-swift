@@ -186,7 +186,7 @@ public class Node<Description: NodeDescription> {
   public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
     return children
   }
-  
+
   /**
     Renders the node in a given container. Draws a node basically means create
     the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
@@ -197,7 +197,7 @@ public class Node<Description: NodeDescription> {
     
     - parameter container: the container in which the node should be drawn
   */
-  public func render(in container: DrawableContainer) {
+  func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -346,7 +346,7 @@ fileprivate extension Node {
       // description is connected to the store, we need to update it
       
       guard let store = self.treeRoot.store else {
-        fatalError("connected not lacks store")
+        fatalError("connected node lacks store")
       }
       
       let state = store.anyState
