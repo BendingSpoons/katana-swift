@@ -9,19 +9,19 @@
 import Foundation
 
 public protocol AnyAction {
-  static func anyReduce(state: State, action: AnyAction) -> State
+  static func anyUpdatedState(currentState: State, action: AnyAction) -> State
 }
 
 public protocol Action: AnyAction {
-  static func reduce(state: State, action: Self) -> State
+  static func updatedState(currentState: State, action: Self) -> State
 }
 
 public extension Action {
-  static func anyReduce(state: State, action: AnyAction) -> State {
+  static func anyUpdatedState(currentState: State, action: AnyAction) -> State {
     guard let action = action as? Self else {
       preconditionFailure("Action reducer invoked with a wrong 'action' parameter")
     }
     
-    return self.reduce(state: state, action: action)
+    return self.updatedState(currentState: currentState, action: action)
   }
 }
