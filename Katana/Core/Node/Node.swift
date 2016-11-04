@@ -18,8 +18,8 @@ public protocol AnyNode: class {
   var parent: AnyNode? {get}
   var root: Root? {get}
   
-  func update(with description: AnyNodeDescription) throws
-  func update(with description: AnyNodeDescription, parentAnimation: Animation) throws
+  func update(with description: AnyNodeDescription)
+  func update(with description: AnyNodeDescription, parentAnimation: Animation) 
   
   func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode
   func removeManagedChild(node: AnyNode)
