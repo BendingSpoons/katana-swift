@@ -32,13 +32,13 @@ public extension PlasticNodeDescription {
     return nil
   }
   
-  public func makeNode(parent: AnyNode?) -> AnyNode {
-    return PlasticNode(description: self, parent: parent, root: nil)
+  public func makeNode(parent: AnyNode) -> AnyNode {
+    return PlasticNode(description: self, parent: parent)
   }
   
   func makeRoot(store: AnyStore?) -> Root {
     let root = Root(store: store)
-    let node = PlasticNode(description: self, parent: nil, root: root)
+    let node = PlasticNode(description: self, root: root)
     root.node = node
     return root
   }

@@ -44,8 +44,15 @@ public class Node<Description: NodeDescription> {
   
   public var managedChildren: [AnyNode] = []
 
+  public convenience init(description: Description, parent: AnyNode) {
+    self.init(description: description, parent: parent, root: nil)
+  }
   
-  public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
+  public convenience init(description: Description, root: Root) {
+    self.init(description: description, parent: nil, root: root)
+  }
+  
+  internal init(description: Description, parent: AnyNode?, root: Root?) {
     
     guard (parent != nil) != (root != nil) else {
       fatalError("either the parent or the root should be passed")
