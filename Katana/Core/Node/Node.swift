@@ -177,7 +177,7 @@ fileprivate extension Node {
       // description is connected to the store, we need to update it
       
       guard let store = self.treeRoot.store else {
-        fatalError("connected not lacks store")
+        fatalError("connected node lacks store")
       }
       
       let state = store.anyState
