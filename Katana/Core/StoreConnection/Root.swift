@@ -42,7 +42,7 @@ open class Root {
   }
   
   /// The unsubscribe store closure
-  public var unsubscribe: StoreUnsubscribe?
+  private var unsubscribe: StoreUnsubscribe?
 
   /**
    Creates an instance of root that holds a store

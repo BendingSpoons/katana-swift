@@ -73,7 +73,6 @@ public struct EmptyProps: NodeProps, Keyable {
 
 /// The default state for a `NodeDescription`. This struct is basically empty
 public struct EmptyState: NodeState {
-  
   /**
    Implementation of the `Equatable` protocol
    

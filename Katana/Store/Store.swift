@@ -83,7 +83,7 @@ public class Store<StateType: State> {
     // add the side effect function as the first in the chain
     m = [self.triggerSideEffect] + m
     
-    return self.composeMiddlewares(m, with: self.reduceState)
+    return self.composeMiddlewares(m, with: self.performDispatch)
   }()
   
   /// The queue in witch actions are managed
@@ -180,8 +180,8 @@ fileprivate extension Store {
    
    - parameter action: the action that has been dispatched
   */
-  fileprivate func reduceState(_ action: AnyAction) {
-    let newState = type(of: action).anyReduce(state: self.state, action: action)
+  fileprivate func performDispatch(_ action: AnyAction) {
+    let newState = type(of: action).anyUpdatedState(currentState: self.state, action: action)
     
     guard let typedNewState = newState as? StateType else {
       preconditionFailure("Action reducer returned a wrong state type")

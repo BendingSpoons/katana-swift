@@ -10,13 +10,12 @@ import Foundation
 
 /// Type Erasure for `Action`
 public protocol AnyAction {
-  
   /**
    Creates a new state starting from the current state and an action
    
    - seeAlso: `Action`, `reduce(state:action:)` method
   */
-  static func anyReduce(state: State, action: AnyAction) -> State
+  static func anyUpdatedState(currentState: State, action: AnyAction) -> State
 }
 
 /**
@@ -38,7 +37,7 @@ public protocol Action: AnyAction {
    - parameter action: the action that has been dispatched
    - returns: the new state
   */
-  static func reduce(state: State, action: Self) -> State
+  static func updatedState(currentState: State, action: Self) -> State
 }
 
 public extension Action {
@@ -47,11 +46,11 @@ public extension Action {
    
    - seeAlso: `AnyAction`
   */
-  static func anyReduce(state: State, action: AnyAction) -> State {
+  static func anyUpdatedState(currentState: State, action: AnyAction) -> State {
     guard let action = action as? Self else {
       preconditionFailure("Action reducer invoked with a wrong 'action' parameter")
     }
     
-    return self.reduce(state: state, action: action)
+    return self.updatedState(currentState: currentState, action: action)
   }
 }

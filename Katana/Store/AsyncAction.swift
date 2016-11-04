@@ -169,16 +169,16 @@ public extension AsyncAction {
    - parameter action: the action that has been dispatched
    - returns: the new state
   */
-  public static func reduce(state: State, action: Self) -> State {
+  public static func updatedState(currentState: State, action: Self) -> State {
     switch action.state {
     case .loading:
-      return self.loadingReduce(state: state, action: action)
+      return self.loadingReduce(state: currentState, action: action)
       
     case .completed:
-      return self.completedReduce(state: state, action: action)
+      return self.completedReduce(state: currentState, action: action)
       
     case .failed:
-      return self.failedReduce(state: state, action: action)
+      return self.failedReduce(state: currentState, action: action)
     }
   }
   
