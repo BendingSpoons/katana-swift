@@ -1,8 +1,8 @@
 //
-//  KatanaTableViewCell.swift
+//  NativeTableWrapperCell.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 22/08/16.
+//  Created by Mauro Bolis on 31/10/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
 
@@ -10,9 +10,8 @@ import Foundation
 import UIKit
 import Katana
 
-class NativeTableViewCell: UITableViewCell {
+class NativeTableWrapperCell: UITableViewCell {
   private var node: AnyNode?
-  
   
   override public init(style: UITableViewCellStyle, reuseIdentifier: String?) {
     super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -25,13 +24,8 @@ class NativeTableViewCell: UITableViewCell {
   }
   
   func update(withparent parent: AnyNode, description: AnyNodeDescription) {
-    // we need to pass the cell frame
-    // here we are causing a second evaluation of the description
-    // Is there any way to avoid this? Passing the frame to the delegate could be an option
-    // but it is very very ugly
     var newDescription = description
     newDescription.frame = self.bounds
-    
     
     if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
@@ -47,14 +41,23 @@ class NativeTableViewCell: UITableViewCell {
       view.removeFromSuperview()
     }
     
-    self.node?.parent?.removeManagedChild(node: node!)
+    // Katana right now requires manual management of children
+    // when we have tables/grids
+    // let's first remove the node from the parent (if any)
+    if let node = self.node {
+      node.parent?.removeManagedChild(node: node)
+    }
+    
+    // and then add a new node with the new description
     self.node = parent.addManagedChild(with: newDescription, in: self.contentView)
   }
   
   func didTap(atIndexPath indexPath: IndexPath) {
-    if let description = self.node?.anyDescription as? AnyCellNodeDescription {
-      let store = self.node?.treeRoot.store
-      let dispatch =  store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    // if we have a node, and the description is of the CellNodeDescription kind, then
+    // we can automate the tap process
+    if let node = self.node, let description = node.anyDescription as? AnyTableCell {
+      let store = node.treeRoot.store
+      let dispatch = store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not available.") }
       type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
     }
   }
@@ -65,12 +68,17 @@ class NativeTableViewCell: UITableViewCell {
     // let's see if in our subviews there is a CellNativeView, which we can use
     // to properly update the state
     // it there is such view, it is the only subview of contentview
-    if let view = self.contentView.subviews.first as? CellNativeView {
+    if let view = self.contentView.subviews.first as? NativeTableCell {
       view.setHighlighted(highlighted)
     }
   }
   
   deinit {
-    self.node?.parent?.removeManagedChild(node: node!)
+    // on cell deinit, remove the node from the tree
+    // again, this is a current Katana limitation and we need to manage
+    // nodes manually
+    if let node = self.node {
+      node.parent?.removeManagedChild(node: node)
+    }
   }
 }
