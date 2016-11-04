@@ -89,7 +89,7 @@ public protocol AnyNodeDescription {
    - parameter parent: the parent node to associate with the node
    - returns: the node instance
   */
-  func makeNode(parent: AnyNode?) -> AnyNode
+  func makeNode(parent: AnyNode) -> AnyNode
   
   /**
    Creates a root node (that is, the root of the UI hierarchy) with the given store
@@ -245,13 +245,13 @@ extension AnyNodeDescription where Self: NodeDescription {
     return self.props
   }
   
-  public func makeNode(parent: AnyNode?) -> AnyNode {
+  public func makeNode(parent: AnyNode) -> AnyNode {
     return Node(description: self, parent: parent)
   }
   
   public func makeRoot(store: AnyStore?) -> Root {
     let root = Root(store: store)
-    let node = Node(description: self, parent: nil, root: root)
+    let node = Node(description: self, root: root)
     root.node = node
     return root
   }

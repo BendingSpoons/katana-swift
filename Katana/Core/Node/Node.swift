@@ -26,7 +26,10 @@ public protocol AnyNode: class {
   /// The parent of the node
   var parent: AnyNode? {get}
   
-  /// TODO: should this be private?
+  /**
+   The parent of the node. This variable has a value only if
+   the parent is the root of the nodes tree
+  */
   var root: Root? {get}
   
   /**
@@ -131,21 +134,52 @@ public class Node<Description: NodeDescription> {
   /// The current description of the node
   fileprivate(set) var description: Description
   
-  /// The parent of the node
+  /**
+    The parent of the node. This variable has a value only
+    if the parent of the node is not the root of the nodes tree
+  */
   public fileprivate(set) weak var parent: AnyNode?
   
-  /// TODO: should we keep it?
+  /**
+    The parent of the node. This variable has a value only if
+    the parent is the root of the nodes tree
+  */
   public fileprivate(set) weak var root: Root?
   
   /// The array of managed children of the node
   public var managedChildren: [AnyNode] = []
 
   /**
+   Creates an instance of node
+  
+   - parameter description: The description to associate with the node
+   - parameter parent:      The parent of the node
+   - returns: an instance of `Node` with the given parameters
+   
+   - note: the `root` parameter will be nil
+  */
+  public convenience init(description: Description, parent: AnyNode) {
+    self.init(description: description, parent: parent, root: nil)
+  }
+ 
+  /**
+   Creates an instance of node
+   
+   - parameter description: The description to associate with the node
+   - parameter root:        The root of the nodes tree. The new node will become a child of the root
+   - returns: an instance of `Node` with the given parameters
+   
+   - note: the `parent` parameter will be nil
+  */
+  public convenience init(description: Description, root: Root) {
+    self.init(description: description, parent: nil, root: root)
+  }
+
+  /**
    Creates an instance of node given a description and the parent
    
-   - note:
-    You can either pass `parent` or `root` but not both. Internally `root` is passed when a node is created directly from the root
-    (e.g., when `makeRoot` is invoked)
+   - note: You can either pass `parent` or `root` but not both. Internally `root`
+           is passed when a node is created directly from the root (e.g., when `makeRoot` is invoked)
    
    - parameter description: The description to associate with the node
    - parameter parent:      The parent of the node
@@ -153,8 +187,7 @@ public class Node<Description: NodeDescription> {
    
    - returns: A valid instance of Node
   */
-  public init(description: Description, parent: AnyNode? = nil, root: Root? = nil) {
-    // TODO: discuss this
+  internal init(description: Description, parent: AnyNode?, root: Root?) {
     guard (parent != nil) != (root != nil) else {
       fatalError("either the parent or the root should be passed")
     }
