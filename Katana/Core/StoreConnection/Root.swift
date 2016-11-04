@@ -19,7 +19,7 @@ open class Root {
     }
   }
   
-  public var unsubscribe: StoreUnsubscribe?
+  private var unsubscribe: StoreUnsubscribe?
 
   public init(store: AnyStore?) {
     self.store = store
