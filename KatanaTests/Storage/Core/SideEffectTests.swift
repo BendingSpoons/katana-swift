@@ -19,7 +19,7 @@ class SideEffectTests: XCTestCase {
     let action = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, _, _) in
       invoked = true
       expectation.fulfill()
-    }, reduceInvokedClosure: nil)
+    }, updatedInvokedClosure: nil)
     
     
     let store = Store<AppState>()
@@ -43,7 +43,7 @@ class SideEffectTests: XCTestCase {
       invokedState = state as? AppState
       invokedContainer = dependencyContainer
       expectation.fulfill()
-    }, reduceInvokedClosure: nil)
+    }, updatedInvokedClosure: nil)
 
     
     let store = Store<AppState>(middlewares: [], dependencies: EmptySideEffectDependencyContainer.self)
@@ -67,7 +67,7 @@ class SideEffectTests: XCTestCase {
       invokedContainer = dependencyContainer
       expectation.fulfill()
 
-    }, reduceInvokedClosure: nil)
+    }, updatedInvokedClosure: nil)
     
     let store = Store<AppState>(middlewares: [], dependencies: SimpleDependencyContainer.self)
     let initialState = store.state
@@ -92,7 +92,7 @@ class SideEffectTests: XCTestCase {
     let action2 = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, _, _) in
       invocationOrder.append("side effect 2")
     }) {
-      invocationOrder.append("reducer 2")
+      invocationOrder.append("update state 2")
       action2expectation.fulfill()
     }
     
@@ -100,7 +100,7 @@ class SideEffectTests: XCTestCase {
       invocationOrder.append("side effect 1")
       dispatch(action2)
     }) {
-      invocationOrder.append("reducer 1")
+      invocationOrder.append("update state 1")
       action1expectation.fulfill()
     }
     
@@ -111,7 +111,7 @@ class SideEffectTests: XCTestCase {
       XCTAssertNil(error)
       
       XCTAssertEqual(invocationOrder, [
-        "side effect 1", "reducer 1", "side effect 2", "reducer 2"
+        "side effect 1", "update state 1", "side effect 2", "update state 2"
       ])
     }
   }

@@ -40,7 +40,7 @@ public protocol AnyStore: class {
  
  - it executes the middlewares
  - it exectues the side effect of the action, if implemented (see `ActionWithSideEffect`)
- - it creates the new state, by invoking the `reduce` function of the action
+ - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
  - it invokes all the listeners
  
@@ -184,7 +184,7 @@ fileprivate extension Store {
     let newState = type(of: action).anyUpdatedState(currentState: self.state, action: action)
     
     guard let typedNewState = newState as? StateType else {
-      preconditionFailure("Action reducer returned a wrong state type")
+      preconditionFailure("Action updateState returned a wrong state type")
     }
     
     self.state = typedNewState

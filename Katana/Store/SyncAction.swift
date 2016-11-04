@@ -18,21 +18,21 @@ import Foundation
  (that can be used for debugging, time travel and so on)
  
  #### Tip & Tricks
- Since the `Action` protocol is very generic when it comes to the state type that should be reduced, a pattern
+ Since the `Action` protocol is very generic when it comes to the state type that should be updated, a pattern
  we want to promote is to put in your application a protocol like the following:
  
  ```
  protocol AppSyncAction: SyncAction {
-  static func reduce(state: inout AppState, action: AddTodo)
+  static func updateState(currentState: inout AppState, action: AddTodo)
  }
  
  extension AppSyncAction {
-  static func reduce(state: State, action: AddTodo) -> State {
-    guard var state = state as? AppState else {
+  static func updateState(currentState: State, action: AddTodo) -> State {
+    guard var state = currentState as? AppState else {
       fatalError("Something went wrong")
     }
  
-    self.reduce(state: &state, action: action)
+    self.updateState(currentState: &state, action: action)
     return state
   }
  }
@@ -42,8 +42,8 @@ import Foundation
  
  ```
  struct A: AppSyncAction {
-  static func reduce(state: inout AppState, action: AddTodo) {
-    state.props = action.payload
+  static func updateState(currentState: inout AppState, action: AddTodo) {
+    currentState.props = action.payload
   }
  }
  ```

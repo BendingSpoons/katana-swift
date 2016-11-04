@@ -29,7 +29,7 @@ public protocol AnyActionWithSideEffect: AnyAction {
  
  A side effect is nothing more than a piece of code that can interact with external
  services or APIs (e.g., make a network request, get information from the disk and so on).
- Side effects are needed because the reducer function (which is the only other operation
+ Side effects are needed because the `updateState(currentState:action:)` function (which is the only other operation
  that is performed when an action is dispatched) must be pure and therefore it cannot
  interact with disk, network and so on.
  
@@ -50,7 +50,7 @@ public protocol AnyActionWithSideEffect: AnyAction {
 public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
   /**
    Performs the side effect. This method is invoked when the action is dispatched,
-   before it goes in the reducer.
+   before it goes in the `updateState(currentState:action:)` function.
    
    - parameter action:        the dispatched action
    - parameter state:         the current state

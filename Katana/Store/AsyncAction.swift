@@ -36,30 +36,31 @@ public enum AsyncActionState {
    allow future automatic behaviours such as automatic serialization/deserialization of the actions
    (that can be used for debugging, time travel and so on)
  
- * Convenient separation of the reduce function based on the state of the action
-   (`loadingReduce(state: action:)`, `completedReduce(state: action:)` and `failedReduce(state: action:)`)
+ * Convenient separation of the updateStae function based on the state of the action
+   (`updatedStateForLoading(currentState: action:)`, `updatedStateForCompleted(currentState: action:)`
+    and `updatedStateForFailed(currentState: action:)`)
  
  It is important to note that this is just a a convenience approach to something you can do anyway.
  You can for instance create three actions: `performOperation`, `OperationCompleted` and `OperationFailed` and achieve
  the same result. `AsyncAction` just provide a way to abstract and simplify the process
  
  #### Tip & Tricks
- Since the `Action` protocol is very generic when it comes to the state type that should be reduced, a pattern
+ Since the `Action` protocol is very generic when it comes to the state type that should be updated, a pattern
  we want to promote is to put in your application a protocol like the following:
  
  ```
  protocol AppSyncAction: AsyncAction {
-  static func loadingReduce(state: inout AppState, action: AddTodo)
+  static func updatedStateForLoading(currentState: inout AppState, action: AddTodo)
   // same for completed and failed
  }
  
  extension AppSyncAction {
-  static func loadingReduce(state: State, action: AddTodo) -> State {
+  static func updatedStateForLoading(currentState: State, action: AddTodo) -> State {
     guard var state = state as? AppState else {
       fatalError("Something went wrong")
     }
  
-    self.loadingReduce(state: &state, action: action)
+    self.updatedStateForLoading(currentState: &state, action: action)
     return state
   }
  
@@ -71,7 +72,7 @@ public enum AsyncActionState {
  
  ```
  struct A: AppAsyncAction {
-  static func loadingReduce(state: inout AppState, action: AddTodo) {
+  static func updatedStateForLoading(currentState: inout AppState, action: AddTodo) {
     state.props = action.payload
   }
  
@@ -103,31 +104,31 @@ public protocol AsyncAction: Action {
   var failedPayload: FailedPayload? { get set }
   
   /**
-   Reduce function that will be used when the state of the action is `loading`
+   UpdateState function that will be used when the state of the action is `loading`
    
    - parameter state:   the current state of the application
    - parameter action:  the action. The state of the action is `loading`
    - returns: the new state
   */
-  static func loadingReduce(state: State, action: Self) -> State
+  static func updatedStateForLoading(currentState: State, action: Self) -> State
 
   /**
-   Reduce function that will be used when the state of the action is `completed`
+   UpdateState function that will be used when the state of the action is `completed`
    
    - parameter state:   the current state of the application
    - parameter action:  the action. The state of the action is `completed`
    - returns: the new state
   */
-  static func completedReduce(state: State, action: Self) -> State
+  static func updatedStateForCompleted(currentState: State, action: Self) -> State
 
   /**
-   Reduce function that will be used when the state of the action is `failed`
+   UpdateState function that will be used when the state of the action is `failed`
    
    - parameter state:   the current state of the application
    - parameter action:  the action. The state of the action is `failed`
    - returns: the new state
   */
-  static func failedReduce(state: State, action: Self) -> State
+  static func updatedStateForFailed(currentState: State, action: Self) -> State
   
   /**
    Creates a new action
@@ -162,8 +163,8 @@ public extension AsyncAction {
   /**
    Creates a new state starting from the current state and the dispatched action.
    `AsyncAction` implements a default behaviour that invokes 
-   `loadingReduce(state: action:)`, `completedReduce(state: action:)`
-   or `failedReduce(state: action:)` based on the action's state
+   `updatedStateForLoading(currentState: action:)`, `updatedStateForCompleted(currentState: action:)`
+   or `updatedStateForFailed(currentState: action:)` based on the action's state
    
    - parameter state:  the current state
    - parameter action: the action that has been dispatched
@@ -172,13 +173,13 @@ public extension AsyncAction {
   public static func updatedState(currentState: State, action: Self) -> State {
     switch action.state {
     case .loading:
-      return self.loadingReduce(state: currentState, action: action)
+      return self.updatedStateForLoading(currentState: currentState, action: action)
       
     case .completed:
-      return self.completedReduce(state: currentState, action: action)
+      return self.updatedStateForCompleted(currentState: currentState, action: action)
       
     case .failed:
-      return self.failedReduce(state: currentState, action: action)
+      return self.updatedStateForFailed(currentState: currentState, action: action)
     }
   }
   

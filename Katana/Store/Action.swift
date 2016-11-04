@@ -13,7 +13,7 @@ public protocol AnyAction {
   /**
    Creates a new state starting from the current state and an action
    
-   - seeAlso: `Action`, `reduce(state:action:)` method
+   - seeAlso: `Action`, `updateState(currentState:action:)` method
   */
   static func anyUpdatedState(currentState: State, action: AnyAction) -> State
 }
@@ -27,7 +27,8 @@ public protocol AnyAction {
 public protocol Action: AnyAction {
   /**
    Creates the new state starting from the current state and the action. It is important
-   to node that reduce should be a [pure function](https://en.wikipedia.org/wiki/Pure_function), that is
+   to node that `updateState(currentState:action:)` should be a 
+   [pure function](https://en.wikipedia.org/wiki/Pure_function), that is
    a function that given the same input always returns the same output and it also
    doesn't have any side effect. This is really important because it is an assumption
    that Katana (an related tools) make in order to implement some functionalities
@@ -48,7 +49,7 @@ public extension Action {
   */
   static func anyUpdatedState(currentState: State, action: AnyAction) -> State {
     guard let action = action as? Self else {
-      preconditionFailure("Action reducer invoked with a wrong 'action' parameter")
+      preconditionFailure("updateState invoked with a wrong 'action' parameter")
     }
     
     return self.updatedState(currentState: currentState, action: action)
