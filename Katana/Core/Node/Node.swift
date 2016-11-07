@@ -49,7 +49,7 @@ public protocol AnyNode: class {
   
    - throws: this method throw an exception if the given description is not compatible with the node
   */
-  func update(with description: AnyNodeDescription, parentAnimation: Animation)
+  func update(with description: AnyNodeDescription, animation: AnimationContainer)
   
   /**
    Adds a managed child to the node. For more information about managed children see the `Node` class
@@ -125,6 +125,8 @@ public class Node<Description: NodeDescription> {
   /// The children of the node
   public fileprivate(set) var children: [AnyNode]!
   
+  fileprivate var childrenDescriptions: [AnyNodeDescription]!
+
   /// The container in which the node will be drawn
   fileprivate var container: DrawableContainer?
   
@@ -199,9 +201,11 @@ public class Node<Description: NodeDescription> {
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
-    let childrenDescriptions  = self.childrenDescriptions()
+    self.childrenDescriptions  = self.processedChildrenDescriptionsBeforeDraw(
+      self.getChildrenDescriptions()
+    )
         
-    self.children = self.processedChildrenDescriptionsBeforeDraw(childrenDescriptions).map {
+    self.children = self.childrenDescriptions.map {
       $0.makeNode(parent: self)
     }
   }
@@ -298,7 +302,7 @@ fileprivate extension Node {
    
     - parameter animation:     the animation to use to transition from the previous UI to the new one
   */
-  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: Animation) {
+  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: AnimationContainer) {
     guard let container = self.container else {
       return
     }
@@ -309,7 +313,7 @@ fileprivate extension Node {
       self?.update(for: state)
     }
     
-    animation.animate {
+    animation.nativeViewAnimation.animate {
       container.update { view in
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
@@ -348,7 +352,7 @@ fileprivate extension Node {
    
    - returns: the array of children descriptions of the node
   */
-  fileprivate func childrenDescriptions() -> [AnyNodeDescription] {
+  fileprivate func getChildrenDescriptions() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> Void in
       DispatchQueue.main.async {
         self?.update(for: state)
@@ -395,7 +399,7 @@ fileprivate extension Node {
     - parameter state: the new state
   */
   fileprivate func update(for state: Description.StateType) {
-    self.update(for: state, description: self.description, parentAnimation: .none)
+    self.update(for: state, description: self.description, animation: .none)
   }
 
   /**
@@ -412,27 +416,99 @@ fileprivate extension Node {
    */
   fileprivate func update(for state: Description.StateType,
                           description: Description,
-                          parentAnimation: Animation,
+                          animation: AnimationContainer,
                           force: Bool = false) {
-    
+    // TODO: review documentation
     guard force || self.description.props != description.props || self.state != state else {
       return
     }
     
-    let childrenAnimation = type(of: self.description).childrenAnimation(
-      currentProps: self.description.props,
-      nextProps: description.props,
-      currentState: self.state,
-      nextState: state,
-      parentAnimation: parentAnimation
-    )
+    /*
+     If we receive an `animation` parameter from the parent, which has
+     a `childrenAnimation` parameter, then we ignore the local method and just use it.
+     We are using this approach to manage `NodeDescriptionWithChildren` animation propagation
+    */
+    let currentAnimation: AnimationContainer
     
+    if !animation.childrenAnimation.shouldAnimate {
+      // TODO: invoke proper method
+      let childrenAnimations = ChildrenAnimationContainer()
+      
+      currentAnimation = AnimationContainer(
+        nativeViewAnimation: animation.nativeViewAnimation,
+        childrenAnimation: childrenAnimations
+      )
+    
+    } else {
+      currentAnimation = animation
+    }
+    
+    // update internal state
     self.description = description
     self.state = state
     
+    // calculate final state
+    let finalChildrenDescription = self.processedChildrenDescriptionsBeforeDraw(
+      self.getChildrenDescriptions()
+    )
+
+    // manage the update of the UI
+    if !currentAnimation.childrenAnimation.shouldAnimate {
+      // no animation, simply update the UI with the new description and return
+      self.update(newChildrenDescriptions: finalChildrenDescription, animation: currentAnimation)
+      return
+    
+    } else {
+      // we do have children animation, we need to perform the animation logic
+      self.animatedChildrenUpdate(
+        from: self.childrenDescriptions,
+        to: finalChildrenDescription,
+        animation: currentAnimation
+      )
+    }
+  }
+  
+  fileprivate func animatedChildrenUpdate(
+    from initialChildren: [AnyNodeDescription],
+    to finalChildren: [AnyNodeDescription],
+    animation: AnimationContainer) {    
+    
+    // first transition state
+    var firstTransitionChildren = AnimationUtils.merge(array: initialChildren, with: finalChildren, priority: .original)
+    
+    firstTransitionChildren = AnimationUtils.updatedItems(
+      from: firstTransitionChildren,
+      notAvailableIn: initialChildren,
+      using: animation.childrenAnimation
+    )
+    
+    self.update(newChildrenDescriptions: firstTransitionChildren, animation: .none)
+    
+    
+    // second transition state
+    var secondTransitionChildren = AnimationUtils.merge(array: initialChildren, with: finalChildren, priority: .other)
+    
+    secondTransitionChildren = AnimationUtils.updatedItems(
+      from: secondTransitionChildren,
+      notAvailableIn: finalChildren,
+      using: animation.childrenAnimation
+    )
+    
+    //TODO pass animation
+    self.update(newChildrenDescriptions: secondTransitionChildren, animation: animation)
+    
+    // final state
+    self.update(newChildrenDescriptions: finalChildren, animation: .none)
+  }
+  
+  fileprivate func update(newChildrenDescriptions: [AnyNodeDescription], animation: AnimationContainer) {
+    var nodes: [AnyNode] = []
+    var viewIndexes: [Int] = []
+    var childrenToAdd: [AnyNode] = []
+    
     var currentChildren = ChildrenDictionary()
     
-    for (index, child) in children.enumerated() {
+    for (index, child) in self.children.enumerated() {
       let key = child.anyDescription.replaceKey
       let value = (node: child, index: index)
       
@@ -443,14 +519,6 @@ fileprivate extension Node {
       }
     }
     
-    var newChildrenDescriptions = self.childrenDescriptions()
-    
-    newChildrenDescriptions = self.processedChildrenDescriptionsBeforeDraw(newChildrenDescriptions)
-    
-    var nodes: [AnyNode] = []
-    var viewIndexes: [Int] = []
-    var childrenToAdd: [AnyNode] = []
-    
     for newChildDescription in newChildrenDescriptions {
       let key = newChildDescription.replaceKey
       
@@ -459,7 +527,10 @@ fileprivate extension Node {
       if childrenCount > 0 {
         let replacement = currentChildren[key]!.removeFirst()
         assert(replacement.node.anyDescription.replaceKey == newChildDescription.replaceKey)
-        replacement.node.update(with: newChildDescription, parentAnimation: childrenAnimation)
+        
+        // create the animation for the child. We propagate the children animation
+        let childAnimation = animation.animation(for: newChildDescription)
+        replacement.node.update(with: newChildDescription, animation: childAnimation)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
@@ -473,8 +544,9 @@ fileprivate extension Node {
       }
     }
     
+    self.childrenDescriptions = newChildrenDescriptions
     self.children = nodes
-    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: parentAnimation)
+    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: animation)
   }
 }
 
@@ -499,7 +571,7 @@ extension Node: AnyNode {
    - seeAlso: `AnyNode`
   */
   public func update(with description: AnyNodeDescription) {
-    self.update(with: description, parentAnimation: .none)
+    self.update(with: description, animation: .none)
   }
   
   /**
@@ -507,13 +579,13 @@ extension Node: AnyNode {
    
    - seeAlso: `AnyNode`
   */
-  public func update(with description: AnyNodeDescription, parentAnimation animation: Animation = .none) {
+  public func update(with description: AnyNodeDescription, animation: AnimationContainer) {
     guard var description = description as? Description else {
       fatalError("Impossible to use the provided description to update the node")
     }
     
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(for: self.state, description: description, parentAnimation: animation)
+    self.update(for: self.state, description: description, animation: animation)
   }
   
   /**
@@ -522,7 +594,7 @@ extension Node: AnyNode {
    - seeAlso: `AnyNode`
    */
   public func forceReload() {
-    self.update(for: self.state, description: self.description, parentAnimation: .none, force: true)
+    self.update(for: self.state, description: self.description, animation: .none, force: true)
   }
 }
 
