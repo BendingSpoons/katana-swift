@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Katana
 
-public struct TableProps: NodeProps, Keyable {
+public struct TableProps: NodeDescriptionProps, Keyable {
   public var frame = CGRect.zero
   public var key: String?
   

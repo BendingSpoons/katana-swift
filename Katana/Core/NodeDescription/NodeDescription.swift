@@ -14,7 +14,7 @@ import UIKit
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the state (and the props) are not changed.
 */
-public protocol NodeState: Equatable {
+public protocol NodeDescriptionState: Equatable {
   /**
    Default init for the state. It is used by Katana to create the initial state of a `Node`.
    You should initialise the state with meaningful default values.
@@ -22,7 +22,7 @@ public protocol NodeState: Equatable {
   init()
 }
 
-public extension NodeState {
+public extension NodeDescriptionState {
   /**
    Default implementation of the function required by `Equatable`. It always returns `false`.
    Developers can use this as the default implementation and then implement the proper equatable logic
@@ -43,9 +43,9 @@ public extension NodeState {
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the properties (and the state) are not changed.
 */
-public protocol NodeProps: Equatable, Frameable {}
+public protocol NodeDescriptionProps: Equatable, Frameable {}
 
-public extension NodeProps {
+public extension NodeDescriptionProps {
   /**
    Default implementation of the function required by `Equatable`. It always returns `false`.
    Developers can use this as the default implementation and then implement the proper equatable logic
@@ -133,10 +133,10 @@ public protocol NodeDescription: AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
   
   /// The type of properties that this description uses. The default value is `EmptyProps`
-  associatedtype PropsType: NodeProps = EmptyProps
+  associatedtype PropsType: NodeDescriptionProps = EmptyProps
   
   /// The type of state that this description uses. The default value is `EmptyState`
-  associatedtype StateType: NodeState = EmptyState
+  associatedtype StateType: NodeDescriptionState = EmptyState
   
   /// The properties of the the description
   var props: PropsType { get set }

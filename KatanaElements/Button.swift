@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-public struct ButtonProps: NodeProps, Keyable, Buildable {
+public struct ButtonProps: NodeDescriptionProps, Keyable, Buildable {
   public var frame = CGRect.zero
   public var key: String?
   

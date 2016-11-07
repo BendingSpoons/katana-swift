@@ -42,7 +42,7 @@ public extension Keyable {
 }
 
 /// The default props for a `NodeDescription`. Besides `frame` and `key`, this struct doesn't have any other property
-public struct EmptyProps: NodeProps, Keyable {
+public struct EmptyProps: NodeDescriptionProps, Keyable {
   
   /// The key of the description
   public var key: String?
@@ -72,7 +72,7 @@ public struct EmptyProps: NodeProps, Keyable {
 }
 
 /// The default state for a `NodeDescription`. This struct is basically empty
-public struct EmptyState: NodeState {
+public struct EmptyState: NodeDescriptionState {
   /**
    Implementation of the `Equatable` protocol
    
