@@ -29,6 +29,8 @@ public struct LabelProps: NodeProps, Keyable, Buildable {
   
   public static func == (lhs: LabelProps, rhs: LabelProps) -> Bool {
     return
+      lhs.frame == rhs.frame &&
+      lhs.key == rhs.key &&
       lhs.backgroundColor == rhs.backgroundColor &&
       lhs.cornerRadius == rhs.cornerRadius &&
       lhs.borderWidth == rhs.borderWidth &&
