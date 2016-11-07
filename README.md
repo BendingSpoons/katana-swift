@@ -2,30 +2,16 @@
 
 ## A modern framework for well-behaved apps
 
-Katana is a modern swift framework for writing iOS apps originated from our love for the react/redux philosophy and the lack of an existing native swift implementation.
-Katana gives structure to all the aspects of your app from the Logic to the UI, encapsulating state management and updating the UI automatically:
+Katana is a modern swift framework for writing iOS apps ... . Strongly inspired by react/redux.
+Katana gives structure to all the aspects of your app:
 
-- __logic__: like in  [Redux](https://github.com/reactjs/redux), in a Katana app all the state is entirely described by a single serializable data structure (store) and the only way to change the state is to emit an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: like in [React](https://facebook.github.io/react/), you define your UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
+- __logic__: in a Katana app all the state is entirely described by a single serializable data structure (store) and the only way to change the state is to emit an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+- __UI__: in a Katana app you define your UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
 - __logic<->UI__: in Katana your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the store state to the component props.
 - __layout__: Katana defines a concise language to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
 We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At BendingSpoons we use a lot of Open Sourced projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. <3
-
-### features
-
-- [x] Immutable state
-- [x] unidirectional data flow
-- [x] sync/async/sideEffect actions
-- [x] middlewares
-- [x] automatic UI update
-- [x] native redux-like implementation
-- [x] native react-like implementation
-- [x] declarative UI
-- [x] leverage Plastic layout engine
-- [ ] support other layout engines
-- [ ] insert other missing thing here
 
 
 
@@ -41,6 +27,7 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](i
 
 - Swift 3.0+
 
+  ​
 
 ### CocoaPods
 
@@ -139,7 +126,7 @@ store.addListener() {
 
 ### defining the UI
 
-Katana is inspired by [React](https://facebook.github.io/react/), you declaratively define your UI components called `NodesDescriptions`. Each `NodeDescription` will describe itself in terms of its internal `state` , the inputs coming from outside, called the `props` and the UIKit component this NodeDescription will be rendered as, the `NativeView`. 
+In Katana you declaratively define your UI components called `NodesDescriptions`. Each `NodeDescription` will describe itself in terms of its internal `state` , the inputs coming from outside, called the `props` and the UIKit component this NodeDescription will be rendered as, the `NativeView`. 
 
 ```swift
 struct ToDoScreen: NodeDescription {
@@ -256,6 +243,26 @@ You can find the complete example [here](insert link to the complete example)
 ### Check out the documentation
 
 [insert here link to the documentation]
+
+
+
+## Roadmap
+
+- [x] Immutable state
+
+
+- [x] unidirectional data flow
+
+
+- [x] sync/async/sideEffect actions
+- [x] middlewares
+- [x] automatic UI update
+- [x] native redux-like implementation
+- [x] native react-like implementation
+- [x] declarative UI
+- [x] leverage Plastic layout engine
+- [ ] support other layout engines
+- [ ] insert other missing thing here
 
 
 
