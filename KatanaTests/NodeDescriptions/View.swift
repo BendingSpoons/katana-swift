@@ -9,7 +9,7 @@
 import Foundation
 import Katana
 
-struct ViewProps: NodeProps, Keyable, Childrenable {
+struct ViewProps: NodeDescriptionProps, Keyable, Childrenable {
   var frame = CGRect.zero
   var key: String?
   var children: [AnyNodeDescription] = []

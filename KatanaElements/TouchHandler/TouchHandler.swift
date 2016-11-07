@@ -11,7 +11,7 @@ import Katana
 
 public typealias TouchHandlerClosure = () -> Void
 
-public struct TouchHandlerProps: NodeProps, Childrenable, Keyable, Buildable {
+public struct TouchHandlerProps: NodeDescriptionProps, Childrenable, Keyable, Buildable {
   public var frame = CGRect.zero
   public var children: [AnyNodeDescription] = []
   public var key: String?

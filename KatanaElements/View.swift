@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-public struct ViewProps: NodeProps, Keyable, Childrenable, Buildable {
+public struct ViewProps: NodeDescriptionProps, Keyable, Childrenable, Buildable {
   public var frame = CGRect.zero
   public var key: String?
   public var children: [AnyNodeDescription] = []
