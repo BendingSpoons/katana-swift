@@ -10,11 +10,11 @@ import Foundation
 
 public struct AnimationContainer {
   let nativeViewAnimation: Animation
-  let childrenAnimation: ChildrenAnimationContainer
+  let childrenAnimation: AnyChildrenAnimationContainer
   
-  public static let none = AnimationContainer(nativeViewAnimation: .none, childrenAnimation: ChildrenAnimationContainer())
+  public static let none = AnimationContainer(nativeViewAnimation: .none, childrenAnimation: ChildrenAnimationContainer<Any>())
   
-  init(nativeViewAnimation: Animation, childrenAnimation: ChildrenAnimationContainer) {
+  init(nativeViewAnimation: Animation, childrenAnimation: AnyChildrenAnimationContainer) {
     self.nativeViewAnimation = nativeViewAnimation
     self.childrenAnimation = childrenAnimation
   }
@@ -25,9 +25,9 @@ public struct AnimationContainer {
     //
     // Theoretically we should only pass animations for the children of the child
     // we don't do it to avoid useless operations
-    let childChildrenAnimation: ChildrenAnimationContainer = child is AnyNodeDescriptionWithChildren
+    let childChildrenAnimation = child is AnyNodeDescriptionWithChildren
       ? self.childrenAnimation
-      : ChildrenAnimationContainer()
+      : ChildrenAnimationContainer<Any>()
     
     return AnimationContainer(
       nativeViewAnimation: self.childrenAnimation[child],

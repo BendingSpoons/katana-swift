@@ -102,6 +102,8 @@ public protocol AnyNodeDescription {
   func makeRoot(store: AnyStore?) -> Root
 }
 
+public enum EmptyKeys {}
+
 /**
  A `NodeDescription` defines a specific piece of UI. You can think to a `NodeDescription` as a stencil that
  describes how a piece of UI should look like.
@@ -137,6 +139,9 @@ public protocol NodeDescription: AnyNodeDescription {
   
   /// The type of state that this description uses. The default value is `EmptyState`
   associatedtype StateType: NodeState = EmptyState
+  
+  // TODO: think about this
+  associatedtype Keys = EmptyKeys
   
   /// The properties of the the description
   var props: PropsType { get set }
@@ -175,27 +180,15 @@ public protocol NodeDescription: AnyNodeDescription {
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]
   
   
-  /**
-   This methdo is used to define what animation should be used to transition from the old UI state to the new one
-   - parameter currentProps:    the props that have been used to create the current UI
-   - parameter nextProps:       the props that will be used in the next UI update cycle
-   - parameter currentState:    the state that has been used to create the current UI
-   - parameter nextState:       the state that will be used in the next UI update cycle
-   - parameter parentAnimation: the animation returned by the parent node
-   - returns: the animation to apply to the children
-   
-   - note: it is important to note that the animation will be applied to the children. The native view will be updated using
-           the animation returned by the parent
-  */
-  static func childrenAnimation(currentProps: PropsType,
-                                nextProps: PropsType,
-                                currentState: StateType,
-                                nextState: StateType,
-                                parentAnimation: Animation) -> Animation
+  static func updateChildrenAnimations(container: inout ChildrenAnimationContainer<Self.Keys>,
+                                       currentProps: PropsType,
+                                       nextProps: PropsType,
+                                       currentState: StateType,
+                                       nextState: StateType)
   
 }
 
-extension NodeDescription {
+public extension NodeDescription {
   
   /// The default implementation just sets the frame of the native view to `props.frame`
   public static func applyPropsToNativeView(props: PropsType,
@@ -206,16 +199,12 @@ extension NodeDescription {
     view.frame = props.frame
   }
   
-  /**
-    The default implementation returns the parent animation. Katana has as default implementation `Animation.none`.
-    This means that if this method is never implemented, then there are no animations in the application.
-  */
-  public static func childrenAnimation(currentProps: PropsType,
-                                                    nextProps: PropsType,
-                                                    currentState: StateType,
-                                                    nextState: StateType,
-                                                    parentAnimation: Animation) -> Animation {
-    return parentAnimation
+  public static func updateChildrenAnimations(container: inout ChildrenAnimationContainer<Self.Keys>,
+                                       currentProps: PropsType,
+                                       nextProps: PropsType,
+                                       currentState: StateType,
+                                       nextState: StateType) {
+    // do nothing, which means no animations
   }
 }
 

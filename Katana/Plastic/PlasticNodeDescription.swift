@@ -24,7 +24,8 @@ public protocol AnyPlasticNodeDescription {
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
   
   /// The type used to define the keys of the `NodeDescription` children. It should be an enum
-  associatedtype Keys
+  // TODO: think about this
+//  associatedtype Keys
   
   /**
    Node descriptions should implement this method and provide the proper layout logic.

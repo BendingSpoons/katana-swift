@@ -70,7 +70,7 @@ struct AnimationUtils {
   static func updatedItems(
     from array: [AnyNodeDescription],
     notAvailableIn finalArray: [AnyNodeDescription],
-    using childrenAnimation: ChildrenAnimationContainer) -> [AnyNodeDescription] {
+    using childrenAnimation: AnyChildrenAnimationContainer) -> [AnyNodeDescription] {
     
     return array.map { item in
       let itemReplaceKey = item.replaceKey

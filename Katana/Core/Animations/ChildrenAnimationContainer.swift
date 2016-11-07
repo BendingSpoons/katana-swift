@@ -8,11 +8,41 @@
 
 import Foundation
 
-public struct ChildrenAnimationContainer {
+public struct ChildrenAnimationContainer<Key> {
   var shouldAnimate = false
+  var animations = [String: Animation]()
   
-  public subscript(key: AnyNodeDescription) -> Animation {
-    // TODO: implement (use also shouldAnimate)
+  public subscript(key: Key) -> Animation {
+    get {
+      return self.animations["\(key)"] ?? .none
+    }
+    
+    set(newValue) {
+      if case .none = newValue {
+        return
+      }
+      
+      self.shouldAnimate = true
+      self.animations["\(key)"] = newValue
+    }
+  }
+}
+
+protocol AnyChildrenAnimationContainer {
+  var shouldAnimate: Bool { get }
+  subscript(description: AnyNodeDescription) -> Animation { get }
+}
+
+extension ChildrenAnimationContainer: AnyChildrenAnimationContainer {
+  private subscript(key: String) -> Animation {
+    return self.animations[key] ?? .none
+  }
+  
+  subscript(description: AnyNodeDescription) -> Animation {
+    if let props = description.anyProps as? Keyable, let key = props.key {
+      return self[key]
+    }
+    
     return .none
   }
 }

@@ -431,8 +431,15 @@ fileprivate extension Node {
     let currentAnimation: AnimationContainer
     
     if !animation.childrenAnimation.shouldAnimate {
-      // TODO: invoke proper method
-      let childrenAnimations = ChildrenAnimationContainer()
+      var childrenAnimations = ChildrenAnimationContainer<Description.Keys>()
+
+      Description.updateChildrenAnimations(
+        container: &childrenAnimations,
+        currentProps: self.description.props,
+        nextProps: description.props,
+        currentState: self.state,
+        nextState: state
+      )
       
       currentAnimation = AnimationContainer(
         nativeViewAnimation: animation.nativeViewAnimation,
