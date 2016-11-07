@@ -8,12 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		E3986C1E1DD0C62800FAF8D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */; };
-		E3986C201DD0C62800FAF8D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */; };
 		E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C211DD0C62800FAF8D8 /* Main.storyboard */; };
 		E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3986C241DD0C62800FAF8D8 /* Assets.xcassets */; };
 		E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */; };
-		E3986C781DD0C93500FAF8D8 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C711DD0C92B00FAF8D8 /* Katana.framework */; };
-		E3986C791DD0C93500FAF8D8 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */; };
 		E3986C961DD0C97F00FAF8D8 /* FetchMorePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */; };
 		E3986C971DD0C97F00FAF8D8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8C1DD0C97F00FAF8D8 /* Post.swift */; };
 		E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */; };
@@ -22,6 +19,7 @@
 		E3986C9B1DD0C97F00FAF8D8 /* CodingLoveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */; };
 		E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */; };
 		E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */; };
+		E3986C9E1DD0CD9F00FAF8D8 /* Katana.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -46,19 +44,11 @@
 			remoteGlobalIDString = 6513094F1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
 		};
-		E3986C761DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = E3986BE41DD0B4C100FAF8D8;
-			remoteInfo = Demo;
-		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KatanaCodingLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		E3986C221DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3986C241DD0C62800FAF8D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E3986C271DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -79,8 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3986C781DD0C93500FAF8D8 /* Katana.framework in Frameworks */,
-				E3986C791DD0C93500FAF8D8 /* KatanaElements.framework in Frameworks */,
+				E3986C9E1DD0CD9F00FAF8D8 /* Katana.xcodeproj in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -113,7 +102,6 @@
 				E3986C911DD0C97F00FAF8D8 /* State */,
 				E3986C931DD0C97F00FAF8D8 /* Utils */,
 				E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */,
-				E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */,
 				E3986C211DD0C62800FAF8D8 /* Main.storyboard */,
 				E3986C241DD0C62800FAF8D8 /* Assets.xcassets */,
 				E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */,
@@ -128,7 +116,6 @@
 				E3986C711DD0C92B00FAF8D8 /* Katana.framework */,
 				E3986C731DD0C92B00FAF8D8 /* KatanaTests.xctest */,
 				E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */,
-				E3986C771DD0C92B00FAF8D8 /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -258,13 +245,6 @@
 			remoteRef = E3986C741DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3986C771DD0C92B00FAF8D8 /* Demo.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = Demo.app;
-			remoteRef = E3986C761DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -286,7 +266,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E3986C9A1DD0C97F00FAF8D8 /* PostCell.swift in Sources */,
-				E3986C201DD0C62800FAF8D8 /* ViewController.swift in Sources */,
 				E3986C1E1DD0C62800FAF8D8 /* AppDelegate.swift in Sources */,
 				E3986C9B1DD0C97F00FAF8D8 /* CodingLoveState.swift in Sources */,
 				E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */,
