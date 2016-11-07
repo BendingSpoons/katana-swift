@@ -12,8 +12,8 @@ import Foundation
  Protocol that represents a `sync` action.
  
  A `SyncAction` is just an abstraction over `Action` that provides a way to structure
- your action. In particoular the action payload should be assigned to a single `payload` value
- (which ca be anything). We introduced this pattern to allow future automatic behaviours such as
+ your action. In particular the action payload should be assigned to a single `payload` value
+ (which can be anything). We introduced this pattern to allow future automatic behaviours such as
  automatic serialization/deserialization of the actions
  (that can be used for debugging, time travel and so on)
  

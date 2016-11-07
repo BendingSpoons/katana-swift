@@ -93,15 +93,15 @@ protocol InternalAnyNode: AnyNode {
 /**
  
   Katana works by representing the UI as a tree. Beside the tree managed by UIKit with UIView (or subclasses) instances,
-  Katana holds a tree of instances of `Node`. The tree is composed in the following way:
+  Katana holds a tree of instances of `Node`. The tree is composed as follows:
  
-  - each node of the tree is an instance of UIView (or subclasses)
+  - each node of the tree is an instance of UIView (or subclasses);
  
-  - the edges between nodes represent the relation parent/children (or view/subviews)
+  - the edges between nodes represent the parent/children (or view/subviews) relation.
  
   Each `Node` instance is characterized by a description (which is an implementation of `NodeDescription`).
   Since descriptions are stateless, the `Node` also holds properties and state. It is also in charge of managing the lifecycle
-  of the UI and in particoular to invoke the methods `childrenDescriptions` and
+  of the UI and in particular to invoke the methods `childrenDescriptions` and
   `applyPropsToNativeView` of `NodeDescription` when needed.
  
   In general this class is never used during the development of an application. Developers usually work with `NodeDescription`.
@@ -150,7 +150,7 @@ public class Node<Description: NodeDescription> {
   public var managedChildren: [AnyNode] = []
 
   /**
-   Creates an instance of node
+   Creates an instance of node.
   
    - parameter description: The description to associate with the node
    - parameter parent:      The parent of the node

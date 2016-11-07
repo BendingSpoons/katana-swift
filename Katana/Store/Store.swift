@@ -35,7 +35,7 @@ public protocol AnyStore: class {
  updates to the state itself.
  
  In Katana, every relevant information in the application should be stored in the
- Store's state. The only way to update the state is dispatch an `Action`. At this point
+ Store's state. The only way to update the state is to dispatch an `Action`. At this point
  the store will execute the following operations:
  
  - it executes the middlewares

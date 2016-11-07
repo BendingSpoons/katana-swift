@@ -106,10 +106,10 @@ public protocol AnyNodeDescription {
  A `NodeDescription` defines a specific piece of UI. You can think to a `NodeDescription` as a stencil that
  describes how a piece of UI should look like.
  
- `NodeDescription` methods are stateless. This is because the properties and the state are hold
+ `NodeDescription` methods are stateless. This is because the properties and the state are held
   by a `Node` instance (see `Node` for more information) that Katana automatically creates.
  
- In general a description defines two things:
+ In general, a description defines two things:
  
  - how properties and state are used to personalise the instance of UIView (or subclass) associated with the `Node` instance.
    This view is also named **NativeView**
@@ -117,14 +117,14 @@ public protocol AnyNodeDescription {
  - what are the children descriptions given the properties and the state
  
  ### Node and NodeDescription relationship
- It is important to remember that the UI hierarchy have a 1:1 relationship with `Node` instances
+ It is important to remember that the UI hierarchy has a 1:1 relationship with `Node` instances
  and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree is connected to a `Node` instance.
  This instance holds the description that is used to manage the `UIView` (and the children), properties and the state.
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
  to describe the UI in the `childrenDescriptions(props:state:update:dispatch:)` method.
- These instances are used by Katana to understand how update the UI (update, remove and add views) and then thrown away.
+ These instances are used by Katana to understand how to update the UI (update, remove and add views) and then thrown away.
  
 */
 public protocol NodeDescription: AnyNodeDescription {
@@ -176,7 +176,7 @@ public protocol NodeDescription: AnyNodeDescription {
   
   
   /**
-   This methdo is used to define what animation should be used to transition from the old UI state to the new one
+   This method is used to define what animation should be used to transition from the old UI state to the new one
    - parameter currentProps:    the props that have been used to create the current UI
    - parameter nextProps:       the props that will be used in the next UI update cycle
    - parameter currentState:    the state that has been used to create the current UI
