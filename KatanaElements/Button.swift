@@ -36,6 +36,8 @@ public struct ButtonProps: NodeDescriptionProps, Keyable, Buildable {
   
   public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
     return
+      lhs.key == rhs.key &&
+      lhs.frame == rhs.frame &&
       lhs.backgroundColor == rhs.backgroundColor &&
       lhs.cornerRadius == rhs.cornerRadius &&
       lhs.borderWidth == rhs.borderWidth &&
