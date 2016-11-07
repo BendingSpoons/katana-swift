@@ -1,0 +1,462 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		E3986C1E1DD0C62800FAF8D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */; };
+		E3986C201DD0C62800FAF8D8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */; };
+		E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C211DD0C62800FAF8D8 /* Main.storyboard */; };
+		E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3986C241DD0C62800FAF8D8 /* Assets.xcassets */; };
+		E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */; };
+		E3986C781DD0C93500FAF8D8 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C711DD0C92B00FAF8D8 /* Katana.framework */; };
+		E3986C791DD0C93500FAF8D8 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */; };
+		E3986C961DD0C97F00FAF8D8 /* FetchMorePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */; };
+		E3986C971DD0C97F00FAF8D8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8C1DD0C97F00FAF8D8 /* Post.swift */; };
+		E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */; };
+		E3986C991DD0C97F00FAF8D8 /* FetchMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */; };
+		E3986C9A1DD0C97F00FAF8D8 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C901DD0C97F00FAF8D8 /* PostCell.swift */; };
+		E3986C9B1DD0C97F00FAF8D8 /* CodingLoveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */; };
+		E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */; };
+		E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		E3986C701DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81EA56C71D5F3A6000B6290E;
+			remoteInfo = Katana;
+		};
+		E3986C721DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81EA56D61D5F3A6E00B6290E;
+			remoteInfo = KatanaTests;
+		};
+		E3986C741DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6513094F1DC3529F00007B6B;
+			remoteInfo = KatanaElements;
+		};
+		E3986C761DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E3986BE41DD0B4C100FAF8D8;
+			remoteInfo = Demo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KatanaCodingLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E3986C221DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		E3986C241DD0C62800FAF8D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E3986C271DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E3986C291DD0C62800FAF8D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Katana.xcodeproj; path = ../../Katana.xcodeproj; sourceTree = "<group>"; };
+		E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMorePosts.swift; sourceTree = "<group>"; };
+		E3986C8C1DD0C97F00FAF8D8 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodingLove.swift; sourceTree = "<group>"; };
+		E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMoreCell.swift; sourceTree = "<group>"; };
+		E3986C901DD0C97F00FAF8D8 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
+		E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodingLoveState.swift; sourceTree = "<group>"; };
+		E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regexp.swift"; sourceTree = "<group>"; };
+		E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		E3986C171DD0C62800FAF8D8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3986C781DD0C93500FAF8D8 /* Katana.framework in Frameworks */,
+				E3986C791DD0C93500FAF8D8 /* KatanaElements.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		E3986C111DD0C62800FAF8D8 = {
+			isa = PBXGroup;
+			children = (
+				E3986C1C1DD0C62800FAF8D8 /* KatanaCodingLove */,
+				E3986C1B1DD0C62800FAF8D8 /* Products */,
+				E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */,
+			);
+			sourceTree = "<group>";
+		};
+		E3986C1B1DD0C62800FAF8D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3986C1C1DD0C62800FAF8D8 /* KatanaCodingLove */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C891DD0C97F00FAF8D8 /* Actions */,
+				E3986C8B1DD0C97F00FAF8D8 /* Models */,
+				E3986C8D1DD0C97F00FAF8D8 /* Nodes */,
+				E3986C911DD0C97F00FAF8D8 /* State */,
+				E3986C931DD0C97F00FAF8D8 /* Utils */,
+				E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */,
+				E3986C1F1DD0C62800FAF8D8 /* ViewController.swift */,
+				E3986C211DD0C62800FAF8D8 /* Main.storyboard */,
+				E3986C241DD0C62800FAF8D8 /* Assets.xcassets */,
+				E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */,
+				E3986C291DD0C62800FAF8D8 /* Info.plist */,
+			);
+			path = KatanaCodingLove;
+			sourceTree = "<group>";
+		};
+		E3986C6A1DD0C92B00FAF8D8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C711DD0C92B00FAF8D8 /* Katana.framework */,
+				E3986C731DD0C92B00FAF8D8 /* KatanaTests.xctest */,
+				E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */,
+				E3986C771DD0C92B00FAF8D8 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		E3986C891DD0C97F00FAF8D8 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */,
+			);
+			path = Actions;
+			sourceTree = "<group>";
+		};
+		E3986C8B1DD0C97F00FAF8D8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C8C1DD0C97F00FAF8D8 /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		E3986C8D1DD0C97F00FAF8D8 /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */,
+				E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */,
+				E3986C901DD0C97F00FAF8D8 /* PostCell.swift */,
+			);
+			path = Nodes;
+			sourceTree = "<group>";
+		};
+		E3986C911DD0C97F00FAF8D8 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */,
+			);
+			path = State;
+			sourceTree = "<group>";
+		};
+		E3986C931DD0C97F00FAF8D8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */,
+				E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		E3986C191DD0C62800FAF8D8 /* KatanaCodingLove */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "KatanaCodingLove" */;
+			buildPhases = (
+				E3986C161DD0C62800FAF8D8 /* Sources */,
+				E3986C171DD0C62800FAF8D8 /* Frameworks */,
+				E3986C181DD0C62800FAF8D8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KatanaCodingLove;
+			productName = KatanaCodingLove;
+			productReference = E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		E3986C121DD0C62800FAF8D8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = dk.bendingspoons.Demo;
+				TargetAttributes = {
+					E3986C191DD0C62800FAF8D8 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "KatanaCodingLove" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = E3986C111DD0C62800FAF8D8;
+			productRefGroup = E3986C1B1DD0C62800FAF8D8 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = E3986C6A1DD0C92B00FAF8D8 /* Products */;
+					ProjectRef = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				E3986C191DD0C62800FAF8D8 /* KatanaCodingLove */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		E3986C711DD0C92B00FAF8D8 /* Katana.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Katana.framework;
+			remoteRef = E3986C701DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3986C731DD0C92B00FAF8D8 /* KatanaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KatanaTests.xctest;
+			remoteRef = E3986C721DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KatanaElements.framework;
+			remoteRef = E3986C741DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		E3986C771DD0C92B00FAF8D8 /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = E3986C761DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		E3986C181DD0C62800FAF8D8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */,
+				E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */,
+				E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		E3986C161DD0C62800FAF8D8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E3986C9A1DD0C97F00FAF8D8 /* PostCell.swift in Sources */,
+				E3986C201DD0C62800FAF8D8 /* ViewController.swift in Sources */,
+				E3986C1E1DD0C62800FAF8D8 /* AppDelegate.swift in Sources */,
+				E3986C9B1DD0C97F00FAF8D8 /* CodingLoveState.swift in Sources */,
+				E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */,
+				E3986C991DD0C97F00FAF8D8 /* FetchMoreCell.swift in Sources */,
+				E3986C961DD0C97F00FAF8D8 /* FetchMorePosts.swift in Sources */,
+				E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */,
+				E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */,
+				E3986C971DD0C97F00FAF8D8 /* Post.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		E3986C211DD0C62800FAF8D8 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3986C221DD0C62800FAF8D8 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				E3986C271DD0C62800FAF8D8 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		E3986C351DD0C62800FAF8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		E3986C361DD0C62800FAF8D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		E3986C381DD0C62800FAF8D8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KatanaCodingLove/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.KatanaCodingLove;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		E3986C391DD0C62800FAF8D8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = KatanaCodingLove/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.KatanaCodingLove;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "KatanaCodingLove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3986C351DD0C62800FAF8D8 /* Debug */,
+				E3986C361DD0C62800FAF8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "KatanaCodingLove" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E3986C381DD0C62800FAF8D8 /* Debug */,
+				E3986C391DD0C62800FAF8D8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = E3986C121DD0C62800FAF8D8 /* Project object */;
+}
