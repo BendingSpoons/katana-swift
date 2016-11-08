@@ -1,5 +1,6 @@
-![Katana: A modern framework for well-behaved apps](https://github.com/BendingSpoons/katana-lib-swift/blob/feature/readme/katana.png)
-
+<p align="center">
+<img src="./katana.png" alt="Katana">
+</p>
 
 
 Katana is a modern swift framework for writing iOS apps ... . Strongly inspired by react/redux.
