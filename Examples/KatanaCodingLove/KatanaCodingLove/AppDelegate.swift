@@ -32,6 +32,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.root = CodingLove(props: CodingLove.Props.build({
             $0.frame = rootBounds
         })).makeRoot(store: store)
+        
+        store.dispatch(FetchMorePosts(payload: ""))
             
         self.root!.render(in: view)
         
