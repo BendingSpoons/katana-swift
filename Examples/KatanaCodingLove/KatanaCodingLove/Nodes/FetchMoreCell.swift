@@ -41,11 +41,11 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
                                      update: @escaping (StateType)->(),
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
         
-        var labelText = "Load More Posts"
+        var labelText = "Fetch More"
         if props.loading {
-            labelText = "Loading more..."
+            labelText = "Loading..."
         } else if props.allPostsFetched {
-            labelText = "All Posts fetched"
+            labelText = "No more available"
         }
         
         return [
@@ -67,7 +67,6 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
     }
     
     static func didTap(dispatch: StoreDispatch, props: PropsType, indexPath: IndexPath) {
-        print("TAPPED")
         dispatch(FetchMorePosts(payload: ""))
     }
 
