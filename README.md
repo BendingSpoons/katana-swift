@@ -1,6 +1,6 @@
-# Katana
+![Katana: A modern framework for well-behaved apps](https://github.com/BendingSpoons/katana-lib-swift/blob/feature/readme/katana.png)
 
-## A modern framework for well-behaved apps
+
 
 Katana is a modern swift framework for writing iOS apps ... . Strongly inspired by react/redux.
 Katana gives structure to all the aspects of your app:
@@ -85,40 +85,38 @@ Then drag the built `Katana.framework` into your XCode project
 
 ### defining the logic of your app
 
-your entire app `State` is defined in a single struct:
+your entire app `State` is defined in a single struct
 
 ```swift
-struct ToDoState: State {
-  var todos: [String]
+struct CounterState: State {
+  var counter: Int = 0
 }
 ```
 
-the app `state` can only be modified by an `Action`. An action defines, in its `reduce()` method, the new app state based on the current app state and the action itself.
+the app state  can only be modified by an `Action`. An action defines, in its `updatedState()` method, the new app state based on the current app state and the action itself.
 
 ```swift
-struct AddTodo: SyncAction {
-  var payload: String
-  
-  static func reduce(state: State, action: AddToDo) -> State {
-    guard var state = state as? ToDoState else { fatalError() }
-    state.todos.append(action.payload)
+struct IncrementCounter: Action {
+  static func updatedState(currentState: State, action: IncrementCounter) -> State {
+    guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
+    state.counter += 1
     return state
   }
 }
 ```
 
-the `Store` stores your entire app `state` and it is responsible for dispatching the actions
+The `Store` stores your entire app state and it is responsible for dispatching the actions
 
 ```swift
-let store = Store<ToDoState>()
-store.dispatch(AddTodo("remember the milk"))
+let store = Store<CounterState>()
+store.dispatch(IncrementCounter())
 ```
 
 you can ask the `Store` to be notified for every change in the app state
 
 ```swift
 store.addListener() {
-  tableView.reloadData()
+  // the app state has changed
 }
 ```
 
@@ -129,21 +127,21 @@ store.addListener() {
 In Katana you declaratively define your UI components called `NodesDescriptions`. Each `NodeDescription` will describe itself in terms of its internal `state` , the inputs coming from outside, called the `props` and the UIKit component this NodeDescription will be rendered as, the `NativeView`. 
 
 ```swift
-struct ToDoScreen: NodeDescription {
+struct CounterScreen: NodeDescription {
 	typealias StateType = EmptyState
-	typealias PropsType = ToDoScreenProps
+	typealias PropsType = CounterScreenProps
 	typealias NativeView = UIView
 	
-	var props: ToDoScreenProps
+	var props: CounterScreenProps
 }
 ```
 
 Inside the `props` you want to specify all the inputs needed to render your `NativeView` and to feed your children components
 
 ```swift
-struct ToDoScreenProps: NodeProps {
+struct CounterScreenProps: NodeProps {
   var frame: CGRect = .zero
-  var todos: [String] = []
+  var count: Int = 0
 }
 ```
 
@@ -168,15 +166,36 @@ struct ToDoScreen: NodeDescription {
   public static func childrenDescriptions(props: ToDoScreenProps,
   											state: EmptyState, ...) -> 	  [AnyNodeDescription] {
   	return [
-  		Text(props: TextProps())
-  			.key(.title)
-  			.text("My awesome todos", fontSize: 15)
-  			.borderColor(UIColor("#d54a0c"))
-  		),
-  		Table(props: TableProps()
-  			.key(.todoList)
-  			.delegate(ToDoListDelegate(todos: props.todos))
-  		)
+  		Label(props: LabelProps.build({ (labelProps) in
+        labelProps.key = CounterScreen.Keys.label.rawValue
+        labelProps.textAlignment = .center
+        labelProps.backgroundColor = .mediumAquamarine
+        labelProps.text = NSAttributedString(string: "Count: \(props.count)", attributes: nil)
+      })),
+      Button(props: ButtonProps.build({ (buttonProps) in
+        buttonProps.key = CounterScreen.Keys.decrementButton.rawValue
+        buttonProps.titles[.normal] = "Decrement"
+        buttonProps.backgroundColor = .dogwoodRose
+        buttonProps.titleColors = [.highlighted : .red]
+        
+        buttonProps.touchHandlers = [
+          .touchUpInside : {
+            dispatch(DecrementCounter())
+          }
+        ]
+      })),
+      Button(props: ButtonProps.build({ (buttonProps) in
+        buttonProps.key = CounterScreen.Keys.incrementButton.rawValue
+        buttonProps.titles[.normal] = "Increment"
+        buttonProps.backgroundColor = .japaneseIndigo
+        buttonProps.titleColors = [.highlighted : .red]
+        
+        buttonProps.touchHandlers = [
+          .touchUpInside : {
+            dispatch(IncrementCounter())
+          }
+        ]
+      }))
   	]
   }
 }
@@ -190,17 +209,17 @@ The `Root` object is responsible for connecting the `Store` to the tree of nodes
 You create a root object starting from the top level NodeDescription and the store.
 
 ```
-let root = ToDoScreen(props: ToDoProps()).makeRoot(store: store)
+let root = CounterScreen(props: CounterScreenProps()).makeRoot(store: store)
 ```
 
 Everytime a new app state is available the store emits an event that is captured by the Root and dispatched down to the tree of UI components.
 If you want a node to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`
 
 ```
-struct ToDoScreen: ConnectedNodeDescription {
+struct CounterScreen: ConnectedNodeDescription {
   ...
-  static func connect(props: inout ToDoScreenProps, to storeState: ToDoState) {
-  	props.todos = storeState.todos
+  static func connect(props: inout CounterScreenProps, to storeState: CounterState) {
+  	props.count = storeState.counter
   }
 }
 ```
@@ -213,19 +232,19 @@ Katana have its own language to programmatically define fully responsive layouts
 Each`NodeDescription` is responsible to define the layout of its children implementing the method `layout`. 
 
 ```swift
-struct ToDoScreen: ConnectedNodeDescription {
+struct CounterScreen: ConnectedNodeDescription {
   ...
-  static func layout(views: ViewsContainer<ToDoKeys>, props: ToDoScreenProps, state: EmptyState) {
+  static func layout(views: ViewsContainer<CounterScreen.Keys>, props: CounterScreenProps, state: EmptyState) {
     let rootView = views.nativeView
-    let title = views[.title]!
-    let todoList = views[.todoList]!
     
-    title.asHeader(rootView, insets: .scalable(30, 0, 0, 0))
-    title.height = .scalable(60)
-    
-    todoList.fillHorizontally(rootView)
-    todoList.top = title.bottom
-    todoList.bottom = rootView.bottom
+    let label = views[.label]!
+    let decrementButton = views[.decrementButton]!
+    let incrementButton = views[.incrementButton]!
+    label.asHeader(rootView)
+    [label, decrementButton].fill(top: rootView.top, bottom: rootView.bottom)
+    incrementButton.top = decrementButton.top
+    incrementButton.bottom = decrementButton.bottom
+    [decrementButton, incrementButton].fill(left: rootView.left, right: rootView.right)
   }
 }
 ```
