@@ -37,7 +37,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
                     for post in actualPosts {
                         let title = post["title"]
                         let imageUrl = post["image_url"]
-                        if let image = UIImage.gifWithURL(imageUrl!) {
+                        if let image = UIImage.gif(url: imageUrl!) {
                             result.append(Post(title: title!, image: image))
                         }
                     }
