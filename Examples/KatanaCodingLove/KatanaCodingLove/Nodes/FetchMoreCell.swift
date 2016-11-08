@@ -13,8 +13,6 @@ import KatanaElements
 extension FetchMoreCell {
     enum Keys: String {
         case label
-//        case image
-//        case spinningWheel
     }
     
     struct Props: NodeProps {
@@ -55,6 +53,12 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16)
                     ])
                 $0.textAlignment = NSTextAlignment.center
+                
+                if state.highlighted {
+                    $0.backgroundColor = UIColor(colorLiteralRed: 0.9, green: 0.9, blue: 0.9, alpha: 1)
+                } else {
+                    $0.backgroundColor = UIColor.white
+                }
             })),
         ]
     }
@@ -66,7 +70,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
         title.fill(rootView)
     }
     
-    static func didTap(dispatch: StoreDispatch, props: PropsType, indexPath: IndexPath) {
+    static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath) {
         dispatch(FetchMorePosts(payload: ""))
     }
 
