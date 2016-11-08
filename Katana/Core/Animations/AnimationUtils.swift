@@ -12,14 +12,14 @@ import Foundation
 struct AnimationUtils {
   private init () {}
 
-  enum MergingPriority {
-    case original, other
+  enum AnimationStep {
+    case firstIntermediate, secondIntermediate
   }
   
   static func merge(
     array: [AnyNodeDescription],
     with other: [AnyNodeDescription],
-    priority: MergingPriority) -> [AnyNodeDescription] {
+    step: AnimationStep) -> [AnyNodeDescription] {
 
     var arrayIndexes = [Int:Int]()
     for (index, item) in array.enumerated() {
@@ -40,7 +40,7 @@ struct AnimationUtils {
       let itemOther = other[indexOther]
       
       if itemArray.replaceKey == itemOther.replaceKey {
-        res.append(priority == .original ? itemArray : itemOther)
+        res.append(step == .firstIntermediate ? itemArray : itemOther)
         indexArray = indexArray + 1
         indexOther = indexOther + 1
         
@@ -67,23 +67,48 @@ struct AnimationUtils {
     return res
   }
   
-  static func updatedItems(
-    from array: [AnyNodeDescription],
-    notAvailableIn finalArray: [AnyNodeDescription],
-    using childrenAnimation: AnyChildrenAnimationContainer) -> [AnyNodeDescription] {
+  static func updatedChildren(
+    in array: [AnyNodeDescription],
+    initialChildren: [AnyNodeDescription],
+    finalChildren: [AnyNodeDescription],
+    using childrenAnimation: AnyChildrenAnimationContainer,
+    step: AnimationStep) -> [AnyNodeDescription] {
+    
+    let comparisonArray = step == .firstIntermediate ? initialChildren : finalChildren
     
     return array.map { item in
       let itemReplaceKey = item.replaceKey
+      let index = comparisonArray.index { $0.replaceKey == itemReplaceKey }
       
-      let index = finalArray.index { $0.replaceKey == itemReplaceKey }
-      
-      if index == nil {
-        //TODO: update
-        return item
-      
-      } else {
+      guard index == nil else {
+        // we have the item in the reference children array, we don't to calculate
+        // additional properties
         return item
       }
+      
+      let animation = childrenAnimation[item]
+      let transformers = step == .firstIntermediate ? animation.entryTransformers : animation.leaveTransformers
+      
+      return self.update(description: item, with: transformers)
     }
+  }
+  
+  private static func update(
+    description: AnyNodeDescription,
+    with transformers: [AnimationPropsTransformer]) -> AnyNodeDescription {
+
+    let newProps = transformers.reduce(description.anyProps, { (props, transformer) -> AnyNodeProps in
+      return transformer(props)
+    })
+    
+//    if var newProps = newProps as? (Childrenable & AnyNodeProps) {
+//      // if it has children, we should propagate changes
+//      newProps.children = newProps.children.map { self.update(description: $0, with: transformers) }
+//      return type(of: description).init(anyProps: newProps)
+//    
+//    } else {
+//      // just return
+      return type(of: description).init(anyProps: newProps)
+//    }
   }
 }

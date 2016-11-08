@@ -37,13 +37,15 @@ public extension NodeState {
   }
 }
 
+public protocol AnyNodeProps: Frameable {}
+
 /**
  Protocol that is used for structs that represent the properties of a `NodeDescription`.
  
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the properties (and the state) are not changed.
 */
-public protocol NodeProps: Equatable, Frameable {}
+public protocol NodeProps: Equatable, AnyNodeProps {}
 
 public extension NodeProps {
   /**
@@ -72,7 +74,7 @@ public protocol AnyNodeDescription {
   var key: String? { get }
   
   /// Type erasure for `props`
-  var anyProps: Any { get }
+  var anyProps: AnyNodeProps { get }
   
   /**
     The replace key of the description. When two descriptions have the same replaceKey, Katana consider them interchangeable.
@@ -83,6 +85,8 @@ public protocol AnyNodeDescription {
     You can customise the replace key to control the reuse of nodes and views.
   */
   var replaceKey: Int { get }
+  
+  init(anyProps: AnyNodeProps)
   
   /**
    Returns a node instance associated with the description.
@@ -146,6 +150,7 @@ public protocol NodeDescription: AnyNodeDescription {
   /// The properties of the the description
   var props: PropsType { get set }
   
+  init(props: PropsType)
   
   /**
    This method is used to update the `NativeView` starting from the given properties and state
@@ -190,6 +195,11 @@ public protocol NodeDescription: AnyNodeDescription {
 
 public extension NodeDescription {
   
+  public init(anyProps: AnyNodeProps) {
+    let props = anyProps as! Self.PropsType
+    self.init(props: props)
+  }
+  
   /// The default implementation just sets the frame of the native view to `props.frame`
   public static func applyPropsToNativeView(props: PropsType,
                                             state: StateType,
@@ -230,7 +240,7 @@ extension AnyNodeDescription where Self: NodeDescription {
   }
   
   /// the node description properties
-  public var anyProps: Any {
+  public var anyProps: AnyNodeProps {
     return self.props
   }
   

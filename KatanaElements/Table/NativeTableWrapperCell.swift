@@ -30,7 +30,7 @@ class NativeTableWrapperCell: UITableViewCell {
     if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
-        node.update(with: newDescription, animation: .none)
+        node.update(with: newDescription, animation: .none, completion: nil)
         return
       }
     }

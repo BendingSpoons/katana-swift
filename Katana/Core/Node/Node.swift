@@ -11,6 +11,8 @@ import UIKit
 /// typealias for the dictionary used to store the nodes during the update phase
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
+public typealias NodeUpdateCompletion = () -> Void
+
 /// Type Erasure protocol for the `Node` class.
 public protocol AnyNode: class {
   
@@ -49,7 +51,7 @@ public protocol AnyNode: class {
   
    - throws: this method throw an exception if the given description is not compatible with the node
   */
-  func update(with description: AnyNodeDescription, animation: AnimationContainer)
+  func update(with description: AnyNodeDescription, animation: AnimationContainer, completion: NodeUpdateCompletion?)
   
   /**
    Adds a managed child to the node. For more information about managed children see the `Node` class
@@ -135,6 +137,8 @@ public class Node<Description: NodeDescription> {
   
   /// The current description of the node
   fileprivate(set) var description: Description
+  
+  fileprivate var animationHash: Int?
   
   /**
     The parent of the node. This variable has a value only
@@ -302,7 +306,7 @@ fileprivate extension Node {
    
     - parameter animation:     the animation to use to transition from the previous UI to the new one
   */
-  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: AnimationContainer) {
+  fileprivate func reRender(childrenToAdd: [AnyNode], viewIndexes: [Int], animation: AnimationContainer, completion: (() -> Void)?) {
     guard let container = self.container else {
       return
     }
@@ -313,7 +317,7 @@ fileprivate extension Node {
       self?.update(for: state)
     }
     
-    animation.nativeViewAnimation.animate {
+    let updateBlock = { () -> Void in
       container.update { view in
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
@@ -322,6 +326,8 @@ fileprivate extension Node {
                                            node: self)
       }
     }
+    
+    animation.nativeViewAnimation.animate(updateBlock, completion: completion)
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
@@ -417,8 +423,9 @@ fileprivate extension Node {
   fileprivate func update(for state: Description.StateType,
                           description: Description,
                           animation: AnimationContainer,
+                          completion: NodeUpdateCompletion? = nil,
                           force: Bool = false) {
-    // TODO: review documentation
+
     guard force || self.description.props != description.props || self.state != state else {
       return
     }
@@ -429,9 +436,11 @@ fileprivate extension Node {
      We are using this approach to manage `NodeDescriptionWithChildren` animation propagation
     */
     let currentAnimation: AnimationContainer
+    let shouldSkipAnimationLogic: Bool
     
     if !animation.childrenAnimation.shouldAnimate {
       var childrenAnimations = ChildrenAnimationContainer<Description.Keys>()
+      shouldSkipAnimationLogic = false
 
       Description.updateChildrenAnimations(
         container: &childrenAnimations,
@@ -448,6 +457,7 @@ fileprivate extension Node {
     
     } else {
       currentAnimation = animation
+      shouldSkipAnimationLogic = true
     }
     
     // update internal state
@@ -460,9 +470,9 @@ fileprivate extension Node {
     )
 
     // manage the update of the UI
-    if !currentAnimation.childrenAnimation.shouldAnimate {
+    if !currentAnimation.childrenAnimation.shouldAnimate || shouldSkipAnimationLogic {
       // no animation, simply update the UI with the new description and return
-      self.update(newChildrenDescriptions: finalChildrenDescription, animation: currentAnimation)
+      self.update(newChildrenDescriptions: finalChildrenDescription, animation: currentAnimation, completion: completion)
       return
     
     } else {
@@ -470,7 +480,8 @@ fileprivate extension Node {
       self.animatedChildrenUpdate(
         from: self.childrenDescriptions,
         to: finalChildrenDescription,
-        animation: currentAnimation
+        animation: currentAnimation,
+        completion: completion
       )
     }
   }
@@ -478,40 +489,90 @@ fileprivate extension Node {
   fileprivate func animatedChildrenUpdate(
     from initialChildren: [AnyNodeDescription],
     to finalChildren: [AnyNodeDescription],
-    animation: AnimationContainer) {    
+    animation: AnimationContainer,
+    completion: NodeUpdateCompletion?) {
     
     // first transition state
-    var firstTransitionChildren = AnimationUtils.merge(array: initialChildren, with: finalChildren, priority: .original)
-    
-    firstTransitionChildren = AnimationUtils.updatedItems(
-      from: firstTransitionChildren,
-      notAvailableIn: initialChildren,
-      using: animation.childrenAnimation
+    var firstTransitionChildren = AnimationUtils.merge(
+      array: initialChildren, with: finalChildren, step: .firstIntermediate
     )
     
-    self.update(newChildrenDescriptions: firstTransitionChildren, animation: .none)
+    firstTransitionChildren = AnimationUtils.updatedChildren(
+      in: firstTransitionChildren,
+      initialChildren: initialChildren,
+      finalChildren: finalChildren,
+      using: animation.childrenAnimation,
+      step: .firstIntermediate
+    )
     
+    self.update(newChildrenDescriptions: firstTransitionChildren, animation: .none, completion: nil)
     
     // second transition state
-    var secondTransitionChildren = AnimationUtils.merge(array: initialChildren, with: finalChildren, priority: .other)
-    
-    secondTransitionChildren = AnimationUtils.updatedItems(
-      from: secondTransitionChildren,
-      notAvailableIn: finalChildren,
-      using: animation.childrenAnimation
+    var secondTransitionChildren = AnimationUtils.merge(
+      array: initialChildren, with: finalChildren, step: .secondIntermediate
     )
     
-    //TODO pass animation
-    self.update(newChildrenDescriptions: secondTransitionChildren, animation: animation)
+    secondTransitionChildren = AnimationUtils.updatedChildren(
+      in: secondTransitionChildren,
+      initialChildren: initialChildren,
+      finalChildren: finalChildren,
+      using: animation.childrenAnimation,
+      step: .secondIntermediate
+    )
     
-    // final state
-    self.update(newChildrenDescriptions: finalChildren, animation: .none)
+    let randomHash = Int(arc4random_uniform(UInt32.max))
+    self.animationHash = randomHash
+    
+    var completion = { [weak self] () -> Void in
+      
+      if let hash = self?.animationHash, hash == randomHash {
+        // final state
+        self?.update(newChildrenDescriptions: finalChildren, animation: .none, completion: completion)
+      
+      } else {
+        completion?()
+      }
+    }
+    
+    
+    self.update(newChildrenDescriptions: secondTransitionChildren, animation: animation, completion: completion)
   }
   
-  fileprivate func update(newChildrenDescriptions: [AnyNodeDescription], animation: AnimationContainer) {
+  fileprivate func update(newChildrenDescriptions: [AnyNodeDescription], animation: AnimationContainer, completion: NodeUpdateCompletion?) {
     var nodes: [AnyNode] = []
     var viewIndexes: [Int] = []
     var childrenToAdd: [AnyNode] = []
+    
+    // manage completion block
+    // if we don't have it, just don't do anything. But if we have it, we need to
+    // wait until all the node.update are completed and also the update of the native view
+    var nativeViewUpdateCompleted = false
+    var childUpdateCompletedCounter = 0
+    let nativeViewCallback: (() -> Void)?
+    let childrenCallback: (() -> Void)?
+    
+    if completion != nil {
+      nativeViewCallback = { () -> Void in
+        nativeViewUpdateCompleted = true
+        
+        if childUpdateCompletedCounter == newChildrenDescriptions.count {
+          completion?()
+        }
+      }
+      
+      childrenCallback = { () -> Void in
+        childUpdateCompletedCounter = childUpdateCompletedCounter + 1
+        
+        if nativeViewUpdateCompleted && childUpdateCompletedCounter == newChildrenDescriptions.count {
+          completion?()
+        }
+      }
+    
+    } else {
+      nativeViewCallback = nil
+      childrenCallback = nil
+    }
+    
     
     var currentChildren = ChildrenDictionary()
     
@@ -537,7 +598,7 @@ fileprivate extension Node {
         
         // create the animation for the child. We propagate the children animation
         let childAnimation = animation.animation(for: newChildDescription)
-        replacement.node.update(with: newChildDescription, animation: childAnimation)
+        replacement.node.update(with: newChildDescription, animation: childAnimation, completion: childrenCallback)
         
         nodes.append(replacement.node)
         viewIndexes.append(replacement.index)
@@ -553,7 +614,7 @@ fileprivate extension Node {
     
     self.childrenDescriptions = newChildrenDescriptions
     self.children = nodes
-    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: animation)
+    self.reRender(childrenToAdd: childrenToAdd, viewIndexes: viewIndexes, animation: animation, completion: nativeViewCallback)
   }
 }
 
@@ -578,7 +639,7 @@ extension Node: AnyNode {
    - seeAlso: `AnyNode`
   */
   public func update(with description: AnyNodeDescription) {
-    self.update(with: description, animation: .none)
+    self.update(with: description, animation: .none, completion: nil)
   }
   
   /**
@@ -586,13 +647,13 @@ extension Node: AnyNode {
    
    - seeAlso: `AnyNode`
   */
-  public func update(with description: AnyNodeDescription, animation: AnimationContainer) {
+  public func update(with description: AnyNodeDescription, animation: AnimationContainer, completion: NodeUpdateCompletion?) {
     guard var description = description as? Description else {
       fatalError("Impossible to use the provided description to update the node")
     }
     
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
-    self.update(for: self.state, description: description, animation: animation)
+    self.update(for: self.state, description: description, animation: animation, completion: completion)
   }
   
   /**

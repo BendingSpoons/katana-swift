@@ -100,7 +100,7 @@ open class Root {
     
     if node.anyDescription is AnyConnectedNodeDescription {
       // ok the description is connected to the node, let's trigger an update
-      node.update(with: node.anyDescription, animation: .none)
+      node.update(with: node.anyDescription, animation: .none, completion: nil)
     }
     
     node.children

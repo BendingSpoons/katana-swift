@@ -18,7 +18,7 @@ public struct ChildrenAnimationContainer<Key> {
     }
     
     set(newValue) {
-      if case .none = newValue {
+      if case .none = newValue.type {
         return
       }
       
@@ -34,7 +34,7 @@ protocol AnyChildrenAnimationContainer {
 }
 
 extension ChildrenAnimationContainer: AnyChildrenAnimationContainer {
-  private subscript(key: String) -> Animation {
+  subscript(key: String) -> Animation {
     return self.animations[key] ?? .none
   }
   

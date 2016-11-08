@@ -9,12 +9,12 @@
 import Foundation
 
 public struct AnimationContainer {
-  let nativeViewAnimation: Animation
+  let nativeViewAnimation: AnimationType
   let childrenAnimation: AnyChildrenAnimationContainer
   
   public static let none = AnimationContainer(nativeViewAnimation: .none, childrenAnimation: ChildrenAnimationContainer<Any>())
   
-  init(nativeViewAnimation: Animation, childrenAnimation: AnyChildrenAnimationContainer) {
+  init(nativeViewAnimation: AnimationType, childrenAnimation: AnyChildrenAnimationContainer) {
     self.nativeViewAnimation = nativeViewAnimation
     self.childrenAnimation = childrenAnimation
   }
@@ -30,7 +30,7 @@ public struct AnimationContainer {
       : ChildrenAnimationContainer<Any>()
     
     return AnimationContainer(
-      nativeViewAnimation: self.childrenAnimation[child],
+      nativeViewAnimation: self.childrenAnimation[child].type,
       childrenAnimation: childChildrenAnimation
     )
   }
