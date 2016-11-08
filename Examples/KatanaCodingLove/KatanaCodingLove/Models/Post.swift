@@ -9,16 +9,16 @@ import UIKit
 
 struct Post: Equatable {
     let title: String
-    let image: UIImage
+    let imageData: Data
     
-    init(title: String, image: UIImage) {
+    init(title: String, imageData: Data) {
         self.title = title
-        self.image = image
+        self.imageData = imageData
     }
     
     static func == (lhs: Post, rhs: Post) -> Bool {
         return lhs.title == rhs.title &&
-            lhs.image == rhs.image
+            lhs.imageData == rhs.imageData
     }
     
 }

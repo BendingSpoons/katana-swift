@@ -51,7 +51,8 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
             })),
             Image(props: ImageProps.build({
                 $0.key = Keys.gifImage.rawValue
-                $0.image = props.post?.image
+                $0.image = UIImage.gif(data: (props.post?.imageData)!) 
+                $0.backgroundColor = UIColor.lightGray
             })),
         ]
     }

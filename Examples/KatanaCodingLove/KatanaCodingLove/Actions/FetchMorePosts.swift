@@ -36,10 +36,17 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
                     var result = [Post]()
                     for post in actualPosts {
                         let title = post["title"]
-                        let imageUrl = post["image_url"]
-                        if let image = UIImage.gif(url: imageUrl!) {
-                            result.append(Post(title: title!, image: image))
+                        
+                        guard let imageUrl = URL(string: post["image_url"]!) else {
+                            continue  // Fail silently
                         }
+                        
+                        guard let imageData = try? Data(contentsOf: imageUrl) else {
+                            continue  // Fail silently
+                        }
+                        
+                        result.append(Post(title: title!, imageData: imageData))
+                        
                     }
                     dispatch(action.completedAction(payload: result))
                 }
