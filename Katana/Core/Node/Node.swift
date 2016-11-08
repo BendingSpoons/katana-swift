@@ -107,7 +107,7 @@ protocol InternalAnyNode: AnyNode {
   In general this class is never used during the development of an application. Developers usually work with `NodeDescription`.
  
   ## Managed Children
-  Most of the time, Node is able to generate and handle its children automatically by using the description methods.
+  Most of the time, `Node` is able to generate and handle its children automatically by using the description methods.
 
   That being said, there are cases where this is not possible
   (e.g., in a table, when you need to generate and handle the nodes contained in the cells).

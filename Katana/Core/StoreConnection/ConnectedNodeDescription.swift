@@ -19,7 +19,7 @@ public protocol AnyConnectedNodeDescription {
 }
 
 /**
- In applications developed with Katana, the application information are stored in a central Store.
+ In applications developed with Katana, the application information is stored in a central Store.
  There are cases where you want to take pieces of information from the central store and use them in your UI.
  `ConnectedNodeDescription` is the protocol that is used to implement this behaviour.
  
