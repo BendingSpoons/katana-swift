@@ -8,7 +8,7 @@
 
 import Foundation
 
-public final class NativeButton: UIButton {
+public class NativeButton: UIButton {
 
   public typealias ButtonEvent = (NativeButton) -> ()
   
