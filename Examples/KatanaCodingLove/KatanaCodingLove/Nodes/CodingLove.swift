@@ -100,8 +100,8 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNode
         return [
             Label(props: LabelProps.build({
                 $0.key = Keys.titleLabel.rawValue
-                $0.text = NSAttributedString(string: "The Coding Love Posts", attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 20)
+                $0.text = NSAttributedString(string: "The Coding Love", attributes: [
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 25)
                 ])
                 $0.textAlignment = NSTextAlignment.center
             })),
