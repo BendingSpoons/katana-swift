@@ -13,6 +13,11 @@ let POSTS_PER_PAGE = 3
 
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
+    public struct CompletedActionPayload {
+        var posts: Array<Post>
+        var allFetched: Bool = false
+    }
+    
     public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
         if action.state != .loading {
             return
@@ -21,16 +26,19 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         let castedState = state as! CodingLoveState
         let page: Int = castedState.page
         DispatchQueue.global().async {
-            // Read the file from bundle, faking a network request for now
+            // Read the file from bundle, faking a network request. Should take a few seconds
             if let path = Bundle.main.path(forResource: "posts", ofType: "json")
             {
                 let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
                 if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>>
                 {
                     var actualPosts = [Dictionary<String, String>]()
+                    var allFetched = false
                     for index in (page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE) {
                         if index < posts.count {
                             actualPosts.append(posts[index])
+                        } else {
+                            allFetched = true
                         }
                     }
                     var result = [Post]()
@@ -48,7 +56,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
                         result.append(Post(title: title!, imageData: imageData))
                         
                     }
-                    dispatch(action.completedAction(payload: result))
+                    dispatch(action.completedAction(payload: CompletedActionPayload(posts: result, allFetched: allFetched)))
                 }
             }
             dispatch(action.failedAction(payload: "Some error occurred fetching posts"))
@@ -58,14 +66,14 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
 
     /// The loading payload of the action
     public var loadingPayload: String
-    public var completedPayload: Array<Post>?
+    public var completedPayload: CompletedActionPayload?
     public var failedPayload: String?
     
     /// The state of the action
     public var state: AsyncActionState = .loading
     
     typealias LoadingPayload = String
-    typealias CompletedPayload = [Post]
+    typealias CompletedPayload = CompletedActionPayload
     typealias FailedPayload = String
     
     static func updatedStateForLoading(currentState: State, action: FetchMorePosts) -> State {
@@ -78,7 +86,8 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     static func updatedStateForCompleted(currentState: State, action: FetchMorePosts) -> State {
         var newState = currentState as! CodingLoveState
         newState.loading = false
-        newState.posts += action.completedPayload!
+        newState.posts += (action.completedPayload?.posts)!
+        newState.allPostsFetched = (action.completedPayload?.allFetched)!
         return newState
     }
     

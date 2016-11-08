@@ -9,7 +9,8 @@ import Katana
 
 struct CodingLoveState: State {
     var posts = [Post]()
-    var page = 0
     var loading = false
     var allPostsFetched = false
+    
+    var page = 0
 }

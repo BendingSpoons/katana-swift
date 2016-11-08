@@ -71,6 +71,10 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
     }
     
     static func didTap(dispatch: StoreDispatch, props: Props, indexPath: IndexPath) {
+        if props.allPostsFetched {
+            return
+        }
+        
         dispatch(FetchMorePosts(payload: ""))
     }
 
