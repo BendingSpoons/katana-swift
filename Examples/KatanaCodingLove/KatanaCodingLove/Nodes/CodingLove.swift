@@ -51,7 +51,7 @@ extension CodingLove {
         
         public func height(forRowAt indexPath: IndexPath) -> Katana.Value {
             if indexPath.section == 0 {
-                return Katana.Value(300)
+                return Katana.Value(500)
             }
             return Katana.Value(100)
         }

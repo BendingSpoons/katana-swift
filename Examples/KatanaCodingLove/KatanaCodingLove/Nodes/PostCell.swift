@@ -25,15 +25,15 @@ extension PostCell {
     }
 }
 
-struct PostCell: NodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
-    typealias StateType = EmptyState
+struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell {
+    typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
-    typealias NativeView = UIView
+    typealias NativeView = NativeTableCell
     
     var props: Props
     
     static var referenceSize: CGSize {
-        return CGSize(width: 640, height: 300)
+        return CGSize(width: 640, height: 500)
     }
     
     static func childrenDescriptions(props: PropsType,
@@ -55,7 +55,7 @@ struct PostCell: NodeDescription, PlasticNodeDescription, PlasticNodeDescription
         ]
     }
     
-    static func layout(views: ViewsContainer<Keys>, props: Props, state: EmptyState) {
+    static func layout(views: ViewsContainer<Keys>, props: Props, state: EmptyHighlightableState) {
         let rootView = views.nativeView
         let title = views[Keys.titleLabel]!
         let imageView = views[Keys.gifImage]!
@@ -68,4 +68,7 @@ struct PostCell: NodeDescription, PlasticNodeDescription, PlasticNodeDescription
         imageView.bottom = rootView.bottom
     }
     
+    static func didTap(dispatch: StoreDispatch, props: PropsType, indexPath: IndexPath) {
+        // Do nothing
+    }
 }
