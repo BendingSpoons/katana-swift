@@ -9,17 +9,38 @@
 import Foundation
 import Katana
 
+let POSTS_PER_PAGE = 1
+
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
     public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
+        let castedState = state as! CodingLoveState
+        let page: Int = castedState.page
         DispatchQueue.global().async {
-            let page = try! String(contentsOf: URL(string: "http://thecodinglove.com/random")!)
-            let title = (page.capturedGroups(withRegex: "<div class=\"centre\"> <h3>([^<]+)</h3> </div>")?[0])!
-            let imageUrl = (page.capturedGroups(withRegex: "<p class=\"e\"><img src=\"([^\"]+)\">")?[0])!
-
-            let url = URL(string: imageUrl)!
-            let data = NSData(contentsOf: url)
-            dispatch(action.completedAction(payload: [Post(title: title, image: UIImage.gifWithData(data as! Data)!)]))
+            // Read the file from bundle, faking a network request for now
+            if let path = Bundle.main.path(forResource: "posts", ofType: "json")
+            {
+                let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
+                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>>
+                {
+                    var actualPosts = [Dictionary<String, String>]()
+                    for index in (page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE) {
+                        if index < posts.count {
+                            actualPosts.append(posts[index])
+                        }
+                    }
+                    var result = [Post]()
+                    for post in actualPosts {
+                        let title = post["title"]
+                        let imageUrl = post["image_url"]
+                        if let image = UIImage.gifWithURL(imageUrl!) {
+                            result.append(Post(title: title!, image: image))
+                        }
+                    }
+                    dispatch(action.completedAction(payload: result))
+                }
+            }
+            dispatch(action.failedAction(payload: "Some error occurred fetching posts"))
         }
     }
 
@@ -44,7 +65,10 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     }
     
     static func updatedStateForCompleted(currentState: State, action: FetchMorePosts) -> State {
-        return currentState
+        var newState = currentState as! CodingLoveState
+        newState.loading = false
+        newState.posts += action.completedPayload!
+        return newState
     }
     
     static func updatedStateForFailed(currentState: State, action: FetchMorePosts) -> State {
