@@ -109,11 +109,11 @@ public extension PlasticNodeDescription {
    This method is the same as the `NodeDescription` `makeRoot(store:)` but the
    root's `node` property will be an instance of `PlasticNode`
   */
-  func makeRoot(store: AnyStore?) -> Root {
-    let root = Root(store: store)
-    let node = PlasticNode(description: self, root: root)
-    root.node = node
-    return root
+  func makeConnector(with store: AnyStore?) -> Connector {
+    let connector = Connector(store: store)
+    let node = PlasticNode(description: self, connector: connector)
+    connector.node = node
+    return connector
   }
   
 }

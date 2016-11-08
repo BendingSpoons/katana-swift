@@ -99,7 +99,7 @@ public protocol AnyNodeDescription {
    - parameter store: the store to use to manage the application's state
    - returns: the root instance
    */
-  func makeRoot(store: AnyStore?) -> Root
+  func makeRoot(store: AnyStore?) -> Connector
 }
 
 /**
@@ -249,11 +249,11 @@ extension AnyNodeDescription where Self: NodeDescription {
     return Node(description: self, parent: parent)
   }
   
-  public func makeRoot(store: AnyStore?) -> Root {
-    let root = Root(store: store)
-    let node = Node(description: self, root: root)
-    root.node = node
-    return root
+  public func makeRoot(store: AnyStore?) -> Connector {
+    let connector = Connector(store: store)
+    let node = Node(description: self, connector: connector)
+    connector.node = node
+    return connector
   }
   
   /**

@@ -24,7 +24,7 @@ import Foundation
  self.root!.render(in: view)
  ```
 */
-open class Root {
+open class Connector {
   /// The store that is used in the application
   public let store: AnyStore?
   
@@ -119,11 +119,11 @@ open class Root {
 
 public extension AnyNode {
   /// Returns the Root of the nodes tree
-  public var treeRoot: Root {
+  public var connector: Connector {
     var node: AnyNode = self
     while node.parent != nil {
       node = node.parent!
     }
-    return node.root!
+    return node.connector!
   }
 }

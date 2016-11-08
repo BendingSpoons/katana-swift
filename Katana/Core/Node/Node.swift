@@ -30,7 +30,7 @@ public protocol AnyNode: class {
    The parent of the node. This variable has a value only if
    the parent is the root of the nodes tree
   */
-  var root: Root? {get}
+  var connector: Connector? {get}
   
   /**
    Updates the node with a new description. Invoking this method will cause an update of the piece of the UI managed by the node
@@ -144,7 +144,7 @@ public class Node<Description: NodeDescription> {
     The parent of the node. This variable has a value only if
     the parent is the root of the nodes tree
   */
-  public fileprivate(set) weak var root: Root?
+  public fileprivate(set) weak var connector: Connector?
   
   /// The array of managed children of the node
   public var managedChildren: [AnyNode] = []
@@ -159,7 +159,7 @@ public class Node<Description: NodeDescription> {
    - note: the `root` parameter will be nil
   */
   public convenience init(description: Description, parent: AnyNode) {
-    self.init(description: description, parent: parent, root: nil)
+    self.init(description: description, parent: parent, connector: nil)
   }
  
   /**
@@ -171,8 +171,8 @@ public class Node<Description: NodeDescription> {
    
    - note: the `parent` parameter will be nil
   */
-  public convenience init(description: Description, root: Root) {
-    self.init(description: description, parent: nil, root: root)
+  public convenience init(description: Description, connector: Connector) {
+    self.init(description: description, parent: nil, connector: connector)
   }
 
   /**
@@ -187,15 +187,15 @@ public class Node<Description: NodeDescription> {
    
    - returns: A valid instance of Node
   */
-  internal init(description: Description, parent: AnyNode?, root: Root?) {
-    guard (parent != nil) != (root != nil) else {
+  internal init(description: Description, parent: AnyNode?, connector: Connector?) {
+    guard (parent != nil) != (connector != nil) else {
       fatalError("either the parent or the root should be passed")
     }
     
     self.description = description
     self.state = Description.StateType.init()
     self.parent = parent
-    self.root = root
+    self.connector = connector
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
@@ -355,7 +355,7 @@ fileprivate extension Node {
       }
     }
     
-    let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    let dispatch =  self.connector.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).childrenDescriptions(props: self.description.props,
                                         state: self.state,
@@ -378,7 +378,7 @@ fileprivate extension Node {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.treeRoot.store else {
+      guard let store = self.connector.store else {
         fatalError("connected node lacks store")
       }
       
