@@ -499,9 +499,8 @@ fileprivate extension Node {
     
     firstTransitionChildren = AnimationUtils.updatedChildren(
       in: firstTransitionChildren,
-      initialChildren: initialChildren,
-      finalChildren: finalChildren,
       using: animation.childrenAnimation,
+      targetChildren: initialChildren,
       step: .firstIntermediate
     )
     
@@ -514,9 +513,8 @@ fileprivate extension Node {
     
     secondTransitionChildren = AnimationUtils.updatedChildren(
       in: secondTransitionChildren,
-      initialChildren: initialChildren,
-      finalChildren: finalChildren,
       using: animation.childrenAnimation,
+      targetChildren: finalChildren,
       step: .secondIntermediate
     )
     

@@ -20,95 +20,138 @@ struct AnimationUtils {
     array: [AnyNodeDescription],
     with other: [AnyNodeDescription],
     step: AnimationStep) -> [AnyNodeDescription] {
-
-    var arrayIndexes = [Int:Int]()
-    for (index, item) in array.enumerated() {
-      arrayIndexes[item.replaceKey] = index
-    }
     
-    var otherIndexes = [Int:Int]()
-    for (index, item) in other.enumerated() {
-      otherIndexes[item.replaceKey] = index
-    }
+    let firstArray: [AnyNodeDescription]
+    let secondArray: [AnyNodeDescription]
     
-    var indexArray = 0
-    var indexOther = 0
-    var res = [AnyNodeDescription]()
-    
-    while indexArray < array.count && indexOther < other.count {
-      let itemArray = array[indexArray]
-      let itemOther = other[indexOther]
+    switch step {
+    case .firstIntermediate:
+      firstArray = array
+      secondArray = other
       
-      if itemArray.replaceKey == itemOther.replaceKey {
-        res.append(step == .firstIntermediate ? itemArray : itemOther)
-        indexArray = indexArray + 1
-        indexOther = indexOther + 1
-        
-      } else if arrayIndexes[itemArray.replaceKey]! < otherIndexes[itemOther.replaceKey]! {
-        res.append(itemArray)
-        indexArray = indexArray + 1
-        
-      } else {
-        res.append(itemOther)
-        indexOther = indexOther + 1
+    case .secondIntermediate:
+      firstArray = other
+      secondArray = array
+    }
+    
+    // lookup for first array
+    var firstArrayLookup = [Int: Int]()
+    for (index, item) in firstArray.enumerated() {
+      firstArrayLookup[item.replaceKey] = index
+    }
+    
+    // lookup for second array
+    var secondArrayLookup = [Int: Int]()
+    for (index, item) in secondArray.enumerated() {
+      secondArrayLookup[item.replaceKey] = index
+    }
+    
+    var result = firstArray
+    var added = 0
+    var firstArrayMaxPosition = -1
+    
+    for item in secondArray {
+      let position = firstArrayLookup[item.replaceKey]
+      
+      if let position = position {
+        // we already have the item
+        firstArrayMaxPosition = max(firstArrayMaxPosition, position)
+        continue
       }
+      
+      result.insert(item, at: added + firstArrayMaxPosition + 1)
+      added = added + 1
+    }
+
+    
+    // merge also children, if needed
+    result = result.map { description in
+      guard var propsWithChildren = description.anyProps as? Childrenable else {
+        return description
+      }
+      
+      let secondItemChildren = secondArrayLookup[description.replaceKey]
+        .flatMap({ secondArray[$0] })
+        .flatMap({ $0 as! AnyNodeDescriptionWithChildren })
+        .flatMap({ $0.children })
+      
+      
+      propsWithChildren.children = merge(
+        array: propsWithChildren.children,
+        with: secondItemChildren ?? [],
+        step: step
+      )
+      
+      return type(of: description).init(anyProps: propsWithChildren as! AnyNodeProps)
     }
     
-    while indexArray < array.count {
-      res.append(array[indexArray])
-      indexArray = indexArray + 1
-    }
-    
-    while indexOther < other.count {
-      res.append(other[indexOther])
-      indexOther = indexOther + 1
-    }
-    
-    return res
+    return result
   }
   
   static func updatedChildren(
     in array: [AnyNodeDescription],
-    initialChildren: [AnyNodeDescription],
-    finalChildren: [AnyNodeDescription],
     using childrenAnimation: AnyChildrenAnimationContainer,
+    targetChildren: [AnyNodeDescription],
     step: AnimationStep) -> [AnyNodeDescription] {
     
-    let comparisonArray = step == .firstIntermediate ? initialChildren : finalChildren
-    
-    return array.map { item in
+    var newChildren = array.map { (item: AnyNodeDescription) -> AnyNodeDescription in
       let itemReplaceKey = item.replaceKey
-      let index = comparisonArray.index { $0.replaceKey == itemReplaceKey }
+      let index = targetChildren.index { $0.replaceKey == itemReplaceKey }
       
-      guard index == nil else {
-        // we have the item in the reference children array, we don't to calculate
-        // additional properties
-        return item
+      if index == nil {
+        // the item is missing in the comparison, update it
+        return self.update(description: item, using: childrenAnimation, step: step)
       }
       
-      let animation = childrenAnimation[item]
-      let transformers = step == .firstIntermediate ? animation.entryTransformers : animation.leaveTransformers
+      if var propsWithChildren = item.anyProps as? Childrenable {
+        // the item is not missing, but it may have children. Let's manage them
+        let children = propsWithChildren.children
+        let target = (targetChildren[index!] as? AnyNodeDescriptionWithChildren).flatMap({ $0.children })
+        
+        propsWithChildren.children = updatedChildren(
+          in: children,
+          using: childrenAnimation,
+          targetChildren: target ?? [],
+          step: step
+        )
+        
+        return type(of: item).init(anyProps: propsWithChildren as! AnyNodeProps)
+      }
       
-      return self.update(description: item, with: transformers)
+      // nothing to do
+      return item
     }
+    
+    return newChildren
   }
   
   private static func update(
     description: AnyNodeDescription,
-    with transformers: [AnimationPropsTransformer]) -> AnyNodeDescription {
+    using childrenAnimation: AnyChildrenAnimationContainer,
+    step: AnimationStep) -> AnyNodeDescription {
 
+    let animation = childrenAnimation[description]
+    let transformers = step == .firstIntermediate ? animation.entryTransformers : animation.leaveTransformers
+    
     let newProps = transformers.reduce(description.anyProps, { (props, transformer) -> AnyNodeProps in
       return transformer(props)
     })
     
-//    if var newProps = newProps as? (Childrenable & AnyNodeProps) {
-//      // if it has children, we should propagate changes
-//      newProps.children = newProps.children.map { self.update(description: $0, with: transformers) }
-//      return type(of: description).init(anyProps: newProps)
-//    
-//    } else {
-//      // just return
+    if var propsWithChildren = newProps as? Childrenable {
+      // Theoretically we should cast in this way `newProps as? Childrenable & AnyNodeDescription`.
+      // In this way we avoid the force cast when we instanciate the description.
+      // This currently leads to a runtime crash, we should further investigate it
+      
+      // if it has children, we should propagate changes
+      propsWithChildren.children = propsWithChildren.children.map {
+        self.update(description: $0, using: childrenAnimation, step: step)
+      }
+
+      return type(of: description).init(anyProps: propsWithChildren as! AnyNodeProps)
+    
+    } else {
+      // just return
       return type(of: description).init(anyProps: newProps)
-//    }
+    }
   }
 }
