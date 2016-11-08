@@ -41,8 +41,12 @@ extension CodingLove {
         }
         
         public func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
+            if indexPath.section == 0 {
+                let post = posts[indexPath.row]
+                return PostCell(props: PostCell.Props(frame: .zero, post: post))
+            }
             //        TODO: handle different kinds of cells
-            return PostCell(props: PostCell.Props(frame: .zero))
+            return PostCell(props: PostCell.Props(frame: .zero, post: nil))
         }
         
         public func height(forRowAt indexPath: IndexPath) -> Katana.Value {
@@ -53,12 +57,28 @@ extension CodingLove {
         }
         
         public func isEqual(to anotherDelegate: TableDelegate) -> Bool {
-            //        TODO
-            return false
+            if !(anotherDelegate is TableViewDelegate) {
+                return false
+            }
+            
+            let another = anotherDelegate as! TableViewDelegate
+            
+            if posts != another.posts {
+                return false
+            }
+            
+            if loading != another.loading {
+                return false
+            }
+            
+            if allPostsFetched != another.allPostsFetched {
+                return false
+            }
+            
+            return true
         }
     }
     
-
 }
 
 

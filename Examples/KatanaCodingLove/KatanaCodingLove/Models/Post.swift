@@ -7,7 +7,7 @@
 //
 import UIKit
 
-struct Post {
+struct Post: Equatable {
     let title: String
     let image: UIImage
     
