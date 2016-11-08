@@ -44,9 +44,10 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
             Label(props: LabelProps.build({
                 $0.key = Keys.titleLabel.rawValue
                 $0.text = NSAttributedString(string: (props.post?.title)!, attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 16)
+                    NSFontAttributeName: UIFont.systemFont(ofSize: 18)
                 ])
                 $0.textAlignment = NSTextAlignment.center
+                $0.numberOfLines = 0
             })),
             Image(props: ImageProps.build({
                 $0.key = Keys.gifImage.rawValue
@@ -60,8 +61,8 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
         let title = views[Keys.titleLabel]!
         let imageView = views[Keys.gifImage]!
 
-        title.asHeader(rootView, insets: .scalable(30, 0, 0, 0))
-        title.height = .scalable(50)
+        title.asHeader(rootView, insets: .scalable(20, 10, 10, 10))
+        title.height = .scalable(70)
 
         imageView.fillHorizontally(rootView)
         imageView.top = title.bottom
