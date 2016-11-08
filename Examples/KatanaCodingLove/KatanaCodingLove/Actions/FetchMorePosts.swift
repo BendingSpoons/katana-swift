@@ -9,7 +9,7 @@
 import Foundation
 import Katana
 
-let POSTS_PER_PAGE = 1
+let POSTS_PER_PAGE = 3
 
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
