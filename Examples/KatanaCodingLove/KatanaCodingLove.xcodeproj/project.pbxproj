@@ -20,6 +20,7 @@
 		E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */; };
 		E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */; };
 		E3986C9E1DD0CD9F00FAF8D8 /* Katana.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */; };
+		E3986CA21DD1F4F600FAF8D8 /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = E3986CA11DD1F4F600FAF8D8 /* posts.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +63,7 @@
 		E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodingLoveState.swift; sourceTree = "<group>"; };
 		E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regexp.swift"; sourceTree = "<group>"; };
 		E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
+		E3986CA11DD1F4F600FAF8D8 /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				E3986C241DD0C62800FAF8D8 /* Assets.xcassets */,
 				E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */,
 				E3986C291DD0C62800FAF8D8 /* Info.plist */,
+				E3986CA11DD1F4F600FAF8D8 /* posts.json */,
 			);
 			path = KatanaCodingLove;
 			sourceTree = "<group>";
@@ -255,6 +258,7 @@
 				E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */,
 				E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */,
 				E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */,
+				E3986CA21DD1F4F600FAF8D8 /* posts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
