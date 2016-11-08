@@ -14,6 +14,10 @@ let POSTS_PER_PAGE = 1
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
     public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
+        if action.state != .loading {
+            return
+        }
+        
         let castedState = state as! CodingLoveState
         let page: Int = castedState.page
         DispatchQueue.global().async {
@@ -52,7 +56,6 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
     /// The state of the action
     public var state: AsyncActionState = .loading
-
     
     typealias LoadingPayload = String
     typealias CompletedPayload = [Post]
@@ -61,6 +64,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     static func updatedStateForLoading(currentState: State, action: FetchMorePosts) -> State {
         var newState = currentState as! CodingLoveState
         newState.loading = true
+        newState.page += 1
         return newState
     }
     
