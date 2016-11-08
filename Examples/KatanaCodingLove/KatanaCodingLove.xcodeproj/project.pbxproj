@@ -17,7 +17,6 @@
 		E3986C991DD0C97F00FAF8D8 /* FetchMoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */; };
 		E3986C9A1DD0C97F00FAF8D8 /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C901DD0C97F00FAF8D8 /* PostCell.swift */; };
 		E3986C9B1DD0C97F00FAF8D8 /* CodingLoveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */; };
-		E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */; };
 		E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */; };
 		E3986C9E1DD0CD9F00FAF8D8 /* Katana.xcodeproj in Frameworks */ = {isa = PBXBuildFile; fileRef = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */; };
 		E3986CA21DD1F4F600FAF8D8 /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = E3986CA11DD1F4F600FAF8D8 /* posts.json */; };
@@ -61,7 +60,6 @@
 		E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMoreCell.swift; sourceTree = "<group>"; };
 		E3986C901DD0C97F00FAF8D8 /* PostCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		E3986C921DD0C97F00FAF8D8 /* CodingLoveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodingLoveState.swift; sourceTree = "<group>"; };
-		E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+Regexp.swift"; sourceTree = "<group>"; };
 		E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		E3986CA11DD1F4F600FAF8D8 /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -160,7 +158,6 @@
 		E3986C931DD0C97F00FAF8D8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				E3986C941DD0C97F00FAF8D8 /* String+Regexp.swift */,
 				E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */,
 			);
 			path = Utils;
@@ -275,7 +272,6 @@
 				E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */,
 				E3986C991DD0C97F00FAF8D8 /* FetchMoreCell.swift in Sources */,
 				E3986C961DD0C97F00FAF8D8 /* FetchMorePosts.swift in Sources */,
-				E3986C9C1DD0C97F00FAF8D8 /* String+Regexp.swift in Sources */,
 				E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */,
 				E3986C971DD0C97F00FAF8D8 /* Post.swift in Sources */,
 			);
