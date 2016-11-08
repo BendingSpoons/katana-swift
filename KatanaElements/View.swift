@@ -18,7 +18,7 @@ public struct ViewProps: NodeDescriptionProps, Keyable, Childrenable, Buildable 
   public var cornerRadius: Value = .zero
   public var borderWidth: Value = .zero
   public var borderColor = UIColor.clear
-  public var clipsToBounds = true
+  public var clipsToBounds = false
   public var isUserInteractionEnabled = false
  
   public init() {}
