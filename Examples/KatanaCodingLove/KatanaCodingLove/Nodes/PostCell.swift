@@ -51,7 +51,7 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
             })),
             Image(props: ImageProps.build({
                 $0.key = Keys.gifImage.rawValue
-                $0.image = UIImage.gif(data: (props.post?.imageData)!) 
+                $0.image = UIImage.gif(data: (props.post?.imageData)!)
                 $0.backgroundColor = UIColor.lightGray
             })),
         ]
@@ -62,7 +62,7 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
         let title = views[Keys.titleLabel]!
         let imageView = views[Keys.gifImage]!
 
-        title.asHeader(rootView, insets: .scalable(20, 10, 10, 10))
+        title.asHeader(rootView, insets: .scalable(30, 10, 10, 5))
         title.height = .scalable(70)
 
         imageView.fillHorizontally(rootView)
