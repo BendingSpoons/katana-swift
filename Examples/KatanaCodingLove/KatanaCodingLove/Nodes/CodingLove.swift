@@ -45,8 +45,8 @@ extension CodingLove {
                 let post = posts[indexPath.row]
                 return PostCell(props: PostCell.Props(frame: .zero, post: post))
             }
-            //        TODO: handle different kinds of cells
-            return PostCell(props: PostCell.Props(frame: .zero, post: nil))
+
+            return FetchMoreCell(props: FetchMoreCell.Props(frame: .zero, loading: loading, allPostsFetched: allPostsFetched))
         }
         
         public func height(forRowAt indexPath: IndexPath) -> Katana.Value {
