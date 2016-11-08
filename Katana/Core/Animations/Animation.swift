@@ -26,16 +26,16 @@ public enum Animation {
                options: UIViewAnimationOptions,
                  delay: TimeInterval)
   
-  /// Spring animation with duration, damping and initialVelocity
+  /// Spring animation with duration, damping and initial velocity
   case spring(duration: TimeInterval, damping: CGFloat, initialVelocity: CGFloat)
   
-  /// Spring animation with duration, damping, initialVelocity and options
+  /// Spring animation with duration, damping, initial velocity and options
   case springWithOptions(duration: TimeInterval,
                           damping: CGFloat,
                   initialVelocity: CGFloat,
                           options: UIViewAnimationOptions)
   
-  /// Spring animation with duration, damping, initialVelocity, options and delay
+  /// Spring animation with duration, damping, initial velocity, options and delay
   case springWithDelay(duration: TimeInterval,
                damping: CGFloat,
        initialVelocity: CGFloat,

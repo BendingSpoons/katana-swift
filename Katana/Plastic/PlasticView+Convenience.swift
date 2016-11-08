@@ -11,8 +11,8 @@ import UIKit
 /// `PlasticView` helpers methods
 extension PlasticView {
   /**
-   Let the view upon which this method is called fill out the width of the frame of another view using optional insets.
-   The vertical position and height of the called-upon view remains unchanged.
+   Lets the view upon which this method is called fill out the width of the frame of another view using optional insets.
+   The vertical position and height of the called-upon view remain unchanged.
    
    - parameter view:   the view whose frame should be filled horizontally
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used.
@@ -23,8 +23,8 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called fill out the height of the frame of another view using optional
-   insets. The horizontal position and width of the called-upon view remains unchanged.
+   Lets the view upon which this method is called fill out the height of the frame of another view using optional
+   insets. The horizontal position and width of the called-upon view remain unchanged.
    
    - parameter view:   the view whose frame should be filled vertically
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used
@@ -35,7 +35,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called fill out the frame of another using optional insets.
+   Lets the view upon which this method is called fill out the frame of another using optional insets.
    
    - parameter view:   the view whose frame should be filled
    - parameter insets: the insets to use when filling the view frame
@@ -48,7 +48,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called be stretched out between for separate view anchor positions while
+   Lets the view upon which this method is called be stretched out between four separate view anchor positions while
    maintaining a certain aspect ratio. Optional insets can be used.
    
    - parameter left:        the left view anchor position that the called-upon view's left edge will be stretched towards
@@ -85,7 +85,7 @@ extension PlasticView {
   }
   
   /**
-   Center the view upon which this method is called horizontally between two view anchors. The size, top edge and
+   Centers the view upon which this method is called horizontally between two view anchors. The size, top edge and
    bottom edge of the view will remain the same.
    
    - parameter left:  the left view anchor to center the called-upon view in relation to
@@ -97,7 +97,7 @@ extension PlasticView {
   }
   
   /**
-   Center the view upon which this method is called vertically between two view anchors. The size, left edge and
+   Centers the view upon which this method is called vertically between two view anchors. The size, left edge and
    right edge of the view will remain the same.
    
    - parameter top:      the top view anchor to center the called-upon view in relation to
@@ -109,7 +109,7 @@ extension PlasticView {
   }
   
   /**
-   Center the view upon which this method is called in the frame of another view.
+   Centers the view upon which this method is called in the frame of another view.
    The size of the called-upon view will remain the same.
    
    - parameter view: the view to center the called-upon view in
@@ -120,7 +120,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called have its top, left and bottom edges aligned to those of another view
+   Lets the view upon which this method is called have its top, left and bottom edges aligned to those of another view
    with some optional insets.
    
    - parameter view:   the view whose edges to align with
@@ -133,7 +133,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called have its top, right and bottom edges aligned to those of another view
+   Lets the view upon which this method is called have its top, right and bottom edges aligned to those of another view
    with some optional insets.
    
    - parameter view:   the view whose edges to align with
@@ -146,7 +146,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called have its left, top and right edges aligned to those of another view
+   Lets the view upon which this method is called have its left, top and right edges aligned to those of another view
    with some optional insets.
    
    - parameter view:   the view whose edges to align with
@@ -159,7 +159,7 @@ extension PlasticView {
   }
   
   /**
-   Let the view upon which this method is called have its left, bottom and right edges aligned to those of another view
+   Lets the view upon which this method is called have its left, bottom and right edges aligned to those of another view
    with some optional insets.
    
    - parameter view:   the view whose edges to align with
