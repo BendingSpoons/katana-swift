@@ -1,10 +1,10 @@
 //
-//  Array+Katana.swift
+//  Collections+Katana.swift
 //  Katana
 //
-//  Created by Luca Querella on 12/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
