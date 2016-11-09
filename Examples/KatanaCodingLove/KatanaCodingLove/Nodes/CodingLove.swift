@@ -19,7 +19,7 @@ extension CodingLove {
     
     struct Props: NodeProps, Buildable {
         var frame: CGRect = .zero
-        var posts: [Post] = []
+        var posts: [Post] = [Post]()
         var loading: Bool = true
         var allPostsFetched: Bool = false
     }
