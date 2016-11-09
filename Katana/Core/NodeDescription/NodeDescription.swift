@@ -92,14 +92,11 @@ public protocol AnyNodeDescription {
   func makeNode(parent: AnyNode) -> AnyNode
   
   /**
-   Creates a root node (that is, the root of the UI hierarchy) with the given store
-   
-   - seeAlso: `Store`
-   
-   - parameter store: the store to use to manage the application's state
-   - returns: the root instance
+   Returns a node instance associated with a renderer.
+   - parameter renderer: the renderer that is responsible to rendering the UI starting from this node description
+   - returns: the node instance
    */
-  func makeRoot(store: AnyStore?) -> Connector
+  func makeNode(renderer: Renderer) -> AnyNode
 }
 
 /**
@@ -249,11 +246,8 @@ extension AnyNodeDescription where Self: NodeDescription {
     return Node(description: self, parent: parent)
   }
   
-  public func makeRoot(store: AnyStore?) -> Connector {
-    let connector = Connector(store: store)
-    let node = Node(description: self, connector: connector)
-    connector.node = node
-    return connector
+  public func makeNode(renderer: Renderer) -> AnyNode {
+    return Node(description: self, renderer: renderer)
   }
   
   /**
