@@ -12,9 +12,19 @@ public struct ChildrenAnimations<Key> {
   var shouldAnimate = false
   var animations = [String: Animation]()
   
+  var allChildren: Animation = .none {
+    didSet {
+      if case .none = self.allChildren.type {
+        return
+      }
+
+      self.shouldAnimate = true
+    }
+  }
+  
   public subscript(key: Key) -> Animation {
     get {
-      return self.animations["\(key)"] ?? .none
+      return self["\(key)"]
     }
     
     set(newValue) {
@@ -26,6 +36,27 @@ public struct ChildrenAnimations<Key> {
       self.animations["\(key)"] = newValue
     }
   }
+  
+  public subscript(key: [Key]) -> Animation {
+    get {
+      fatalError("This subscript should not be used as a getter")
+    }
+    
+    set(newValue) {
+      for value in key {
+        self[value] = newValue
+      }
+    }
+  }
+  
+  private mutating func update(key: Key, newValue: Animation) {
+    if case .none = newValue.type {
+      return
+    }
+    
+    self.shouldAnimate = true
+    self.animations["\(key)"] = newValue
+  }
 }
 
 protocol AnyChildrenAnimations {
@@ -35,7 +66,7 @@ protocol AnyChildrenAnimations {
 
 extension ChildrenAnimations: AnyChildrenAnimations {
   subscript(key: String) -> Animation {
-    return self.animations[key] ?? .none
+    return self.animations[key] ?? self.allChildren
   }
   
   subscript(description: AnyNodeDescription) -> Animation {
@@ -43,6 +74,6 @@ extension ChildrenAnimations: AnyChildrenAnimations {
       return self[key]
     }
     
-    return .none
+    return self.allChildren
   }
 }
