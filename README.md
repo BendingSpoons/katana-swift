@@ -5,10 +5,10 @@
 
 Katana is a modern swift framework for writing iOS apps, strongly inspired by [react](https://facebook.github.io/react/) and [redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
 
-- __logic__: in a Katana app all the state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: in a Katana app you define the UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
-- __logic<->UI__: in Katana your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the store state to the component props.
-- __layout__: Katana defines a concise language to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
+- __logic__: app all the state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+- __UI__: you define the UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
+- __logic<->UI__: your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the store state to the component props.
+- __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
 We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At BendingSpoons we use a lot of Open Sourced projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
@@ -124,7 +124,11 @@ store.addListener() {
 
 ### Defining the UI
 
-In Katana you declaratively describe a specific piece of UI providing a  `NodesDescription`. Each `NodeDescription` will define the component in terms of its internal `state` , the inputs coming from outside, called the `props`, and the UIKit element associated with the component, the `NativeView`. 
+In Katana you declaratively describe a specific piece of UI providing a  `NodesDescription`. Each `NodeDescription` will define the component in terms of:
+
+- `StateType` the internal state of the component (es. highlighted for a button)
+- `PropsType` the inputs coming from outside the component (es. backgroundColor for a view)
+- `NativeView` the UIKit element associated with the component
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -145,12 +149,12 @@ struct CounterScreenProps: NodeProps {
 }
 ```
 
-When it's time to render the component, the method `applyPropsToNativeView` is called, this is where we need to adjust our nativeView to reflect the  `props` and the `state`. Note that for common properties like frame and backgroundColor we already provide a standard applyPropsToNativeView so we got you covered.
+When it's time to render the component, the method `applyPropsToNativeView` is called, this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](/KatanaElements/View.swift) so we got you covered._
 
 ```swift
-struct ToDoScreen: NodeDescription {
+struct CounterScreen: NodeDescription {
   ...
-  public static func applyPropsToNativeView(props: ToDoScreenProps,
+  public static func applyPropsToNativeView(props: CounterScreenProps,
   											state: EmptyState,
   											view: UIView, ...) {
   	view.frame = props.frame
@@ -161,9 +165,9 @@ struct ToDoScreen: NodeDescription {
 `NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by others `NodeDescription` as children. To define child components implement the method `childrenDescriptions`
 
 ```swift
-struct ToDoScreen: NodeDescription {
+struct CounterScreen: NodeDescription {
   ...
-  public static func childrenDescriptions(props: ToDoScreenProps,
+  public static func childrenDescriptions(props: CounterScreenProps,
   											state: EmptyState, ...) -> 	  [AnyNodeDescription] {
   	return [
   		Label(props: LabelProps.build({ (labelProps) in
@@ -205,14 +209,16 @@ struct ToDoScreen: NodeDescription {
 
 ### Attaching the UI to the Logic
 
-The `Root` object is responsible for connecting the `Store` to the tree of nodes that compose our UI.
-You create a root object starting from the top level NodeDescription and the store.
+The `Renderer` is responsible for rendering the nodes tree and updating the tree when the `Store` changes. 
+
+You create a Renderer object starting from the top level NodeDescription and the store.
 
 ```
-let root = CounterScreen(props: CounterScreenProps()).makeRoot(store: store)
+renderer = Renderer(rootDescription: counterScreen, store: store)
+renderer.render(in: view)
 ```
 
-Everytime a new app state is available the store dispatches an event that is captured by the Root and dispatched down to the tree of UI components.
+Everytime a new app state is available the store dispatches an event that is captured by the Renderer and dispatched down to the tree of UI components.
 If you want a node to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`
 
 ```
