@@ -25,12 +25,12 @@ private enum ConstraintY {
  over the instances of `PlasticView` and achieve the desidered layout.
  
  This abstraction has been introduced to avoid to deal directly with `UIView` instances in the Katana
- world. This allows us to implement some optimizations behinde the scenes (e.g., caching)
+ world. This allows us to implement some optimizations behinde the scenes (e.g., caching).
 */
 public class PlasticView {
   
   /**
-    They of the instance, this is the same defined in the
+    Key of the instance, this is the same defined in the
     corresponded node description properties
   */
   public let key: String
@@ -223,7 +223,7 @@ public class PlasticView {
   /**
    The bottom anchor of the instance.
    
-   Setting is value has the same effect of invoking `setBottom(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setBottom(_:offset:)` with an offset equal to `.zero`
   */
   public var bottom: Anchor {
     get {
@@ -261,7 +261,7 @@ public class PlasticView {
   /**
    The top anchor of the instance.
    
-   Setting is value has the same effect of invoking `setTop(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setTop(_:offset:)` with an offset equal to `.zero`
   */
   public var top: Anchor {
     get {
@@ -299,7 +299,7 @@ public class PlasticView {
   /**
    The right anchor of the instance.
    
-   Setting is value has the same effect of invoking `setRight(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setRight(_:offset:)` with an offset equal to `.zero`
   */
   public var right: Anchor {
     get {
@@ -338,7 +338,7 @@ public class PlasticView {
   /**
    The left anchor of the instance.
    
-   Setting is value has the same effect of invoking `setLeft(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setLeft(_:offset:)` with an offset equal to `.zero`
   */
   public var left: Anchor {
     get {
@@ -377,7 +377,7 @@ public class PlasticView {
   /**
    The horizontal center anchor of the instance.
    
-   Setting is value has the same effect of invoking `setCenterX(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setCenterX(_:offset:)` with an offset equal to `.zero`
   */
   public var centerX: Anchor {
     get {
@@ -416,7 +416,7 @@ public class PlasticView {
   /**
    The vertical center anchor of the instance.
    
-   Setting is value has the same effect of invoking `setCenterY(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setCenterY(_:offset:)` with an offset equal to `.zero`
   */
   public var centerY: Anchor {
     get {

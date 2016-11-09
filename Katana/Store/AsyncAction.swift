@@ -16,7 +16,7 @@ public enum AsyncActionState {
   /// The action's related operation has been completed
   case completed
   
-  /// The action's related operation is failed
+  /// The action's related operation has failed
   case failed
 }
 
@@ -30,7 +30,7 @@ public enum AsyncActionState {
  In the most common scenario, you dispatch the initial action, execute an operation in the side effect 
  and then dispatch a completed/failed action based on the result of the operation.
  
- This protocol offers two mainly advantages:
+ This protocol offers two main advantages:
 
  * The way in which the action payloads are defined is enforced. We introduced this pattern to
    allow future automatic behaviours such as automatic serialization/deserialization of the actions

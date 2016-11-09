@@ -14,13 +14,13 @@ import UIKit
  Reference Size is used to calculate the Plastic multiplier. For a given node, the multiplier
  is calculated in the following way:
  
- - find the closest anchestor in the nodes tree
+ - find the closest ancestor in the nodes tree
  
- - calculate the height multiplier: `anchestor.size.height / anchestor.desription.referenceSize.height`
+ - calculate the height multiplier: `ancestor.size.height / ancestor.description.referenceSize.height`
  
- - calculate the width multiplier: `anchestor.size.width / anchestor.desription.referenceSize.width`
+ - calculate the width multiplier: `ancestor.size.width / ancestor.description.referenceSize.width`
  
- - the plastic multiplier is the minimum of the two
+ - the Plastic multiplier is the minimum of the two
 */
 public protocol PlasticNodeDescriptionWithReferenceSize {
   

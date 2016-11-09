@@ -52,7 +52,7 @@ public struct Size: Equatable {
    
    - returns: an instance of `Size` where both width and height are scalable
    
-   - warning: Always prefer the static methdo `scalable(_:_:)` instead of this constructor
+   - warning: Always prefer the static method `scalable(_:_:)` instead of this constructor
   */
   public init(_ width: CGFloat, _ height: CGFloat) {
     self.width = Value(width)

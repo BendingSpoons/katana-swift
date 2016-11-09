@@ -20,9 +20,9 @@ public protocol DrawableContainerChild {}
  that renders nodes on abstract structures (e.g., for testing) or on serializable structures to store the UI
  representation and use it later.
  
- - note: We are not currently leveraging this abstraction and it very likely that we will need to work and further improve
-         this protocol in order to use it for meaningful purpose. For instance the signatures 
-         are havily binded to UIView instances, which defeats the entire purpose of this protocol.
+ - note: We are not currently leveraging this abstraction and it's very likely that we will need to work and further improve
+         this protocol in order to use it for meaningful purpose. For instance, the signatures
+         are heavily bound to UIView instances, which defeats the entire purpose of this protocol.
 */
 public protocol DrawableContainer {
   /**

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
 		8133155A1D7B726000FBE210 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151D1D7B726000FBE210 /* Animation.swift */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
@@ -105,6 +106,7 @@
 
 /* Begin PBXFileReference section */
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		8133151D1D7B726000FBE210 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		8133151F1D7B726000FBE210 /* DrawableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableContainer.swift; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -206,6 +208,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6562656B1DD1DA28005E91DC /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				A17AF9971DC9F45C00F6076E /* Button.swift */,
+				656265691DD1C175005E91DC /* NativeButton.swift */,
+			);
+			name = Button;
+			sourceTree = "<group>";
+		};
 		8133151B1D7B726000FBE210 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -427,8 +438,8 @@
 			children = (
 				A17AF9A91DC9F45C00F6076E /* View.swift */,
 				A17AF99B1DC9F45C00F6076E /* Image.swift */,
-				A17AF9971DC9F45C00F6076E /* Button.swift */,
 				A17AF99E1DC9F45C00F6076E /* Label.swift */,
+				6562656B1DD1DA28005E91DC /* Button */,
 				A17AF99F1DC9F45C00F6076E /* Table */,
 				A17AF9A51DC9F45C00F6076E /* TouchHandler */,
 				A17AF9981DC9F45C00F6076E /* Common */,
@@ -656,6 +667,7 @@
 				A17AF9C71DC9F4F200F6076E /* TableCell.swift in Sources */,
 				A17AF9BF1DC9F49500F6076E /* Highlightable.swift in Sources */,
 				A17AF9C51DC9F4F200F6076E /* NativeTableWrapperCell.swift in Sources */,
+				6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */,
 				A17AF9BE1DC9F49500F6076E /* Buildable.swift in Sources */,
 				A17AF9C81DC9F4F200F6076E /* TableDelegate.swift in Sources */,
 				A17AF9C61DC9F4F200F6076E /* Table.swift in Sources */,
