@@ -61,16 +61,14 @@ public class Node<Description: NodeDescription> {
   fileprivate var animationHash: Int?
   
   /**
-    The parent of the node. This variable has a value only
-    if the parent of the node is not the root of the nodes tree
+    The parent of the node.
   */
   public fileprivate(set) weak var parent: AnyNode?
   
   /**
-    The parent of the node. This variable has a value only if
-    the parent is the root of the nodes tree
-  */
-  public fileprivate(set) weak var root: Root?
+   The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns root.renderer
+   */
+  public fileprivate(set) weak var renderer: Renderer?
   
   /// The array of managed children of the node
   public var managedChildren: [AnyNode] = []
@@ -81,47 +79,45 @@ public class Node<Description: NodeDescription> {
    - parameter description: The description to associate with the node
    - parameter parent:      The parent of the node
    - returns: an instance of `Node` with the given parameters
-   
-   - note: the `root` parameter will be nil
   */
   public convenience init(description: Description, parent: AnyNode) {
-    self.init(description: description, parent: parent, root: nil)
+    self.init(description: description, parent: parent, renderer: nil)
   }
  
   /**
    Creates an instance of node
    
    - parameter description: The description to associate with the node
-   - parameter root:        The root of the nodes tree. The new node will become a child of the root
+   - parameter renderer:    The renderer of the node. The node will be managed by the renderer as a root node
    - returns: an instance of `Node` with the given parameters
    
    - note: the `parent` parameter will be nil
   */
-  public convenience init(description: Description, root: Root) {
-    self.init(description: description, parent: nil, root: root)
+  public convenience init(description: Description, renderer: Renderer) {
+    self.init(description: description, parent: nil, renderer: renderer)
   }
 
   /**
-   Creates an instance of node given a description and the parent
+   Creates an instance of node given a description and the renderer
    
-   - note: You can either pass `parent` or `root` but not both. Internally `root`
-           is passed when a node is created directly from the root (e.g., when `makeRoot` is invoked)
+   - note: You can either pass `parent` or `renderer` but not both. Internally `renderer`
+           is passed when a renderer is created starting from this node description
    
    - parameter description: The description to associate with the node
    - parameter parent:      The parent of the node
-   - parameter rot:         The parent of the node, if it is a root
+   - parameter renderer:         The renderer of the node. The node will be managed by the renderer as a root node
    
    - returns: A valid instance of Node
   */
-  internal init(description: Description, parent: AnyNode?, root: Root?) {
-    guard (parent != nil) != (root != nil) else {
-      fatalError("either the parent or the root should be passed")
+  internal init(description: Description, parent: AnyNode?, renderer: Renderer?) {
+    guard (parent != nil) != (renderer != nil) else {
+      fatalError("either the parent or the renderer should be passed")
     }
     
     self.description = description
     self.state = Description.StateType.init()
     self.parent = parent
-    self.root = root
+    self.renderer = renderer
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
@@ -297,7 +293,7 @@ extension Node {
       }
     }
     
-    let dispatch =  self.treeRoot.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    let dispatch =  self.renderer.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).childrenDescriptions(props: self.description.props,
                                         state: self.state,
@@ -320,7 +316,7 @@ extension Node {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.treeRoot.store else {
+      guard let store = self.renderer.store else {
         fatalError("connected node lacks store")
       }
       

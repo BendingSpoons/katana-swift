@@ -12,10 +12,11 @@ import Foundation
  Internal protocol that allow the drawing of the node in a container.
  
  We basically don't want to expose `draw` as a public method. We want to force developers
- to call draw only on the root node by invoking
+ to call draw only on the renderer by invoking
  
  ```
- Description().makeRoot(..).render(..)
+ renderer = Renderer(rootDescription: rootNodeDescription, store: store)
+ renderer.render(in: view)
  ```
  */
 protocol InternalAnyNode: AnyNode {

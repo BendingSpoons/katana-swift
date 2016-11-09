@@ -3,8 +3,8 @@ import XCTest
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
-    let node = root.node!
+    let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
+    let node = renderer.rootNode!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
@@ -28,11 +28,11 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
-    let node = root.node!
+    let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
+    let node = renderer.rootNode!
     
     let rootVew = UIView()
-    root.render(in: rootVew)
+    renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }

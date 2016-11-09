@@ -15,52 +15,52 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testLayoutInvoked() {
-    let root = TestNode(props: EmptyProps()).makeRoot(store: nil)
-    root.render(in: UIView())
+    let renderer = Renderer(rootDescription: TestNode(props: EmptyProps()), store: nil)
+    renderer.render(in: UIView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
   
   func testNodeDeallocationPlastic() {
-    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
-    
+
+    let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
   
-    var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    var references = collectNodes(node: renderer.rootNode!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    root.node!.update(with: App(props: AppProps(i:1)))
+
+    renderer.rootNode!.update(with: App(props: AppProps(i:1)))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    references = collectNodes(node: renderer.rootNode!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    root.node!.update(with: App(props: AppProps(i:2)))
+    renderer.rootNode!.update(with: App(props: AppProps(i:2)))
+
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
-    references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
+    references = collectNodes(node: renderer.rootNode!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 0)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
   }
   
   func testViewDeallocationWithPlastic() {
-
-    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
+    let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
     
     let rootVew = UIView()
-    root.render(in: rootVew)
+    renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
       .filter { $0.tag ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      root.node!.update(with: App(props: AppProps(i:2)))
+      renderer.rootNode!.update(with: App(props: AppProps(i:2)))
     }
-    
     
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
     
@@ -142,8 +142,6 @@ fileprivate struct App: NodeDescription {
                                  update: @escaping (EmptyState) -> (),
                                  dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
 
-    
-    
     let i = props.i
     
     if i == 0 {

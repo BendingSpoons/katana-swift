@@ -57,7 +57,7 @@ class NativeTableWrapperCell: UITableViewCell {
     // if we have a node, and the description is of the CellNodeDescription kind, then
     // we can automate the tap process
     if let node = self.node, let description = node.anyDescription as? AnyTableCell {
-      let store = node.treeRoot.store
+      let store = node.renderer.store
       let dispatch = store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not available.") }
       type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
     }

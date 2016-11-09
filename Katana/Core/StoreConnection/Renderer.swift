@@ -9,22 +9,21 @@
 import Foundation
 
 /**
- This class represents the root node of the nodes tree.
- 
- It should be created using the `makeRoot` method of `NodeDescription`.
- A typical usage of the `Root` is the following:
+ This class has the responsibility to render the nodes tree starting from the description of the root node.
+ It will also update the rendering to reflect the changes happening in the `Store`.
  
  ```
  // in the App Delegate
  let store = getStore()
  
- // root should be retained, otherwise the all tree will be removed
- // get the root and renders it
- self.root = Description(props: props).makeRoot(store: store)
- self.root!.render(in: view)
+ // renderer should be retained, otherwise the all tree will be removed
+ // create the renderer starting from the description of the root node and the store
+ // (optional, only if you want the UI to be updated reflecting the store changes)
+ self.renderer = Renderer(rootDescription: counterScreen, store: store)
+ renderer!.render(in: view)
  ```
 */
-open class Root {
+open class Renderer {
   /// The store that is used in the application
   public let store: AnyStore?
   
@@ -33,10 +32,10 @@ open class Root {
    
     - warning node can be sat only once. Trying to update it will result in a runtime exception
   */
-  public var node: AnyNode? {
-    willSet(node) {
-      if self.node != nil {
-        fatalError("node cannot be changed")
+  public var rootNode: AnyNode! {
+    willSet(rootNode) {
+      if self.rootNode != nil {
+        fatalError("root node cannot be changed")
       }
     }
   }
@@ -45,34 +44,34 @@ open class Root {
   private var unsubscribe: StoreUnsubscribe?
 
   /**
-   Creates an instance of root that holds a store
+   Creates an instance of the Renderer that holds a store
    
+   - parameter rootDescription: the root node description
    - parameter store: the store of the application
-   - returns: An instance of Root that manages the store
+   - returns: An instance of Renderer that manages rendering and store updates
   */
-  public init(store: AnyStore?) {
+  public init(rootDescription: AnyNodeDescription, store: AnyStore?) {
     self.store = store
     
-    let unsubscribe = store?.addListener({ [unowned self] in
+    let unsubscribe = self.store?.addListener({ [unowned self] in
       self.storeDidChange()
-    })
+      })
     
     self.unsubscribe = unsubscribe
+    self.rootNode = rootDescription.makeNode(renderer: self)
   }
 
   /**
-   Renders the root in a container
+   Renders the nodes tree in a container
    
    - parameter container: the container that will be used to render the root node
-   
-   - warning: It is possible to invoke this method only after `node` has been setted.
   */
   public func render(in container: DrawableContainer) {
-    guard let node = self.node else {
-      fatalError("the node should be provided firt")
+    guard let rootNode = self.rootNode else {
+      fatalError("the node should be provided first")
     }
     
-    let n = node as! InternalAnyNode
+    let n = rootNode as! InternalAnyNode
     n.render(in: container)
   }
   
@@ -80,8 +79,8 @@ open class Root {
    Method that is used to manage an update in the store's state
   */
   private func storeDidChange() -> Void {
-    if let node = self.node {
-      self.explore(node)
+    if let rootNode = self.rootNode {
+      self.explore(rootNode)
     }
   }
   
@@ -118,12 +117,12 @@ open class Root {
 
 
 public extension AnyNode {
-  /// Returns the Root of the nodes tree
-  public var treeRoot: Root {
+  /// traverses the nodes hierarchy up to the root node to get the `root.renderer`
+  public var renderer: Renderer {
     var node: AnyNode = self
     while node.parent != nil {
       node = node.parent!
     }
-    return node.root!
+    return node.renderer!
   }
 }

@@ -23,13 +23,12 @@ public protocol AnyNode: class {
   var managedChildren: [AnyNode] { get }
   
   /// The parent of the node
-  var parent: AnyNode? {get}
+  var parent: AnyNode? { get }
   
   /**
-   The parent of the node. This variable has a value only if
-   the parent is the root of the nodes tree
+   The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns `root.renderer`
    */
-  var root: Root? {get}
+  var renderer: Renderer? { get }
   
   /**
    Updates the node with a new description. Invoking this method will cause an update of the piece of the UI managed by the node

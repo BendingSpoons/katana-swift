@@ -32,7 +32,7 @@ fileprivate struct TestDescription: AnyNodeDescription, Equatable {
     fatalError()
   }
   
-  fileprivate func makeRoot(store: AnyStore?) -> Root {
+  fileprivate func makeNode(renderer: Renderer) -> AnyNode {
     fatalError()
   }
   
