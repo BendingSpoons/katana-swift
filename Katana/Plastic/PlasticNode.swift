@@ -110,7 +110,7 @@ public extension AnyNode {
   */
   public var plasticMultipler: CGFloat {
     
-    guard let description = self.anyDescription as? PlasticNodeDescriptionWithReferenceSize else {
+    guard let description = self.anyDescription as? PlasticReferenceSizeable else {
       return self.parent?.plasticMultipler ?? 0.0
     }
     

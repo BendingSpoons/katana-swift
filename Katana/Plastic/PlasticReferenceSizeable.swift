@@ -1,5 +1,5 @@
 //
-//  PlasticNodeDescriptionWithReferenceSize.swift
+//  PlasticReferenceSizeable.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 19/08/16.
@@ -22,7 +22,7 @@ import UIKit
  
  - the Plastic multiplier is the minimum of the two
 */
-public protocol PlasticNodeDescriptionWithReferenceSize {
+public protocol PlasticReferenceSizeable {
   
   /// the reference size of the `NodeDescription`
   static var referenceSize: CGSize {get}

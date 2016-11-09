@@ -32,7 +32,7 @@
 		813315761D7B726000FBE210 /* CoordinateConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315401D7B726000FBE210 /* CoordinateConvertible.swift */; };
 		813315771D7B726000FBE210 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315411D7B726000FBE210 /* PlasticNode.swift */; };
 		813315781D7B726000FBE210 /* PlasticNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315421D7B726000FBE210 /* PlasticNodeDescription.swift */; };
-		813315791D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */; };
+		813315791D7B726000FBE210 /* PlasticReferenceSizeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315431D7B726000FBE210 /* PlasticReferenceSizeable.swift */; };
 		8133157A1D7B726000FBE210 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315441D7B726000FBE210 /* PlasticView+Convenience.swift */; };
 		8133157B1D7B726000FBE210 /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315451D7B726000FBE210 /* PlasticView.swift */; };
 		8133157C1D7B726000FBE210 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315461D7B726000FBE210 /* Size.swift */; };
@@ -168,7 +168,7 @@
 		813315401D7B726000FBE210 /* CoordinateConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinateConvertible.swift; sourceTree = "<group>"; };
 		813315411D7B726000FBE210 /* PlasticNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNode.swift; sourceTree = "<group>"; };
 		813315421D7B726000FBE210 /* PlasticNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescription.swift; sourceTree = "<group>"; };
-		813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticNodeDescriptionWithReferenceSize.swift; sourceTree = "<group>"; };
+		813315431D7B726000FBE210 /* PlasticReferenceSizeable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticReferenceSizeable.swift; sourceTree = "<group>"; };
 		813315441D7B726000FBE210 /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
 		813315451D7B726000FBE210 /* PlasticView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlasticView.swift; sourceTree = "<group>"; };
 		813315461D7B726000FBE210 /* Size.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
@@ -367,7 +367,7 @@
 				813315401D7B726000FBE210 /* CoordinateConvertible.swift */,
 				813315411D7B726000FBE210 /* PlasticNode.swift */,
 				813315421D7B726000FBE210 /* PlasticNodeDescription.swift */,
-				813315431D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift */,
+				813315431D7B726000FBE210 /* PlasticReferenceSizeable.swift */,
 				813315441D7B726000FBE210 /* PlasticView+Convenience.swift */,
 				813315451D7B726000FBE210 /* PlasticView.swift */,
 				813315461D7B726000FBE210 /* Size.swift */,
@@ -841,7 +841,7 @@
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */,
 				8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */,
-				813315791D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */,
+				813315791D7B726000FBE210 /* PlasticReferenceSizeable.swift in Sources */,
 				813315731D7B726000FBE210 /* Anchor.swift in Sources */,
 				813315741D7B726000FBE210 /* Array+Plastic.swift in Sources */,
 				8133157A1D7B726000FBE210 /* PlasticView+Convenience.swift in Sources */,
