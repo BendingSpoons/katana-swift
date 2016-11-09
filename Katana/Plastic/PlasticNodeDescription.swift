@@ -113,18 +113,5 @@ public extension PlasticNodeDescription {
   public func makeNode(renderer: Renderer) -> AnyNode {
     return PlasticNode(description: self, renderer: renderer)
   }
-
-  /**
-   Creates an instance of `Root` given the store.
-   
-   This method is the same as the `NodeDescription` `makeRoot(store:)` but the
-   root's `node` property will be an instance of `PlasticNode`
-  */
-  /*func makeRenderer(with store: AnyStore?) -> Renderer {
-    let renderer = Renderer(store: store)
-    let node = PlasticNode(description: self, renderer: renderer)
-    renderer.node = node
-    return renderer
-  }*/
   
 }
