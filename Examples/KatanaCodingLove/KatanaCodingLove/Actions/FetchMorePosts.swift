@@ -17,64 +17,21 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         var posts: Array<Post>
         var allFetched: Bool = false
     }
-    
-    public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
-        if action.state != .loading {
-            return
-        }
-        
-        let castedState = state as! CodingLoveState
-        let page: Int = castedState.page
-        DispatchQueue.global().async {
-            // Read the file from bundle, faking a network request. Should take a few seconds
-            if let path = Bundle.main.path(forResource: "posts", ofType: "json")
-            {
-                let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
-                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>>
-                {
-                    var actualPosts = [Dictionary<String, String>]()
-                    var allFetched = false
-                    for index in (page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE) {
-                        if index < posts.count {
-                            actualPosts.append(posts[index])
-                        } else {
-                            allFetched = true
-                        }
-                    }
-                    var result = [Post]()
-                    for post in actualPosts {
-                        let title = post["title"]
-                        
-                        guard let imageUrl = URL(string: post["image_url"]!) else {
-                            continue  // Fail silently
-                        }
-                        
-                        guard let imageData = try? Data(contentsOf: imageUrl) else {
-                            continue  // Fail silently
-                        }
-                        
-                        result.append(Post(title: title!, imageData: imageData))
-                        
-                    }
-                    dispatch(action.completedAction(payload: CompletedActionPayload(posts: result, allFetched: allFetched)))
-                }
-            }
-            dispatch(action.failedAction(payload: "Some error occurred fetching posts"))
-        }
-    }
 
-
-    /// The loading payload of the action
-    public var loadingPayload: String
-    public var completedPayload: CompletedActionPayload?
-    public var failedPayload: String?
-    
-    /// The state of the action
-    public var state: AsyncActionState = .loading
-    
     typealias LoadingPayload = String
     typealias CompletedPayload = CompletedActionPayload
     typealias FailedPayload = String
+
+    public var loadingPayload: LoadingPayload
+    public var completedPayload: CompletedPayload?
+    public var failedPayload: FailedPayload?
+    
+    public var state: AsyncActionState = .loading
+    
+    
+    init(payload: LoadingPayload) {
+        self.loadingPayload = payload
+    }
     
     static func updatedStateForLoading(currentState: State, action: FetchMorePosts) -> State {
         var newState = currentState as! CodingLoveState
@@ -95,10 +52,51 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         var newState = currentState as! CodingLoveState
         newState.loading = false
         return newState
-        // TODO
+        // TODO: Manage error state!
     }
     
-    init(payload: LoadingPayload) {
-        self.loadingPayload = payload
+    public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
+        // FIXME: this shall be removed after it's fixed in Katana
+        if action.state != .loading {
+            return
+        }
+        
+        let castedState = state as! CodingLoveState
+        let page: Int = castedState.page
+        
+        DispatchQueue.global().async {
+            // Read the file from bundle, faking a network request.
+            if let path = Bundle.main.path(forResource: "posts", ofType: "json")
+            {
+                let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
+                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>>
+                {
+                    
+                    let actualPosts = posts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)]
+                    var allFetched = false
+                    if ((page+1) * POSTS_PER_PAGE) >= posts.count {
+                        allFetched = true
+                    }
+                    
+                    var result = [Post]()
+                    for post in actualPosts {
+                        let title = post["title"]
+                        
+                        guard let imageUrl = URL(string: post["image_url"]!) else {
+                            continue  // Fail silently
+                        }
+                        
+                        guard let imageData = try? Data(contentsOf: imageUrl) else {
+                            continue  // Fail silently
+                        }
+                        
+                        result.append(Post(title: title!, imageData: imageData))
+                        
+                    }
+                    dispatch(action.completedAction(payload: CompletedActionPayload(posts: result, allFetched: allFetched)))
+                }
+            }
+            dispatch(action.failedAction(payload: "Some error occurred fetching posts"))
+        }
     }
 }
