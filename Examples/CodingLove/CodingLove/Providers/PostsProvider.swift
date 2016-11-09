@@ -22,7 +22,7 @@ struct PostsProvider: SideEffectDependencyContainer {
         DispatchQueue.global().async {
             if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
                 let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
-                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>> {
+                if let posts: [[String: String]] = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String: String]] {
                     var allFetched = false
                     if ((page+1) * POSTS_PER_PAGE) >= posts.count {
                         allFetched = true
@@ -36,7 +36,7 @@ struct PostsProvider: SideEffectDependencyContainer {
         }
     }
     
-    private func parsePosts(postsToParse: Array<Dictionary<String, String>>) -> [Post] {
+    private func parsePosts(postsToParse: [[String: String]]) -> [Post] {
         var result = [Post]()
         for post in postsToParse {
             let title = post["title"]

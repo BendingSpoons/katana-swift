@@ -30,9 +30,7 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
     
     var props: Props
     
-    static var referenceSize: CGSize {
-        return CGSize(width: 640, height: 500)
-    }
+    static var referenceSize = CGSize(width: 640, height: 500)
     
     static func childrenDescriptions(props: PropsType,
                                      state: StateType,

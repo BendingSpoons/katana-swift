@@ -60,9 +60,11 @@ extension CodingLove {
                 return false
             }
             
-            let another = anotherDelegate as! TableViewDelegate
+            guard let anotherDelegate = anotherDelegate as? TableViewDelegate else {
+                return false
+            }
             
-            if posts != another.posts {
+            if posts != anotherDelegate.posts {
                 return false
             }
             
@@ -79,9 +81,7 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNode
     
     var props: PropsType
     
-    static var referenceSize: CGSize {
-        return CGSize(width: 640, height: 960)
-    }
+    static var referenceSize = CGSize(width: 640, height: 960)
     
     static func childrenDescriptions(props: PropsType,
                                      state: StateType,

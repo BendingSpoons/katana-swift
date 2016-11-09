@@ -30,9 +30,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
     
     var props: Props
     
-    static var referenceSize: CGSize {
-        return CGSize(width: 640, height: 200)
-    }
+    static var referenceSize = CGSize(width: 640, height: 200)
     
     static func childrenDescriptions(props: PropsType,
                                      state: StateType,
