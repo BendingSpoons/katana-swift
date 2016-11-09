@@ -17,7 +17,7 @@ extension CodingLove {
         case titleLabel
     }
     
-    struct Props: NodeProps, Buildable {
+    struct Props: NodeDescriptionProps, Buildable {
         var frame: CGRect = .zero
         var posts: [Post] = [Post]()
         var loading: Bool = true

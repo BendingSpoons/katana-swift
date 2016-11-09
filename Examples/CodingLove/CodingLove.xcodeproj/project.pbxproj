@@ -10,7 +10,6 @@
 		E3986C1E1DD0C62800FAF8D8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */; };
 		E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C211DD0C62800FAF8D8 /* Main.storyboard */; };
 		E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E3986C241DD0C62800FAF8D8 /* Assets.xcassets */; };
-		E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */; };
 		E3986C961DD0C97F00FAF8D8 /* FetchMorePosts.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */; };
 		E3986C971DD0C97F00FAF8D8 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8C1DD0C97F00FAF8D8 /* Post.swift */; };
 		E3986C981DD0C97F00FAF8D8 /* CodingLove.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */; };
@@ -20,26 +19,28 @@
 		E3986C9D1DD0C97F00FAF8D8 /* UIImage+Gif.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */; };
 		E3986CA21DD1F4F600FAF8D8 /* posts.json in Resources */ = {isa = PBXBuildFile; fileRef = E3986CA11DD1F4F600FAF8D8 /* posts.json */; };
 		E3F73CF21DD3629B005A86AC /* PostsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3F73CF11DD3629B005A86AC /* PostsProvider.swift */; };
+		E3F73D031DD38193005A86AC /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F73CFD1DD3811D005A86AC /* Katana.framework */; };
+		E3F73D041DD38193005A86AC /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E3F73D011DD3811D005A86AC /* KatanaElements.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		E3986C701DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+		E3F73CFC1DD3811D005A86AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			containerPortal = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 81EA56C71D5F3A6000B6290E;
 			remoteInfo = Katana;
 		};
-		E3986C721DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+		E3F73CFE1DD3811D005A86AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			containerPortal = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 81EA56D61D5F3A6E00B6290E;
 			remoteInfo = KatanaTests;
 		};
-		E3986C741DD0C92B00FAF8D8 /* PBXContainerItemProxy */ = {
+		E3F73D001DD3811D005A86AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+			containerPortal = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 6513094F1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
@@ -47,13 +48,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KatanaCodingLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		E3986C1A1DD0C62800FAF8D8 /* CodingLove.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CodingLove.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E3986C221DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E3986C241DD0C62800FAF8D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		E3986C271DD0C62800FAF8D8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E3986C291DD0C62800FAF8D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Katana.xcodeproj; path = ../../Katana.xcodeproj; sourceTree = "<group>"; };
 		E3986C8A1DD0C97F00FAF8D8 /* FetchMorePosts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FetchMorePosts.swift; sourceTree = "<group>"; };
 		E3986C8C1DD0C97F00FAF8D8 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodingLove.swift; sourceTree = "<group>"; };
@@ -63,6 +62,7 @@
 		E3986C951DD0C97F00FAF8D8 /* UIImage+Gif.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Gif.swift"; sourceTree = "<group>"; };
 		E3986CA11DD1F4F600FAF8D8 /* posts.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = posts.json; sourceTree = "<group>"; };
 		E3F73CF11DD3629B005A86AC /* PostsProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostsProvider.swift; sourceTree = "<group>"; };
+		E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Katana.xcodeproj; path = ../../Katana.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -70,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E3F73D031DD38193005A86AC /* Katana.framework in Frameworks */,
+				E3F73D041DD38193005A86AC /* KatanaElements.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,21 +81,21 @@
 		E3986C111DD0C62800FAF8D8 = {
 			isa = PBXGroup;
 			children = (
-				E3986C1C1DD0C62800FAF8D8 /* KatanaCodingLove */,
+				E3986C1C1DD0C62800FAF8D8 /* CodingLove */,
 				E3986C1B1DD0C62800FAF8D8 /* Products */,
-				E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */,
+				E3F73CF51DD3811C005A86AC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
 		E3986C1B1DD0C62800FAF8D8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */,
+				E3986C1A1DD0C62800FAF8D8 /* CodingLove.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		E3986C1C1DD0C62800FAF8D8 /* KatanaCodingLove */ = {
+		E3986C1C1DD0C62800FAF8D8 /* CodingLove */ = {
 			isa = PBXGroup;
 			children = (
 				E3F73CED1DD36281005A86AC /* Providers */,
@@ -105,21 +107,10 @@
 				E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */,
 				E3986C211DD0C62800FAF8D8 /* Main.storyboard */,
 				E3986C241DD0C62800FAF8D8 /* Assets.xcassets */,
-				E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */,
 				E3986C291DD0C62800FAF8D8 /* Info.plist */,
 				E3986CA11DD1F4F600FAF8D8 /* posts.json */,
 			);
-			path = KatanaCodingLove;
-			sourceTree = "<group>";
-		};
-		E3986C6A1DD0C92B00FAF8D8 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				E3986C711DD0C92B00FAF8D8 /* Katana.framework */,
-				E3986C731DD0C92B00FAF8D8 /* KatanaTests.xctest */,
-				E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */,
-			);
-			name = Products;
+			path = CodingLove;
 			sourceTree = "<group>";
 		};
 		E3986C891DD0C97F00FAF8D8 /* Actions */ = {
@@ -172,12 +163,30 @@
 			path = Providers;
 			sourceTree = "<group>";
 		};
+		E3F73CF51DD3811C005A86AC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3F73CF71DD3811C005A86AC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				E3F73CFD1DD3811D005A86AC /* Katana.framework */,
+				E3F73CFF1DD3811D005A86AC /* KatanaTests.xctest */,
+				E3F73D011DD3811D005A86AC /* KatanaElements.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		E3986C191DD0C62800FAF8D8 /* KatanaCodingLove */ = {
+		E3986C191DD0C62800FAF8D8 /* CodingLove */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "KatanaCodingLove" */;
+			buildConfigurationList = E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "CodingLove" */;
 			buildPhases = (
 				E3986C161DD0C62800FAF8D8 /* Sources */,
 				E3986C171DD0C62800FAF8D8 /* Frameworks */,
@@ -187,9 +196,9 @@
 			);
 			dependencies = (
 			);
-			name = KatanaCodingLove;
+			name = CodingLove;
 			productName = KatanaCodingLove;
-			productReference = E3986C1A1DD0C62800FAF8D8 /* KatanaCodingLove.app */;
+			productReference = E3986C1A1DD0C62800FAF8D8 /* CodingLove.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -208,7 +217,7 @@
 					};
 				};
 			};
-			buildConfigurationList = E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "KatanaCodingLove" */;
+			buildConfigurationList = E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "CodingLove" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -221,37 +230,37 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = E3986C6A1DD0C92B00FAF8D8 /* Products */;
-					ProjectRef = E3986C5B1DD0C92800FAF8D8 /* Katana.xcodeproj */;
+					ProductGroup = E3F73CF71DD3811C005A86AC /* Products */;
+					ProjectRef = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
 				},
 			);
 			projectRoot = "";
 			targets = (
-				E3986C191DD0C62800FAF8D8 /* KatanaCodingLove */,
+				E3986C191DD0C62800FAF8D8 /* CodingLove */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		E3986C711DD0C92B00FAF8D8 /* Katana.framework */ = {
+		E3F73CFD1DD3811D005A86AC /* Katana.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = Katana.framework;
-			remoteRef = E3986C701DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			remoteRef = E3F73CFC1DD3811D005A86AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3986C731DD0C92B00FAF8D8 /* KatanaTests.xctest */ = {
+		E3F73CFF1DD3811D005A86AC /* KatanaTests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
 			path = KatanaTests.xctest;
-			remoteRef = E3986C721DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			remoteRef = E3F73CFE1DD3811D005A86AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		E3986C751DD0C92B00FAF8D8 /* KatanaElements.framework */ = {
+		E3F73D011DD3811D005A86AC /* KatanaElements.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
 			path = KatanaElements.framework;
-			remoteRef = E3986C741DD0C92B00FAF8D8 /* PBXContainerItemProxy */;
+			remoteRef = E3F73D001DD3811D005A86AC /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -261,7 +270,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E3986C281DD0C62800FAF8D8 /* LaunchScreen.storyboard in Resources */,
 				E3986C251DD0C62800FAF8D8 /* Assets.xcassets in Resources */,
 				E3986C231DD0C62800FAF8D8 /* Main.storyboard in Resources */,
 				E3986CA21DD1F4F600FAF8D8 /* posts.json in Resources */,
@@ -296,14 +304,6 @@
 				E3986C221DD0C62800FAF8D8 /* Base */,
 			);
 			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		E3986C261DD0C62800FAF8D8 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				E3986C271DD0C62800FAF8D8 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -404,9 +404,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KatanaCodingLove/Info.plist;
+				INFOPLIST_FILE = CodingLove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.KatanaCodingLove;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.CodingLove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -416,9 +416,9 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = KatanaCodingLove/Info.plist;
+				INFOPLIST_FILE = CodingLove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.KatanaCodingLove;
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.CodingLove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -427,7 +427,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "KatanaCodingLove" */ = {
+		E3986C151DD0C62800FAF8D8 /* Build configuration list for PBXProject "CodingLove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3986C351DD0C62800FAF8D8 /* Debug */,
@@ -436,7 +436,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "KatanaCodingLove" */ = {
+		E3986C371DD0C62800FAF8D8 /* Build configuration list for PBXNativeTarget "CodingLove" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				E3986C381DD0C62800FAF8D8 /* Debug */,

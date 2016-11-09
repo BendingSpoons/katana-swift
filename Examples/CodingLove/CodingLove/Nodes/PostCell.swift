@@ -10,16 +10,13 @@ import Foundation
 import Katana
 import KatanaElements
 
-
-
-
 extension PostCell {
     enum Keys {
         case titleLabel
         case gifImage
     }
     
-    struct Props: NodeProps, Buildable {
+    struct Props: NodeDescriptionProps, Buildable {
         var frame: CGRect = .zero
         var index: Int = 0
         var post: Post? = nil

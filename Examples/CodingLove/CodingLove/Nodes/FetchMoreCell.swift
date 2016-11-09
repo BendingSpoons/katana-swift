@@ -15,7 +15,7 @@ extension FetchMoreCell {
         case label
     }
     
-    struct Props: NodeProps {
+    struct Props: NodeDescriptionProps {
         var frame: CGRect = .zero
         var loading: Bool = true
         var allPostsFetched: Bool = false
