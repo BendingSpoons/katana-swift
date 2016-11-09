@@ -9,12 +9,10 @@
 import Foundation
 import Katana
 
-let POSTS_PER_PAGE = 3
-
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     
     public struct CompletedActionPayload {
-        var posts: Array<Post>
+        var posts: [Post]
         var allFetched: Bool = false
     }
 
@@ -65,9 +63,10 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         
         let postsProvider = dependencies as! PostsProvider
         
-        postsProvider.fetchPosts(page: page, with: { (posts, allFetched, errorMessage) in
-            if let fetchedPosts = posts {
-                dispatch(action.completedAction(payload: CompletedActionPayload(posts: fetchedPosts, allFetched: allFetched)))
+        postsProvider.fetchPosts(page: page, with: { (result, errorMessage) in
+            if let data = result {
+                let (posts, allFetched) = data
+                dispatch(action.completedAction(payload: CompletedActionPayload(posts: posts, allFetched: allFetched)))
             
             } else {
                 dispatch(action.failedAction(payload: errorMessage!))

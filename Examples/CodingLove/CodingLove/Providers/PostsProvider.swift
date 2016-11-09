@@ -9,6 +9,7 @@
 import Foundation
 import Katana
 
+let POSTS_PER_PAGE = 3
 
 struct PostsProvider: SideEffectDependencyContainer {
     var posts: [Post]
@@ -17,7 +18,7 @@ struct PostsProvider: SideEffectDependencyContainer {
         self.posts = [Post]()
     }
     
-    public func fetchPosts(page: Int,with completion: @escaping ([Post]?, Bool, String?) -> ()) {
+    public func fetchPosts(page: Int,with completion: @escaping (([Post], Bool)?, String?) -> ()) {
         DispatchQueue.global().async {
             if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
                 let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
@@ -28,10 +29,10 @@ struct PostsProvider: SideEffectDependencyContainer {
                     }
                     
                     let actualPosts = Array(posts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)])
-                    completion(self.parsePosts(postsToParse: actualPosts), allFetched, nil)
+                    completion((self.parsePosts(postsToParse: actualPosts), allFetched), nil)
                 }
             }
-            completion(nil, false, "Could not fetch posts")
+            completion(nil, "Could not fetch posts")
         }
     }
     
