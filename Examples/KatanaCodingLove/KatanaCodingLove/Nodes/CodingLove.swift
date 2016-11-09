@@ -12,7 +12,7 @@ import KatanaElements
 
 
 extension CodingLove {
-    enum Keys: String {
+    enum Keys {
         case tableView
         case titleLabel
     }
@@ -27,10 +27,6 @@ extension CodingLove {
     struct TableViewDelegate: TableDelegate {
         var posts: [Post]
         
-        // FIXME: Remove
-        var loading: Bool
-        var allPostsFetched: Bool
-        
         public func numberOfSections() -> Int {
             return 2
         }
@@ -42,14 +38,14 @@ extension CodingLove {
             return 1
         }
         
-        // FIXME: connect components to store and pass index only
         public func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
             if indexPath.section == 0 {
-                let post = posts[indexPath.row]
-                return PostCell(props: PostCell.Props(frame: .zero, post: post))
+                return PostCell(props: PostCell.Props.build({
+                    $0.index = indexPath.row
+                }))
             }
 
-            return FetchMoreCell(props: FetchMoreCell.Props(frame: .zero, loading: loading, allPostsFetched: allPostsFetched))
+            return FetchMoreCell(props: FetchMoreCell.Props())
         }
         
         public func height(forRowAt indexPath: IndexPath) -> Katana.Value {
@@ -67,14 +63,6 @@ extension CodingLove {
             let another = anotherDelegate as! TableViewDelegate
             
             if posts != another.posts {
-                return false
-            }
-            
-            if loading != another.loading {
-                return false
-            }
-            
-            if allPostsFetched != another.allPostsFetched {
                 return false
             }
             
@@ -101,15 +89,15 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNode
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
         return [
             Label(props: LabelProps.build({
-                $0.key = Keys.titleLabel.rawValue
+                $0.setKey(Keys.titleLabel)
                 $0.text = NSAttributedString(string: "The Coding Love", attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 25)
                 ])
                 $0.textAlignment = NSTextAlignment.center
             })),
             Table(props: TableProps.build({
-                $0.key = Keys.tableView.rawValue
-                $0.delegate = TableViewDelegate(posts: props.posts, loading: props.loading, allPostsFetched: props.allPostsFetched)
+                $0.setKey(Keys.tableView)
+                $0.delegate = TableViewDelegate(posts: props.posts)
             }))
         ]
     }

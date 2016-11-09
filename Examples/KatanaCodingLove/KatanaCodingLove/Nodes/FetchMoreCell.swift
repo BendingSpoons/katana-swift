@@ -23,7 +23,7 @@ extension FetchMoreCell {
 }
 
 
-struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell  {
+struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription  {
     typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
     typealias NativeView = NativeTableCell
@@ -78,4 +78,8 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
         dispatch(FetchMorePosts(payload: ()))
     }
 
+    static func connect(props: inout Props, to storeState: CodingLoveState) {
+        props.loading = storeState.loading
+        props.allPostsFetched = storeState.allPostsFetched
+    }
 }

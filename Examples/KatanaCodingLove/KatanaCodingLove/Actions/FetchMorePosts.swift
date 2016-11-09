@@ -52,7 +52,6 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         var newState = currentState as! CodingLoveState
         newState.loading = false
         return newState
-        // TODO: Manage error state!
     }
     
     // FIXME: refactor

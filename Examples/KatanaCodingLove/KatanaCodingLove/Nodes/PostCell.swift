@@ -14,18 +14,19 @@ import KatanaElements
 
 
 extension PostCell {
-    enum Keys: String {
+    enum Keys {
         case titleLabel
         case gifImage
     }
     
-    struct Props: NodeProps {
+    struct Props: NodeProps, Buildable {
         var frame: CGRect = .zero
+        var index: Int = 0
         var post: Post? = nil
     }
 }
 
-struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell {
+struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription {
     typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
     typealias NativeView = NativeTableCell
@@ -42,7 +43,7 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
         return [
             Label(props: LabelProps.build({
-                $0.key = Keys.titleLabel.rawValue
+                $0.setKey(Keys.titleLabel)
                 $0.text = NSAttributedString(string: (props.post?.title)!, attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 18)
                 ])
@@ -50,7 +51,7 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
                 $0.numberOfLines = 0
             })),
             Image(props: ImageProps.build({
-                $0.key = Keys.gifImage.rawValue
+                $0.setKey(Keys.gifImage)
                 $0.image = UIImage.gif(data: (props.post?.imageData)!)
                 $0.backgroundColor = UIColor.lightGray
             })),
@@ -72,5 +73,9 @@ struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize
     
     static func didTap(dispatch: StoreDispatch, props: PropsType, indexPath: IndexPath) {
         // Do nothing
+    }
+    
+    static func connect(props: inout Props, to storeState: CodingLoveState) {
+        props.post = storeState.posts[props.index]
     }
 }
