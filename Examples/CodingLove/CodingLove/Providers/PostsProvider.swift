@@ -18,7 +18,7 @@ struct PostsProvider: SideEffectDependencyContainer {
         self.posts = [Post]()
     }
     
-    public func fetchPosts(page: Int,with completion: @escaping (([Post], Bool)?, String?) -> ()) {
+    public func fetchPosts(for page: Int, completion: @escaping (([Post], Bool)?, String?) -> ()) {
         DispatchQueue.global().async {
             if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
                 let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)

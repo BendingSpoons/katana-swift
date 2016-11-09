@@ -63,7 +63,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         
         let postsProvider = dependencies as! PostsProvider
         
-        postsProvider.fetchPosts(page: page, with: { (result, errorMessage) in
+        postsProvider.fetchPosts(for: page) { (result, errorMessage) in
             if let data = result {
                 let (posts, allFetched) = data
                 dispatch(action.completedAction(payload: CompletedActionPayload(posts: posts, allFetched: allFetched)))
@@ -71,6 +71,6 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
             } else {
                 dispatch(action.failedAction(payload: errorMessage!))
             }
-        })
+        }
     }
 }
