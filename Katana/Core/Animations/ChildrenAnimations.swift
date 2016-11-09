@@ -8,11 +8,18 @@
 
 import Foundation
 
+/**
+ This struct is used as container to define the animations for the children
+*/
 public struct ChildrenAnimations<Key> {
+  /// It indicates whether we should perform a 4 step animation or not
   var shouldAnimate = false
+  
+  /// The animations of the children
   var animations = [String: Animation]()
   
-  var allChildren: Animation = .none {
+  /// A default that is used for all the children without a specific animation
+  public var allChildren: Animation = .none {
     didSet {
       if case .none = self.allChildren.type {
         return
@@ -22,6 +29,14 @@ public struct ChildrenAnimations<Key> {
     }
   }
   
+  /**
+   Gets the `Animation` value relative to a specific key
+   
+   - parameter key: the key of the children to retrieve
+   - returns: the `Animation` value related to the key
+   
+   If the key has not been defined, the `allChildren` value is returned
+  */
   public subscript(key: Key) -> Animation {
     get {
       return self["\(key)"]
@@ -36,7 +51,12 @@ public struct ChildrenAnimations<Key> {
       self.animations["\(key)"] = newValue
     }
   }
-  
+
+  /**
+   - note: This subscript should be used only to set values.
+   
+   It is an helper to specify the same animation for multiple keys
+  */
   public subscript(key: [Key]) -> Animation {
     get {
       fatalError("This subscript should not be used as a getter")
@@ -49,26 +69,42 @@ public struct ChildrenAnimations<Key> {
     }
   }
   
-  private mutating func update(key: Key, newValue: Animation) {
-    if case .none = newValue.type {
-      return
-    }
-    
-    self.shouldAnimate = true
-    self.animations["\(key)"] = newValue
-  }
-}
-
-protocol AnyChildrenAnimations {
-  var shouldAnimate: Bool { get }
-  subscript(description: AnyNodeDescription) -> Animation { get }
-}
-
-extension ChildrenAnimations: AnyChildrenAnimations {
+  /**
+   Gets the `Animation` value relative to a specific key
+   
+   - parameter key: the key of the children to retrieve
+   - returns: the `Animation` value related to the key
+   
+   If the key has not been defined, the `allChildren` value is returned
+  */
   subscript(key: String) -> Animation {
     return self.animations[key] ?? self.allChildren
   }
+}
+
+/// Type Erasure for ChildrenAnimations
+protocol AnyChildrenAnimations {
+  /// It indicates whether we should perform a 4 step animation or not
+  var shouldAnimate: Bool { get }
   
+  /**
+   Gets the `Animation` value relative to a description
+   
+   - parameter description: the description
+   - returns: the `Animation` value related to the description
+   
+   If the children doesn't have a specific value, the `allChildren` value is returned
+   */
+  subscript(description: AnyNodeDescription) -> Animation { get }
+}
+
+/// Implementation of AnyChildrenAnimations
+extension ChildrenAnimations: AnyChildrenAnimations {
+  /**
+   Implementation of the AnyChildrenAnimations protocol.
+   
+   - seeAlso: `AnyChildrenAnimations`
+  */
   subscript(description: AnyNodeDescription) -> Animation {
     if let props = description.anyProps as? Keyable, let key = props.key {
       return self[key]

@@ -45,6 +45,7 @@ public class Node<Description: NodeDescription> {
   /// The children of the node
   public fileprivate(set) var children: [AnyNode]!
   
+  /// The children descriptions of the node
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
 
   /// The container in which the node will be drawn
@@ -56,6 +57,7 @@ public class Node<Description: NodeDescription> {
   /// The current description of the node
   fileprivate(set) var description: Description
   
+  /// An hash that represent the animation that is currently running
   fileprivate var animationHash: Int?
   
   /**
@@ -223,6 +225,10 @@ extension Node {
                                The method will use this array to remove nodes if necessary
    
     - parameter animation:     the animation to use to transition from the previous UI to the new one
+   
+    - parameter nativeRenderCallback: a callback that is invoked when the native view has been updated
+    - parameter childrenRenderCallback: a callback that is invoked every time a children is managed
+                                        (e.g., added to the UI hierarchy)
   */
   fileprivate func reRender(childrenToAdd: [AnyNode],
                             viewIndexes: [Int],
@@ -340,11 +346,12 @@ extension Node {
    
    - parameter state:           the new state to use
    - parameter description:     the new description to use
-   - parameter parentAnimation: the animation returned by the parent node.
-                                This animation will be applied to changes of the native view
+   - parameter animation:       the animation to use for the update
    - parameter force:           true if the update should be forced.
                                 Force an update means that state and props equality are ignored
                                 and basically the UI is always refreshed
+   
+   - parameter completion:      a block that is invoked when the update is completed
    */
   func update(for state: Description.StateType,
               description: Description,
@@ -409,6 +416,16 @@ extension Node {
     }
   }
   
+  /**
+   Trigger an animated update of the children.
+   In this method we need to perform a 4 step animation to manage children that are created and
+   destroyed in the process
+   
+   - parameter initialChildren: the children of the initial (that is, the current) state
+   - parameter finalChildren:   the children of the node after the animation process
+   - parameter animation:       the animation to use
+   - parameter completion:      a completion block to invoke at the end of the update
+  */
   fileprivate func animatedChildrenUpdate(from initialChildren: [AnyNodeDescription],
                                           to finalChildren: [AnyNodeDescription],
                                           animation: AnimationContainer,
@@ -455,10 +472,20 @@ extension Node {
         } else {
           completion?()
         }
+        
+        self?.animationHash = nil
       }
     }
   }
   
+  /**
+   Perform an update of the node. This method is different from `animatedChildrenUpdate` since
+   it won't manage creation and deletion of children gracefully
+   
+   - parameter newChildrenDescription:  the children to render
+   - parameter animation:               the animation to use
+   - parameter completion:              a completion block invoked at the end of the update
+  */
   fileprivate func update(newChildrenDescriptions: [AnyNodeDescription],
                           animation: AnimationContainer,
                           completion: NodeUpdateCompletion?) {

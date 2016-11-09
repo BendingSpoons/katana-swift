@@ -8,13 +8,41 @@
 
 import Foundation
 
+/// Namespace for some animation utilities methods
 struct AnimationUtils {
   private init () {}
 
+  /// The intermediate steps of the 4 step animation
   enum AnimationStep {
-    case firstIntermediate, secondIntermediate
+    /// The first intermediate step
+    case firstIntermediate
+    
+    /// The second intermediate step
+    case secondIntermediate
   }
-  
+
+  /**
+   Merges `descriptions` with `other` using a strategy that depends on the step.
+   
+   In general we have firstArray and secondArray. We merge secondArray in firstArray
+   by trying to keep the positions (and the order) of firstArray the same.
+   We also put the extra elements of secondArray in the result array by trying to keep
+   the best possible position. We basically try to preserve the position of the extra elements
+   between elements that are present also in the firstArray.
+   
+   When a value is present in both the first and second array, then the first array elements are used.
+   
+   When the step is the first, first array is `descriptions` and the second is `other`. In the second
+   step we swap the roles.
+   
+   This method propagate this merging also to children of descriptions if possible.
+   
+   - parameter descriptions: the original descriptions
+   - parameter other:        the other descriptions
+   - parameter step:         the step of the process
+   - returns: an array of descriptions with elements merged following the algorithm described above
+   
+  */
   static func merge(
     descriptions: [AnyNodeDescription],
     with other: [AnyNodeDescription],
@@ -87,6 +115,23 @@ struct AnimationUtils {
     return result
   }
   
+  /**
+   Updates the descriptions using an instance of `ChildrenAnimations`.
+   
+   The idea is that, based on the targetChildren, we understand which descriptions are not present.
+   We then apply some transformations.
+   
+   The transformations are defined using the step. When the step is the first, we use enter transformation.
+   In the second step, we use the leave transformation
+   
+   This method propagate this merging also to children of descriptions if possible.
+   
+   - parameter descriptions:        the original descriptions
+   - parameter childrenAnimation:   the animations to use
+   - parameter targetChildren:      the target children used to define when apply a transformation
+   - parameter step:         the step of the process
+   - returns: an array of updated descriptions
+  */
   static func updatedDescriptions(
     for descriptions: [AnyNodeDescription],
     using childrenAnimation: AnyChildrenAnimations,
@@ -123,6 +168,14 @@ struct AnimationUtils {
     }
   }
   
+  /**
+   Updates the description using an instance of `ChildrenAnimations`.
+   
+   - parameter description:         the original description
+   - parameter childrenAnimation:   the animations to use
+   - parameter step:         the step of the process
+   - returns: the updated description
+  */
   private static func updatedDescription(
     for description: AnyNodeDescription,
     using childrenAnimation: AnyChildrenAnimations,

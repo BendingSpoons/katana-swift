@@ -37,6 +37,7 @@ public extension NodeState {
   }
 }
 
+/// Type Erasure for `NodeProps`
 public protocol AnyNodeProps: Frameable {}
 
 /**
@@ -86,6 +87,12 @@ public protocol AnyNodeDescription {
   */
   var replaceKey: Int { get }
   
+  /**
+   Initialise the description
+   
+   - parameter anyProps: the props to associated with the description instance
+   - returns: a value of description with the given pros
+  */
   init(anyProps: AnyNodeProps)
   
   /**
@@ -106,6 +113,7 @@ public protocol AnyNodeDescription {
   func makeRoot(store: AnyStore?) -> Root
 }
 
+/// Default Keys used in `NodeDescription`
 public enum EmptyKeys {}
 
 /**
@@ -149,6 +157,12 @@ public protocol NodeDescription: AnyNodeDescription {
   /// The properties of the the description
   var props: PropsType { get set }
   
+  /**
+   Creates a description with the given props
+   
+   - parameter props: the props to associate with the description
+   - returns: a description with the given properties
+  */
   init(props: PropsType)
   
   /**
@@ -184,6 +198,20 @@ public protocol NodeDescription: AnyNodeDescription {
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]
   
   
+  /**
+   This method is used to describe the animations to perform.
+   
+   Based on the current state and props and the next ones, you should define the animations
+   for the children.
+   
+   If the container is not updated, no animations will be performed
+   
+   - parameter container:       the container of the children animations
+   - parameter currentProps:    the props that have been used to create the current UI
+   - parameter nextProps:       the props that will be used in the next UI update cycle
+   - parameter currentState:    the state that has been used to create the current UI
+   - parameter nextState:       the state that will be used in the next UI update cycle
+  */
   static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
                                        currentProps: PropsType,
                                        nextProps: PropsType,
@@ -208,6 +236,7 @@ public extension NodeDescription {
     view.frame = props.frame
   }
   
+  /// The default implementation does nothing. This is equivalent to never trigger an animation
   public static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
                                        currentProps: PropsType,
                                        nextProps: PropsType,

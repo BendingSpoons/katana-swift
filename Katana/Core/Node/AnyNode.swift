@@ -45,6 +45,7 @@ public protocol AnyNode: class {
    
    - parameter description: the new description to use to describe the UI
    - parameter parentAnimation: the animation to use to transition from the old description to the new one
+   - parameter completion: a completion block to invoke when the update is completed
    
    - throws: this method throw an exception if the given description is not compatible with the node
    */
