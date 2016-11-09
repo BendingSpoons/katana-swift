@@ -5,14 +5,13 @@
 //  Created by Mauro Bolis on 08/11/2016.
 //  Copyright © 2016 Bending Spoons. All rights reserved.
 //
-
 import Foundation
 
 /**
  The transformer function used to update properties to perform entry and leave animations.
  The idea is that props are changed by chaining different transformers.
-*/
-public typealias AnimationPropsTransformer = (_ props: AnyNodeProps) -> AnyNodeProps
+ */
+public typealias AnimationPropsTransformer = (_ props: AnyNodeDescriptionProps) -> AnyNodeDescriptionProps
 
 /**
  The animation for a child of a `NodeDescription`.
@@ -28,7 +27,7 @@ public typealias AnimationPropsTransformer = (_ props: AnyNodeProps) -> AnyNodeP
  When an element is destroyed during an animated update, something similar happens. The only difference is that
  we take the initial state (that is, the state of the last render when the element was present) and we apply the
  transformers you have specified in `leaveTransformers`
-*/
+ */
 public struct Animation {
   /// The animation type to perform for the child
   let type: AnimationType
@@ -49,11 +48,11 @@ public struct Animation {
    - parameter entryTransformers: the transformers to use in the entry phase
    - parameter leaveTransformers: the transformers to use in the leave phase
    - returns: an animation with the given parameters
-  */
+   */
   public init(type: AnimationType,
               entryTransformers: [AnimationPropsTransformer],
               leaveTransformers: [AnimationPropsTransformer]) {
-
+    
     self.type = type
     self.entryTransformers = entryTransformers
     self.leaveTransformers = leaveTransformers
@@ -64,7 +63,7 @@ public struct Animation {
    
    - parameter type: the type of animation to apply to the child
    - returns: an animation with the given animation type and no transformers
-  */
+   */
   public init(type: AnimationType) {
     self.type = type
     self.entryTransformers = []

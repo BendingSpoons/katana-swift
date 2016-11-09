@@ -14,7 +14,7 @@ import UIKit
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the state (and the props) are not changed.
 */
-public protocol NodeState: Equatable {
+public protocol NodeDescriptionState: Equatable {
   /**
    Default init for the state. It is used by Katana to create the initial state of a `Node`.
    You should initialise the state with meaningful default values.
@@ -22,7 +22,7 @@ public protocol NodeState: Equatable {
   init()
 }
 
-public extension NodeState {
+public extension NodeDescriptionState {
   /**
    Default implementation of the function required by `Equatable`. It always returns `false`.
    Developers can use this as the default implementation and then implement the proper equatable logic
@@ -37,8 +37,8 @@ public extension NodeState {
   }
 }
 
-/// Type Erasure for `NodeProps`
-public protocol AnyNodeProps: Frameable {}
+/// Type Erasure for `NodeDescriptionProps`
+public protocol AnyNodeDescriptionProps: Frameable {}
 
 /**
  Protocol that is used for structs that represent the properties of a `NodeDescription`.
@@ -46,9 +46,9 @@ public protocol AnyNodeProps: Frameable {}
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the properties (and the state) are not changed.
 */
-public protocol NodeProps: Equatable, AnyNodeProps {}
+public protocol NodeDescriptionProps: AnyNodeDescriptionProps, Equatable {}
 
-public extension NodeProps {
+public extension NodeDescriptionProps {
   /**
    Default implementation of the function required by `Equatable`. It always returns `false`.
    Developers can use this as the default implementation and then implement the proper equatable logic
@@ -57,7 +57,7 @@ public extension NodeProps {
    - parameter l: the first props
    - parameter r: the second props
    - returns: always false
-   */
+  */
   static func == (l: Self, r: Self) -> Bool {
     return false
   }
@@ -75,7 +75,7 @@ public protocol AnyNodeDescription {
   var key: String? { get }
   
   /// Type erasure for `props`
-  var anyProps: AnyNodeProps { get }
+  var anyProps: AnyNodeDescriptionProps { get }
   
   /**
     The replace key of the description. When two descriptions have the same replaceKey, Katana consider them interchangeable.
@@ -93,7 +93,7 @@ public protocol AnyNodeDescription {
    - parameter anyProps: the props to associated with the description instance
    - returns: a value of description with the given pros
   */
-  init(anyProps: AnyNodeProps)
+  init(anyProps: AnyNodeDescriptionProps)
   
   /**
    Returns a node instance associated with the description.
@@ -120,10 +120,10 @@ public enum EmptyKeys {}
  A `NodeDescription` defines a specific piece of UI. You can think to a `NodeDescription` as a stencil that
  describes how a piece of UI should look like.
  
- `NodeDescription` methods are stateless. This is because the properties and the state are hold
+ `NodeDescription` methods are stateless. This is because the properties and the state are held
   by a `Node` instance (see `Node` for more information) that Katana automatically creates.
  
- In general a description defines two things:
+ In general, a description defines two things:
  
  - how properties and state are used to personalise the instance of UIView (or subclass) associated with the `Node` instance.
    This view is also named **NativeView**
@@ -131,14 +131,14 @@ public enum EmptyKeys {}
  - what are the children descriptions given the properties and the state
  
  ### Node and NodeDescription relationship
- It is important to remember that the UI hierarchy have a 1:1 relationship with `Node` instances
+ It is important to remember that the UI hierarchy has a 1:1 relationship with `Node` instances
  and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree is connected to a `Node` instance.
  This instance holds the description that is used to manage the `UIView` (and the children), properties and the state.
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
  to describe the UI in the `childrenDescriptions(props:state:update:dispatch:)` method.
- These instances are used by Katana to understand how update the UI (update, remove and add views) and then thrown away.
+ These instances are used by Katana to understand how to update the UI (update, remove and add views) and then thrown away.
  
 */
 public protocol NodeDescription: AnyNodeDescription {
@@ -147,10 +147,10 @@ public protocol NodeDescription: AnyNodeDescription {
   associatedtype NativeView: UIView = UIView
   
   /// The type of properties that this description uses. The default value is `EmptyProps`
-  associatedtype PropsType: NodeProps = EmptyProps
+  associatedtype PropsType: NodeDescriptionProps = EmptyProps
   
   /// The type of state that this description uses. The default value is `EmptyState`
-  associatedtype StateType: NodeState = EmptyState
+  associatedtype StateType: NodeDescriptionState = EmptyState
   
   associatedtype Keys = EmptyKeys
   
@@ -222,7 +222,8 @@ public protocol NodeDescription: AnyNodeDescription {
 
 public extension NodeDescription {
   
-  public init(anyProps: AnyNodeProps) {
+  /// The default implementation tries to force cast `anyProps` to the correct `PropsType`
+  public init(anyProps: AnyNodeDescriptionProps) {
     let props = anyProps as! Self.PropsType
     self.init(props: props)
   }
@@ -268,7 +269,7 @@ extension AnyNodeDescription where Self: NodeDescription {
   }
   
   /// the node description properties
-  public var anyProps: AnyNodeProps {
+  public var anyProps: AnyNodeDescriptionProps {
     return self.props
   }
   

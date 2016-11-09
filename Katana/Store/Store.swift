@@ -35,11 +35,11 @@ public protocol AnyStore: class {
  updates to the state itself.
  
  In Katana, every relevant information in the application should be stored in the
- Store's state. The only way to update the state is dispatch an `Action`. At this point
+ Store's state. The only way to update the state is to dispatch an `Action`. At this point
  the store will execute the following operations:
  
  - it executes the middlewares
- - it exectues the side effect of the action, if implemented (see `ActionWithSideEffect`)
+ - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
  - it invokes all the listeners
@@ -105,7 +105,7 @@ public class Store<StateType: State> {
   /**
    The default init method for the Store.
    
-   - parameter middlewares:   the middlewares to trigger when an actio is dispatched
+   - parameter middlewares:   the middlewares to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
   */

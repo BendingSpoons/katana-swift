@@ -109,7 +109,7 @@ struct AnimationUtils {
         step: step
       )
       
-      return type(of: description).init(anyProps: propsWithChildren as! AnyNodeProps)
+      return type(of: description).init(anyProps: propsWithChildren as! AnyNodeDescriptionProps)
     }
     
     return result
@@ -160,7 +160,7 @@ struct AnimationUtils {
           step: step
         )
         
-        return type(of: item).init(anyProps: propsWithChildren as! AnyNodeProps)
+        return type(of: item).init(anyProps: propsWithChildren as! AnyNodeDescriptionProps)
       }
       
       // nothing to do
@@ -184,7 +184,7 @@ struct AnimationUtils {
     let animation = childrenAnimation[description]
     let transformers = step == .firstIntermediate ? animation.entryTransformers : animation.leaveTransformers
     
-    let newProps = transformers.reduce(description.anyProps, { (props, transformer) -> AnyNodeProps in
+    let newProps = transformers.reduce(description.anyProps, { (props, transformer) -> AnyNodeDescriptionProps in
       return transformer(props)
     })
     

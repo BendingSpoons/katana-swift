@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-public struct ImageProps: NodeProps, Keyable {
+public struct ImageProps: NodeDescriptionProps, Keyable {
   public var frame = CGRect.zero
   public var key: String?
   

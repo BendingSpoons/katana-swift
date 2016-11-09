@@ -30,7 +30,7 @@ public struct ChildrenAnimations<Key> {
   }
   
   /**
-   Gets the `Animation` value relative to a specific key
+   Gets the `Animation` value relative to a swrgrgpecific key
    
    - parameter key: the key of the children to retrieve
    - returns: the `Animation` value related to the key

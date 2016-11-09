@@ -15,7 +15,7 @@ fileprivate struct TestDescription: AnyNodeDescription, Equatable {
   var key: String?
   var replaceKey: Int
   var payload: String
-  var anyProps: AnyNodeProps {
+  var anyProps: AnyNodeDescriptionProps {
     return EmptyProps()
   }
 
@@ -24,7 +24,7 @@ fileprivate struct TestDescription: AnyNodeDescription, Equatable {
     self.payload = payload
   }
   
-  init(anyProps: AnyNodeProps) {
+  init(anyProps: AnyNodeDescriptionProps) {
     fatalError()
   }
   

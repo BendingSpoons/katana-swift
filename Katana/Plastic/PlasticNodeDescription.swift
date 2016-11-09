@@ -27,10 +27,10 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    
    This method receives as input, beside the props and the state of the node description,
    a `ViewsContainer` that basically holds a placeholder for each node description with a key
-   returned in the `childrenDescriptions` method. You can access to these placeholders by using the key
-   same key
+   returned in the `childrenDescriptions` method. You can access these placeholders by using the
+   same key.
    
-   An example of implementation can be the following:
+   The following is an example of implementation:
    
    ```
    // in the childrenDescriptions method
@@ -50,7 +50,7 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
   static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
   
   /**
-   The layout logic may be expensive in some cases. By implementing this method you can actually
+   The layout logic may be expensive in some cases. By implementing this method, you can actually
    cache the result of the layout.
    
    The idea is that, given a certain instance of props and state, you should return an hash value.
@@ -58,8 +58,8 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    This means that if you return an hash value that has been stored before, the `layout(views:props:state:)`
    method won't be invoked and the cached result will be used instead.
    
-   Ideally you should somehow combine all the values (take from both the props and the state) that influence
-   the result of your layout logic. In the case where the layout is always the same (that is, frames never changes),
+   Ideally you should somehow combine all the values (taken from both the props and the state) that influence
+   the result of your layout logic. In the case where the layout is always the same (that is, frames never change),
    then you can return a constant value.
    
    The caching system is disabled by default. You can activate it for a specific implementation of `PlasticNodeDescription`

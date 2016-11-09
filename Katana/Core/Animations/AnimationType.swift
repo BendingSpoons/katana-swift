@@ -1,5 +1,5 @@
 //
-//  Animation.swift
+//  AnimationType.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 26/08/16.

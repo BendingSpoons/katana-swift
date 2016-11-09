@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-public struct ButtonProps: NodeProps, Keyable, Buildable {
+public struct ButtonProps: NodeDescriptionProps, Keyable, Buildable {
   public var frame = CGRect.zero
   public var key: String?
   
@@ -31,6 +31,7 @@ public struct ButtonProps: NodeProps, Keyable, Buildable {
   public var images: [UIControlState: UIImage] = [:]
   public var backgroundImages: [UIControlState: UIImage] = [:]
   public var attributedTitles: [UIControlState: NSAttributedString] = [:]
+  public var touchHandlers: [TouchHandlerEvent: TouchHandlerClosure] = [:]
   
   public init() {}
   
@@ -61,13 +62,13 @@ public struct ButtonProps: NodeProps, Keyable, Buildable {
 
 
 public struct Button: NodeDescription {
-  public typealias NativeView = UIButton
+  public typealias NativeView = NativeButton
   
   public var props: ButtonProps
   
   public static func applyPropsToNativeView(props: ButtonProps,
                                             state: EmptyState,
-                                            view: UIButton,
+                                            view: NativeButton,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
@@ -121,6 +122,9 @@ public struct Button: NodeDescription {
     for (state, title) in props.attributedTitles {
       view.setAttributedTitle(title, for: state)
     }
+    
+    view.touchHandlers = props.touchHandlers
+    
   }
   
   public static func childrenDescriptions(props: ButtonProps,
@@ -137,7 +141,7 @@ public struct Button: NodeDescription {
 
 extension UIControlState: Hashable {
   public var hashValue: Int {
-    return Int(self.rawValue)
+    return self.rawValue.hashValue
   }
 }
 

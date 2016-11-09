@@ -112,7 +112,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
 
 fileprivate struct MyAppState: State {}
 
-fileprivate struct AppProps: NodeProps {
+fileprivate struct AppProps: NodeDescriptionProps {
   var frame: CGRect = CGRect.zero
   var i: Int
   

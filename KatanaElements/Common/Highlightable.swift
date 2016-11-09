@@ -13,7 +13,7 @@ public protocol Highlightable {
   var highlighted: Bool { get set }
 }
 
-public struct EmptyHighlightableState: NodeState, Highlightable {
+public struct EmptyHighlightableState: NodeDescriptionState, Highlightable {
   public var highlighted: Bool
   
   public init() {
