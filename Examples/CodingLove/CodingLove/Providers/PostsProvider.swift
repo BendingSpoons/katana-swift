@@ -20,19 +20,24 @@ struct PostsProvider: SideEffectDependencyContainer {
     
     public func fetchPosts(for page: Int, completion: @escaping (([Post], Bool)?, String?) -> ()) {
         DispatchQueue.global().async {
-            if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
-                let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
-                if let posts: [[String: String]] = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? [[String: String]] {
-                    var allFetched = false
-                    if ((page+1) * POSTS_PER_PAGE) >= posts.count {
-                        allFetched = true
-                    }
-                    
-                    let actualPosts = Array(posts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)])
-                    completion((self.parsePosts(postsToParse: actualPosts), allFetched), nil)
+            let posts = Bundle.main.path(forResource: "posts", ofType: "json")
+                    .flatMap { URL(fileURLWithPath: $0) }
+                    .flatMap { try? Data(contentsOf: $0) }
+                    .flatMap { try? JSONSerialization.jsonObject(with: $0, options: []) }
+                    .flatMap { $0 as? [[String: String]] }
+
+            if let actualPosts = posts {
+                var allFetched = false
+                if ((page+1) * POSTS_PER_PAGE) >= posts!.count {
+                    allFetched = true
                 }
+                
+                let filteredPosts = Array(actualPosts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)])
+                completion((self.parsePosts(postsToParse: filteredPosts), allFetched), nil)
+            
+            } else {
+                completion(nil, "Could not fetch posts")
             }
-            completion(nil, "Could not fetch posts")
         }
     }
     
