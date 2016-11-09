@@ -32,10 +32,10 @@ open class Renderer {
    
     - warning node can be sat only once. Trying to update it will result in a runtime exception
   */
-  public var node: AnyNode! {
-    willSet(node) {
-      if self.node != nil {
-        fatalError("node cannot be changed")
+  public var rootNode: AnyNode! {
+    willSet(rootNode) {
+      if self.rootNode != nil {
+        fatalError("root node cannot be changed")
       }
     }
   }
@@ -58,7 +58,7 @@ open class Renderer {
       })
     
     self.unsubscribe = unsubscribe
-    self.node = rootDescription.makeNode(renderer: self)
+    self.rootNode = rootDescription.makeNode(renderer: self)
   }
 
   /**
@@ -67,11 +67,11 @@ open class Renderer {
    - parameter container: the container that will be used to render the root node
   */
   public func render(in container: DrawableContainer) {
-    guard let node = self.node else {
+    guard let rootNode = self.rootNode else {
       fatalError("the node should be provided first")
     }
     
-    let n = node as! InternalAnyNode
+    let n = rootNode as! InternalAnyNode
     n.render(in: container)
   }
   
@@ -79,8 +79,8 @@ open class Renderer {
    Method that is used to manage an update in the store's state
   */
   private func storeDidChange() -> Void {
-    if let node = self.node {
-      self.explore(node)
+    if let rootNode = self.rootNode {
+      self.explore(rootNode)
     }
   }
   
