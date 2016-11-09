@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		654994911DD31BA80057D4BB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994901DD31BA80057D4BB /* AppDelegate.swift */; };
+		654994981DD31BA80057D4BB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 654994971DD31BA80057D4BB /* Assets.xcassets */; };
+		654994A21DD31C420057D4BB /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A11DD31C420057D4BB /* CounterState.swift */; };
+		654994A61DD31C540057D4BB /* DecrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A41DD31C540057D4BB /* DecrementCounter.swift */; };
+		654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A51DD31C540057D4BB /* IncrementCounter.swift */; };
+		654994AA1DD31C6A0057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A91DD31C6A0057D4BB /* CounterScreen.swift */; };
+		654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
+		654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
+		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
 		8133155A1D7B726000FBE210 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151D1D7B726000FBE210 /* Animation.swift */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
@@ -15,7 +25,7 @@
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
 		8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315241D7B726000FBE210 /* NodeDescriptionWithChildren.swift */; };
 		813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */; };
-		813315621D7B726000FBE210 /* Root.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315281D7B726000FBE210 /* Root.swift */; };
+		813315621D7B726000FBE210 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315281D7B726000FBE210 /* Renderer.swift */; };
 		813315731D7B726000FBE210 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153D1D7B726000FBE210 /* Anchor.swift */; };
 		813315741D7B726000FBE210 /* Array+Plastic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153E1D7B726000FBE210 /* Array+Plastic.swift */; };
 		813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153F1D7B726000FBE210 /* EdgeInsets.swift */; };
@@ -95,6 +105,20 @@
 			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
 		};
+		654994AD1DD31C810057D4BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
+			remoteInfo = Katana;
+		};
+		654994B21DD31C840057D4BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
+			remoteInfo = KatanaElements;
+		};
 		81EA56DC1D5F3A6E00B6290E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
@@ -104,8 +128,31 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		654994AF1DD31C810057D4BB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */,
+				654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6549948E1DD31BA70057D4BB /* Demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Demo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		654994901DD31BA80057D4BB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		654994971DD31BA80057D4BB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		6549949C1DD31BA80057D4BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		654994A11DD31C420057D4BB /* CounterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterState.swift; path = State/CounterState.swift; sourceTree = "<group>"; };
+		654994A41DD31C540057D4BB /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = Actions/DecrementCounter.swift; sourceTree = "<group>"; };
+		654994A51DD31C540057D4BB /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Actions/IncrementCounter.swift; sourceTree = "<group>"; };
+		654994A91DD31C6A0057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = Nodes/CounterScreen.swift; sourceTree = "<group>"; };
 		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		8133151D1D7B726000FBE210 /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		8133151F1D7B726000FBE210 /* DrawableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableContainer.swift; sourceTree = "<group>"; };
@@ -114,7 +161,7 @@
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
 		813315241D7B726000FBE210 /* NodeDescriptionWithChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionWithChildren.swift; sourceTree = "<group>"; };
 		813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
-		813315281D7B726000FBE210 /* Root.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Root.swift; sourceTree = "<group>"; };
+		813315281D7B726000FBE210 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		8133153D1D7B726000FBE210 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		8133153E1D7B726000FBE210 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		8133153F1D7B726000FBE210 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
@@ -190,6 +237,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6549948B1DD31BA70057D4BB /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */,
+				654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81EA56C31D5F3A6000B6290E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -208,6 +264,44 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		6549948F1DD31BA80057D4BB /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				654994A81DD31C5C0057D4BB /* Nodes */,
+				654994A31DD31C4A0057D4BB /* Actions */,
+				654994A01DD31C160057D4BB /* State */,
+				654994901DD31BA80057D4BB /* AppDelegate.swift */,
+				654994971DD31BA80057D4BB /* Assets.xcassets */,
+				6549949C1DD31BA80057D4BB /* Info.plist */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		654994A01DD31C160057D4BB /* State */ = {
+			isa = PBXGroup;
+			children = (
+				654994A11DD31C420057D4BB /* CounterState.swift */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
+		654994A31DD31C4A0057D4BB /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				654994A41DD31C540057D4BB /* DecrementCounter.swift */,
+				654994A51DD31C540057D4BB /* IncrementCounter.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		654994A81DD31C5C0057D4BB /* Nodes */ = {
+			isa = PBXGroup;
+			children = (
+				654994A91DD31C6A0057D4BB /* CounterScreen.swift */,
+			);
+			name = Nodes;
+			sourceTree = "<group>";
+		};
 		6562656B1DD1DA28005E91DC /* Button */ = {
 			isa = PBXGroup;
 			children = (
@@ -258,7 +352,7 @@
 		813315251D7B726000FBE210 /* StoreConnection */ = {
 			isa = PBXGroup;
 			children = (
-				813315281D7B726000FBE210 /* Root.swift */,
+				813315281D7B726000FBE210 /* Renderer.swift */,
 				813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */,
 			);
 			path = StoreConnection;
@@ -385,6 +479,7 @@
 				81EA56C91D5F3A6000B6290E /* Katana */,
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
+				6549948F1DD31BA80057D4BB /* Demo */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
@@ -396,6 +491,7 @@
 				81EA56C71D5F3A6000B6290E /* Katana.framework */,
 				81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */,
 				6513094F1DC3529F00007B6B /* KatanaElements.framework */,
+				6549948E1DD31BA70057D4BB /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -530,6 +626,26 @@
 			productReference = 6513094F1DC3529F00007B6B /* KatanaElements.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		6549948D1DD31BA70057D4BB /* Demo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 6549949F1DD31BA80057D4BB /* Build configuration list for PBXNativeTarget "Demo" */;
+			buildPhases = (
+				6549948A1DD31BA70057D4BB /* Sources */,
+				6549948B1DD31BA70057D4BB /* Frameworks */,
+				6549948C1DD31BA70057D4BB /* Resources */,
+				654994AF1DD31C810057D4BB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				654994AE1DD31C810057D4BB /* PBXTargetDependency */,
+				654994B31DD31C840057D4BB /* PBXTargetDependency */,
+			);
+			name = Demo;
+			productName = Demo;
+			productReference = 6549948E1DD31BA70057D4BB /* Demo.app */;
+			productType = "com.apple.product-type.application";
+		};
 		81EA56C61D5F3A6000B6290E /* Katana */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81EA56CF1D5F3A6000B6290E /* Build configuration list for PBXNativeTarget "Katana" */;
@@ -582,6 +698,10 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					6549948D1DD31BA70057D4BB = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
 					81EA56C61D5F3A6000B6290E = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
@@ -609,6 +729,7 @@
 				81EA56C61D5F3A6000B6290E /* Katana */,
 				81EA56D51D5F3A6E00B6290E /* KatanaTests */,
 				6513094E1DC3529F00007B6B /* KatanaElements */,
+				6549948D1DD31BA70057D4BB /* Demo */,
 			);
 		};
 /* End PBXProject section */
@@ -618,6 +739,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		6549948C1DD31BA70057D4BB /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				654994981DD31BA80057D4BB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -679,6 +808,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		6549948A1DD31BA70057D4BB /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				654994A61DD31C540057D4BB /* DecrementCounter.swift in Sources */,
+				654994A21DD31C420057D4BB /* CounterState.swift in Sources */,
+				654994AA1DD31C6A0057D4BB /* CounterScreen.swift in Sources */,
+				654994911DD31BA80057D4BB /* AppDelegate.swift in Sources */,
+				654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81EA56C21D5F3A6000B6290E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -692,7 +833,7 @@
 				8133157C1D7B726000FBE210 /* Size.swift in Sources */,
 				813315761D7B726000FBE210 /* CoordinateConvertible.swift in Sources */,
 				813315771D7B726000FBE210 /* PlasticNode.swift in Sources */,
-				813315621D7B726000FBE210 /* Root.swift in Sources */,
+				813315621D7B726000FBE210 /* Renderer.swift in Sources */,
 				A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */,
 				8133155A1D7B726000FBE210 /* Animation.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
@@ -757,6 +898,16 @@
 			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
 			targetProxy = 651309711DC36B0400007B6B /* PBXContainerItemProxy */;
 		};
+		654994AE1DD31C810057D4BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 81EA56C61D5F3A6000B6290E /* Katana */;
+			targetProxy = 654994AD1DD31C810057D4BB /* PBXContainerItemProxy */;
+		};
+		654994B31DD31C840057D4BB /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
+			targetProxy = 654994B21DD31C840057D4BB /* PBXContainerItemProxy */;
+		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81EA56C61D5F3A6000B6290E /* Katana */;
@@ -801,6 +952,34 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dk.bendingspoons.Katana-Elements";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		6549949D1DD31BA80057D4BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		6549949E1DD31BA80057D4BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
+				INFOPLIST_FILE = Demo/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -910,6 +1089,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -931,6 +1111,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -985,6 +1166,15 @@
 			buildConfigurations = (
 				651309591DC3529F00007B6B /* Debug */,
 				6513095A1DC3529F00007B6B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		6549949F1DD31BA80057D4BB /* Build configuration list for PBXNativeTarget "Demo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6549949D1DD31BA80057D4BB /* Debug */,
+				6549949E1DD31BA80057D4BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
