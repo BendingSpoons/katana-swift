@@ -17,7 +17,10 @@ public struct Animation {
   
   static let none = Animation(type: .none)
   
-  public init(type: AnimationType, entryTransformers: [AnimationPropsTransformer], leaveTransformers: [AnimationPropsTransformer]) {
+  public init(type: AnimationType,
+              entryTransformers: [AnimationPropsTransformer],
+              leaveTransformers: [AnimationPropsTransformer]) {
+
     self.type = type
     self.entryTransformers = entryTransformers
     self.leaveTransformers = leaveTransformers

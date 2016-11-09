@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct AnimationUtils {
   private init () {}
 
@@ -17,7 +16,7 @@ struct AnimationUtils {
   }
   
   static func merge(
-    array: [AnyNodeDescription],
+    descriptions: [AnyNodeDescription],
     with other: [AnyNodeDescription],
     step: AnimationStep) -> [AnyNodeDescription] {
     
@@ -26,12 +25,12 @@ struct AnimationUtils {
     
     switch step {
     case .firstIntermediate:
-      firstArray = array
+      firstArray = descriptions
       secondArray = other
       
     case .secondIntermediate:
       firstArray = other
-      secondArray = array
+      secondArray = descriptions
     }
     
     // lookup for first array
@@ -72,12 +71,12 @@ struct AnimationUtils {
       
       let secondItemChildren = secondArrayLookup[description.replaceKey]
         .flatMap({ secondArray[$0] })
-        .flatMap({ $0 as! AnyNodeDescriptionWithChildren })
+        .flatMap({ $0 as? AnyNodeDescriptionWithChildren })
         .flatMap({ $0.children })
       
       
       propsWithChildren.children = merge(
-        array: propsWithChildren.children,
+        descriptions: propsWithChildren.children,
         with: secondItemChildren ?? [],
         step: step
       )
@@ -88,28 +87,29 @@ struct AnimationUtils {
     return result
   }
   
-  static func updatedChildren(
-    in array: [AnyNodeDescription],
-    using childrenAnimation: AnyChildrenAnimationContainer,
+  static func updatedDescriptions(
+    for descriptions: [AnyNodeDescription],
+    using childrenAnimation: AnyChildrenAnimations,
     targetChildren: [AnyNodeDescription],
     step: AnimationStep) -> [AnyNodeDescription] {
     
-    var newChildren = array.map { (item: AnyNodeDescription) -> AnyNodeDescription in
+    return descriptions.map { (item: AnyNodeDescription) -> AnyNodeDescription in
       let itemReplaceKey = item.replaceKey
       let index = targetChildren.index { $0.replaceKey == itemReplaceKey }
+      var item = item
       
       if index == nil {
         // the item is missing in the comparison, update it
-        return self.update(description: item, using: childrenAnimation, step: step)
+        item = self.updatedDescription(for: item, using: childrenAnimation, step: step)
       }
       
       if var propsWithChildren = item.anyProps as? Childrenable {
-        // the item is not missing, but it may have children. Let's manage them
+        // the item has children, let's manage also the children
         let children = propsWithChildren.children
         let target = (targetChildren[index!] as? AnyNodeDescriptionWithChildren).flatMap({ $0.children })
         
-        propsWithChildren.children = updatedChildren(
-          in: children,
+        propsWithChildren.children = updatedDescriptions(
+          for: children,
           using: childrenAnimation,
           targetChildren: target ?? [],
           step: step
@@ -121,13 +121,11 @@ struct AnimationUtils {
       // nothing to do
       return item
     }
-    
-    return newChildren
   }
   
-  private static func update(
-    description: AnyNodeDescription,
-    using childrenAnimation: AnyChildrenAnimationContainer,
+  private static func updatedDescription(
+    for description: AnyNodeDescription,
+    using childrenAnimation: AnyChildrenAnimations,
     step: AnimationStep) -> AnyNodeDescription {
 
     let animation = childrenAnimation[description]
@@ -137,21 +135,6 @@ struct AnimationUtils {
       return transformer(props)
     })
     
-    if var propsWithChildren = newProps as? Childrenable {
-      // Theoretically we should cast in this way `newProps as? Childrenable & AnyNodeDescription`.
-      // In this way we avoid the force cast when we instanciate the description.
-      // This currently leads to a runtime crash, we should further investigate it
-      
-      // if it has children, we should propagate changes
-      propsWithChildren.children = propsWithChildren.children.map {
-        self.update(description: $0, using: childrenAnimation, step: step)
-      }
-
-      return type(of: description).init(anyProps: propsWithChildren as! AnyNodeProps)
-    
-    } else {
-      // just return
-      return type(of: description).init(anyProps: newProps)
-    }
+    return type(of: description).init(anyProps: newProps)
   }
 }

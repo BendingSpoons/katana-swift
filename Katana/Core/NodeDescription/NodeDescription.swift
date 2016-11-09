@@ -144,7 +144,6 @@ public protocol NodeDescription: AnyNodeDescription {
   /// The type of state that this description uses. The default value is `EmptyState`
   associatedtype StateType: NodeState = EmptyState
   
-  // TODO: think about this
   associatedtype Keys = EmptyKeys
   
   /// The properties of the the description
@@ -185,7 +184,7 @@ public protocol NodeDescription: AnyNodeDescription {
                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription]
   
   
-  static func updateChildrenAnimations(container: inout ChildrenAnimationContainer<Self.Keys>,
+  static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
                                        currentProps: PropsType,
                                        nextProps: PropsType,
                                        currentState: StateType,
@@ -209,7 +208,7 @@ public extension NodeDescription {
     view.frame = props.frame
   }
   
-  public static func updateChildrenAnimations(container: inout ChildrenAnimationContainer<Self.Keys>,
+  public static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
                                        currentProps: PropsType,
                                        nextProps: PropsType,
                                        currentState: StateType,

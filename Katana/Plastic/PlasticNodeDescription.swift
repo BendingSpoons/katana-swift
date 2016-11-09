@@ -22,11 +22,6 @@ public protocol AnyPlasticNodeDescription {
  This protocol allows a `NodeDescription` to use the Plastic layout system.
 */
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
-  
-  /// The type used to define the keys of the `NodeDescription` children. It should be an enum
-  // TODO: think about this
-//  associatedtype Keys
-  
   /**
    Node descriptions should implement this method and provide the proper layout logic.
    

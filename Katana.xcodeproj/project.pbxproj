@@ -48,6 +48,8 @@
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
+		A1277CEC1DD32037007F68E5 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
+		A1277CEE1DD32041007F68E5 /* Node+AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CED1DD32041007F68E5 /* Node+AnyNode.swift */; };
 		A14612401DD1C41900EBE8EC /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A146123F1DD1C41900EBE8EC /* Animation.swift */; };
 		A14EB8C01DC3A62B00DE0BD9 /* AsyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A14EB8BF1DC3A62B00DE0BD9 /* AsyncActionTests.swift */; };
 		A1576C2D1DC72E03008281C0 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2C1DC72E03008281C0 /* SideEffectTests.swift */; };
@@ -73,6 +75,7 @@
 		A17AF9CD1DC9F5EF00F6076E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9CB1DC9F5EF00F6076E /* View.swift */; };
 		A17EB5D21DD09B39009A5D8F /* ChildrenAnimationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EB5D11DD09B39009A5D8F /* ChildrenAnimationContainer.swift */; };
 		A17EB5D41DD09E02009A5D8F /* AnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EB5D31DD09E02009A5D8F /* AnimationUtils.swift */; };
+		A1C9C1C31DD32D570067F8E0 /* InternalNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C21DD32D570067F8E0 /* InternalNode.swift */; };
 		A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314C1DC37DBF00982BE9 /* Action.swift */; };
 		A1CA31531DC37DBF00982BE9 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
 		A1CA31541DC37DBF00982BE9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
@@ -153,6 +156,8 @@
 		81EA56DA1D5F3A6E00B6290E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithSideEffect.swift; sourceTree = "<group>"; };
 		A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
+		A1277CEB1DD32037007F68E5 /* AnyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyNode.swift; sourceTree = "<group>"; };
+		A1277CED1DD32041007F68E5 /* Node+AnyNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Node+AnyNode.swift"; sourceTree = "<group>"; };
 		A146123F1DD1C41900EBE8EC /* Animation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animation.swift; sourceTree = "<group>"; };
 		A14EB8BF1DC3A62B00DE0BD9 /* AsyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncActionTests.swift; sourceTree = "<group>"; };
 		A1576C2C1DC72E03008281C0 /* SideEffectTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SideEffectTests.swift; sourceTree = "<group>"; };
@@ -178,6 +183,7 @@
 		A17AF9CB1DC9F5EF00F6076E /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A17EB5D11DD09B39009A5D8F /* ChildrenAnimationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildrenAnimationContainer.swift; sourceTree = "<group>"; };
 		A17EB5D31DD09E02009A5D8F /* AnimationUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationUtils.swift; sourceTree = "<group>"; };
+		A1C9C1C21DD32D570067F8E0 /* InternalNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InternalNode.swift; sourceTree = "<group>"; };
 		A1CA314C1DC37DBF00982BE9 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		A1CA314E1DC37DBF00982BE9 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A1CA314F1DC37DBF00982BE9 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -242,6 +248,9 @@
 			children = (
 				813315201D7B726000FBE210 /* Node.swift */,
 				8133151F1D7B726000FBE210 /* DrawableContainer.swift */,
+				A1277CEB1DD32037007F68E5 /* AnyNode.swift */,
+				A1277CED1DD32041007F68E5 /* Node+AnyNode.swift */,
+				A1C9C1C21DD32D570067F8E0 /* InternalNode.swift */,
 			);
 			path = Node;
 			sourceTree = "<group>";
@@ -689,6 +698,7 @@
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */,
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
+				A1277CEC1DD32037007F68E5 /* AnyNode.swift in Sources */,
 				8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */,
 				8133157C1D7B726000FBE210 /* Size.swift in Sources */,
 				813315761D7B726000FBE210 /* CoordinateConvertible.swift in Sources */,
@@ -696,6 +706,7 @@
 				813315621D7B726000FBE210 /* Root.swift in Sources */,
 				A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */,
 				8133155A1D7B726000FBE210 /* AnimationType.swift in Sources */,
+				A1C9C1C31DD32D570067F8E0 /* InternalNode.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				A1CA31551DC37DBF00982BE9 /* Typealiases.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
@@ -704,6 +715,7 @@
 				813315791D7B726000FBE210 /* PlasticNodeDescriptionWithReferenceSize.swift in Sources */,
 				813315731D7B726000FBE210 /* Anchor.swift in Sources */,
 				813315741D7B726000FBE210 /* Array+Plastic.swift in Sources */,
+				A1277CEE1DD32041007F68E5 /* Node+AnyNode.swift in Sources */,
 				8133157A1D7B726000FBE210 /* PlasticView+Convenience.swift in Sources */,
 				A1CA31531DC37DBF00982BE9 /* State.swift in Sources */,
 				A17EB5D21DD09B39009A5D8F /* ChildrenAnimationContainer.swift in Sources */,

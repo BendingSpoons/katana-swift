@@ -1,5 +1,5 @@
 //
-//  AnimationContainer.swift
+//  ChildrenAnimations.swift
 //  Katana
 //
 //  Created by Mauro Bolis on 07/11/2016.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct ChildrenAnimationContainer<Key> {
+public struct ChildrenAnimations<Key> {
   var shouldAnimate = false
   var animations = [String: Animation]()
   
@@ -28,12 +28,12 @@ public struct ChildrenAnimationContainer<Key> {
   }
 }
 
-protocol AnyChildrenAnimationContainer {
+protocol AnyChildrenAnimations {
   var shouldAnimate: Bool { get }
   subscript(description: AnyNodeDescription) -> Animation { get }
 }
 
-extension ChildrenAnimationContainer: AnyChildrenAnimationContainer {
+extension ChildrenAnimations: AnyChildrenAnimations {
   subscript(key: String) -> Animation {
     return self.animations[key] ?? .none
   }
