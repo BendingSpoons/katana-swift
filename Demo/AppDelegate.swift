@@ -36,20 +36,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let counterScreen = CounterScreen(props: CounterScreenProps.build({ (counterScreenProps) in
       counterScreenProps.frame = rootBounds
     }))
-    //self.connector = counterScreen.makeConnector(with: store)
-    //self.connector!.render(in: view)
     
-    
-    
-    //different responsibilities for Nodes generation and Connector
-    //let renderer = Renderer(root: counterScreen)
-    //renderer.render(in: view)
-    //let connector = renderer.connectorForStore(store)
-    
-    
-    // Renderer proposal
     renderer = Renderer(rootDescription: counterScreen, store: store)
-    //renderer.connect(to: store)
     renderer!.render(in: view)
   }
   
