@@ -2,9 +2,9 @@
 //  TableDelegate.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Katana
@@ -20,6 +20,10 @@ public protocol TableDelegate {
 public extension TableDelegate {
   func numberOfSections() -> Int {
     return 1
+  }
+  
+  func isEqual(to anotherDelegate: TableDelegate) -> Bool {
+    return false
   }
 }
 
