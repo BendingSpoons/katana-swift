@@ -21,6 +21,10 @@ public extension TableDelegate {
   func numberOfSections() -> Int {
     return 1
   }
+  
+  func isEqual(to anotherDelegate: TableDelegate) -> Bool {
+    return false
+  }
 }
 
 public struct EmptyTableDelegate: TableDelegate {
