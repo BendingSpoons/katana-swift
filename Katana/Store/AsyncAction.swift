@@ -213,3 +213,24 @@ public extension AsyncAction {
     return copy
   }
 }
+
+public extension AsyncAction where Self: ActionWithSideEffect {
+  /**
+   Implementation of the `ActionWithSideEffect` type erasure.
+   We don't invoke the side effect if the state of the action is not loading.
+   This is because we want to trigger side effects only during the loading phase.
+  */
+  static func anySideEffect(action: AnyAction,
+                            state: State,
+                            dispatch: @escaping StoreDispatch,
+                            dependencies: SideEffectDependencyContainer) {
+    
+    guard let action = action as? Self else {
+      preconditionFailure("Action side effect invoked with a wrong 'action' parameter")
+    }
+    
+    if case .loading = action.state {
+      self.sideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
+    }
+  }
+}

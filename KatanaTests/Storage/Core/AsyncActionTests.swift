@@ -10,7 +10,7 @@ import Foundation
 import Katana
 import XCTest
 
-fileprivate struct AsyncTestAction: AsyncAction {
+fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
   var loadingPayload: Int
   var completedPayload: String?
   var failedPayload: String?
@@ -19,6 +19,7 @@ fileprivate struct AsyncTestAction: AsyncAction {
   var invokedLoadingClosure: () -> Void = { _ in }
   var invokedCompletedClosure: () -> Void = { _ in }
   var invokedFailedClosure: () -> Void = { _ in }
+  var invokedSideEffectClosure: () -> Void = { _ in }
   
   init(payload: Int) {
     self.loadingPayload = payload
@@ -38,6 +39,14 @@ fileprivate struct AsyncTestAction: AsyncAction {
   static func updatedStateForFailed(currentState: State, action: AsyncTestAction) -> State {
     action.invokedFailedClosure()
     return currentState
+  }
+  
+  static func sideEffect(action: AsyncTestAction,
+                         state: State,
+                         dispatch: @escaping StoreDispatch,
+                         dependencies: SideEffectDependencyContainer) {
+
+    action.invokedSideEffectClosure()
   }
 }
 
@@ -165,5 +174,73 @@ class AsyncActionTests: XCTestCase {
     XCTAssertEqual(completedAction.state, .failed)
     XCTAssertEqual(completedAction.loadingPayload, action.loadingPayload)
     XCTAssertEqual(completedAction.failedPayload, "Error")
+  }
+  
+  func testSideEffectLoading() {
+    var invoked = false
+    
+    let expectation = self.expectation(description: "Store listener")
+    let store = Store<AppState>()
+    var action = AsyncTestAction(payload: 10)
+    
+    action.invokedSideEffectClosure = {
+      invoked = true
+      expectation.fulfill()
+    }
+    
+    store.dispatch(action)
+    
+    self.waitForExpectations(timeout: 2.0) { (err: Error?) in
+      XCTAssertNil(err)
+      XCTAssertTrue(invoked)
+    }
+  }
+  
+  func testSideEffectCompleted() {
+    var invoked = false
+    
+    let expectation = self.expectation(description: "Store listener")
+    let store = Store<AppState>()
+    var action = AsyncTestAction(payload: 10).completedAction(payload: "A")
+    
+    action.invokedSideEffectClosure = {
+      invoked = true
+      expectation.fulfill()
+    }
+    
+    store.dispatch(action)
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      expectation.fulfill()
+    }
+    
+    self.waitForExpectations(timeout: 10.0) { (err: Error?) in
+      XCTAssertNil(err)
+      XCTAssertFalse(invoked)
+    }
+  }
+  
+  func testSideEffectFailed() {
+    var invoked = false
+    
+    let expectation = self.expectation(description: "Store listener")
+    let store = Store<AppState>()
+    var action = AsyncTestAction(payload: 10).failedAction(payload: "A")
+    
+    action.invokedSideEffectClosure = {
+      invoked = true
+      expectation.fulfill()
+    }
+    
+    store.dispatch(action)
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      expectation.fulfill()
+    }
+    
+    self.waitForExpectations(timeout: 10.0) { (err: Error?) in
+      XCTAssertNil(err)
+      XCTAssertFalse(invoked)
+    }
   }
 }
