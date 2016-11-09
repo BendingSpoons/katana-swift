@@ -24,8 +24,9 @@ class NativeTableWrapperCell: UITableViewCell {
   }
   
   func update(withparent parent: AnyNode, description: AnyNodeDescription) {
-    var newDescription = description
-    newDescription.frame = self.bounds
+    var newProps = description.anyProps
+    newProps.frame = self.bounds
+    let newDescription = type(of: description).init(anyProps: newProps)
     
     if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {

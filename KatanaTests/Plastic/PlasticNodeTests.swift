@@ -114,6 +114,9 @@ fileprivate struct MyAppState: State {}
 
 fileprivate struct AppProps: NodeDescriptionProps {
   var frame: CGRect = CGRect.zero
+  var alpha: CGFloat = 1.0
+  var key: String?
+  
   var i: Int
   
   static func == (lhs: AppProps, rhs: AppProps) -> Bool {

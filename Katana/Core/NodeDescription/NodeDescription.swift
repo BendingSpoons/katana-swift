@@ -38,7 +38,34 @@ public extension NodeDescriptionState {
 }
 
 /// Type Erasure for `NodeDescriptionProps`
-public protocol AnyNodeDescriptionProps: Frameable {}
+public protocol AnyNodeDescriptionProps {
+  /// The frame of the `NodeDescription`
+  var frame: CGRect { get set }
+  
+  /// The alpha of the `NodeDescription`
+  var alpha: CGFloat { get set }
+
+  /**
+   The key is used for many purposes. It is used for instance to calculate a more precise `replaceKey`,
+   from Plastic to implement the layout system or in the animation management to reference children
+  */
+  var key: String? { get set }
+  
+  /**
+   Helper method to translate any Swift value to a key, which is a String
+   
+   - parameter key: the key
+  */
+  mutating func setKey<K>(_ key: K)
+}
+
+public extension AnyNodeDescriptionProps {
+  /// The default implementation uses the Swift string interpolation to create the key
+  public mutating func setKey<Key>(_ key: Key) {
+    self.key = "\(key)"
+  }
+}
+
 
 /**
  Protocol that is used for structs that represent the properties of a `NodeDescription`.
@@ -65,15 +92,6 @@ public extension NodeDescriptionProps {
 
 /// Type Erasure for the `NodeDescription` protocol
 public protocol AnyNodeDescription {
-
-  /// frame of the description
-  var frame: CGRect { get set }
-  
-  /** 
-    key of the description
-  */
-  var key: String? { get }
-  
   /// Type erasure for `props`
   var anyProps: AnyNodeDescriptionProps { get }
   
@@ -235,6 +253,7 @@ public extension NodeDescription {
                                             update: @escaping (StateType)->(),
                                             node: AnyNode) -> Void {
     view.frame = props.frame
+    view.alpha = props.alpha
   }
   
   /// The default implementation does nothing. This is equivalent to never trigger an animation
@@ -248,26 +267,6 @@ public extension NodeDescription {
 }
 
 extension AnyNodeDescription where Self: NodeDescription {
-  /// Returns `props.frame`
-  public var frame: CGRect {
-    get {
-      return self.props.frame
-    }
-    
-    set(newFrame) {
-      self.props.frame = newFrame
-    }
-  }
-  
-  /// `props.key` if props are `Keyable`, nil otherwise
-  public var key: String? {
-    guard let props = self.props as? Keyable else {
-      return nil
-    }
-    
-    return props.key
-  }
-  
   /// the node description properties
   public var anyProps: AnyNodeDescriptionProps {
     return self.props
@@ -289,7 +288,7 @@ extension AnyNodeDescription where Self: NodeDescription {
    types. If the description has `Keyable` properties, the key is used as an extra source of information.
   */
   public var replaceKey: Int {
-    if let props = self.props as? Keyable, let key = props.key {
+    if let key = self.anyProps.key {
       return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue
     }
     

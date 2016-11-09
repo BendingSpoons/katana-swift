@@ -9,9 +9,10 @@
 import UIKit
 import Katana
 
-public struct ButtonProps: NodeDescriptionProps, Keyable, Buildable {
+public struct ButtonProps: NodeDescriptionProps, Buildable {
   public var frame = CGRect.zero
   public var key: String?
+  public var alpha: CGFloat = 1.0
   
   public var backgroundColor = UIColor.white
   public var cornerRadius: Value = .zero
@@ -39,6 +40,7 @@ public struct ButtonProps: NodeDescriptionProps, Keyable, Buildable {
     return
       lhs.key == rhs.key &&
       lhs.frame == rhs.frame &&
+      lhs.alpha == rhs.alpha &&
       lhs.backgroundColor == rhs.backgroundColor &&
       lhs.cornerRadius == rhs.cornerRadius &&
       lhs.borderWidth == rhs.borderWidth &&
@@ -72,6 +74,7 @@ public struct Button: NodeDescription {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
+    view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)

@@ -11,10 +11,12 @@ import Katana
 
 public typealias TouchHandlerClosure = () -> Void
 
-public struct TouchHandlerProps: NodeDescriptionProps, Childrenable, Keyable, Buildable {
+public struct TouchHandlerProps: NodeDescriptionProps, Childrenable, Buildable {
   public var frame = CGRect.zero
-  public var children: [AnyNodeDescription] = []
   public var key: String?
+  public var alpha: CGFloat = 1.0
+  
+  public var children: [AnyNodeDescription] = []
   public var handlers: [TouchHandlerEvent: TouchHandlerClosure]?
   public var hitTestInsets: UIEdgeInsets = .zero
   
@@ -37,6 +39,7 @@ public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.frame = props.frame
+    view.alpha = props.alpha
     view.handlers = props.handlers
     view.hitTestInsets = props.hitTestInsets
   }

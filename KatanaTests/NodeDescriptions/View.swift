@@ -9,9 +9,11 @@
 import Foundation
 import Katana
 
-struct ViewProps: NodeDescriptionProps, Keyable, Childrenable {
+struct ViewProps: NodeDescriptionProps, Childrenable {
   var frame = CGRect.zero
   var key: String?
+  var alpha: CGFloat = 1.0
+
   var children: [AnyNodeDescription] = []
   
   var backgroundColor = UIColor.white
@@ -38,8 +40,9 @@ struct ViewProps: NodeDescriptionProps, Keyable, Childrenable {
 
     return
       lhs.frame == rhs.frame &&
-        lhs.key == rhs.key &&
-        lhs.backgroundColor == rhs.backgroundColor
+      lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
+      lhs.backgroundColor == rhs.backgroundColor
   }
 }
 

@@ -127,9 +127,10 @@ public class ViewsContainer<Key> {
         hierarchyManager: self,
         key: key,
         multiplier: multiplier,
-        frame: node.frame
+        frame: node.anyProps.frame
       )
     }
+
     self.createChildrenHierarchy(for: self.childrenDescriptions, parentRepresentation: .nativeView, accumulator: &hierarchy)
   }
   
@@ -220,7 +221,7 @@ extension ViewsContainer {
         self.flattenChildren(n.children, accumulator: &accumulator)
       }
       
-      if let key = node.key {
+      if let key = node.anyProps.key {
         accumulator.append((key, node))
       }
     }
@@ -245,15 +246,15 @@ extension ViewsContainer {
     childrenDescriptions.forEach { nodeDescription in
       
       let currentRepresentation: HierarchyNode = {
-        if let key = nodeDescription.key {
+        if let key = nodeDescription.anyProps.key {
           return .dynamicFrame(key)
         }
         
-        return .staticFrame(nodeDescription.frame, parentRepresentation)
+        return .staticFrame(nodeDescription.anyProps.frame, parentRepresentation)
       }()
       
       
-      if let key = nodeDescription.key {
+      if let key = nodeDescription.anyProps.key {
         accumulator[key] = parentRepresentation
       }
       

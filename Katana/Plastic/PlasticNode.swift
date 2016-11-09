@@ -83,15 +83,18 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     return childrenDescriptions.map {
       var newChildDescription = $0
       
-      if let key = newChildDescription.key {
+      if let key = newChildDescription.anyProps.key {
         if let frame = newFrames[key] {
-          newChildDescription.frame = frame
+          var newProps = newChildDescription.anyProps
+          newProps.frame = frame
+          newChildDescription = type(of: newChildDescription).init(anyProps: newProps)
         }
       }
       
       if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
         n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
         return n as AnyNodeDescription
+
       } else {
         return newChildDescription
       }
@@ -115,7 +118,7 @@ public extension AnyNode {
     }
     
     let referenceSize = type(of: description).referenceSize
-    let currentSize = self.anyDescription.frame
+    let currentSize = self.anyDescription.anyProps.frame
     
     let widthRatio = currentSize.width / referenceSize.width
     let heightRatio = currentSize.height / referenceSize.height

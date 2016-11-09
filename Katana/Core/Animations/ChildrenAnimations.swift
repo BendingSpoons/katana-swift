@@ -106,7 +106,7 @@ extension ChildrenAnimations: AnyChildrenAnimations {
    - seeAlso: `AnyChildrenAnimations`
   */
   subscript(description: AnyNodeDescription) -> Animation {
-    if let props = description.anyProps as? Keyable, let key = props.key {
+    if let key = description.anyProps.key {
       return self[key]
     }
     
