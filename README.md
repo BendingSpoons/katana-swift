@@ -5,13 +5,13 @@
 
 Katana is a modern swift framework for writing iOS apps, strongly inspired by [react](https://facebook.github.io/react/) and [redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
 
-- __logic__: in a Katana app all the state is entirely described by a single serializable data structure and the only way to change the state is to emit an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+- __logic__: in a Katana app all the state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 - __UI__: in a Katana app you define the UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
 - __logic<->UI__: in Katana your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the store state to the component props.
 - __layout__: Katana defines a concise language to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
-We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At BendingSpoons we use a lot of Open Sourced projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. <3
+We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At BendingSpoons we use a lot of Open Sourced projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
 
 
@@ -83,7 +83,7 @@ Then drag the built `Katana.framework` into your XCode project
 
 ## Overview
 
-### defining the logic of your app
+### Defining the logic of your app
 
 your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
 
@@ -122,9 +122,9 @@ store.addListener() {
 
 
 
-### defining the UI
+### Defining the UI
 
-In Katana you declaratively define your UI components through `NodesDescriptions`. Each `NodeDescription` will describe a specific piece of UI in terms of its internal `state` , the inputs coming from outside, called the `props`, and the UIKit element associated with the component, the `NativeView`. 
+In Katana you declaratively describe a specific piece of UI providing a  `NodesDescription`. Each `NodeDescription` will define the component in terms of its internal `state` , the inputs coming from outside, called the `props`, and the UIKit element associated with the component, the `NativeView`. 
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -145,7 +145,7 @@ struct CounterScreenProps: NodeProps {
 }
 ```
 
-When it's time to render the component, the method `applyPropsToNativeView` is called, this is where we need to adjust our nativeView to reflect the  `props` and the `state`
+When it's time to render the component, the method `applyPropsToNativeView` is called, this is where we need to adjust our nativeView to reflect the  `props` and the `state`. Note that for common properties like frame and backgroundColor we already provide a standard applyPropsToNativeView so we got you covered.
 
 ```swift
 struct ToDoScreen: NodeDescription {
@@ -203,7 +203,7 @@ struct ToDoScreen: NodeDescription {
 
 
 
-### attaching the UI to the Logic
+### Attaching the UI to the Logic
 
 The `Root` object is responsible for connecting the `Store` to the tree of nodes that compose our UI.
 You create a root object starting from the top level NodeDescription and the store.
@@ -212,7 +212,7 @@ You create a root object starting from the top level NodeDescription and the sto
 let root = CounterScreen(props: CounterScreenProps()).makeRoot(store: store)
 ```
 
-Everytime a new app state is available the store emits an event that is captured by the Root and dispatched down to the tree of UI components.
+Everytime a new app state is available the store dispatches an event that is captured by the Root and dispatched down to the tree of UI components.
 If you want a node to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`
 
 ```
@@ -226,7 +226,7 @@ struct CounterScreen: ConnectedNodeDescription {
 
 
 
-### layout of the UI
+### Layout of the UI
 
 Katana have its own language to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 Each`NodeDescription` is responsible to define the layout of its children implementing the method `layout`. 
@@ -248,6 +248,8 @@ struct CounterScreen: ConnectedNodeDescription {
   }
 }
 ```
+
+![](/Demo/counter.gif)
 
 #### You can find the complete example [here](insert link to the complete example)
 
@@ -291,13 +293,13 @@ struct CounterScreen: ConnectedNodeDescription {
 
 - if you have __any questions__ you can find us on twitter: @handle, @handle, @handle, ...
 
+
+
+## Contribute
+
 - If you __found a bug__, open an issue
-
 - If you have a __feature request__, open an issue
-
 - If you __want to contribute__, submit a pull request
-
-  ​
 
 ## License
 
