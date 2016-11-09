@@ -2,11 +2,9 @@
 //  Size.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 16/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
-
-import CoreGraphics
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 /// `Size` is the scalable counterpart of `CGSize`
 public struct Size: Equatable {

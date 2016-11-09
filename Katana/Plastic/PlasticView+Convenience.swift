@@ -2,9 +2,9 @@
 //  PlasticView+Convenience.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 17/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 
