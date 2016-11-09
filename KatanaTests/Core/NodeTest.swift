@@ -3,14 +3,14 @@ import XCTest
 
 class NodeTest: XCTestCase {
   func testNodeDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
+    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
     let node = root.node!
     
     var references = collectNodes(node: node).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    node.update(with: App(props: AppProps(i:1), children: []))
+    node.update(with: App(props: AppProps(i:1)))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
   
@@ -18,7 +18,7 @@ class NodeTest: XCTestCase {
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    node.update(with: App(props: AppProps(i:2), children: []))
+    node.update(with: App(props: AppProps(i:2)))
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -28,7 +28,7 @@ class NodeTest: XCTestCase {
   }
   
   func testViewDeallocation() {
-    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
+    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
     let node = root.node!
     
     let rootVew = UIView()
@@ -39,7 +39,7 @@ class NodeTest: XCTestCase {
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      node.update(with: App(props: AppProps(i:2), children: []))
+      node.update(with: App(props: AppProps(i:2)))
     }
 
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
@@ -71,10 +71,12 @@ fileprivate struct AppProps: NodeProps {
 
 fileprivate struct App: NodeDescription {
 
-
   var props: AppProps
   var children: [AnyNodeDescription] = []
   
+  init(props: AppProps) {
+    self.props = props
+  }
   
   public static func childrenDescriptions(props: AppProps,
                             state: EmptyState,

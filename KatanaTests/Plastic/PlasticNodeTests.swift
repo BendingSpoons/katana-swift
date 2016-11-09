@@ -22,14 +22,14 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testNodeDeallocationPlastic() {
-    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
+    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
     
   
     var references = collectNodes(node: root.node!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-    root.node!.update(with: App(props: AppProps(i:1), children: []))
+    root.node!.update(with: App(props: AppProps(i:1)))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
@@ -37,7 +37,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
-    root.node!.update(with: App(props: AppProps(i:2), children: []))
+    root.node!.update(with: App(props: AppProps(i:2)))
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -48,7 +48,7 @@ class PlasticNodeTests: XCTestCase {
   
   func testViewDeallocationWithPlastic() {
 
-    let root = App(props: AppProps(i:0), children: []).makeRoot(store: nil)
+    let root = App(props: AppProps(i:0)).makeRoot(store: nil)
     
     let rootVew = UIView()
     root.render(in: rootVew)
@@ -58,7 +58,7 @@ class PlasticNodeTests: XCTestCase {
       .map { WeakView(value: $0) }
     
     autoreleasepool {
-      root.node!.update(with: App(props: AppProps(i:2), children: []))
+      root.node!.update(with: App(props: AppProps(i:2)))
     }
     
     
@@ -75,35 +75,37 @@ class PlasticNodeTests: XCTestCase {
 }
 
 
-private enum Keys {
+private enum TestNodeKeys {
   case One
 }
 
 private struct TestNode: NodeDescription, PlasticNodeDescription {
+  typealias Keys = TestNodeKeys
 
-
-  typealias NativeView = UIView
-  
   var props: EmptyProps
+  
+  init(props: EmptyProps) {
+    self.props = props
+  }
   
   // since we are using a static var here we are not be able to
   // parallelize tests. Let's refactor this test when we will need it
   static var invoked: Bool = false
   
   public static func childrenDescriptions(props: EmptyProps,
-                            state: EmptyState,
-                            update: @escaping (EmptyState) -> (),
-                            dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+                                          state: EmptyState,
+                                          update: @escaping (EmptyState) -> (),
+                                          dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
    
     var props = ViewProps()
-    props.setKey(Keys.One)
+    props.setKey(TestNodeKeys.One)
     
     return [
       View(props: props)
     ]
   }
   
-  static func layout(views: ViewsContainer<Keys>, props: EmptyProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer<TestNodeKeys>, props: EmptyProps, state: EmptyState) -> Void {
     self.invoked = true
   }
 }
@@ -128,6 +130,9 @@ fileprivate struct App: NodeDescription {
   var props: AppProps
   var children: [AnyNodeDescription] = []
   
+  init(props: AppProps) {
+    self.props = props
+  }
   
   fileprivate static func childrenDescriptions(props: AppProps,
                                  state: EmptyState,
