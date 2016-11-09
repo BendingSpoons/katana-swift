@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             $0.frame = rootBounds
         })).makeRoot(store: store)
         
-        store.dispatch(FetchMorePosts(payload: ""))
+        store.dispatch(FetchMorePosts(payload: ()))
             
         self.root!.render(in: view)
         

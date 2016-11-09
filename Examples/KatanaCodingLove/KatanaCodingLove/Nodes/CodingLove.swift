@@ -26,6 +26,8 @@ extension CodingLove {
     
     struct TableViewDelegate: TableDelegate {
         var posts: [Post]
+        
+        // FIXME: Remove
         var loading: Bool
         var allPostsFetched: Bool
         
@@ -40,6 +42,7 @@ extension CodingLove {
             return 1
         }
         
+        // FIXME: connect components to store and pass index only
         public func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
             if indexPath.section == 0 {
                 let post = posts[indexPath.row]
@@ -51,9 +54,9 @@ extension CodingLove {
         
         public func height(forRowAt indexPath: IndexPath) -> Katana.Value {
             if indexPath.section == 0 {
-                return Katana.Value(500)
+                return .scalable(500)
             }
-            return Katana.Value(100)
+            return .scalable(100)
         }
         
         public func isEqual(to anotherDelegate: TableDelegate) -> Bool {
@@ -85,9 +88,8 @@ extension CodingLove {
 struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
     typealias StateType = EmptyState
     typealias PropsType = Props
-    typealias NativeView = UIView
     
-    var props: Props
+    var props: PropsType
     
     static var referenceSize: CGSize {
         return CGSize(width: 640, height: 960)
@@ -112,7 +114,7 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNode
         ]
     }
     
-    static func layout(views: ViewsContainer<Keys>, props: Props, state: EmptyState) {
+    static func layout(views: ViewsContainer<Keys>, props: PropsType, state: EmptyState) {
         let rootView = views.nativeView
         let title = views[Keys.titleLabel]!
         let table = views[Keys.tableView]!

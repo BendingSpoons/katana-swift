@@ -18,7 +18,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         var allFetched: Bool = false
     }
 
-    typealias LoadingPayload = String
+    typealias LoadingPayload = Void
     typealias CompletedPayload = CompletedActionPayload
     typealias FailedPayload = String
 
@@ -55,6 +55,7 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         // TODO: Manage error state!
     }
     
+    // FIXME: refactor
     public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
         // FIXME: this shall be removed after it's fixed in Katana
         if action.state != .loading {
@@ -66,12 +67,9 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         
         DispatchQueue.global().async {
             // Read the file from bundle, faking a network request.
-            if let path = Bundle.main.path(forResource: "posts", ofType: "json")
-            {
+            if let path = Bundle.main.path(forResource: "posts", ofType: "json") {
                 let jsonData = try! NSData(contentsOfFile: path, options: .mappedIfSafe)
-                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>>
-                {
-                    
+                if let posts: Array<Dictionary<String, String>> = try! JSONSerialization.jsonObject(with: jsonData as Data, options: JSONSerialization.ReadingOptions.mutableContainers) as? Array<Dictionary<String, String>> {
                     let actualPosts = posts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)]
                     var allFetched = false
                     if ((page+1) * POSTS_PER_PAGE) >= posts.count {

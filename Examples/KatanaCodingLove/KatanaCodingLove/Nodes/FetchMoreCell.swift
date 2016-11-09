@@ -57,7 +57,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
                 $0.text = NSAttributedString(string: labelText, attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16)
                     ])
-                $0.textAlignment = NSTextAlignment.center
+                $0.textAlignment = .center
                 $0.backgroundColor = labelBackgroundColor
             })),
         ]
@@ -75,7 +75,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenc
             return
         }
         
-        dispatch(FetchMorePosts(payload: ""))
+        dispatch(FetchMorePosts(payload: ()))
     }
 
 }
