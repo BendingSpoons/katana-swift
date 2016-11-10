@@ -99,18 +99,20 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
 extension Intro {
   enum ChildrenKeys {
     case button, background
-    
     case pokemonImage, pokemonTitle
+    case cuteImage, cuteTitle
+    case pokeballImage, pokeballTitle
+    case gotchaImage, gotchaTitle
     
     static var images: [ChildrenKeys] {
       return [
-        .pokemonImage
+        .pokemonImage, .cuteImage, .pokeballImage, .gotchaImage
       ]
     }
     
     static var titles: [ChildrenKeys] {
       return [
-        .pokemonTitle
+        .pokemonTitle, cuteTitle, .pokeballTitle, .gotchaTitle
       ]
     }
   }
@@ -131,7 +133,7 @@ extension Intro {
 extension Intro {
   struct State: NodeDescriptionState {
     enum Step {
-      case pokemon, cute, pokeball, catchEmAll
+      case pokemon, cute, pokeball, gotcha
       
       var next: State {
         switch self {
@@ -140,8 +142,8 @@ extension Intro {
         case .cute:
           return State(step: .pokeball)
         case .pokeball:
-          return State(step: .catchEmAll)
-        case .catchEmAll:
+          return State(step: .gotcha)
+        case .gotcha:
           return State(step: .pokemon)
         }
       }
@@ -161,8 +163,12 @@ extension View {
       switch state {
       case .pokemon:
         return .charmender
-      default:
-        fatalError()
+      case .cute:
+        return .eevee
+      case .pokeball:
+        return .pokeball
+      case .gotcha:
+        return .gotcha
       }
     }()
     
@@ -180,8 +186,12 @@ extension Image {
       switch state {
       case .pokemon:
         return #imageLiteral(resourceName: "charmander")
-      default:
-        fatalError()
+      case .cute:
+        return #imageLiteral(resourceName: "eevee")
+      case .pokeball:
+        return #imageLiteral(resourceName: "pokeball")
+      case .gotcha:
+        return #imageLiteral(resourceName: "gotcha")
       }
     }()
     
@@ -189,8 +199,12 @@ extension Image {
       switch state {
       case .pokemon:
         return .pokemonImage
-      default:
-        fatalError()
+      case .cute:
+        return .cuteImage
+      case .pokeball:
+        return .pokeballImage
+      case .gotcha:
+        return .gotchaImage
       }
     }()
     
@@ -209,8 +223,12 @@ extension Label {
       switch state {
       case .pokemon:
         return "Hi Trainer!\nThis is a Pokémon!"
-      default:
-        fatalError()
+      case .cute:
+        return "Aren't they cute?"
+      case .pokeball:
+        return "You can capture Pokémons using a Pokéball!\nAim, launch and capture"
+      case .gotcha:
+        return "All clear?\nThere is a world out there\nYour journey stars now!\nCatch'em All"
       }
     }()
     
@@ -218,8 +236,12 @@ extension Label {
       switch state {
       case .pokemon:
         return .pokemonTitle
-      default:
-        fatalError()
+      case .cute:
+        return .cuteTitle
+      case .pokeball:
+        return .pokeballTitle
+      case .gotcha:
+        return .gotchaTitle
       }
     }()
     
