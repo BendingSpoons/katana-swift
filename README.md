@@ -187,11 +187,13 @@ struct CounterScreen: ConnectedNodeDescription {
 ### Layout of the UI
 
 Katana has its own language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
-Each `NodeDescription` is responsible to define the layout of its children by implementing the method `layout`. 
+If you want to opt in, just implement the `PlasticNodeDescription` protocol and its `layout` method where you can to define the layout of the children, based on the given `referenceSize`. The layout system will use the reference size to compute the proper scaling. 
 
 ```swift
-struct CounterScreen: ConnectedNodeDescription {
+struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
   ...
+  static var referenceSize = CGSize(width: 640, height: 960)
+  
   static func layout(views: ViewsContainer<CounterScreen.Keys>, props: PropsType, state: StateType) {
     let nativeView = views.nativeView
     
