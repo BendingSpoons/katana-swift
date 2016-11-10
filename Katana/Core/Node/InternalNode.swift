@@ -12,7 +12,7 @@ import Foundation
  Internal protocol that allow the drawing of the node in a container.
  
  We basically don't want to expose `draw` as a public method. We want to force developers
- to call draw only on the renderer by invoking
+ to call render only on the renderer by invoking
  
  ```
  renderer = Renderer(rootDescription: rootNodeDescription, store: store)

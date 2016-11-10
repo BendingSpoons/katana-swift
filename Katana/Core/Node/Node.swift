@@ -447,7 +447,7 @@ extension Node {
       step: .secondIntermediate
     )
 
-    // assign an hash to the animation, we will it later
+    // assign an hash to the animation, we use will it later to check the animation completion step
     let randomHash = Int(arc4random_uniform(UInt32.max))
     self.animationHash = randomHash
     

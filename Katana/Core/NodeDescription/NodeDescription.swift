@@ -132,7 +132,7 @@ public protocol AnyNodeDescription {
 public enum EmptyKeys {}
 
 /**
- A `NodeDescription` defines a specific piece of UI. You can think to a `NodeDescription` as a stencil that
+ A `NodeDescription` defines a specific piece of UI. You can think of a `NodeDescription` as a stencil that
  describes how a piece of UI should look like.
  
  `NodeDescription` methods are stateless. This is because the properties and the state are held
