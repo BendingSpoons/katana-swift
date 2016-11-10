@@ -45,7 +45,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
         $0.setKey(Keys.label)
         $0.textAlignment = .center
         $0.backgroundColor = .mediumAquamarine
-        $0.text = NSAttributedString(string: "Count: \(props.count)", attributes: nil)
+        $0.text = NSAttributedString(string: "Count: \(props.count)")
       })),
       Button(props: ButtonProps.build({
         $0.setKey(Keys.decrementButton)
