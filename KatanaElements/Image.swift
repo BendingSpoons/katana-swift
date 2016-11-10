@@ -9,9 +9,10 @@
 import UIKit
 import Katana
 
-public struct ImageProps: NodeDescriptionProps, Keyable, Buildable {
+public struct ImageProps: NodeDescriptionProps, Buildable {
   public var frame = CGRect.zero
   public var key: String?
+  public var alpha: CGFloat = 1.0
   
   public var backgroundColor = UIColor.white
   public var cornerRadius: Value = .zero
@@ -27,15 +28,16 @@ public struct ImageProps: NodeDescriptionProps, Keyable, Buildable {
   public static func == (lhs: ImageProps, rhs: ImageProps) -> Bool {
     return
       lhs.frame == rhs.frame &&
-        lhs.key == rhs.key &&
-        lhs.backgroundColor == rhs.backgroundColor &&
-        lhs.cornerRadius == rhs.cornerRadius &&
-        lhs.borderWidth == rhs.borderWidth &&
-        lhs.borderColor == rhs.borderColor &&
-        lhs.clipsToBounds == rhs.clipsToBounds &&
-        lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
-        lhs.image == rhs.image &&
-        lhs.tintColor == rhs.tintColor
+      lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
+      lhs.backgroundColor == rhs.backgroundColor &&
+      lhs.cornerRadius == rhs.cornerRadius &&
+      lhs.borderWidth == rhs.borderWidth &&
+      lhs.borderColor == rhs.borderColor &&
+      lhs.clipsToBounds == rhs.clipsToBounds &&
+      lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
+      lhs.image == rhs.image &&
+      lhs.tintColor == rhs.tintColor
   }
 }
 
@@ -52,6 +54,7 @@ public struct Image: NodeDescription {
                                             node: AnyNode) {
     
     view.frame = props.frame
+    view.alpha = props.alpha
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor

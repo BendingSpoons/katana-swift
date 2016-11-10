@@ -10,11 +10,11 @@ import Foundation
 
 public protocol Buildable {
   init()
-  static func build(_ closure: (inout Self) -> Void) -> Self
+  static func build(_ closure: (inout Self) -> ()) -> Self
 }
 
 public extension Buildable {
-  static func build(_ closure: (inout Self) -> Void) -> Self {
+  static func build(_ closure: (inout Self) -> ()) -> Self {
     var sSelf = self.init()
     closure(&sSelf)
     return sSelf

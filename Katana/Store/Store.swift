@@ -146,7 +146,7 @@ public class Store<StateType: State> {
 
 fileprivate extension Store {
   /// Type used internally to store partially applied middlewares
-  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> Void
+  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> ()
 
   /**
    This function composes the middlewares with the store dispatch
@@ -196,7 +196,7 @@ fileprivate extension Store {
   }
   
   /// Middleware-like function that executes the side effect of the action, if available
-  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((AnyAction) -> Void) {
+  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((AnyAction) -> ()) {
     return { action in
       defer {
         next(action)

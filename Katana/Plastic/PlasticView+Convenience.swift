@@ -17,7 +17,7 @@ extension PlasticView {
    - parameter view:   the view whose frame should be filled horizontally
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used.
   */
-  public func fillHorizontally(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
+  public func fillHorizontally(_ view: PlasticView, insets: EdgeInsets = .zero) {
     self.setLeft(view.left, offset: insets.left)
     self.setRight(view.right, offset: -insets.right)
   }
@@ -29,7 +29,7 @@ extension PlasticView {
    - parameter view:   the view whose frame should be filled vertically
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used
   */
-  public func fillVertically(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
+  public func fillVertically(_ view: PlasticView, insets: EdgeInsets = .zero) {
     self.setTop(view.top, offset: insets.top)
     self.setBottom(view.bottom, offset: -insets.bottom)
   }
@@ -40,7 +40,7 @@ extension PlasticView {
    - parameter view:   the view whose frame should be filled
    - parameter insets: the insets to use when filling the view frame
   */
-  public func fill(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
+  public func fill(_ view: PlasticView, insets: EdgeInsets = .zero) {
     self.setLeft(view.left, offset: insets.left)
     self.setRight(view.right, offset: -insets.right)
     self.setTop(view.top, offset: insets.top)
@@ -64,7 +64,7 @@ extension PlasticView {
                 bottom: Anchor,
                  right: Anchor,
            aspectRatio: CGFloat = 1,
-                insets: EdgeInsets = .zero) -> Void {
+                insets: EdgeInsets = .zero) {
     
     self.setLeft(left, offset: insets.left)
     self.setRight(right, offset: -insets.right)
@@ -91,7 +91,7 @@ extension PlasticView {
    - parameter left:  the left view anchor to center the called-upon view in relation to
    - parameter right: the right view anchor to center the called-upon view in relation to
   */
-  public func centerBetween(left: Anchor, right: Anchor) -> Void {
+  public func centerBetween(left: Anchor, right: Anchor) {
     let offset: Value = .fixed((right.coordinate - left.coordinate) / 2.0)
     self.setCenterX(left, offset: offset)
   }
@@ -103,7 +103,7 @@ extension PlasticView {
    - parameter top:      the top view anchor to center the called-upon view in relation to
    - parameter bottom:   the bottom view anchor to center the called-upon view in relation to
   */
-  public func centerBetween(top: Anchor, bottom: Anchor) -> Void {
+  public func centerBetween(top: Anchor, bottom: Anchor) {
     let offset: Value = .fixed((bottom.coordinate - top.coordinate) / 2.0)
     self.setCenterY(top, offset: offset)
   }
@@ -114,7 +114,7 @@ extension PlasticView {
    
    - parameter view: the view to center the called-upon view in
   */
-  public func center(_ view: PlasticView) -> Void {
+  public func center(_ view: PlasticView) {
     self.centerX = view.centerX
     self.centerY = view.centerY
   }
@@ -126,7 +126,7 @@ extension PlasticView {
    - parameter view:   the view whose edges to align with
    - parameter insets: the insets to use when aligning edges
   */
-  public func coverLeft(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
+  public func coverLeft(_ view: PlasticView, insets: EdgeInsets = .zero) {
     self.setLeft(view.left, offset: insets.left)
     self.setTop(view.top, offset: insets.top)
     self.setBottom(view.bottom, offset: -insets.bottom)
@@ -139,7 +139,7 @@ extension PlasticView {
    - parameter view:   the view whose edges to align with
    - parameter insets: the insets to use when aligning edges
   */
-  public func coverRight(_ view: PlasticView, insets: EdgeInsets = .zero) -> Void {
+  public func coverRight(_ view: PlasticView, insets: EdgeInsets = .zero) {
     self.setRight(view.right, offset: -insets.right)
     self.setTop(view.top, offset: insets.top)
     self.setBottom(view.bottom, offset: -insets.bottom)
@@ -152,7 +152,7 @@ extension PlasticView {
    - parameter view:   the view whose edges to align with
    - parameter insets: the insets to use when aligning edges
   */
-  public func asHeader(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) -> Void {
+  public func asHeader(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) {
     self.setLeft(view.left, offset: insets.left)
     self.setRight(view.right, offset: -insets.right)
     self.setTop(view.top, offset: insets.top)
@@ -165,7 +165,7 @@ extension PlasticView {
    - parameter view:   the view whose edges to align with
    - parameter insets: the insets to use when aligning edges
   */
-  public func asFooter(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) -> Void {
+  public func asFooter(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) {
     self.setLeft(view.left, offset: insets.left)
     self.setRight(view.right, offset: -insets.right)
     self.setBottom(view.bottom, offset: -insets.bottom)

@@ -27,7 +27,7 @@ public protocol AnyAction {
 public protocol Action: AnyAction {
   /**
    Creates the new state starting from the current state and the action. It is important
-   to node that `updateState(currentState:action:)` should be a 
+   to note that `updateState(currentState:action:)` should be a 
    [pure function](https://en.wikipedia.org/wiki/Pure_function), that is
    a function that given the same input always returns the same output and it also
    doesn't have any side effect. This is really important because it is an assumption

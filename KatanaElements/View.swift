@@ -9,9 +9,11 @@
 import UIKit
 import Katana
 
-public struct ViewProps: NodeDescriptionProps, Keyable, Childrenable, Buildable {
+public struct ViewProps: NodeDescriptionProps, Childrenable, Buildable {
   public var frame = CGRect.zero
   public var key: String?
+  public var alpha: CGFloat = 1.0
+
   public var children: [AnyNodeDescription] = []
   
   public var backgroundColor = UIColor.white
@@ -32,6 +34,7 @@ public struct ViewProps: NodeDescriptionProps, Keyable, Childrenable, Buildable 
     return
       lhs.frame == rhs.frame &&
       lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
       lhs.backgroundColor == rhs.backgroundColor &&
       lhs.cornerRadius == rhs.cornerRadius &&
       lhs.borderWidth == rhs.borderWidth &&
@@ -52,6 +55,7 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
+    view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)

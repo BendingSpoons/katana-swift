@@ -16,10 +16,10 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
   var failedPayload: String?
   var state: AsyncActionState
   
-  var invokedLoadingClosure: () -> Void = { _ in }
-  var invokedCompletedClosure: () -> Void = { _ in }
-  var invokedFailedClosure: () -> Void = { _ in }
-  var invokedSideEffectClosure: () -> Void = { _ in }
+  var invokedLoadingClosure: () -> () = { _ in }
+  var invokedCompletedClosure: () -> () = { _ in }
+  var invokedFailedClosure: () -> () = { _ in }
+  var invokedSideEffectClosure: () -> () = { _ in }
   
   init(payload: Int) {
     self.loadingPayload = payload
