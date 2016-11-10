@@ -136,7 +136,8 @@
 				E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */,
 				E3986C901DD0C97F00FAF8D8 /* PostCell.swift */,
 			);
-			path = Nodes;
+			name = Nodes;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		E3986C911DD0C97F00FAF8D8 /* State */ = {
@@ -214,7 +215,7 @@
 				TargetAttributes = {
 					E3986C191DD0C62800FAF8D8 = {
 						CreatedOnToolsVersion = 8.0;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -410,9 +411,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CodingLove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.CodingLove;
+				PRODUCT_BUNDLE_IDENTIFIER = BendingSpoons.CodingLove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
@@ -422,9 +424,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = CodingLove/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Demo.CodingLove;
+				PRODUCT_BUNDLE_IDENTIFIER = BendingSpoons.CodingLove;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 			};
