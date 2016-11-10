@@ -57,8 +57,8 @@ public class Node<Description: NodeDescription> {
   /// The current description of the node
   fileprivate(set) var description: Description
   
-  /// An hash that represent the animation that is currently running
-  fileprivate var animationHash: Int?
+  /// An ID that represent the animation that is currently running
+  fileprivate var animationID: Int?
   
   /**
     The parent of the node.
@@ -448,8 +448,8 @@ extension Node {
     )
 
     // assign an hash to the animation, we use will it later to check the animation completion step
-    let randomHash = Int(arc4random_uniform(UInt32.max))
-    self.animationHash = randomHash
+    let randomID = Int.random
+    self.animationID = randomID
     
     // perform the steps
     self.update(newChildrenDescriptions: firstTransitionChildren, animation: .none) { [weak self] in
@@ -457,7 +457,7 @@ extension Node {
         
         // we need to check the animation hash. If it is the same it means the animation has not been interrupted.
         // If an animation is interrupted, we don't need to execute the last step for that specific animation
-        if let hash = self?.animationHash, hash == randomHash {
+        if let id = self?.animationID, id == randomID {
           // final state
           self?.update(newChildrenDescriptions: finalChildren, animation: .none, completion: completion)
           
@@ -465,7 +465,7 @@ extension Node {
           completion?()
         }
         
-        self?.animationHash = nil
+        self?.animationID = nil
       }
     }
   }
