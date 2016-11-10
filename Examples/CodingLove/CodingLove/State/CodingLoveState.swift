@@ -2,9 +2,11 @@
 //  CodingLoveState.swift
 //  Katana
 //
-//  Created by Alain Caltieri on 07/11/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
+
+
 import Katana
 
 struct CodingLoveState: State {

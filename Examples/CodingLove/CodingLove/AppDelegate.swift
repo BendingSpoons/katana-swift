@@ -2,9 +2,10 @@
 //  AppDelegate.swift
 //  KatanaCodingLove
 //
-//  Created by Alain Caltieri on 07/11/16.
-//  Copyright © 2016 dk.bendingspoons.Demo. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
+
 
 import UIKit
 import Katana
