@@ -25,8 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     self.window?.rootViewController?.view.backgroundColor = UIColor.white
     self.window?.makeKeyAndVisible()
 
-    let description = Intro(props: Intro.Props(frame: UIScreen.main.bounds))
-    self.renderer = Renderer(rootDescription: description, store: nil)
+    let intro = Intro(props: Intro.Props(frame: UIScreen.main.bounds))
+    self.renderer = Renderer(rootDescription: intro, store: nil)
     self.renderer?.render(in: self.window!.rootViewController!.view)
     
     return true
