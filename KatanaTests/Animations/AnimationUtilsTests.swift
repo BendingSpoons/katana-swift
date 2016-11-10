@@ -77,7 +77,7 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "Q".hashValue, payload: "10"),
     ]
     
-    let result = AnimationUtils.merge(descriptions: a, with: b, step: .firstIntermediate) as! [TestDescription]
+    let result = AnimationUtils.mergedDescriptions(a, b, step: .firstIntermediate) as! [TestDescription]
     
     XCTAssertEqual(result, expected)
   }
@@ -117,7 +117,7 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "9".hashValue, payload: "20"),
     ]
     
-    let result = AnimationUtils.merge(descriptions: a, with: b, step: .secondIntermediate) as! [TestDescription]
+    let result = AnimationUtils.mergedDescriptions(a, b, step: .secondIntermediate) as! [TestDescription]
     
     XCTAssertEqual(result, expected)
   }

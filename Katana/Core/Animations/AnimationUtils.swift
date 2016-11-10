@@ -43,9 +43,9 @@ struct AnimationUtils {
    - returns: an array of descriptions with elements merged following the algorithm described above
    
   */
-  static func merge(
-    descriptions: [AnyNodeDescription],
-    with other: [AnyNodeDescription],
+  static func mergedDescriptions(
+    _ descriptions: [AnyNodeDescription],
+    _ other: [AnyNodeDescription],
     step: AnimationStep) -> [AnyNodeDescription] {
     
     let firstArray: [AnyNodeDescription]
@@ -103,12 +103,7 @@ struct AnimationUtils {
         .flatMap({ $0.children })
       
       
-      propsWithChildren.children = merge(
-        descriptions: propsWithChildren.children,
-        with: secondItemChildren ?? [],
-        step: step
-      )
-      
+      propsWithChildren.children = mergedDescriptions(propsWithChildren.children, secondItemChildren ?? [], step: step)
       return type(of: description).init(anyProps: propsWithChildren as! AnyNodeDescriptionProps)
     }
     

@@ -428,9 +428,7 @@ extension Node {
                                           completion: NodeUpdateCompletion?) {
     
     // first transition state
-    var firstTransitionChildren = AnimationUtils.merge(
-      descriptions: initialChildren, with: finalChildren, step: .firstIntermediate
-    )
+    var firstTransitionChildren = AnimationUtils.mergedDescriptions(initialChildren, finalChildren, step: .firstIntermediate)
     
     firstTransitionChildren = AnimationUtils.updatedDescriptions(
       for: firstTransitionChildren,
@@ -440,9 +438,7 @@ extension Node {
     )
 
     // second transition state
-    var secondTransitionChildren = AnimationUtils.merge(
-      descriptions: initialChildren, with: finalChildren, step: .secondIntermediate
-    )
+    var secondTransitionChildren = AnimationUtils.mergedDescriptions(initialChildren, finalChildren, step: .secondIntermediate)
     
     secondTransitionChildren = AnimationUtils.updatedDescriptions(
       for: secondTransitionChildren,
