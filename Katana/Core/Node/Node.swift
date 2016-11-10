@@ -129,31 +129,21 @@ public class Node<Description: NodeDescription> {
       $0.makeNode(parent: self)
     }
   }
-  
-  /**
-   This method is invoked during the update of the UI, after the invocation of `childrenDescriptions` of the description
-   associated with the node and before the process of updating the UI begins.
-   
-   This method is basically a customization point for subclasses to process and edit the children
-   descriptions before they are actually used.
+}
 
-   - parameter children: The children to process
-   - returns: the processed children
-  */
-  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    return children
-  }
 
+// MARK: Render
+extension Node {
   /**
-    Renders the node in a given container. Draws a node basically means create
-    the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
+   Renders the node in a given container. Draws a node basically means create
+   the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
    
-    -note:
-      This method should be invoked only once, the first time a node is drawn. For further updates of the UI managed by
-      the node, see `redraw`
-    
-    - parameter container: the container in which the node should be drawn
-  */
+   -note:
+   This method should be invoked only once, the first time a node is drawn. For further updates of the UI managed by
+   the node, see `redraw`
+   
+   - parameter container: the container in which the node should be drawn
+   */
   func render(in container: DrawableContainer) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
@@ -183,55 +173,27 @@ public class Node<Description: NodeDescription> {
   }
   
   /**
-   Add a managed child to the node
+   ReRender a node.
    
-   - parameter description: the description that will characterize the node that will be added
-   - parameter container:   the container in which the new node will be drawn
+   After the invocation of `draw`, it may be necessary to update the UI (e.g., because props or state are changed).
+   This method takes care of updating the the UI based on the new description
    
-   - returns: the node that has been created. The node will have the current node as parent
+   - parameter childrenToAdd: an array of children that weren't in the UI hierarchy before and that have to be added
+   - parameter viewIndexes:   an array of replaceKey that should be in the UI hierarchy after the update.
+   The method will use this array to remove nodes if necessary
+   
+   - parameter animation:     the animation to use to transition from the previous UI to the new one
+   
+   - parameter nativeRenderCallback: a callback that is invoked when the native view has been updated
+   - parameter childrenRenderCallback: a callback that is invoked every time a children is managed
+   (e.g., added to the UI hierarchy)
    */
-  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
-    let node = description.makeNode(parent: self) as! InternalAnyNode
-    self.managedChildren.append(node)
-    node.render(in: container)
-    return node
-  }
-  
-  /**
-   Removes a managed child from the node. For more information about managed children see the `Node` class
-   
-   - parameter node: the node to remove
-   */
-  public func removeManagedChild(node: AnyNode) {
-    let index = self.managedChildren.index { node === $0 }
-    self.managedChildren.remove(at: index!)
-  }
-
-}
-
-extension Node {
-  /**
-    ReRender a node.
-   
-    After the invocation of `draw`, it may be necessary to update the UI (e.g., because props or state are changed).
-    This method takes care of updating the the UI based on the new description
-   
-    - parameter childrenToAdd: an array of children that weren't in the UI hierarchy before and that have to be added
-    - parameter viewIndexes:   an array of replaceKey that should be in the UI hierarchy after the update.
-                               The method will use this array to remove nodes if necessary
-   
-    - parameter animation:     the animation to use to transition from the previous UI to the new one
-   
-    - parameter nativeRenderCallback: a callback that is invoked when the native view has been updated
-    - parameter childrenRenderCallback: a callback that is invoked every time a children is managed
-                                        (e.g., added to the UI hierarchy)
-  */
   fileprivate func reRender(childrenToAdd: [AnyNode],
                             viewIndexes: [Int],
                             animation: AnimationContainer,
                             nativeRenderCallback: (() -> ())?,
                             childrenRenderCallback: (() -> ())?) {
-
+    
     guard let container = self.container else {
       return
     }
@@ -279,13 +241,59 @@ extension Node {
       }
     }
   }
+}
+
+
+// MARK: Managed children
+extension Node {
+  /**
+   Add a managed child to the node
+   
+   - parameter description: the description that will characterize the node that will be added
+   - parameter container:   the container in which the new node will be drawn
+   
+   - returns: the node that has been created. The node will have the current node as parent
+   */
+  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
+    let node = description.makeNode(parent: self) as! InternalAnyNode
+    self.managedChildren.append(node)
+    node.render(in: container)
+    return node
+  }
+  
+  /**
+   Removes a managed child from the node. For more information about managed children see the `Node` class
+   
+   - parameter node: the node to remove
+   */
+  public func removeManagedChild(node: AnyNode) {
+    let index = self.managedChildren.index { node === $0 }
+    self.managedChildren.remove(at: index!)
+  }
+}
+
+// MARK: Children management
+extension Node {
+  /**
+   This method is invoked during the update of the UI, after the invocation of `childrenDescriptions` of the description
+   associated with the node and before the process of updating the UI begins.
+   
+   This method is basically a customization point for subclasses to process and edit the children
+   descriptions before they are actually used.
+   
+   - parameter children: The children to process
+   - returns: the processed children
+   */
+  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    return children
+  }
   
   /**
    This method returns the children descriptions based on the current description, the current props and the current state.
    It basically invokes `childrenDescription` of `NodeDescription`
    
    - returns: the array of children descriptions of the node
-  */
+   */
   fileprivate func getChildrenDescriptions() -> [AnyNodeDescription] {
     let update = { [weak self] (state: Description.StateType) -> () in
       DispatchQueue.main.async {
@@ -296,14 +304,14 @@ extension Node {
     let dispatch =  self.renderer.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).childrenDescriptions(props: self.description.props,
-                                        state: self.state,
-                                        update: update,
-                                        dispatch: dispatch)
+                                                      state: self.state,
+                                                      update: update,
+                                                      dispatch: dispatch)
   }
   
   /**
    This method updates the properties using information from the Store's state.
-  
+   
    - note: This method does nothing if the current description does not conform to `ConnectedNodeDescription`
    - seeAlso: `ConnectedNodeDescription`
    
@@ -311,7 +319,7 @@ extension Node {
    - parameter props:       the properties to update
    
    - returns: the updated properties
-  */
+   */
   func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
@@ -326,7 +334,11 @@ extension Node {
     
     return props
   }
-  
+}
+
+
+// MARK: Update
+extension Node {
   /**
     Updates the node with a new state. Invoking this method will cause an update of the piece of the UI managed by the node
    
