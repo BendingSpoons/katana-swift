@@ -40,8 +40,8 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
         props.borderWidth = .fixed(1)
         props.borderColor = .black
         props.attributedTitles = [
-          .normal: .buttonTitleString("Next", for: .normal),
-          .highlighted: .buttonTitleString("Next", for: .highlighted),
+          .normal: .buttonTitleString(state.step == .gotcha ? "Restart": "Next", for: .normal),
+          .highlighted: .buttonTitleString(state.step == .gotcha ? "Restart": "Next", for: .highlighted),
         ]
         
         props.touchHandlers = [
