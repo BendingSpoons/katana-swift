@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication,
                    didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
-    
+    UIApplication.shared.isStatusBarHidden = true
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = UIViewController()
     self.window?.rootViewController?.view.backgroundColor = UIColor.white
