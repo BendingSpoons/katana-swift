@@ -24,6 +24,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		654994C01DD4D3E60057D4BB /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6549948E1DD31BA70057D4BB;
+			remoteInfo = Demo;
+		};
 		E3F73CFC1DD3811D005A86AC /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = E3F73CF61DD3811C005A86AC /* Katana.xcodeproj */;
@@ -102,7 +109,7 @@
 				E3F73CED1DD36281005A86AC /* Providers */,
 				E3986C891DD0C97F00FAF8D8 /* Actions */,
 				E3986C8B1DD0C97F00FAF8D8 /* Models */,
-				E3986C8D1DD0C97F00FAF8D8 /* Nodes */,
+				E3986C8D1DD0C97F00FAF8D8 /* UI */,
 				E3986C911DD0C97F00FAF8D8 /* State */,
 				E3986C931DD0C97F00FAF8D8 /* Utils */,
 				E3986C1D1DD0C62800FAF8D8 /* AppDelegate.swift */,
@@ -129,14 +136,13 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
-		E3986C8D1DD0C97F00FAF8D8 /* Nodes */ = {
+		E3986C8D1DD0C97F00FAF8D8 /* UI */ = {
 			isa = PBXGroup;
 			children = (
 				E3986C8E1DD0C97F00FAF8D8 /* CodingLove.swift */,
 				E3986C8F1DD0C97F00FAF8D8 /* FetchMoreCell.swift */,
 				E3986C901DD0C97F00FAF8D8 /* PostCell.swift */,
 			);
-			name = Nodes;
 			path = UI;
 			sourceTree = "<group>";
 		};
@@ -178,6 +184,7 @@
 				E3F73CFD1DD3811D005A86AC /* Katana.framework */,
 				E3F73CFF1DD3811D005A86AC /* KatanaTests.xctest */,
 				E3F73D011DD3811D005A86AC /* KatanaElements.framework */,
+				654994C11DD4D3E60057D4BB /* Demo.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -244,6 +251,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		654994C11DD4D3E60057D4BB /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = 654994C01DD4D3E60057D4BB /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		E3F73CFD1DD3811D005A86AC /* Katana.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;

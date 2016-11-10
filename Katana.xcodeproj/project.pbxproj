@@ -12,11 +12,11 @@
 		654994A21DD31C420057D4BB /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A11DD31C420057D4BB /* CounterState.swift */; };
 		654994A61DD31C540057D4BB /* DecrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A41DD31C540057D4BB /* DecrementCounter.swift */; };
 		654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A51DD31C540057D4BB /* IncrementCounter.swift */; };
-		654994AA1DD31C6A0057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994A91DD31C6A0057D4BB /* CounterScreen.swift */; };
 		654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994C21DD4D4F20057D4BB /* CounterScreen.swift */; };
 		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
@@ -162,7 +162,7 @@
 		654994A11DD31C420057D4BB /* CounterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterState.swift; path = State/CounterState.swift; sourceTree = "<group>"; };
 		654994A41DD31C540057D4BB /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = Actions/DecrementCounter.swift; sourceTree = "<group>"; };
 		654994A51DD31C540057D4BB /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Actions/IncrementCounter.swift; sourceTree = "<group>"; };
-		654994A91DD31C6A0057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = Nodes/CounterScreen.swift; sourceTree = "<group>"; };
+		654994C21DD4D4F20057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = UI/CounterScreen.swift; sourceTree = "<group>"; };
 		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		8133151F1D7B726000FBE210 /* DrawableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableContainer.swift; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -287,9 +287,9 @@
 		6549948F1DD31BA80057D4BB /* Demo */ = {
 			isa = PBXGroup;
 			children = (
-				654994A81DD31C5C0057D4BB /* Nodes */,
 				654994A31DD31C4A0057D4BB /* Actions */,
 				654994A01DD31C160057D4BB /* State */,
+				654994A81DD31C5C0057D4BB /* UI */,
 				654994901DD31BA80057D4BB /* AppDelegate.swift */,
 				654994971DD31BA80057D4BB /* Assets.xcassets */,
 				6549949C1DD31BA80057D4BB /* Info.plist */,
@@ -314,12 +314,12 @@
 			name = Actions;
 			sourceTree = "<group>";
 		};
-		654994A81DD31C5C0057D4BB /* Nodes */ = {
+		654994A81DD31C5C0057D4BB /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				654994A91DD31C6A0057D4BB /* CounterScreen.swift */,
+				654994C21DD4D4F20057D4BB /* CounterScreen.swift */,
 			);
-			name = Nodes;
+			name = UI;
 			sourceTree = "<group>";
 		};
 		6562656B1DD1DA28005E91DC /* Button */ = {
@@ -852,7 +852,7 @@
 			files = (
 				654994A61DD31C540057D4BB /* DecrementCounter.swift in Sources */,
 				654994A21DD31C420057D4BB /* CounterState.swift in Sources */,
-				654994AA1DD31C6A0057D4BB /* CounterScreen.swift in Sources */,
+				654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */,
 				654994911DD31BA80057D4BB /* AppDelegate.swift in Sources */,
 				654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */,
 			);
