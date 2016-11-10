@@ -13,7 +13,7 @@ import Katana
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var root: Renderer?
+    var renderer: Renderer?
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
@@ -28,13 +28,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let store = Store<CodingLoveState>(middlewares: [], dependencies: PostsProvider.self)
         
-        self.root = Renderer(rootDescription: CodingLove(props: CodingLove.Props.build({
+        self.renderer = Renderer(rootDescription: CodingLove(props: CodingLove.Props.build({
             $0.frame = rootBounds
         })), store: store)
         
         store.dispatch(FetchMorePosts(payload: ()))
             
-        self.root!.render(in: view)
+        self.renderer!.render(in: view)
         
         return true
     }
