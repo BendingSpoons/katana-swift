@@ -12,9 +12,9 @@ import UIKit
 extension NSAttributedString {
   static func buttonTitleString(_ content: String, for state: UIControlState) -> NSAttributedString {
 
-    let color = state.contains(.normal)
-    ? UIColor.black
-    : UIColor(white: 0, alpha: 0.8)
+    let color = state.contains(.highlighted)
+    ? UIColor(white: 0, alpha: 0.3)
+    : UIColor.black
 
     return NSAttributedString(string: content, attributes: [
       NSFontAttributeName: UIFont(name: "HelveticaNeue", size: 20.0)!,
