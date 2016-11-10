@@ -19,7 +19,7 @@ We feel that Katana helped us a lot since we started using it in production for 
 | ------------------- | ---------------------------------------- |
 | :studio_microphone: | Declaratively define your UI             |
 | :package:           | Store all your app state in a single immutable state |
-| :guardsman:         | Clearly define what are the possible actions that will change the state |
+| :guardsman:         | Clearly define what are the actions that can change the state |
 | :bowtie:            | Async actions                            |
 | :muscle:            | Middlewares                              |
 | :tophat:            | Automatically update the UI when your app state changes |
