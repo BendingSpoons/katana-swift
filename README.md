@@ -114,7 +114,7 @@ struct CounterScreen: NodeDescription {
 }
 ```
 
-`NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by others `NodeDescription` as children. To define child components implement the method `childrenDescriptions`
+`NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by others `NodeDescription` as children, generating the UI tree. To define child components implement the method `childrenDescriptions`
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -161,7 +161,7 @@ struct CounterScreen: NodeDescription {
 
 ### Attaching the UI to the Logic
 
-The `Renderer` is responsible for rendering the nodes tree and updating the tree when the `Store` changes. 
+The `Renderer` is responsible for rendering the UI tree and updating it when the `Store` changes. 
 
 You create a Renderer object starting from the top level NodeDescription and the store.
 
@@ -170,7 +170,7 @@ renderer = Renderer(rootDescription: counterScreen, store: store)
 renderer.render(in: view)
 ```
 
-Everytime a new app state is available the store dispatches an event that is captured by the Renderer and dispatched down to the tree of UI components.
+Every time a new app state is available, the store dispatches an event that is captured by the Renderer and dispatched down to the tree of UI components.
 If you want a node to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`
 
 ```
@@ -186,8 +186,8 @@ struct CounterScreen: ConnectedNodeDescription {
 
 ### Layout of the UI
 
-Katana have its own language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
-Each `NodeDescription` is responsible to define the layout of its children implementing the method `layout`. 
+Katana has its own language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
+Each `NodeDescription` is responsible to define the layout of its children by implementing the method `layout`. 
 
 ```swift
 struct CounterScreen: ConnectedNodeDescription {
@@ -322,7 +322,7 @@ Then drag the built `Katana.framework` into your XCode project
 
 ## Contribute
 
-- If you __found a bug__, open an issue
+- If you've __found a bug__, open an issue
 - If you have a __feature request__, open an issue
 - If you __want to contribute__, submit a pull request
 
