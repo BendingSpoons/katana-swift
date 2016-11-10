@@ -100,47 +100,6 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
                                        nextProps: PropsType,
                                        currentState: StateType,
                                        nextState: StateType) {
-    
-    
-    let scale: (_ percentage: CGFloat) -> AnimationPropsTransformer = { percentage in
-      return {
-        var p = $0
-        
-        p.frame.size = CGSize(
-          width: $0.frame.size.width * percentage,
-          height: $0.frame.size.height * percentage
-        )
-        
-        p.frame.origin = CGPoint(
-          x: $0.frame.origin.x + $0.frame.size.width / 2.0,
-          y: $0.frame.origin.y + $0.frame.size.height / 2.0
-        )
-        
-        return p
-      }
-    }
-
-    let moveOutsideLeft: (_ distance: CGFloat) -> AnimationPropsTransformer = { distance in
-      return {
-        var p = $0
-        p.frame.origin.x = p.frame.origin.x - distance
-        return p
-      }
-    }
-
-    let moveOutsideRight: (_ distance: CGFloat) -> AnimationPropsTransformer = { distance in
-      return {
-        var p = $0
-        p.frame.origin.x = p.frame.origin.x + distance
-        return p
-      }
-    }
-    
-    let fade: AnimationPropsTransformer = {
-      var p = $0
-      p.alpha = 0.0
-      return p
-    }
 
     container[.background] = Animation(type: .linear(duration: 0.3))
     
@@ -148,53 +107,53 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
     // Pokemon slide
     container[.pokemonImage] = Animation(
       type: .linear(duration: 0.3),
-      entryTransformers: [fade],
-      leaveTransformers: [scale(0.0)]
+      entryTransformers: [AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.scale(percentage: 0.0)]
     )
     
     container[.pokemonTitle] = Animation(
       type: .linear(duration: 0.3),
-      entryTransformers: [fade],
-      leaveTransformers: [moveOutsideLeft(1000), fade]
+      entryTransformers: [AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.moveLeft(), AnimationProps.fade()]
     )
     
     // Cute slide
     container[.cuteImage] = Animation(
       type: .spring(duration: 0.5, damping: 0.4, initialVelocity: 0),
-      entryTransformers: [scale(0.0)],
-      leaveTransformers: [moveOutsideLeft(1000)]
+      entryTransformers: [AnimationProps.scale(percentage: 0.0)],
+      leaveTransformers: [AnimationProps.moveLeft()]
     )
     
     container[.cuteTitle] = Animation(
       type: .linear(duration: 0.3),
-      entryTransformers: [moveOutsideRight(500), fade],
-      leaveTransformers: [moveOutsideLeft(500)]
+      entryTransformers: [AnimationProps.moveRight(distance: 500), AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.moveLeft(distance: 500)]
     )
     
     // Pokeball slide
     container[.pokeballImage] = Animation(
       type: .linear(duration: 0.4),
-      entryTransformers: [scale(0.0), moveOutsideRight(300)],
-      leaveTransformers: [scale(0.0), moveOutsideLeft(300)]
+      entryTransformers: [AnimationProps.scale(percentage: 0.0), AnimationProps.moveRight(distance: 300)],
+      leaveTransformers: [AnimationProps.scale(percentage: 0.0), AnimationProps.moveLeft(distance: 300)]
     )
     
     container[.pokeballTitle] = Animation(
       type: .linear(duration: 0.3),
-      entryTransformers: [moveOutsideRight(300), fade],
-      leaveTransformers: [moveOutsideLeft(500)]
+      entryTransformers: [AnimationProps.moveRight(distance: 300), AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.moveLeft(distance: 500)]
     )
     
     // gotcha slide
     container[.gotchaImage] = Animation(
       type: .linear(duration: 0.4),
-      entryTransformers: [fade],
-      leaveTransformers: [fade]
+      entryTransformers: [AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.fade()]
     )
     
     container[.gotchaTitle] = Animation(
       type: .linear(duration: 0.6),
-      entryTransformers: [fade],
-      leaveTransformers: [fade]
+      entryTransformers: [AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.fade()]
     )
   }
 }
