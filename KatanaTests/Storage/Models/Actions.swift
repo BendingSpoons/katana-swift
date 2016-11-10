@@ -1,10 +1,10 @@
 //
-//  File.swift
-//  ReKatana
+//  Actions.swift
+//  Katana
 //
-//  Created by Mauro Bolis on 08/08/16.
-//  Copyright © 2016 BendingSpoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 @testable import Katana
@@ -58,10 +58,10 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
     _ action: SpyActionWithSideEffect,
     _ state: State,
     _ dispatch: @escaping StoreDispatch,
-    _ dependencies: SideEffectDependencyContainer) -> Void
+    _ dependencies: SideEffectDependencyContainer) -> ()
   
   var sideEffectInvokedClosure: ActionWithSideEffectCallback?
-  var updatedInvokedClosure: (() -> Void)?
+  var updatedInvokedClosure: (() -> ())?
   
   public static func updatedState(currentState: State, action: SpyActionWithSideEffect) -> State {
     action.updatedInvokedClosure?()

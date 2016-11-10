@@ -2,9 +2,9 @@
 //  SideEffectable.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 29/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 

@@ -2,9 +2,9 @@
 //  NativeTableWrapperCell.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import UIKit
@@ -24,13 +24,14 @@ class NativeTableWrapperCell: UITableViewCell {
   }
   
   func update(withparent parent: AnyNode, description: AnyNodeDescription) {
-    var newDescription = description
-    newDescription.frame = self.bounds
+    var newProps = description.anyProps
+    newProps.frame = self.bounds
+    let newDescription = type(of: description).init(anyProps: newProps)
     
     if let node = self.node {
       if node.anyDescription.replaceKey == description.replaceKey {
         // we just need to let the node do its job
-        node.update(with: newDescription)
+        node.update(with: newDescription, animation: .none, completion: nil)
         return
       }
     }
@@ -56,7 +57,7 @@ class NativeTableWrapperCell: UITableViewCell {
     // if we have a node, and the description is of the CellNodeDescription kind, then
     // we can automate the tap process
     if let node = self.node, let description = node.anyDescription as? AnyTableCell {
-      let store = node.treeRoot.store
+      let store = node.renderer.store
       let dispatch = store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not available.") }
       type(of: description).anyDidTap(dispatch: dispatch, props: description.anyProps, indexPath: indexPath)
     }

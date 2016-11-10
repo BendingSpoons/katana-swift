@@ -2,17 +2,18 @@
 //  Table.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import UIKit
 import Katana
 
-public struct TableProps: NodeDescriptionProps, Keyable, Buildable {
+public struct TableProps: NodeDescriptionProps {
   public var frame = CGRect.zero
   public var key: String?
+  public var alpha: CGFloat = 1.0
   
   public var delegate: TableDelegate = EmptyTableDelegate()
   public var backgroundColor = UIColor.white
@@ -27,6 +28,7 @@ public struct TableProps: NodeDescriptionProps, Keyable, Buildable {
     return
       lhs.frame == rhs.frame &&
       lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
       lhs.backgroundColor == rhs.backgroundColor &&
       lhs.cornerRadius == rhs.cornerRadius &&
       lhs.borderWidth == rhs.borderWidth &&
@@ -52,6 +54,7 @@ public struct Table: NodeDescription {
                                             node: AnyNode) {
     
     view.frame = props.frame
+    view.alpha = props.alpha
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius
     view.layer.borderWidth = props.borderWidth

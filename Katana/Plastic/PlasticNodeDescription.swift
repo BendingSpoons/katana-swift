@@ -2,9 +2,9 @@
 //  PlasticNodeDescription.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 24/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
@@ -15,17 +15,13 @@ public protocol AnyPlasticNodeDescription {
    
    - seeAlso: `PlasticNodeDescription`, `layout(views:props:state:)` method
    */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void
+  static func anyLayout(views: Any, props: Any, state: Any)
 }
 
 /**
  This protocol allows a `NodeDescription` to use the Plastic layout system.
 */
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
-  
-  /// The type used to define the keys of the `NodeDescription` children. It should be an enum
-  associatedtype Keys
-  
   /**
    Node descriptions should implement this method and provide the proper layout logic.
    
@@ -51,7 +47,7 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    - parameter props: the current props of the node description
    - parameter state: the current state of the node description
   */
-  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType)
   
   /**
    The layout logic may be expensive in some cases. By implementing this method, you can actually
@@ -82,7 +78,7 @@ public extension PlasticNodeDescription {
    
    - seeAlso: `AnyPlasticNodeDescription`
   */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void {
+  static func anyLayout(views: Any, props: Any, state: Any) {
     if let p = props as? PropsType, let s = state as? StateType, let v = views as? ViewsContainer<Keys> {
       layout(views: v, props: p, state: s)
     }
@@ -102,18 +98,16 @@ public extension PlasticNodeDescription {
   public func makeNode(parent: AnyNode) -> AnyNode {
     return PlasticNode(description: self, parent: parent)
   }
-
+  
   /**
-   Creates an instance of `Root` given the store.
+   Creates an instance of `Node` given the `Renderer` responsible to render the Nodes tree
+   starting from this Plastic Node Description.
    
-   This method is the same as the `NodeDescription` `makeRoot(store:)` but the
-   root's `node` property will be an instance of `PlasticNode`
-  */
-  func makeRoot(store: AnyStore?) -> Root {
-    let root = Root(store: store)
-    let node = PlasticNode(description: self, root: root)
-    root.node = node
-    return root
+   This method is the same as the `NodeDescription` `makeNode(renderer:)` but it
+   returns an instance of `PlasticNode`
+   */
+  public func makeNode(renderer: Renderer) -> AnyNode {
+    return PlasticNode(description: self, renderer: renderer)
   }
   
 }

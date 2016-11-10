@@ -2,16 +2,17 @@
 //  Image.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 import Katana
 
-public struct ImageProps: NodeDescriptionProps, Keyable {
+public struct ImageProps: NodeDescriptionProps {
   public var frame = CGRect.zero
   public var key: String?
+  public var alpha: CGFloat = 1.0
   
   public var backgroundColor = UIColor.white
   public var image: UIImage? = nil
@@ -21,9 +22,10 @@ public struct ImageProps: NodeDescriptionProps, Keyable {
   public static func == (lhs: ImageProps, rhs: ImageProps) -> Bool {
     return
       lhs.frame == rhs.frame &&
-        lhs.key == rhs.key &&
-        lhs.backgroundColor == rhs.backgroundColor &&
-        lhs.image == rhs.image
+      lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
+      lhs.backgroundColor == rhs.backgroundColor &&
+      lhs.image == rhs.image
   }
 }
 

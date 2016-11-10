@@ -2,100 +2,72 @@
 //  Animation.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 26/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
-/// Enum that represents the animations that can be used to animate an UI update
-public enum Animation {
+/**
+ The transformer function used to update properties to perform entry and leave animations.
+ The idea is that props are changed by chaining different transformers.
+ */
+public typealias AnimationPropsTransformer = (_ props: AnyNodeDescriptionProps) -> AnyNodeDescriptionProps
+
+/**
+ The animation for a child of a `NodeDescription`.
+ 
+ The idea is that, for elements that are either created or destroyed during an animation,
+ we will compute initial or final state and then animate to/from there.
+ 
+ When an element is created during an animated update, we take the final state (that is, the state
+ you have returned in the `childrenDescription` method) and we apply the transformers
+ you have specified in `entryTransformers`.
+ The resulting props are used to render an intermediated state that will be animated to the final state.
+ 
+ When an element is destroyed during an animated update, something similar happens. The only difference is that
+ we take the initial state (that is, the state of the last render when the element was present) and we apply the
+ transformers you have specified in `leaveTransformers`
+ */
+public struct Animation {
+  /// The animation type to perform for the child
+  let type: AnimationType
   
-  /// No animation
-  case none
+  /// The entry phase transformers
+  let entryTransformers: [AnimationPropsTransformer]
   
-  /// Linear animation with a given duration
-  case linear(duration: TimeInterval)
+  /// The leave entry phase transformers
+  let leaveTransformers: [AnimationPropsTransformer]
   
-  /// Linear animation with given duration and options
-  case linearWithOptions(duration: TimeInterval,
-                          options: UIViewAnimationOptions)
-  
-  /// Liear animation with given duration, options and delay
-  case linearWithDelay(duration: TimeInterval,
-               options: UIViewAnimationOptions,
-                 delay: TimeInterval)
-  
-  /// Spring animation with duration, damping and initial velocity
-  case spring(duration: TimeInterval, damping: CGFloat, initialVelocity: CGFloat)
-  
-  /// Spring animation with duration, damping, initial velocity and options
-  case springWithOptions(duration: TimeInterval,
-                          damping: CGFloat,
-                  initialVelocity: CGFloat,
-                          options: UIViewAnimationOptions)
-  
-  /// Spring animation with duration, damping, initial velocity, options and delay
-  case springWithDelay(duration: TimeInterval,
-               damping: CGFloat,
-       initialVelocity: CGFloat,
-               options: UIViewAnimationOptions,
-                 delay: TimeInterval)
-  
+  /// An empty animation
+  static let none = Animation(type: .none)
   
   /**
-   Animates UI changes performed in a block with the animation specified by the enum value
-   - parameter block: a block that contains the updates to the UI to animate
-  */
-  func animate(_ block: @escaping ()->() ) {
-    switch self {
-    case .none:
-      UIView.performWithoutAnimation(block)
-     
-    case let .linear(duration):
-      UIView.animate(withDuration: duration,
-                       animations: block)
-      
-    case let .linearWithOptions(duration, options):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-                          options: options,
-                       animations: block,
-                       completion: nil)
-      
-    case let .linearWithDelay(duration, options, delay):
-      UIView.animate(withDuration: duration,
-                            delay: delay,
-                          options: options,
-                       animations: block,
-                       completion: nil)
-      
-    case let .spring(duration, damping, initialVelocity):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: .curveEaseInOut,
-                       animations: block,
-                       completion: nil)
-      
-    case let .springWithOptions(duration, damping, initialVelocity, options):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: options,
-                       animations: block,
-                       completion: nil)
-      
-    case let .springWithDelay(duration, damping, initialVelocity, options, delay):
-      UIView.animate(withDuration: duration,
-                            delay: delay,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: options,
-                       animations: block,
-                       completion: nil)
-    }
+   Creates an animation with the given values
+   
+   - parameter type: the type of animation to apply to the child
+   - parameter entryTransformers: the transformers to use in the entry phase
+   - parameter leaveTransformers: the transformers to use in the leave phase
+   - returns: an animation with the given parameters
+   */
+  public init(type: AnimationType,
+              entryTransformers: [AnimationPropsTransformer],
+              leaveTransformers: [AnimationPropsTransformer]) {
+    
+    self.type = type
+    self.entryTransformers = entryTransformers
+    self.leaveTransformers = leaveTransformers
+  }
+  
+  /**
+   Creates an animation with the given values
+   
+   - parameter type: the type of animation to apply to the child
+   - returns: an animation with the given animation type and no transformers
+   */
+  public init(type: AnimationType) {
+    self.type = type
+    self.entryTransformers = []
+    self.leaveTransformers = []
   }
 }
