@@ -85,7 +85,7 @@ struct CounterScreen: NodeDescription {
 	typealias PropsType = CounterScreenProps
 	typealias NativeView = UIView
 	
-	var props: CounterScreenProps
+	var props: PropsType
 }
 ```
 
