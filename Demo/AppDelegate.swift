@@ -33,7 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
     
     let store = Store<CounterState>()
-    let counterScreen = CounterScreen(props: CounterScreenProps.build({ (counterScreenProps) in
+    let counterScreen = CounterScreen(props: CounterScreen.Props.build({ (counterScreenProps) in
       counterScreenProps.frame = rootBounds
     }))
     

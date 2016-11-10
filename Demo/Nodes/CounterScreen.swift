@@ -9,52 +9,63 @@
 import Katana
 import KatanaElements
 
-struct CounterScreenProps: NodeDescriptionProps, Buildable {
-  var frame: CGRect = .zero
-  var count: Int = 0
-}
-
-struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription {
-  
-  enum Keys: String {
+extension CounterScreen {
+  enum Keys {
     case label
     case incrementButton
     case decrementButton
   }
   
-  var props: CounterScreenProps
+  struct Props: NodeDescriptionProps, Buildable {
+    var alpha: CGFloat = 1.0
+    var frame: CGRect = .zero
+    var key: String?
+    
+    var count: Int = 0
+  }
+}
+
+
+struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
+  typealias StateType = EmptyState
+  typealias PropsType = Props
+  typealias NativeView = UIView
   
-  public static func childrenDescriptions(props: CounterScreenProps,
-                                          state: EmptyState,
-                                          update: @escaping (EmptyState) -> (),
+  var props: PropsType
+  
+  static var referenceSize = CGSize(width: 640, height: 960)
+  
+  public static func childrenDescriptions(props: PropsType,
+                                          state: StateType,
+                                          update: @escaping (StateType) -> (),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     return [
-      Label(props: LabelProps.build({ (labelProps) in
-        labelProps.key = CounterScreen.Keys.label.rawValue
-        labelProps.textAlignment = .center
-        labelProps.backgroundColor = .mediumAquamarine
-        labelProps.text = NSAttributedString(string: "Count: \(props.count)", attributes: nil)
+      Label(props: LabelProps.build({
+        $0.setKey(Keys.label)
+        $0.textAlignment = .center
+        $0.backgroundColor = .mediumAquamarine
+        $0.text = NSAttributedString(string: "Count: \(props.count)", attributes: nil)
       })),
-      Button(props: ButtonProps.build({ (buttonProps) in
-        buttonProps.key = CounterScreen.Keys.decrementButton.rawValue
-        buttonProps.titles[.normal] = "Decrement"
-        buttonProps.backgroundColor = .dogwoodRose
-        buttonProps.titleColors = [.highlighted : .red]
+      Button(props: ButtonProps.build({
+        $0.setKey(Keys.decrementButton)
+        $0.titles[.normal] = "Decrement"
+        $0.backgroundColor = .dogwoodRose
+        $0.titleColors = [.highlighted : .jet]
         
-        buttonProps.touchHandlers = [
+        $0.touchHandlers = [
           .touchUpInside : {
             dispatch(DecrementCounter())
           }
         ]
       })),
-      Button(props: ButtonProps.build({ (buttonProps) in
-        buttonProps.key = CounterScreen.Keys.incrementButton.rawValue
-        buttonProps.titles[.normal] = "Increment"
-        buttonProps.backgroundColor = .japaneseIndigo
-        buttonProps.titleColors = [.highlighted : .red]
+      Button(props: ButtonProps.build({
+        $0.setKey(Keys.incrementButton)
+        $0.titles[.normal] = "Increment"
+        $0.backgroundColor = .japaneseIndigo
+        $0.titleColors = [.highlighted : .jet]
         
-        buttonProps.touchHandlers = [
+        $0.touchHandlers = [
           .touchUpInside : {
             dispatch(IncrementCounter())
           }
@@ -63,11 +74,11 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription {
     ]
   }
   
-  public static func connect(props: inout CounterScreenProps, to storeState: CounterState) {
+  public static func connect(props: inout PropsType, to storeState: CounterState) {
     props.count = storeState.counter
   }
   
-  public static func layout(views: ViewsContainer<CounterScreen.Keys>, props: CounterScreenProps, state: EmptyState) {
+  public static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) {
     let rootView = views.nativeView
     
     let label = views[.label]!
@@ -95,5 +106,9 @@ extension UIColor {
   
   static var japaneseIndigo: UIColor {
     return UIColor (colorLiteralRed: 35.0/255.0, green: 57.0/255.0, blue: 91.0/255.0, alpha: 1.0)
+  }
+  
+  static var jet: UIColor {
+    return UIColor (colorLiteralRed: 51.0/255.0, green: 49.0/255.0, blue: 46.0/255.0, alpha: 1.0)
   }
 }
