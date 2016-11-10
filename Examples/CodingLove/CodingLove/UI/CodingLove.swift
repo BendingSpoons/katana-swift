@@ -17,6 +17,10 @@ extension CodingLove {
     }
     
     struct Props: NodeDescriptionProps, Buildable {
+        /// The alpha of the `NodeDescription`
+        var alpha: CGFloat = 1.0
+        var key: String? = nil
+
         var frame: CGRect = .zero
         var posts: [Post] = [Post]()
         var loading: Bool = true
@@ -73,7 +77,7 @@ extension CodingLove {
     
 }
 
-struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
+struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
     typealias StateType = EmptyState
     typealias PropsType = Props
     

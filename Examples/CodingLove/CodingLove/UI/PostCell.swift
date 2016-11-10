@@ -18,12 +18,14 @@ extension PostCell {
     
     struct Props: NodeDescriptionProps, Buildable {
         var frame: CGRect = .zero
+        var alpha: CGFloat = 1.0
+        var key: String? = nil
         var index: Int = 0
         var post: Post? = nil
     }
 }
 
-struct PostCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription {
+struct PostCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCell, ConnectedNodeDescription {
     typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
     typealias NativeView = NativeTableCell

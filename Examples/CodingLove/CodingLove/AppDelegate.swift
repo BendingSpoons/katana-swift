@@ -13,7 +13,7 @@ import Katana
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var root: Root?
+    var root: Renderer?
     
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]? = nil) -> Bool {
@@ -28,9 +28,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let store = Store<CodingLoveState>(middlewares: [], dependencies: PostsProvider.self)
         
-        self.root = CodingLove(props: CodingLove.Props.build({
+        self.root = Renderer(rootDescription: CodingLove(props: CodingLove.Props.build({
             $0.frame = rootBounds
-        })).makeRoot(store: store)
+        })), store: store)
         
         store.dispatch(FetchMorePosts(payload: ()))
             

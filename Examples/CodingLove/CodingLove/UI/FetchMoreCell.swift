@@ -16,13 +16,15 @@ extension FetchMoreCell {
     }
     
     struct Props: NodeDescriptionProps {
+        var key: String? = nil
+        var alpha: CGFloat = 1.0
         var frame: CGRect = .zero
         var loading: Bool = true
         var allPostsFetched: Bool = false
     }
 }
 
-struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription {
+struct FetchMoreCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCell, ConnectedNodeDescription {
     typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
     typealias NativeView = NativeTableCell
