@@ -1,0 +1,453 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A15578FB1DD48D84004D8069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15578FA1DD48D84004D8069 /* AppDelegate.swift */; };
+		A15579021DD48D84004D8069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15579011DD48D84004D8069 /* Assets.xcassets */; };
+		A15579051DD48D84004D8069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15579031DD48D84004D8069 /* LaunchScreen.storyboard */; };
+		A155790E1DD48E44004D8069 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A155790D1DD48E44004D8069 /* .swiftlint.yml */; };
+		A18031771DD49E3400579400 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A180316E1DD49E0800579400 /* Katana.framework */; };
+		A18031781DD49E3400579400 /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A180316E1DD49E0800579400 /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A180317B1DD49E3400579400 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18031721DD49E0800579400 /* KatanaElements.framework */; };
+		A180317C1DD49E3400579400 /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A18031721DD49E0800579400 /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A180316D1DD49E0800579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81EA56C71D5F3A6000B6290E;
+			remoteInfo = Katana;
+		};
+		A180316F1DD49E0800579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 81EA56D61D5F3A6E00B6290E;
+			remoteInfo = KatanaTests;
+		};
+		A18031711DD49E0800579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6513094F1DC3529F00007B6B;
+			remoteInfo = KatanaElements;
+		};
+		A18031731DD49E0800579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 6549948E1DD31BA70057D4BB;
+			remoteInfo = Demo;
+		};
+		A18031791DD49E3400579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
+			remoteInfo = Katana;
+		};
+		A180317D1DD49E3400579400 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
+			remoteInfo = KatanaElements;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		A180317F1DD49E3500579400 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				A18031781DD49E3400579400 /* Katana.framework in Embed Frameworks */,
+				A180317C1DD49E3400579400 /* KatanaElements.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A15578F71DD48D84004D8069 /* PokeAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A15578FA1DD48D84004D8069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		A15579011DD48D84004D8069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		A15579041DD48D84004D8069 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		A15579061DD48D84004D8069 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A155790D1DD48E44004D8069 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		A18031661DD49E0800579400 /* Katana.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Katana.xcodeproj; path = ../../Katana.xcodeproj; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A15578F41DD48D84004D8069 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A18031771DD49E3400579400 /* Katana.framework in Frameworks */,
+				A180317B1DD49E3400579400 /* KatanaElements.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A15578EE1DD48D84004D8069 = {
+			isa = PBXGroup;
+			children = (
+				A155790D1DD48E44004D8069 /* .swiftlint.yml */,
+				A15578F91DD48D84004D8069 /* PokeAnimations */,
+				A15578F81DD48D84004D8069 /* Products */,
+				A18031651DD49E0800579400 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		A15578F81DD48D84004D8069 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A15578F71DD48D84004D8069 /* PokeAnimations.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A15578F91DD48D84004D8069 /* PokeAnimations */ = {
+			isa = PBXGroup;
+			children = (
+				A15578FA1DD48D84004D8069 /* AppDelegate.swift */,
+				A15579011DD48D84004D8069 /* Assets.xcassets */,
+				A15579031DD48D84004D8069 /* LaunchScreen.storyboard */,
+				A15579061DD48D84004D8069 /* Info.plist */,
+			);
+			path = PokeAnimations;
+			sourceTree = "<group>";
+		};
+		A18031651DD49E0800579400 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A18031661DD49E0800579400 /* Katana.xcodeproj */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A18031671DD49E0800579400 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A180316E1DD49E0800579400 /* Katana.framework */,
+				A18031701DD49E0800579400 /* KatanaTests.xctest */,
+				A18031721DD49E0800579400 /* KatanaElements.framework */,
+				A18031741DD49E0800579400 /* Demo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A15578F61DD48D84004D8069 /* PokeAnimations */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A15579091DD48D84004D8069 /* Build configuration list for PBXNativeTarget "PokeAnimations" */;
+			buildPhases = (
+				A15578F31DD48D84004D8069 /* Sources */,
+				A15578F41DD48D84004D8069 /* Frameworks */,
+				A15578F51DD48D84004D8069 /* Resources */,
+				A155790C1DD48DCB004D8069 /* SwiftLint */,
+				A180317F1DD49E3500579400 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A180317A1DD49E3400579400 /* PBXTargetDependency */,
+				A180317E1DD49E3400579400 /* PBXTargetDependency */,
+			);
+			name = PokeAnimations;
+			productName = PokeAnimations;
+			productReference = A15578F71DD48D84004D8069 /* PokeAnimations.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A15578EF1DD48D84004D8069 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0800;
+				LastUpgradeCheck = 0800;
+				ORGANIZATIONNAME = "Bending Spoons";
+				TargetAttributes = {
+					A15578F61DD48D84004D8069 = {
+						CreatedOnToolsVersion = 8.0;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = A15578F21DD48D84004D8069 /* Build configuration list for PBXProject "PokeAnimations" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A15578EE1DD48D84004D8069;
+			productRefGroup = A15578F81DD48D84004D8069 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = A18031671DD49E0800579400 /* Products */;
+					ProjectRef = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A15578F61DD48D84004D8069 /* PokeAnimations */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		A180316E1DD49E0800579400 /* Katana.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Katana.framework;
+			remoteRef = A180316D1DD49E0800579400 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A18031701DD49E0800579400 /* KatanaTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = KatanaTests.xctest;
+			remoteRef = A180316F1DD49E0800579400 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A18031721DD49E0800579400 /* KatanaElements.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KatanaElements.framework;
+			remoteRef = A18031711DD49E0800579400 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A18031741DD49E0800579400 /* Demo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Demo.app;
+			remoteRef = A18031731DD49E0800579400 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A15578F51DD48D84004D8069 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A155790E1DD48E44004D8069 /* .swiftlint.yml in Resources */,
+				A15579051DD48D84004D8069 /* LaunchScreen.storyboard in Resources */,
+				A15579021DD48D84004D8069 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		A155790C1DD48DCB004D8069 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A15578F31DD48D84004D8069 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A15578FB1DD48D84004D8069 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		A180317A1DD49E3400579400 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = Katana;
+			targetProxy = A18031791DD49E3400579400 /* PBXContainerItemProxy */;
+		};
+		A180317E1DD49E3400579400 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = KatanaElements;
+			targetProxy = A180317D1DD49E3400579400 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		A15579031DD48D84004D8069 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A15579041DD48D84004D8069 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A15579071DD48D84004D8069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A15579081DD48D84004D8069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A155790A1DD48D84004D8069 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PokeAnimations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BendingSpoons.PokeAnimations;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		A155790B1DD48D84004D8069 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = PokeAnimations/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = BendingSpoons.PokeAnimations;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A15578F21DD48D84004D8069 /* Build configuration list for PBXProject "PokeAnimations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A15579071DD48D84004D8069 /* Debug */,
+				A15579081DD48D84004D8069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A15579091DD48D84004D8069 /* Build configuration list for PBXNativeTarget "PokeAnimations" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A155790A1DD48D84004D8069 /* Debug */,
+				A155790B1DD48D84004D8069 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A15578EF1DD48D84004D8069 /* Project object */;
+}
