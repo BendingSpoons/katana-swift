@@ -3,28 +3,28 @@
 </p>
 
 
-Katana is a modern swift framework for writing iOS apps, strongly inspired by [react](https://facebook.github.io/react/) and [redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
+Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
 
-- __logic__: all the state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: you define the UI in terms of a tree of components declaratively described by props (external world) and state (internal world). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
-- __logic__ ↔️ __UI__: your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the store state to the component props.
+- __logic__: the app state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+- __UI__: you define the UI in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
+- __logic__ ↔️ __UI__: your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the app state to the component props.
 - __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
-We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At BendingSpoons we use a lot of Open Sourced projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At Bending Spoons we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
 
 
 |                     | Katana                                   |
 | ------------------- | ---------------------------------------- |
 | :studio_microphone: | Declaratively define your UI             |
-| :package:           | Store all your app state in a single immutable state |
+| :package:           | Store all your app state in a single place |
 | :guardsman:         | Clearly define what are the actions that can change the state |
-| :bowtie:            | Async actions                            |
-| :muscle:            | Middlewares                              |
+| :bowtie:            | Describe asynchronous actions like HTTP requests |
+| :muscle:            | Use support for middleware like Logging  |
 | :tophat:            | Automatically update the UI when your app state changes |
-| :triangular_ruler:  | Your UI will scale to every size and aspect ratio |
-| :horse_racing:      | Animate all the changes of the UI        |
+| :triangular_ruler:  | Automatically scale your UI to every size and aspect ratio |
+| :horse_racing:      | Animate all the UI changes               |
 
 
 
@@ -42,7 +42,7 @@ struct CounterState: State {
 }
 ```
 
-the app state  can only be modified by an `Action`. An action represents an event that leads to a change in the state of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app state based on the current app state and the action itself.
+The app state can only be modified by an `Action`. An action represents an event that leads to a change in the state of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app state based on the current app state and the action itself.
 
 ```swift
 struct IncrementCounter: Action {
@@ -54,14 +54,14 @@ struct IncrementCounter: Action {
 }
 ```
 
-The `Store` contains and manages your entire app state and it is responsible for dispatching the actions and updating the state
+The `Store` contains and manages your entire app state and it is responsible for dispatching actions and updating the state
 
 ```swift
 let store = Store<CounterState>()
 store.dispatch(IncrementCounter())
 ```
 
-you can ask the `Store` to be notified for every change in the app state
+you can ask the `Store` to be notified about every change in the app state
 
 ```swift
 store.addListener() {
@@ -73,7 +73,7 @@ store.addListener() {
 
 ### Defining the UI
 
-In Katana you declaratively describe a specific piece of UI providing a  `NodesDescription`. Each `NodeDescription` will define the component in terms of:
+In Katana you declaratively describe a specific piece of UI providing a  `NodeDescription`. Each `NodeDescription` will define the component in terms of:
 
 - `StateType` the internal state of the component (es. highlighted for a button)
 - `PropsType` the inputs coming from outside the component (es. backgroundColor for a view)
@@ -100,7 +100,7 @@ struct CounterScreenProps: NodeDescriptionProps {
 }
 ```
 
-When it's time to render the component, the method `applyPropsToNativeView` is called, this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](/KatanaElements/View.swift) so we got you covered._
+When it's time to render the component, the method `applyPropsToNativeView` is called: this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](/KatanaElements/View.swift) so we got you covered._
 
 ```swift
 struct CounterScreen: NodeDescription {
