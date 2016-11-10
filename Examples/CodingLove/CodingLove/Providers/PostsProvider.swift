@@ -6,11 +6,10 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 import Foundation
 import Katana
 
-let POSTS_PER_PAGE = 3
+let postsPerPage = 3
 
 struct PostsProvider: SideEffectDependencyContainer {
     var posts: [Post]
@@ -29,11 +28,11 @@ struct PostsProvider: SideEffectDependencyContainer {
 
             if let actualPosts = posts {
                 var allFetched = false
-                if ((page+1) * POSTS_PER_PAGE) >= posts!.count {
+                if ((page+1) * postsPerPage) >= posts!.count {
                     allFetched = true
                 }
                 
-                let filteredPosts = Array(actualPosts[(page * POSTS_PER_PAGE)..<((page+1) * POSTS_PER_PAGE)])
+                let filteredPosts = Array(actualPosts[(page * postsPerPage)..<((page+1) * postsPerPage)])
                 completion((self.parsePosts(postsToParse: filteredPosts), allFetched), nil)
             
             } else {
@@ -62,4 +61,3 @@ struct PostsProvider: SideEffectDependencyContainer {
     }
     
 }
-

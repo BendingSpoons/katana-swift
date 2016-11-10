@@ -67,11 +67,13 @@ extension UIImage {
         // Get dictionaries
         let cfProperties = CGImageSourceCopyPropertiesAtIndex(source, index, nil)
         let gifPropertiesPointer = UnsafeMutablePointer<UnsafeRawPointer?>.allocate(capacity: 0)
-        if CFDictionaryGetValueIfPresent(cfProperties, Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(), gifPropertiesPointer) == false {
+        if CFDictionaryGetValueIfPresent(cfProperties,
+            Unmanaged.passUnretained(kCGImagePropertyGIFDictionary).toOpaque(),
+            gifPropertiesPointer) == false {
             return delay
         }
         
-        let gifProperties:CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
+        let gifProperties: CFDictionary = unsafeBitCast(gifPropertiesPointer.pointee, to: CFDictionary.self)
         
         // Get delay time
         var delayObject: AnyObject = unsafeBitCast(
@@ -80,7 +82,8 @@ extension UIImage {
             to: AnyObject.self)
         if delayObject.doubleValue == 0 {
             delayObject = unsafeBitCast(CFDictionaryGetValue(gifProperties,
-                                                             Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()), to: AnyObject.self)
+                Unmanaged.passUnretained(kCGImagePropertyGIFDelayTime).toOpaque()),
+                                        to: AnyObject.self)
         }
         
         delay = delayObject as? Double ?? 0

@@ -6,11 +6,9 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 import Foundation
 import Katana
 import KatanaElements
-
 
 extension CodingLove {
     enum Keys {
@@ -75,7 +73,6 @@ extension CodingLove {
     
 }
 
-
 struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize {
     typealias StateType = EmptyState
     typealias PropsType = Props
@@ -122,4 +119,3 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticNode
         props.allPostsFetched = storeState.allPostsFetched
     }
 }
-

@@ -6,7 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 import Foundation
 import Katana
 
@@ -26,7 +25,6 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     public var failedPayload: FailedPayload?
     
     public var state: AsyncActionState = .loading
-    
     
     init(payload: LoadingPayload) {
         self.loadingPayload = payload
@@ -53,11 +51,12 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         return newState
     }
     
-    public static func sideEffect(action: FetchMorePosts, state: State, dispatch: @escaping StoreDispatch, dependencies: SideEffectDependencyContainer) {
-        // FIXME: this shall be removed after it's fixed in Katana
-        if action.state != .loading {
-            return
-        }
+    public static func sideEffect(
+        action: FetchMorePosts,
+        state: State,
+        dispatch: @escaping StoreDispatch,
+        dependencies: SideEffectDependencyContainer
+    ) {
         
         let castedState = state as! CodingLoveState
         let page: Int = castedState.page

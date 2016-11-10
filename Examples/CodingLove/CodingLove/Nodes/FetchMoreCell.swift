@@ -6,7 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 import Foundation
 import Katana
 import KatanaElements
@@ -23,8 +22,7 @@ extension FetchMoreCell {
     }
 }
 
-
-struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription  {
+struct FetchMoreCell: PlasticNodeDescription, PlasticNodeDescriptionWithReferenceSize, TableCell, ConnectedNodeDescription {
     typealias StateType = EmptyHighlightableState
     typealias PropsType = Props
     typealias NativeView = NativeTableCell

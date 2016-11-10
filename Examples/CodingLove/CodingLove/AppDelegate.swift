@@ -6,7 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 import UIKit
 import Katana
 
@@ -23,8 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = UIViewController()
         self.window?.rootViewController?.view.backgroundColor = UIColor.white
         self.window?.makeKeyAndVisible()
-        
-        
+                
         let view = (self.window?.rootViewController?.view)!
         let rootBounds = UIScreen.main.bounds
         
