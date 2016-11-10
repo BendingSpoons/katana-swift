@@ -33,18 +33,18 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
       
       View.pokemonBackground(for: state.step),
       
-      Button(props: ButtonProps.build { props in
-        props.setKey(ChildrenKeys.button)
-        props.backgroundColor = UIColor(white: 1, alpha: 0.4)
-        props.cornerRadius = .scalable(20)
-        props.borderWidth = .fixed(1)
-        props.borderColor = .black
-        props.attributedTitles = [
+      Button(props: ButtonProps.build {
+        $0.setKey(ChildrenKeys.button)
+        $0.backgroundColor = UIColor(white: 1, alpha: 0.4)
+        $0.cornerRadius = .scalable(20)
+        $0.borderWidth = .fixed(1)
+        $0.borderColor = .black
+        $0.attributedTitles = [
           .normal: .buttonTitleString(state.step == .gotcha ? "Restart": "Next", for: .normal),
           .highlighted: .buttonTitleString(state.step == .gotcha ? "Restart": "Next", for: .highlighted),
         ]
         
-        props.touchHandlers = [
+        $0.touchHandlers = [
           .touchUpInside: didTap
         ]
       }),
