@@ -129,6 +129,21 @@ public class Node<Description: NodeDescription> {
       $0.makeNode(parent: self)
     }
   }
+  
+  /**
+   This method is invoked during the update of the UI, after the invocation of `childrenDescriptions` of the description
+   associated with the node and before the process of updating the UI begins.
+   
+   This method is basically a customization point for subclasses to process and edit the children
+   descriptions before they are actually used.
+   
+   - parameter children: The children to process
+   - returns: the processed children
+   */
+  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
+    // NOTE: this method is here because Swift doesn't support override of extension methods yet
+    return children
+  }
 }
 
 
@@ -274,20 +289,6 @@ extension Node {
 
 // MARK: Children management
 extension Node {
-  /**
-   This method is invoked during the update of the UI, after the invocation of `childrenDescriptions` of the description
-   associated with the node and before the process of updating the UI begins.
-   
-   This method is basically a customization point for subclasses to process and edit the children
-   descriptions before they are actually used.
-   
-   - parameter children: The children to process
-   - returns: the processed children
-   */
-  public func processedChildrenDescriptionsBeforeDraw(_ children: [AnyNodeDescription]) -> [AnyNodeDescription] {
-    return children
-  }
-  
   /**
    This method returns the children descriptions based on the current description, the current props and the current state.
    It basically invokes `childrenDescription` of `NodeDescription`
