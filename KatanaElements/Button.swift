@@ -37,28 +37,8 @@ public struct ButtonProps: NodeDescriptionProps, Buildable {
   public init() {}
   
   public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
-    return
-      lhs.key == rhs.key &&
-      lhs.frame == rhs.frame &&
-      lhs.alpha == rhs.alpha &&
-      lhs.backgroundColor == rhs.backgroundColor &&
-      lhs.cornerRadius == rhs.cornerRadius &&
-      lhs.borderWidth == rhs.borderWidth &&
-      lhs.borderColor == rhs.borderColor &&
-      lhs.clipsToBounds == rhs.clipsToBounds &&
-      lhs.isEnabled == rhs.isEnabled &&
-      lhs.contentEdgeInsets == rhs.contentEdgeInsets &&
-      lhs.titleEdgeInsets == rhs.titleEdgeInsets &&
-      lhs.imageEdgeInsets == rhs.imageEdgeInsets &&
-      lhs.adjustsImageWhenHighlighted == rhs.adjustsImageWhenHighlighted &&
-      lhs.adjustsImageWhenDisabled == rhs.adjustsImageWhenDisabled &&
-      lhs.showsTouchWhenHighlighted == rhs.showsTouchWhenHighlighted &&
-      lhs.titles == rhs.titles &&
-      lhs.titleColors == rhs.titleColors &&
-      lhs.titleShadowColors == rhs.titleShadowColors &&
-      lhs.images == rhs.images &&
-      lhs.backgroundImages == rhs.backgroundImages &&
-      lhs.attributedTitles == rhs.attributedTitles
+    // We can't detect whether handlers are changed
+    return false
   }
 }
 
