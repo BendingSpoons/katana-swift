@@ -1,0 +1,6 @@
+language: objective-c  #1
+osx_image: xcode8
+
+xcode_project: Katana.xcodeproj
+xcode_scheme: Katana
+xcode_sdk: iphonesimulator10.0
