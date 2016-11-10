@@ -22,12 +22,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     UIApplication.shared.isStatusBarHidden = true
     self.window = UIWindow(frame: UIScreen.main.bounds)
     self.window?.rootViewController = UIViewController()
-    self.window?.rootViewController?.view.backgroundColor = UIColor.white
     self.window?.makeKeyAndVisible()
 
+    let view = self.window!.rootViewController!.view!
     let intro = Intro(props: Intro.Props(frame: UIScreen.main.bounds))
     self.renderer = Renderer(rootDescription: intro, store: nil)
-    self.renderer?.render(in: self.window!.rootViewController!.view)
+    self.renderer?.render(in: view)
     
     return true
   }
