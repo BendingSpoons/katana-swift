@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 import Katana
 
-public struct TableProps: NodeDescriptionProps {
+public struct TableProps: NodeDescriptionProps, Buildable {
   public var frame = CGRect.zero
   public var key: String?
   public var alpha: CGFloat = 1.0
