@@ -7,13 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A138175D1DD4A0C600997CB3 /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A138175C1DD4A0C600997CB3 /* Intro.swift */; };
 		A15578FB1DD48D84004D8069 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15578FA1DD48D84004D8069 /* AppDelegate.swift */; };
 		A15579021DD48D84004D8069 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A15579011DD48D84004D8069 /* Assets.xcassets */; };
 		A15579051DD48D84004D8069 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A15579031DD48D84004D8069 /* LaunchScreen.storyboard */; };
 		A155790E1DD48E44004D8069 /* .swiftlint.yml in Resources */ = {isa = PBXBuildFile; fileRef = A155790D1DD48E44004D8069 /* .swiftlint.yml */; };
 		A157005C1DD4A3C600361068 /* NSAttributedString+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A157005B1DD4A3C600361068 /* NSAttributedString+Styles.swift */; };
 		A157005F1DD4B34E00361068 /* UIColor+Styles.swift in Sources */ = {isa = PBXBuildFile; fileRef = A157005E1DD4B34E00361068 /* UIColor+Styles.swift */; };
+		A15700621DD4BB8D00361068 /* Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15700611DD4BB8D00361068 /* Intro.swift */; };
+		A15700641DD4BB9500361068 /* KatanaElements+Intro.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15700631DD4BB9500361068 /* KatanaElements+Intro.swift */; };
 		A18031771DD49E3400579400 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A180316E1DD49E0800579400 /* Katana.framework */; };
 		A18031781DD49E3400579400 /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A180316E1DD49E0800579400 /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A180317B1DD49E3400579400 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A18031721DD49E0800579400 /* KatanaElements.framework */; };
@@ -81,7 +82,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		A138175C1DD4A0C600997CB3 /* Intro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
 		A15578F71DD48D84004D8069 /* PokeAnimations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PokeAnimations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A15578FA1DD48D84004D8069 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A15579011DD48D84004D8069 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -90,6 +90,8 @@
 		A155790D1DD48E44004D8069 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		A157005B1DD4A3C600361068 /* NSAttributedString+Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSAttributedString+Styles.swift"; sourceTree = "<group>"; };
 		A157005E1DD4B34E00361068 /* UIColor+Styles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Styles.swift"; sourceTree = "<group>"; };
+		A15700611DD4BB8D00361068 /* Intro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Intro.swift; sourceTree = "<group>"; };
+		A15700631DD4BB9500361068 /* KatanaElements+Intro.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "KatanaElements+Intro.swift"; sourceTree = "<group>"; };
 		A18031661DD49E0800579400 /* Katana.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Katana.xcodeproj; path = ../../Katana.xcodeproj; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -109,8 +111,8 @@
 		A13817591DD49F8F00997CB3 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				A15700601DD4BB5700361068 /* Intro */,
 				A15700581DD4A3AF00361068 /* Styles */,
-				A138175C1DD4A0C600997CB3 /* Intro.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -152,6 +154,15 @@
 				A157005E1DD4B34E00361068 /* UIColor+Styles.swift */,
 			);
 			path = Styles;
+			sourceTree = "<group>";
+		};
+		A15700601DD4BB5700361068 /* Intro */ = {
+			isa = PBXGroup;
+			children = (
+				A15700611DD4BB8D00361068 /* Intro.swift */,
+				A15700631DD4BB9500361068 /* KatanaElements+Intro.swift */,
+			);
+			path = Intro;
 			sourceTree = "<group>";
 		};
 		A18031651DD49E0800579400 /* Frameworks */ = {
@@ -303,9 +314,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A138175D1DD4A0C600997CB3 /* Intro.swift in Sources */,
 				A157005C1DD4A3C600361068 /* NSAttributedString+Styles.swift in Sources */,
 				A15578FB1DD48D84004D8069 /* AppDelegate.swift in Sources */,
+				A15700621DD4BB8D00361068 /* Intro.swift in Sources */,
+				A15700641DD4BB9500361068 /* KatanaElements+Intro.swift in Sources */,
 				A157005F1DD4B34E00361068 /* UIColor+Styles.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -94,6 +94,109 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
       title?.setBottom(button.top, offset: .scalable(-100))
     }
   }
+  
+  static func updateChildrenAnimations(container: inout ChildrenAnimations<Keys>,
+                                       currentProps: PropsType,
+                                       nextProps: PropsType,
+                                       currentState: StateType,
+                                       nextState: StateType) {
+    
+    
+    let scale: (_ percentage: CGFloat) -> AnimationPropsTransformer = { percentage in
+      return {
+        var p = $0
+        
+        p.frame.size = CGSize(
+          width: $0.frame.size.width * percentage,
+          height: $0.frame.size.height * percentage
+        )
+        
+        p.frame.origin = CGPoint(
+          x: $0.frame.origin.x + $0.frame.size.width / 2.0,
+          y: $0.frame.origin.y + $0.frame.size.height / 2.0
+        )
+        
+        return p
+      }
+    }
+
+    let moveOutsideLeft: (_ distance: CGFloat) -> AnimationPropsTransformer = { distance in
+      return {
+        var p = $0
+        p.frame.origin.x = p.frame.origin.x - distance
+        return p
+      }
+    }
+
+    let moveOutsideRight: (_ distance: CGFloat) -> AnimationPropsTransformer = { distance in
+      return {
+        var p = $0
+        p.frame.origin.x = p.frame.origin.x + distance
+        return p
+      }
+    }
+    
+    let fade: AnimationPropsTransformer = {
+      var p = $0
+      p.alpha = 0.0
+      return p
+    }
+
+    container[.background] = Animation(type: .linear(duration: 0.3))
+    
+    
+    // Pokemon slide
+    container[.pokemonImage] = Animation(
+      type: .linear(duration: 0.3),
+      entryTransformers: [fade],
+      leaveTransformers: [scale(0.0)]
+    )
+    
+    container[.pokemonTitle] = Animation(
+      type: .linear(duration: 0.3),
+      entryTransformers: [fade],
+      leaveTransformers: [moveOutsideLeft(1000), fade]
+    )
+    
+    // Cute slide
+    container[.cuteImage] = Animation(
+      type: .spring(duration: 0.5, damping: 0.4, initialVelocity: 0),
+      entryTransformers: [scale(0.0)],
+      leaveTransformers: [moveOutsideLeft(1000)]
+    )
+    
+    container[.cuteTitle] = Animation(
+      type: .linear(duration: 0.3),
+      entryTransformers: [moveOutsideRight(500), fade],
+      leaveTransformers: [moveOutsideLeft(500)]
+    )
+    
+    // Pokeball slide
+    container[.pokeballImage] = Animation(
+      type: .linear(duration: 0.4),
+      entryTransformers: [scale(0.0), moveOutsideRight(300)],
+      leaveTransformers: [scale(0.0), moveOutsideLeft(300)]
+    )
+    
+    container[.pokeballTitle] = Animation(
+      type: .linear(duration: 0.3),
+      entryTransformers: [moveOutsideRight(300), fade],
+      leaveTransformers: [moveOutsideLeft(500)]
+    )
+    
+    // gotcha slide
+    container[.gotchaImage] = Animation(
+      type: .linear(duration: 0.4),
+      entryTransformers: [fade],
+      leaveTransformers: [fade]
+    )
+    
+    container[.gotchaTitle] = Animation(
+      type: .linear(duration: 0.6),
+      entryTransformers: [fade],
+      leaveTransformers: [fade]
+    )
+  }
 }
 
 extension Intro {
@@ -153,104 +256,5 @@ extension Intro {
     
     init() { self.step = .pokemon }
     init(step: Step) { self.step = step }
-  }
-}
-
-extension View {
-  static func pokemonBackground(for state: Intro.State.Step) -> View {
-    
-    let color: UIColor = {
-      switch state {
-      case .pokemon:
-        return .charmender
-      case .cute:
-        return .eevee
-      case .pokeball:
-        return .pokeball
-      case .gotcha:
-        return .gotcha
-      }
-    }()
-    
-    return View(props: ViewProps.build {
-      $0.backgroundColor = color
-      $0.setKey(Intro.ChildrenKeys.background)
-    })
-  }
-}
-
-extension Image {
-  static func pokemonImage(for state: Intro.State.Step) -> Image {
-    
-    let image: UIImage = {
-      switch state {
-      case .pokemon:
-        return #imageLiteral(resourceName: "charmander")
-      case .cute:
-        return #imageLiteral(resourceName: "eevee")
-      case .pokeball:
-        return #imageLiteral(resourceName: "pokeball")
-      case .gotcha:
-        return #imageLiteral(resourceName: "gotcha")
-      }
-    }()
-    
-    let key: Intro.ChildrenKeys = {
-      switch state {
-      case .pokemon:
-        return .pokemonImage
-      case .cute:
-        return .cuteImage
-      case .pokeball:
-        return .pokeballImage
-      case .gotcha:
-        return .gotchaImage
-      }
-    }()
-    
-    return Image(props: ImageProps.build {
-      $0.image = image
-      $0.backgroundColor = .clear
-      $0.setKey(key)
-    })
-  }
-}
-
-extension Label {
-  static func pokemonTitle(for state: Intro.State.Step) -> Label {
-    
-    let content: String = {
-      switch state {
-      case .pokemon:
-        return "Hi Trainer!\nThis is a Pokémon!"
-      case .cute:
-        return "Aren't they cute?"
-      case .pokeball:
-        return "You can capture Pokémons using a Pokéball!\nAim, launch and capture"
-      case .gotcha:
-        return "All clear?\nThere is a world out there\nYour journey stars now!\nCatch'em All"
-      }
-    }()
-    
-    let key: Intro.ChildrenKeys = {
-      switch state {
-      case .pokemon:
-        return .pokemonTitle
-      case .cute:
-        return .cuteTitle
-      case .pokeball:
-        return .pokeballTitle
-      case .gotcha:
-        return .gotchaTitle
-      }
-    }()
-    
-    return Label(props: LabelProps.build {
-      $0.text = .paragraphString(content)
-      $0.textAlignment = .center
-      $0.numberOfLines = 0
-      $0.backgroundColor = .clear
-      $0.setKey(key)
-    })
   }
 }

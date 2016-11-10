@@ -30,9 +30,9 @@ extension UIColor {
   
   static var pokeball: UIColor {
     return UIColor(
-      colorLiteralRed: Float(255.0 / 255.0),
-      green: Float(24.0 / 255.0),
-      blue: Float(24.0 / 255.0),
+      colorLiteralRed: Float(216.0 / 255.0),
+      green: Float(240.0 / 255.0),
+      blue: Float(240.0 / 255.0),
       alpha: 1.0
     )
   }
