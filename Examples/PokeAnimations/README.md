@@ -2,9 +2,7 @@
 This example shows a potential onboard for a mobile game. We loop between slides and we animate content that appear or disappear in each slide.
 Here is the final result.
 
-<p align="center">
 ![](PokeAnimationsExample.gif)
-</p>
 
 ###What is showcased here:
 
