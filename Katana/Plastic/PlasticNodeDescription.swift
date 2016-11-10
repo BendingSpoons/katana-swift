@@ -15,7 +15,7 @@ public protocol AnyPlasticNodeDescription {
    
    - seeAlso: `PlasticNodeDescription`, `layout(views:props:state:)` method
    */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void
+  static func anyLayout(views: Any, props: Any, state: Any)
 }
 
 /**
@@ -47,7 +47,7 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    - parameter props: the current props of the node description
    - parameter state: the current state of the node description
   */
-  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType)
   
   /**
    The layout logic may be expensive in some cases. By implementing this method, you can actually
@@ -78,7 +78,7 @@ public extension PlasticNodeDescription {
    
    - seeAlso: `AnyPlasticNodeDescription`
   */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void {
+  static func anyLayout(views: Any, props: Any, state: Any) {
     if let p = props as? PropsType, let s = state as? StateType, let v = views as? ViewsContainer<Keys> {
       layout(views: v, props: p, state: s)
     }

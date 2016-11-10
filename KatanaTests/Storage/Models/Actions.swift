@@ -58,10 +58,10 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
     _ action: SpyActionWithSideEffect,
     _ state: State,
     _ dispatch: @escaping StoreDispatch,
-    _ dependencies: SideEffectDependencyContainer) -> Void
+    _ dependencies: SideEffectDependencyContainer) -> ()
   
   var sideEffectInvokedClosure: ActionWithSideEffectCallback?
-  var updatedInvokedClosure: (() -> Void)?
+  var updatedInvokedClosure: (() -> ())?
   
   public static func updatedState(currentState: State, action: SpyActionWithSideEffect) -> State {
     action.updatedInvokedClosure?()

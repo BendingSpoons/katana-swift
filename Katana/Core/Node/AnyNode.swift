@@ -8,7 +8,8 @@
 
 import Foundation
 
-public typealias NodeUpdateCompletion = () -> Void
+/// The completion block for the update operation
+public typealias NodeUpdateCompletion = () -> ()
 
 /// Type Erasure protocol for the `Node` class.
 public protocol AnyNode: class {

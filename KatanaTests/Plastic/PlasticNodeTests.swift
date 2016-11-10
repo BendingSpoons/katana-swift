@@ -105,7 +105,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
     ]
   }
   
-  static func layout(views: ViewsContainer<TestNodeKeys>, props: EmptyProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer<TestNodeKeys>, props: EmptyProps, state: EmptyState) {
     self.invoked = true
   }
 }
@@ -186,7 +186,7 @@ fileprivate struct App: NodeDescription {
     
   }
   
-  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) -> Void {
+  static func layout(views: ViewsContainer<AppKeys>, props: AppProps, state: EmptyState) {
     let container = views[.container]
     let image = views[.image]
     let innerView = views[.innerView]

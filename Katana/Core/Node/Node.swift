@@ -161,7 +161,7 @@ public class Node<Description: NodeDescription> {
     
     self.container = container.addChild() { Description.NativeView() }
     
-    let update = { [weak self] (state: Description.StateType) -> Void in
+    let update = { [weak self] (state: Description.StateType) in
       DispatchQueue.main.async {
         self?.update(for: state)
       }
@@ -229,8 +229,8 @@ extension Node {
   fileprivate func reRender(childrenToAdd: [AnyNode],
                             viewIndexes: [Int],
                             animation: AnimationContainer,
-                            nativeRenderCallback: (() -> Void)?,
-                            childrenRenderCallback: (() -> Void)?) {
+                            nativeRenderCallback: (() -> ())?,
+                            childrenRenderCallback: (() -> ())?) {
 
     guard let container = self.container else {
       return
@@ -238,11 +238,11 @@ extension Node {
     
     assert(viewIndexes.count == self.children.count)
     
-    let update = { [weak self] (state: Description.StateType) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> () in
       self?.update(for: state)
     }
     
-    let updateBlock = { () -> Void in
+    let updateBlock = { () -> () in
       container.update { view in
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
@@ -287,7 +287,7 @@ extension Node {
    - returns: the array of children descriptions of the node
   */
   fileprivate func getChildrenDescriptions() -> [AnyNodeDescription] {
-    let update = { [weak self] (state: Description.StateType) -> Void in
+    let update = { [weak self] (state: Description.StateType) -> () in
       DispatchQueue.main.async {
         self?.update(for: state)
       }
@@ -492,11 +492,11 @@ extension Node {
     // are completed and also the update of the native view
     var nativeViewUpdateCompleted = false
     var childUpdateCompletedCounter = 0
-    var nativeViewCallback: (() -> Void)?
-    var childrenCallback: (() -> Void)?
+    var nativeViewCallback: (() -> ())?
+    var childrenCallback: (() -> ())?
     
     if completion != nil {
-      nativeViewCallback = { () -> Void in
+      nativeViewCallback = { () -> () in
         nativeViewUpdateCompleted = true
 
         if childUpdateCompletedCounter == newChildrenDescriptions.count {
@@ -504,7 +504,7 @@ extension Node {
         }
       }
       
-      childrenCallback = { () -> Void in
+      childrenCallback = { () -> () in
         childUpdateCompletedCounter = childUpdateCompletedCounter + 1
         
         if nativeViewUpdateCompleted && childUpdateCompletedCounter == newChildrenDescriptions.count {

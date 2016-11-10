@@ -47,9 +47,9 @@ public enum AnimationType {
    Animates UI changes performed in a block with the animation specified by the enum value
    - parameter block: a block that contains the updates to the UI to animate
   */
-  func animate(_ block: @escaping ()->(), completion: (() -> Void)? = nil) {
+  func animate(_ block: @escaping ()->(), completion: (() -> ())? = nil) {
     
-    let animationCompletion = { (v: Bool) -> Void in
+    let animationCompletion = { (v: Bool) -> () in
       completion?()
     }
     

@@ -78,7 +78,7 @@ open class Renderer {
   /**
    Method that is used to manage an update in the store's state
   */
-  private func storeDidChange() -> Void {
+  private func storeDidChange() {
     if let rootNode = self.rootNode {
       self.explore(rootNode)
     }
@@ -90,7 +90,7 @@ open class Renderer {
    
    - parameter node: the node to explore
   */
-  private func explore(_ node: AnyNode) -> Void {
+  private func explore(_ node: AnyNode) {
     var childrenTable = [Int: AnyNode]()
     
     for node in node.children {

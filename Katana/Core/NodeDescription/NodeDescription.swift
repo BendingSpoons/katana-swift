@@ -194,7 +194,7 @@ public protocol NodeDescription: AnyNodeDescription {
                                      state: StateType,
                                      view: NativeView,
                                      update: @escaping (StateType)->(),
-                                     node: AnyNode) -> Void
+                                     node: AnyNode)
   
   /**
    This method is used to describe the children starting from the given properties and state
@@ -248,7 +248,7 @@ public extension NodeDescription {
                                             state: StateType,
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
-                                            node: AnyNode) -> Void {
+                                            node: AnyNode) {
     view.frame = props.frame
     view.alpha = props.alpha
   }

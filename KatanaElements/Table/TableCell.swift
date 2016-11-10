@@ -25,7 +25,7 @@ public extension TableCell {
                                             state: StateType,
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
-                                            node: AnyNode) -> Void {
+                                            node: AnyNode) {
     
     view.frame = props.frame
     
@@ -44,7 +44,7 @@ public extension TableCell {
 }
 
 public class NativeTableCell: UIView {
-  var update: ((Bool) -> Void)?
+  var update: ((Bool) -> ())?
   
   func setHighlighted(_ highlighted: Bool) {
     if let update = self.update {

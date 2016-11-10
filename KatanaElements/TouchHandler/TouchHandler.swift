@@ -9,7 +9,7 @@
 import UIKit
 import Katana
 
-public typealias TouchHandlerClosure = () -> Void
+public typealias TouchHandlerClosure = () -> ()
 
 public struct TouchHandlerProps: NodeDescriptionProps, Childrenable, Buildable {
   public var frame = CGRect.zero

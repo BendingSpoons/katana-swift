@@ -241,7 +241,7 @@ extension ViewsContainer {
    */
   internal func createChildrenHierarchy(for childrenDescriptions: [AnyNodeDescription],
                             parentRepresentation: HierarchyNode,
-                                     accumulator: inout [String: HierarchyNode]) -> Void {
+                                     accumulator: inout [String: HierarchyNode]) {
     
     childrenDescriptions.forEach { nodeDescription in
       
