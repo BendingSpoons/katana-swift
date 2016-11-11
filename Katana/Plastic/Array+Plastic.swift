@@ -2,9 +2,9 @@
 //  Array+Plastic.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 17/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 
@@ -22,7 +22,7 @@ extension Array where Element: PlasticView {
                          of views in the view array. If `nil`, an array of `Value.zero` is used instead
    
   */
-  public func centerBetween(left: Anchor, right: Anchor, spacings: [Value]? = nil) -> Void {
+  public func centerBetween(left: Anchor, right: Anchor, spacings: [Value]? = nil) {
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
@@ -61,7 +61,7 @@ extension Array where Element: PlasticView {
                          of views in the view array. If `nil`, an array of `Value.zero` is used instead
    
   */
-  public func centerBetween(top: Anchor, bottom: Anchor, spacings: [Value]? = nil) -> Void {
+  public func centerBetween(top: Anchor, bottom: Anchor, spacings: [Value]? = nil) {
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     
     guard spacings.count == self.count - 1 else {
@@ -112,7 +112,7 @@ extension Array where Element: PlasticView {
                    right: Anchor,
                    insets: EdgeInsets = .zero,
                    spacings: [Value]? = nil,
-                   widths: [CGFloat]? = nil) -> Void {
+                   widths: [CGFloat]? = nil) {
     
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     let widths = widths ?? (0..<self.count).map { _ in 1 }
@@ -175,7 +175,7 @@ extension Array where Element: PlasticView {
                 bottom: Anchor,
                 insets: EdgeInsets = .zero,
                 spacings: [Value]? = nil,
-                heights: [CGFloat]? = nil) -> Void {
+                heights: [CGFloat]? = nil) {
     
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     let heights = heights ?? (0..<self.count).map { _ in 1 }

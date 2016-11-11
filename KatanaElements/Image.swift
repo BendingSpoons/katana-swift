@@ -2,32 +2,35 @@
 //  Image.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 import Katana
 
-public struct ImageProps: NodeDescriptionProps, Keyable, Buildable {
-  public var frame = CGRect.zero
-  public var key: String?
-  
-  public var backgroundColor = UIColor.white
-  public var cornerRadius: Value = .zero
-  public var borderWidth: Value = .zero
-  public var borderColor = UIColor.clear
-  public var clipsToBounds = true
-  public var isUserInteractionEnabled = false
-  public var image: UIImage? = nil
-  public var tintColor: UIColor = .clear
-  
-  public init() {}
-  
-  public static func == (lhs: ImageProps, rhs: ImageProps) -> Bool {
-    return
-      lhs.frame == rhs.frame &&
+public extension Image {
+  public struct Props: NodeDescriptionProps, Buildable {
+    public var frame = CGRect.zero
+    public var key: String?
+    public var alpha: CGFloat = 1.0
+    
+    public var backgroundColor = UIColor.white
+    public var cornerRadius: Value = .zero
+    public var borderWidth: Value = .zero
+    public var borderColor = UIColor.clear
+    public var clipsToBounds = true
+    public var isUserInteractionEnabled = false
+    public var image: UIImage? = nil
+    public var tintColor: UIColor = .clear
+    
+    public init() {}
+    
+    public static func == (lhs: Props, rhs: Props) -> Bool {
+      return
+        lhs.frame == rhs.frame &&
         lhs.key == rhs.key &&
+        lhs.alpha == rhs.alpha &&
         lhs.backgroundColor == rhs.backgroundColor &&
         lhs.cornerRadius == rhs.cornerRadius &&
         lhs.borderWidth == rhs.borderWidth &&
@@ -36,6 +39,7 @@ public struct ImageProps: NodeDescriptionProps, Keyable, Buildable {
         lhs.isUserInteractionEnabled == rhs.isUserInteractionEnabled &&
         lhs.image == rhs.image &&
         lhs.tintColor == rhs.tintColor
+    }
   }
 }
 
@@ -43,15 +47,16 @@ public struct ImageProps: NodeDescriptionProps, Keyable, Buildable {
 public struct Image: NodeDescription {
   public typealias NativeView = UIImageView
 
-  public var props: ImageProps
+  public var props: Props
   
-  public static func applyPropsToNativeView(props: ImageProps,
+  public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: UIImageView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     
     view.frame = props.frame
+    view.alpha = props.alpha
     view.backgroundColor = props.backgroundColor
     view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer.borderColor = props.borderColor.cgColor
@@ -62,14 +67,14 @@ public struct Image: NodeDescription {
     view.tintColor = props.tintColor
   }
   
-  public static func childrenDescriptions(props: ImageProps,
+  public static func childrenDescriptions(props: Props,
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   
-  public init(props: ImageProps) {
+  public init(props: Props) {
     self.props = props
   }
 }

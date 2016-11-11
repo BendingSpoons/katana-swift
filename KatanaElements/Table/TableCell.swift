@@ -2,9 +2,9 @@
 //  CellNodeDescription.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Katana
@@ -25,7 +25,7 @@ public extension TableCell {
                                             state: StateType,
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
-                                            node: AnyNode) -> Void {
+                                            node: AnyNode) {
     
     view.frame = props.frame
     
@@ -44,7 +44,7 @@ public extension TableCell {
 }
 
 public class NativeTableCell: UIView {
-  var update: ((Bool) -> Void)?
+  var update: ((Bool) -> ())?
   
   func setHighlighted(_ highlighted: Bool) {
     if let update = self.update {

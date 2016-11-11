@@ -5,3 +5,7 @@ Katana.xcodeproj/project.xcworkspace/xcuserdata/
 /Carthage
 /docs
 /build
+
+/Examples/CodingLove/CodingLove.xcodeproj/xcuserdata/
+/Examples/CodingLove/CodingLove.xcodeproj/project.xcworkspace/xcuserdata/
+*.xcuserstate

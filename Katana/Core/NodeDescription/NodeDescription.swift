@@ -2,9 +2,9 @@
 //  NodeDescription.swift
 //  Katana
 //
-//  Created by Luca Querella on 09/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 
@@ -37,13 +37,43 @@ public extension NodeDescriptionState {
   }
 }
 
+/// Type Erasure for `NodeDescriptionProps`
+public protocol AnyNodeDescriptionProps {
+  /// The frame of the `NodeDescription`
+  var frame: CGRect { get set }
+  
+  /// The alpha of the `NodeDescription`
+  var alpha: CGFloat { get set }
+
+  /**
+   The key is used for many purposes. It is used for instance to calculate a more precise `replaceKey`,
+   from Plastic to implement the layout system or in the animation management to reference children
+  */
+  var key: String? { get set }
+  
+  /**
+   Helper method to translate any Swift value to a key, which is a String
+   
+   - parameter key: the key
+  */
+  mutating func setKey<K>(_ key: K)
+}
+
+public extension AnyNodeDescriptionProps {
+  /// The default implementation uses the Swift string interpolation to create the key
+  public mutating func setKey<Key>(_ key: Key) {
+    self.key = "\(key)"
+  }
+}
+
+
 /**
  Protocol that is used for structs that represent the properties of a `NodeDescription`.
  
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the properties (and the state) are not changed.
 */
-public protocol NodeDescriptionProps: Equatable, Frameable {}
+public protocol NodeDescriptionProps: AnyNodeDescriptionProps, Equatable {}
 
 public extension NodeDescriptionProps {
   /**
@@ -54,7 +84,7 @@ public extension NodeDescriptionProps {
    - parameter l: the first props
    - parameter r: the second props
    - returns: always false
-   */
+  */
   static func == (l: Self, r: Self) -> Bool {
     return false
   }
@@ -62,17 +92,8 @@ public extension NodeDescriptionProps {
 
 /// Type Erasure for the `NodeDescription` protocol
 public protocol AnyNodeDescription {
-
-  /// frame of the description
-  var frame: CGRect { get set }
-  
-  /** 
-    key of the description
-  */
-  var key: String? { get }
-  
   /// Type erasure for `props`
-  var anyProps: Any { get }
+  var anyProps: AnyNodeDescriptionProps { get }
   
   /**
     The replace key of the description. When two descriptions have the same replaceKey, Katana consider them interchangeable.
@@ -85,6 +106,14 @@ public protocol AnyNodeDescription {
   var replaceKey: Int { get }
   
   /**
+   Initialise the description
+   
+   - parameter anyProps: the props to associated with the description instance
+   - returns: a value of description with the given pros
+  */
+  init(anyProps: AnyNodeDescriptionProps)
+  
+  /**
    Returns a node instance associated with the description.
    - parameter parent: the parent node to associate with the node
    - returns: the node instance
@@ -92,24 +121,24 @@ public protocol AnyNodeDescription {
   func makeNode(parent: AnyNode) -> AnyNode
   
   /**
-   Creates a root node (that is, the root of the UI hierarchy) with the given store
-   
-   - seeAlso: `Store`
-   
-   - parameter store: the store to use to manage the application's state
-   - returns: the root instance
+   Returns a node instance associated with a renderer.
+   - parameter renderer: the renderer that is responsible to rendering the UI starting from this node description
+   - returns: the node instance
    */
-  func makeRoot(store: AnyStore?) -> Root
+  func makeNode(renderer: Renderer) -> AnyNode
 }
 
+/// Default Keys used in `NodeDescription`
+public enum EmptyKeys {}
+
 /**
- A `NodeDescription` defines a specific piece of UI. You can think to a `NodeDescription` as a stencil that
+ A `NodeDescription` defines a specific piece of UI. You can think of a `NodeDescription` as a stencil that
  describes how a piece of UI should look like.
  
- `NodeDescription` methods are stateless. This is because the properties and the state are hold
+ `NodeDescription` methods are stateless. This is because the properties and the state are held
   by a `Node` instance (see `Node` for more information) that Katana automatically creates.
  
- In general a description defines two things:
+ In general, a description defines two things:
  
  - how properties and state are used to personalise the instance of UIView (or subclass) associated with the `Node` instance.
    This view is also named **NativeView**
@@ -117,14 +146,14 @@ public protocol AnyNodeDescription {
  - what are the children descriptions given the properties and the state
  
  ### Node and NodeDescription relationship
- It is important to remember that the UI hierarchy have a 1:1 relationship with `Node` instances
+ It is important to remember that the UI hierarchy has a 1:1 relationship with `Node` instances
  and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree is connected to a `Node` instance.
  This instance holds the description that is used to manage the `UIView` (and the children), properties and the state.
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
  to describe the UI in the `childrenDescriptions(props:state:update:dispatch:)` method.
- These instances are used by Katana to understand how update the UI (update, remove and add views) and then thrown away.
+ These instances are used by Katana to understand how to update the UI (update, remove and add views) and then thrown away.
  
 */
 public protocol NodeDescription: AnyNodeDescription {
@@ -138,9 +167,18 @@ public protocol NodeDescription: AnyNodeDescription {
   /// The type of state that this description uses. The default value is `EmptyState`
   associatedtype StateType: NodeDescriptionState = EmptyState
   
+  associatedtype Keys = EmptyKeys
+  
   /// The properties of the the description
   var props: PropsType { get set }
   
+  /**
+   Creates a description with the given props
+   
+   - parameter props: the props to associate with the description
+   - returns: a description with the given properties
+  */
+  init(props: PropsType)
   
   /**
    This method is used to update the `NativeView` starting from the given properties and state
@@ -156,7 +194,7 @@ public protocol NodeDescription: AnyNodeDescription {
                                      state: StateType,
                                      view: NativeView,
                                      update: @escaping (StateType)->(),
-                                     node: AnyNode) -> Void
+                                     node: AnyNode)
   
   /**
    This method is used to describe the children starting from the given properties and state
@@ -176,72 +214,58 @@ public protocol NodeDescription: AnyNodeDescription {
   
   
   /**
-   This methdo is used to define what animation should be used to transition from the old UI state to the new one
+   This method is used to describe the animations to perform.
+   
+   Based on the current state and props and the next ones, you should define the animations
+   for the children.
+   
+   If the container is not updated, no animations will be performed
+   
+   - parameter container:       the container of the children animations
    - parameter currentProps:    the props that have been used to create the current UI
    - parameter nextProps:       the props that will be used in the next UI update cycle
    - parameter currentState:    the state that has been used to create the current UI
    - parameter nextState:       the state that will be used in the next UI update cycle
-   - parameter parentAnimation: the animation returned by the parent node
-   - returns: the animation to apply to the children
-   
-   - note: it is important to note that the animation will be applied to the children. The native view will be updated using
-           the animation returned by the parent
   */
-  static func childrenAnimation(currentProps: PropsType,
-                                nextProps: PropsType,
-                                currentState: StateType,
-                                nextState: StateType,
-                                parentAnimation: Animation) -> Animation
+  static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
+                                       currentProps: PropsType,
+                                       nextProps: PropsType,
+                                       currentState: StateType,
+                                       nextState: StateType)
   
 }
 
-extension NodeDescription {
+public extension NodeDescription {
+  
+  /// The default implementation tries to force cast `anyProps` to the correct `PropsType`
+  public init(anyProps: AnyNodeDescriptionProps) {
+    let props = anyProps as! Self.PropsType
+    self.init(props: props)
+  }
   
   /// The default implementation just sets the frame of the native view to `props.frame`
   public static func applyPropsToNativeView(props: PropsType,
                                             state: StateType,
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
-                                            node: AnyNode) -> Void {
+                                            node: AnyNode) {
     view.frame = props.frame
+    view.alpha = props.alpha
   }
   
-  /**
-    The default implementation returns the parent animation. Katana has as default implementation `Animation.none`.
-    This means that if this method is never implemented, then there are no animations in the application.
-  */
-  public static func childrenAnimation(currentProps: PropsType,
-                                                    nextProps: PropsType,
-                                                    currentState: StateType,
-                                                    nextState: StateType,
-                                                    parentAnimation: Animation) -> Animation {
-    return parentAnimation
+  /// The default implementation does nothing. This is equivalent to never trigger an animation
+  public static func updateChildrenAnimations(container: inout ChildrenAnimations<Self.Keys>,
+                                       currentProps: PropsType,
+                                       nextProps: PropsType,
+                                       currentState: StateType,
+                                       nextState: StateType) {
+    // do nothing, which means no animations
   }
 }
 
 extension AnyNodeDescription where Self: NodeDescription {
-  /// Returns `props.frame`
-  public var frame: CGRect {
-    get {
-      return self.props.frame
-    }
-    
-    set(newFrame) {
-      self.props.frame = newFrame
-    }
-  }
-  
-  /// `props.key` if props are `Keyable`, nil otherwise
-  public var key: String? {
-    guard let props = self.props as? Keyable else {
-      return nil
-    }
-    
-    return props.key
-  }
-  
   /// the node description properties
-  public var anyProps: Any {
+  public var anyProps: AnyNodeDescriptionProps {
     return self.props
   }
   
@@ -249,11 +273,8 @@ extension AnyNodeDescription where Self: NodeDescription {
     return Node(description: self, parent: parent)
   }
   
-  public func makeRoot(store: AnyStore?) -> Root {
-    let root = Root(store: store)
-    let node = Node(description: self, root: root)
-    root.node = node
-    return root
+  public func makeNode(renderer: Renderer) -> AnyNode {
+    return Node(description: self, renderer: renderer)
   }
   
   /**
@@ -261,7 +282,7 @@ extension AnyNodeDescription where Self: NodeDescription {
    types. If the description has `Keyable` properties, the key is used as an extra source of information.
   */
   public var replaceKey: Int {
-    if let props = self.props as? Keyable, let key = props.key {
+    if let key = self.anyProps.key {
       return "\(ObjectIdentifier(type(of: self)).hashValue)_\(key)".hashValue
     }
     

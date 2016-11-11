@@ -2,9 +2,9 @@
 //  AppDelegate.swift
 //  Demo
 //
-//  Created by Andrea De Angelis on 08/11/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Katana
 import KatanaElements
@@ -14,7 +14,7 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
   
   var window: UIWindow?
-  var root: Root?
+  var renderer: Renderer?
   
   
   func application(_ application: UIApplication,
@@ -33,17 +33,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     let rootBounds = UIScreen.main.bounds
     
     let store = Store<CounterState>()
-    self.root = CounterScreen(props: CounterScreenProps.build({ (counterScreenProps) in
+    let counterScreen = CounterScreen(props: CounterScreen.Props.build({ (counterScreenProps) in
       counterScreenProps.frame = rootBounds
-    })).makeRoot(store: store)
-    self.root!.render(in: view)
+    }))
     
-    
-    /*let store = Store<SmartReducer<ToDoState>>(middlewares: [sideEffects, actionLogger])
-     
-     self.root = ToDo(props: ToDoProps().frame(rootBounds)).root(store: store)
-     self.root!.draw(container: view)
-     */
+    renderer = Renderer(rootDescription: counterScreen, store: store)
+    renderer!.render(in: view)
   }
   
 }

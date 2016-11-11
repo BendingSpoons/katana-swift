@@ -2,16 +2,18 @@
 //  View.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 31/10/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Katana
 
-struct ViewProps: NodeDescriptionProps, Keyable, Childrenable {
+struct ViewProps: NodeDescriptionProps, Childrenable {
   var frame = CGRect.zero
   var key: String?
+  var alpha: CGFloat = 1.0
+
   var children: [AnyNodeDescription] = []
   
   var backgroundColor = UIColor.white
@@ -38,8 +40,9 @@ struct ViewProps: NodeDescriptionProps, Keyable, Childrenable {
 
     return
       lhs.frame == rhs.frame &&
-        lhs.key == rhs.key &&
-        lhs.backgroundColor == rhs.backgroundColor
+      lhs.key == rhs.key &&
+      lhs.alpha == rhs.alpha &&
+      lhs.backgroundColor == rhs.backgroundColor
   }
 }
 

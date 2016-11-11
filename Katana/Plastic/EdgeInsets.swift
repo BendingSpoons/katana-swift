@@ -2,9 +2,9 @@
 //  EdgeInsets.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 16/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import CoreGraphics
 
@@ -64,7 +64,7 @@ public struct EdgeInsets: Equatable {
    
    - returns: an instance of `EdgeInsets` where all the insets are not scalable
    
-   - warning: Always prefer the static methdo `scalable(_:_:_:_:)` instead of this constructor
+   - warning: Always prefer the static method `scalable(_:_:_:_:)` instead of this constructor
   */
   public init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
     self.top = Value(top)

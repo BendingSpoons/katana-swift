@@ -2,9 +2,9 @@
 //  ConnectedNodeDescription.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 19/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
@@ -19,8 +19,8 @@ public protocol AnyConnectedNodeDescription {
 }
 
 /**
- In applications developed with Katana, the application information are stored in a central Store.
- There are cases where you want to take pieces of information of the central store and use them in your UI.
+ In applications developed with Katana, the application information is stored in a central Store.
+ There are cases where you want to take pieces of information from the central store and use them in your UI.
  `ConnectedNodeDescription` is the protocol that is used to implement this behaviour.
  
  By implementing this protocol in a description you get two behaviours: store information merging and automatic UI update.
@@ -35,7 +35,7 @@ public protocol AnyConnectedNodeDescription {
  protocol, Katana will trigger an UI update to all the nodes that are related to the description.
  The system will search for all the nodes that have a description that implements this protocol. It will then
  calculate the new props, by invoking `connect`. If the properties are changed, then the UI update is triggered.
- In this way we are able to effectively trigger UI changes only where and when are needed.
+ In this way we are able to effectively trigger UI changes only where and when needed.
  
  - seeAlso: `Store`
 */

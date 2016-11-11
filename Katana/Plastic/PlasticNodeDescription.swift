@@ -2,9 +2,9 @@
 //  PlasticNodeDescription.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 24/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
@@ -15,26 +15,22 @@ public protocol AnyPlasticNodeDescription {
    
    - seeAlso: `PlasticNodeDescription`, `layout(views:props:state:)` method
    */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void
+  static func anyLayout(views: Any, props: Any, state: Any)
 }
 
 /**
  This protocol allows a `NodeDescription` to use the Plastic layout system.
 */
 public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescription {
-  
-  /// The type used to define the keys of the `NodeDescription` children. It should be an enum
-  associatedtype Keys
-  
   /**
    Node descriptions should implement this method and provide the proper layout logic.
    
    This method receives as input, beside the props and the state of the node description,
    a `ViewsContainer` that basically holds a placeholder for each node description with a key
-   returned in the `childrenDescriptions` method. You can access to these placeholders by using the key
-   same key
+   returned in the `childrenDescriptions` method. You can access these placeholders by using the
+   same key.
    
-   An example of implementation can be the following:
+   The following is an example of implementation:
    
    ```
    // in the childrenDescriptions method
@@ -51,10 +47,10 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    - parameter props: the current props of the node description
    - parameter state: the current state of the node description
   */
-  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) -> Void
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType)
   
   /**
-   The layout logic may be expensive in some cases. By implementing this method you can actually
+   The layout logic may be expensive in some cases. By implementing this method, you can actually
    cache the result of the layout.
    
    The idea is that, given a certain instance of props and state, you should return an hash value.
@@ -62,8 +58,8 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    This means that if you return an hash value that has been stored before, the `layout(views:props:state:)`
    method won't be invoked and the cached result will be used instead.
    
-   Ideally you should somehow combine all the values (take from both the props and the state) that influence
-   the result of your layout logic. In the case where the layout is always the same (that is, frames never changes),
+   Ideally you should somehow combine all the values (taken from both the props and the state) that influence
+   the result of your layout logic. In the case where the layout is always the same (that is, frames never change),
    then you can return a constant value.
    
    The caching system is disabled by default. You can activate it for a specific implementation of `PlasticNodeDescription`
@@ -82,7 +78,7 @@ public extension PlasticNodeDescription {
    
    - seeAlso: `AnyPlasticNodeDescription`
   */
-  static func anyLayout(views: Any, props: Any, state: Any) -> Void {
+  static func anyLayout(views: Any, props: Any, state: Any) {
     if let p = props as? PropsType, let s = state as? StateType, let v = views as? ViewsContainer<Keys> {
       layout(views: v, props: p, state: s)
     }
@@ -102,18 +98,16 @@ public extension PlasticNodeDescription {
   public func makeNode(parent: AnyNode) -> AnyNode {
     return PlasticNode(description: self, parent: parent)
   }
-
+  
   /**
-   Creates an instance of `Root` given the store.
+   Creates an instance of `Node` given the `Renderer` responsible to render the Nodes tree
+   starting from this Plastic Node Description.
    
-   This method is the same as the `NodeDescription` `makeRoot(store:)` but the
-   root's `node` property will be an instance of `PlasticNode`
-  */
-  func makeRoot(store: AnyStore?) -> Root {
-    let root = Root(store: store)
-    let node = PlasticNode(description: self, root: root)
-    root.node = node
-    return root
+   This method is the same as the `NodeDescription` `makeNode(renderer:)` but it
+   returns an instance of `PlasticNode`
+   */
+  public func makeNode(renderer: Renderer) -> AnyNode {
+    return PlasticNode(description: self, renderer: renderer)
   }
   
 }

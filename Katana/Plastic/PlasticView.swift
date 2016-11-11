@@ -2,9 +2,9 @@
 //  PlasticView.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 16/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 
@@ -25,12 +25,12 @@ private enum ConstraintY {
  over the instances of `PlasticView` and achieve the desidered layout.
  
  This abstraction has been introduced to avoid to deal directly with `UIView` instances in the Katana
- world. This allows us to implement some optimizations behinde the scenes (e.g., caching)
+ world. This allows us to implement some optimizations behinde the scenes (e.g., caching).
 */
 public class PlasticView {
   
   /**
-    They of the instance, this is the same defined in the
+    Key of the instance, this is the same defined in the
     corresponded node description properties
   */
   public let key: String
@@ -118,7 +118,7 @@ public class PlasticView {
    
    - parameter newValue: the new value to assig
   */
-  private func updateHeight(_ newValue: CGFloat) -> Void {
+  private func updateHeight(_ newValue: CGFloat) {
     self.frame.size.height = newValue
   }
 
@@ -127,7 +127,7 @@ public class PlasticView {
    
    - parameter newValue: the new value to assig
   */
-  private func updateWidth(_ newValue: CGFloat) -> Void {
+  private func updateWidth(_ newValue: CGFloat) {
     self.frame.size.width = newValue
   }
   
@@ -136,7 +136,7 @@ public class PlasticView {
    
    - parameter newValue: the new value to assig
   */
-  private func updateX(_ newValue: CGFloat) -> Void {
+  private func updateX(_ newValue: CGFloat) {
     let relativeValue = self.hierarchyManager.getXCoordinate(newValue, inCoordinateSystemOfParentOfKey: self.key)
     self.frame.origin.x = relativeValue
     self.absoluteOrigin.x = newValue
@@ -147,7 +147,7 @@ public class PlasticView {
    
    - parameter newValue: the new value to assig
   */
-  private func updateY(_ newValue: CGFloat) -> Void {
+  private func updateY(_ newValue: CGFloat) {
     let relativeValue = self.hierarchyManager.getYCoordinate(newValue, inCoordinateSystemOfParentOfKey: self.key)
     self.frame.origin.y = relativeValue
     self.absoluteOrigin.y = newValue
@@ -223,7 +223,7 @@ public class PlasticView {
   /**
    The bottom anchor of the instance.
    
-   Setting is value has the same effect of invoking `setBottom(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setBottom(_:offset:)` with an offset equal to `.zero`
   */
   public var bottom: Anchor {
     get {
@@ -241,7 +241,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setBottom(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setBottom(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .bottom
     
     let newBottom = anchor.coordinate + scaleValue(offset)
@@ -261,7 +261,7 @@ public class PlasticView {
   /**
    The top anchor of the instance.
    
-   Setting is value has the same effect of invoking `setTop(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setTop(_:offset:)` with an offset equal to `.zero`
   */
   public var top: Anchor {
     get {
@@ -279,7 +279,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setTop(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setTop(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .top
 
     let newTop = anchor.coordinate + scaleValue(offset)
@@ -299,7 +299,7 @@ public class PlasticView {
   /**
    The right anchor of the instance.
    
-   Setting is value has the same effect of invoking `setRight(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setRight(_:offset:)` with an offset equal to `.zero`
   */
   public var right: Anchor {
     get {
@@ -317,7 +317,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setRight(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setRight(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .right
     
     let newRight = anchor.coordinate + scaleValue(offset)
@@ -338,7 +338,7 @@ public class PlasticView {
   /**
    The left anchor of the instance.
    
-   Setting is value has the same effect of invoking `setLeft(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setLeft(_:offset:)` with an offset equal to `.zero`
   */
   public var left: Anchor {
     get {
@@ -356,7 +356,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setLeft(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setLeft(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .left
     
     let newLeft = anchor.coordinate + scaleValue(offset)
@@ -377,7 +377,7 @@ public class PlasticView {
   /**
    The horizontal center anchor of the instance.
    
-   Setting is value has the same effect of invoking `setCenterX(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setCenterX(_:offset:)` with an offset equal to `.zero`
   */
   public var centerX: Anchor {
     get {
@@ -395,7 +395,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setCenterX(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setCenterX(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .centerX
     
     let newCenterX = anchor.coordinate + scaleValue(offset)
@@ -416,7 +416,7 @@ public class PlasticView {
   /**
    The vertical center anchor of the instance.
    
-   Setting is value has the same effect of invoking `setCenterY(_:offset:)` with an offset equal to `.zero`
+   Setting its value has the same effect of invoking `setCenterY(_:offset:)` with an offset equal to `.zero`
   */
   public var centerY: Anchor {
     get {
@@ -434,7 +434,7 @@ public class PlasticView {
    - parameter anchor: the anchor
    - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
   */
-  public func setCenterY(_ anchor: Anchor, offset: Value = Value.zero) -> Void {
+  public func setCenterY(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .centerY
     
     let newCenterY = anchor.coordinate + scaleValue(offset)

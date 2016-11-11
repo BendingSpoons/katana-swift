@@ -2,46 +2,51 @@
 //  TouchHandler.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 14/10/2016.
-//  Copyright © 2016 BendingSpoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 import Katana
 
-public typealias TouchHandlerClosure = () -> Void
+public typealias TouchHandlerClosure = () -> ()
 
-public struct TouchHandlerProps: NodeDescriptionProps, Childrenable, Keyable, Buildable {
-  public var frame = CGRect.zero
-  public var children: [AnyNodeDescription] = []
-  public var key: String?
-  public var handlers: [TouchHandlerEvent: TouchHandlerClosure]?
-  public var hitTestInsets: UIEdgeInsets = .zero
-  
-  public init() {}
-  
-  public static func == (lhs: TouchHandlerProps, rhs: TouchHandlerProps) -> Bool {
-    // always re render, we haven't found a decent way to compare handlers so far
-    return false
+public extension TouchHandler {
+  public struct Props: NodeDescriptionProps, Childrenable, Buildable {
+    public var frame = CGRect.zero
+    public var key: String?
+    public var alpha: CGFloat = 1.0
+    
+    public var children: [AnyNodeDescription] = []
+    public var handlers: [TouchHandlerEvent: TouchHandlerClosure]?
+    public var hitTestInsets: UIEdgeInsets = .zero
+    
+    public init() {}
+    
+    public static func == (lhs: Props, rhs: Props) -> Bool {
+      // always re render, we haven't found a decent way to compare handlers so far
+      return false
+    }
   }
 }
 
 public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
   public typealias NativeView = NativeTouchHandler
   
-  public var props: TouchHandlerProps
+  public var props: Props
   
-  public static func applyPropsToNativeView(props: TouchHandlerProps,
+  public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: NativeTouchHandler,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.frame = props.frame
+    view.alpha = props.alpha
     view.handlers = props.handlers
     view.hitTestInsets = props.hitTestInsets
   }
 
-  public static func childrenDescriptions(props: TouchHandlerProps,
+  public static func childrenDescriptions(props: Props,
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
@@ -49,11 +54,11 @@ public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
     return props.children
   }
   
-  public init(props: TouchHandlerProps) {
+  public init(props: Props) {
     self.props = props
   }
   
-  public init(props: TouchHandlerProps, _ children: () -> [AnyNodeDescription]) {
+  public init(props: Props, _ children: () -> [AnyNodeDescription]) {
     self.props = props
     self.props.children = children()
   }

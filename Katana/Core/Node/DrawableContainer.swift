@@ -2,9 +2,9 @@
 //  DrawableContainer.swift
 //  Katana
 //
-//  Created by Luca Querella on 07/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 
@@ -20,9 +20,9 @@ public protocol DrawableContainerChild {}
  that renders nodes on abstract structures (e.g., for testing) or on serializable structures to store the UI
  representation and use it later.
  
- - note: We are not currently leveraging this abstraction and it very likely that we will need to work and further improve
-         this protocol in order to use it for meaningful purpose. For instance the signatures 
-         are havily binded to UIView instances, which defeats the entire purpose of this protocol.
+ - note: We are not currently leveraging this abstraction and it's very likely that we will need to work and further improve
+         this protocol in order to use it for meaningful purpose. For instance, the signatures
+         are heavily bound to UIView instances, which defeats the entire purpose of this protocol.
 */
 public protocol DrawableContainer {
   /**

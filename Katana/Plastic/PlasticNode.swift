@@ -2,9 +2,9 @@
 //  PlasticNode.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 25/08/16.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
@@ -83,15 +83,18 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     return childrenDescriptions.map {
       var newChildDescription = $0
       
-      if let key = newChildDescription.key {
+      if let key = newChildDescription.anyProps.key {
         if let frame = newFrames[key] {
-          newChildDescription.frame = frame
+          var newProps = newChildDescription.anyProps
+          newProps.frame = frame
+          newChildDescription = type(of: newChildDescription).init(anyProps: newProps)
         }
       }
       
       if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
         n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
         return n as AnyNodeDescription
+
       } else {
         return newChildDescription
       }
@@ -110,12 +113,12 @@ public extension AnyNode {
   */
   public var plasticMultipler: CGFloat {
     
-    guard let description = self.anyDescription as? PlasticNodeDescriptionWithReferenceSize else {
+    guard let description = self.anyDescription as? PlasticReferenceSizeable else {
       return self.parent?.plasticMultipler ?? 0.0
     }
     
     let referenceSize = type(of: description).referenceSize
-    let currentSize = self.anyDescription.frame
+    let currentSize = self.anyDescription.anyProps.frame
     
     let widthRatio = currentSize.width / referenceSize.width
     let heightRatio = currentSize.height / referenceSize.height
