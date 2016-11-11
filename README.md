@@ -209,6 +209,8 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 }
 ```
 
+### You can find the complete example [here](/Demo)
+
 <table>
   <tr>
     <th>
@@ -216,8 +218,6 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
     </th>
   </tr>
 </table>
-
-### You can find the complete example [here](/Demo)
 
 
 
