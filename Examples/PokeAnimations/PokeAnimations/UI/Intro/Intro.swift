@@ -33,7 +33,7 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
       
       View.pokemonBackground(for: state.step),
       
-      Button(props: ButtonProps.build {
+      Button(props: Button.Props.build {
         $0.setKey(ChildrenKeys.button)
         $0.backgroundColor = UIColor(white: 1, alpha: 0.4)
         $0.cornerRadius = .scalable(20)

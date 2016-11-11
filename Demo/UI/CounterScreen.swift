@@ -41,13 +41,13 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     return [
-      Label(props: LabelProps.build({
+      Label(props: Label.Props.build({
         $0.setKey(Keys.label)
         $0.textAlignment = .center
         $0.backgroundColor = .mediumAquamarine
         $0.text = NSAttributedString(string: "Count: \(props.count)")
       })),
-      Button(props: ButtonProps.build({
+      Button(props: Button.Props.build({
         $0.setKey(Keys.decrementButton)
         $0.titles[.normal] = "Decrement"
         $0.backgroundColor = .dogwoodRose
@@ -59,7 +59,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
           }
         ]
       })),
-      Button(props: ButtonProps.build({
+      Button(props: Button.Props.build({
         $0.setKey(Keys.incrementButton)
         $0.titles[.normal] = "Increment"
         $0.backgroundColor = .japaneseIndigo
@@ -90,8 +90,6 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
     incrementButton.bottom = decrementButton.bottom
     [decrementButton, incrementButton].fill(left: rootView.left, right: rootView.right)
   }
-
-  
 }
 
 

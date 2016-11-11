@@ -39,7 +39,7 @@ struct PostCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCell, Co
                                      update: @escaping (StateType)->(),
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
         return [
-            Label(props: LabelProps.build({
+            Label(props: Label.Props.build({
                 $0.setKey(Keys.titleLabel)
                 $0.text = NSAttributedString(string: (props.post?.title)!, attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 18)
@@ -47,7 +47,7 @@ struct PostCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCell, Co
                 $0.textAlignment = NSTextAlignment.center
                 $0.numberOfLines = 0
             })),
-            Image(props: ImageProps.build({
+            Image(props: Image.Props.build({
                 $0.setKey(Keys.gifImage)
                 $0.image = UIImage.gif(data: (props.post?.imageData)!)
                 $0.backgroundColor = UIColor.lightGray

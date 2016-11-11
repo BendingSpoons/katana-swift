@@ -26,7 +26,7 @@ extension View {
       }
     }()
     
-    return View(props: ViewProps.build {
+    return View(props: View.Props.build {
       $0.backgroundColor = color
       $0.setKey(Intro.ChildrenKeys.background)
     })
@@ -62,7 +62,7 @@ extension Image {
       }
     }()
     
-    return Image(props: ImageProps.build {
+    return Image(props: Image.Props.build {
       $0.image = image
       $0.backgroundColor = .clear
       $0.setKey(key)
@@ -99,7 +99,7 @@ extension Label {
       }
     }()
     
-    return Label(props: LabelProps.build {
+    return Label(props: Label.Props.build {
       $0.text = .paragraphString(content)
       $0.textAlignment = .center
       $0.numberOfLines = 0
