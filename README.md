@@ -246,7 +246,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ### Check out the documentation
 
-[insert here link to the documentation]
+[Documentation](katana.bendingspoons.com)
 
 
 
