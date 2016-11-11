@@ -20,7 +20,7 @@ Documentation and tests are very important. When you submit a Pull Request, plea
 
 <a href="#asking-questions"></a>
 ## Asking Questions
-Feel free to [open an issue](https://github.com/BendingSpoons/katana-lib-swift/issues/new) for any doubt or feature request related to Katana.
+Feel free to [open an issue](https://github.com/BendingSpoons/katana-swift/issues/new) for any doubt or feature request related to Katana.
 
 For any usage questions that are not specific to the project itself (e.g., issus related to Swift), please ask on [Stack Overflow](http://stackoverflow.com/questions/tagged/swift) instead. By doing so, you'll be more likely to quickly solve your problem, and you'll allow anyone else with the same question to find the answer. This also allows maintainers to focus on improving the project for others.
 
