@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./katana.png" alt="Katana">
+<img src="./Assets/katana.png" alt="Katana">
 </p>
 
 
@@ -42,10 +42,10 @@ struct CounterState: State {
 }
 ```
 
-The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
+The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. There are two kind of actions: `SyncAction` and `AsyncAction`. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
 
 ```swift
-struct IncrementCounter: Action {
+struct IncrementCounter: SyncAction {
   static func updatedState(currentState: State, action: IncrementCounter) -> State {
     guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
     state.counter += 1
@@ -211,7 +211,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ![](/Demo/counter.gif)
 
-#### You can find the complete example [here](insert link to the complete example)
+#### You can find the complete example [here](/Demo)
 
 
 
@@ -295,7 +295,7 @@ Then drag the built `Katana.framework` into your XCode project.
 
 ## Roadmap
 
-- [x] Immutable state
+- [x] immutable state
 
 
 - [x] unidirectional data flow
@@ -309,7 +309,7 @@ Then drag the built `Katana.framework` into your XCode project.
 - [x] declarative UI
 - [x] leverage Plastic layout engine
 - [ ] support other layout engines
-- [ ] Declarative Table element
+- [ ] declarative Table element
 - [ ] macOS support
 - [ ] improve test coverage
 - [ ] expand documentation
