@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./Assets/katana.png" alt="Katana">
+<img src="./Assets/katana.png" width="420" alt="Katana">
 </p>
 
 
