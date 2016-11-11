@@ -11,7 +11,7 @@ Katana is a modern Swift framework for writing iOS apps, strongly inspired by [R
 - __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
-We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At [Bending Spoons](www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+We feel that Katana helped us a lot since we started using it in production. At [Bending Spoons](www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
 
 
@@ -21,7 +21,7 @@ We feel that Katana helped us a lot since we started using it in production for 
 | :package:           | Store all your app state in a single place |
 | :guardsman:         | Clearly define what are the actions that can change the state |
 | :bowtie:            | Describe asynchronous actions like HTTP requests |
-| :muscle:            | Use support for middleware like Logging  |
+| :muscle:            | Support for middleware                   |
 | :tophat:            | Efficiently update the UI when your app state changes |
 | :triangular_ruler:  | Automatically scale your UI to every size and aspect ratio |
 | :horse_racing:      | Easily animate UI changes                |
