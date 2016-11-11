@@ -3,7 +3,7 @@
 </p>
 
 
-Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
+Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/), that gives structure to all the aspects of your app:
 
 - __logic__: the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 - __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as isolated, reusable pieces of UI, since the way a component is rendered only depends on the current props and state of the component itself.
@@ -11,7 +11,7 @@ Katana is a modern Swift framework for writing iOS apps, strongly inspired by [R
 - __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
-We feel that Katana helped us a lot since we started using it in production. At [Bending Spoons](www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+We feel that Katana helped us a lot since we started using it in production. At [Bending Spoons](http://www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
 
 
@@ -252,7 +252,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ## Installation
 
-Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](insert link here), you can also drop `Katana.project` into your XCode project.
+Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your XCode project.
 
 ### Requirements
 
@@ -353,4 +353,4 @@ Then drag the built `Katana.framework` and `KatanaElements.framework` into your 
 
 ## License
 
-Katana is available under the [MIT license](insert link to LICENSE file here)
+Katana is available under the [MIT license](/LICENSE)
