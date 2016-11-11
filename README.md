@@ -303,7 +303,7 @@ $ brew install carthage
 To integrate Katana into your XCode project using Carthage, add it to your `Cartfile`:
 
 ```
-github "Bendingspoons/KatanaSwift"
+github "Bendingspoons/katana-swift"
 ```
 
 And Run:
@@ -312,7 +312,7 @@ And Run:
 $ carthage update
 ```
 
-Then drag the built `Katana.framework` into your XCode project.
+Then drag the built `Katana.framework` and `KatanaElements.framework` into your XCode project.
 
 
 
