@@ -6,8 +6,8 @@
 Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
 
 - __logic__: the app state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: you define the UI in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
-- __logic__ ↔️ __UI__: your UI components are attached to the store and will be automatically updated on every state change. You control how they change, connecting the app state to the component props.
+- __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
+- __logic__ ↔️ __UI__: the UI components are connected to the app state and will be automatically updated on every state change. You control how they change, selecting the portion of app state that will feed the component props. To render this process as fast as possible, only the relevant portion of the UI is updated. 
 - __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
@@ -22,7 +22,7 @@ We feel that Katana helped us a lot since we started using it in production for 
 | :guardsman:         | Clearly define what are the actions that can change the state |
 | :bowtie:            | Describe asynchronous actions like HTTP requests |
 | :muscle:            | Use support for middleware like Logging  |
-| :tophat:            | Automatically update the UI when your app state changes |
+| :tophat:            | Efficiently update the UI when your app state changes |
 | :triangular_ruler:  | Automatically scale your UI to every size and aspect ratio |
 | :horse_racing:      | Easily animate UI changes                |
 
