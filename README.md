@@ -212,7 +212,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 <table>
   <tr>
     <th>
-      <img src="Assets/counter.gif" width="300"/>
+      <img src="Assets/demo_counter.gif" width="300"/>
     </th>
   </tr>
 </table>
