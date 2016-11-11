@@ -219,7 +219,30 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ### Explore sample projects
 
-[insert here list of sample projects]
+<table>
+ <tr>
+  <th>
+    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+  </th>
+  <th>
+    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+  </th>
+  <th>
+    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+  </th>
+ </tr>
+  <tr>
+    <th>
+      <a href="./ExamplesPokeAnimations">Animations Example</a>
+    </th>
+    <th>
+      <a href="h./ExamplesPokeAnimations">Animations Example</a>
+    </th>
+    <th>
+      <a href="./ExamplesPokeAnimations">Animations Example</a>
+    </th>
+  </tr>
+ </table>
 
 ### Check out the documentation
 
