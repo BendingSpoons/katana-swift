@@ -22,7 +22,7 @@ We feel that Katana helped us a lot since we started using it in production. At 
 | :guardsman:         | Clearly define what are the actions that can change the state |
 | :bowtie:            | Describe asynchronous actions like HTTP requests |
 | :muscle:            | Support for middleware                   |
-| :tophat:            | Efficiently update the UI when your app state changes |
+| :tophat:            | Automatically update the UI when your app state changes |
 | :triangular_ruler:  | Automatically scale your UI to every size and aspect ratio |
 | :horse_racing:      | Easily animate UI changes                |
 
