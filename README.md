@@ -236,7 +236,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
       <a href="./Examples/PokeAnimations">Animations Example</a>
     </th>
     <th>
-      <a href="./Examples/PokeAnimations">Table Example</a>
+      <a href="./Examples/CodingLove">Table Example</a>
     </th>
     <th>
       <a href="./Examples/PokeAnimations">Animations Example</a>
