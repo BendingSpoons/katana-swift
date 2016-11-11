@@ -339,9 +339,9 @@ Then drag the built `Katana.framework` into your XCode project.
 
 
 
-## Communication
+## Communication 
 
-- if you have __any questions__ you can find us on twitter: @handle, @handle, @handle, ...
+- if you have __any questions__ you can find us on twitter: [@maurobolis](https://twitter.com/maurobolis), [@luca_1987](https://twitter.com/luca_1987), [@smaramba](https://twitter.com/smaramba)
 
 
 
