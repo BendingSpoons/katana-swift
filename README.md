@@ -225,7 +225,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
     <img src="Assets/demo_pokeAnimation.gif" width="300"/>
   </th>
   <th>
-    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+    <img src="Assets/demo_codingLove.gif" width="300"/>
   </th>
   <th>
     <img src="Assets/demo_pokeAnimation.gif" width="300"/>
@@ -233,13 +233,13 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
  </tr>
   <tr>
     <th>
-      <a href="./ExamplesPokeAnimations">Animations Example</a>
+      <a href="./Examples/PokeAnimations">Animations Example</a>
     </th>
     <th>
-      <a href="h./ExamplesPokeAnimations">Animations Example</a>
+      <a href="./Examples/PokeAnimations">Table Example</a>
     </th>
     <th>
-      <a href="./ExamplesPokeAnimations">Animations Example</a>
+      <a href="./Examples/PokeAnimations">Animations Example</a>
     </th>
   </tr>
  </table>
