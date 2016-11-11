@@ -5,13 +5,13 @@
 
 Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](https://github.com/reactjs/redux), that gives structure to all the aspects of your app:
 
-- __logic__: the app state is entirely described by a single serializable data structure and the only way to change the state is to dispatch an action. An action is an intent to transform the state and contains all the informations to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as an isolated, reusable piece of UI, since the way a component is rendered only depends on the current props and state of the component itself.
+- __logic__: the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+- __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as isolated, reusable pieces of UI, since the way a component is rendered only depends on the current props and state of the component itself.
 - __logic__ ↔️ __UI__: the UI components are connected to the app state and will be automatically updated on every state change. You control how they change, selecting the portion of app state that will feed the component props. To render this process as fast as possible, only the relevant portion of the UI is updated. 
 - __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
 
 
-We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At Bending Spoons we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+We feel that Katana helped us a lot since we started using it in production for more than X apps with XXXX active users per day. At [Bending Spoons](www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
 
 
@@ -34,7 +34,7 @@ We feel that Katana helped us a lot since we started using it in production for 
 
 ### Defining the logic of your app
 
-your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
+Your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
 
 ```swift
 struct CounterState: State {
@@ -42,7 +42,7 @@ struct CounterState: State {
 }
 ```
 
-The app state can only be modified by an `Action`. An action represents an event that leads to a change in the state of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app state based on the current app state and the action itself.
+The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
 
 ```swift
 struct IncrementCounter: Action {
@@ -54,14 +54,14 @@ struct IncrementCounter: Action {
 }
 ```
 
-The `Store` contains and manages your entire app state and it is responsible for dispatching actions and updating the state
+The `Store` contains and manages your entire app `State` and it is responsible for dispatching `Actions` and updating the `State`.
 
 ```swift
 let store = Store<CounterState>()
 store.dispatch(IncrementCounter())
 ```
 
-you can ask the `Store` to be notified about every change in the app state
+You can ask the `Store` to be notified about every change in the app `State`.
 
 ```swift
 store.addListener() {
@@ -89,7 +89,7 @@ struct CounterScreen: NodeDescription {
 }
 ```
 
-Inside the `props` you want to specify all the inputs needed to render your `NativeView` and to feed your children components
+Inside the `props` you want to specify all the inputs needed to render your `NativeView` and to feed your children components.
 
 ```swift
 struct CounterScreenProps: NodeDescriptionProps {
@@ -114,7 +114,7 @@ struct CounterScreen: NodeDescription {
 }
 ```
 
-`NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by others `NodeDescription` as children, generating the UI tree. To define child components implement the method `childrenDescriptions`
+`NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by other `NodeDescription`s as children, generating the UI tree. To define child components, implement the method `childrenDescriptions`.
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -163,15 +163,15 @@ struct CounterScreen: NodeDescription {
 
 The `Renderer` is responsible for rendering the UI tree and updating it when the `Store` changes. 
 
-You create a Renderer object starting from the top level NodeDescription and the store.
+You create a `Renderer` object starting from the top level `NodeDescription` and the `Store`.
 
 ```
 renderer = Renderer(rootDescription: counterScreen, store: store)
 renderer.render(in: view)
 ```
 
-Every time a new app state is available, the store dispatches an event that is captured by the Renderer and dispatched down to the tree of UI components.
-If you want a node to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`
+Every time a new app `State` is available, the `Store` dispatches an event that is captured by the `Renderer ` and dispatched down to the tree of UI components.
+If you want a component to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`.
 
 ```
 struct CounterScreen: ConnectedNodeDescription {
@@ -187,7 +187,7 @@ struct CounterScreen: ConnectedNodeDescription {
 ### Layout of the UI
 
 Katana has its own language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
-If you want to opt in, just implement the `PlasticNodeDescription` protocol and its `layout` method where you can to define the layout of the children, based on the given `referenceSize`. The layout system will use the reference size to compute the proper scaling. 
+If you want to opt in, just implement the `PlasticNodeDescription` protocol and its `layout` method where you can define the layout of the children, based on the given `referenceSize`. The layout system will use the reference size to compute the proper scaling. 
 
 ```swift
 struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
@@ -289,7 +289,7 @@ And Run:
 $ carthage update
 ```
 
-Then drag the built `Katana.framework` into your XCode project
+Then drag the built `Katana.framework` into your XCode project.
 
 
 
