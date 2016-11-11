@@ -51,7 +51,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCel
         }
         
         return [
-            Label(props: LabelProps.build({
+            Label(props: Label.Props.build({
                 $0.key = Keys.label.rawValue
                 $0.text = NSAttributedString(string: labelText, attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 16)

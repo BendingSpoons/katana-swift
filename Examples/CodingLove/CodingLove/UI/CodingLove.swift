@@ -90,14 +90,14 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticRefe
                                      update: @escaping (StateType)->(),
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
         return [
-            Label(props: LabelProps.build({
+            Label(props: Label.Props.build({
                 $0.setKey(Keys.titleLabel)
                 $0.text = NSAttributedString(string: "The Coding Love", attributes: [
                     NSFontAttributeName: UIFont.systemFont(ofSize: 25)
                 ])
                 $0.textAlignment = NSTextAlignment.center
             })),
-            Table(props: TableProps.build({
+            Table(props: Table.Props.build({
                 $0.setKey(Keys.tableView)
                 $0.delegate = TableViewDelegate(posts: props.posts)
             }))
