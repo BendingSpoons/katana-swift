@@ -252,7 +252,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ## Installation
 
-Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your XCode project.
+Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your Xcode project.
 
 ### Requirements
 
@@ -272,7 +272,7 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 $ sudo gem install cocoapods
 ```
 
-To integrate Katana into your XCode project using CocoaPods, add it to your `Podfile`:
+To integrate Katana into your Xcode project using CocoaPods, add it to your `Podfile`:
 
 ```
 use_frameworks!
@@ -300,7 +300,7 @@ $ brew update
 $ brew install carthage
 ```
 
-To integrate Katana into your XCode project using Carthage, add it to your `Cartfile`:
+To integrate Katana into your Xcode project using Carthage, add it to your `Cartfile`:
 
 ```
 github "Bendingspoons/katana-swift"
@@ -312,7 +312,7 @@ And Run:
 $ carthage update
 ```
 
-Then drag the built `Katana.framework` and `KatanaElements.framework` into your XCode project.
+Then drag the built `Katana.framework` and `KatanaElements.framework` into your Xcode project.
 
 
 
