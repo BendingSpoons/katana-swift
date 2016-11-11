@@ -1,5 +1,4 @@
 # Contributing Guidelines
-
 This document contains information and guidelines about contributing to this project.
 Please read it before you start participating.
 
@@ -13,25 +12,22 @@ Please read it before you start participating.
 
 <a href="#pull-request-submissions"></a>
 ## Pull Request Submissions.
+Pull Requests should contain the issue you are solving as well as a description about your implementation/solution. Before submitting a pull request, please check that merge issues are resolved.
 
-Pull Requests should contain the issue you are solving as well as a description about your fix. Before submitting a pull request, please confirm that merge issues are resolved.
+We use [Swiftlint](https://github.com/realm/SwiftLint) to enforce coding rules. The rules can be found in the `.swiftlint.yml` file in the root folder of the project. Please make sure you don't have any warning or error before submitting the Pull Request.
 
-We use [Swiftlint](https://github.com/realm/SwiftLint) to enforce coding rules. The rules can be found in the `.swiftlint.yaml` file in the root folder of the project. Please make sure you don't have any warning or error before submitting the Pull Request.
-
-Documentation and tests are very important. When you submit a Pull Request, please keep the documentation update and try to improve the project's tests. For instance, if you fix a bug, a good idea is to add tests that are aimed to confirm that the issues has been solved and avoid future regressions.
+Documentation and tests are very important. When you submit a Pull Request, please keep the documentation updated and Implement the appropriated tests. For instance, if you fix a bug, a good idea is to add tests that are aimed to confirm that the issue has been solved and avoid future regressions.
 
 <a href="#asking-questions"></a>
 ## Asking Questions
-
 Feel free to [open an issue](https://github.com/BendingSpoons/katana-lib-swift/issues/new) for any doubt or feature request related to Katana.
 
-For any usage questions that are not specific to the project itself, please ask on [Stack Overflow](http://stackoverflow.com/questions/tagged/swift) instead. By doing so, you'll be more likely to quickly solve your problem, and you'll allow anyone else with the same question to find the answer. This also allows maintainers to focus on improving the project for others.
+For any usage questions that are not specific to the project itself (e.g., issus related to Swift), please ask on [Stack Overflow](http://stackoverflow.com/questions/tagged/swift) instead. By doing so, you'll be more likely to quickly solve your problem, and you'll allow anyone else with the same question to find the answer. This also allows maintainers to focus on improving the project for others.
 
 <a href="#reporting-issues"></a>
 ## Reporting Issues
-
 A great way to contribute to the project
-is to send a detailed issue when you encounter an problem.
+is to send a detailed issue when you encounter a problem.
 We always appreciate a well-written, thorough bug report.
 
 Check that the project issues database
@@ -51,7 +47,6 @@ This information will help us review and fix your issue faster.
 
 <a href="#developers-certificate-of-origin"></a>
 ## Developer's Certificate of Origin 1.1
-
 By making a contribution to this project, I certify that:
 
 - (a) The contribution was created in whole or in part by me and I
