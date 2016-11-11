@@ -217,7 +217,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
   </tr>
 </table>
 
-#### You can find the complete example [here](/Demo)
+### You can find the complete example [here](/Demo)
 
 
 
