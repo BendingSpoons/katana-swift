@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>plasticnodedescription</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>import Foundation
+import Katana
+
+struct &lt;#name#&gt;: NodeDescription, PlasticNodeDescription {
+  typealias PropsType = Props
+  typealias StateType = EmptyState
+  typealias NativeView = UIView
+  typealias Keys = ChildrenKeys
+  
+  var props: PropsType
+  
+  static func childrenDescriptions(props: PropsType,
+                                   state: StateType,
+                                   update: @escaping (StateType) -&gt; (),
+                                   dispatch: @escaping StoreDispatch) -&gt; [AnyNodeDescription] {
+    
+    return []
+  }
+  
+  static func layout(views: ViewsContainer&lt;Keys&gt;,
+                     props: PropsType,
+                     state: StateType) {
+  }
+}
+
+extension &lt;#name#&gt; {
+  enum ChildrenKeys {
+  }
+}
+
+extension &lt;#name#&gt; {
+  struct Props: NodeDescriptionProps {
+    var frame: CGRect = .zero
+    var key: String?
+    var alpha: CGFloat = 1.0
+  }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4FAA42BA-5C78-4DF4-8C10-BB95C1E83551</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A snippet for a NodeDescription that uses Plastic</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Katana - Plastc NodeDescription</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>

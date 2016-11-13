@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>nodedescription</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>TopLevel</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct &lt;#name#&gt;: NodeDescription {
+  typealias PropsType = Props
+  typealias StateType = EmptyState
+  typealias NativeView = UIView
+  typealias Keys = ChildrenKeys
+  
+  var props: PropsType
+  
+  static func childrenDescriptions(props: PropsType,
+                                   state: StateType,
+                                   update: @escaping (StateType) -&gt; (),
+                                   dispatch: @escaping StoreDispatch) -&gt; [AnyNodeDescription] {
+    
+    return []
+  }
+}
+
+extension &lt;#name#&gt; {
+  enum ChildrenKeys {
+  }
+}
+
+extension &lt;#name#&gt; {
+  struct Props: NodeDescriptionProps {
+    var frame: CGRect = .zero
+    var key: String?
+    var alpha: CGFloat = 1.0
+  }
+}</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>4341F1A8-488B-48E6-A326-7918389483B7</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A snippet for a NodeDescription</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Katana - NodeDescription</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>2</integer>
+</dict>
+</plist>
