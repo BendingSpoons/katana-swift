@@ -354,3 +354,10 @@ Then drag the built `Katana.framework` and `KatanaElements.framework` into your 
 ## License
 
 Katana is available under the [MIT license](/LICENSE)
+
+## About
+
+Katana is maintained by Bending Spoons.
+We create our own tech products, used and loved by millions all around the world.
+Interested? [Check us out](http://bndspn.com/2fKggTa)!
+
