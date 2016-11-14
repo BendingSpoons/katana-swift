@@ -14,6 +14,7 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
   typealias StateType = EmptyState
   typealias PropsType = Props
   typealias NativeView = UIView
+  typealias Keys = ChildrenKeys
   
   var props: Props
   static var referenceSize: CGSize = CGSize(width: 750, height: 1334)
@@ -65,7 +66,7 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
 
 // MARK: Keys and Props
 extension Minesweeper {
-  enum Keys {
+  enum ChildrenKeys {
     case title, field
   }
   

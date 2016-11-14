@@ -17,6 +17,8 @@
 		65CAC5DF1DD8F2FE00395FE1 /* Minesweeper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAC5A31DD6115800395FE1 /* Minesweeper.swift */; };
 		65CAC5E01DD8F2FE00395FE1 /* MinesweeperGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAC5A71DD6118700395FE1 /* MinesweeperGrid.swift */; };
 		65CAC5E11DD8F2FE00395FE1 /* MinesweeperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65CAC5A51DD6117A00395FE1 /* MinesweeperCell.swift */; };
+		65D405621DD9ED2100AED19E /* Random.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D405611DD9ED2100AED19E /* Random.swift */; };
+		65D405641DD9EF9200AED19E /* MinesweeperSyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65D405631DD9EF9200AED19E /* MinesweeperSyncAction.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -78,6 +80,8 @@
 		65CAC5A31DD6115800395FE1 /* Minesweeper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Minesweeper.swift; path = UI/Minesweeper.swift; sourceTree = "<group>"; };
 		65CAC5A51DD6117A00395FE1 /* MinesweeperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinesweeperCell.swift; path = UI/MinesweeperCell.swift; sourceTree = "<group>"; };
 		65CAC5A71DD6118700395FE1 /* MinesweeperGrid.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinesweeperGrid.swift; path = UI/MinesweeperGrid.swift; sourceTree = "<group>"; };
+		65D405611DD9ED2100AED19E /* Random.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Random.swift; path = Utils/Random.swift; sourceTree = "<group>"; };
+		65D405631DD9EF9200AED19E /* MinesweeperSyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MinesweeperSyncAction.swift; path = Actions/MinesweeperSyncAction.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +116,7 @@
 		659151541DD5BDAA003800C4 /* Minesweeper */ = {
 			isa = PBXGroup;
 			children = (
+				65D4055E1DD9ED0400AED19E /* Utils */,
 				65A8C5711DD603F900AB58F9 /* State */,
 				65A8C5701DD603F200AB58F9 /* Actions */,
 				659151691DD5BFDA003800C4 /* UI */,
@@ -155,6 +160,7 @@
 		65A8C5701DD603F200AB58F9 /* Actions */ = {
 			isa = PBXGroup;
 			children = (
+				65D405631DD9EF9200AED19E /* MinesweeperSyncAction.swift */,
 				65CAC59F1DD610B600395FE1 /* StartGame.swift */,
 				65A8C5721DD6048300AB58F9 /* DiscloseCell.swift */,
 			);
@@ -167,6 +173,14 @@
 				65A8C5781DD6056300AB58F9 /* MinesweeperState.swift */,
 			);
 			name = State;
+			sourceTree = "<group>";
+		};
+		65D4055E1DD9ED0400AED19E /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				65D405611DD9ED2100AED19E /* Random.swift */,
+			);
+			name = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -297,8 +311,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D405621DD9ED2100AED19E /* Random.swift in Sources */,
 				65CAC5DC1DD8F2FE00395FE1 /* MinesweeperState.swift in Sources */,
 				65CAC5DD1DD8F2FE00395FE1 /* StartGame.swift in Sources */,
+				65D405641DD9EF9200AED19E /* MinesweeperSyncAction.swift in Sources */,
 				65CAC5DE1DD8F2FE00395FE1 /* DiscloseCell.swift in Sources */,
 				65CAC5DF1DD8F2FE00395FE1 /* Minesweeper.swift in Sources */,
 				65CAC5E01DD8F2FE00395FE1 /* MinesweeperGrid.swift in Sources */,

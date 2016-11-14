@@ -8,10 +8,10 @@
 
 import Katana
 
-struct StartGame: SyncAction {
+struct StartGame: MinesweeperSyncAction {
   var payload: MinesweeperState.Difficulty
   
-  static func updatedState(currentState: State, action: StartGame) -> State {
-    return MinesweeperState(difficulty: action.payload)
+  static func updatedState( currentState: inout MinesweeperState, action: StartGame) {
+    currentState = MinesweeperState(difficulty: action.payload)
   }
 }

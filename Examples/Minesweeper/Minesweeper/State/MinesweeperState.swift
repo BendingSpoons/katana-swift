@@ -66,7 +66,7 @@ extension MinesweeperState {
     return mines
   }
   
-  func nearbyCellsIndicesAt(col: Int, row: Int) -> [(Int, Int)] {
+  fileprivate func nearbyCellsIndicesAt(col: Int, row: Int) -> [(Int, Int)] {
     var indices: [(Int, Int)] = []
     let startCol = col - 1
     let endCol = col + 1
@@ -103,6 +103,27 @@ extension MinesweeperState {
 // MARK: - Disclosure
 extension MinesweeperState {
   mutating func disclose(col: Int, row: Int) {
+    guard !gameOver else { return }
+    var cellsToDisclose = [(col, row)]
+    
+    while cellsToDisclose.count > 0 {
+      let index = cellsToDisclose.removeFirst()
+      if(!self.isDisclosed(col: index.0, row: index.1 )) {
+        self.discloseCellAt(col: index.0, row: index.1)
+        if(self[index.0, index.1]) {
+          self.gameOver = true
+          return
+        }
+        if(self.minesNearbyCellAt(col: index.0, row: index.1) == 0) {
+          cellsToDisclose.append(contentsOf: self.nearbyCellsIndicesAt(col: index.0, row: index.1))
+        }
+        
+      }
+    }
+    self.discloseCellAt(col: col, row: row)
+  }
+  
+  fileprivate mutating func discloseCellAt(col: Int, row: Int) {
     disclosed[cols*row+col] = true
   }
   
@@ -124,12 +145,5 @@ extension MinesweeperState {
   
   static func == (lhs: MinesweeperState, rhs: MinesweeperState) -> Bool {
     return lhs.mines == rhs.mines && lhs.disclosed == rhs.disclosed
-  }
-}
-
-// MARK: - Utils
-extension Int {
-  static func random(max: Int) -> Int {
-    return Int(arc4random_uniform(UInt32(max)))
   }
 }

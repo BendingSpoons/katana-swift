@@ -14,6 +14,7 @@ struct MinesweeperGrid: ConnectedNodeDescription, PlasticNodeDescription {
   typealias StateType = EmptyState
   typealias PropsType = Props
   typealias NativeView = UIView
+  typealias Keys = ChildrenKeys
   
   var props: Props
   
@@ -64,7 +65,7 @@ struct MinesweeperGrid: ConnectedNodeDescription, PlasticNodeDescription {
 
 // MARK: Keys and Props
 extension MinesweeperGrid {
-  enum Keys {
+  enum ChildrenKeys {
     case button(column: Int, row: Int)
   }
   
@@ -84,21 +85,5 @@ extension MinesweeperGrid {
         lhs.cols == rhs.cols &&
         lhs.rows == rhs.rows
     }
-  }
-}
-
-// MARK: - Utils
-extension CGFloat {
-  static func random(max: Int) -> CGFloat {
-    return CGFloat(arc4random_uniform(UInt32(max)))
-  }
-}
-
-extension UIColor {
-  static var randomColor: UIColor {
-    return UIColor(red: CGFloat.random(max: 256) / 255.0,
-                   green: CGFloat.random(max: 256) / 255.0,
-                   blue: CGFloat.random(max: 256) / 255.0,
-                   alpha: 1.0)
   }
 }

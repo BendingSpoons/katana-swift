@@ -14,6 +14,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
   typealias StateType = EmptyState
   typealias PropsType = Props
   typealias NativeView = UIView
+  typealias Keys = ChildrenKeys
   
   var props: Props
   
@@ -91,7 +92,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
 
 // MARK: Keys and Props
 extension MinesweeperCell {
-  enum Keys {
+  enum ChildrenKeys {
     case button, label, mineImage
   }
   
