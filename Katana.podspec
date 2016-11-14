@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Katana'
-  s.version          = ${POD_VERSION}
+  s.version          = '0.1.0'
   s.summary          = 'Swift Apps in a swoosh'
 
 
