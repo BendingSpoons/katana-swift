@@ -1,6 +1,6 @@
 //
 //  Minesweeper.swift
-//  Katana
+//  Minesweeper
 //
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
@@ -20,16 +20,16 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
   
   static func childrenDescriptions(props: PropsType,
                                    state: StateType,
-                                   update: @escaping (EmptyState) -> (),
+                                   update: @escaping (StateType) -> (),
                                    dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
     func buttonTap() {
       dispatch(StartGame(payload: .hard))
     }
     
-    let text = props.gameover ? "gameover :( tap to restart" : ":) tap to restart"
+    let text = props.gameover ? "gameover :( tap to restart" : ":)"
     
-    let button = Button(props: ButtonProps.build({
+    let button = Button(props: Button.Props.build({
       $0.setKey(Keys.title)
       $0.titles = [.normal : text]
       $0.borderColor = .darkGray
@@ -45,7 +45,7 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
     return [button, minesweeperGrid]
   }
   
-  static func layout(views: ViewsContainer<Minesweeper.Keys>, props: Minesweeper.Props, state: EmptyState) {
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) {
     let root = views.nativeView
     let title = views[.title]!
     let field = views[.field]!
@@ -58,7 +58,7 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
     field.bottom = root.bottom
   }
   
-  static func connect(props: inout Minesweeper.Props, to storeState: MinesweeperState) {
+  static func connect(props: inout PropsType, to storeState: MinesweeperState) {
     props.gameover = storeState.gameOver
   }
 }
@@ -76,7 +76,7 @@ extension Minesweeper {
     
     var gameover: Bool = false
     
-    static func == (lhs: Props, rhs: Props) -> Bool {
+    static func == (lhs: PropsType, rhs: PropsType) -> Bool {
       return
         lhs.frame == rhs.frame &&
         lhs.alpha == rhs.alpha &&

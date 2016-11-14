@@ -1,6 +1,6 @@
 //
 //  StartGame.swift
-//  Katana
+//  Minesweeper
 //
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.

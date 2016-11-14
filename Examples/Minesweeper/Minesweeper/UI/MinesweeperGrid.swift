@@ -1,6 +1,6 @@
 //
 //  MinesweeperGrid.swift
-//  Katana
+//  Minesweeper
 //
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
@@ -17,7 +17,7 @@ struct MinesweeperGrid: ConnectedNodeDescription, PlasticNodeDescription {
   
   var props: Props
   
-  static func childrenDescriptions(props: Props,
+  static func childrenDescriptions(props: PropsType,
                                    state: StateType,
                                    update: @escaping (StateType) -> (),
                                    dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
@@ -76,7 +76,7 @@ extension MinesweeperGrid {
     public var cols: Int = 0
     public var rows: Int = 0
     
-    static func == (lhs: Props, rhs: Props) -> Bool {
+    static func == (lhs: PropsType, rhs: PropsType) -> Bool {
       return
         lhs.frame == rhs.frame &&
         lhs.alpha == rhs.alpha &&

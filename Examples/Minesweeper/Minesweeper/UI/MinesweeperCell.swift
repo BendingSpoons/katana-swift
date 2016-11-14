@@ -1,6 +1,6 @@
 //
 //  MinesweeperCell.swift
-//  Katana
+//  Minesweeper
 //
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
@@ -40,13 +40,13 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
     let textColor = colorForNumber(props.minesNearby)
     let textAttributes = [NSForegroundColorAttributeName : textColor, NSFontAttributeName : UIFont.boldSystemFont(ofSize: 16)]
     
-    let mineImage = Image(props: ImageProps.build({
+    let mineImage = Image(props: Image.Props.build({
       $0.setKey(Keys.mineImage)
       $0.image = #imageLiteral(resourceName: "mine")
       $0.backgroundColor = .red
     }))
     
-    let label = Label(props: LabelProps.build({
+    let label = Label(props: Label.Props.build({
       $0.setKey(Keys.label)
       $0.text = NSAttributedString(string: labelText, attributes: textAttributes)
       $0.textAlignment = .center
@@ -54,7 +54,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
       $0.borderColor = .gray
     }))
     
-    let button = Button(props: ButtonProps.build({
+    let button = Button(props: Button.Props.build({
       $0.setKey(Keys.button)
       $0.titleColors = [.normal: .gray]
       $0.backgroundColor = disclosed ? .white : .lightGray
@@ -69,7 +69,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
     return disclosed ? [label] : [label, button]
   }
   
-  static func layout(views: ViewsContainer<Keys>, props: Props, state: EmptyState) {
+  static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) {
     let root = views.nativeView
     let label = views[.label]
     let button = views[.button]
@@ -80,7 +80,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
     mineImage?.fill(root)
   }
   
-  static func connect(props: inout Props, to storeState: MinesweeperState) {
+  static func connect(props: inout PropsType, to storeState: MinesweeperState) {
     let column = props.col
     let row = props.row
     props.hasMine = storeState[column, row]
@@ -106,7 +106,7 @@ extension MinesweeperCell {
     public var col: Int = 0
     public var row: Int = 0
     
-    static func == (lhs: Props, rhs: Props) -> Bool {
+    static func == (lhs: PropsType, rhs: PropsType) -> Bool {
       return
         lhs.frame == rhs.frame &&
           lhs.alpha == rhs.alpha &&
