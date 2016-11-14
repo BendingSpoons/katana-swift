@@ -2,9 +2,9 @@
 //  CounterScreen.swift
 //  Katana
 //
-//  Copyright © 2016 Bending Spoons.
-//  Distributed under the MIT License.
-//  See the LICENSE file for more information.
+//  Created by Andrea De Angelis on 07/11/2016.
+//  Copyright © 2016 Bending Spoons. All rights reserved.
+//
 
 import Katana
 import KatanaElements

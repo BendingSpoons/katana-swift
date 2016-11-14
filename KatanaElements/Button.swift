@@ -9,66 +9,47 @@
 import UIKit
 import Katana
 
-public struct ButtonProps: NodeDescriptionProps, Buildable {
-  public var frame = CGRect.zero
-  public var key: String?
-  public var alpha: CGFloat = 1.0
-  
-  public var backgroundColor = UIColor.white
-  public var cornerRadius: Value = .zero
-  public var borderWidth: Value = .zero
-  public var borderColor = UIColor.clear
-  public var clipsToBounds = true
-  public var isEnabled = true
-  public var contentEdgeInsets: EdgeInsets = .zero
-  public var titleEdgeInsets: EdgeInsets = .zero
-  public var imageEdgeInsets: EdgeInsets = .zero
-  public var adjustsImageWhenHighlighted = true
-  public var adjustsImageWhenDisabled = true
-  public var showsTouchWhenHighlighted = false
-  public var titles: [UIControlState: String] = [:]
-  public var titleColors: [UIControlState: UIColor] = [:]
-  public var titleShadowColors: [UIControlState: UIColor] = [:]
-  public var images: [UIControlState: UIImage] = [:]
-  public var backgroundImages: [UIControlState: UIImage] = [:]
-  public var attributedTitles: [UIControlState: NSAttributedString] = [:]
-  public var touchHandlers: [TouchHandlerEvent: TouchHandlerClosure] = [:]
-  
-  public init() {}
-  
-  public static func == (lhs: ButtonProps, rhs: ButtonProps) -> Bool {
-    return
-      lhs.key == rhs.key &&
-      lhs.frame == rhs.frame &&
-      lhs.alpha == rhs.alpha &&
-      lhs.backgroundColor == rhs.backgroundColor &&
-      lhs.cornerRadius == rhs.cornerRadius &&
-      lhs.borderWidth == rhs.borderWidth &&
-      lhs.borderColor == rhs.borderColor &&
-      lhs.clipsToBounds == rhs.clipsToBounds &&
-      lhs.isEnabled == rhs.isEnabled &&
-      lhs.contentEdgeInsets == rhs.contentEdgeInsets &&
-      lhs.titleEdgeInsets == rhs.titleEdgeInsets &&
-      lhs.imageEdgeInsets == rhs.imageEdgeInsets &&
-      lhs.adjustsImageWhenHighlighted == rhs.adjustsImageWhenHighlighted &&
-      lhs.adjustsImageWhenDisabled == rhs.adjustsImageWhenDisabled &&
-      lhs.showsTouchWhenHighlighted == rhs.showsTouchWhenHighlighted &&
-      lhs.titles == rhs.titles &&
-      lhs.titleColors == rhs.titleColors &&
-      lhs.titleShadowColors == rhs.titleShadowColors &&
-      lhs.images == rhs.images &&
-      lhs.backgroundImages == rhs.backgroundImages &&
-      lhs.attributedTitles == rhs.attributedTitles
+public extension Button {
+  public struct Props: NodeDescriptionProps, Buildable {
+    public var frame = CGRect.zero
+    public var key: String?
+    public var alpha: CGFloat = 1.0
+    
+    public var backgroundColor = UIColor.white
+    public var cornerRadius: Value = .zero
+    public var borderWidth: Value = .zero
+    public var borderColor = UIColor.clear
+    public var clipsToBounds = true
+    public var isEnabled = true
+    public var contentEdgeInsets: EdgeInsets = .zero
+    public var titleEdgeInsets: EdgeInsets = .zero
+    public var imageEdgeInsets: EdgeInsets = .zero
+    public var adjustsImageWhenHighlighted = true
+    public var adjustsImageWhenDisabled = true
+    public var showsTouchWhenHighlighted = false
+    public var titles: [UIControlState: String] = [:]
+    public var titleColors: [UIControlState: UIColor] = [:]
+    public var titleShadowColors: [UIControlState: UIColor] = [:]
+    public var images: [UIControlState: UIImage] = [:]
+    public var backgroundImages: [UIControlState: UIImage] = [:]
+    public var attributedTitles: [UIControlState: NSAttributedString] = [:]
+    public var touchHandlers: [TouchHandlerEvent: TouchHandlerClosure] = [:]
+    
+    public init() {}
+    
+    public static func == (lhs: Props, rhs: Props) -> Bool {
+      // We can't detect whether handlers are changed
+      return false
+    }
   }
 }
-
 
 public struct Button: NodeDescription {
   public typealias NativeView = NativeButton
   
-  public var props: ButtonProps
+  public var props: Props
   
-  public static func applyPropsToNativeView(props: ButtonProps,
+  public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: NativeButton,
                                             update: @escaping (EmptyState)->(),
@@ -130,14 +111,14 @@ public struct Button: NodeDescription {
     
   }
   
-  public static func childrenDescriptions(props: ButtonProps,
+  public static func childrenDescriptions(props: Props,
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
   
-  public init(props: ButtonProps) {
+  public init(props: Props) {
     self.props = props
   }
 }

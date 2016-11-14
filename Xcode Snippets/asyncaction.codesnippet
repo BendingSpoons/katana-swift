@@ -1,0 +1,49 @@
+CTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDECodeSnippetCompletionPrefix</key>
+	<string>asyncaction</string>
+	<key>IDECodeSnippetCompletionScopes</key>
+	<array>
+		<string>StringOrComment</string>
+	</array>
+	<key>IDECodeSnippetContents</key>
+	<string>struct &lt;#name#&gt;: AsyncAction {
+  var loadingPayload: &lt;#loadingPayload#&gt;
+  var completedPayload: &lt;#completedPayload#&gt;?
+  var failedPayload: &lt;#failedPayload#&gt;?
+  var state: AsyncActionState
+  
+  public init(payload: &lt;#loadingPayload#&gt;) {
+    self.loadingPayload = payload
+    self.state = .loading
+  }
+  
+  static func updatedStateForLoading(currentState: State, action: &lt;#name#&gt;) -&gt; State {
+    return currentState
+  }
+  
+  static func updatedStateForCompleted(currentState: State, action: &lt;#name#&gt;) -&gt; State {
+    return currentState
+  }
+  
+  static func updatedStateForFailed(currentState: State, action: &lt;#name#&gt;) -&gt; State {
+    return currentState
+  }
+}
+</string>
+	<key>IDECodeSnippetIdentifier</key>
+	<string>EF4DFA1B-FB80-4A1B-9B4B-5BF42A1DC6F3</string>
+	<key>IDECodeSnippetLanguage</key>
+	<string>Xcode.SourceCodeLanguage.Swift</string>
+	<key>IDECodeSnippetSummary</key>
+	<string>A snippet for an AsyncAction</string>
+	<key>IDECodeSnippetTitle</key>
+	<string>Katana - AsyncAction</string>
+	<key>IDECodeSnippetUserSnippet</key>
+	<true/>
+	<key>IDECodeSnippetVersion</key>
+	<integer>0</integer>
+</dict>
+</plist>
+

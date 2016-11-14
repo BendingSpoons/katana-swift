@@ -9,12 +9,6 @@
 import Foundation
 
 /**
- The transformer function used to update properties to perform entry and leave animations.
- The idea is that props are changed by chaining different transformers.
- */
-public typealias AnimationPropsTransformer = (_ props: AnyNodeDescriptionProps) -> AnyNodeDescriptionProps
-
-/**
  The animation for a child of a `NodeDescription`.
  
  The idea is that, for elements that are either created or destroyed during an animation,
