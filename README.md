@@ -233,16 +233,22 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
   <th>
     <img src="Assets/demo_codingLove.gif" width="300"/>
   </th>
+  <th>
+    <img src="Assets/demo_minesweeper.gif" width="300"/>
+  </th>
  </tr>
-  <tr>
-    <th>
-      <a href="./Examples/PokeAnimations">Animations Example</a>
-    </th>
-    <th>
-      <a href="./Examples/CodingLove">Table Example</a>
-    </th>
-  </tr>
- </table>
+ <tr>
+  <th>
+   <a href="./Examples/PokeAnimations">Animations Example</a>
+  </th>
+  <th>
+   <a href="./Examples/CodingLove">Table Example</a>
+  </th>
+  <th>
+   <a href="./Examples/Minesweeper">Minesweeper Example</a>
+  </th>
+ </tr>
+</table>
 
 ### Check out the documentation
 
