@@ -659,6 +659,7 @@
 				6513094B1DC3529F00007B6B /* Frameworks */,
 				6513094C1DC3529F00007B6B /* Headers */,
 				6513094D1DC3529F00007B6B /* Resources */,
+				A12FF60F1DDA286E0007BF8F /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -678,6 +679,7 @@
 				6549948B1DD31BA70057D4BB /* Frameworks */,
 				6549948C1DD31BA70057D4BB /* Resources */,
 				654994AF1DD31C810057D4BB /* Embed Frameworks */,
+				A12FF6101DDA28850007BF8F /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -826,7 +828,35 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+		};
+		A12FF60F1DDA286E0007BF8F /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+		};
+		A12FF6101DDA28850007BF8F /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

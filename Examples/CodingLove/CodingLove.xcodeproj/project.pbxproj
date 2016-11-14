@@ -199,7 +199,7 @@
 				E3986C161DD0C62800FAF8D8 /* Sources */,
 				E3986C171DD0C62800FAF8D8 /* Frameworks */,
 				E3986C181DD0C62800FAF8D8 /* Resources */,
-				E3F73D0B1DD48C92005A86AC /* ShellScript */,
+				E3F73D0B1DD48C92005A86AC /* Lint */,
 			);
 			buildRules = (
 			);
@@ -295,18 +295,19 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		E3F73D0B1DD48C92005A86AC /* ShellScript */ = {
+		E3F73D0B1DD48C92005A86AC /* Lint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = Lint;
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

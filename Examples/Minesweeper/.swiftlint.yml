@@ -5,9 +5,9 @@ disabled_rules:
   - function_parameter_count
   - missing_docs
   - trailing_whitespace
-  - type_name #restore as soon as they add support for swift 3
   - valid_docs
   - nesting
+  - vertical_whitespace
 
 opt_in_rules:
   - no_multiple_newlines
@@ -25,5 +25,5 @@ function_body_length:
   warning: 100
   error: 200
 
-excluded:
-- Carthage
+included:
+  - Minesweeper
