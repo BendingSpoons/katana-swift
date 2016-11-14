@@ -15,6 +15,7 @@ Copy the snippets in Xcode's snippets folder, which is
 ### Available snippets
 * **NodeDescription**: a snippet to quickly create a new node description. The shortcut is `nodedescription`
 * **Plastic NodeDescription**: a snippet to quickly create a new node description that uses Plastic. The shortcut is `plasticnodeedescription`
+* **Async Action**: a snippet to quickly create a new async action
 
 
 
