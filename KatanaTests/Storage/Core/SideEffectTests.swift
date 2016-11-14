@@ -96,7 +96,7 @@ class SideEffectTests: XCTestCase {
       action2expectation.fulfill()
     }
     
-    let action1 = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, dispatch,  _) in
+    let action1 = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, dispatch, _) in
       invocationOrder.append("side effect 1")
       dispatch(action2)
     }) {

@@ -1,0 +1,29 @@
+disabled_rules:
+  - force_cast
+  - force_try
+  - force_unwrapping
+  - function_parameter_count
+  - missing_docs
+  - trailing_whitespace
+  - type_name #restore as soon as they add support for swift 3
+  - valid_docs
+  - nesting
+
+opt_in_rules:
+  - no_multiple_newlines
+
+
+line_length: 130
+
+file_length:
+  warning: 600
+
+variable_name:
+  min_length:
+    warning: 1
+function_body_length:
+  warning: 100
+  error: 200
+
+excluded:
+- Carthage
