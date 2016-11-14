@@ -33,9 +33,9 @@ container[key] = Animation(
 	entryTransformers: leaveTransformers
 )
 ```
-The `type` is the animation type (linear or sprint) and you can also define parameters such as the duration.
+The `type` is the animation type (linear or spring) and you can also define parameters such as the duration.
 
-What about  `entryTransformers` and `entryTransformers`? 
+What about `entryTransformers` and `leaveTransformers`? 
 The `entryTransformers` are a list of functions that are applied to the elements that are about to enter in the UI, just before we perform the animation. The result is that we will see an animation from the UI state defined by the props transformed, to the final state (which is represented by the props you returned in the `childrenDescriptions` method).
 The `leaveTransformers` is the same, but for elements that are about to leave the UI.
 
@@ -46,7 +46,7 @@ You can use built in transformers (like we do in the example) or create your own
 
 ### Animation Theory
 Let's say we want to animate from a UI state A (current state) to a UI state B (a new state).
-We move to  B either because the properties are changed or the state is changed.
+We move to B either because the properties are changed or the state is changed.
 
 UIKit provides powerful methods to animate changes in the UI. In particular, we can leverage the `UIView.animate`.
 But what happens when B contains new elements? Or it doesn't contains elements that were in A? Katana will create or destroy these pieces of UI, but this can't be managed by UIKit.
