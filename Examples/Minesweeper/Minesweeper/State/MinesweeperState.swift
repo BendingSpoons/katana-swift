@@ -42,7 +42,7 @@ struct MinesweeperState: State {
 }
 
 
-// MARK: - mines operations
+// MARK: - Mines Operations
 extension MinesweeperState {
   fileprivate mutating func poseMines(numberOfMines: Int) {
     var i = 0
