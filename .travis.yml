@@ -1,6 +1,16 @@
-language: objective-c  #1
+language: objective-c
 osx_image: xcode8
+env:
+  global:
+  - PROJECT=Katana.xcodeproj
+  - SCHEME=Katana
+  - SDK=iphonesimulator10.0
+  
 
-xcode_project: Katana.xcodeproj
-xcode_scheme: Katana
-xcode_sdk: iphonesimulator10.0
+script:
+  - set -o pipefail
+  - xcodebuild -version
+  - xcodebuild -showsdks
+
+  # Build Framework in Debug and Run Tests if specified
+  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$simulator" | xcpretty -c
