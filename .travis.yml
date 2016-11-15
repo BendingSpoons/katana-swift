@@ -5,7 +5,7 @@ env:
   - PROJECT=Katana.xcodeproj
   - SCHEME=Katana
   - SDK=iphonesimulator10.0
-  - SIMULATOR="platform=iOS Simulator, OS=10.0,name=iPhone 6s"
+  - SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
   
 
 script:
