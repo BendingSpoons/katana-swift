@@ -7,6 +7,10 @@ env:
   - SDK=iphonesimulator10.0
   - SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
   
+before_install:
+  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6s (10.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
+  - echo $IOS_SIMULATOR_UDID
+  - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 
 script:
   - set -o pipefail
@@ -14,4 +18,4 @@ script:
   - xcodebuild -showsdks
 
   # Build Framework in Debug and Run Tests if specified
-  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$SIMULATOR" | xcpretty -c
+  - travis_retry xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$SIMULATOR" | xcpretty -c
