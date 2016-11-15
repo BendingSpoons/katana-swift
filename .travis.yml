@@ -5,6 +5,7 @@ env:
   - PROJECT=Katana.xcodeproj
   - SCHEME=Katana
   - SDK=iphonesimulator10.0
+  - SIMULATOR="platform=iOS Simulator, OS=10.0,name=iPhone 6s"
   
 
 script:
@@ -13,4 +14,4 @@ script:
   - xcodebuild -showsdks
 
   # Build Framework in Debug and Run Tests if specified
-  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test | xcpretty -c
+  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$SIMULATOR" | xcpretty -c
