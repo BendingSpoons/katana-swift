@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = 'Katana'
-  s.version          = '0.1.0'
+  s.version          = File.read(".version")
   s.summary          = 'Swift Apps in a swoosh'
 
 
@@ -25,16 +25,6 @@ We feel that Katana helped us a lot since we started using it in production. At 
   s.social_media_url = 'https://twitter.com/katana_swift'
 
   s.ios.deployment_target = '8.3'
-  s.default_subspec = 'Core', 'Elements'
-
-
-  s.subspec 'Core' do |core|
-    core.source_files = ['Katana/**/*']
-  end
-
-  s.subspec 'Elements' do |elements|
-    elements.dependency 'Katana/Core'
-    elements.source_files = ['KatanaElements/**/*']
-  end
+  s.source_files = ['Katana/**/*']
   
 end
