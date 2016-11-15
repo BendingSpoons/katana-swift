@@ -8,7 +8,9 @@
 
 import Katana
 
-struct IncrementCounter: Action {
+struct IncrementCounter: SyncAction {
+  var payload: ()
+
   static func updatedState(currentState: State, action: IncrementCounter) -> State {
     guard var state = currentState as? CounterState else { fatalError("wrong state type") }
     state.counter += 1
