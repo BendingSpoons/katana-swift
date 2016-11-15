@@ -224,6 +224,9 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ## Where to go from here
 
+### Getting started tutorial
+We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tutorial-swift). It is currently a work in progress, but it will be finished soon!
+
 ### Give it a shot
 
 `pod try Katana`
