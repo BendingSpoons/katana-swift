@@ -229,7 +229,9 @@ We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tu
 
 ### Give it a shot
 
-`pod try Katana`
+```
+pod try Katana
+```
 
 ### Explore sample projects
 
