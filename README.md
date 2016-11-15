@@ -224,6 +224,10 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 
 ## Where to go from here
 
+### Give it a shot
+
+`pod try Katana`
+
 ### Explore sample projects
 
 <table>
@@ -287,6 +291,7 @@ source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.4'
 
 pod 'Katana'
+pod 'KatanaElements'
 ```
 
 And run:
