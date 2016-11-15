@@ -283,10 +283,10 @@ To integrate Katana into your Xcode project using CocoaPods, add it to your `Pod
 
 ```
 use_frameworks!
-source [include project source here]
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.4'
 
-pod 'KatanaSwift'
+pod 'Katana'
 ```
 
 And run:
