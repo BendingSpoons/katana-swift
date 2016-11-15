@@ -13,4 +13,4 @@ script:
   - xcodebuild -showsdks
 
   # Build Framework in Debug and Run Tests if specified
-  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$simulator" | xcpretty -c
+  - xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test | xcpretty -c
