@@ -228,13 +228,13 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 <table>
  <tr>
   <th>
-    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+    <img src="Assets/demo_pokeAnimation.gif" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_codingLove.gif" width="300"/>
+    <img src="Assets/demo_codingLove.gif" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_minesweeper.gif" width="300"/>
+    <img src="Assets/demo_minesweeper.gif" width="200"/>
   </th>
  </tr>
  <tr>
