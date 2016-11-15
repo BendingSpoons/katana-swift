@@ -228,7 +228,7 @@
           <section class="section">
             
             <p align="center">
-<img src="./Assets/katana.png" width="420" alt="Katana">
+<img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana.png" width="420" alt="Katana">
 </p>
 
 <p><a href="https://travis-ci.org/BendingSpoons/katana-swift"><img src="https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master" alt="Build Status"></a></p>
@@ -339,7 +339,7 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>When it&rsquo;s time to render the component, the method <code>applyPropsToNativeView</code> is called: this is where we need to adjust our nativeView to reflect the  <code>props</code> and the <code>state</code>. <em>Note that for common properties like frame, backgroundColor and more we already provide a standard <a href="/KatanaElements/View.swift">applyPropsToNativeView</a> so we got you covered.</em></p>
+<p>When it&rsquo;s time to render the component, the method <code>applyPropsToNativeView</code> is called: this is where we need to adjust our nativeView to reflect the  <code>props</code> and the <code>state</code>. <em>Note that for common properties like frame, backgroundColor and more we already provide a standard <a href="https://github.com/BendingSpoons/katana-swift/blob/master/KatanaElements/View.swift">applyPropsToNativeView</a> so we got you covered.</em></p>
 <pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">NodeDescription</span> <span class="p">{</span>
   <span class="o">...</span>
   <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">applyPropsToNativeView</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">PropsType</span><span class="p">,</span>
@@ -431,45 +431,48 @@ If you want to opt in, just implement the <code>PlasticNodeDescription</code> pr
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<a href='#you-can-find-the-complete-example-a-href-demo-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='you-can-find-the-complete-example-a-href-demo-here-a'>You can find the complete example <a href="/Demo">here</a></h3>
+<a href='#you-can-find-the-complete-example-a-href-https-github-com-bendingspoons-katana-swift-blob-master-demo-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='you-can-find-the-complete-example-a-href-https-github-com-bendingspoons-katana-swift-blob-master-demo-here-a'>You can find the complete example <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Demo">here</a></h3>
 
 <table>
   <tr>
     <th>
-      <img src="Assets/demo_counter.gif" width="300"/>
+      <img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/demo_counter.gif" width="300"/>
     </th>
   </tr>
 </table>
 <a href='#where-to-go-from-here' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='where-to-go-from-here'>Where to go from here</h2>
+<a href='#give-it-a-shot' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='give-it-a-shot'>Give it a shot</h3>
+
+<p><code>pod try Katana</code></p>
 <a href='#explore-sample-projects' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='explore-sample-projects'>Explore sample projects</h3>
 
 <table>
  <tr>
   <th>
-    <img src="Assets/demo_pokeAnimation.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_pokeAnimation.gif?raw=true" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_codingLove.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_codingLove.gif?raw=true" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_minesweeper.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_minesweeper.gif?raw=true" width="200"/>
   </th>
  </tr>
  <tr>
   <th>
-   <a href="./Examples/PokeAnimations">Animations Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/PokeAnimations">Animations Example</a>
   </th>
   <th>
-   <a href="./Examples/CodingLove">Table Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/CodingLove">Table Example</a>
   </th>
   <th>
-   <a href="./Examples/Minesweeper">Minesweeper Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/Minesweeper">Minesweeper Example</a>
   </th>
  </tr>
 </table>
 <a href='#check-out-the-documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='check-out-the-documentation'>Check out the documentation</h3>
 
-<p><a href="katana.bendingspoons.com">Documentation</a></p>
+<p><a href="https://github.com/BendingSpoons/katana-swift/blob/master/katana.bendingspoons.com">Documentation</a></p>
 <a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
 
 <p>Katana is available through <a href="https://cocoapods.org/">CocoaPods</a> and <a href="https://github.com/Carthage/Carthage">Carthage</a>, you can also drop <code>Katana.project</code> into your Xcode project.</p>
@@ -490,10 +493,11 @@ If you want to opt in, just implement the <code>PlasticNodeDescription</code> pr
 
 <p>To integrate Katana into your Xcode project using CocoaPods, add it to your <code>Podfile</code>:</p>
 <pre class="highlight plaintext"><code>use_frameworks!
-source [include project source here]
+source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.4'
 
-pod 'KatanaSwift'
+pod 'Katana'
+pod 'KatanaElements'
 </code></pre>
 
 <p>And run:</p>
@@ -558,7 +562,7 @@ You can install Carthage downloading and running the <code>Carthage.pkg</code> f
 <p>We&rsquo;ll be happy to send you a sticker with the logo as a sign of appreciation for any meaningful contribution.</p>
 <a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
 
-<p>Katana is available under the <a href="/LICENSE">MIT license</a></p>
+<p>Katana is available under the <a href="https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE">MIT license</a></p>
 <a href='#about' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='about'>About</h2>
 
 <p>Katana is maintained by Bending Spoons.

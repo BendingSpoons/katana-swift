@@ -1,5 +1,5 @@
 <p align="center">
-<img src="./Assets/katana.png" width="420" alt="Katana">
+<img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana.png" width="420" alt="Katana">
 </p>
 
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
@@ -101,7 +101,7 @@ struct CounterScreenProps: NodeDescriptionProps {
 }
 ```
 
-When it's time to render the component, the method `applyPropsToNativeView` is called: this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](/KatanaElements/View.swift) so we got you covered._
+When it's time to render the component, the method `applyPropsToNativeView` is called: this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](https://github.com/BendingSpoons/katana-swift/blob/master/KatanaElements/View.swift) so we got you covered._
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -210,12 +210,12 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 }
 ```
 
-### You can find the complete example [here](/Demo)
+### You can find the complete example [here](https://github.com/BendingSpoons/katana-swift/blob/master/Demo)
 
 <table>
   <tr>
     <th>
-      <img src="Assets/demo_counter.gif" width="300"/>
+      <img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/demo_counter.gif" width="300"/>
     </th>
   </tr>
 </table>
@@ -233,31 +233,31 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 <table>
  <tr>
   <th>
-    <img src="Assets/demo_pokeAnimation.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_pokeAnimation.gif?raw=true" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_codingLove.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_codingLove.gif?raw=true" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_minesweeper.gif" width="200"/>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_minesweeper.gif?raw=true" width="200"/>
   </th>
  </tr>
  <tr>
   <th>
-   <a href="./Examples/PokeAnimations">Animations Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/PokeAnimations">Animations Example</a>
   </th>
   <th>
-   <a href="./Examples/CodingLove">Table Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/CodingLove">Table Example</a>
   </th>
   <th>
-   <a href="./Examples/Minesweeper">Minesweeper Example</a>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/Minesweeper">Minesweeper Example</a>
   </th>
  </tr>
 </table>
 
 ### Check out the documentation
 
-[Documentation](katana.bendingspoons.com)
+[Documentation](https://github.com/BendingSpoons/katana-swift/blob/master/katana.bendingspoons.com)
 
 
 
@@ -372,7 +372,7 @@ We'll be happy to send you a sticker with the logo as a sign of appreciation for
 
 ## License
 
-Katana is available under the [MIT license](/LICENSE)
+Katana is available under the [MIT license](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
 ## About
 
