@@ -229,13 +229,13 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 <table>
  <tr>
   <th>
-    <img src="Assets/demo_pokeAnimation.gif" width="300"/>
+    <img src="Assets/demo_pokeAnimation.gif" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_codingLove.gif" width="300"/>
+    <img src="Assets/demo_codingLove.gif" width="200"/>
   </th>
   <th>
-    <img src="Assets/demo_minesweeper.gif" width="300"/>
+    <img src="Assets/demo_minesweeper.gif" width="200"/>
   </th>
  </tr>
  <tr>
@@ -346,17 +346,24 @@ Then drag the built `Katana.framework` and `KatanaElements.framework` into your 
 
 
 
-## Communication 
+## Get in touch 
 
 - if you have __any questions__ you can find us on twitter: [@maurobolis](https://twitter.com/maurobolis), [@luca_1987](https://twitter.com/luca_1987), [@smaramba](https://twitter.com/smaramba)
 
+## Special thanks
 
+- [Everyone at Bending Spoons](http://bendingspoons.com/team.html) for providing their priceless input;
+- [@orta](https://twitter.com/orta) for providing input on how to opensource the project.
 
 ## Contribute
 
-- If you've __found a bug__, open an issue
-- If you have a __feature request__, open an issue
-- If you __want to contribute__, submit a pull request
+- If you've __found a bug__, open an issue;
+- If you have a __feature request__, open an issue;
+- If you __want to contribute__, submit a pull request;
+- If you __have an idea__ on how to improve the framework or how to spread the word, please [get in touch](#get-in-touch);
+- If you want to __try the framework__ for your project or to write a demo, please send us the link of the repo.
+
+We'll be happy to send you a sticker with the logo as a sign of appreciation for any meaningful contribution.
 
 ## License
 

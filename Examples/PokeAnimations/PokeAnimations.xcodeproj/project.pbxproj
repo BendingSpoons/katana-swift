@@ -194,8 +194,8 @@
 				A15578F31DD48D84004D8069 /* Sources */,
 				A15578F41DD48D84004D8069 /* Frameworks */,
 				A15578F51DD48D84004D8069 /* Resources */,
-				A155790C1DD48DCB004D8069 /* SwiftLint */,
 				A180317F1DD49E3500579400 /* Embed Frameworks */,
+				A155790C1DD48DCB004D8069 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -305,7 +305,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
