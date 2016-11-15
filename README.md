@@ -260,8 +260,7 @@ We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tu
 
 ### Check out the documentation
 
-[Documentation](https://github.com/BendingSpoons/katana-swift/blob/master/katana.bendingspoons.com)
-
+[Documentation](http://katana.bendingspoons.com)
 
 
 ## Installation
