@@ -110,13 +110,6 @@
 			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
 			remoteInfo = Katana;
 		};
-		651309711DC36B0400007B6B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
-			remoteInfo = KatanaElements;
-		};
 		654994AD1DD31C810057D4BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
@@ -720,7 +713,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				651309721DC36B0400007B6B /* PBXTargetDependency */,
 				81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */,
 			);
 			name = KatanaTests;
@@ -948,11 +940,6 @@
 			isa = PBXTargetDependency;
 			target = 81EA56C61D5F3A6000B6290E /* Katana */;
 			targetProxy = 6513096C1DC3537B00007B6B /* PBXContainerItemProxy */;
-		};
-		651309721DC36B0400007B6B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
-			targetProxy = 651309711DC36B0400007B6B /* PBXContainerItemProxy */;
 		};
 		654994AE1DD31C810057D4BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
