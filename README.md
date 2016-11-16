@@ -1,6 +1,4 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana.png" width="420" alt="Katana">
-</p>
+![Vapor](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana-header.png)
 
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
 
