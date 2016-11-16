@@ -13,10 +13,9 @@ public protocol AnyActionWithSideEffect: AnyAction {
   /**
    Performs a side effect for the action
    
-   - seeAlso: `ActionWithSideEffect`, `sideEffect(action:state:dispatch:dependencies:)`
+   - seeAlso: `ActionWithSideEffect`, `sideEffect(state:dispatch:dependencies:)`
   */
-  static func anySideEffect(
-    action: AnyAction,
+  func anySideEffect(
     state: State,
     dispatch: @escaping StoreDispatch,
     dependencies: SideEffectDependencyContainer
@@ -29,12 +28,12 @@ public protocol AnyActionWithSideEffect: AnyAction {
  
  A side effect is nothing more than a piece of code that can interact with external
  services or APIs (e.g., make a network request, get information from the disk and so on).
- Side effects are needed because the `updateState(currentState:action:)` function (which is the only other operation
+ Side effects are needed because the `updateState(currentState:)` function (which is the only other operation
  that is performed when an action is dispatched) must be pure and therefore it cannot
  interact with disk, network and so on.
  
  ### Dependencies
- You can see from the `sideEffect(action:state:dispatch:dependencies:)` signature that
+ You can see from the `sideEffect(state:dispatch:dependencies:)` signature that
  a side effect takes as input some dependencies. This is a form of dependency injection
  for the side effects. By using only methods coming from the dependencies (instead of relying on
  global imports), testing is much more easier since you can inject a mocked version
@@ -52,13 +51,11 @@ public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
    Performs the side effect. This method is invoked when the action is dispatched,
    before it goes in the `updateState(currentState:action:)` function.
    
-   - parameter action:        the dispatched action
    - parameter state:         the current state
    - parameter dispatch:      a closure that can be used to dispatch new actions
    - parameter dependencies:  the dependencies of the side effect
   */
-  static func sideEffect(
-    action: Self,
+  func sideEffect(
     state: State,
     dispatch: @escaping StoreDispatch,
     dependencies: SideEffectDependencyContainer
@@ -68,22 +65,17 @@ public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
 public extension ActionWithSideEffect {
   /**
    Default implementation of `anySideEffect`.
-   It invokes `sideEffect(action:state:dispatch:dependencies:)` by casting the parameters
+   It invokes `sideEffect(state:dispatch:dependencies:)` by casting the parameters
    to the proper types.
    
    - seeAlso: `AnyActionWithSideEffect`
   */
-  static func anySideEffect(
-    action: AnyAction,
+  func anySideEffect(
     state: State,
     dispatch: @escaping StoreDispatch,
     dependencies: SideEffectDependencyContainer
   ) {
-   
-    guard let action = action as? Self else {
-      preconditionFailure("Action side effect invoked with a wrong 'action' parameter")
-    }
-    
-    self.sideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
+
+    self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
   }
 }

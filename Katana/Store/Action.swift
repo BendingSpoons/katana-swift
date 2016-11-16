@@ -15,7 +15,7 @@ public protocol AnyAction {
    
    - seeAlso: `Action`, `updateState(currentState:action:)` method
   */
-  static func anyUpdatedState(currentState: State, action: AnyAction) -> State
+  func anyUpdatedState(currentState: State) -> State
 }
 
 /**
@@ -38,7 +38,7 @@ public protocol Action: AnyAction {
    - parameter action: the action that has been dispatched
    - returns: the new state
   */
-  static func updatedState(currentState: State, action: Self) -> State
+  func updatedState(currentState: State) -> State
 }
 
 public extension Action {
@@ -47,11 +47,7 @@ public extension Action {
    
    - seeAlso: `AnyAction`
   */
-  static func anyUpdatedState(currentState: State, action: AnyAction) -> State {
-    guard let action = action as? Self else {
-      preconditionFailure("updateState invoked with a wrong 'action' parameter")
-    }
-    
-    return self.updatedState(currentState: currentState, action: action)
+  func anyUpdatedState(currentState: State) -> State {
+    return self.updatedState(currentState: currentState)
   }
 }
