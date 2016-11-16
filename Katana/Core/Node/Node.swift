@@ -66,9 +66,11 @@ public class Node<Description: NodeDescription> {
   public fileprivate(set) weak var parent: AnyNode?
   
   /**
-   The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns root.renderer
+   The renderer of the node. This is a private variable where we store the reference to the Renderer object. Please note that this will contain the Renderer only for the first Node of the hierarchy, for the others it will be nil. To retrieve the Renderer from every Node just use the renderer computed variable that will traverse the nodes tree up to the root node and returns root._renderer
    */
-  public fileprivate(set) weak var renderer: Renderer?
+  fileprivate weak var _renderer: Renderer?
+  
+  
   
   /// The array of managed children of the node
   public var managedChildren: [AnyNode] = []
@@ -117,7 +119,7 @@ public class Node<Description: NodeDescription> {
     self.description = description
     self.state = Description.StateType.init()
     self.parent = parent
-    self.renderer = renderer
+    self._renderer = renderer
     
     self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
     
@@ -578,3 +580,14 @@ extension Node {
 }
 
 extension Node : InternalAnyNode {}
+
+// MARK: Renderer Connection
+extension Node {
+  /**
+   The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns root.renderer
+   */
+  public var renderer: Renderer {
+    guard self._renderer == nil else { return self._renderer! }
+    return self.parent!.renderer
+  }
+}
