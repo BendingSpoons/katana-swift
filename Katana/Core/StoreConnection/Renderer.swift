@@ -114,15 +114,3 @@ open class Renderer {
     self.unsubscribe?()
   }
 }
-
-
-public extension AnyNode {
-  /// traverses the nodes hierarchy up to the root node to get the `root.renderer`
-  public var renderer: Renderer {
-    var node: AnyNode = self
-    while node.parent != nil {
-      node = node.parent!
-    }
-    return node.renderer!
-  }
-}
