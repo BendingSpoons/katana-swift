@@ -1,4 +1,4 @@
-![Vapor](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana-header.png)
+![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana-header.png)
 
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
 
