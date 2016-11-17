@@ -23,16 +23,16 @@ import Foundation
  
  ```
  protocol AppSyncAction: SyncAction {
-  static func updateState(currentState: inout AppState, action: AddTodo)
+  func updateState(currentState: inout AppState)
  }
  
  extension AppSyncAction {
-  static func updateState(currentState: State, action: AddTodo) -> State {
+  func updateState(currentState: State) -> State {
     guard var state = currentState as? AppState else {
       fatalError("Something went wrong")
     }
  
-    self.updateState(currentState: &state, action: action)
+    self.updateState(currentState: &state)
     return state
   }
  }
@@ -42,8 +42,8 @@ import Foundation
  
  ```
  struct A: AppSyncAction {
-  static func updateState(currentState: inout AppState, action: AddTodo) {
-    currentState.props = action.payload
+  func updateState(currentState: inout AppState) {
+    currentState.props = self.payload
   }
  }
  ```

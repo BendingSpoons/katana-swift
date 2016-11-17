@@ -30,29 +30,28 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         self.loadingPayload = payload
     }
     
-    static func updatedStateForLoading(currentState: State, action: FetchMorePosts) -> State {
+    func updatedStateForLoading(currentState: State) -> State {
         var newState = currentState as! CodingLoveState
         newState.loading = true
         newState.page += 1
         return newState
     }
     
-    static func updatedStateForCompleted(currentState: State, action: FetchMorePosts) -> State {
+    func updatedStateForCompleted(currentState: State) -> State {
         var newState = currentState as! CodingLoveState
         newState.loading = false
-        newState.posts += (action.completedPayload?.posts)!
-        newState.allPostsFetched = (action.completedPayload?.allFetched)!
+        newState.posts += (self.completedPayload?.posts)!
+        newState.allPostsFetched = (self.completedPayload?.allFetched)!
         return newState
     }
     
-    static func updatedStateForFailed(currentState: State, action: FetchMorePosts) -> State {
+    func updatedStateForFailed(currentState: State) -> State {
         var newState = currentState as! CodingLoveState
         newState.loading = false
         return newState
     }
     
-    public static func sideEffect(
-        action: FetchMorePosts,
+    public func sideEffect(
         state: State,
         dispatch: @escaping StoreDispatch,
         dependencies: SideEffectDependencyContainer
@@ -66,10 +65,10 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         postsProvider.fetchPosts(for: page) { (result, errorMessage) in
             if let data = result {
                 let (posts, allFetched) = data
-                dispatch(action.completedAction(payload: CompletedActionPayload(posts: posts, allFetched: allFetched)))
+                dispatch(self.completedAction(payload: CompletedActionPayload(posts: posts, allFetched: allFetched)))
             
             } else {
-                dispatch(action.failedAction(payload: errorMessage!))
+                dispatch(self.failedAction(payload: errorMessage!))
             }
         }
     }

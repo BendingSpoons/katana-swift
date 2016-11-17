@@ -9,13 +9,13 @@
 import Katana
 
 protocol MinesweeperSyncAction: SyncAction {
-  static func updatedState(currentState: inout MinesweeperState, action: Self)
+  func updatedState(currentState: inout MinesweeperState)
 }
 
 extension MinesweeperSyncAction {
-  static func updatedState(currentState: State, action: Self) -> State {
+  func updatedState(currentState: State) -> State {
     guard var currentState = currentState as? MinesweeperState else { fatalError("unexpected app state") }
-    self.updatedState(currentState: &currentState, action: action)
+    self.updatedState(currentState: &currentState)
     return currentState
   }
 }

@@ -26,27 +26,26 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
     self.state = .loading
   }
   
-  static func updatedStateForLoading(currentState: State, action: AsyncTestAction) -> State {
-    action.invokedLoadingClosure()
+  func updatedStateForLoading(currentState: State) -> State {
+    self.invokedLoadingClosure()
     return currentState
   }
   
-  static func updatedStateForCompleted(currentState: State, action: AsyncTestAction) -> State {
-    action.invokedCompletedClosure()
+  func updatedStateForCompleted(currentState: State) -> State {
+    self.invokedCompletedClosure()
     return currentState
   }
   
-  static func updatedStateForFailed(currentState: State, action: AsyncTestAction) -> State {
-    action.invokedFailedClosure()
+  func updatedStateForFailed(currentState: State) -> State {
+    self.invokedFailedClosure()
     return currentState
   }
   
-  static func sideEffect(action: AsyncTestAction,
-                         state: State,
-                         dispatch: @escaping StoreDispatch,
-                         dependencies: SideEffectDependencyContainer) {
+  func sideEffect(state: State,
+                  dispatch: @escaping StoreDispatch,
+                  dependencies: SideEffectDependencyContainer) {
 
-    action.invokedSideEffectClosure()
+    self.invokedSideEffectClosure()
   }
 }
 

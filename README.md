@@ -47,7 +47,7 @@ The app `State` can only be modified by an `Action`. An `Action` represents an e
 struct IncrementCounter: SyncAction {
   var payload: ()
 
-  static func updatedState(currentState: State, action: IncrementCounter) -> State {
+  func updatedState(currentState: State) -> State {
     guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
     state.counter += 1
     return state
