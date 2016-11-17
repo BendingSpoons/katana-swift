@@ -1,0 +1,21 @@
+project: Katana
+
+documentation:
+  author: Bending Spoons Team
+  author_url: http://bendingspoons.com
+  github_url: https://github.com/BendingSpoons/katana-swift
+
+cocoapods:
+  public_repo:
+    email: katana@bendingspoons.com
+    author: Bending Spoons
+
+carthage:
+  - Katana
+  - KatanaElements
+
+tests:
+  runs:
+    - scheme: Katana
+      sdk: iphonesimulator10.0
+      simulator: platform=iOS Simulator,OS=10.0,name=iPhone 6s
