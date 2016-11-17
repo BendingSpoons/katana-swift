@@ -377,7 +377,7 @@ We'll be happy to send you a sticker with the logo as a sign of appreciation for
 
 ## License
 
-Katana is available under the [MIT license](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
+Katana is available under the [MIT license](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE).
 
 ## About
 
