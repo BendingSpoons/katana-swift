@@ -264,17 +264,17 @@ the same result. <code>AsyncAction</code> just provide a way to abstract and sim
 we want to promote is to put in your application a protocol like the following:</p>
 
 <pre class="highlight plaintext"><code>protocol AppSyncAction: AsyncAction {
- static func updatedStateForLoading(currentState: inout AppState, action: AddTodo)
+ func updatedStateForLoading(currentState: inout AppState)
  // same for completed and failed
 }
 
 extension AppSyncAction {
- static func updatedStateForLoading(currentState: State, action: AddTodo) -&gt; State {
+ func updatedStateForLoading(currentState: State) -&gt; State {
    guard var state = state as? AppState else {
      fatalError("Something went wrong")
    }
 
-   self.updatedStateForLoading(currentState: &amp;state, action: action)
+   self.updatedStateForLoading(currentState: &amp;state)
    return state
  }
 
@@ -285,7 +285,7 @@ extension AppSyncAction {
 <p>In this way you can save a lot of code since you can use your actions in the following way</p>
 
 <pre class="highlight plaintext"><code>struct A: AppAsyncAction {
- static func updatedStateForLoading(currentState: inout AppState, action: AddTodo) {
+ func updatedStateForLoading(currentState: inout AppState) {
    state.props = action.payload
  }
 
@@ -360,36 +360,6 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana11AsyncAction16CompletedPayload"></a>
-                    <a name="//apple_ref/swift/Alias/CompletedPayload" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana11AsyncAction16CompletedPayload">CompletedPayload</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The type of payload when the state is <code>completed</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">CompletedPayload</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L89">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:P6Katana11AsyncAction14LoadingPayload"></a>
                     <a name="//apple_ref/swift/Alias/LoadingPayload" class="dashAnchor"></a>
                     <a class="token" href="#/s:P6Katana11AsyncAction14LoadingPayload">LoadingPayload</a>
@@ -413,6 +383,36 @@ extension AppSyncAction {
                       </div>
                       <div class="slightly-smaller">
                         <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L86">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana11AsyncAction16CompletedPayload"></a>
+                    <a name="//apple_ref/swift/Alias/CompletedPayload" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana11AsyncAction16CompletedPayload">CompletedPayload</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of payload when the state is <code>completed</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">CompletedPayload</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L89">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -510,9 +510,9 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP6Katana11AsyncAction22updatedStateForLoadingFT12currentStatePS_5State_6actionx_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/updatedStateForLoading(currentState:action:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP6Katana11AsyncAction22updatedStateForLoadingFT12currentStatePS_5State_6actionx_PS1__">updatedStateForLoading(currentState:action:)</a>
+                    <a name="/s:FP6Katana11AsyncAction22updatedStateForLoadingFT12currentStatePS_5State__PS1__"></a>
+                    <a name="//apple_ref/swift/Method/updatedStateForLoading(currentState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6Katana11AsyncAction22updatedStateForLoadingFT12currentStatePS_5State__PS1__">updatedStateForLoading(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -527,7 +527,7 @@ extension AppSyncAction {
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
 
                         </div>
                       </div>
@@ -548,19 +548,6 @@ extension AppSyncAction {
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>action</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the action. The state of the action is <code>loading</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -570,7 +557,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L113">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L112">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -578,9 +565,9 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP6Katana11AsyncAction24updatedStateForCompletedFT12currentStatePS_5State_6actionx_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/updatedStateForCompleted(currentState:action:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP6Katana11AsyncAction24updatedStateForCompletedFT12currentStatePS_5State_6actionx_PS1__">updatedStateForCompleted(currentState:action:)</a>
+                    <a name="/s:FP6Katana11AsyncAction24updatedStateForCompletedFT12currentStatePS_5State__PS1__"></a>
+                    <a name="//apple_ref/swift/Method/updatedStateForCompleted(currentState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6Katana11AsyncAction24updatedStateForCompletedFT12currentStatePS_5State__PS1__">updatedStateForCompleted(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -595,7 +582,7 @@ extension AppSyncAction {
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">updatedStateForCompleted</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updatedStateForCompleted</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
 
                         </div>
                       </div>
@@ -616,19 +603,6 @@ extension AppSyncAction {
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>action</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the action. The state of the action is <code>completed</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -638,7 +612,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L122">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L120">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -646,9 +620,9 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFP6Katana11AsyncAction21updatedStateForFailedFT12currentStatePS_5State_6actionx_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/updatedStateForFailed(currentState:action:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFP6Katana11AsyncAction21updatedStateForFailedFT12currentStatePS_5State_6actionx_PS1__">updatedStateForFailed(currentState:action:)</a>
+                    <a name="/s:FP6Katana11AsyncAction21updatedStateForFailedFT12currentStatePS_5State__PS1__"></a>
+                    <a name="//apple_ref/swift/Method/updatedStateForFailed(currentState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6Katana11AsyncAction21updatedStateForFailedFT12currentStatePS_5State__PS1__">updatedStateForFailed(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -663,7 +637,7 @@ extension AppSyncAction {
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">updatedStateForFailed</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">updatedStateForFailed</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
 
                         </div>
                       </div>
@@ -684,19 +658,6 @@ extension AppSyncAction {
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>action</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the action. The state of the action is <code>failed</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -706,7 +667,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L131">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L128">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -761,7 +722,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L139">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -824,7 +785,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L149">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L146">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -887,7 +848,7 @@ extension AppSyncAction {
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L159">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L156">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -899,9 +860,9 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFE6KatanaPS_11AsyncAction12updatedStateFT12currentStatePS_5State_6actionx_PS1__"></a>
-                    <a name="//apple_ref/swift/Method/updatedState(currentState:action:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFE6KatanaPS_11AsyncAction12updatedStateFT12currentStatePS_5State_6actionx_PS1__">updatedState(currentState:action:)</a>
+                    <a name="/s:FE6KatanaPS_11AsyncAction12updatedStateFT12currentStatePS_5State__PS1__"></a>
+                    <a name="//apple_ref/swift/Method/updatedState(currentState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE6KatanaPS_11AsyncAction12updatedStateFT12currentStatePS_5State__PS1__">updatedState(currentState:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -914,15 +875,15 @@ extension AppSyncAction {
                       <div class="abstract">
                         <p>Creates a new state starting from the current state and the dispatched action.
 <code>AsyncAction</code> implements a default behaviour that invokes 
-<code>updatedStateForLoading(currentState: action:)</code>, <code>updatedStateForCompleted(currentState: action:)</code>
-or <code>updatedStateForFailed(currentState: action:)</code> based on the action&rsquo;s state</p>
+<code><a href="../Protocols/AsyncAction.html#/s:FP6Katana11AsyncAction22updatedStateForLoadingFT12currentStatePS_5State__PS1__">updatedStateForLoading(currentState:)</a></code>, <code><a href="../Protocols/AsyncAction.html#/s:FP6Katana11AsyncAction24updatedStateForCompletedFT12currentStatePS_5State__PS1__">updatedStateForCompleted(currentState:)</a></code>
+or <code><a href="../Protocols/AsyncAction.html#/s:FP6Katana11AsyncAction21updatedStateForFailedFT12currentStatePS_5State__PS1__">updatedStateForFailed(currentState:)</a></code> based on the action&rsquo;s state</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">updatedState</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">action</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">updatedState</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
 
                         </div>
                       </div>
@@ -943,19 +904,6 @@ or <code>updatedStateForFailed(currentState: action:)</code> based on the action
                                 </div>
                               </td>
                             </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>action</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the action that has been dispatched</p>
-
-                                </div>
-                              </td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>
@@ -965,7 +913,7 @@ or <code>updatedStateForFailed(currentState: action:)</code> based on the action
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L173-L184">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L169-L180">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -977,9 +925,9 @@ or <code>updatedStateForFailed(currentState: action:)</code> based on the action
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFe6KatanaRxS_20ActionWithSideEffectxS_11AsyncActionrS1_13anySideEffectFT6actionPS_9AnyAction_5statePS_5State_8dispatchFPS2__T_12dependenciesPS_29SideEffectDependencyContainer__T_"></a>
-                    <a name="//apple_ref/swift/Method/anySideEffect(action:state:dispatch:dependencies:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFe6KatanaRxS_20ActionWithSideEffectxS_11AsyncActionrS1_13anySideEffectFT6actionPS_9AnyAction_5statePS_5State_8dispatchFPS2__T_12dependenciesPS_29SideEffectDependencyContainer__T_">anySideEffect(action:state:dispatch:dependencies:)</a>
+                    <a name="/s:Fe6KatanaRxS_20ActionWithSideEffectxS_11AsyncActionrS1_13anySideEffectFT5statePS_5State_8dispatchFPS_9AnyAction_T_12dependenciesPS_29SideEffectDependencyContainer__T_"></a>
+                    <a name="//apple_ref/swift/Method/anySideEffect(state:dispatch:dependencies:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe6KatanaRxS_20ActionWithSideEffectxS_11AsyncActionrS1_13anySideEffectFT5statePS_5State_8dispatchFPS_9AnyAction_T_12dependenciesPS_29SideEffectDependencyContainer__T_">anySideEffect(state:dispatch:dependencies:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -999,15 +947,14 @@ This is because we want to trigger side effects only during the loading phase.</
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">anySideEffect</span><span class="p">(</span><span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnyAction.html">AnyAction</a></span><span class="p">,</span>
-                            <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span>
-                            <span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StoreDispatch</span><span class="p">,</span>
-                            <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">anySideEffect</span><span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span>
+                     <span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StoreDispatch</span><span class="p">,</span>
+                     <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L223-L235">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/Store/AsyncAction.swift#L219-L226">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1017,7 +964,7 @@ This is because we want to trigger side effects only during the loading phase.</
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-16)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
