@@ -1,6 +1,7 @@
 ![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana-header.png)
 
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
