@@ -1,4 +1,4 @@
-![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana-header.png)
+![Katana](./Assets/katana_header.png)
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
