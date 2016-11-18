@@ -32,10 +32,13 @@ struct WebView: NodeDescription {
                                      update: @escaping (StateType)->(),
                                      node: AnyNode) {
     view.frame = props.frame
+    view.alpha = props.alpha
     
-    if let url = props.url {
-      view.load(URLRequest(url: url))
+    guard let url = props.url, url != view.url  else {
+        return
     }
+    
+    view.load(URLRequest(url: url))
   }
 }
 
@@ -43,10 +46,17 @@ extension WebView {
   enum ChildrenKeys {
   }
   
-  struct Props: NodeDescriptionProps, Buildable {
-      var frame: CGRect = .zero
-      var key: String?
-      var alpha: CGFloat = 1.0
-      var url: URL?
+  struct Props: NodeDescriptionProps, Buildable, Equatable {
+    var frame: CGRect = .zero
+    var key: String?
+    var alpha: CGFloat = 1.0
+    var url: URL?
+    
+    public static func == (lhs: Props, rhs: Props) -> Bool {
+      return lhs.frame == rhs.frame
+        && lhs.key == rhs.key
+        && lhs.alpha == rhs.alpha
+        && lhs.url == rhs.url
+    }
   }
 }
