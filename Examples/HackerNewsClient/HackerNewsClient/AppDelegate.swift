@@ -2,9 +2,9 @@
 //  AppDelegate.swift
 //  HackerNewsClient
 //
-//  Created by Francesco Di Lorenzo on 14/11/2016.
-//  Copyright © 2016 BendingSpoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 import Katana
