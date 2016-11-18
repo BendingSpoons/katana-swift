@@ -25,31 +25,36 @@ struct PostsProvider: SideEffectDependencyContainer {
         return
       }
           
-      guard let data = data,
-          let json = try? JSONSerialization.jsonObject(with: data, options: []) as? [String: Any],
-          let hits = json?["hits"] as? [[String: Any]]
-      else {
-          completion(nil, "Unknown Error")
-          return
+      let hits = data
+        .flatMap { try? JSONSerialization.jsonObject(with: $0, options: []) as? [String: Any] }
+        .flatMap { $0?["hits"] as? [[String: Any]] }
+      
+      if let hits = hits {
+        let posts = parsePosts(posts: hits)
+        completion(posts, nil)
+      } else {
+        completion(nil, "Could not fetch posts")
       }
-      
-      var posts = [Post]()
-      
-      for hit in hits {
-        guard let title = hit["title"] as? String,
-              let points = hit["points"] as? Int,
-              let url = (hit["url"] as? String) ?? (hit["story_url"] as? String)
-          else {
-            continue
-          }
-        
-        let post = Post(title: title, url: URL(string: url), points: points)
-        posts.append(post)
-      }
-      
-      completion(posts, nil)
     }
     
     task.resume()
   }
+}
+
+private func parsePosts(posts: [[String: Any]]) -> [Post] {
+  var result = [Post]()
+  
+  for post in posts {
+    guard let title = post["title"] as? String,
+      let points = post["points"] as? Int,
+      let url = (post["url"] as? String) ?? (post["story_url"] as? String)
+      else {
+        continue
+    }
+    
+    let post = Post(title: title, url: URL(string: url), points: points)
+    result.append(post)
+  }
+  
+  return result
 }
