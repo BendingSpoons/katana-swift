@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import CoreGraphics
 
 /// `CGSize` extension that makes it hashable
 extension CGSize: Hashable {

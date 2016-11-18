@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
-
+import CoreGraphics
 /**
  Protocol that `NodeDescription` implementations can adopt to provide a reference size.
  

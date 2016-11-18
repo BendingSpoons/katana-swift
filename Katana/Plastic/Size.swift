@@ -6,6 +6,8 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
+import CoreGraphics
+
 /// `Size` is the scalable counterpart of `CGSize`
 public struct Size: Equatable {
   

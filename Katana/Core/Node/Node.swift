@@ -6,16 +6,15 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
 
 /// typealias for the dictionary used to store the nodes during the update phase
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 /**
-  Katana works by representing the UI as a tree. Beside the tree managed by UIKit with UIView (or subclasses) instances,
+  Katana works by representing the UI as a tree. Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through DrawableContainers,
   Katana holds a tree of instances of `Node`. The tree is composed as follows:
  
-  - each node of the tree is an instance of UIView (or subclasses);
+  - each node of the tree is an instance of DrawableContainer (baked by UIKit/AppKit or subclasses);
  
   - the edges between nodes represent the parent/children (or view/subviews) relation.
  
@@ -156,7 +155,7 @@ public class Node<Description: NodeDescription> {
 extension Node {
   /**
    Renders the node in a given container. Draws a node basically means create
-   the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
+   the necessary UIKit classes (most likely UIView/NSView or subclasses) and add them to the UI hierarchy.
    
    -note:
    This method should be invoked only once, the first time a node is drawn. For further updates of the UI managed by
@@ -169,7 +168,7 @@ extension Node {
       fatalError("draw can only be call once on a node")
     }
     
-    self.container = container.addChild() { Description.NativeView() }
+    self.container = container.addChild() { Description.NativeView.make() }
     
     let update = { [weak self] (state: Description.StateType) in
       DispatchQueue.main.async {

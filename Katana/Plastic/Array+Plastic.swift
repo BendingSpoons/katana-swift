@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
-
+import CoreGraphics
 /// Utilities methods for Array of `PlasticView` instances
 extension Array where Element: PlasticView {
   

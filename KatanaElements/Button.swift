@@ -63,10 +63,10 @@ public struct Button: NodeDescription {
     view.layer.borderColor = props.borderColor.cgColor
     view.clipsToBounds = props.clipsToBounds
     view.isEnabled = props.isEnabled
-    view.contentEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler)
-    view.titleEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler)
-    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler)
-    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler)
+    view.contentEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler).uiEdgeInsets
+    view.titleEdgeInsets = props.contentEdgeInsets.scale(by: node.plasticMultipler).uiEdgeInsets
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler).uiEdgeInsets
+    view.imageEdgeInsets = props.imageEdgeInsets.scale(by: node.plasticMultipler).uiEdgeInsets
     view.adjustsImageWhenHighlighted = props.adjustsImageWhenHighlighted
     view.adjustsImageWhenDisabled = props.adjustsImageWhenDisabled
     view.showsTouchWhenHighlighted = props.showsTouchWhenHighlighted

@@ -5,6 +5,7 @@
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
+import CoreGraphics
 
 /**
  An abstract representation of a `PlasticView` layout property.

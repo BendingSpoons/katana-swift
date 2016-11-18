@@ -6,7 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
+import CoreGraphics
 
 /// Enum that represents a constraint in the X axis
 private enum ConstraintX {
@@ -24,7 +24,7 @@ private enum ConstraintY {
  `childrenDescriptions(props:state:update:dispatch:)`. You can then apply Plastic methods
  over the instances of `PlasticView` and achieve the desidered layout.
  
- This abstraction has been introduced to avoid to deal directly with `UIView` instances in the Katana
+ This abstraction has been introduced to avoid to deal directly with `UIView` or 'NSView' instances in the Katana
  world. This allows us to implement some optimizations behinde the scenes (e.g., caching).
 */
 public class PlasticView {
@@ -45,7 +45,7 @@ public class PlasticView {
   private(set) var absoluteOrigin: CGPoint
   
   /**
-    A manager that can be used to emulate UIKit capabilities
+    A manager that can be used to emulate UIKit/AppKit capabilities
     - seeAlso: `CoordinateConvertible`
   */
   private unowned let hierarchyManager: CoordinateConvertible
@@ -89,7 +89,7 @@ public class PlasticView {
   /**
    Creates an instance of `PlasticView` with the given parameters
    
-   - parameter hierarchyManager: the hierarchy manager to use to emulate UIKit capabilities
+   - parameter hierarchyManager: the hierarchy manager to use to emulate UIKit/AppKit capabilities
    - parameter key:              the key of the node description with which the instance will be associated to
    - parameter multiplier:       the plastic multiplier to use
    - parameter frame:            the initial frame of the instance

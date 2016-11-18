@@ -18,6 +18,8 @@
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994C21DD4D4F20057D4BB /* CounterScreen.swift */; };
 		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
+		65A7222A1DDF03DF00013E7A /* UIView+DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722291DDF03DF00013E7A /* UIView+DrawableContainer.swift */; };
+		65A722301DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */; };
 		65CAC5AB1DD622CC00395FE1 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */; };
 		8133155B1D7B726000FBE210 /* DrawableContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133151F1D7B726000FBE210 /* DrawableContainer.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
@@ -159,6 +161,8 @@
 		654994A51DD31C540057D4BB /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Actions/IncrementCounter.swift; sourceTree = "<group>"; };
 		654994C21DD4D4F20057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = UI/CounterScreen.swift; sourceTree = "<group>"; };
 		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
+		65A722291DDF03DF00013E7A /* UIView+DrawableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+DrawableContainer.swift"; sourceTree = "<group>"; };
+		65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KatanaEdgeInsets+UIEdgeInsets.swift"; path = "Katana iOS/KatanaEdgeInsets+UIEdgeInsets.swift"; sourceTree = SOURCE_ROOT; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8133151F1D7B726000FBE210 /* DrawableContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawableContainer.swift; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -329,9 +333,27 @@
 			name = Button;
 			sourceTree = "<group>";
 		};
+		65A7222B1DDF0BBE00013E7A /* Abstractions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Abstractions;
+			sourceTree = "<group>";
+		};
+		65A7222E1DDF3C5D00013E7A /* Katana iOS */ = {
+			isa = PBXGroup;
+			children = (
+				65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */,
+				65A722291DDF03DF00013E7A /* UIView+DrawableContainer.swift */,
+			);
+			name = "Katana iOS";
+			path = KatanaElements;
+			sourceTree = "<group>";
+		};
 		8133151B1D7B726000FBE210 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				65A7222B1DDF0BBE00013E7A /* Abstractions */,
 				8133151E1D7B726000FBE210 /* Node */,
 				813315211D7B726000FBE210 /* NodeDescription */,
 				8133151C1D7B726000FBE210 /* Animations */,
@@ -504,6 +526,7 @@
 			children = (
 				81C3A4971D8430AA0079AD32 /* .swiftlint.yml */,
 				81EA56C91D5F3A6000B6290E /* Katana */,
+				65A7222E1DDF3C5D00013E7A /* Katana iOS */,
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo */,
@@ -859,6 +882,7 @@
 			files = (
 				A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */,
 				A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */,
+				65A7222A1DDF03DF00013E7A /* UIView+DrawableContainer.swift in Sources */,
 				A17AF9C01DC9F4DD00F6076E /* View.swift in Sources */,
 				A17AF9C71DC9F4F200F6076E /* TableCell.swift in Sources */,
 				A17AF9BF1DC9F49500F6076E /* Highlightable.swift in Sources */,
@@ -924,6 +948,7 @@
 				A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */,
 				A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */,
 				8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */,
+				65A722301DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */,
 				A17EB5D41DD09E02009A5D8F /* AnimationUtils.swift in Sources */,
 				8133157B1D7B726000FBE210 /* PlasticView.swift in Sources */,
 				813315781D7B726000FBE210 /* PlasticNodeDescription.swift in Sources */,

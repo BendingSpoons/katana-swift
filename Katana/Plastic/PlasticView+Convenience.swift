@@ -6,7 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
+import CoreGraphics
 
 /// `PlasticView` helpers methods
 extension PlasticView {

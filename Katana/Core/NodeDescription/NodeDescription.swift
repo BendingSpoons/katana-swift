@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
-
+import CoreGraphics
 /**
  Protocol that is used for structs that represent the state of a `Node`.
  
@@ -98,7 +97,7 @@ public protocol AnyNodeDescription {
   /**
     The replace key of the description. When two descriptions have the same replaceKey, Katana consider them interchangeable.
     During an UI update, Katana will try to minimise the creation of new nodes
-    (and therefore UIView instances) by reusing old nodes. This is only possible when the old node description
+    (and therefore UIView/NSView instances) by reusing old nodes. This is only possible when the old node description
     is interchangeable with the node that Katana is trying to render.
    
     You can customise the replace key to control the reuse of nodes and views.
@@ -140,15 +139,15 @@ public enum EmptyKeys {}
  
  In general, a description defines two things:
  
- - how properties and state are used to personalise the instance of UIView (or subclass) associated with the `Node` instance.
+ - how properties and state are used to personalise the instance of UIView/NSView (or subclass) associated with the `Node` instance.
    This view is also named **NativeView**
 
  - what are the children descriptions given the properties and the state
  
  ### Node and NodeDescription relationship
  It is important to remember that the UI hierarchy has a 1:1 relationship with `Node` instances
- and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree is connected to a `Node` instance.
- This instance holds the description that is used to manage the `UIView` (and the children), properties and the state.
+ and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree (or `NSView` in the AppKit UI tree) is connected to a `Node` instance.
+ This instance holds the description that is used to manage the `UIView` (or `NSView`) (and the children), properties and the state.
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
@@ -158,8 +157,8 @@ public enum EmptyKeys {}
 */
 public protocol NodeDescription: AnyNodeDescription {
   
-  /// The UIKit class that will be instantiated for this description. The default value is `UIView`
-  associatedtype NativeView: UIView = UIView
+  /// The DrawableContainer class that will be instantiated for this description.
+  associatedtype NativeView: DrawableContainer
   
   /// The type of properties that this description uses. The default value is `EmptyProps`
   associatedtype PropsType: NodeDescriptionProps = EmptyProps

@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
-
+import CoreGraphics
 /**
  `Value` is the scalable counterpart of `CGFloat`.
  It is composed by two parts: scalable and fixed. When
