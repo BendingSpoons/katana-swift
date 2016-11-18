@@ -9,12 +9,13 @@
 import Katana
 
 struct GoBack: SyncAction {
-    typealias Payload = ()
-    var payload: Payload = ()
-    
-    static func updatedState(currentState: State, action: GoBack) -> State {
-        var newState = currentState as! HackerNewsState
-        newState.openPostURL = nil
-        return newState
-    }
+  typealias Payload = ()
+  var payload: Payload = ()
+  
+  public func updatedState(currentState: State) -> State {
+    var newState = currentState as! HackerNewsState
+    newState.openPostURL = nil
+    return newState
+
+  }
 }

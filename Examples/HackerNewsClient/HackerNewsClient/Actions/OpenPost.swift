@@ -9,18 +9,18 @@
 import Katana
 
 struct OpenPost: SyncAction {
-    
-    typealias Payload = URL
-    
-    var payload: URL
-    
-    init(payload: Payload) {
-        self.payload = payload
-    }
-    
-    static func updatedState(currentState: State, action: OpenPost) -> State {
-        var newState = currentState as! HackerNewsState
-        newState.openPostURL = action.payload
-        return newState
-    }
+  
+  typealias Payload = URL
+  var payload: URL
+  
+  init(payload: Payload) {
+      self.payload = payload
+  }
+  
+  func updatedState(currentState: State) -> State {
+    var newState = currentState as! HackerNewsState
+    newState.openPostURL = self.payload
+    return newState
+  }
+  
 }
