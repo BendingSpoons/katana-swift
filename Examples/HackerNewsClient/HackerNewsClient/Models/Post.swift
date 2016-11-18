@@ -9,11 +9,11 @@
 import Foundation
 
 struct Post: Equatable {
-    let title: String
-    let url: URL?
-    let points: Int
+  let title: String
+  let url: URL?
+  let points: Int
     
-    public static func == (lhs: Post, rhs: Post) -> Bool {
-        return lhs.title == rhs.title && lhs.url == rhs.url && lhs.points == rhs.points
-    }
+  public static func == (lhs: Post, rhs: Post) -> Bool {
+    return lhs.title == rhs.title && lhs.url == rhs.url && lhs.points == rhs.points
+  }
 }

@@ -9,7 +9,6 @@
 import Katana
 
 struct OpenPost: SyncAction {
-  
   typealias Payload = URL
   var payload: URL
   
@@ -22,5 +21,4 @@ struct OpenPost: SyncAction {
     newState.openPostURL = self.payload
     return newState
   }
-  
 }

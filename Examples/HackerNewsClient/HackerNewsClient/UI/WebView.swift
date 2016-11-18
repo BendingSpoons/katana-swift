@@ -11,44 +11,42 @@ import Katana
 import KatanaElements
 
 struct WebView: NodeDescription {
-    typealias PropsType = Props
-    typealias StateType = EmptyState
-    typealias NativeView = WKWebView
-    typealias Keys = ChildrenKeys
-    
-    var props: PropsType
-    
-    static func childrenDescriptions(props: PropsType,
+  typealias PropsType = Props
+  typealias StateType = EmptyState
+  typealias NativeView = WKWebView
+  typealias Keys = ChildrenKeys
+  
+  var props: PropsType
+  
+  static func childrenDescriptions(props: PropsType,
+                                   state: StateType,
+                                   update: @escaping (StateType) -> (),
+                                   dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+      
+    return []
+  }
+  
+  static func applyPropsToNativeView(props: PropsType,
                                      state: StateType,
-                                     update: @escaping (StateType) -> (),
-                                     dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-        
-        return []
-    }
+                                     view: NativeView,
+                                     update: @escaping (StateType)->(),
+                                     node: AnyNode) {
+    view.frame = props.frame
     
-    static func applyPropsToNativeView(props: PropsType,
-                                       state: StateType,
-                                       view: NativeView,
-                                       update: @escaping (StateType)->(),
-                                       node: AnyNode) {
-        view.frame = props.frame
-        
-        if let url = props.url {
-            view.load(URLRequest(url: url))
-        }
+    if let url = props.url {
+      view.load(URLRequest(url: url))
     }
+  }
 }
 
 extension WebView {
-    enum ChildrenKeys {
-    }
-}
-
-extension WebView {
-    struct Props: NodeDescriptionProps, Buildable {
-        var frame: CGRect = .zero
-        var key: String?
-        var alpha: CGFloat = 1.0
-        var url: URL?
-    }
+  enum ChildrenKeys {
+  }
+  
+  struct Props: NodeDescriptionProps, Buildable {
+      var frame: CGRect = .zero
+      var key: String?
+      var alpha: CGFloat = 1.0
+      var url: URL?
+  }
 }

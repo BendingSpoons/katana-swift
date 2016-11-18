@@ -9,7 +9,7 @@
 import Katana
 
 struct HackerNewsState: State {
-    var posts = [Post]()
-    var loading = false
-    var openPostURL: URL?
+  var posts = [Post]()
+  var loading = false
+  var openPostURL: URL?
 }
