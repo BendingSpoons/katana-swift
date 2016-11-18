@@ -50,17 +50,17 @@ public enum AsyncActionState {
  
  ```
  protocol AppSyncAction: AsyncAction {
-  static func updatedStateForLoading(currentState: inout AppState, action: AddTodo)
+  func updatedStateForLoading(currentState: inout AppState)
   // same for completed and failed
  }
  
  extension AppSyncAction {
-  static func updatedStateForLoading(currentState: State, action: AddTodo) -> State {
+  func updatedStateForLoading(currentState: State) -> State {
     guard var state = state as? AppState else {
       fatalError("Something went wrong")
     }
  
-    self.updatedStateForLoading(currentState: &state, action: action)
+    self.updatedStateForLoading(currentState: &state)
     return state
   }
  
@@ -72,7 +72,7 @@ public enum AsyncActionState {
  
  ```
  struct A: AppAsyncAction {
-  static func updatedStateForLoading(currentState: inout AppState, action: AddTodo) {
+  func updatedStateForLoading(currentState: inout AppState) {
     state.props = action.payload
   }
  
@@ -107,28 +107,25 @@ public protocol AsyncAction: Action {
    UpdateState function that will be used when the state of the action is `loading`
    
    - parameter state:   the current state of the application
-   - parameter action:  the action. The state of the action is `loading`
    - returns: the new state
   */
-  static func updatedStateForLoading(currentState: State, action: Self) -> State
+  func updatedStateForLoading(currentState: State) -> State
 
   /**
    UpdateState function that will be used when the state of the action is `completed`
    
    - parameter state:   the current state of the application
-   - parameter action:  the action. The state of the action is `completed`
    - returns: the new state
   */
-  static func updatedStateForCompleted(currentState: State, action: Self) -> State
+  func updatedStateForCompleted(currentState: State) -> State
 
   /**
    UpdateState function that will be used when the state of the action is `failed`
    
    - parameter state:   the current state of the application
-   - parameter action:  the action. The state of the action is `failed`
    - returns: the new state
   */
-  static func updatedStateForFailed(currentState: State, action: Self) -> State
+  func updatedStateForFailed(currentState: State) -> State
   
   /**
    Creates a new action
@@ -163,23 +160,22 @@ public extension AsyncAction {
   /**
    Creates a new state starting from the current state and the dispatched action.
    `AsyncAction` implements a default behaviour that invokes 
-   `updatedStateForLoading(currentState: action:)`, `updatedStateForCompleted(currentState: action:)`
-   or `updatedStateForFailed(currentState: action:)` based on the action's state
+   `updatedStateForLoading(currentState:)`, `updatedStateForCompleted(currentState:)`
+   or `updatedStateForFailed(currentState:)` based on the action's state
    
    - parameter state:  the current state
-   - parameter action: the action that has been dispatched
    - returns: the new state
   */
-  public static func updatedState(currentState: State, action: Self) -> State {
-    switch action.state {
+  public func updatedState(currentState: State) -> State {
+    switch self.state {
     case .loading:
-      return self.updatedStateForLoading(currentState: currentState, action: action)
+      return self.updatedStateForLoading(currentState: currentState)
       
     case .completed:
-      return self.updatedStateForCompleted(currentState: currentState, action: action)
+      return self.updatedStateForCompleted(currentState: currentState)
       
     case .failed:
-      return self.updatedStateForFailed(currentState: currentState, action: action)
+      return self.updatedStateForFailed(currentState: currentState)
     }
   }
   
@@ -220,17 +216,12 @@ public extension AsyncAction where Self: ActionWithSideEffect {
    We don't invoke the side effect if the state of the action is not loading.
    This is because we want to trigger side effects only during the loading phase.
   */
-  static func anySideEffect(action: AnyAction,
-                            state: State,
-                            dispatch: @escaping StoreDispatch,
-                            dependencies: SideEffectDependencyContainer) {
+  func anySideEffect(state: State,
+                     dispatch: @escaping StoreDispatch,
+                     dependencies: SideEffectDependencyContainer) {
     
-    guard let action = action as? Self else {
-      preconditionFailure("Action side effect invoked with a wrong 'action' parameter")
-    }
-    
-    if case .loading = action.state {
-      self.sideEffect(action: action, state: state, dispatch: dispatch, dependencies: dependencies)
+    if case .loading = self.state {
+      self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
     }
   }
 }

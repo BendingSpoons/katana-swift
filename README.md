@@ -1,8 +1,12 @@
-<p align="center">
-<img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana.png" width="420" alt="Katana">
-</p>
+![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana_header.png)
 
+[![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg)]()
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
+[![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
+
 
 Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/), that gives structure to all the aspects of your app:
 
@@ -49,7 +53,7 @@ The app `State` can only be modified by an `Action`. An `Action` represents an e
 struct IncrementCounter: SyncAction {
   var payload: ()
 
-  static func updatedState(currentState: State, action: IncrementCounter) -> State {
+  func updatedState(currentState: State) -> State {
     guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
     state.counter += 1
     return state
@@ -354,6 +358,7 @@ Then drag the built `Katana.framework` and `KatanaElements.framework` into your 
 - [ ] macOS support
 - [ ] improve test coverage
 - [ ] expand documentation
+- [ ] write an example about wrapping UIKit view controllers
 
 
 
@@ -378,7 +383,7 @@ We'll be happy to send you a sticker with the logo as a sign of appreciation for
 
 ## License
 
-Katana is available under the [MIT license](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
+Katana is available under the [MIT license](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE).
 
 ## About
 

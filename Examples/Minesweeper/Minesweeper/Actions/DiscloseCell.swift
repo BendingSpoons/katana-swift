@@ -11,9 +11,9 @@ import Katana
 struct DiscloseCell: MinesweeperSyncAction {
   var payload: (col: Int, row: Int)
   
-  static func updatedState(currentState: inout MinesweeperState, action: DiscloseCell) {
-    let col = action.payload.col
-    let row = action.payload.row
+  func updatedState(currentState: inout MinesweeperState) {
+    let col = self.payload.col
+    let row = self.payload.row
     currentState.disclose(col: col, row: row)
   }
 }

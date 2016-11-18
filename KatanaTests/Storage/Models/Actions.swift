@@ -12,10 +12,10 @@ import Foundation
 public struct AddTodoAction: Action, Equatable {
   public let title: String
   
-  public static func updatedState(currentState: State, action: AddTodoAction) -> State {
+  public func updatedState(currentState: State) -> State {
     guard var s = currentState as? AppState else { return currentState }
     
-    let todo = Todo(title: action.title, id: UUID().uuidString)
+    let todo = Todo(title: self.title, id: UUID().uuidString)
     s.todo.todos = s.todo.todos + [todo]
     
     return s
@@ -29,10 +29,10 @@ public struct AddTodoAction: Action, Equatable {
 struct RemoveTodoAction: Action {
   let id: String
   
-  static func updatedState(currentState: State, action: RemoveTodoAction) -> State {
+  func updatedState(currentState: State) -> State {
     guard var s = currentState as? AppState else { return currentState }
     
-    let todos = s.todo.todos.filter { $0.id != action.id }
+    let todos = s.todo.todos.filter { $0.id != self.id }
     s.todo.todos = todos
     
     return s
@@ -42,12 +42,12 @@ struct RemoveTodoAction: Action {
 struct SyncAddTodoAction: SyncAction {
   var payload: String
 
-  static func updatedState(currentState: State, action: SyncAddTodoAction) -> State {
+  func updatedState(currentState: State) -> State {
     guard var state = currentState as? AppState else {
       fatalError()
     }
     
-    let todo = Todo(title: action.payload, id: UUID().uuidString)
+    let todo = Todo(title: self.payload, id: UUID().uuidString)
     state.todo.todos = state.todo.todos + [todo]
     return state
   }
@@ -55,7 +55,6 @@ struct SyncAddTodoAction: SyncAction {
 
 struct SpyActionWithSideEffect: ActionWithSideEffect {
   typealias ActionWithSideEffectCallback = (
-    _ action: SpyActionWithSideEffect,
     _ state: State,
     _ dispatch: @escaping StoreDispatch,
     _ dependencies: SideEffectDependencyContainer) -> ()
@@ -63,16 +62,15 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
   var sideEffectInvokedClosure: ActionWithSideEffectCallback?
   var updatedInvokedClosure: (() -> ())?
   
-  public static func updatedState(currentState: State, action: SpyActionWithSideEffect) -> State {
-    action.updatedInvokedClosure?()
+  public func updatedState(currentState: State) -> State {
+    self.updatedInvokedClosure?()
     return currentState
   }
   
-  static func sideEffect(action: SpyActionWithSideEffect,
-                         state: State,
+  func sideEffect(state: State,
                          dispatch: @escaping StoreDispatch,
                          dependencies: SideEffectDependencyContainer
     ) {
-    action.sideEffectInvokedClosure?(action, state, dispatch, dependencies)
+    self.sideEffectInvokedClosure?(state, dispatch, dependencies)
   }
 }

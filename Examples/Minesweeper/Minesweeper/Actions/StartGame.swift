@@ -11,7 +11,7 @@ import Katana
 struct StartGame: MinesweeperSyncAction {
   var payload: MinesweeperState.Difficulty
   
-  static func updatedState( currentState: inout MinesweeperState, action: StartGame) {
-    currentState = MinesweeperState(difficulty: action.payload)
+  func updatedState( currentState: inout MinesweeperState) {
+    currentState = MinesweeperState(difficulty: self.payload)
   }
 }

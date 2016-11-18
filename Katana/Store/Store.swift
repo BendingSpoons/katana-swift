@@ -181,7 +181,7 @@ fileprivate extension Store {
    - parameter action: the action that has been dispatched
   */
   fileprivate func performDispatch(_ action: AnyAction) {
-    let newState = type(of: action).anyUpdatedState(currentState: self.state, action: action)
+    let newState = action.anyUpdatedState(currentState: self.state)
     
     guard let typedNewState = newState as? StateType else {
       preconditionFailure("Action updateState returned a wrong state type")
@@ -210,8 +210,7 @@ fileprivate extension Store {
       let dispatch = self.dispatch
       let container = self.dependencies.init(state: state, dispatch: dispatch)
       
-      type(of: action).anySideEffect(
-        action: action,
+      action.anySideEffect(
         state: state,
         dispatch: dispatch,
         dependencies: container
