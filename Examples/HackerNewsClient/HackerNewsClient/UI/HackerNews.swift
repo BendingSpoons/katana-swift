@@ -121,10 +121,13 @@ struct HackerNews: NodeDescription, PlasticNodeDescription, PlasticReferenceSize
                                        nextProps: PropsType,
                                        currentState: StateType,
                                        nextState: StateType) {
+    
+    let viewWidth = currentProps.frame.size.width
+    
     container[.browser] = Animation(
-      type: .linear(duration: 0.3),
-      entryTransformers: [AnimationProps.moveRight(distance: 320), AnimationProps.fade()],
-      leaveTransformers: [AnimationProps.moveRight(distance: 320)]
+      type: .spring(duration: 0.5, damping: 1.0, initialVelocity: 0.0),
+      entryTransformers: [AnimationProps.moveRight(distance: viewWidth), AnimationProps.fade()],
+      leaveTransformers: [AnimationProps.moveRight(distance: viewWidth), AnimationProps.fade()]
     )
   }
   
