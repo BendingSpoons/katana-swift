@@ -10,7 +10,7 @@ import Katana
 
 struct Reload: AsyncAction, ActionWithSideEffect {
     
-    typealias LoadingPayload = Void
+    typealias LoadingPayload = ()
     typealias CompletedPayload = [Post]
     typealias FailedPayload = String
     

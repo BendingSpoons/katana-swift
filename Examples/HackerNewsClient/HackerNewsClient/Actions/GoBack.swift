@@ -9,7 +9,7 @@
 import Katana
 
 struct GoBack: SyncAction {
-    typealias Payload = Void
+    typealias Payload = ()
     var payload: Payload = ()
     
     static func updatedState(currentState: State, action: GoBack) -> State {
