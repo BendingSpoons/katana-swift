@@ -8,9 +8,9 @@
 
 import Foundation
 import CoreGraphics
-import UIKit
+//import UIKit
 
-/*public struct AnimationOptions: OptionSet {
+public struct AnimationOptions: OptionSet {
   public let rawValue: Int
   
   public init(rawValue: Int) {
@@ -41,7 +41,7 @@ import UIKit
   static let transitionCrossDissolve = AnimationOptions(rawValue: 5 << 20)
   static let transitionFlipFromTop = AnimationOptions(rawValue: 6 << 20)
   static let transitionFlipFromBottom = AnimationOptions(rawValue: 7 << 20)
-}*/
+}
 
 /// Enum that represents the animations that can be used to animate an UI update
 public enum AnimationType {
@@ -54,11 +54,11 @@ public enum AnimationType {
   
   /// Linear animation with given duration and options
   case linearWithOptions(duration: TimeInterval,
-                          options: UIViewAnimationOptions)
+                          options: AnimationOptions)
   
   /// Liear animation with given duration, options and delay
   case linearWithDelay(duration: TimeInterval,
-               options: UIViewAnimationOptions,
+               options: AnimationOptions,
                  delay: TimeInterval)
   
   /// Spring animation with duration, damping and initialVelocity
@@ -68,13 +68,13 @@ public enum AnimationType {
   case springWithOptions(duration: TimeInterval,
                           damping: CGFloat,
                   initialVelocity: CGFloat,
-                          options: UIViewAnimationOptions)
+                          options: AnimationOptions)
   
   /// Spring animation with duration, damping, initialVelocity, options and delay
   case springWithDelay(duration: TimeInterval,
                damping: CGFloat,
        initialVelocity: CGFloat,
-               options: UIViewAnimationOptions,
+               options: AnimationOptions,
                  delay: TimeInterval)
   
   
@@ -84,7 +84,7 @@ public enum AnimationType {
   */
   func animate(_ block: @escaping ()->(), completion: (() -> ())? = nil) {
     
-    let animationCompletion = { (v: Bool) -> () in
+    /*let animationCompletion = { (v: Bool) -> () in
       completion?()
     }
     
@@ -140,6 +140,6 @@ public enum AnimationType {
                           options: options,
                        animations: block,
                        completion: animationCompletion)
-    }
+    }*/
   }
 }

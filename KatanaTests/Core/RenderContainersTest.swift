@@ -1,7 +1,9 @@
 import XCTest
 import Katana
 
-class DrawableContainersTest: XCTestCase {
+// TODO: move this test to Katana iOS target
+
+/*class UIViewsTest: XCTestCase {
   
   func testAddAndRemoveAll() {
     
@@ -25,4 +27,4 @@ class DrawableContainersTest: XCTestCase {
     let children = r.children()
     XCTAssert(children.count == 2)
   }
-}
+}*/

@@ -73,6 +73,7 @@ fileprivate struct AppProps: NodeDescriptionProps {
 }
 
 fileprivate struct App: NodeDescription {
+  typealias NativeView = UIView
 
   var props: AppProps
   var children: [AnyNodeDescription] = []

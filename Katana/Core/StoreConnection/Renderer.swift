@@ -66,7 +66,7 @@ open class Renderer {
    
    - parameter container: the container that will be used to render the root node
   */
-  public func render(in container: DrawableContainer) {
+  public func render(in container: PlatformNativeView) {
     guard let rootNode = self.rootNode else {
       fatalError("the node should be provided first")
     }

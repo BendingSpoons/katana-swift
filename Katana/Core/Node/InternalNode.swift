@@ -24,5 +24,5 @@ protocol InternalAnyNode: AnyNode {
    Renders the node in the given container
    - parameter container: the container to use to draw the node
    */
-  func render(in container: DrawableContainer)
+  func render(in container: PlatformNativeView)
 }

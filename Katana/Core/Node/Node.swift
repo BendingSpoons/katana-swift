@@ -11,10 +11,10 @@
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 /**
-  Katana works by representing the UI as a tree. Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through DrawableContainers,
+  Katana works by representing the UI as a tree. Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through PlatformNativeViews,
   Katana holds a tree of instances of `Node`. The tree is composed as follows:
  
-  - each node of the tree is an instance of DrawableContainer (baked by UIKit/AppKit or subclasses);
+  - each node of the tree is an instance of PlatformNativeView (baked by UIKit/AppKit or subclasses);
  
   - the edges between nodes represent the parent/children (or view/subviews) relation.
  
@@ -48,7 +48,7 @@ public class Node<Description: NodeDescription> {
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
 
   /// The container in which the node will be drawn
-  fileprivate var container: DrawableContainer?
+  fileprivate var container: PlatformNativeView?
   
   /// The current state of the node
   fileprivate(set) var state: Description.StateType
@@ -163,7 +163,7 @@ extension Node {
    
    - parameter container: the container in which the node should be drawn
    */
-  func render(in container: DrawableContainer) {
+  func render(in container: PlatformNativeView) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
@@ -243,7 +243,7 @@ extension Node {
       childrenRenderCallback?()
     }
     
-    var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
+    var currentSubviews: [PlatformNativeView?] =  container.children()
     let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
@@ -273,7 +273,7 @@ extension Node {
    
    - returns: the node that has been created. The node will have the current node as parent
    */
-  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
+  public func addManagedChild(with description: AnyNodeDescription, in container: PlatformNativeView) -> AnyNode {
     let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
     node.render(in: container)

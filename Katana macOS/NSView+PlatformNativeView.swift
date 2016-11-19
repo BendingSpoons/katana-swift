@@ -1,5 +1,5 @@
 //
-//  UIView+DrawableContainer.swift
+//  NSView+PlatformNativeView.swift
 //  Katana
 //
 //  Created by Andrea De Angelis on 18/11/2016.
@@ -7,20 +7,33 @@
 //
 
 import Katana
+import AppKit
 
 internal let VIEWTAG = 999987
 
 /// An extension of UIView that implements the `DrawableContainer` protocol
-extension UIView: DrawableContainer {
+extension NSView: PlatformNativeView {
+  
+  public var alpha: CGFloat {
+    get {
+      return self.alphaValue
+    }
+    set {
+      self.alphaValue = newValue
+    }
+  }
+  
+  public var tagValue: Int {
+    get {
+      return self.customTag.intValue
+    }
+    set {
+      self.customTag = NSNumber(value: newValue)
+    }
+  }
   
   public static func make() -> Self {
     return self.init()
-  }
-  
-  /// A struct that implements the `DrawableContainerChild` protocol
-  public struct UIViewDrawableContainerChild: DrawableContainerChild {
-    /// the child view
-    private(set) var view: UIView
   }
   
   /**
@@ -46,7 +59,7 @@ extension UIView: DrawableContainer {
    
    - seeAlso: `DrawableContainer`
    */
-  public func addChild(_ child: () -> DrawableContainer) -> DrawableContainer {
+  public func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -56,14 +69,15 @@ extension UIView: DrawableContainer {
     
     
     let child = child()
-    child.tag = VIEWTAG
+    child.tagValue = VIEWTAG
     
     child.addToParent(parent: self)
+    
     return child
   }
   
-  public func addToParent(parent: DrawableContainer) {
-    if let parent = parent as? UIView {
+  public func addToParent(parent: PlatformNativeView) {
+    if let parent = parent as? NSView {
       parent.addSubview(self)
     }
   }
@@ -73,7 +87,7 @@ extension UIView: DrawableContainer {
    
    - seeAlso: `DrawableContainer`
    */
-  public func update(with updateView: (DrawableContainer)->()) {
+  public func update(with updateView: (PlatformNativeView)->()) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -89,8 +103,13 @@ extension UIView: DrawableContainer {
    
    - seeAlso: `DrawableContainer`
    */
-  public func children () -> [DrawableContainerChild] {
-    return self.subviews.filter {$0.tag == VIEWTAG}.map { UIViewDrawableContainerChild(view: $0) }
+  public func children () -> [PlatformNativeView] {
+    /*let subviews = self.subviews.filter {
+      $0.tag == VIEWTAG
+    }
+    return subviews
+     */
+    return self.subviews
   }
   
   /**
@@ -98,7 +117,7 @@ extension UIView: DrawableContainer {
    
    - seeAlso: `DrawableContainer`
    */
-  public func bringChildToFront(_ child: DrawableContainerChild) {
+  public func bringChildToFront(_ child: PlatformNativeView) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
@@ -106,8 +125,10 @@ extension UIView: DrawableContainer {
       assert(Thread.isMainThread)
     }
     
-    let child = child as! UIViewDrawableContainerChild
-    self.bringSubview(toFront: child.view)
+    let child = child
+    if let child = child as? NSView {
+      self.bringChildToFront(child)
+    }
   }
   
   /**
@@ -115,15 +136,28 @@ extension UIView: DrawableContainer {
    
    - seeAlso: `DrawableContainer`
    */
-  public func removeChild(_ child: DrawableContainerChild) {
+  public func removeChild(_ child: PlatformNativeView) {
     if #available(iOS 10.0, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
     } else {
       assert(Thread.isMainThread)
     }
-    
-    let child = child as! UIViewDrawableContainerChild
-    child.view.removeFromSuperview()
+    if let child = child as? NSView {
+      child.removeFromSuperview()
+    }
+  }
+}
+
+import ObjectiveC
+var AssociatedObjectHandle: UInt8 = 0
+extension NSView {
+  var customTag: NSNumber {
+    get {
+      return objc_getAssociatedObject(self, &AssociatedObjectHandle) as! NSNumber
+    }
+    set {
+      objc_setAssociatedObject(self, &AssociatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
   }
 }

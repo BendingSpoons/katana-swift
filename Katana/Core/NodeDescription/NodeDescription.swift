@@ -157,8 +157,8 @@ public enum EmptyKeys {}
 */
 public protocol NodeDescription: AnyNodeDescription {
   
-  /// The DrawableContainer class that will be instantiated for this description.
-  associatedtype NativeView: DrawableContainer
+  /// The PlatformNativeView class that will be instantiated for this description.
+  associatedtype NativeView: PlatformNativeView
   
   /// The type of properties that this description uses. The default value is `EmptyProps`
   associatedtype PropsType: NodeDescriptionProps = EmptyProps

@@ -1,5 +1,5 @@
 //
-//  DrawableContainer.swift
+//  PlatformNativeView.swift
 //  Katana
 //
 //  Copyright © 2016 Bending Spoons.
@@ -8,8 +8,6 @@
 
 import CoreGraphics
 
-/// Protocol that is used to describe `DrawableContainer` children
-public protocol DrawableContainerChild {}
 
 /**
  This protocol abstracts how `Node` instances can be rendered. We have introduced this protocol
@@ -17,23 +15,23 @@ public protocol DrawableContainerChild {}
  the UI is rendered.
  
  The most obvious implementation of this protocol is `UIView` for iOS or `NSView` for mac OS.
- It is possible to create custom containers that renders nodes on abstract structures (e.g., for testing) 
+ It is possible to create custom containers that renders nodes on abstract structures (e.g., for testing)
  or on serializable structures to store the UI representation and use it later.
  
-*/
-public protocol DrawableContainer : class {
+ */
+public protocol PlatformNativeView : class {
   
   var frame: CGRect { get set } // native
   var alpha: CGFloat { get set }
-  var tag: Int { get set }
+  var tagValue: Int { get set }
   
   static func make() -> Self
   
   /**
-    Removes all the children from the container
-
-    - warning: this method should be invoked in the main queue
-  */
+   Removes all the children from the container
+   
+   - warning: this method should be invoked in the main queue
+   */
   func removeAllChildren()
   
   /**
@@ -43,35 +41,35 @@ public protocol DrawableContainer : class {
    - returns: the container that holds the child
    
    - warning: this method should be invoked in the main queue
-  */
-  @discardableResult func addChild(_ child: () -> DrawableContainer) -> DrawableContainer
+   */
+  @discardableResult func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView
   
-  func addToParent(parent: DrawableContainer)
+  func addToParent(parent: PlatformNativeView)
   
   /**
    Updates the description
    
-   - parameter updateView: a closure that takes as input the DrawableContainer represented by the container and
-                           updates it
+   - parameter updateView: a closure that takes as input the PlatformNativeView represented by the container and
+   updates it
    
    - warning: this method should be invoked in the main queue
-  */
-  func update(with updateView: (DrawableContainer)->())
+   */
+  func update(with updateView: (PlatformNativeView)->())
   
   /// Returns the children of the container
-  func children () -> [DrawableContainerChild]
+  func children () -> [PlatformNativeView]
   
   /**
-    Moves to the front a child
-    
-    - parameter child: the child to move to the front
-  */
-  func bringChildToFront(_ child: DrawableContainerChild)
+   Moves to the front a child
+   
+   - parameter child: the child to move to the front
+   */
+  func bringChildToFront(_ child: PlatformNativeView)
   
   /**
    Removes a child
    
    - parameter child: the child to remove
-  */
-  func removeChild(_ child: DrawableContainerChild)
+   */
+  func removeChild(_ child: PlatformNativeView)
 }
