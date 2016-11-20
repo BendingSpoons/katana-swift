@@ -300,8 +300,10 @@ use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.4'
 
-pod 'Katana'
-pod 'KatanaElements'
+target 'MyApp' do
+  pod 'Katana'
+  pod 'KatanaElements'
+end
 ```
 
 And run:
