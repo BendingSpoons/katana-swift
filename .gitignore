@@ -4,6 +4,7 @@ Katana.xcodeproj/project.xcworkspace/xcuserdata/
 .DS_Store
 /Carthage
 /build
+.idea/
 
 /Examples/CodingLove/CodingLove.xcodeproj/xcuserdata/
 /Examples/CodingLove/CodingLove.xcodeproj/project.xcworkspace/xcuserdata/
