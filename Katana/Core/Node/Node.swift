@@ -11,7 +11,8 @@
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 /**
-  Katana works by representing the UI as a tree. Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through PlatformNativeViews,
+  Katana works by representing the UI as a tree.
+ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through PlatformNativeViews,
   Katana holds a tree of instances of `Node`. The tree is composed as follows:
  
   - each node of the tree is an instance of PlatformNativeView (baked by UIKit/AppKit or subclasses);

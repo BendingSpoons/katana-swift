@@ -1,9 +1,8 @@
 import XCTest
 import Katana
 
-// TODO: move this test to Katana iOS target
 
-/*class UIViewsTest: XCTestCase {
+class UIViewsTest: XCTestCase {
   
   func testAddAndRemoveAll() {
     
@@ -27,4 +26,4 @@ import Katana
     let children = r.children()
     XCTAssert(children.count == 2)
   }
-}*/
+}

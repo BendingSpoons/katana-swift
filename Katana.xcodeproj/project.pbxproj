@@ -19,20 +19,65 @@
 		654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994C21DD4D4F20057D4BB /* CounterScreen.swift */; };
 		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
 		65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
-		65A7223D1DDF5BC100013E7A /* UIView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */; };
-		65A7223F1DDF5EE300013E7A /* TestNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223E1DDF5EE300013E7A /* TestNativeView.swift */; };
 		65A722471DDF6A9200013E7A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722461DDF6A9200013E7A /* AppDelegate.swift */; };
 		65A722491DDF6A9200013E7A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65A722481DDF6A9200013E7A /* Assets.xcassets */; };
 		65A7224C1DDF6A9200013E7A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65A7224A1DDF6A9200013E7A /* MainMenu.xib */; };
-		65A722541DDF6B4100013E7A /* NSView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722531DDF6B4100013E7A /* NSView+Utils.swift */; };
-		65A722551DDF6C1800013E7A /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
-		65A722571DDF6C3F00013E7A /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A7225B1DDF700A00013E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */; };
 		65A7225D1DDF70B200013E7A /* MacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7225C1DDF70B200013E7A /* MacView.swift */; };
-		65A722601DDF725D00013E7A /* NSView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */; };
-		65BF2E2D1DE1BACC00441784 /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */; };
-		65BF2E2F1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
-		65BF2E311DE2EAFB00441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
+		65BF2E3C1DE2F12000441784 /* KatanaElements macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2E3A1DE2F12000441784 /* KatanaElements macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65BF2E3F1DE2F12000441784 /* KatanaElements_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E381DE2F12000441784 /* KatanaElements_macOS.framework */; };
+		65BF2E401DE2F12000441784 /* KatanaElements_macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E381DE2F12000441784 /* KatanaElements_macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65BF2E451DE2F14400441784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E441DE2F14400441784 /* View.swift */; };
+		65BF2E481DE2F24E00441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E471DE2F24E00441784 /* Buildable.swift */; };
+		65BF2E521DE2F37B00441784 /* Katana_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2E501DE2F37B00441784 /* Katana_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65BF2E551DE2F37B00441784 /* Katana_macOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */; };
+		65BF2E561DE2F37B00441784 /* Katana_macOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		65BF2E5C1DE2F41900441784 /* NSView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */; };
+		65BF2E5D1DE2F41900441784 /* NSView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722531DDF6B4100013E7A /* NSView+Utils.swift */; };
+		65BF2E601DE2F7D400441784 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E5F1DE2F7D400441784 /* Label.swift */; };
+		65BF2E641DE3348800441784 /* FloatEdgeInsets+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7222F1DDF3CB000013E7A /* FloatEdgeInsets+UIEdgeInsets.swift */; };
+		65BF2E651DE3348800441784 /* UIView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */; };
+		65BF2E661DE3348800441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
+		65BF2E671DE339C900441784 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
+		65BF2E681DE339C900441784 /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
+		65BF2E691DE339C900441784 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
+		65BF2E6A1DE339C900441784 /* Node+AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CED1DD32041007F68E5 /* Node+AnyNode.swift */; };
+		65BF2E6B1DE339C900441784 /* InternalNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C21DD32D570067F8E0 /* InternalNode.swift */; };
+		65BF2E6C1DE339C900441784 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
+		65BF2E6D1DE339C900441784 /* NodeDescriptionWithChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315241D7B726000FBE210 /* NodeDescriptionWithChildren.swift */; };
+		65BF2E6E1DE339C900441784 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
+		65BF2E6F1DE339C900441784 /* AnimationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1CA1DD36BD90067F8E0 /* AnimationType.swift */; };
+		65BF2E701DE339C900441784 /* ChildrenAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EB5D11DD09B39009A5D8F /* ChildrenAnimations.swift */; };
+		65BF2E711DE339C900441784 /* AnimationUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EB5D31DD09E02009A5D8F /* AnimationUtils.swift */; };
+		65BF2E721DE339C900441784 /* AnimationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F88CD21DD0C040004A8285 /* AnimationContainer.swift */; };
+		65BF2E731DE339C900441784 /* Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1CC1DD36BE50067F8E0 /* Animation.swift */; };
+		65BF2E741DE339C900441784 /* AnimationPropsTransfomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15700661DD4C33700361068 /* AnimationPropsTransfomer.swift */; };
+		65BF2E751DE339C900441784 /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315281D7B726000FBE210 /* Renderer.swift */; };
+		65BF2E761DE339C900441784 /* ConnectedNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */; };
+		65BF2E771DE339C900441784 /* Int+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8179CAFA1DDE5F3C000C2164 /* Int+Katana.swift */; };
+		65BF2E781DE339C900441784 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
+		65BF2E791DE339C900441784 /* Anchor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153D1D7B726000FBE210 /* Anchor.swift */; };
+		65BF2E7A1DE339C900441784 /* Array+Plastic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153E1D7B726000FBE210 /* Array+Plastic.swift */; };
+		65BF2E7B1DE339C900441784 /* EdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133153F1D7B726000FBE210 /* EdgeInsets.swift */; };
+		65BF2E7C1DE339C900441784 /* CoordinateConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315401D7B726000FBE210 /* CoordinateConvertible.swift */; };
+		65BF2E7D1DE339C900441784 /* PlasticNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315411D7B726000FBE210 /* PlasticNode.swift */; };
+		65BF2E7E1DE339C900441784 /* PlasticNodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315421D7B726000FBE210 /* PlasticNodeDescription.swift */; };
+		65BF2E7F1DE339C900441784 /* PlasticReferenceSizeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315431D7B726000FBE210 /* PlasticReferenceSizeable.swift */; };
+		65BF2E801DE339C900441784 /* PlasticView+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315441D7B726000FBE210 /* PlasticView+Convenience.swift */; };
+		65BF2E811DE339C900441784 /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315451D7B726000FBE210 /* PlasticView.swift */; };
+		65BF2E821DE339C900441784 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315461D7B726000FBE210 /* Size.swift */; };
+		65BF2E831DE339C900441784 /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315471D7B726000FBE210 /* Value.swift */; };
+		65BF2E841DE339C900441784 /* ViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */; };
+		65BF2E851DE339C900441784 /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315491D7B726000FBE210 /* ViewsContainer.swift */; };
+		65BF2E861DE339C900441784 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
+		65BF2E871DE339C900441784 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314C1DC37DBF00982BE9 /* Action.swift */; };
+		65BF2E881DE339C900441784 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
+		65BF2E891DE339C900441784 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
+		65BF2E8A1DE339C900441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* Typealiases.swift */; };
+		65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
+		65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
+		65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
+		65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -137,12 +182,19 @@
 			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
 		};
-		65A722581DDF6C3F00013E7A /* PBXContainerItemProxy */ = {
+		65BF2E3D1DE2F12000441784 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 81EA56C61D5F3A6000B6290E;
-			remoteInfo = Katana;
+			remoteGlobalIDString = 65BF2E371DE2F12000441784;
+			remoteInfo = "KatanaElements macOS";
+		};
+		65BF2E531DE2F37B00441784 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
+			remoteInfo = Katana_macOS;
 		};
 		81EA56DC1D5F3A6E00B6290E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -172,7 +224,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				65A722571DDF6C3F00013E7A /* Katana.framework in Embed Frameworks */,
+				65BF2E401DE2F12000441784 /* KatanaElements_macOS.framework in Embed Frameworks */,
+				65BF2E561DE2F37B00441784 /* Katana_macOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -190,10 +243,9 @@
 		654994A51DD31C540057D4BB /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Actions/IncrementCounter.swift; sourceTree = "<group>"; };
 		654994C21DD4D4F20057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = UI/CounterScreen.swift; sourceTree = "<group>"; };
 		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
-		65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "KatanaEdgeInsets+UIEdgeInsets.swift"; path = "Katana iOS/KatanaEdgeInsets+UIEdgeInsets.swift"; sourceTree = SOURCE_ROOT; };
+		65A7222F1DDF3CB000013E7A /* FloatEdgeInsets+UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FloatEdgeInsets+UIEdgeInsets.swift"; path = "Katana iOS/FloatEdgeInsets+UIEdgeInsets.swift"; sourceTree = SOURCE_ROOT; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
-		65A7223E1DDF5EE300013E7A /* TestNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestNativeView.swift; sourceTree = "<group>"; };
 		65A722441DDF6A9200013E7A /* Demo mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A722461DDF6A9200013E7A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		65A722481DDF6A9200013E7A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -203,13 +255,22 @@
 		65A7225C1DDF70B200013E7A /* MacView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MacView.swift; path = UI/MacView.swift; sourceTree = "<group>"; };
 		65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+PlatformNativeView.swift"; path = "Katana macOS/NSView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
+		65BF2E381DE2F12000441784 /* KatanaElements_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2E3A1DE2F12000441784 /* KatanaElements macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KatanaElements macOS.h"; sourceTree = "<group>"; };
+		65BF2E3B1DE2F12000441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BF2E441DE2F14400441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		65BF2E471DE2F24E00441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = Common/Buildable.swift; sourceTree = "<group>"; };
+		65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2E501DE2F37B00441784 /* Katana_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana_macOS.h; sourceTree = "<group>"; };
+		65BF2E511DE2F37B00441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BF2E5F1DE2F7D400441784 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
 		813315241D7B726000FBE210 /* NodeDescriptionWithChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionWithChildren.swift; sourceTree = "<group>"; };
 		813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
-		813315281D7B726000FBE210 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
+		813315281D7B726000FBE210 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Renderer.swift; path = StoreConnection/Renderer.swift; sourceTree = "<group>"; };
 		8133153D1D7B726000FBE210 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		8133153E1D7B726000FBE210 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		8133153F1D7B726000FBE210 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
@@ -310,7 +371,22 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A722551DDF6C1800013E7A /* Katana.framework in Frameworks */,
+				65BF2E3F1DE2F12000441784 /* KatanaElements_macOS.framework in Frameworks */,
+				65BF2E551DE2F37B00441784 /* Katana_macOS.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E341DE2F12000441784 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E4A1DE2F37B00441784 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -380,21 +456,22 @@
 			name = Button;
 			sourceTree = "<group>";
 		};
-		65A7222B1DDF0BBE00013E7A /* Abstractions */ = {
+		65A7222B1DDF0BBE00013E7A /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
+				813315281D7B726000FBE210 /* Renderer.swift */,
 			);
-			name = Abstractions;
+			name = Renderer;
 			sourceTree = "<group>";
 		};
-		65A7222E1DDF3C5D00013E7A /* Katana iOS */ = {
+		65A7222E1DDF3C5D00013E7A /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */,
 				65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */,
+				65A7222F1DDF3CB000013E7A /* FloatEdgeInsets+UIEdgeInsets.swift */,
 				65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */,
 			);
-			name = "Katana iOS";
+			name = iOS;
 			path = KatanaElements;
 			sourceTree = "<group>";
 		};
@@ -410,24 +487,6 @@
 			path = "Demo mac";
 			sourceTree = "<group>";
 		};
-		65A722511DDF6A9C00013E7A /* Katana mac OS */ = {
-			isa = PBXGroup;
-			children = (
-				65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */,
-				65A722521DDF6B0A00013E7A /* Utilities */,
-			);
-			name = "Katana mac OS";
-			path = KatanaElements;
-			sourceTree = "<group>";
-		};
-		65A722521DDF6B0A00013E7A /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				65A722531DDF6B4100013E7A /* NSView+Utils.swift */,
-			);
-			name = Utilities;
-			sourceTree = "<group>";
-		};
 		65A7225E1DDF70B700013E7A /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,21 +495,53 @@
 			name = UI;
 			sourceTree = "<group>";
 		};
-		65BF2E2C1DE1B97E00441784 /* KatanaElements mac OS */ = {
+		65BF2E391DE2F12000441784 /* KatanaElements macOS */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2E611DE3240B00441784 /* Button */,
+				65BF2E461DE2F20400441784 /* Common */,
+				65BF2E441DE2F14400441784 /* View.swift */,
+				65BF2E3A1DE2F12000441784 /* KatanaElements macOS.h */,
+				65BF2E3B1DE2F12000441784 /* Info.plist */,
+				65BF2E5F1DE2F7D400441784 /* Label.swift */,
+			);
+			path = "KatanaElements macOS";
+			sourceTree = "<group>";
+		};
+		65BF2E461DE2F20400441784 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2E471DE2F24E00441784 /* Buildable.swift */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		65BF2E4F1DE2F37B00441784 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */,
+				65A722531DDF6B4100013E7A /* NSView+Utils.swift */,
+				65BF2E501DE2F37B00441784 /* Katana_macOS.h */,
+				65BF2E511DE2F37B00441784 /* Info.plist */,
+			);
+			name = macOS;
+			path = Katana_macOS;
+			sourceTree = "<group>";
+		};
+		65BF2E611DE3240B00441784 /* Button */ = {
 			isa = PBXGroup;
 			children = (
 			);
-			name = "KatanaElements mac OS";
-			path = KatanaElements;
+			name = Button;
 			sourceTree = "<group>";
 		};
 		8133151B1D7B726000FBE210 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				65A7222B1DDF0BBE00013E7A /* Abstractions */,
 				8133151E1D7B726000FBE210 /* Node */,
 				813315211D7B726000FBE210 /* NodeDescription */,
 				8133151C1D7B726000FBE210 /* Animations */,
+				65A7222B1DDF0BBE00013E7A /* Renderer */,
 				813315251D7B726000FBE210 /* StoreConnection */,
 			);
 			path = Core;
@@ -494,7 +585,6 @@
 		813315251D7B726000FBE210 /* StoreConnection */ = {
 			isa = PBXGroup;
 			children = (
-				813315281D7B726000FBE210 /* Renderer.swift */,
 				813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */,
 			);
 			path = StoreConnection;
@@ -620,10 +710,10 @@
 			children = (
 				81C3A4971D8430AA0079AD32 /* .swiftlint.yml */,
 				81EA56C91D5F3A6000B6290E /* Katana */,
-				65A7222E1DDF3C5D00013E7A /* Katana iOS */,
-				65A722511DDF6A9C00013E7A /* Katana mac OS */,
+				65A7222E1DDF3C5D00013E7A /* iOS */,
+				65BF2E4F1DE2F37B00441784 /* macOS */,
 				A17AF9961DC9F45C00F6076E /* KatanaElements iOS */,
-				65BF2E2C1DE1B97E00441784 /* KatanaElements mac OS */,
+				65BF2E391DE2F12000441784 /* KatanaElements macOS */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo */,
 				65A722451DDF6A9200013E7A /* Demo mac */,
@@ -640,6 +730,8 @@
 				6513094F1DC3529F00007B6B /* KatanaElements.framework */,
 				6549948E1DD31BA70057D4BB /* Demo.app */,
 				65A722441DDF6A9200013E7A /* Demo mac.app */,
+				65BF2E381DE2F12000441784 /* KatanaElements_macOS.framework */,
+				65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -667,7 +759,6 @@
 				81911DA31D7D916B00123C54 /* Plastic */,
 				81911DAB1D7D916B00123C54 /* Storage */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
-				65A7223E1DDF5EE300013E7A /* TestNativeView.swift */,
 			);
 			path = KatanaTests;
 			sourceTree = "<group>";
@@ -756,6 +847,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		65BF2E351DE2F12000441784 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2E3C1DE2F12000441784 /* KatanaElements macOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E4B1DE2F37B00441784 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2E521DE2F37B00441784 /* Katana_macOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		81EA56C41D5F3A6000B6290E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -820,12 +927,49 @@
 			buildRules = (
 			);
 			dependencies = (
-				65A722591DDF6C3F00013E7A /* PBXTargetDependency */,
+				65BF2E541DE2F37B00441784 /* PBXTargetDependency */,
+				65BF2E3E1DE2F12000441784 /* PBXTargetDependency */,
 			);
 			name = "Demo mac";
 			productName = "Demo mac";
 			productReference = 65A722441DDF6A9200013E7A /* Demo mac.app */;
 			productType = "com.apple.product-type.application";
+		};
+		65BF2E371DE2F12000441784 /* KatanaElements_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BF2E411DE2F12000441784 /* Build configuration list for PBXNativeTarget "KatanaElements_macOS" */;
+			buildPhases = (
+				65BF2E331DE2F12000441784 /* Sources */,
+				65BF2E341DE2F12000441784 /* Frameworks */,
+				65BF2E351DE2F12000441784 /* Headers */,
+				65BF2E361DE2F12000441784 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = KatanaElements_macOS;
+			productName = "KatanaElements macOS";
+			productReference = 65BF2E381DE2F12000441784 /* KatanaElements_macOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		65BF2E4D1DE2F37B00441784 /* Katana_macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "Katana_macOS" */;
+			buildPhases = (
+				65BF2E491DE2F37B00441784 /* Sources */,
+				65BF2E4A1DE2F37B00441784 /* Frameworks */,
+				65BF2E4B1DE2F37B00441784 /* Headers */,
+				65BF2E4C1DE2F37B00441784 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Katana_macOS;
+			productName = Katana_macOS;
+			productReference = 65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */;
+			productType = "com.apple.product-type.framework";
 		};
 		81EA56C61D5F3A6000B6290E /* Katana */ = {
 			isa = PBXNativeTarget;
@@ -886,6 +1030,15 @@
 						CreatedOnToolsVersion = 8.0;
 						ProvisioningStyle = Automatic;
 					};
+					65BF2E371DE2F12000441784 = {
+						CreatedOnToolsVersion = 8.1;
+						LastSwiftMigration = 0810;
+						ProvisioningStyle = Automatic;
+					};
+					65BF2E4D1DE2F37B00441784 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
 					81EA56C61D5F3A6000B6290E = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
@@ -912,9 +1065,11 @@
 			targets = (
 				81EA56C61D5F3A6000B6290E /* Katana */,
 				81EA56D51D5F3A6E00B6290E /* KatanaTests */,
+				65BF2E4D1DE2F37B00441784 /* Katana_macOS */,
 				6513094E1DC3529F00007B6B /* KatanaElements */,
 				6549948D1DD31BA70057D4BB /* Demo */,
 				65A722431DDF6A9200013E7A /* Demo mac */,
+				65BF2E371DE2F12000441784 /* KatanaElements_macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -942,6 +1097,20 @@
 			files = (
 				65A722491DDF6A9200013E7A /* Assets.xcassets in Resources */,
 				65A7224C1DDF6A9200013E7A /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E361DE2F12000441784 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E4C1DE2F37B00441784 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1013,14 +1182,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BF2E311DE2EAFB00441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */,
-				65BF2E2D1DE1BACC00441784 /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */,
 				A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */,
 				A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */,
 				A17AF9C01DC9F4DD00F6076E /* View.swift in Sources */,
 				A17AF9C71DC9F4F200F6076E /* TableCell.swift in Sources */,
 				A17AF9BF1DC9F49500F6076E /* Highlightable.swift in Sources */,
-				65A7223D1DDF5BC100013E7A /* UIView+PlatformNativeView.swift in Sources */,
 				A17AF9C51DC9F4F200F6076E /* NativeTableWrapperCell.swift in Sources */,
 				6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */,
 				A17AF9BE1DC9F49500F6076E /* Buildable.swift in Sources */,
@@ -1042,7 +1208,6 @@
 				654994A21DD31C420057D4BB /* CounterState.swift in Sources */,
 				654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */,
 				654994911DD31BA80057D4BB /* AppDelegate.swift in Sources */,
-				65BF2E2F1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */,
 				654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1051,10 +1216,67 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65A722601DDF725D00013E7A /* NSView+PlatformNativeView.swift in Sources */,
 				65A722471DDF6A9200013E7A /* AppDelegate.swift in Sources */,
-				65A722541DDF6B4100013E7A /* NSView+Utils.swift in Sources */,
 				65A7225D1DDF70B200013E7A /* MacView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E331DE2F12000441784 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2E481DE2F24E00441784 /* Buildable.swift in Sources */,
+				65BF2E451DE2F14400441784 /* View.swift in Sources */,
+				65BF2E601DE2F7D400441784 /* Label.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2E491DE2F37B00441784 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2E671DE339C900441784 /* Node.swift in Sources */,
+				65BF2E681DE339C900441784 /* PlatformNativeView.swift in Sources */,
+				65BF2E691DE339C900441784 /* AnyNode.swift in Sources */,
+				65BF2E6A1DE339C900441784 /* Node+AnyNode.swift in Sources */,
+				65BF2E6B1DE339C900441784 /* InternalNode.swift in Sources */,
+				65BF2E6C1DE339C900441784 /* NodeDescription.swift in Sources */,
+				65BF2E6D1DE339C900441784 /* NodeDescriptionWithChildren.swift in Sources */,
+				65BF2E6E1DE339C900441784 /* Commons.swift in Sources */,
+				65BF2E6F1DE339C900441784 /* AnimationType.swift in Sources */,
+				65BF2E701DE339C900441784 /* ChildrenAnimations.swift in Sources */,
+				65BF2E711DE339C900441784 /* AnimationUtils.swift in Sources */,
+				65BF2E721DE339C900441784 /* AnimationContainer.swift in Sources */,
+				65BF2E731DE339C900441784 /* Animation.swift in Sources */,
+				65BF2E741DE339C900441784 /* AnimationPropsTransfomer.swift in Sources */,
+				65BF2E751DE339C900441784 /* Renderer.swift in Sources */,
+				65BF2E761DE339C900441784 /* ConnectedNodeDescription.swift in Sources */,
+				65BF2E771DE339C900441784 /* Int+Katana.swift in Sources */,
+				65BF2E781DE339C900441784 /* Collections+Katana.swift in Sources */,
+				65BF2E791DE339C900441784 /* Anchor.swift in Sources */,
+				65BF2E7A1DE339C900441784 /* Array+Plastic.swift in Sources */,
+				65BF2E7B1DE339C900441784 /* EdgeInsets.swift in Sources */,
+				65BF2E7C1DE339C900441784 /* CoordinateConvertible.swift in Sources */,
+				65BF2E7D1DE339C900441784 /* PlasticNode.swift in Sources */,
+				65BF2E7E1DE339C900441784 /* PlasticNodeDescription.swift in Sources */,
+				65BF2E7F1DE339C900441784 /* PlasticReferenceSizeable.swift in Sources */,
+				65BF2E801DE339C900441784 /* PlasticView+Convenience.swift in Sources */,
+				65BF2E811DE339C900441784 /* PlasticView.swift in Sources */,
+				65BF2E821DE339C900441784 /* Size.swift in Sources */,
+				65BF2E831DE339C900441784 /* Value.swift in Sources */,
+				65BF2E841DE339C900441784 /* ViewsContainer+Helpers.swift in Sources */,
+				65BF2E851DE339C900441784 /* ViewsContainer.swift in Sources */,
+				65BF2E861DE339C900441784 /* LayoutsCache.swift in Sources */,
+				65BF2E871DE339C900441784 /* Action.swift in Sources */,
+				65BF2E881DE339C900441784 /* State.swift in Sources */,
+				65BF2E891DE339C900441784 /* Store.swift in Sources */,
+				65BF2E8A1DE339C900441784 /* Typealiases.swift in Sources */,
+				65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */,
+				65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */,
+				65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */,
+				65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */,
+				65BF2E5C1DE2F41900441784 /* NSView+PlatformNativeView.swift in Sources */,
+				65BF2E5D1DE2F41900441784 /* NSView+Utils.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1062,9 +1284,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2E641DE3348800441784 /* FloatEdgeInsets+UIEdgeInsets.swift in Sources */,
+				65BF2E651DE3348800441784 /* UIView+PlatformNativeView.swift in Sources */,
+				65BF2E661DE3348800441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */,
 				A1F88CD31DD0C040004A8285 /* AnimationContainer.swift in Sources */,
 				813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */,
 				A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */,
+				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */,
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
@@ -1081,7 +1307,6 @@
 				A1C9C1CD1DD36BE50067F8E0 /* Animation.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				A1CA31551DC37DBF00982BE9 /* Typealiases.swift in Sources */,
-				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				A1C9C1CB1DD36BD90067F8E0 /* AnimationType.swift in Sources */,
 				A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */,
 				A15700671DD4C33700361068 /* AnimationPropsTransfomer.swift in Sources */,
@@ -1113,7 +1338,6 @@
 				A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */,
 				A14EB8C01DC3A62B00DE0BD9 /* AsyncActionTests.swift in Sources */,
 				A1C9C1C61DD337710067F8E0 /* ChildrenAnimationsTests.swift in Sources */,
-				65A7223F1DDF5EE300013E7A /* TestNativeView.swift in Sources */,
 				A1576C2D1DC72E03008281C0 /* SideEffectTests.swift in Sources */,
 				A16A746E1DD3DD1200C9560D /* Actions.swift in Sources */,
 				81911DBF1D7D916B00123C54 /* PlasticDimensionsTests.swift in Sources */,
@@ -1153,10 +1377,15 @@
 			target = 6513094E1DC3529F00007B6B /* KatanaElements */;
 			targetProxy = 654994B21DD31C840057D4BB /* PBXContainerItemProxy */;
 		};
-		65A722591DDF6C3F00013E7A /* PBXTargetDependency */ = {
+		65BF2E3E1DE2F12000441784 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 81EA56C61D5F3A6000B6290E /* Katana */;
-			targetProxy = 65A722581DDF6C3F00013E7A /* PBXContainerItemProxy */;
+			target = 65BF2E371DE2F12000441784 /* KatanaElements_macOS */;
+			targetProxy = 65BF2E3D1DE2F12000441784 /* PBXContainerItemProxy */;
+		};
+		65BF2E541DE2F37B00441784 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65BF2E4D1DE2F37B00441784 /* Katana_macOS */;
+			targetProxy = 65BF2E531DE2F37B00441784 /* PBXContainerItemProxy */;
 		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1193,7 +1422,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dk.bendingspoons.Katana-Elements";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -1213,7 +1444,9 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "dk.bendingspoons.Katana-Elements";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Release;
 		};
@@ -1282,6 +1515,97 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		65BF2E421DE2F12000441784 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		65BF2E431DE2F12000441784 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		65BF2E581DE2F37B00441784 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Katana_macOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Katana-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		65BF2E591DE2F37B00441784 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = Katana_macOS/Info.plist;
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Katana-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
 			};
 			name = Release;
 		};
@@ -1402,21 +1726,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Katana/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Katana;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -1424,20 +1752,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "-";
+				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = "";
 				INFOPLIST_FILE = Katana/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.Katana;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALID_ARCHS = "arm64 armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -1502,6 +1834,22 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		65BF2E411DE2F12000441784 /* Build configuration list for PBXNativeTarget "KatanaElements_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BF2E421DE2F12000441784 /* Debug */,
+				65BF2E431DE2F12000441784 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "Katana_macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BF2E581DE2F37B00441784 /* Debug */,
+				65BF2E591DE2F37B00441784 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */ = {
 			isa = XCConfigurationList;

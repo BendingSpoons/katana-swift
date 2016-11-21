@@ -7,7 +7,8 @@
 //  See the LICENSE file for more information.
 
 import Foundation
-import Katana
+import Katana_macOS
+import KatanaElements_macOS
 import AppKit
 
 struct MacView: NodeDescription, PlasticNodeDescription {
@@ -24,7 +25,14 @@ struct MacView: NodeDescription, PlasticNodeDescription {
                                           update: @escaping (StateType) -> (),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     
-    return []
+    return [
+      Label(props: Label.Props.build({
+        $0.setKey(Keys.label)
+        $0.text = NSAttributedString(string: "test string")
+        $0.textAlignment = .right
+        $0.backgroundColor = NSColor.blue
+      }))
+    ]
   }
   
   static func applyPropsToNativeView(props: PropsType,
@@ -40,14 +48,14 @@ struct MacView: NodeDescription, PlasticNodeDescription {
   public static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType) {
     let rootView = views.nativeView
     
-    let view = views[.view]
-    view?.fill(rootView)
+    let label = views[.label]!
+    label.fill(rootView)
   }
 }
 
 extension MacView {
   enum Keys {
-    case view
+    case label
   }
   
   struct Props: NodeDescriptionProps {

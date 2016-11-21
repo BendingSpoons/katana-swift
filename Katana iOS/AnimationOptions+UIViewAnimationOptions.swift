@@ -6,8 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import Katana
-import UIKit
 
 public extension AnimationOptions {
   public var toUIViewAnimationOptions: UIViewAnimationOptions {

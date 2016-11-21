@@ -7,7 +7,8 @@
 //  See the LICENSE file for more information.
 
 import Cocoa
-import Katana
+import Katana_macOS
+import KatanaElements_macOS
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -25,8 +26,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     view.backgroundColor = .red
     window.contentView = view
     let store = Store<AppState>()
-    let macViewProps = MacView.Props(alpha: 1.0, frame: CGRect(x: 20, y: 50, width: 100, height: 100), key: "")
+    let macViewProps = MacView.Props(alpha: 1.0, frame: CGRect(x: 20, y: 50, width: 300, height: 100), key: "")
     let macView = MacView(props: macViewProps)
+    
+    
     renderer = Renderer(rootDescription: macView, store: store)
     renderer?.render(in: view)
   }

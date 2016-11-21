@@ -8,9 +8,10 @@
 
 import Cocoa
 
-extension NSView {
+// MARK: NSView + backgroundColor
+public extension NSView {
   
-  var backgroundColor: NSColor? {
+  public var backgroundColor: NSColor? {
     get {
       if let colorRef = self.layer?.backgroundColor {
         return NSColor(cgColor: colorRef)
@@ -21,6 +22,19 @@ extension NSView {
     set {
       self.wantsLayer = true
       self.layer?.backgroundColor = newValue?.cgColor
+    }
+  }
+}
+
+import ObjectiveC
+var key: ()?
+extension NSView {
+  var customTag: NSNumber {
+    get {
+      return objc_getAssociatedObject(self, &key) as! NSNumber
+    }
+    set {
+      objc_setAssociatedObject(self, &key, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
   }
 }

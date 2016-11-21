@@ -6,14 +6,22 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import Katana
 import AppKit
 
 internal let VIEWTAG = 999987
 
-/// An extension of UIView that implements the `DrawableContainer` protocol
+/**
+ An extension of NSView that implements the `PlatformNativeView` protocol
+ - seeAlso: `PlatformNativeView`
+ */
+ 
 extension NSView: PlatformNativeView {
   
+  /**
+   Implementation of the PlatformNativeView protocol.
+   
+   - seeAlso: `PlatformNativeView`
+   */
   public var alpha: CGFloat {
     get {
       return self.alphaValue
@@ -23,6 +31,11 @@ extension NSView: PlatformNativeView {
     }
   }
   
+  /**
+   Implementation of the PlatformNativeView protocol.
+   
+   - seeAlso: `PlatformNativeView`
+   */
   public var tagValue: Int {
     get {
       return self.customTag.intValue
@@ -32,14 +45,19 @@ extension NSView: PlatformNativeView {
     }
   }
   
+  /**
+   Implementation of the PlatformNativeView protocol.
+   
+   - seeAlso: `PlatformNativeView`
+   */
   public static func make() -> Self {
     return self.init()
   }
-  
+
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func removeAllChildren() {
     if #available(iOS 10.0, *) {
@@ -53,11 +71,11 @@ extension NSView: PlatformNativeView {
       .filter { $0.tag == VIEWTAG }
       .forEach { $0.removeFromSuperview() }
   }
-  
+
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView {
     if #available(iOS 10.0, *) {
@@ -76,6 +94,11 @@ extension NSView: PlatformNativeView {
     return child
   }
   
+  /**
+   Implementation of the PlatformNativeView protocol.
+   
+   - seeAlso: `PlatformNativeView`
+   */
   public func addToParent(parent: PlatformNativeView) {
     if let parent = parent as? NSView {
       parent.addSubview(self)
@@ -83,9 +106,9 @@ extension NSView: PlatformNativeView {
   }
   
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func update(with updateView: (PlatformNativeView)->()) {
     if #available(iOS 10.0, *) {
@@ -99,23 +122,21 @@ extension NSView: PlatformNativeView {
   }
   
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func children () -> [PlatformNativeView] {
-    /*let subviews = self.subviews.filter {
-      $0.tag == VIEWTAG
+    let subviews = self.subviews.filter {
+      $0.tagValue == VIEWTAG
     }
     return subviews
-     */
-    return self.subviews
   }
   
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func bringChildToFront(_ child: PlatformNativeView) {
     if #available(iOS 10.0, *) {
@@ -132,9 +153,9 @@ extension NSView: PlatformNativeView {
   }
   
   /**
-   Implementation of the DrawableContainer protocol.
+   Implementation of the PlatformNativeView protocol.
    
-   - seeAlso: `DrawableContainer`
+   - seeAlso: `PlatformNativeView`
    */
   public func removeChild(_ child: PlatformNativeView) {
     if #available(iOS 10.0, *) {
@@ -149,10 +170,9 @@ extension NSView: PlatformNativeView {
   }
   
   /**
-   Animates UI changes performed in a block with the animation specified by the AnimationType
-   - parameter type: the type of the animation
-   - parameter block: a block that contains the updates to the UI to animate
-   - parameter completion: a block that is called when the animation completes
+   Implementation of the PlatformNativeView protocol.
+   
+   - seeAlso: `PlatformNativeView`
    */
   public static func animate(type: AnimationType, _ block: @escaping ()->(), completion: (() -> ())?) {
     block()
@@ -160,15 +180,4 @@ extension NSView: PlatformNativeView {
   }
 }
 
-import ObjectiveC
-var AssociatedObjectHandle: UInt8 = 0
-extension NSView {
-  var customTag: NSNumber {
-    get {
-      return objc_getAssociatedObject(self, &AssociatedObjectHandle) as! NSNumber
-    }
-    set {
-      objc_setAssociatedObject(self, &AssociatedObjectHandle, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-  }
-}
+

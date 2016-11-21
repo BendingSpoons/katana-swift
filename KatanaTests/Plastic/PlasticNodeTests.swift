@@ -22,14 +22,14 @@ class PlasticNodeTests: XCTestCase {
   }
   
   func testNodeDeallocationPlastic() {
-
+    
     let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
-  
+    
     var references = collectNodes(node: renderer.rootNode!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-
+    
     renderer.rootNode!.update(with: App(props: AppProps(i:1)))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
@@ -39,7 +39,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
     renderer.rootNode!.update(with: App(props: AppProps(i:2)))
-
+    
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -80,8 +80,9 @@ private enum TestNodeKeys {
 }
 
 private struct TestNode: NodeDescription, PlasticNodeDescription {
+  typealias NativeView = UIView
   typealias Keys = TestNodeKeys
-
+  
   var props: EmptyProps
   
   init(props: EmptyProps) {
@@ -96,7 +97,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
                                           state: EmptyState,
                                           update: @escaping (EmptyState) -> (),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-   
+    
     var props = ViewProps()
     props.setKey(TestNodeKeys.One)
     
@@ -129,6 +130,7 @@ fileprivate struct AppProps: NodeDescriptionProps {
 }
 
 fileprivate struct App: NodeDescription {
+  public typealias NativeView = UIView
   
   var props: AppProps
   var children: [AnyNodeDescription] = []
@@ -138,10 +140,10 @@ fileprivate struct App: NodeDescription {
   }
   
   fileprivate static func childrenDescriptions(props: AppProps,
-                                 state: EmptyState,
-                                 update: @escaping (EmptyState) -> (),
-                                 dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
-
+                                               state: EmptyState,
+                                               update: @escaping (EmptyState) -> (),
+                                               dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
+    
     let i = props.i
     
     if i == 0 {

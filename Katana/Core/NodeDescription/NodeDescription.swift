@@ -139,15 +139,17 @@ public enum EmptyKeys {}
  
  In general, a description defines two things:
  
- - how properties and state are used to personalise the instance of UIView/NSView (or subclass) associated with the `Node` instance.
-   This view is also named **NativeView**
+ - how properties and state are used to personalise the instance of UIView/NSView (or subclass)
+ associated with the `Node` instance. This view is also named **NativeView**
 
  - what are the children descriptions given the properties and the state
  
  ### Node and NodeDescription relationship
  It is important to remember that the UI hierarchy has a 1:1 relationship with `Node` instances
- and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree (or `NSView` in the AppKit UI tree) is connected to a `Node` instance.
- This instance holds the description that is used to manage the `UIView` (or `NSView`) (and the children), properties and the state.
+ and not with `NodeDescription`. This means that each `UIView` in the UIKit UI tree
+ (or `NSView` in the AppKit UI tree) is connected to a `Node` instance.
+ This instance holds the description that is used to manage the `UIView` (or `NSView`) (and the children),
+ properties and the state.
  
  This is why all the `NodeDescription` methods are static.
  Description instances are meaningless and are used only as an easy to ready way
