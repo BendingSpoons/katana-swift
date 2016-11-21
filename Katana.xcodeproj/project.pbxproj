@@ -261,8 +261,8 @@
 		65BF2E441DE2F14400441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		65BF2E471DE2F24E00441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = Common/Buildable.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65BF2E501DE2F37B00441784 /* Katana_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Katana_macOS.h; sourceTree = "<group>"; };
-		65BF2E511DE2F37B00441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BF2E501DE2F37B00441784 /* Katana_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Katana_macOS.h; path = "../Katana macOS/Katana_macOS.h"; sourceTree = "<group>"; };
+		65BF2E511DE2F37B00441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Katana macOS/Info.plist"; sourceTree = "<group>"; };
 		65BF2E5F1DE2F7D400441784 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
@@ -1573,7 +1573,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Katana_macOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Katana macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
@@ -1596,7 +1596,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = Katana_macOS/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/Katana macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
