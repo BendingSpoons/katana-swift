@@ -26,6 +26,7 @@ public extension NSView {
   }
 }
 
+// MARK: NSView + customTag
 import ObjectiveC
 var key: ()?
 extension NSView {

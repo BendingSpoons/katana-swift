@@ -1842,6 +1842,7 @@
 				65BF2E431DE2F12000441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "Katana_macOS" */ = {
 			isa = XCConfigurationList;
@@ -1850,6 +1851,7 @@
 				65BF2E591DE2F37B00441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */ = {
 			isa = XCConfigurationList;

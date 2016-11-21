@@ -60,7 +60,7 @@ extension NSView: PlatformNativeView {
    - seeAlso: `PlatformNativeView`
    */
   public func removeAllChildren() {
-    if #available(iOS 10.0, *) {
+    if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
     } else {
@@ -68,7 +68,7 @@ extension NSView: PlatformNativeView {
     }
     
     self.subviews
-      .filter { $0.tag == VIEWTAG }
+      .filter { $0.tagValue == VIEWTAG }
       .forEach { $0.removeFromSuperview() }
   }
 
@@ -78,7 +78,7 @@ extension NSView: PlatformNativeView {
    - seeAlso: `PlatformNativeView`
    */
   public func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView {
-    if #available(iOS 10.0, *) {
+    if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
     } else {
@@ -111,7 +111,7 @@ extension NSView: PlatformNativeView {
    - seeAlso: `PlatformNativeView`
    */
   public func update(with updateView: (PlatformNativeView)->()) {
-    if #available(iOS 10.0, *) {
+    if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
     } else {
@@ -139,7 +139,7 @@ extension NSView: PlatformNativeView {
    - seeAlso: `PlatformNativeView`
    */
   public func bringChildToFront(_ child: PlatformNativeView) {
-    if #available(iOS 10.0, *) {
+    if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
       
     } else {
@@ -158,9 +158,8 @@ extension NSView: PlatformNativeView {
    - seeAlso: `PlatformNativeView`
    */
   public func removeChild(_ child: PlatformNativeView) {
-    if #available(iOS 10.0, *) {
+    if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-      
     } else {
       assert(Thread.isMainThread)
     }
