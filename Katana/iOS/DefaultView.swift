@@ -8,3 +8,4 @@
 
 
 public typealias DefaultView = UIView
+public typealias FloatEdgeInsets = UIEdgeInsets

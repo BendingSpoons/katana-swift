@@ -6,4 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
+import AppKit
 public typealias DefaultView = NSView
+public typealias FloatEdgeInsets = Foundation.EdgeInsets

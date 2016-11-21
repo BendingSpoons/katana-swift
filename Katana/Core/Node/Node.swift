@@ -6,6 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
+import Foundation
 
 /// typealias for the dictionary used to store the nodes during the update phase
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]

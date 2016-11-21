@@ -61,13 +61,11 @@
 		65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
 		65BF2E991DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
-		65BF2E9B1DE3633900441784 /* FloatEdgeInsets+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9A1DE3633800441784 /* FloatEdgeInsets+UIEdgeInsets.swift */; };
 		65BF2E9D1DE3634100441784 /* UIView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */; };
 		65BF2E9F1DE3635000441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9E1DE3635000441784 /* DefaultView.swift */; };
 		65BF2EA11DE3639600441784 /* NSView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */; };
 		65BF2EA31DE363A100441784 /* NSView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA21DE363A100441784 /* NSView+Utils.swift */; };
 		65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* DefaultView.swift */; };
-		65BF2EA71DE363AE00441784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2EA61DE363AE00441784 /* Info.plist */; };
 		65BF2EA91DE363B400441784 /* Katana_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2EA81DE363B400441784 /* Katana_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
@@ -116,7 +114,6 @@
 		A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
 		A16A746E1DD3DD1200C9560D /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A746D1DD3DD1200C9560D /* Actions.swift */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
-		A17AF9AE1DC9F45C00F6076E /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A17AF99C1DC9F45C00F6076E /* Info.plist */; };
 		A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9971DC9F45C00F6076E /* Button.swift */; };
 		A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF99B1DC9F45C00F6076E /* Image.swift */; };
 		A17AF9BC1DC9F48E00F6076E /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = A17AF99D1DC9F45C00F6076E /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -211,7 +208,6 @@
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* KatanaMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
-		65BF2E9A1DE3633800441784 /* FloatEdgeInsets+UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FloatEdgeInsets+UIEdgeInsets.swift"; path = "Katana/iOS/FloatEdgeInsets+UIEdgeInsets.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana/iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9E1DE3635000441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = Katana/iOS/DefaultView.swift; sourceTree = SOURCE_ROOT; };
 		65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+PlatformNativeView.swift"; path = "Katana/MacOS/NSView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
@@ -407,7 +403,6 @@
 			isa = PBXGroup;
 			children = (
 				65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */,
-				65BF2E9A1DE3633800441784 /* FloatEdgeInsets+UIEdgeInsets.swift */,
 				65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */,
 				65BF2E9E1DE3635000441784 /* DefaultView.swift */,
 			);
@@ -926,7 +921,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BF2EA71DE363AE00441784 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,7 +928,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17AF9AE1DC9F45C00F6076E /* Info.plist in Resources */,
 				81C3A4981D8430AA0079AD32 /* .swiftlint.yml in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1086,6 +1079,7 @@
 				813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */,
 				A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
+				65BF2E9F1DE3635000441784 /* DefaultView.swift in Sources */,
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */,
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
@@ -1120,11 +1114,9 @@
 				A17EB5D41DD09E02009A5D8F /* AnimationUtils.swift in Sources */,
 				8133157B1D7B726000FBE210 /* PlasticView.swift in Sources */,
 				813315781D7B726000FBE210 /* PlasticNodeDescription.swift in Sources */,
-				65BF2E9B1DE3633900441784 /* FloatEdgeInsets+UIEdgeInsets.swift in Sources */,
 				8133157E1D7B726000FBE210 /* ViewsContainer+Helpers.swift in Sources */,
 				A1CA31541DC37DBF00982BE9 /* Store.swift in Sources */,
 				8133157D1D7B726000FBE210 /* Value.swift in Sources */,
-				65BF2E9F1DE3635000441784 /* DefaultView.swift in Sources */,
 				A1CA315D1DC3A24000982BE9 /* AsyncAction.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
