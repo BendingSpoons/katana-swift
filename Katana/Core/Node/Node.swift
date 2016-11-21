@@ -232,10 +232,10 @@ extension Node {
                                            node: self)
       }
     }
-    
-    animation.nativeViewAnimation.animate(updateBlock, completion: {
+    Description.NativeView.animate(type: animation.nativeViewAnimation, updateBlock, completion: {
       nativeRenderCallback?()
     })
+    
     
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode

@@ -9,10 +9,10 @@
 import CoreGraphics
 
 public struct FloatEdgeInsets {
-  var top: CGFloat
-  var left: CGFloat
-  var bottom: CGFloat
-  var right: CGFloat
+  public var top: CGFloat
+  public var left: CGFloat
+  public var bottom: CGFloat
+  public var right: CGFloat
 }
 
 /// `EdgeInsets` is the scalable counterpart of `UIEdgeInsets`

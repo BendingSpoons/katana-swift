@@ -11,9 +11,9 @@ import CoreGraphics
 //import UIKit
 
 public struct AnimationOptions: OptionSet {
-  public let rawValue: Int
+  public let rawValue: UInt
   
-  public init(rawValue: Int) {
+  public init(rawValue: UInt) {
     self.rawValue = rawValue
   }
   
@@ -77,69 +77,4 @@ public enum AnimationType {
                options: AnimationOptions,
                  delay: TimeInterval)
   
-  
-  /**
-   Animates UI changes performed in a block with the animation specified by the enum value
-   - parameter block: a block that contains the updates to the UI to animate
-  */
-  func animate(_ block: @escaping ()->(), completion: (() -> ())? = nil) {
-    
-    /*let animationCompletion = { (v: Bool) -> () in
-      completion?()
-    }
-    
-    switch self {
-    case .none:
-      UIView.performWithoutAnimation(block)
-      completion?()
-     
-    case let .linear(duration):
-      UIView.animate(withDuration: duration,
-                     delay: 0,
-                     options: [],
-                     animations: block,
-                     completion: animationCompletion)
-      
-    case let .linearWithOptions(duration, options):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-                          options: options,
-                       animations: block,
-                       completion: animationCompletion)
-      
-    case let .linearWithDelay(duration, options, delay):
-      UIView.animate(withDuration: duration,
-                            delay: delay,
-                          options: options,
-                       animations: block,
-                       completion: animationCompletion)
-      
-    case let .spring(duration, damping, initialVelocity):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: .curveEaseInOut,
-                       animations: block,
-                       completion: animationCompletion)
-      
-    case let .springWithOptions(duration, damping, initialVelocity, options):
-      UIView.animate(withDuration: duration,
-                            delay: 0,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: options,
-                       animations: block,
-                       completion: animationCompletion)
-      
-    case let .springWithDelay(duration, damping, initialVelocity, options, delay):
-      UIView.animate(withDuration: duration,
-                            delay: delay,
-           usingSpringWithDamping: damping,
-            initialSpringVelocity: initialVelocity,
-                          options: options,
-                       animations: block,
-                       completion: animationCompletion)
-    }*/
-  }
 }

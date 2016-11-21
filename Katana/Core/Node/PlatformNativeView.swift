@@ -72,4 +72,12 @@ public protocol PlatformNativeView : class {
    - parameter child: the child to remove
    */
   func removeChild(_ child: PlatformNativeView)
+  
+  /**
+   Animates UI changes performed in a block with the animation specified by the AnimationType
+   - parameter type: the type of the animation
+   - parameter block: a block that contains the updates to the UI to animate
+   - parameter completion: a block that is called when the animation completes
+   */
+  static func animate(type: AnimationType, _ block: @escaping ()->(), completion: (() -> ())?)
 }

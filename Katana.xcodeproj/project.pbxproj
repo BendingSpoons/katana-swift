@@ -30,6 +30,9 @@
 		65A7225B1DDF700A00013E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */; };
 		65A7225D1DDF70B200013E7A /* MacView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7225C1DDF70B200013E7A /* MacView.swift */; };
 		65A722601DDF725D00013E7A /* NSView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */; };
+		65BF2E2D1DE1BACC00441784 /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */; };
+		65BF2E2F1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
+		65BF2E311DE2EAFB00441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -199,6 +202,7 @@
 		65A722531DDF6B4100013E7A /* NSView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Utils.swift"; path = "Katana macOS/NSView+Utils.swift"; sourceTree = SOURCE_ROOT; };
 		65A7225C1DDF70B200013E7A /* MacView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MacView.swift; path = UI/MacView.swift; sourceTree = "<group>"; };
 		65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+PlatformNativeView.swift"; path = "Katana macOS/NSView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
+		65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
@@ -388,6 +392,7 @@
 			children = (
 				65A7222F1DDF3CB000013E7A /* KatanaEdgeInsets+UIEdgeInsets.swift */,
 				65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */,
+				65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */,
 			);
 			name = "Katana iOS";
 			path = KatanaElements;
@@ -429,6 +434,14 @@
 				65A7225C1DDF70B200013E7A /* MacView.swift */,
 			);
 			name = UI;
+			sourceTree = "<group>";
+		};
+		65BF2E2C1DE1B97E00441784 /* KatanaElements mac OS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = "KatanaElements mac OS";
+			path = KatanaElements;
 			sourceTree = "<group>";
 		};
 		8133151B1D7B726000FBE210 /* Core */ = {
@@ -610,6 +623,7 @@
 				65A7222E1DDF3C5D00013E7A /* Katana iOS */,
 				65A722511DDF6A9C00013E7A /* Katana mac OS */,
 				A17AF9961DC9F45C00F6076E /* KatanaElements iOS */,
+				65BF2E2C1DE1B97E00441784 /* KatanaElements mac OS */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo */,
 				65A722451DDF6A9200013E7A /* Demo mac */,
@@ -999,6 +1013,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2E311DE2EAFB00441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */,
+				65BF2E2D1DE1BACC00441784 /* KatanaEdgeInsets+UIEdgeInsets.swift in Sources */,
 				A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */,
 				A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */,
 				A17AF9C01DC9F4DD00F6076E /* View.swift in Sources */,
@@ -1026,6 +1042,7 @@
 				654994A21DD31C420057D4BB /* CounterState.swift in Sources */,
 				654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */,
 				654994911DD31BA80057D4BB /* AppDelegate.swift in Sources */,
+				65BF2E2F1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */,
 				654994A71DD31C540057D4BB /* IncrementCounter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1210,7 +1227,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.1;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Debug;
 		};
@@ -1224,7 +1244,10 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos10.1;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "armv7s armv7 arm64";
 			};
 			name = Release;
 		};
@@ -1478,6 +1501,7 @@
 				65A722501DDF6A9200013E7A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */ = {
 			isa = XCConfigurationList;

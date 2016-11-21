@@ -2,9 +2,9 @@
 //  NSView+PlatformNativeView.swift
 //  Katana
 //
-//  Created by Andrea De Angelis on 18/11/2016.
-//  Copyright © 2016 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Katana
 import AppKit
@@ -146,6 +146,17 @@ extension NSView: PlatformNativeView {
     if let child = child as? NSView {
       child.removeFromSuperview()
     }
+  }
+  
+  /**
+   Animates UI changes performed in a block with the animation specified by the AnimationType
+   - parameter type: the type of the animation
+   - parameter block: a block that contains the updates to the UI to animate
+   - parameter completion: a block that is called when the animation completes
+   */
+  public static func animate(type: AnimationType, _ block: @escaping ()->(), completion: (() -> ())?) {
+    block()
+    completion?()
   }
 }
 
