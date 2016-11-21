@@ -209,7 +209,7 @@
 		654994C21DD4D4F20057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = UI/CounterScreen.swift; sourceTree = "<group>"; };
 		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
-		65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2E4E1DE2F37B00441784 /* KatanaMacOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaMacOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9A1DE3633800441784 /* FloatEdgeInsets+UIEdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "FloatEdgeInsets+UIEdgeInsets.swift"; path = "Katana/iOS/FloatEdgeInsets+UIEdgeInsets.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana/iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
@@ -603,7 +603,7 @@
 			children = (
 				81C3A4971D8430AA0079AD32 /* .swiftlint.yml */,
 				81EA56C91D5F3A6000B6290E /* Katana */,
-				A17AF9961DC9F45C00F6076E /* KatanaElements iOS */,
+				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo */,
 				81EA56C81D5F3A6000B6290E /* Products */,
@@ -618,7 +618,7 @@
 				81EA56D61D5F3A6E00B6290E /* KatanaTests.xctest */,
 				6513094F1DC3529F00007B6B /* KatanaElements.framework */,
 				6549948E1DD31BA70057D4BB /* Demo.app */,
-				65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */,
+				65BF2E4E1DE2F37B00441784 /* KatanaMacOS.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -659,7 +659,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A17AF9961DC9F45C00F6076E /* KatanaElements iOS */ = {
+		A17AF9961DC9F45C00F6076E /* KatanaElements */ = {
 			isa = PBXGroup;
 			children = (
 				A17AF9A91DC9F45C00F6076E /* View.swift */,
@@ -672,7 +672,6 @@
 				A17AF99D1DC9F45C00F6076E /* KatanaElements.h */,
 				A17AF99C1DC9F45C00F6076E /* Info.plist */,
 			);
-			name = "KatanaElements iOS";
 			path = KatanaElements;
 			sourceTree = "<group>";
 		};
@@ -796,9 +795,9 @@
 			productReference = 6549948E1DD31BA70057D4BB /* Demo.app */;
 			productType = "com.apple.product-type.application";
 		};
-		65BF2E4D1DE2F37B00441784 /* Katana_macOS */ = {
+		65BF2E4D1DE2F37B00441784 /* KatanaMacOS */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "Katana_macOS" */;
+			buildConfigurationList = 65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "KatanaMacOS" */;
 			buildPhases = (
 				65BF2E491DE2F37B00441784 /* Sources */,
 				65BF2E4A1DE2F37B00441784 /* Frameworks */,
@@ -809,9 +808,9 @@
 			);
 			dependencies = (
 			);
-			name = Katana_macOS;
+			name = KatanaMacOS;
 			productName = Katana_macOS;
-			productReference = 65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */;
+			productReference = 65BF2E4E1DE2F37B00441784 /* KatanaMacOS.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		81EA56C61D5F3A6000B6290E /* Katana */ = {
@@ -900,7 +899,7 @@
 				81EA56C61D5F3A6000B6290E /* Katana */,
 				6513094E1DC3529F00007B6B /* KatanaElements */,
 				81EA56D51D5F3A6E00B6290E /* KatanaTests */,
-				65BF2E4D1DE2F37B00441784 /* Katana_macOS */,
+				65BF2E4D1DE2F37B00441784 /* KatanaMacOS */,
 				6549948D1DD31BA70057D4BB /* Demo */,
 			);
 		};
@@ -1528,7 +1527,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "Katana_macOS" */ = {
+		65BF2E571DE2F37B00441784 /* Build configuration list for PBXNativeTarget "KatanaMacOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				65BF2E581DE2F37B00441784 /* Debug */,
