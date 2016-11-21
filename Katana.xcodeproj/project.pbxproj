@@ -66,6 +66,8 @@
 		65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
 		65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
+		65BF2E951DE35F6400441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E941DE35F6400441784 /* DefaultView.swift */; };
+		65BF2E971DE3604200441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E961DE3604200441784 /* DefaultView.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -214,6 +216,8 @@
 		65BF2E4E1DE2F37B00441784 /* Katana_macOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana_macOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E501DE2F37B00441784 /* Katana_macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = Katana_macOS.h; path = "../Katana macOS/Katana_macOS.h"; sourceTree = "<group>"; };
 		65BF2E511DE2F37B00441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Katana macOS/Info.plist"; sourceTree = "<group>"; };
+		65BF2E941DE35F6400441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = "Katana iOS/DefaultView.swift"; sourceTree = SOURCE_ROOT; };
+		65BF2E961DE3604200441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = "Katana macOS/DefaultView.swift"; sourceTree = SOURCE_ROOT; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
@@ -404,6 +408,7 @@
 				65A7223C1DDF5BC100013E7A /* UIView+PlatformNativeView.swift */,
 				65A7222F1DDF3CB000013E7A /* FloatEdgeInsets+UIEdgeInsets.swift */,
 				65BF2E2E1DE2E93000441784 /* AnimationOptions+UIViewAnimationOptions.swift */,
+				65BF2E941DE35F6400441784 /* DefaultView.swift */,
 			);
 			name = iOS;
 			path = KatanaElements;
@@ -414,6 +419,7 @@
 			children = (
 				65A7225F1DDF725D00013E7A /* NSView+PlatformNativeView.swift */,
 				65A722531DDF6B4100013E7A /* NSView+Utils.swift */,
+				65BF2E961DE3604200441784 /* DefaultView.swift */,
 				65BF2E501DE2F37B00441784 /* Katana_macOS.h */,
 				65BF2E511DE2F37B00441784 /* Info.plist */,
 			);
@@ -1036,6 +1042,7 @@
 				65BF2E6F1DE339C900441784 /* AnimationType.swift in Sources */,
 				65BF2E701DE339C900441784 /* ChildrenAnimations.swift in Sources */,
 				65BF2E711DE339C900441784 /* AnimationUtils.swift in Sources */,
+				65BF2E971DE3604200441784 /* DefaultView.swift in Sources */,
 				65BF2E721DE339C900441784 /* AnimationContainer.swift in Sources */,
 				65BF2E731DE339C900441784 /* Animation.swift in Sources */,
 				65BF2E741DE339C900441784 /* AnimationPropsTransfomer.swift in Sources */,
@@ -1082,6 +1089,7 @@
 				A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
+				65BF2E951DE35F6400441784 /* DefaultView.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */,
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
 				A1277CEC1DD32037007F68E5 /* AnyNode.swift in Sources */,
