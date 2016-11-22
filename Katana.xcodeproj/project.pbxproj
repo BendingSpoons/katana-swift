@@ -102,7 +102,7 @@
 		81911DC41D7D916B00123C54 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB01D7D916B00123C54 /* StoreTests.swift */; };
 		81911DC71D7D916B00123C54 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
-		81FB7A751DE4DB5A00953EA0 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FB7A731DE4DB5A00953EA0 /* Katana.h */; };
+		81FB7A751DE4DB5A00953EA0 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FB7A731DE4DB5A00953EA0 /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		A11638501DC4A6800068F0A7 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
 		A1277CEC1DD32037007F68E5 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
