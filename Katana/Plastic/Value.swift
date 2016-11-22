@@ -111,6 +111,20 @@ public struct Value: Equatable {
   public static func * (lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable * rhs, fixed: lhs.fixed * rhs)
   }
+
+  /**
+   Implements the multiplication assignment for the `Value` instances
+
+   - parameter lhs: the `Value` instance that will be updated by multiplying itself by `rhs`
+   - parameter rhs: the value by which `lhs` will be multiplied
+
+   - warning: this method is different from `scale(by:)` since it scales both
+   scalable and fixed parts, whereas `scale(by:)` scales only the scalable
+   part
+   */
+  public static func *= (lhs: inout Value, rhs: CGFloat) {
+    lhs = lhs * rhs
+  }
   
   /**
    Implements the addition for the `Value` instances
@@ -122,6 +136,37 @@ public struct Value: Equatable {
   public static func + (lhs: Value, rhs: Value) -> Value {
     return Value(scalable: lhs.scalable + rhs.scalable, fixed: lhs.fixed + rhs.fixed)
   }
+
+  /**
+   Implements addition assignment for the `Value` instances
+   
+   - parameter lhs: the `Value` instance that will be updated by adding `rhs` to itself
+   - parameter rhs: the `Value` instance that will be added to `lhs`
+   */
+  public static func += (lhs: inout Value, rhs: Value) {
+    lhs = lhs + rhs
+  }
+
+  /**
+   Implements the subtraction for the `Value` instances
+
+   - parameter lhs: the first instance
+   - parameter rhs: the second instance
+   - returns: an instance of `Value` where the fixed and scalable parts are the difference of the parts of the two operators
+   */
+  public static func - (lhs: Value, rhs: Value) -> Value {
+    return Value(scalable: lhs.scalable - rhs.scalable, fixed: lhs.fixed - rhs.fixed)
+  }
+
+  /**
+   Implements subtraction assignment for the `Value` instances
+
+   - parameter lhs: the `Value` instance that will be updated by subtracting `rhs` to itself
+   - parameter rhs: the `Value` instance that will be subtracted to `lhs`
+   */
+  public static func -= (lhs: inout Value, rhs: Value) {
+    lhs = lhs - rhs
+  }
   
   /**
    Implements the division for the `Value` instances
@@ -132,6 +177,16 @@ public struct Value: Equatable {
   */
   public static func / (lhs: Value, rhs: CGFloat) -> Value {
     return Value(scalable: lhs.scalable / rhs, fixed: lhs.fixed / rhs)
+  }
+
+  /**
+   Implements the division assignment for the `Value` instance
+
+   - parameter lhs: the `Value` instance that will be updated by dividing itself by `rhs`
+   - parameter rhs: the value by which `lhs` will be divided
+   */
+  public static func /= (lhs: inout Value, rhs: CGFloat) {
+    lhs = lhs / rhs
   }
   
   /**
