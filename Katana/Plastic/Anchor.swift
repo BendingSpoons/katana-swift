@@ -90,4 +90,18 @@ public struct Anchor: Equatable {
   public static func == (lhs: Anchor, rhs: Anchor) -> Bool {
     return lhs.kind == rhs.kind && lhs.view === rhs.view
   }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset + rhs`
+   */
+  public static func + (lhs: Anchor, rhs: Value) -> Anchor {
+    return Anchor(kind: lhs.kind, view: lhs.view, offset: lhs.offset + rhs)
+  }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset - rhs`
+   */
+  public static func - (lhs: Anchor, rhs: Value) -> Anchor {
+    return Anchor(kind: lhs.kind, view: lhs.view, offset: lhs.offset + -rhs)
+  }
 }
