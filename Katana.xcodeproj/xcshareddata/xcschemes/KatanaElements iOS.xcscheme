@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "6513094E1DC3529F00007B6B"
-               BuildableName = "KatanaElements iOS.framework"
+               BuildableName = "KatanaElements.framework"
                BlueprintName = "KatanaElements iOS"
                ReferencedContainer = "container:Katana.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6513094E1DC3529F00007B6B"
-            BuildableName = "KatanaElements iOS.framework"
+            BuildableName = "KatanaElements.framework"
             BlueprintName = "KatanaElements iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "6513094E1DC3529F00007B6B"
-            BuildableName = "KatanaElements iOS.framework"
+            BuildableName = "KatanaElements.framework"
             BlueprintName = "KatanaElements iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
          </BuildableReference>

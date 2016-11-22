@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "65BF2E4D1DE2F37B00441784"
-               BuildableName = "Katana macOS.framework"
+               BuildableName = "Katana.framework"
                BlueprintName = "Katana macOS"
                ReferencedContainer = "container:Katana.xcodeproj">
             </BuildableReference>
@@ -46,7 +46,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65BF2E4D1DE2F37B00441784"
-            BuildableName = "Katana macOS.framework"
+            BuildableName = "Katana.framework"
             BlueprintName = "Katana macOS"
             ReferencedContainer = "container:Katana.xcodeproj">
          </BuildableReference>
@@ -64,7 +64,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "65BF2E4D1DE2F37B00441784"
-            BuildableName = "Katana macOS.framework"
+            BuildableName = "Katana.framework"
             BlueprintName = "Katana macOS"
             ReferencedContainer = "container:Katana.xcodeproj">
          </BuildableReference>
