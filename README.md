@@ -30,7 +30,7 @@ We feel that Katana helped us a lot since we started using it in production. At 
 | 🎩   | Automatically update the UI when your app state changes |
 | 📐   | Automatically scale your UI to every size and aspect ratio |
 | 🐎   | Easily animate UI changes                |
-
+| 📝   | Gradually migrate your application to Katana |
 
 
 
@@ -231,7 +231,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 ## Where to go from here
 
 ### Getting started tutorial
-We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tutorial-swift). It is currently a work in progress, but it will be finished soon!
+We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tutorial-swift).
 
 ### Give it a shot
 
@@ -269,7 +269,6 @@ pod try Katana
 ### Check out the documentation
 
 [Documentation](http://katana.bendingspoons.com)
-
 
 ## Installation
 
@@ -338,13 +337,34 @@ $ carthage update
 
 Then drag the built `Katana.framework` and `KatanaElements.framework` into your Xcode project.
 
+## Gradual Adoption
 
+You can easily integrate Katana in existing applications. This can be very useful in at least two scenarios:
+- You want to try katana in a real world application, but you don't want to rewrite it entirely
+- You want to gradually migrate your application to Katana
+
+A gradual adoption doesn't require nothing different from the standard Katana usage. You just need to render your initial `NodeDescription` in the view where you want to place the UI managed by Katana. 
+
+Assuming you are in a view controller and you have a `NodeDescription` named `Description`, you can do something like this:
+
+```swift
+// get the view where you want to render the UI managed by Katana
+let view = methodToGetView()
+let description = Description(props: Props.build {
+	$0.frame = view.frame
+})
+
+// here we are not using the store. But you can create it normally
+// You should also retain a reference to renderer, in order to don't deallocate all the UI that will be created when the method ends
+let renderer = Renderer(rootDescription: description, store: nil)
+
+// render the UI
+renderer!.render(in: view)
+```
 
 ## Roadmap
 
 - [x] immutable state
-
-
 - [x] unidirectional data flow
 
 
