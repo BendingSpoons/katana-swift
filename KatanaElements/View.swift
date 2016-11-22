@@ -22,7 +22,7 @@ public extension View {
     public var borderWidth: Value = .zero
     public var borderColor = UIColor.clear
     public var clipsToBounds = false
-    public var isUserInteractionEnabled = false
+    public var isUserInteractionEnabled = true
     
     public init() {}
     
