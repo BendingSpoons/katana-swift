@@ -32,16 +32,21 @@ public struct Anchor: Equatable {
   
   /// the `PlasticView` to which the anchor is associated to
   let view: PlasticView
-  
+
+  /// the offset at which this anchor will be set, with respect to the anchor it will be assigned to
+  var offset: Value
+
   /**
    Creates an anchor with a given type, related to a specific `PlasticView`
    
    - parameter kind: the kind of the anchor
    - parameter view: the view the anchor pertains to
+   - parameter offset: the offset at which this anchor will be set, with respect to the anchor it will be assigned to
   */
-  init(kind: Kind, view: PlasticView) {
+  init(kind: Kind, view: PlasticView, offset: Value = .zero) {
     self.kind = kind
     self.view = view
+    self.offset = offset
   }
   
   /**
