@@ -335,4 +335,41 @@ y v
     v1.size = .scalable(300, 300)
     XCTAssertEqual(v1.frame.size, CGSize(width: 300 * multiplier, height: 300 * multiplier))
   }
+
+  func testShouldSetAnchorsWithOffsets() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+    v1.height = .fixed(400)
+    v1.width = .fixed(400)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.left = v2.left + 100
+    XCTAssertEqual(v1.frame.origin.x, v2.frame.origin.x + (100 * multiplier))
+
+    v1.bottom = v2.bottom - 100
+    XCTAssertEqual(v1.frame.origin.y + v1.frame.size.height, v2.frame.origin.y + v2.frame.size.height - (100 * multiplier))
+
+    v1.top = v2.top + 100.fixed
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y + 100)
+
+    v1.right = v2.right - 100.fixed
+    XCTAssertEqual(v1.frame.origin.x + v1.frame.size.width, v2.frame.origin.x + v2.frame.size.width - 100)
+
+
+
+    let v1copy = PlasticView(hierarchyManager: hM, key: "C", multiplier: multiplier, frame: .zero)
+    v1copy.height = .fixed(400)
+    v1copy.width = .fixed(400)
+
+    v1copy.setLeft(v2.left, offset: .scalable(100))
+    v1copy.setBottom(v2.bottom, offset: .scalable(-100))
+    v1copy.setTop(v2.top, offset: .fixed(100))
+    v1copy.setRight(v2.right, offset: .fixed(-100))
+
+    XCTAssertEqual(v1.frame, v1copy.frame)
+  }
 }
