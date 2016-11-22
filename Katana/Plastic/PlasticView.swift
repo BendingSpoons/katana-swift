@@ -231,7 +231,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setBottom(newValue)
+      setBottom(newValue, offset: newValue.offset)
     }
   }
 
@@ -269,7 +269,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setTop(newValue)
+      setTop(newValue, offset: newValue.offset)
     }
   }
 
@@ -307,7 +307,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setRight(newValue)
+      setRight(newValue, offset: newValue.offset)
     }
   }
   
@@ -346,7 +346,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setLeft(newValue)
+      setLeft(newValue, offset: newValue.offset)
     }
   }
   
@@ -385,7 +385,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setCenterX(newValue)
+      setCenterX(newValue, offset: newValue.offset)
     }
   }
   
@@ -424,7 +424,7 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setCenterY(newValue)
+      setCenterY(newValue, offset: newValue.offset)
     }
   }
   
