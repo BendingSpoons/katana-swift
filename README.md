@@ -172,7 +172,7 @@ The `Renderer` is responsible for rendering the UI tree and updating it when the
 
 You create a `Renderer` object starting from the top level `NodeDescription` and the `Store`.
 
-```
+```swift
 renderer = Renderer(rootDescription: counterScreen, store: store)
 renderer.render(in: view)
 ```
@@ -180,7 +180,7 @@ renderer.render(in: view)
 Every time a new app `State` is available, the `Store` dispatches an event that is captured by the `Renderer ` and dispatched down to the tree of UI components.
 If you want a component to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`.
 
-```
+```swift
 struct CounterScreen: ConnectedNodeDescription {
   ...
   static func connect(props: inout PropsType, to storeState: StateType) {
