@@ -45,14 +45,14 @@ public class Node<Description: NodeDescription> {
   /// The children of the node
   public fileprivate(set) var children: [AnyNode]!
   
+  /// The current state of the node
+  public fileprivate(set) var state: Description.StateType
+  
   /// The children descriptions of the node
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
 
   /// The container in which the node will be drawn
   fileprivate var container: DrawableContainer?
-  
-  /// The current state of the node
-  fileprivate(set) var state: Description.StateType
   
   /// The current description of the node
   fileprivate(set) var description: Description
