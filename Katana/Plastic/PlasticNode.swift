@@ -105,11 +105,11 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
 public extension AnyNode {
   /**
    The Plastic multiplier that will be used in the current `Node`. If the description associated with the node
-   implements the `PlasticNodeDescriptionWithReferenceSize`, then the multiplier is calculated using the
+   implements the `PlasticReferenceSizeable`, then the multiplier is calculated using the
    current node information (e.g., the reference size and the current size). In any other case, the method
    will request the parent plastic multiplier
    
-   - seeAlso: `PlasticNodeDescriptionWithReferenceSize`
+   - seeAlso: `PlasticReferenceSizeable`
   */
   public var plasticMultipler: CGFloat {
     
