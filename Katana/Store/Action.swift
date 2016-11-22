@@ -20,7 +20,7 @@ public protocol AnyAction {
 
 /**
  An action represents an event that leads to a change in the state of the application.
- It can be triggered from an user action, from a system event or any event in general.
+ It can be triggered from a user action, from a system event or any event in general.
  
  In general this protocol should not be used directly. Use `SyncAction` and `AsyncAction` instead
 */
@@ -31,7 +31,7 @@ public protocol Action: AnyAction {
    [pure function](https://en.wikipedia.org/wiki/Pure_function), that is
    a function that given the same input always returns the same output and it also
    doesn't have any side effect. This is really important because it is an assumption
-   that Katana (an related tools) make in order to implement some functionalities
+   that Katana (and related tools) makes in order to implement some functionalities
    (e.g., not implemented yet, but possible in the future: time travel)
    
    - parameter state:  the current state
