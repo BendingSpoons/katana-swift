@@ -213,3 +213,51 @@ extension Value: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
     self.init(scalable: CGFloat(value), fixed: 0)
   }
 }
+
+extension CGFloat {
+  /**
+   Returns a `Value` instance with the `scalable` part equal to self, and fixed part equal to 0.
+   */
+  var scaled: Value {
+    return Value(scalable: self, fixed: 0)
+  }
+
+  /**
+   Returns a `Value` instance with the `fixed` part equal to self, and scalable part equal to 0.
+   */
+  var fixed: Value {
+    return Value(scalable: 0, fixed: self)
+  }
+}
+
+extension Double {
+  /**
+   Returns a `Value` instance with the `scalable` part equal to self, and fixed part equal to 0.
+   */
+  var scaled: Value {
+    return Value(scalable: CGFloat(self), fixed: 0)
+  }
+
+  /**
+   Returns a `Value` instance with the `fixed` part equal to self, and scalable part equal to 0.
+   */
+  var fixed: Value {
+    return Value(scalable: 0, fixed: CGFloat(self))
+  }
+}
+
+extension Int {
+  /**
+   Returns a `Value` instance with the `scalable` part equal to self, and fixed part equal to 0.
+   */
+  var scaled: Value {
+    return Value(scalable: CGFloat(self), fixed: 0)
+  }
+
+  /**
+   Returns a `Value` instance with the `fixed` part equal to self, and scalable part equal to 0.
+   */
+  var fixed: Value {
+    return Value(scalable: 0, fixed: CGFloat(self))
+  }
+}
