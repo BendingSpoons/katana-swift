@@ -17,7 +17,6 @@
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994C31DD4D4F20057D4BB /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 654994C21DD4D4F20057D4BB /* CounterScreen.swift */; };
-		6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 656265691DD1C175005E91DC /* NativeButton.swift */; };
 		65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
 		65A7225B1DDF700A00013E7A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */; };
 		65BF2E671DE339C900441784 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
@@ -87,6 +86,22 @@
 		8133157E1D7B726000FBE210 /* ViewsContainer+Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */; };
 		8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315491D7B726000FBE210 /* ViewsContainer.swift */; };
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
+		81590FD21DE5C0D30032BAB4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FBD1DE5C0D30032BAB4 /* Button.swift */; };
+		81590FD31DE5C0D30032BAB4 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FBF1DE5C0D30032BAB4 /* Buildable.swift */; };
+		81590FD41DE5C0D30032BAB4 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC01DE5C0D30032BAB4 /* Highlightable.swift */; };
+		81590FD51DE5C0D30032BAB4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC11DE5C0D30032BAB4 /* Image.swift */; };
+		81590FD81DE5C0D30032BAB4 /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 81590FC41DE5C0D30032BAB4 /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		81590FD91DE5C0D30032BAB4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC51DE5C0D30032BAB4 /* Label.swift */; };
+		81590FDA1DE5C0D30032BAB4 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC61DE5C0D30032BAB4 /* NativeButton.swift */; };
+		81590FDB1DE5C0D30032BAB4 /* NativeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC81DE5C0D30032BAB4 /* NativeTable.swift */; };
+		81590FDC1DE5C0D30032BAB4 /* NativeTableWrapperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC91DE5C0D30032BAB4 /* NativeTableWrapperCell.swift */; };
+		81590FDD1DE5C0D30032BAB4 /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCA1DE5C0D30032BAB4 /* Table.swift */; };
+		81590FDE1DE5C0D30032BAB4 /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCB1DE5C0D30032BAB4 /* TableCell.swift */; };
+		81590FDF1DE5C0D30032BAB4 /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCC1DE5C0D30032BAB4 /* TableDelegate.swift */; };
+		81590FE01DE5C0D30032BAB4 /* NativeTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */; };
+		81590FE11DE5C0D30032BAB4 /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */; };
+		81590FE21DE5C0D30032BAB4 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */; };
+		81590FE31DE5C0D30032BAB4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FD11DE5C0D30032BAB4 /* View.swift */; };
 		8179CAFB1DDE5F3C000C2164 /* Int+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8179CAFA1DDE5F3C000C2164 /* Int+Katana.swift */; };
 		81911DB61D7D916B00123C54 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */; };
 		81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9E1D7D916B00123C54 /* NodeTest.swift */; };
@@ -113,21 +128,6 @@
 		A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
 		A16A746E1DD3DD1200C9560D /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A746D1DD3DD1200C9560D /* Actions.swift */; };
 		A17211551D831D540084B9E0 /* LayoutsCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17211541D831D540084B9E0 /* LayoutsCache.swift */; };
-		A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9971DC9F45C00F6076E /* Button.swift */; };
-		A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF99B1DC9F45C00F6076E /* Image.swift */; };
-		A17AF9BC1DC9F48E00F6076E /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = A17AF99D1DC9F45C00F6076E /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A17AF9BD1DC9F48E00F6076E /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF99E1DC9F45C00F6076E /* Label.swift */; };
-		A17AF9BE1DC9F49500F6076E /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9991DC9F45C00F6076E /* Buildable.swift */; };
-		A17AF9BF1DC9F49500F6076E /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF99A1DC9F45C00F6076E /* Highlightable.swift */; };
-		A17AF9C01DC9F4DD00F6076E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A91DC9F45C00F6076E /* View.swift */; };
-		A17AF9C11DC9F4EC00F6076E /* NativeTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A61DC9F45C00F6076E /* NativeTouchHandler.swift */; };
-		A17AF9C21DC9F4EC00F6076E /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A71DC9F45C00F6076E /* TouchHandler.swift */; };
-		A17AF9C31DC9F4EC00F6076E /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A81DC9F45C00F6076E /* TouchHandlerEvent.swift */; };
-		A17AF9C41DC9F4F200F6076E /* NativeTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A01DC9F45C00F6076E /* NativeTable.swift */; };
-		A17AF9C51DC9F4F200F6076E /* NativeTableWrapperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A11DC9F45C00F6076E /* NativeTableWrapperCell.swift */; };
-		A17AF9C61DC9F4F200F6076E /* Table.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A21DC9F45C00F6076E /* Table.swift */; };
-		A17AF9C71DC9F4F200F6076E /* TableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A31DC9F45C00F6076E /* TableCell.swift */; };
-		A17AF9C81DC9F4F200F6076E /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9A41DC9F45C00F6076E /* TableDelegate.swift */; };
 		A17AF9CC1DC9F5EF00F6076E /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9CA1DC9F5EF00F6076E /* Image.swift */; };
 		A17AF9CD1DC9F5EF00F6076E /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9CB1DC9F5EF00F6076E /* View.swift */; };
 		A17EB5D21DD09B39009A5D8F /* ChildrenAnimations.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17EB5D11DD09B39009A5D8F /* ChildrenAnimations.swift */; };
@@ -203,7 +203,6 @@
 		654994A41DD31C540057D4BB /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = Actions/DecrementCounter.swift; sourceTree = "<group>"; };
 		654994A51DD31C540057D4BB /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Actions/IncrementCounter.swift; sourceTree = "<group>"; };
 		654994C21DD4D4F20057D4BB /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = UI/CounterScreen.swift; sourceTree = "<group>"; };
-		656265691DD1C175005E91DC /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
@@ -235,6 +234,23 @@
 		813315481D7B726000FBE210 /* ViewsContainer+Helpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
 		813315491D7B726000FBE210 /* ViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsContainer.swift; sourceTree = "<group>"; };
 		8133158B1D7B728900FBE210 /* Collections+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collections+Katana.swift"; sourceTree = "<group>"; };
+		81590FBD1DE5C0D30032BAB4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		81590FBF1DE5C0D30032BAB4 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
+		81590FC01DE5C0D30032BAB4 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
+		81590FC11DE5C0D30032BAB4 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		81590FC21DE5C0D30032BAB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		81590FC41DE5C0D30032BAB4 /* KatanaElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
+		81590FC51DE5C0D30032BAB4 /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
+		81590FC61DE5C0D30032BAB4 /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
+		81590FC81DE5C0D30032BAB4 /* NativeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTable.swift; sourceTree = "<group>"; };
+		81590FC91DE5C0D30032BAB4 /* NativeTableWrapperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableWrapperCell.swift; sourceTree = "<group>"; };
+		81590FCA1DE5C0D30032BAB4 /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
+		81590FCB1DE5C0D30032BAB4 /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
+		81590FCC1DE5C0D30032BAB4 /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
+		81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTouchHandler.swift; sourceTree = "<group>"; };
+		81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
+		81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
+		81590FD11DE5C0D30032BAB4 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		8179CAFA1DDE5F3C000C2164 /* Int+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Katana.swift"; sourceTree = "<group>"; };
 		81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
 		81911D9E1D7D916B00123C54 /* NodeTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeTest.swift; sourceTree = "<group>"; };
@@ -265,22 +281,6 @@
 		A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		A16A746D1DD3DD1200C9560D /* Actions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Actions.swift; sourceTree = "<group>"; };
 		A17211541D831D540084B9E0 /* LayoutsCache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
-		A17AF9971DC9F45C00F6076E /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		A17AF9991DC9F45C00F6076E /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
-		A17AF99A1DC9F45C00F6076E /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
-		A17AF99B1DC9F45C00F6076E /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
-		A17AF99C1DC9F45C00F6076E /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		A17AF99D1DC9F45C00F6076E /* KatanaElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
-		A17AF99E1DC9F45C00F6076E /* Label.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Label.swift; sourceTree = "<group>"; };
-		A17AF9A01DC9F45C00F6076E /* NativeTable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTable.swift; sourceTree = "<group>"; };
-		A17AF9A11DC9F45C00F6076E /* NativeTableWrapperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTableWrapperCell.swift; sourceTree = "<group>"; };
-		A17AF9A21DC9F45C00F6076E /* Table.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Table.swift; sourceTree = "<group>"; };
-		A17AF9A31DC9F45C00F6076E /* TableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableCell.swift; sourceTree = "<group>"; };
-		A17AF9A41DC9F45C00F6076E /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
-		A17AF9A61DC9F45C00F6076E /* NativeTouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTouchHandler.swift; sourceTree = "<group>"; };
-		A17AF9A71DC9F45C00F6076E /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
-		A17AF9A81DC9F45C00F6076E /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
-		A17AF9A91DC9F45C00F6076E /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A17AF9CA1DC9F5EF00F6076E /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		A17AF9CB1DC9F5EF00F6076E /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		A17EB5D11DD09B39009A5D8F /* ChildrenAnimations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChildrenAnimations.swift; sourceTree = "<group>"; };
@@ -379,15 +379,6 @@
 				654994C21DD4D4F20057D4BB /* CounterScreen.swift */,
 			);
 			name = UI;
-			sourceTree = "<group>";
-		};
-		6562656B1DD1DA28005E91DC /* Button */ = {
-			isa = PBXGroup;
-			children = (
-				A17AF9971DC9F45C00F6076E /* Button.swift */,
-				656265691DD1C175005E91DC /* NativeButton.swift */,
-			);
-			name = Button;
 			sourceTree = "<group>";
 		};
 		65A7222B1DDF0BBE00013E7A /* Renderer */ = {
@@ -524,6 +515,54 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		81590FBC1DE5C0D30032BAB4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				81590FD11DE5C0D30032BAB4 /* View.swift */,
+				81590FBD1DE5C0D30032BAB4 /* Button.swift */,
+				81590FC11DE5C0D30032BAB4 /* Image.swift */,
+				81590FC51DE5C0D30032BAB4 /* Label.swift */,
+				81590FC61DE5C0D30032BAB4 /* NativeButton.swift */,
+				81590FBE1DE5C0D30032BAB4 /* Common */,
+				81590FC71DE5C0D30032BAB4 /* Table */,
+				81590FCD1DE5C0D30032BAB4 /* TouchHandler */,
+				81590FC21DE5C0D30032BAB4 /* Info.plist */,
+				81590FC41DE5C0D30032BAB4 /* KatanaElements.h */,
+			);
+			path = iOS;
+			sourceTree = "<group>";
+		};
+		81590FBE1DE5C0D30032BAB4 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				81590FBF1DE5C0D30032BAB4 /* Buildable.swift */,
+				81590FC01DE5C0D30032BAB4 /* Highlightable.swift */,
+			);
+			path = Common;
+			sourceTree = "<group>";
+		};
+		81590FC71DE5C0D30032BAB4 /* Table */ = {
+			isa = PBXGroup;
+			children = (
+				81590FC81DE5C0D30032BAB4 /* NativeTable.swift */,
+				81590FC91DE5C0D30032BAB4 /* NativeTableWrapperCell.swift */,
+				81590FCA1DE5C0D30032BAB4 /* Table.swift */,
+				81590FCB1DE5C0D30032BAB4 /* TableCell.swift */,
+				81590FCC1DE5C0D30032BAB4 /* TableDelegate.swift */,
+			);
+			path = Table;
+			sourceTree = "<group>";
+		};
+		81590FCD1DE5C0D30032BAB4 /* TouchHandler */ = {
+			isa = PBXGroup;
+			children = (
+				81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */,
+				81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */,
+				81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */,
+			);
+			path = TouchHandler;
+			sourceTree = "<group>";
+		};
 		81911D9B1D7D916B00123C54 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -656,48 +695,9 @@
 		A17AF9961DC9F45C00F6076E /* KatanaElements */ = {
 			isa = PBXGroup;
 			children = (
-				A17AF9A91DC9F45C00F6076E /* View.swift */,
-				A17AF99B1DC9F45C00F6076E /* Image.swift */,
-				A17AF99E1DC9F45C00F6076E /* Label.swift */,
-				6562656B1DD1DA28005E91DC /* Button */,
-				A17AF99F1DC9F45C00F6076E /* Table */,
-				A17AF9A51DC9F45C00F6076E /* TouchHandler */,
-				A17AF9981DC9F45C00F6076E /* Common */,
-				A17AF99D1DC9F45C00F6076E /* KatanaElements.h */,
-				A17AF99C1DC9F45C00F6076E /* Info.plist */,
+				81590FBC1DE5C0D30032BAB4 /* iOS */,
 			);
 			path = KatanaElements;
-			sourceTree = "<group>";
-		};
-		A17AF9981DC9F45C00F6076E /* Common */ = {
-			isa = PBXGroup;
-			children = (
-				A17AF9991DC9F45C00F6076E /* Buildable.swift */,
-				A17AF99A1DC9F45C00F6076E /* Highlightable.swift */,
-			);
-			path = Common;
-			sourceTree = "<group>";
-		};
-		A17AF99F1DC9F45C00F6076E /* Table */ = {
-			isa = PBXGroup;
-			children = (
-				A17AF9A01DC9F45C00F6076E /* NativeTable.swift */,
-				A17AF9A11DC9F45C00F6076E /* NativeTableWrapperCell.swift */,
-				A17AF9A21DC9F45C00F6076E /* Table.swift */,
-				A17AF9A31DC9F45C00F6076E /* TableCell.swift */,
-				A17AF9A41DC9F45C00F6076E /* TableDelegate.swift */,
-			);
-			path = Table;
-			sourceTree = "<group>";
-		};
-		A17AF9A51DC9F45C00F6076E /* TouchHandler */ = {
-			isa = PBXGroup;
-			children = (
-				A17AF9A61DC9F45C00F6076E /* NativeTouchHandler.swift */,
-				A17AF9A71DC9F45C00F6076E /* TouchHandler.swift */,
-				A17AF9A81DC9F45C00F6076E /* TouchHandlerEvent.swift */,
-			);
-			path = TouchHandler;
 			sourceTree = "<group>";
 		};
 		A17AF9C91DC9F5EF00F6076E /* NodeDescriptions */ = {
@@ -725,7 +725,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17AF9BC1DC9F48E00F6076E /* KatanaElements.h in Headers */,
+				81590FD81DE5C0D30032BAB4 /* KatanaElements.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,21 +1004,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A17AF9BA1DC9F48E00F6076E /* Button.swift in Sources */,
-				A17AF9BB1DC9F48E00F6076E /* Image.swift in Sources */,
-				A17AF9C01DC9F4DD00F6076E /* View.swift in Sources */,
-				A17AF9C71DC9F4F200F6076E /* TableCell.swift in Sources */,
-				A17AF9BF1DC9F49500F6076E /* Highlightable.swift in Sources */,
-				A17AF9C51DC9F4F200F6076E /* NativeTableWrapperCell.swift in Sources */,
-				6562656A1DD1C175005E91DC /* NativeButton.swift in Sources */,
-				A17AF9BE1DC9F49500F6076E /* Buildable.swift in Sources */,
-				A17AF9C81DC9F4F200F6076E /* TableDelegate.swift in Sources */,
-				A17AF9C61DC9F4F200F6076E /* Table.swift in Sources */,
-				A17AF9C11DC9F4EC00F6076E /* NativeTouchHandler.swift in Sources */,
-				A17AF9C21DC9F4EC00F6076E /* TouchHandler.swift in Sources */,
-				A17AF9C41DC9F4F200F6076E /* NativeTable.swift in Sources */,
-				A17AF9BD1DC9F48E00F6076E /* Label.swift in Sources */,
-				A17AF9C31DC9F4EC00F6076E /* TouchHandlerEvent.swift in Sources */,
+				81590FDE1DE5C0D30032BAB4 /* TableCell.swift in Sources */,
+				81590FE11DE5C0D30032BAB4 /* TouchHandler.swift in Sources */,
+				81590FE31DE5C0D30032BAB4 /* View.swift in Sources */,
+				81590FD31DE5C0D30032BAB4 /* Buildable.swift in Sources */,
+				81590FD51DE5C0D30032BAB4 /* Image.swift in Sources */,
+				81590FD21DE5C0D30032BAB4 /* Button.swift in Sources */,
+				81590FDD1DE5C0D30032BAB4 /* Table.swift in Sources */,
+				81590FD91DE5C0D30032BAB4 /* Label.swift in Sources */,
+				81590FE21DE5C0D30032BAB4 /* TouchHandlerEvent.swift in Sources */,
+				81590FDA1DE5C0D30032BAB4 /* NativeButton.swift in Sources */,
+				81590FD41DE5C0D30032BAB4 /* Highlightable.swift in Sources */,
+				81590FDF1DE5C0D30032BAB4 /* TableDelegate.swift in Sources */,
+				81590FDB1DE5C0D30032BAB4 /* NativeTable.swift in Sources */,
+				81590FDC1DE5C0D30032BAB4 /* NativeTableWrapperCell.swift in Sources */,
+				81590FE01DE5C0D30032BAB4 /* NativeTouchHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1198,7 +1198,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = KatanaElements/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/KatanaElements/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -1221,7 +1221,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = KatanaElements/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/KatanaElements/iOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
