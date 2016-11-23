@@ -3,7 +3,7 @@ osx_image: xcode8
 env:
   global:
   - PROJECT=Katana.xcodeproj
-  - SCHEME=Katana
+  - SCHEME="Katana iOS"
   - SDK=iphonesimulator10.0
   - SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
   
