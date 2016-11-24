@@ -8,13 +8,16 @@
 
 import UIKit
 
+/// Type Erasure for `NodeDescriptionProps`
+public protocol AnyNodeDescriptionState {}
+
 /**
  Protocol that is used for structs that represent the state of a `Node`.
  
  This protocol requires instances to be equatable. Katana uses this requirement to
  avoid to update the UI if the state (and the props) are not changed.
 */
-public protocol NodeDescriptionState: Equatable {
+public protocol NodeDescriptionState: Equatable, AnyNodeDescriptionState {
   /**
    Default init for the state. It is used by Katana to create the initial state of a `Node`.
    You should initialise the state with meaningful default values.

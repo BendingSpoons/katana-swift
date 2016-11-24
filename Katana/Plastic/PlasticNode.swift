@@ -113,11 +113,11 @@ public extension AnyNode {
   */
   public var plasticMultipler: CGFloat {
     
-    guard let description = self.anyDescription as? PlasticReferenceSizeable else {
+    guard let description = self.anyDescription as? AnyPlasticReferenceSizeable else {
       return self.parent?.plasticMultipler ?? 0.0
     }
     
-    let referenceSize = type(of: description).referenceSize
+    let referenceSize = type(of: description).anyReferenceSize(props:self.anyDescription.anyProps, state:self.anyState)
     let currentSize = self.anyDescription.anyProps.frame
     
     let widthRatio = currentSize.width / referenceSize.width

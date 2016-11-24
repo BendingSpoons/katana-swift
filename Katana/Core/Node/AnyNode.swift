@@ -17,6 +17,9 @@ public protocol AnyNode: class {
   /// Type erasure for the `NodeDescription` that the node holds
   var anyDescription: AnyNodeDescription { get }
   
+  /// Type erasure for the `State` that the node holds
+  var anyState: AnyNodeDescriptionState { get }
+
   /// Children nodes of the node
   var children: [AnyNode]! { get }
   
