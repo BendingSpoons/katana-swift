@@ -130,7 +130,7 @@ fileprivate struct AppProps: NodeDescriptionProps {
 }
 
 fileprivate struct App: NodeDescription {
-  public typealias NativeView = UIView
+  public typealias NativeView = TestView
   
   var props: AppProps
   var children: [AnyNodeDescription] = []
@@ -212,8 +212,8 @@ fileprivate class WeakNode {
 }
 
 fileprivate class WeakView {
-  weak var value: UIView?
-  init(value: UIView) {
+  weak var value: TestView?
+  init(value: TestView) {
     self.value = value
   }
 }
@@ -222,6 +222,6 @@ fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
   return (node.children.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children
 }
 
-fileprivate func collectView(view: UIView) -> [UIView] {
+fileprivate func collectView(view: TestView) -> [TestView] {
   return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
 }

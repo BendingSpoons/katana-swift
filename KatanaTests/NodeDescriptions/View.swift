@@ -17,7 +17,7 @@ struct ViewProps: NodeDescriptionProps, Childrenable {
 
   var children: [AnyNodeDescription] = []
   
-  var backgroundColor = UIColor.white
+  var backgroundColor = TestColor.white
   
   init() {}
   
@@ -54,7 +54,7 @@ struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public static func applyPropsToNativeView(props: ViewProps,
                                             state: EmptyState,
-                                            view: UIView,
+                                            view: TestView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     

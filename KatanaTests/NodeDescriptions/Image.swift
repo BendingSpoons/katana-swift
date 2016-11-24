@@ -6,7 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
 import Katana
 
 public struct ImageProps: NodeDescriptionProps {
@@ -14,8 +13,8 @@ public struct ImageProps: NodeDescriptionProps {
   public var key: String?
   public var alpha: CGFloat = 1.0
   
-  public var backgroundColor = UIColor.white
-  public var image: UIImage? = nil
+  public var backgroundColor = TestColor.white
+  public var image: TestImage? = nil
   
   public init() {}
   
@@ -31,13 +30,13 @@ public struct ImageProps: NodeDescriptionProps {
 
 
 public struct Image: NodeDescription {
-  public typealias NativeView = UIImageView
+  public typealias NativeView = TestImageView
   
   public var props: ImageProps
   
   public static func applyPropsToNativeView(props: ImageProps,
                                             state: EmptyState,
-                                            view: UIImageView,
+                                            view: TestImageView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     

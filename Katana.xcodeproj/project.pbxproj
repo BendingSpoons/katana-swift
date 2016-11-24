@@ -66,6 +66,7 @@
 		65BF2EA31DE363A100441784 /* NSView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA21DE363A100441784 /* NSView+Utils.swift */; };
 		65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* DefaultView.swift */; };
 		65BF2EA91DE363B400441784 /* Katana_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2EA81DE363B400441784 /* Katana_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65BF2EDB1DE745CF00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EDA1DE745CF00441784 /* Typealiases.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -213,6 +214,7 @@
 		65BF2EA41DE363A700441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = Katana/MacOS/DefaultView.swift; sourceTree = SOURCE_ROOT; };
 		65BF2EA61DE363AE00441784 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Katana/MacOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		65BF2EA81DE363B400441784 /* Katana_macOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Katana_macOS.h; path = Katana/MacOS/Katana_macOS.h; sourceTree = SOURCE_ROOT; };
+		65BF2EDA1DE745CF00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = IOS/Typealiases.swift; sourceTree = "<group>"; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
@@ -414,6 +416,14 @@
 			name = MacOS;
 			path = Katana_macOS;
 			sourceTree = SOURCE_ROOT;
+		};
+		65BF2ED91DE7456800441784 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2EDA1DE745CF00441784 /* Typealiases.swift */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
 		};
 		8133151B1D7B726000FBE210 /* Core */ = {
 			isa = PBXGroup;
@@ -680,6 +690,7 @@
 				81911DA01D7D916B00123C54 /* Extensions */,
 				81911DA31D7D916B00123C54 /* Plastic */,
 				81911DAB1D7D916B00123C54 /* Storage */,
+				65BF2ED91DE7456800441784 /* iOS */,
 				81EA56DA1D5F3A6E00B6290E /* Info.plist */,
 			);
 			path = KatanaTests;
@@ -1141,6 +1152,7 @@
 				81911DB71D7D916B00123C54 /* NodeTest.swift in Sources */,
 				A1576C2F1DC7305F008281C0 /* DependencyContainer.swift in Sources */,
 				A14EB8C01DC3A62B00DE0BD9 /* AsyncActionTests.swift in Sources */,
+				65BF2EDB1DE745CF00441784 /* Typealiases.swift in Sources */,
 				A1C9C1C61DD337710067F8E0 /* ChildrenAnimationsTests.swift in Sources */,
 				A1576C2D1DC72E03008281C0 /* SideEffectTests.swift in Sources */,
 				A16A746E1DD3DD1200C9560D /* Actions.swift in Sources */,
