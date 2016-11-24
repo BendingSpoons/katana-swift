@@ -8,6 +8,11 @@
 
 import UIKit
 
+/// Type Erasure for `PlasticReferenceSizeable`
+public protocol AnyPlasticReferenceSizeable {
+  static func anyReferenceSize(props: Any, state: Any) -> CGSize
+}
+
 /**
  Protocol that `NodeDescription` implementations can adopt to provide a reference size.
  
@@ -22,8 +27,16 @@ import UIKit
  
  - the Plastic multiplier is the minimum of the two
 */
-public protocol PlasticReferenceSizeable {
-  
+public protocol PlasticReferenceSizeable: AnyPlasticReferenceSizeable, PlasticNodeDescription {
   /// the reference size of the `NodeDescription`
-  static var referenceSize: CGSize {get}
+  static func referenceSize(props: PropsType, state: StateType) -> CGSize
+}
+
+public extension PlasticReferenceSizeable {
+  static func anyReferenceSize(props: Any, state: Any) -> CGSize {
+    if let p = props as? PropsType, let s = state as? StateType {
+      return referenceSize(props: p, state: s)
+    }
+    return .zero
+  }
 }
