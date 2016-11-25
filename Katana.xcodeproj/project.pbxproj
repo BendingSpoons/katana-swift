@@ -1135,11 +1135,11 @@
 			projectRoot = "";
 			targets = (
 				81EA56C61D5F3A6000B6290E /* Katana iOS */,
-				81EA56D51D5F3A6E00B6290E /* Katana iOS Tests */,
 				65BF2E4D1DE2F37B00441784 /* Katana macOS */,
-				65BF2EE01DE7487C00441784 /* Katana macOS Tests */,
 				6513094E1DC3529F00007B6B /* KatanaElements iOS */,
 				65BF2F0B1DE8392800441784 /* KatanaElements macOS */,
+				81EA56D51D5F3A6E00B6290E /* Katana iOS Tests */,
+				65BF2EE01DE7487C00441784 /* Katana macOS Tests */,
 				6549948D1DD31BA70057D4BB /* Demo iOS */,
 				65BF2F301DE83E6600441784 /* Demo macOS */,
 			);
