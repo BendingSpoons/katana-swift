@@ -280,7 +280,7 @@
 		65BF2EEC1DE748BE00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = MacOS/Typealiases.swift; sourceTree = "<group>"; };
 		65BF2F051DE837CF00441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = View.swift; path = MacOS/View.swift; sourceTree = "<group>"; };
 		65BF2F0C1DE8392800441784 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65BF2F0E1DE8392800441784 /* KatanaElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KatanaElements.h; path = "KatanaElements macOS/KatanaElements.h"; sourceTree = SOURCE_ROOT; };
+		65BF2F0E1DE8392800441784 /* KatanaElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KatanaElements.h; path = KatanaElements/MacOS/KatanaElements.h; sourceTree = SOURCE_ROOT; };
 		65BF2F161DE83B6100441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = KatanaElements/Common/Buildable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F171DE83B6100441784 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = KatanaElements/Common/Highlightable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F1C1DE83CA400441784 /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = IOS/Actions/DecrementCounter.swift; sourceTree = "<group>"; };
@@ -305,7 +305,7 @@
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
 		813315241D7B726000FBE210 /* NodeDescriptionWithChildren.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionWithChildren.swift; sourceTree = "<group>"; };
 		813315271D7B726000FBE210 /* ConnectedNodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConnectedNodeDescription.swift; sourceTree = "<group>"; };
-		813315281D7B726000FBE210 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Renderer.swift; path = StoreConnection/Renderer.swift; sourceTree = "<group>"; };
+		813315281D7B726000FBE210 /* Renderer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		8133153D1D7B726000FBE210 /* Anchor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Anchor.swift; sourceTree = "<group>"; };
 		8133153E1D7B726000FBE210 /* Array+Plastic.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Array+Plastic.swift"; sourceTree = "<group>"; };
 		8133153F1D7B726000FBE210 /* EdgeInsets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EdgeInsets.swift; sourceTree = "<group>"; };
@@ -496,7 +496,7 @@
 			children = (
 				813315281D7B726000FBE210 /* Renderer.swift */,
 			);
-			name = Renderer;
+			path = Renderer;
 			sourceTree = "<group>";
 		};
 		65A7222E1DDF3C5D00013E7A /* IOS */ = {
@@ -509,7 +509,7 @@
 				81FB7A731DE4DB5A00953EA0 /* Katana.h */,
 			);
 			name = IOS;
-			path = KatanaElements;
+			path = Katana/iOS;
 			sourceTree = SOURCE_ROOT;
 		};
 		65BF2E4F1DE2F37B00441784 /* MacOS */ = {
@@ -522,7 +522,7 @@
 				65BF2EA81DE363B400441784 /* Katana_macOS.h */,
 			);
 			name = MacOS;
-			path = Katana_macOS;
+			path = Katana/MacOS;
 			sourceTree = SOURCE_ROOT;
 		};
 		65BF2ED91DE7456800441784 /* iOS */ = {
