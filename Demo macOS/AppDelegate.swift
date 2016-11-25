@@ -22,7 +22,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     // Insert code here to initialize your application
     let view = NSView()
     window.contentView = view
-    //window.delegate = self
+    window.delegate = self
     let store = Store<AppState>()
     let screen = MacScreen(props: MacScreen.Props.build({
       $0.frame = view.bounds
@@ -37,10 +37,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 }
 
-/*extension AppDelegate: NSWindowDelegate {
+extension AppDelegate: NSWindowDelegate {
   public func windowDidResize(_ notification: Notification) {
-    if let renderer = renderer, let view = window.contentView {
-      renderer.render(in: view)
-    }
+    let props = MacScreen.Props.build({
+      $0.frame = window.contentView?.bounds ?? .zero
+    })
+    let description = MacScreen(props: props)
+    renderer?.rootNode.update(with: description)
+    /*renderer?.rootNode.update(with: MacScreen.Props.build({
+      $0.frame = window.contentView?.bounds ?? .zero
+    }))*/
   }
-}*/
+}
