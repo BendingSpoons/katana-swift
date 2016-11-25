@@ -38,16 +38,6 @@
                ReferencedContainer = "container:Katana.xcodeproj">
             </BuildableReference>
          </TestableReference>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "65BF2EE01DE7487C00441784"
-               BuildableName = "Katana macOS Tests.xctest"
-               BlueprintName = "Katana macOS Tests"
-               ReferencedContainer = "container:Katana.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference

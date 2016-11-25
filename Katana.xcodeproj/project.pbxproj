@@ -60,7 +60,6 @@
 		65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* DefaultView.swift */; };
 		65BF2EA91DE363B400441784 /* Katana_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2EA81DE363B400441784 /* Katana_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65BF2EDB1DE745CF00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EDA1DE745CF00441784 /* Typealiases.swift */; };
-		65BF2EED1DE748BE00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EEC1DE748BE00441784 /* Typealiases.swift */; };
 		65BF2EEE1DE8301E00441784 /* ChildrenAnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C51DD337710067F8E0 /* ChildrenAnimationsTests.swift */; };
 		65BF2EEF1DE8301E00441784 /* AnimationUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C71DD339D00067F8E0 /* AnimationUtilsTests.swift */; };
 		65BF2EF01DE8301E00441784 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF9CA1DC9F5EF00F6076E /* Image.swift */; };
@@ -108,6 +107,7 @@
 		8111A47F1DE8C90100872AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4711DE8C8CF00872AD6 /* Assets.xcassets */; };
 		8111A4801DE8C90400872AD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4721DE8C8CF00872AD6 /* MainMenu.xib */; };
 		8111A4811DE8C90900872AD6 /* MacScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4761DE8C8CF00872AD6 /* MacScreen.swift */; };
+		8111A4821DE8CB2F00872AD6 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EEC1DE748BE00441784 /* Typealiases.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -1380,6 +1380,7 @@
 				65BF2EEE1DE8301E00441784 /* ChildrenAnimationsTests.swift in Sources */,
 				65BF2EEF1DE8301E00441784 /* AnimationUtilsTests.swift in Sources */,
 				65BF2EF01DE8301E00441784 /* Image.swift in Sources */,
+				8111A4821DE8CB2F00872AD6 /* Typealiases.swift in Sources */,
 				65BF2EF11DE8301E00441784 /* View.swift in Sources */,
 				65BF2EF21DE8301E00441784 /* NodeDescriptionTest.swift in Sources */,
 				65BF2EF31DE8301E00441784 /* NodeTest.swift in Sources */,
@@ -1399,7 +1400,6 @@
 				65BF2F011DE8301F00441784 /* Actions.swift in Sources */,
 				65BF2F021DE8301F00441784 /* States.swift in Sources */,
 				65BF2F031DE8301F00441784 /* DependencyContainer.swift in Sources */,
-				65BF2EED1DE748BE00441784 /* Typealiases.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1651,7 +1651,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Katana/MacOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Katana/macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
@@ -1674,7 +1674,7 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "$(SRCROOT)/Katana/MacOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Katana/macOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
@@ -1692,7 +1692,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Katana macOS Tests/Info.plist";
+				INFOPLIST_FILE = KatanaTests/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Katana-macOS-Tests";
@@ -1706,7 +1706,7 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = "Katana macOS Tests/Info.plist";
+				INFOPLIST_FILE = KatanaTests/macOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Katana-macOS-Tests";
@@ -1967,7 +1967,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = KatanaTests/Info.plist;
+				INFOPLIST_FILE = KatanaTests/iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1983,7 +1983,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = KatanaTests/Info.plist;
+				INFOPLIST_FILE = KatanaTests/iOS/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
