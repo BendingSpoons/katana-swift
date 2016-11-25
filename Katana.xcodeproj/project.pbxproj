@@ -91,6 +91,12 @@
 		65BF2F011DE8301F00441784 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A746D1DD3DD1200C9560D /* Actions.swift */; };
 		65BF2F021DE8301F00441784 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
 		65BF2F031DE8301F00441784 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
+		65BF2F101DE8392800441784 /* KatanaElements macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		65BF2F141DE8396C00441784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F051DE837CF00441784 /* View.swift */; };
+		65BF2F181DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
+		65BF2F191DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
+		65BF2F1A1DE83B6100441784 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F171DE83B6100441784 /* Highlightable.swift */; };
+		65BF2F1B1DE83B6100441784 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F171DE83B6100441784 /* Highlightable.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -112,8 +118,6 @@
 		8133157F1D7B726000FBE210 /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315491D7B726000FBE210 /* ViewsContainer.swift */; };
 		8133158E1D7B728900FBE210 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8133158B1D7B728900FBE210 /* Collections+Katana.swift */; };
 		81590FD21DE5C0D30032BAB4 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FBD1DE5C0D30032BAB4 /* Button.swift */; };
-		81590FD31DE5C0D30032BAB4 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FBF1DE5C0D30032BAB4 /* Buildable.swift */; };
-		81590FD41DE5C0D30032BAB4 /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC01DE5C0D30032BAB4 /* Highlightable.swift */; };
 		81590FD51DE5C0D30032BAB4 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC11DE5C0D30032BAB4 /* Image.swift */; };
 		81590FD81DE5C0D30032BAB4 /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 81590FC41DE5C0D30032BAB4 /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81590FD91DE5C0D30032BAB4 /* Label.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FC51DE5C0D30032BAB4 /* Label.swift */; };
@@ -249,6 +253,12 @@
 		65BF2EE11DE7487C00441784 /* Katana macOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Katana macOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2EE51DE7487C00441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Katana macOS Tests/Info.plist"; sourceTree = "<group>"; };
 		65BF2EEC1DE748BE00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = MacOS/Typealiases.swift; sourceTree = "<group>"; };
+		65BF2F051DE837CF00441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = View.swift; path = MacOS/View.swift; sourceTree = "<group>"; };
+		65BF2F0C1DE8392800441784 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KatanaElements macOS.h"; sourceTree = "<group>"; };
+		65BF2F0F1DE8392800441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BF2F161DE83B6100441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = KatanaElements/Common/Buildable.swift; sourceTree = SOURCE_ROOT; };
+		65BF2F171DE83B6100441784 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = KatanaElements/Common/Highlightable.swift; sourceTree = SOURCE_ROOT; };
 		65CAC5AA1DD622CC00395FE1 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
@@ -271,8 +281,6 @@
 		813315491D7B726000FBE210 /* ViewsContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewsContainer.swift; sourceTree = "<group>"; };
 		8133158B1D7B728900FBE210 /* Collections+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Collections+Katana.swift"; sourceTree = "<group>"; };
 		81590FBD1DE5C0D30032BAB4 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
-		81590FBF1DE5C0D30032BAB4 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Buildable.swift; sourceTree = "<group>"; };
-		81590FC01DE5C0D30032BAB4 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Highlightable.swift; sourceTree = "<group>"; };
 		81590FC11DE5C0D30032BAB4 /* Image.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		81590FC21DE5C0D30032BAB4 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		81590FC41DE5C0D30032BAB4 /* KatanaElements.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KatanaElements.h; sourceTree = "<group>"; };
@@ -365,6 +373,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				65BF2EE61DE7487C00441784 /* Katana.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F081DE8392800441784 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -477,6 +492,23 @@
 			name = macOS;
 			sourceTree = "<group>";
 		};
+		65BF2F041DE837A000441784 /* macOS */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2F051DE837CF00441784 /* View.swift */,
+			);
+			name = macOS;
+			sourceTree = "<group>";
+		};
+		65BF2F0D1DE8392800441784 /* KatanaElements macOS */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */,
+				65BF2F0F1DE8392800441784 /* Info.plist */,
+			);
+			path = "KatanaElements macOS";
+			sourceTree = "<group>";
+		};
 		8133151B1D7B726000FBE210 /* Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -585,7 +617,6 @@
 				81590FC11DE5C0D30032BAB4 /* Image.swift */,
 				81590FC51DE5C0D30032BAB4 /* Label.swift */,
 				81590FC61DE5C0D30032BAB4 /* NativeButton.swift */,
-				81590FBE1DE5C0D30032BAB4 /* Common */,
 				81590FC71DE5C0D30032BAB4 /* Table */,
 				81590FCD1DE5C0D30032BAB4 /* TouchHandler */,
 				81590FC21DE5C0D30032BAB4 /* Info.plist */,
@@ -597,10 +628,11 @@
 		81590FBE1DE5C0D30032BAB4 /* Common */ = {
 			isa = PBXGroup;
 			children = (
-				81590FBF1DE5C0D30032BAB4 /* Buildable.swift */,
-				81590FC01DE5C0D30032BAB4 /* Highlightable.swift */,
+				65BF2F161DE83B6100441784 /* Buildable.swift */,
+				65BF2F171DE83B6100441784 /* Highlightable.swift */,
 			);
-			path = Common;
+			name = Common;
+			path = iOS/Common;
 			sourceTree = "<group>";
 		};
 		81590FC71DE5C0D30032BAB4 /* Table */ = {
@@ -703,6 +735,7 @@
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo */,
+				65BF2F0D1DE8392800441784 /* KatanaElements macOS */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
@@ -717,6 +750,7 @@
 				6549948E1DD31BA70057D4BB /* Demo iOS.app */,
 				65BF2E4E1DE2F37B00441784 /* Katana.framework */,
 				65BF2EE11DE7487C00441784 /* Katana macOS Tests.xctest */,
+				65BF2F0C1DE8392800441784 /* KatanaElements.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -759,7 +793,9 @@
 		A17AF9961DC9F45C00F6076E /* KatanaElements */ = {
 			isa = PBXGroup;
 			children = (
+				81590FBE1DE5C0D30032BAB4 /* Common */,
 				81590FBC1DE5C0D30032BAB4 /* iOS */,
+				65BF2F041DE837A000441784 /* macOS */,
 			);
 			path = KatanaElements;
 			sourceTree = "<group>";
@@ -798,6 +834,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				65BF2EA91DE363B400441784 /* Katana_macOS.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F091DE8392800441784 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2F101DE8392800441784 /* KatanaElements macOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -890,6 +934,24 @@
 			productReference = 65BF2EE11DE7487C00441784 /* Katana macOS Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		65BF2F0B1DE8392800441784 /* KatanaElements macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BF2F111DE8392800441784 /* Build configuration list for PBXNativeTarget "KatanaElements macOS" */;
+			buildPhases = (
+				65BF2F071DE8392800441784 /* Sources */,
+				65BF2F081DE8392800441784 /* Frameworks */,
+				65BF2F091DE8392800441784 /* Headers */,
+				65BF2F0A1DE8392800441784 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "KatanaElements macOS";
+			productName = "KatanaElements macOS";
+			productReference = 65BF2F0C1DE8392800441784 /* KatanaElements.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 		81EA56C61D5F3A6000B6290E /* Katana iOS */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 81EA56CF1D5F3A6000B6290E /* Build configuration list for PBXNativeTarget "Katana iOS" */;
@@ -953,6 +1015,10 @@
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
+					65BF2F0B1DE8392800441784 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
 					81EA56C61D5F3A6000B6290E = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
@@ -983,6 +1049,7 @@
 				65BF2EE01DE7487C00441784 /* Katana macOS Tests */,
 				6513094E1DC3529F00007B6B /* KatanaElements iOS */,
 				6549948D1DD31BA70057D4BB /* Demo iOS */,
+				65BF2F0B1DE8392800441784 /* KatanaElements macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1012,6 +1079,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		65BF2EDF1DE7487C00441784 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F0A1DE8392800441784 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1098,17 +1172,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2F181DE83B6100441784 /* Buildable.swift in Sources */,
 				81590FDE1DE5C0D30032BAB4 /* TableCell.swift in Sources */,
+				65BF2F1A1DE83B6100441784 /* Highlightable.swift in Sources */,
 				81590FE11DE5C0D30032BAB4 /* TouchHandler.swift in Sources */,
 				81590FE31DE5C0D30032BAB4 /* View.swift in Sources */,
-				81590FD31DE5C0D30032BAB4 /* Buildable.swift in Sources */,
 				81590FD51DE5C0D30032BAB4 /* Image.swift in Sources */,
 				81590FD21DE5C0D30032BAB4 /* Button.swift in Sources */,
 				81590FDD1DE5C0D30032BAB4 /* Table.swift in Sources */,
 				81590FD91DE5C0D30032BAB4 /* Label.swift in Sources */,
 				81590FE21DE5C0D30032BAB4 /* TouchHandlerEvent.swift in Sources */,
 				81590FDA1DE5C0D30032BAB4 /* NativeButton.swift in Sources */,
-				81590FD41DE5C0D30032BAB4 /* Highlightable.swift in Sources */,
 				81590FDF1DE5C0D30032BAB4 /* TableDelegate.swift in Sources */,
 				81590FDB1DE5C0D30032BAB4 /* NativeTable.swift in Sources */,
 				81590FDC1DE5C0D30032BAB4 /* NativeTableWrapperCell.swift in Sources */,
@@ -1205,6 +1279,16 @@
 				65BF2F021DE8301F00441784 /* States.swift in Sources */,
 				65BF2F031DE8301F00441784 /* DependencyContainer.swift in Sources */,
 				65BF2EED1DE748BE00441784 /* Typealiases.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F071DE8392800441784 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2F191DE83B6100441784 /* Buildable.swift in Sources */,
+				65BF2F141DE8396C00441784 /* View.swift in Sources */,
+				65BF2F1B1DE83B6100441784 /* Highlightable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1473,6 +1557,52 @@
 			};
 			name = Release;
 		};
+		65BF2F121DE8392800441784 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements";
+				PRODUCT_NAME = KatanaElements;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		65BF2F131DE8392800441784 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements";
+				PRODUCT_NAME = KatanaElements;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
 		81EA56CD1D5F3A6000B6290E /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1704,6 +1834,14 @@
 			buildConfigurations = (
 				65BF2EEA1DE7487C00441784 /* Debug */,
 				65BF2EEB1DE7487C00441784 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		65BF2F111DE8392800441784 /* Build configuration list for PBXNativeTarget "KatanaElements macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BF2F121DE8392800441784 /* Debug */,
+				65BF2F131DE8392800441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
