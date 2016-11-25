@@ -16,7 +16,7 @@ class PlasticNodeTests: XCTestCase {
   
   func testLayoutInvoked() {
     let renderer = Renderer(rootDescription: TestNode(props: EmptyProps()), store: nil)
-    renderer.render(in: UIView())
+    renderer.render(in: TestView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
@@ -51,7 +51,7 @@ class PlasticNodeTests: XCTestCase {
   func testViewDeallocationWithPlastic() {
     let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
     
-    let rootVew = UIView()
+    let rootVew = TestView()
     renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
@@ -80,7 +80,7 @@ private enum TestNodeKeys {
 }
 
 private struct TestNode: NodeDescription, PlasticNodeDescription {
-  typealias NativeView = UIView
+  typealias NativeView = TestView
   typealias Keys = TestNodeKeys
   
   var props: EmptyProps

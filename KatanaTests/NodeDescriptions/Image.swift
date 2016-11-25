@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Katana
+import Foundation
 
 public struct ImageProps: NodeDescriptionProps {
   public var frame = CGRect.zero

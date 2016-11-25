@@ -31,7 +31,7 @@ class NodeTest: XCTestCase {
     let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
     let node = renderer.rootNode!
     
-    let rootVew = UIView()
+    let rootVew = TestView()
     renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
@@ -137,8 +137,8 @@ fileprivate class WeakNode {
 }
 
 fileprivate class WeakView {
-  weak var value: UIView?
-  init(value: UIView) {
+  weak var value: TestView?
+  init(value: TestView) {
     self.value = value
   }
 }
