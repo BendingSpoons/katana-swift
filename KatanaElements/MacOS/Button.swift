@@ -1,5 +1,5 @@
 //
-//  View.swift
+//  Button.swift
 //  Katana
 //
 //  Created by Andrea De Angelis on 25/11/2016.
@@ -9,7 +9,7 @@
 import AppKit
 import Katana
 
-public extension View {
+public extension Button {
   public struct Props: NodeDescriptionProps, Childrenable, Buildable {
     public var frame = CGRect.zero
     public var key: String?
@@ -42,12 +42,12 @@ public extension View {
   }
 }
 
-public struct View: NodeDescription, NodeDescriptionWithChildren {
+public struct Button: NodeDescription, NodeDescriptionWithChildren {
   public var props: Props
   
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
-                                            view: NSView,
+                                            view: NSButton,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true

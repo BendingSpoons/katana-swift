@@ -84,6 +84,7 @@
 		65BF2F011DE8301F00441784 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A746D1DD3DD1200C9560D /* Actions.swift */; };
 		65BF2F021DE8301F00441784 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
 		65BF2F031DE8301F00441784 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
+		65BF2F101DE8392800441784 /* KatanaElements.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2F0E1DE8392800441784 /* KatanaElements.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65BF2F141DE8396C00441784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F051DE837CF00441784 /* View.swift */; };
 		65BF2F181DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
 		65BF2F191DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
@@ -97,6 +98,16 @@
 		65BF2F271DE83D4400441784 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F261DE83D4400441784 /* Assets.xcassets */; };
 		65BF2F291DE83D5900441784 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F281DE83D5900441784 /* LaunchScreen.storyboard */; };
 		65BF2F2B1DE83D7100441784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F2A1DE83D7100441784 /* Info.plist */; };
+		65BF2F341DE83E6600441784 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F331DE83E6600441784 /* AppDelegate.swift */; };
+		65BF2F361DE83E6600441784 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F351DE83E6600441784 /* Assets.xcassets */; };
+		65BF2F391DE83E6600441784 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F371DE83E6600441784 /* MainMenu.xib */; };
+		65BF2F401DE83F1E00441784 /* MacScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F3F1DE83F1E00441784 /* MacScreen.swift */; };
+		65BF2F451DE842D000441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
+		65BF2F461DE842D700441784 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2F0C1DE8392800441784 /* KatanaElements.framework */; };
+		65BF2F4B1DE84FC800441784 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4A1DE84FC800441784 /* Button.swift */; };
+		65BF2F4F1DE8511700441784 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */; };
+		65BF2F501DE8511700441784 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */; };
+		65BF2F521DE864E400441784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F511DE864E400441784 /* Info.plist */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -129,7 +140,6 @@
 		81590FDF1DE5C0D30032BAB4 /* TableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCC1DE5C0D30032BAB4 /* TableDelegate.swift */; };
 		81590FE01DE5C0D30032BAB4 /* NativeTouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */; };
 		81590FE11DE5C0D30032BAB4 /* TouchHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */; };
-		81590FE21DE5C0D30032BAB4 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */; };
 		81590FE31DE5C0D30032BAB4 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81590FD11DE5C0D30032BAB4 /* View.swift */; };
 		8179CAFB1DDE5F3C000C2164 /* Int+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8179CAFA1DDE5F3C000C2164 /* Int+Katana.swift */; };
 		81911DB61D7D916B00123C54 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */; };
@@ -145,7 +155,6 @@
 		81911DC21D7D916B00123C54 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DAE1D7D916B00123C54 /* MiddlewareTests.swift */; };
 		81911DC41D7D916B00123C54 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB01D7D916B00123C54 /* StoreTests.swift */; };
 		81911DC71D7D916B00123C54 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
-		81B59A521DE861550010B124 /* KatanaElements macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 81B59A501DE861550010B124 /* KatanaElements macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81FB7A751DE4DB5A00953EA0 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FB7A731DE4DB5A00953EA0 /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
@@ -206,7 +215,21 @@
 			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
 			remoteInfo = "Katana macOS";
 		};
-		81B59A531DE861C70010B124 /* PBXContainerItemProxy */ = {
+		65BF2F411DE8417D00441784 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
+			remoteInfo = "Katana macOS";
+		};
+		65BF2F431DE8418300441784 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65BF2F0B1DE8392800441784;
+			remoteInfo = "KatanaElements macOS";
+		};
+		65BF2F471DE8442200441784 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
 			proxyType = 1;
@@ -256,6 +279,7 @@
 		65BF2EEC1DE748BE00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = MacOS/Typealiases.swift; sourceTree = "<group>"; };
 		65BF2F051DE837CF00441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = View.swift; path = MacOS/View.swift; sourceTree = "<group>"; };
 		65BF2F0C1DE8392800441784 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2F0E1DE8392800441784 /* KatanaElements.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = KatanaElements.h; path = "KatanaElements macOS/KatanaElements.h"; sourceTree = SOURCE_ROOT; };
 		65BF2F161DE83B6100441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = KatanaElements/Common/Buildable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F171DE83B6100441784 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = KatanaElements/Common/Highlightable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F1C1DE83CA400441784 /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = IOS/Actions/DecrementCounter.swift; sourceTree = "<group>"; };
@@ -266,6 +290,15 @@
 		65BF2F261DE83D4400441784 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = IOS/Assets.xcassets; sourceTree = "<group>"; };
 		65BF2F281DE83D5900441784 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = IOS/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65BF2F2A1DE83D7100441784 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = IOS/Info.plist; sourceTree = "<group>"; };
+		65BF2F311DE83E6600441784 /* Demo macOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo macOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		65BF2F331DE83E6600441784 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		65BF2F351DE83E6600441784 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		65BF2F381DE83E6600441784 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		65BF2F3A1DE83E6600441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BF2F3F1DE83F1E00441784 /* MacScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MacScreen.swift; path = UI/MacScreen.swift; sourceTree = "<group>"; };
+		65BF2F4A1DE84FC800441784 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Button.swift; path = MacOS/Button.swift; sourceTree = "<group>"; };
+		65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandlerEvent.swift; path = KatanaElements/Common/TouchHandlerEvent.swift; sourceTree = SOURCE_ROOT; };
+		65BF2F511DE864E400441784 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MacOS/Info.plist; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
@@ -299,7 +332,6 @@
 		81590FCC1DE5C0D30032BAB4 /* TableDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDelegate.swift; sourceTree = "<group>"; };
 		81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeTouchHandler.swift; sourceTree = "<group>"; };
 		81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandler.swift; sourceTree = "<group>"; };
-		81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TouchHandlerEvent.swift; sourceTree = "<group>"; };
 		81590FD11DE5C0D30032BAB4 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		8179CAFA1DDE5F3C000C2164 /* Int+Katana.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Int+Katana.swift"; sourceTree = "<group>"; };
 		81911D9D1D7D916B00123C54 /* NodeDescriptionTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionTest.swift; sourceTree = "<group>"; };
@@ -315,8 +347,6 @@
 		81911DAE1D7D916B00123C54 /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		81911DB01D7D916B00123C54 /* StoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		81911DB41D7D916B00123C54 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
-		81B59A4F1DE861550010B124 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MacOS/Info.plist; sourceTree = "<group>"; };
-		81B59A501DE861550010B124 /* KatanaElements macOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KatanaElements macOS.h"; path = "MacOS/KatanaElements macOS.h"; sourceTree = "<group>"; };
 		81C3A4971D8430AA0079AD32 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56D61D5F3A6E00B6290E /* Katana iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Katana iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -388,6 +418,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F2E1DE83E6600441784 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2F461DE842D700441784 /* KatanaElements.framework in Frameworks */,
+				65BF2F451DE842D000441784 /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -505,10 +544,38 @@
 			isa = PBXGroup;
 			children = (
 				65BF2F051DE837CF00441784 /* View.swift */,
-				81B59A4F1DE861550010B124 /* Info.plist */,
-				81B59A501DE861550010B124 /* KatanaElements macOS.h */,
+				65BF2F4A1DE84FC800441784 /* Button.swift */,
+				65BF2F0E1DE8392800441784 /* KatanaElements.h */,
+				65BF2F511DE864E400441784 /* Info.plist */,
 			);
 			name = macOS;
+			sourceTree = "<group>";
+		};
+		65BF2F0D1DE8392800441784 /* KatanaElements macOS */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "KatanaElements macOS";
+			sourceTree = "<group>";
+		};
+		65BF2F321DE83E6600441784 /* Demo macOS */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2F3E1DE83F0400441784 /* UI */,
+				65BF2F331DE83E6600441784 /* AppDelegate.swift */,
+				65BF2F351DE83E6600441784 /* Assets.xcassets */,
+				65BF2F371DE83E6600441784 /* MainMenu.xib */,
+				65BF2F3A1DE83E6600441784 /* Info.plist */,
+			);
+			path = "Demo macOS";
+			sourceTree = "<group>";
+		};
+		65BF2F3E1DE83F0400441784 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				65BF2F3F1DE83F1E00441784 /* MacScreen.swift */,
+			);
+			name = UI;
 			sourceTree = "<group>";
 		};
 		8133151B1D7B726000FBE210 /* Core */ = {
@@ -616,9 +683,9 @@
 			children = (
 				81590FD11DE5C0D30032BAB4 /* View.swift */,
 				81590FBD1DE5C0D30032BAB4 /* Button.swift */,
+				81590FC61DE5C0D30032BAB4 /* NativeButton.swift */,
 				81590FC11DE5C0D30032BAB4 /* Image.swift */,
 				81590FC51DE5C0D30032BAB4 /* Label.swift */,
-				81590FC61DE5C0D30032BAB4 /* NativeButton.swift */,
 				81590FC71DE5C0D30032BAB4 /* Table */,
 				81590FCD1DE5C0D30032BAB4 /* TouchHandler */,
 				81590FC21DE5C0D30032BAB4 /* Info.plist */,
@@ -632,6 +699,7 @@
 			children = (
 				65BF2F161DE83B6100441784 /* Buildable.swift */,
 				65BF2F171DE83B6100441784 /* Highlightable.swift */,
+				65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */,
 			);
 			name = Common;
 			path = iOS/Common;
@@ -654,7 +722,6 @@
 			children = (
 				81590FCE1DE5C0D30032BAB4 /* NativeTouchHandler.swift */,
 				81590FCF1DE5C0D30032BAB4 /* TouchHandler.swift */,
-				81590FD01DE5C0D30032BAB4 /* TouchHandlerEvent.swift */,
 			);
 			path = TouchHandler;
 			sourceTree = "<group>";
@@ -737,6 +804,8 @@
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo iOS */,
+				65BF2F0D1DE8392800441784 /* KatanaElements macOS */,
+				65BF2F321DE83E6600441784 /* Demo macOS */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
@@ -752,6 +821,7 @@
 				65BF2E4E1DE2F37B00441784 /* Katana.framework */,
 				65BF2EE11DE7487C00441784 /* Katana macOS Tests.xctest */,
 				65BF2F0C1DE8392800441784 /* KatanaElements.framework */,
+				65BF2F311DE83E6600441784 /* Demo macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -842,7 +912,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				81B59A521DE861550010B124 /* KatanaElements macOS.h in Headers */,
+				65BF2F101DE8392800441784 /* KatanaElements.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -943,16 +1013,36 @@
 				65BF2F081DE8392800441784 /* Frameworks */,
 				65BF2F091DE8392800441784 /* Headers */,
 				65BF2F0A1DE8392800441784 /* Resources */,
+				65BF2F491DE8443200441784 /* Swiftlint */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				81B59A541DE861C70010B124 /* PBXTargetDependency */,
+				65BF2F481DE8442200441784 /* PBXTargetDependency */,
 			);
 			name = "KatanaElements macOS";
 			productName = "KatanaElements macOS";
 			productReference = 65BF2F0C1DE8392800441784 /* KatanaElements.framework */;
 			productType = "com.apple.product-type.framework";
+		};
+		65BF2F301DE83E6600441784 /* Demo macOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 65BF2F3B1DE83E6600441784 /* Build configuration list for PBXNativeTarget "Demo macOS" */;
+			buildPhases = (
+				65BF2F2D1DE83E6600441784 /* Sources */,
+				65BF2F2E1DE83E6600441784 /* Frameworks */,
+				65BF2F2F1DE83E6600441784 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				65BF2F441DE8418300441784 /* PBXTargetDependency */,
+				65BF2F421DE8417D00441784 /* PBXTargetDependency */,
+			);
+			name = "Demo macOS";
+			productName = "Demo macOS";
+			productReference = 65BF2F311DE83E6600441784 /* Demo macOS.app */;
+			productType = "com.apple.product-type.application";
 		};
 		81EA56C61D5F3A6000B6290E /* Katana iOS */ = {
 			isa = PBXNativeTarget;
@@ -1021,6 +1111,10 @@
 						CreatedOnToolsVersion = 8.1;
 						ProvisioningStyle = Automatic;
 					};
+					65BF2F301DE83E6600441784 = {
+						CreatedOnToolsVersion = 8.1;
+						ProvisioningStyle = Automatic;
+					};
 					81EA56C61D5F3A6000B6290E = {
 						CreatedOnToolsVersion = 8.0;
 						LastSwiftMigration = 0800;
@@ -1052,6 +1146,7 @@
 				6513094E1DC3529F00007B6B /* KatanaElements iOS */,
 				65BF2F0B1DE8392800441784 /* KatanaElements macOS */,
 				6549948D1DD31BA70057D4BB /* Demo iOS */,
+				65BF2F301DE83E6600441784 /* Demo macOS */,
 			);
 		};
 /* End PBXProject section */
@@ -1092,6 +1187,16 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2F521DE864E400441784 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F2F1DE83E6600441784 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2F361DE83E6600441784 /* Assets.xcassets in Resources */,
+				65BF2F391DE83E6600441784 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1112,6 +1217,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		65BF2F491DE8443200441784 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+		};
 		81C3A4941D842F7F0079AD32 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1177,6 +1296,7 @@
 			files = (
 				65BF2F181DE83B6100441784 /* Buildable.swift in Sources */,
 				81590FDE1DE5C0D30032BAB4 /* TableCell.swift in Sources */,
+				65BF2F4F1DE8511700441784 /* TouchHandlerEvent.swift in Sources */,
 				65BF2F1A1DE83B6100441784 /* Highlightable.swift in Sources */,
 				81590FE11DE5C0D30032BAB4 /* TouchHandler.swift in Sources */,
 				81590FE31DE5C0D30032BAB4 /* View.swift in Sources */,
@@ -1184,7 +1304,6 @@
 				81590FD21DE5C0D30032BAB4 /* Button.swift in Sources */,
 				81590FDD1DE5C0D30032BAB4 /* Table.swift in Sources */,
 				81590FD91DE5C0D30032BAB4 /* Label.swift in Sources */,
-				81590FE21DE5C0D30032BAB4 /* TouchHandlerEvent.swift in Sources */,
 				81590FDA1DE5C0D30032BAB4 /* NativeButton.swift in Sources */,
 				81590FDF1DE5C0D30032BAB4 /* TableDelegate.swift in Sources */,
 				81590FDB1DE5C0D30032BAB4 /* NativeTable.swift in Sources */,
@@ -1292,6 +1411,17 @@
 				65BF2F191DE83B6100441784 /* Buildable.swift in Sources */,
 				65BF2F141DE8396C00441784 /* View.swift in Sources */,
 				65BF2F1B1DE83B6100441784 /* Highlightable.swift in Sources */,
+				65BF2F4B1DE84FC800441784 /* Button.swift in Sources */,
+				65BF2F501DE8511700441784 /* TouchHandlerEvent.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		65BF2F2D1DE83E6600441784 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				65BF2F401DE83F1E00441784 /* MacScreen.swift in Sources */,
+				65BF2F341DE83E6600441784 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1398,10 +1528,20 @@
 			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
 			targetProxy = 65BF2EE71DE7487C00441784 /* PBXContainerItemProxy */;
 		};
-		81B59A541DE861C70010B124 /* PBXTargetDependency */ = {
+		65BF2F421DE8417D00441784 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
-			targetProxy = 81B59A531DE861C70010B124 /* PBXContainerItemProxy */;
+			targetProxy = 65BF2F411DE8417D00441784 /* PBXContainerItemProxy */;
+		};
+		65BF2F441DE8418300441784 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65BF2F0B1DE8392800441784 /* KatanaElements macOS */;
+			targetProxy = 65BF2F431DE8418300441784 /* PBXContainerItemProxy */;
+		};
+		65BF2F481DE8442200441784 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
+			targetProxy = 65BF2F471DE8442200441784 /* PBXContainerItemProxy */;
 		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1409,6 +1549,17 @@
 			targetProxy = 81EA56DC1D5F3A6E00B6290E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		65BF2F371DE83E6600441784 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				65BF2F381DE83E6600441784 /* Base */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		651309591DC3529F00007B6B /* Debug */ = {
@@ -1605,6 +1756,40 @@
 				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaElements;
 				PRODUCT_NAME = KatanaElements;
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Release;
+		};
+		65BF2F3C1DE83E6600441784 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Demo macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = macosx;
+				SWIFT_VERSION = 3.0;
+				VALID_ARCHS = "i386 x86_64";
+			};
+			name = Debug;
+		};
+		65BF2F3D1DE83E6600441784 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "Demo macOS/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.Demo-macOS";
+				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = macosx;
 				SWIFT_VERSION = 3.0;
 				VALID_ARCHS = "i386 x86_64";
@@ -1851,6 +2036,15 @@
 			buildConfigurations = (
 				65BF2F121DE8392800441784 /* Debug */,
 				65BF2F131DE8392800441784 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		65BF2F3B1DE83E6600441784 /* Build configuration list for PBXNativeTarget "Demo macOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				65BF2F3C1DE83E6600441784 /* Debug */,
+				65BF2F3D1DE83E6600441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
