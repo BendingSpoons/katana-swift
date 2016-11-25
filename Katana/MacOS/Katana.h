@@ -8,11 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
-//! Project version number for Katana_macOS.
-FOUNDATION_EXPORT double Katana_macOSVersionNumber;
+//! Project version number for Katana.
+FOUNDATION_EXPORT double KatanaVersionNumber;
 
-//! Project version string for Katana_macOS.
-FOUNDATION_EXPORT const unsigned char Katana_macOSVersionString[];
+//! Project version string for Katana.
+FOUNDATION_EXPORT const unsigned char KatanaVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Katana_macOS/PublicHeader.h>
 
