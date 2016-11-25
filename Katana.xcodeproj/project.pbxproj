@@ -554,13 +554,6 @@
 			name = macOS;
 			sourceTree = "<group>";
 		};
-		65BF2F0D1DE8392800441784 /* KatanaElements macOS */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "KatanaElements macOS";
-			sourceTree = "<group>";
-		};
 		65BF2F321DE83E6600441784 /* Demo macOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -807,7 +800,6 @@
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo iOS */,
-				65BF2F0D1DE8392800441784 /* KatanaElements macOS */,
 				65BF2F321DE83E6600441784 /* Demo macOS */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
