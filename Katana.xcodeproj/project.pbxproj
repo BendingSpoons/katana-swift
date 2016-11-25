@@ -84,7 +84,6 @@
 		65BF2F011DE8301F00441784 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16A746D1DD3DD1200C9560D /* Actions.swift */; };
 		65BF2F021DE8301F00441784 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
 		65BF2F031DE8301F00441784 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1576C2E1DC7305F008281C0 /* DependencyContainer.swift */; };
-		65BF2F101DE8392800441784 /* KatanaElements macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65BF2F141DE8396C00441784 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F051DE837CF00441784 /* View.swift */; };
 		65BF2F181DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
 		65BF2F191DE83B6100441784 /* Buildable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F161DE83B6100441784 /* Buildable.swift */; };
@@ -146,6 +145,7 @@
 		81911DC21D7D916B00123C54 /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DAE1D7D916B00123C54 /* MiddlewareTests.swift */; };
 		81911DC41D7D916B00123C54 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB01D7D916B00123C54 /* StoreTests.swift */; };
 		81911DC71D7D916B00123C54 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81911DB41D7D916B00123C54 /* States.swift */; };
+		81B59A521DE861550010B124 /* KatanaElements macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 81B59A501DE861550010B124 /* KatanaElements macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		81EA56DB1D5F3A6E00B6290E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		81FB7A751DE4DB5A00953EA0 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 81FB7A731DE4DB5A00953EA0 /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A116384E1DC4A6450068F0A7 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
@@ -206,6 +206,13 @@
 			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
 			remoteInfo = "Katana macOS";
 		};
+		81B59A531DE861C70010B124 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
+			remoteInfo = "Katana macOS";
+		};
 		81EA56DC1D5F3A6E00B6290E /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
@@ -249,8 +256,6 @@
 		65BF2EEC1DE748BE00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = MacOS/Typealiases.swift; sourceTree = "<group>"; };
 		65BF2F051DE837CF00441784 /* View.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = View.swift; path = MacOS/View.swift; sourceTree = "<group>"; };
 		65BF2F0C1DE8392800441784 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "KatanaElements macOS.h"; sourceTree = "<group>"; };
-		65BF2F0F1DE8392800441784 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		65BF2F161DE83B6100441784 /* Buildable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Buildable.swift; path = KatanaElements/Common/Buildable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F171DE83B6100441784 /* Highlightable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Highlightable.swift; path = KatanaElements/Common/Highlightable.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F1C1DE83CA400441784 /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = IOS/Actions/DecrementCounter.swift; sourceTree = "<group>"; };
@@ -310,6 +315,8 @@
 		81911DAE1D7D916B00123C54 /* MiddlewareTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiddlewareTests.swift; sourceTree = "<group>"; };
 		81911DB01D7D916B00123C54 /* StoreTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		81911DB41D7D916B00123C54 /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
+		81B59A4F1DE861550010B124 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = MacOS/Info.plist; sourceTree = "<group>"; };
+		81B59A501DE861550010B124 /* KatanaElements macOS.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "KatanaElements macOS.h"; path = "MacOS/KatanaElements macOS.h"; sourceTree = "<group>"; };
 		81C3A4971D8430AA0079AD32 /* .swiftlint.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		81EA56C71D5F3A6000B6290E /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		81EA56D61D5F3A6E00B6290E /* Katana iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Katana iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -498,17 +505,10 @@
 			isa = PBXGroup;
 			children = (
 				65BF2F051DE837CF00441784 /* View.swift */,
+				81B59A4F1DE861550010B124 /* Info.plist */,
+				81B59A501DE861550010B124 /* KatanaElements macOS.h */,
 			);
 			name = macOS;
-			sourceTree = "<group>";
-		};
-		65BF2F0D1DE8392800441784 /* KatanaElements macOS */ = {
-			isa = PBXGroup;
-			children = (
-				65BF2F0E1DE8392800441784 /* KatanaElements macOS.h */,
-				65BF2F0F1DE8392800441784 /* Info.plist */,
-			);
-			path = "KatanaElements macOS";
 			sourceTree = "<group>";
 		};
 		8133151B1D7B726000FBE210 /* Core */ = {
@@ -737,7 +737,6 @@
 				A17AF9961DC9F45C00F6076E /* KatanaElements */,
 				81EA56D71D5F3A6E00B6290E /* KatanaTests */,
 				6549948F1DD31BA80057D4BB /* Demo iOS */,
-				65BF2F0D1DE8392800441784 /* KatanaElements macOS */,
 				81EA56C81D5F3A6000B6290E /* Products */,
 				A1503A081DABE88F005A5C46 /* Frameworks */,
 			);
@@ -843,7 +842,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BF2F101DE8392800441784 /* KatanaElements macOS.h in Headers */,
+				81B59A521DE861550010B124 /* KatanaElements macOS.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,6 +947,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				81B59A541DE861C70010B124 /* PBXTargetDependency */,
 			);
 			name = "KatanaElements macOS";
 			productName = "KatanaElements macOS";
@@ -1398,6 +1398,11 @@
 			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
 			targetProxy = 65BF2EE71DE7487C00441784 /* PBXContainerItemProxy */;
 		};
+		81B59A541DE861C70010B124 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
+			targetProxy = 81B59A531DE861C70010B124 /* PBXContainerItemProxy */;
+		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 81EA56C61D5F3A6000B6290E /* Katana iOS */;
@@ -1570,11 +1575,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/KatanaElements/MacOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaElements;
 				PRODUCT_NAME = KatanaElements;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1593,11 +1598,11 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "KatanaElements macOS/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/KatanaElements/MacOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
-				PRODUCT_BUNDLE_IDENTIFIER = "Bending-Spoons.KatanaElements";
+				PRODUCT_BUNDLE_IDENTIFIER = dk.bendingspoons.KatanaElements;
 				PRODUCT_NAME = KatanaElements;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = macosx;
@@ -1839,6 +1844,7 @@
 				65BF2EEB1DE7487C00441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		65BF2F111DE8392800441784 /* Build configuration list for PBXNativeTarget "KatanaElements macOS" */ = {
 			isa = XCConfigurationList;
@@ -1847,6 +1853,7 @@
 				65BF2F131DE8392800441784 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		81EA56C11D5F3A6000B6290E /* Build configuration list for PBXProject "Katana" */ = {
 			isa = XCConfigurationList;
