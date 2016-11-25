@@ -35,6 +35,7 @@ struct MacScreen: NodeDescription, PlasticNodeDescription, PlasticReferenceSizea
       })),
       Button(props: Button.Props.build({
         $0.setKey(Keys.button)
+        $0.title = "normal".centered
       }))
     ]
   }
@@ -63,5 +64,30 @@ extension MacScreen {
     var alpha: CGFloat = 1.0
     var frame: CGRect = .zero
     var key: String?
+  }
+}
+
+extension String {
+  func attributed(key: String, value: Any) -> NSMutableAttributedString {
+    return NSMutableAttributedString(string: self, attributes: [key: value])
+  }
+  
+  var centered: NSMutableAttributedString {
+    let style = NSMutableParagraphStyle()
+    style.alignment = NSTextAlignment.center
+    return self.attributed(key: NSParagraphStyleAttributeName, value: style)
+  }
+}
+
+extension NSMutableAttributedString {
+  func attributed(key: String, value: Any) -> NSMutableAttributedString {
+    self.addAttribute(key, value: value, range: self.string.fullRange)
+    return self
+  }
+}
+
+extension String {
+  var fullRange: NSRange {
+    return NSRange(location:0, length: self.characters.count)
   }
 }

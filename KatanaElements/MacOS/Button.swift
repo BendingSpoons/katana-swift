@@ -22,6 +22,8 @@ public extension Button {
     public var borderWidth: Value = .zero
     public var borderColor = NSColor.clear
     
+    public var title: NSAttributedString = NSAttributedString()
+    
     public init() {}
     
     public static func == (lhs: Props, rhs: Props) -> Bool {
@@ -57,6 +59,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.layer?.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer?.borderColor = props.borderColor.cgColor
     view.layer?.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
+    view.attributedTitle = props.title
   }
   
   public static func childrenDescriptions(props: Props,
