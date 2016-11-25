@@ -60,7 +60,6 @@
 		65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* DefaultView.swift */; };
 		65BF2EA91DE363B400441784 /* Katana_macOS.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2EA81DE363B400441784 /* Katana_macOS.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65BF2EDB1DE745CF00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EDA1DE745CF00441784 /* Typealiases.swift */; };
-		65BF2EE61DE7487C00441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
 		65BF2EED1DE748BE00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EEC1DE748BE00441784 /* Typealiases.swift */; };
 		65BF2EEE1DE8301E00441784 /* ChildrenAnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C51DD337710067F8E0 /* ChildrenAnimationsTests.swift */; };
 		65BF2EEF1DE8301E00441784 /* AnimationUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C71DD339D00067F8E0 /* AnimationUtilsTests.swift */; };
@@ -107,7 +106,9 @@
 		65BF2F4B1DE84FC800441784 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4A1DE84FC800441784 /* Button.swift */; };
 		65BF2F4F1DE8511700441784 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */; };
 		65BF2F501DE8511700441784 /* TouchHandlerEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */; };
-		65BF2F521DE864E400441784 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 65BF2F511DE864E400441784 /* Info.plist */; };
+		65BF2F531DE87D9E00441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
+		65BF2F561DE87ECE00441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
+		65BF2F571DE87ED600441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
 		8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315231D7B726000FBE210 /* NodeDescription.swift */; };
@@ -208,13 +209,6 @@
 			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
 		};
-		65BF2EE71DE7487C00441784 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
-			remoteInfo = "Katana macOS";
-		};
 		65BF2F411DE8417D00441784 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
@@ -230,6 +224,13 @@
 			remoteInfo = "KatanaElements macOS";
 		};
 		65BF2F471DE8442200441784 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 65BF2E4D1DE2F37B00441784;
+			remoteInfo = "Katana macOS";
+		};
+		65BF2F541DE87DAA00441784 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 81EA56BE1D5F3A6000B6290E /* Project object */;
 			proxyType = 1;
@@ -387,6 +388,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2F561DE87ECE00441784 /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -410,7 +412,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BF2EE61DE7487C00441784 /* Katana.framework in Frameworks */,
+				65BF2F531DE87D9E00441784 /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -418,6 +420,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65BF2F571DE87ED600441784 /* Katana.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -998,7 +1001,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				65BF2EE81DE7487C00441784 /* PBXTargetDependency */,
+				65BF2F551DE87DAA00441784 /* PBXTargetDependency */,
 			);
 			name = "Katana macOS Tests";
 			productName = "Katana macOS Tests";
@@ -1187,7 +1190,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65BF2F521DE864E400441784 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1523,11 +1525,6 @@
 			target = 6513094E1DC3529F00007B6B /* KatanaElements iOS */;
 			targetProxy = 654994B21DD31C840057D4BB /* PBXContainerItemProxy */;
 		};
-		65BF2EE81DE7487C00441784 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
-			targetProxy = 65BF2EE71DE7487C00441784 /* PBXContainerItemProxy */;
-		};
 		65BF2F421DE8417D00441784 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
@@ -1542,6 +1539,11 @@
 			isa = PBXTargetDependency;
 			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
 			targetProxy = 65BF2F471DE8442200441784 /* PBXContainerItemProxy */;
+		};
+		65BF2F551DE87DAA00441784 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 65BF2E4D1DE2F37B00441784 /* Katana macOS */;
+			targetProxy = 65BF2F541DE87DAA00441784 /* PBXContainerItemProxy */;
 		};
 		81EA56DD1D5F3A6E00B6290E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
