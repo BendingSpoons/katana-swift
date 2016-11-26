@@ -33,9 +33,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
   
   var props: PropsType
   
-  static func referenceSize(props: PropsType, state: StateType) -> CGSize {
-    return CGSize(width: 640, height: 960)
-  }
+  static var referenceSize =  CGSize(width: 640, height: 960)
 
   public static func childrenDescriptions(props: PropsType,
                                           state: StateType,
