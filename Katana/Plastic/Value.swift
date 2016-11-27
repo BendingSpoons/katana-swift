@@ -188,20 +188,6 @@ public struct Value: Equatable {
   }
 }
 
-/**
- This allows `Value` instances to be initialized by integer and floating point literals,
- having the scalable part equal to the numeric literal, and the fixed part equal to 0.
- */
-extension Value: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
-  public init(integerLiteral value: Int) {
-    self.init(scalable: CGFloat(value), fixed: 0)
-  }
-
-  public init(floatLiteral value: Double) {
-    self.init(scalable: CGFloat(value), fixed: 0)
-  }
-}
-
 extension CGFloat {
   /**
    Returns a `Value` instance with the `scalable` part equal to self, and fixed part equal to 0.
