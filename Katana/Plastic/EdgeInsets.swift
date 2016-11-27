@@ -67,10 +67,10 @@ public struct EdgeInsets: Equatable {
    - warning: Always prefer the static method `scalable(_:_:_:_:)` instead of this constructor
   */
   public init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
-    self.top = Value(top)
-    self.left = Value(left)
-    self.bottom = Value(bottom)
-    self.right = Value(right)
+    self.top = .scalable(top)
+    self.left = .scalable(left)
+    self.bottom = .scalable(bottom)
+    self.right = .scalable(right)
   }
   
   

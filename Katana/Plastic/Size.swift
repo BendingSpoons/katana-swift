@@ -53,8 +53,8 @@ public struct Size: Equatable {
    - warning: Always prefer the static method `scalable(_:_:)` instead of this constructor
   */
   public init(_ width: CGFloat, _ height: CGFloat) {
-    self.width = Value(width)
-    self.height = Value(height)
+    self.width = .scalable(width)
+    self.height = .scalable(height)
   }
 
   /**

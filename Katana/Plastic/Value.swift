@@ -28,7 +28,7 @@ public struct Value: Equatable {
   }
   
   /// an instance of `Value` with a value equals to 0
-  public static let zero = Value(0)
+  public static let zero: Value = .scalable(0)
   
   /**
    Creates a fixed instance of `Value`
@@ -37,7 +37,7 @@ public struct Value: Equatable {
    - returns: an instance of `Value` with the given fixed value
   */
   public static func fixed(_ fixed: CGFloat) -> Value {
-    return Value.init(scalable: 0, fixed: fixed)
+    return Value(scalable: 0, fixed: fixed)
   }
 
   /**
@@ -47,20 +47,7 @@ public struct Value: Equatable {
    - returns: an instance of `Value` with the given scalable value
   */
   public static func scalable(_ scalable: CGFloat) -> Value {
-    return Value.init(scalable: scalable, fixed: 0)
-  }
-  
-  /**
-   Creates a scalable instance of `Value`
-   
-   - parameter scalable:  the value of the instance
-   - returns: an instance of `Value` with the given scalable value
-   
-   - warning: Always prefer the static method `scalable(_:)` instead of this constructor
-  */
-  public init(_ scalable: CGFloat) {
-    self.scalable = scalable
-    self.fixed = 0
+    return Value(scalable: scalable, fixed: 0)
   }
   
   /**
@@ -202,7 +189,8 @@ public struct Value: Equatable {
 }
 
 /**
- This allows `Value` instances to be initialized by integer and floating point literals, having the scalable part equal to the numeric literal, and the fixed part equal to 0.
+ This allows `Value` instances to be initialized by integer and floating point literals,
+ having the scalable part equal to the numeric literal, and the fixed part equal to 0.
  */
 extension Value: ExpressibleByIntegerLiteral, ExpressibleByFloatLiteral {
   public init(integerLiteral value: Int) {
