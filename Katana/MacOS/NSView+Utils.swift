@@ -27,12 +27,14 @@ public extension NSView {
 }
 
 // MARK: NSView + customTag
-import ObjectiveC
+import func ObjectiveC.objc_getAssociatedObject
+import func ObjectiveC.objc_setAssociatedObject
+import enum ObjectiveC.objc_AssociationPolicy
 var key: ()?
 extension NSView {
-  var customTag: NSNumber {
+  var customTag: Int {
     get {
-      return objc_getAssociatedObject(self, &key) as! NSNumber
+      return objc_getAssociatedObject(self, &key) as? Int ?? -1
     }
     set {
       objc_setAssociatedObject(self, &key, newValue, objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)

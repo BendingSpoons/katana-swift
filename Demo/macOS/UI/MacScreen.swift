@@ -24,6 +24,9 @@ struct MacScreen: NodeDescription, PlasticNodeDescription, PlasticReferenceSizea
                                           state: StateType,
                                           update: @escaping (StateType) -> (),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+    let clickHandler = {
+      return
+    }
     
     return [
       View(props: View.Props.build({
@@ -36,6 +39,9 @@ struct MacScreen: NodeDescription, PlasticNodeDescription, PlasticReferenceSizea
       Button(props: Button.Props.build({
         $0.setKey(Keys.button)
         $0.title = "normal".centered
+        $0.backgroundColor = .red
+        $0.backgroundHighlightedColor = .green
+        $0.clickHandler = clickHandler
       }))
     ]
   }

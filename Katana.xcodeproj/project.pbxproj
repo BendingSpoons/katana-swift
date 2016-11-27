@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		652647421DEB1CCE000483E9 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647411DEB1CCE000483E9 /* NativeButton.swift */; };
 		654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
@@ -262,6 +263,7 @@
 
 /* Begin PBXFileReference section */
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		652647411DEB1CCE000483E9 /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -507,6 +509,7 @@
 			children = (
 				65BF2F051DE837CF00441784 /* View.swift */,
 				65BF2F4A1DE84FC800441784 /* Button.swift */,
+				652647411DEB1CCE000483E9 /* NativeButton.swift */,
 				65BF2F0E1DE8392800441784 /* KatanaElements.h */,
 				65BF2F511DE864E400441784 /* Info.plist */,
 			);
@@ -1411,6 +1414,7 @@
 				65BF2F141DE8396C00441784 /* View.swift in Sources */,
 				65BF2F1B1DE83B6100441784 /* Highlightable.swift in Sources */,
 				65BF2F4B1DE84FC800441784 /* Button.swift in Sources */,
+				652647421DEB1CCE000483E9 /* NativeButton.swift in Sources */,
 				65BF2F501DE8511700441784 /* TouchHandlerEvent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

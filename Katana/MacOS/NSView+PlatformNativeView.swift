@@ -38,10 +38,10 @@ extension NSView: PlatformNativeView {
    */
   public var tagValue: Int {
     get {
-      return self.customTag.intValue
+      return self.customTag
     }
     set {
-      self.customTag = NSNumber(value: newValue)
+      self.customTag = newValue
     }
   }
   

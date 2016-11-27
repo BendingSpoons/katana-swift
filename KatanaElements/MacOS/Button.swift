@@ -9,6 +9,8 @@
 import AppKit
 import Katana
 
+public typealias ClickHandlerClosure = () -> ()
+
 public extension Button {
   public struct Props: NodeDescriptionProps, Childrenable, Buildable {
     public var frame = CGRect.zero
@@ -17,12 +19,14 @@ public extension Button {
     
     public var children: [AnyNodeDescription] = []
     
-    public var backgroundColor = NSColor.white
+    public var backgroundColor: NSColor = .white
+    public var backgroundHighlightedColor: NSColor?
     public var cornerRadius: Value = .zero
     public var borderWidth: Value = .zero
     public var borderColor = NSColor.clear
     
     public var title: NSAttributedString = NSAttributedString()
+    public var clickHandler: ClickHandlerClosure?;
     
     public init() {}
     
@@ -49,17 +53,21 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
   
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
-                                            view: NSButton,
+                                            view: NativeButton,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true
+    view.setButtonType(NSMomentaryLightButton)
+    view.isBordered = false
     view.alpha = props.alpha
     view.frame = props.frame
-    view.backgroundColor = props.backgroundColor
+    view.backgroundNormalColor = props.backgroundColor
+    view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
     view.layer?.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
     view.layer?.borderColor = props.borderColor.cgColor
     view.layer?.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.attributedTitle = props.title
+    view.clickHandler = props.clickHandler
   }
   
   public static func childrenDescriptions(props: Props,
