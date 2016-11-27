@@ -315,6 +315,16 @@ y v
     v1.centerY = v2.centerY + .scalable(50)
     XCTAssertEqual(v1.frame.origin.y,
                    v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 50 * multiplier)
+
+    // margin scalable with CGFloat
+    v1.centerY = v2.centerY + 150
+    XCTAssertEqual(v1.frame.origin.y,
+                   v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 + 150 * multiplier)
+
+    // negative margin scalable with CGFloat
+    v1.centerY = v2.centerY - 150
+    XCTAssertEqual(v1.frame.origin.y,
+                   v2.frame.origin.y + v2.frame.size.height / 2.0 - v1.frame.size.height / 2.0 - 150 * multiplier)
     
     // negative margin
     v1.centerY = v2.centerY + .scalable(-50)
