@@ -152,7 +152,7 @@ extension PlasticView {
    
    - parameter view: the view to center the called-upon view in
   */
-  public func center(view: PlasticView) {
+  public func center(_ view: PlasticView) {
     self.centerX = view.centerX
     self.centerY = view.centerY
   }
