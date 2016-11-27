@@ -55,7 +55,7 @@ class PlasticNodeTests: XCTestCase {
     renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEWTAG }
+      .filter { $0.tagValue ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
@@ -65,7 +65,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
     
     references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEWTAG }
+      .filter { $0.tagValue ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     XCTAssertEqual(references.count, 1)
