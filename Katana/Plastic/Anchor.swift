@@ -56,7 +56,7 @@ public struct Anchor: Equatable {
   var coordinate: CGFloat {
     let absoluteOrigin = self.view.absoluteOrigin
     let size = self.view.frame
-    var coord: CGFloat
+    let coord: CGFloat
 
     switch self.kind {
     case .left:
@@ -79,9 +79,7 @@ public struct Anchor: Equatable {
       
     }
 
-    coord += view.scaleValue(offset)
-
-    return coord
+    return coord + view.scaleValue(offset)
   }
   
   /**
