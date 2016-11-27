@@ -56,27 +56,32 @@ public struct Anchor: Equatable {
   var coordinate: CGFloat {
     let absoluteOrigin = self.view.absoluteOrigin
     let size = self.view.frame
-    
+    var coord: CGFloat
+
     switch self.kind {
     case .left:
-      return absoluteOrigin.x
+      coord = absoluteOrigin.x
     
     case .right:
-      return absoluteOrigin.x + size.width
+      coord = absoluteOrigin.x + size.width
     
     case .centerX:
-      return absoluteOrigin.x + size.width / 2.0
+      coord = absoluteOrigin.x + size.width / 2.0
       
     case .top:
-      return absoluteOrigin.y
+      coord = absoluteOrigin.y
       
     case .bottom:
-      return absoluteOrigin.y + size.height
+      coord = absoluteOrigin.y + size.height
       
     case .centerY:
-      return absoluteOrigin.y + size.height / 2.0
+      coord = absoluteOrigin.y + size.height / 2.0
       
     }
+
+    coord += view.scaleValue(offset)
+
+    return coord
   }
   
   /**

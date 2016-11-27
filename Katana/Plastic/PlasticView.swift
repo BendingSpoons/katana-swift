@@ -244,7 +244,7 @@ public class PlasticView {
   public func setBottom(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .bottom
     
-    let newBottom = anchor.coordinate + scaleValue(offset)
+    let newBottom = anchor.coordinate
     var newHeight = scaleValue(self.height)
     
     if oldestConstraintY == .top {
@@ -282,7 +282,7 @@ public class PlasticView {
   public func setTop(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .top
 
-    let newTop = anchor.coordinate + scaleValue(offset)
+    let newTop = anchor.coordinate
     var newHeight = scaleValue(self.height)
     
     if self.constraintY == .bottom {
@@ -320,7 +320,7 @@ public class PlasticView {
   public func setRight(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .right
     
-    let newRight = anchor.coordinate + scaleValue(offset)
+    let newRight = anchor.coordinate
     var newWidth = scaleValue(self.width)
     
     if self.oldestConstraintX == .left {
@@ -359,7 +359,7 @@ public class PlasticView {
   public func setLeft(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .left
     
-    let newLeft = anchor.coordinate + scaleValue(offset)
+    let newLeft = anchor.coordinate
     var newWidth = scaleValue(self.width)
     
     if self.oldestConstraintX == .right {
@@ -398,7 +398,7 @@ public class PlasticView {
   public func setCenterX(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintX = .centerX
     
-    let newCenterX = anchor.coordinate + scaleValue(offset)
+    let newCenterX = anchor.coordinate
     var newWidth = scaleValue(self.width)
     
     if self.oldestConstraintX == .left {
@@ -437,7 +437,7 @@ public class PlasticView {
   public func setCenterY(_ anchor: Anchor, offset: Value = Value.zero) {
     self.constraintY = .centerY
     
-    let newCenterY = anchor.coordinate + scaleValue(offset)
+    let newCenterY = anchor.coordinate
     var newHeight = scaleValue(self.height)
     
     if self.oldestConstraintY == .top {
