@@ -14,6 +14,11 @@
 		6526474A1DEB2DD1000483E9 /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647461DEB2DD1000483E9 /* IncrementCounter.swift */; };
 		6526474D1DEB2E13000483E9 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526474C1DEB2E13000483E9 /* CounterState.swift */; };
 		6526474E1DEB2E13000483E9 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526474C1DEB2E13000483E9 /* CounterState.swift */; };
+		652647531DEB8901000483E9 /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647521DEB8901000483E9 /* CounterScreen.swift */; };
+		652647551DEB890F000483E9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647541DEB890F000483E9 /* AppDelegate.swift */; };
+		652647571DEB891A000483E9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 652647561DEB891A000483E9 /* Assets.xcassets */; };
+		652647591DEB892C000483E9 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 652647581DEB892C000483E9 /* Info.plist */; };
+		6526475C1DEB89B4000483E9 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6526475A1DEB89B4000483E9 /* MainMenu.xib */; };
 		654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
@@ -107,10 +112,6 @@
 		8111A47A1DE8C8E400872AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4681DE8C8CF00872AD6 /* Assets.xcassets */; };
 		8111A47B1DE8C8E400872AD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */; };
 		8111A47D1DE8C8E400872AD6 /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A46E1DE8C8CF00872AD6 /* CounterScreen.swift */; };
-		8111A47E1DE8C8FE00872AD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4701DE8C8CF00872AD6 /* AppDelegate.swift */; };
-		8111A47F1DE8C90100872AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4711DE8C8CF00872AD6 /* Assets.xcassets */; };
-		8111A4801DE8C90400872AD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4721DE8C8CF00872AD6 /* MainMenu.xib */; };
-		8111A4811DE8C90900872AD6 /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */; };
 		8111A4821DE8CB2F00872AD6 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EEC1DE748BE00441784 /* Typealiases.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
@@ -270,6 +271,11 @@
 		652647451DEB2DD1000483E9 /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = Common/Actions/DecrementCounter.swift; sourceTree = "<group>"; };
 		652647461DEB2DD1000483E9 /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Common/Actions/IncrementCounter.swift; sourceTree = "<group>"; };
 		6526474C1DEB2E13000483E9 /* CounterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterState.swift; path = Common/State/CounterState.swift; sourceTree = "<group>"; };
+		652647521DEB8901000483E9 /* CounterScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterScreen.swift; path = Demo/MacOS/UI/CounterScreen.swift; sourceTree = SOURCE_ROOT; };
+		652647541DEB890F000483E9 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = Demo/MacOS/AppDelegate.swift; sourceTree = SOURCE_ROOT; };
+		652647561DEB891A000483E9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = Demo/MacOS/Assets.xcassets; sourceTree = SOURCE_ROOT; };
+		652647581DEB892C000483E9 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Demo/MacOS/Info.plist; sourceTree = SOURCE_ROOT; };
+		6526475B1DEB89B4000483E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Demo/MacOS/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -299,11 +305,6 @@
 		8111A4691DE8C8CF00872AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8111A46E1DE8C8CF00872AD6 /* CounterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterScreen.swift; sourceTree = "<group>"; };
-		8111A4701DE8C8CF00872AD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8111A4711DE8C8CF00872AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		8111A4731DE8C8CF00872AD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
-		8111A4741DE8C8CF00872AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterScreen.swift; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
@@ -558,11 +559,11 @@
 		8111A4631DE8C8CF00872AD6 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
+				8111A46D1DE8C8CF00872AD6 /* UI */,
 				8111A4671DE8C8CF00872AD6 /* AppDelegate.swift */,
 				8111A4681DE8C8CF00872AD6 /* Assets.xcassets */,
 				8111A4691DE8C8CF00872AD6 /* Info.plist */,
 				8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */,
-				8111A46D1DE8C8CF00872AD6 /* UI */,
 			);
 			path = iOS;
 			sourceTree = "<group>";
@@ -578,11 +579,11 @@
 		8111A46F1DE8C8CF00872AD6 /* macOS */ = {
 			isa = PBXGroup;
 			children = (
-				8111A4701DE8C8CF00872AD6 /* AppDelegate.swift */,
-				8111A4711DE8C8CF00872AD6 /* Assets.xcassets */,
-				8111A4721DE8C8CF00872AD6 /* MainMenu.xib */,
-				8111A4741DE8C8CF00872AD6 /* Info.plist */,
 				8111A4751DE8C8CF00872AD6 /* UI */,
+				652647541DEB890F000483E9 /* AppDelegate.swift */,
+				652647561DEB891A000483E9 /* Assets.xcassets */,
+				6526475A1DEB89B4000483E9 /* MainMenu.xib */,
+				652647581DEB892C000483E9 /* Info.plist */,
 			);
 			path = macOS;
 			sourceTree = "<group>";
@@ -590,7 +591,7 @@
 		8111A4751DE8C8CF00872AD6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */,
+				652647521DEB8901000483E9 /* CounterScreen.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1208,8 +1209,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8111A47F1DE8C90100872AD6 /* Assets.xcassets in Resources */,
-				8111A4801DE8C90400872AD6 /* MainMenu.xib in Resources */,
+				652647571DEB891A000483E9 /* Assets.xcassets in Resources */,
+				652647591DEB892C000483E9 /* Info.plist in Resources */,
+				6526475C1DEB89B4000483E9 /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1436,9 +1438,9 @@
 			files = (
 				652647481DEB2DD1000483E9 /* DecrementCounter.swift in Sources */,
 				6526474E1DEB2E13000483E9 /* CounterState.swift in Sources */,
-				8111A47E1DE8C8FE00872AD6 /* AppDelegate.swift in Sources */,
+				652647531DEB8901000483E9 /* CounterScreen.swift in Sources */,
+				652647551DEB890F000483E9 /* AppDelegate.swift in Sources */,
 				6526474A1DEB2DD1000483E9 /* IncrementCounter.swift in Sources */,
-				8111A4811DE8C90900872AD6 /* CounterScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1568,10 +1570,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		8111A4721DE8C8CF00872AD6 /* MainMenu.xib */ = {
+		6526475A1DEB89B4000483E9 /* MainMenu.xib */ = {
 			isa = PBXVariantGroup;
 			children = (
-				8111A4731DE8C8CF00872AD6 /* Base */,
+				6526475B1DEB89B4000483E9 /* Base */,
 			);
 			name = MainMenu.xib;
 			sourceTree = "<group>";

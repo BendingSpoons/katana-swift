@@ -1,5 +1,5 @@
 //
-//  Button.swift
+//  Typealiases.swift
 //  Katana
 //
 //  Copyright © 2016 Bending Spoons.

@@ -9,8 +9,6 @@
 import AppKit
 import Katana
 
-public typealias ClickHandlerClosure = () -> ()
-
 public extension Button {
   public struct Props: NodeDescriptionProps, Childrenable, Buildable {
     public var frame = CGRect.zero
@@ -21,9 +19,6 @@ public extension Button {
     
     public var backgroundColor: NSColor = .white
     public var backgroundHighlightedColor: NSColor?
-    public var cornerRadius: Value = .zero
-    public var borderWidth: Value = .zero
-    public var borderColor = NSColor.clear
     
     public var title: NSAttributedString = NSAttributedString()
     public var clickHandler: ClickHandlerClosure?;
@@ -52,9 +47,6 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.frame = props.frame
     view.backgroundNormalColor = props.backgroundColor
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
-    view.layer?.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
-    view.layer?.borderColor = props.borderColor.cgColor
-    view.layer?.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
     view.attributedTitle = props.title
     view.clickHandler = props.clickHandler
   }
