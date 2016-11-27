@@ -58,9 +58,9 @@ public struct Image: NodeDescription {
     view.frame = props.frame
     view.alpha = props.alpha
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultiplier)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
     view.image = props.image

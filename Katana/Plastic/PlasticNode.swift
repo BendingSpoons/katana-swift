@@ -40,7 +40,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
               is the frame that has been calculated for it
   */
   private func updatedFrames(for childrenDescriptions: [AnyNodeDescription]) -> [String: CGRect] {
-    let multiplier = self.plasticMultipler
+    let multiplier = self.plasticMultiplier
     let frame = self.description.props.frame
     let container = ViewsContainer<Description.Keys>(nativeViewFrame: frame,
                                                      childrenDescriptions: childrenDescriptions,
@@ -105,16 +105,16 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
 public extension AnyNode {
   /**
    The Plastic multiplier that will be used in the current `Node`. If the description associated with the node
-   implements the `PlasticNodeDescriptionWithReferenceSize`, then the multiplier is calculated using the
+   implements the `PlasticReferenceSizeable`, then the multiplier is calculated using the
    current node information (e.g., the reference size and the current size). In any other case, the method
    will request the parent plastic multiplier
    
-   - seeAlso: `PlasticNodeDescriptionWithReferenceSize`
+   - seeAlso: `PlasticReferenceSizeable`
   */
-  public var plasticMultipler: CGFloat {
+  public var plasticMultiplier: CGFloat {
     
     guard let description = self.anyDescription as? PlasticReferenceSizeable else {
-      return self.parent?.plasticMultipler ?? 0.0
+      return self.parent?.plasticMultiplier ?? 0.0
     }
     
     let referenceSize = type(of: description).referenceSize

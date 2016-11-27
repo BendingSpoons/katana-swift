@@ -41,49 +41,89 @@ extension PlasticView {
    - parameter insets: the insets to use when filling the view frame
   */
   public func fill(_ view: PlasticView, insets: EdgeInsets = .zero) {
-    self.setLeft(view.left, offset: insets.left)
-    self.setRight(view.right, offset: -insets.right)
-    self.setTop(view.top, offset: insets.top)
-    self.setBottom(view.bottom, offset: -insets.bottom)
+    self.fill(top: view.top,
+              left: view.left,
+              bottom: view.bottom,
+              right: view.right,
+              insets: insets)
   }
+    
+  /**
+   Lets the view upon which this method is called fit the frame of another using optional insets and aspectRatio.
+
+   - parameter view:   the view whose frame should be filled
+   - parameter aspectRatio: the aspect ratio that the called-upon view should maintain. Give as width divided by height.
+                            Default value is 1
+   - parameter insets: the insets to use when filling the view frame
+   */
+  public func fit(_ view: PlasticView, aspectRatio: CGFloat = 1, insets: EdgeInsets = .zero) {
+    self.fit(top: view.top,
+            left: view.left,
+            bottom: view.bottom,
+            right: view.right,
+            aspectRatio: aspectRatio,
+            insets: insets)
+  }
+
   
   /**
-   Lets the view upon which this method is called be stretched out between four separate view anchor positions while
-   maintaining a certain aspect ratio. Optional insets can be used.
-   
+   Lets the view upon which this method is called be stretched out between four separate view anchor positions.
+   Optional insets can be used.
+
    - parameter left:        the left view anchor position that the called-upon view's left edge will be stretched towards
    - parameter right:       the right view anchor position that the called-upon view's right edge will be stretched towards
    - parameter top:         the top view anchor position that the called-upon view's top edge will be stretched towards
    - parameter bottom:      the bottom view anchor position that the called-upon view's bottom edge will be stretched towards
-   - parameter aspectRatio: the aspect ratio that the called-upon view should maintain. Give as width devided by height.
-                            Default value is 1
    - parameter insets:      the insets to use for the given view anchors
   */
   public func fill(top: Anchor,
                   left: Anchor,
                 bottom: Anchor,
                  right: Anchor,
-           aspectRatio: CGFloat = 1,
                 insets: EdgeInsets = .zero) {
-    
     self.setLeft(left, offset: insets.left)
     self.setRight(right, offset: -insets.right)
     self.setTop(top, offset: insets.top)
     self.setBottom(bottom, offset: -insets.bottom)
-    
+  }
+
+  /**
+   Lets the view upon which this method is called be stretched out between four separate view anchor positions while
+   maintaining a certain aspect ratio. Optional insets can be used.
+
+   - parameter left:        the left view anchor position that the called-upon view's left edge will be stretched towards
+   - parameter right:       the right view anchor position that the called-upon view's right edge will be stretched towards
+   - parameter top:         the top view anchor position that the called-upon view's top edge will be stretched towards
+   - parameter bottom:      the bottom view anchor position that the called-upon view's bottom edge will be stretched towards
+   - parameter aspectRatio: the aspect ratio that the called-upon view should maintain. Give as width divided by height.
+                            Default value is 1
+   - parameter insets:      the insets to use for the given view anchors
+  */
+  public func fit(top: Anchor,
+                   left: Anchor,
+                   bottom: Anchor,
+                   right: Anchor,
+                   aspectRatio: CGFloat = 1,
+                   insets: EdgeInsets = .zero) {
+
+    self.setLeft(left, offset: insets.left)
+    self.setRight(right, offset: -insets.right)
+    self.setTop(top, offset: insets.top)
+    self.setBottom(bottom, offset: -insets.bottom)
+
     let width = self.width.unscaledValue
     let height = self.height.unscaledValue
-    
+
     if width / height < aspectRatio {
       self.centerBetween(top: top, bottom: bottom)
       self.height = Value.fixed(width / aspectRatio)
-      
+
     } else {
       self.centerBetween(left: left, right: right)
       self.width = Value.fixed(height * aspectRatio)
     }
   }
-  
+
   /**
    Centers the view upon which this method is called horizontally between two view anchors. The size, top edge and
    bottom edge of the view will remain the same.
