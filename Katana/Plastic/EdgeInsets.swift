@@ -24,7 +24,7 @@ public struct EdgeInsets: Equatable {
   public let right: Value
   
   /// an instance of `EdgeInsets` with all the insets equal to zero
-  public static let zero = EdgeInsets(0, 0, 0, 0)
+  public static let zero: EdgeInsets = .scalable(0, 0, 0, 0)
   
   /**
    Creates an instance of `EdgeInsets` where all the insets are not scalable
@@ -52,55 +52,6 @@ public struct EdgeInsets: Equatable {
   */
   public static func scalable(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
     return EdgeInsets(top: .scalable(top), left: .scalable(left), bottom: .scalable(bottom), right: .scalable(right))
-  }
-  
-  /**
-   Creates an instance of `EdgeInsets` where all the insets are scalable
-   
-   - parameter top:    the value of the top inset
-   - parameter left:   the value of the left inset
-   - parameter bottom: the value of the bottom inset
-   - parameter right:  the value of the right inset
-   
-   - returns: an instance of `EdgeInsets` where all the insets are not scalable
-   
-   - warning: Always prefer the static method `scalable(_:_:_:_:)` instead of this constructor
-  */
-  public init(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) {
-    self.top = .scalable(top)
-    self.left = .scalable(left)
-    self.bottom = .scalable(bottom)
-    self.right = .scalable(right)
-  }
-  
-  
-  /**
-   Creates an instance of `EdgeInsets` with the given values
-
-   - parameter scalableTop:    the scalable value of the top inset
-   - parameter fixedTop:       the fixed value of the top inset
-   - parameter scalableLeft:   the scalable value of the left inset
-   - parameter fixedLeft:      the fixed value of the left inset
-   - parameter scalableBottom: the scalable value of the bottom inset
-   - parameter fixedBottom:    the fixed value of the bottom inset
-   - parameter scalableRight:  the scalable value of the right inset
-   - parameter fixedRight:     the fixed value of the right inset
-   
-   - returns: an instance of `EdgeInsets` with the given values
-  */
-  public init(scalableTop: CGFloat,
-                 fixedTop: CGFloat,
-             scalableLeft: CGFloat,
-                fixedLeft: CGFloat,
-           scalableBottom: CGFloat,
-              fixedBottom: CGFloat,
-            scalableRight: CGFloat,
-               fixedRight: CGFloat) {
-    
-    self.top = Value(scalable: scalableTop, fixed: fixedTop)
-    self.left = Value(scalable: scalableLeft, fixed: fixedLeft)
-    self.bottom = Value(scalable: scalableBottom, fixed: fixedBottom)
-    self.right = Value(scalable: scalableRight, fixed: fixedRight)
   }
   
   /**
