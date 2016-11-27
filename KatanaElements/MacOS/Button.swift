@@ -31,19 +31,8 @@ public extension Button {
     public init() {}
     
     public static func == (lhs: Props, rhs: Props) -> Bool {
-      if lhs.children.count + rhs.children.count > 0 {
-        // Heuristic, we always rerender when there is at least 1 child
-        return false
-      }
-      
-      return
-        lhs.frame == rhs.frame &&
-          lhs.key == rhs.key &&
-          lhs.alpha == rhs.alpha &&
-          lhs.backgroundColor == rhs.backgroundColor &&
-          lhs.cornerRadius == rhs.cornerRadius &&
-          lhs.borderWidth == rhs.borderWidth &&
-          lhs.borderColor == rhs.borderColor
+      // We can't detect whether clickHandler is changed
+      return false
     }
   }
 }

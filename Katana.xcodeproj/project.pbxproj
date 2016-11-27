@@ -8,6 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		652647421DEB1CCE000483E9 /* NativeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647411DEB1CCE000483E9 /* NativeButton.swift */; };
+		652647471DEB2DD1000483E9 /* DecrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647451DEB2DD1000483E9 /* DecrementCounter.swift */; };
+		652647481DEB2DD1000483E9 /* DecrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647451DEB2DD1000483E9 /* DecrementCounter.swift */; };
+		652647491DEB2DD1000483E9 /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647461DEB2DD1000483E9 /* IncrementCounter.swift */; };
+		6526474A1DEB2DD1000483E9 /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 652647461DEB2DD1000483E9 /* IncrementCounter.swift */; };
+		6526474D1DEB2E13000483E9 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526474C1DEB2E13000483E9 /* CounterState.swift */; };
+		6526474E1DEB2E13000483E9 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6526474C1DEB2E13000483E9 /* CounterState.swift */; };
 		654994AB1DD31C810057D4BB /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		654994AC1DD31C810057D4BB /* Katana.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
@@ -97,17 +103,14 @@
 		65BF2F531DE87D9E00441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
 		65BF2F561DE87ECE00441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81EA56C71D5F3A6000B6290E /* Katana.framework */; };
 		65BF2F571DE87ED600441784 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 65BF2E4E1DE2F37B00441784 /* Katana.framework */; };
-		8111A4771DE8C8E400872AD6 /* DecrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4651DE8C8CF00872AD6 /* DecrementCounter.swift */; };
-		8111A4781DE8C8E400872AD6 /* IncrementCounter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4661DE8C8CF00872AD6 /* IncrementCounter.swift */; };
 		8111A4791DE8C8E400872AD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4671DE8C8CF00872AD6 /* AppDelegate.swift */; };
 		8111A47A1DE8C8E400872AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4681DE8C8CF00872AD6 /* Assets.xcassets */; };
 		8111A47B1DE8C8E400872AD6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */; };
-		8111A47C1DE8C8E400872AD6 /* CounterState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A46C1DE8C8CF00872AD6 /* CounterState.swift */; };
 		8111A47D1DE8C8E400872AD6 /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A46E1DE8C8CF00872AD6 /* CounterScreen.swift */; };
 		8111A47E1DE8C8FE00872AD6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4701DE8C8CF00872AD6 /* AppDelegate.swift */; };
 		8111A47F1DE8C90100872AD6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4711DE8C8CF00872AD6 /* Assets.xcassets */; };
 		8111A4801DE8C90400872AD6 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8111A4721DE8C8CF00872AD6 /* MainMenu.xib */; };
-		8111A4811DE8C90900872AD6 /* MacScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4761DE8C8CF00872AD6 /* MacScreen.swift */; };
+		8111A4811DE8C90900872AD6 /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */; };
 		8111A4821DE8CB2F00872AD6 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EEC1DE748BE00441784 /* Typealiases.swift */; };
 		8133155C1D7B726000FBE210 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		8133155D1D7B726000FBE210 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315221D7B726000FBE210 /* Commons.swift */; };
@@ -264,6 +267,9 @@
 /* Begin PBXFileReference section */
 		6513094F1DC3529F00007B6B /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		652647411DEB1CCE000483E9 /* NativeButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NativeButton.swift; sourceTree = "<group>"; };
+		652647451DEB2DD1000483E9 /* DecrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DecrementCounter.swift; path = Common/Actions/DecrementCounter.swift; sourceTree = "<group>"; };
+		652647461DEB2DD1000483E9 /* IncrementCounter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IncrementCounter.swift; path = Common/Actions/IncrementCounter.swift; sourceTree = "<group>"; };
+		6526474C1DEB2E13000483E9 /* CounterState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = CounterState.swift; path = Common/State/CounterState.swift; sourceTree = "<group>"; };
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,19 +294,16 @@
 		65BF2F4A1DE84FC800441784 /* Button.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
 		65BF2F4E1DE8511700441784 /* TouchHandlerEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TouchHandlerEvent.swift; path = KatanaElements/Common/TouchHandlerEvent.swift; sourceTree = SOURCE_ROOT; };
 		65BF2F511DE864E400441784 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8111A4651DE8C8CF00872AD6 /* DecrementCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecrementCounter.swift; sourceTree = "<group>"; };
-		8111A4661DE8C8CF00872AD6 /* IncrementCounter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IncrementCounter.swift; sourceTree = "<group>"; };
 		8111A4671DE8C8CF00872AD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8111A4681DE8C8CF00872AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8111A4691DE8C8CF00872AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
-		8111A46C1DE8C8CF00872AD6 /* CounterState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterState.swift; sourceTree = "<group>"; };
 		8111A46E1DE8C8CF00872AD6 /* CounterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterScreen.swift; sourceTree = "<group>"; };
 		8111A4701DE8C8CF00872AD6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8111A4711DE8C8CF00872AD6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8111A4731DE8C8CF00872AD6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		8111A4741DE8C8CF00872AD6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		8111A4761DE8C8CF00872AD6 /* MacScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MacScreen.swift; sourceTree = "<group>"; };
+		8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CounterScreen.swift; sourceTree = "<group>"; };
 		813315201D7B726000FBE210 /* Node.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		813315221D7B726000FBE210 /* Commons.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commons.swift; sourceTree = "<group>"; };
 		813315231D7B726000FBE210 /* NodeDescription.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescription.swift; sourceTree = "<group>"; };
@@ -452,6 +455,32 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		652647431DEB2D7B000483E9 /* Common */ = {
+			isa = PBXGroup;
+			children = (
+				652647441DEB2DBE000483E9 /* Actions */,
+				6526474B1DEB2E06000483E9 /* State */,
+			);
+			name = Common;
+			sourceTree = "<group>";
+		};
+		652647441DEB2DBE000483E9 /* Actions */ = {
+			isa = PBXGroup;
+			children = (
+				652647451DEB2DD1000483E9 /* DecrementCounter.swift */,
+				652647461DEB2DD1000483E9 /* IncrementCounter.swift */,
+			);
+			name = Actions;
+			sourceTree = "<group>";
+		};
+		6526474B1DEB2E06000483E9 /* State */ = {
+			isa = PBXGroup;
+			children = (
+				6526474C1DEB2E13000483E9 /* CounterState.swift */,
+			);
+			name = State;
+			sourceTree = "<group>";
+		};
 		65A7222B1DDF0BBE00013E7A /* Renderer */ = {
 			isa = PBXGroup;
 			children = (
@@ -519,6 +548,7 @@
 		8111A4621DE8C8CF00872AD6 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				652647431DEB2D7B000483E9 /* Common */,
 				8111A4631DE8C8CF00872AD6 /* iOS */,
 				8111A46F1DE8C8CF00872AD6 /* macOS */,
 			);
@@ -528,32 +558,13 @@
 		8111A4631DE8C8CF00872AD6 /* iOS */ = {
 			isa = PBXGroup;
 			children = (
-				8111A4641DE8C8CF00872AD6 /* Actions */,
 				8111A4671DE8C8CF00872AD6 /* AppDelegate.swift */,
 				8111A4681DE8C8CF00872AD6 /* Assets.xcassets */,
 				8111A4691DE8C8CF00872AD6 /* Info.plist */,
 				8111A46A1DE8C8CF00872AD6 /* LaunchScreen.storyboard */,
-				8111A46B1DE8C8CF00872AD6 /* State */,
 				8111A46D1DE8C8CF00872AD6 /* UI */,
 			);
 			path = iOS;
-			sourceTree = "<group>";
-		};
-		8111A4641DE8C8CF00872AD6 /* Actions */ = {
-			isa = PBXGroup;
-			children = (
-				8111A4651DE8C8CF00872AD6 /* DecrementCounter.swift */,
-				8111A4661DE8C8CF00872AD6 /* IncrementCounter.swift */,
-			);
-			path = Actions;
-			sourceTree = "<group>";
-		};
-		8111A46B1DE8C8CF00872AD6 /* State */ = {
-			isa = PBXGroup;
-			children = (
-				8111A46C1DE8C8CF00872AD6 /* CounterState.swift */,
-			);
-			path = State;
 			sourceTree = "<group>";
 		};
 		8111A46D1DE8C8CF00872AD6 /* UI */ = {
@@ -579,7 +590,7 @@
 		8111A4751DE8C8CF00872AD6 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				8111A4761DE8C8CF00872AD6 /* MacScreen.swift */,
+				8111A4761DE8C8CF00872AD6 /* CounterScreen.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -1318,11 +1329,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652647471DEB2DD1000483E9 /* DecrementCounter.swift in Sources */,
+				6526474D1DEB2E13000483E9 /* CounterState.swift in Sources */,
 				8111A4791DE8C8E400872AD6 /* AppDelegate.swift in Sources */,
-				8111A4781DE8C8E400872AD6 /* IncrementCounter.swift in Sources */,
-				8111A47C1DE8C8E400872AD6 /* CounterState.swift in Sources */,
 				8111A47D1DE8C8E400872AD6 /* CounterScreen.swift in Sources */,
-				8111A4771DE8C8E400872AD6 /* DecrementCounter.swift in Sources */,
+				652647491DEB2DD1000483E9 /* IncrementCounter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1423,8 +1434,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				652647481DEB2DD1000483E9 /* DecrementCounter.swift in Sources */,
+				6526474E1DEB2E13000483E9 /* CounterState.swift in Sources */,
 				8111A47E1DE8C8FE00872AD6 /* AppDelegate.swift in Sources */,
-				8111A4811DE8C90900872AD6 /* MacScreen.swift in Sources */,
+				6526474A1DEB2DD1000483E9 /* IncrementCounter.swift in Sources */,
+				8111A4811DE8C90900872AD6 /* CounterScreen.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

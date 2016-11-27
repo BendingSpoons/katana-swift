@@ -23,8 +23,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let view = NSView()
     window.contentView = view
     window.delegate = self
-    let store = Store<AppState>()
-    let screen = MacScreen(props: MacScreen.Props.build({
+    let store = Store<CounterState>()
+    let screen = CounterScreen(props: CounterScreen.Props.build({
       $0.frame = view.bounds
     }))
     renderer = Renderer(rootDescription: screen, store: store)
@@ -39,10 +39,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 extension AppDelegate: NSWindowDelegate {
   public func windowDidResize(_ notification: Notification) {
-    let props = MacScreen.Props.build({
+    let props = CounterScreen.Props.build({
       $0.frame = window.contentView?.bounds ?? .zero
     })
-    let description = MacScreen(props: props)
+    let description = CounterScreen(props: props)
     renderer?.rootNode.update(with: description)
     /*renderer?.rootNode.update(with: MacScreen.Props.build({
       $0.frame = window.contentView?.bounds ?? .zero
