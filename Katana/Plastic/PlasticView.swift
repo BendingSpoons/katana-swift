@@ -160,30 +160,21 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setHeight(newValue)
-    }
-  }
+      self.constraintY = .height
 
-  /**
-   Sets a new height for the instance
-   
-   - parameter value: the new height
-  */
-  private func setHeight(_ value: Value) {
-    self.constraintY = .height
-    
-    let newHeight = max(scaleValue(value), 0)
-    var newTop = self.top.coordinate
-    
-    if oldestConstraintY == .bottom {
-      newTop = self.bottom.coordinate - newHeight
-    
-    } else if oldestConstraintY == .centerY {
-      newTop = self.centerY.coordinate - newHeight / 2.0
+      let newHeight = max(scaleValue(newValue), 0)
+      var newTop = self.top.coordinate
+
+      if oldestConstraintY == .bottom {
+        newTop = self.bottom.coordinate - newHeight
+
+      } else if oldestConstraintY == .centerY {
+        newTop = self.centerY.coordinate - newHeight / 2.0
+      }
+
+      self.updateY(newTop)
+      self.updateHeight(newHeight)
     }
-    
-    self.updateY(newTop)
-    self.updateHeight(newHeight)
   }
 
   
@@ -194,74 +185,55 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setWidth(newValue)
+      self.constraintX = .width
+
+      let newWidth = max(scaleValue(newValue), 0)
+      var newLeft = self.left.coordinate
+
+      if self.oldestConstraintX == .right {
+        newLeft = self.right.coordinate - newWidth
+
+      } else if self.oldestConstraintX == .centerX {
+        newLeft = self.centerX.coordinate - newWidth / 2.0
+      }
+
+      self.updateX(newLeft)
+      self.updateWidth(newWidth)
     }
-  }
-  
-  /**
-   Sets a new width for the instance
-   
-   - parameter value: the new width
-  */
-  private func setWidth(_ value: Value) {
-    self.constraintX = .width
-    
-    let newWidth = max(scaleValue(value), 0)
-    var newLeft = self.left.coordinate
-    
-    if self.oldestConstraintX == .right {
-      newLeft = self.right.coordinate - newWidth
-    
-    } else if self.oldestConstraintX == .centerX {
-      newLeft = self.centerX.coordinate - newWidth / 2.0
-    }
-    
-    self.updateX(newLeft)
-    self.updateWidth(newWidth)
   }
 
   /**
    The bottom anchor of the instance.
    
-   Setting its value has the same effect of invoking `setBottom(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's bottom edge position equal to the given anchor
   */
   public var bottom: Anchor {
     get {
       return Anchor(kind: .bottom, view: self)
     }
-    
-    set(newValue) {
-      setBottom(newValue, offset: newValue.offset)
-    }
-  }
 
-  /**
-   Sets the view's bottom edge position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setBottom(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintY = .bottom
-    
-    let newBottom = anchor.coordinate
-    var newHeight = scaleValue(self.height)
-    
-    if oldestConstraintY == .top {
-      newHeight = max(newBottom - self.top.coordinate, 0)
-    
-    } else if oldestConstraintY == .centerY {
-      newHeight = max(2 * (newBottom - self.centerY.coordinate), 0)
+    set(newValue) {
+      self.constraintY = .bottom
+
+      let newBottom = newValue.coordinate
+      var newHeight = scaleValue(self.height)
+
+      if oldestConstraintY == .top {
+        newHeight = max(newBottom - self.top.coordinate, 0)
+
+      } else if oldestConstraintY == .centerY {
+        newHeight = max(2 * (newBottom - self.centerY.coordinate), 0)
+      }
+
+      self.updateY(newBottom - newHeight)
+      self.updateHeight(newHeight)
     }
-    
-    self.updateY(newBottom - newHeight)
-    self.updateHeight(newHeight)
   }
 
   /**
    The top anchor of the instance.
    
-   Setting its value has the same effect of invoking `setTop(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's top edge position equal to the given anchor
   */
   public var top: Anchor {
     get {
@@ -269,37 +241,27 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setTop(newValue, offset: newValue.offset)
-    }
-  }
+      self.constraintY = .top
 
-  /**
-   Sets the view's top edge position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setTop(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintY = .top
+      let newTop = newValue.coordinate
+      var newHeight = scaleValue(self.height)
 
-    let newTop = anchor.coordinate
-    var newHeight = scaleValue(self.height)
-    
-    if self.constraintY == .bottom {
-      newHeight = max(self.bottom.coordinate - newTop, 0)
-    
-    } else if self.constraintY == .centerY {
-      newHeight = max(2.0 * (self.centerY.coordinate - newTop), 0.0)
+      if self.constraintY == .bottom {
+        newHeight = max(self.bottom.coordinate - newTop, 0)
+
+      } else if self.constraintY == .centerY {
+        newHeight = max(2.0 * (self.centerY.coordinate - newTop), 0.0)
+      }
+
+      self.updateY(newTop)
+      self.updateHeight(newHeight)
     }
-    
-    self.updateY(newTop)
-    self.updateHeight(newHeight)
   }
 
   /**
    The right anchor of the instance.
    
-   Setting its value has the same effect of invoking `setRight(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's right edge position equal to the given anchor
   */
   public var right: Anchor {
     get {
@@ -307,38 +269,27 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setRight(newValue, offset: newValue.offset)
-    }
-  }
-  
-  /**
-   Sets the view's right edge position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setRight(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintX = .right
-    
-    let newRight = anchor.coordinate
-    var newWidth = scaleValue(self.width)
-    
-    if self.oldestConstraintX == .left {
-      newWidth = max(newRight - self.left.coordinate, 0.0)
-    
-    } else if self.oldestConstraintX == .centerX {
-      newWidth = max(2.0 * (newRight - self.centerX.coordinate), 0.0)
-    }
-    
-    self.updateX(newRight - newWidth)
-    self.updateWidth(newWidth)
-  }
+      self.constraintX = .right
 
+      let newRight = newValue.coordinate
+      var newWidth = scaleValue(self.width)
+
+      if self.oldestConstraintX == .left {
+        newWidth = max(newRight - self.left.coordinate, 0.0)
+
+      } else if self.oldestConstraintX == .centerX {
+        newWidth = max(2.0 * (newRight - self.centerX.coordinate), 0.0)
+      }
+
+      self.updateX(newRight - newWidth)
+      self.updateWidth(newWidth)
+    }
+  }
   
   /**
    The left anchor of the instance.
    
-   Setting its value has the same effect of invoking `setLeft(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's left edge position equal to the given anchor
   */
   public var left: Anchor {
     get {
@@ -346,38 +297,28 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setLeft(newValue, offset: newValue.offset)
+      self.constraintX = .left
+
+      let newLeft = newValue.coordinate
+      var newWidth = scaleValue(self.width)
+
+      if self.oldestConstraintX == .right {
+        newWidth = max(self.right.coordinate - newLeft, 0)
+
+      } else if self.oldestConstraintX == .centerX {
+        newWidth = max(2.0 * (self.centerX.coordinate - newLeft), 0.0)
+      }
+
+      // update coords
+      self.updateX(newLeft)
+      self.updateWidth(newWidth)
     }
-  }
-  
-  /**
-   Sets the view's left edge position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setLeft(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintX = .left
-    
-    let newLeft = anchor.coordinate
-    var newWidth = scaleValue(self.width)
-    
-    if self.oldestConstraintX == .right {
-      newWidth = max(self.right.coordinate - newLeft, 0)
-      
-    } else if self.oldestConstraintX == .centerX {
-      newWidth = max(2.0 * (self.centerX.coordinate - newLeft), 0.0)
-    }
-    
-    // update coords
-    self.updateX(newLeft)
-    self.updateWidth(newWidth)
   }
 
   /**
    The horizontal center anchor of the instance.
    
-   Setting its value has the same effect of invoking `setCenterX(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's horizontal center position equal to the given anchor
   */
   public var centerX: Anchor {
     get {
@@ -385,71 +326,51 @@ public class PlasticView {
     }
     
     set(newValue) {
-      setCenterX(newValue, offset: newValue.offset)
+      self.constraintX = .centerX
+
+      let newCenterX = newValue.coordinate
+      var newWidth = scaleValue(self.width)
+
+      if self.oldestConstraintX == .left {
+        newWidth = max(2.0 * (newCenterX - self.left.coordinate), 0.0)
+
+      } else if self.oldestConstraintX == .right {
+        newWidth = max(2.0 * (self.right.coordinate - newCenterX), 0.0)
+      }
+
+      // update coords
+      self.updateX(newCenterX - newWidth / 2.0)
+      self.updateWidth(newWidth)
     }
-  }
-  
-  /**
-   Sets the view's horizontal center position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setCenterX(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintX = .centerX
-    
-    let newCenterX = anchor.coordinate
-    var newWidth = scaleValue(self.width)
-    
-    if self.oldestConstraintX == .left {
-      newWidth = max(2.0 * (newCenterX - self.left.coordinate), 0.0)
-      
-    } else if self.oldestConstraintX == .right {
-      newWidth = max(2.0 * (self.right.coordinate - newCenterX), 0.0)
-    }
-    
-    // update coords
-    self.updateX(newCenterX - newWidth / 2.0)
-    self.updateWidth(newWidth)
   }
 
   /**
    The vertical center anchor of the instance.
    
-   Setting its value has the same effect of invoking `setCenterY(_:offset:)` with an offset equal to `.zero`
+   Setting its value sets the view's vertical center position equal to the given anchor
   */
   public var centerY: Anchor {
     get {
       return Anchor(kind: .centerY, view: self)
     }
-    
+
     set(newValue) {
-      setCenterY(newValue, offset: newValue.offset)
+      self.constraintY = .centerY
+
+      let newCenterY = newValue.coordinate
+      var newHeight = scaleValue(self.height)
+
+      if self.oldestConstraintY == .top {
+        newHeight = max(2.0 * (newCenterY - self.top.coordinate), 0.0)
+
+      } else if self.oldestConstraintY == .bottom {
+        newHeight = max(2.0 * (self.bottom.coordinate - newCenterY), 0.0)
+      }
+
+      // update coords
+      self.updateY(newCenterY - newHeight / 2.0)
+      self.updateHeight(newHeight)
     }
-  }
-  
-  /**
-   Sets the view's vertical center position equal to the given anchor
-   
-   - parameter anchor: the anchor
-   - parameter offset: an optional offset to use with respect to the anchor. The default value is `.zero`
-  */
-  public func setCenterY(_ anchor: Anchor, offset: Value = Value.zero) {
-    self.constraintY = .centerY
-    
-    let newCenterY = anchor.coordinate
-    var newHeight = scaleValue(self.height)
-    
-    if self.oldestConstraintY == .top {
-      newHeight = max(2.0 * (newCenterY - self.top.coordinate), 0.0)
-      
-    } else if self.oldestConstraintY == .bottom {
-      newHeight = max(2.0 * (self.bottom.coordinate - newCenterY), 0.0)
-    }
-    
-    // update coords
-    self.updateY(newCenterY - newHeight / 2.0)
-    self.updateHeight(newHeight)
   }
 
   /// The size of the instance
