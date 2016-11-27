@@ -63,14 +63,14 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testSizeShouldBeScalable() {
-    let size = Size(scalableWidth: 10, fixedWidth: 20, scalableHeight: 100, fixedHeight: 300)
+    let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let scaled = size.scale(by: 100)
     XCTAssertEqual(scaled.width, 10 * 100 + 20)
     XCTAssertEqual(scaled.height, 100 * 100 + 300)
   }
   
   func testSizeCanBeMutliplied() {
-    let size = Size(scalableWidth: 10, fixedWidth: 20, scalableHeight: 100, fixedHeight: 300)
+    let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let multipliedSize = size * 100
     XCTAssertEqual(multipliedSize.width.scalable, 10 * 100)
     XCTAssertEqual(multipliedSize.width.fixed, 20 * 100)
@@ -79,8 +79,8 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testSizeCanBeAdded() {
-    let size1 = Size(scalableWidth: 10, fixedWidth: 20, scalableHeight: 100, fixedHeight: 300)
-    let size2 = Size(scalableWidth: 20, fixedWidth: 30, scalableHeight: 90, fixedHeight: 10)
+    let size1 = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
+    let size2 = Size(width: Value(scalable: 20, fixed: 30), height: Value(scalable: 90, fixed: 10))
     let total = size1 + size2
     
     XCTAssertEqual(total.width.scalable, 10 + 20)
@@ -90,7 +90,7 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testSizeCanBeDivided() {
-    let size = Size(scalableWidth: 10, fixedWidth: 20, scalableHeight: 100, fixedHeight: 300)
+    let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let dividedSize = size / 100
     XCTAssertEqual(dividedSize.width.scalable, 10 / 100)
     XCTAssertEqual(dividedSize.width.fixed, 20 / 100)
@@ -107,17 +107,11 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testEdgeInsetsShouldBeScalable() {
-    let insets = EdgeInsets(
-      scalableTop: 10,
-      fixedTop: 20,
-      scalableLeft: 100,
-      fixedLeft: 300,
-      scalableBottom: 200,
-      fixedBottom: 50,
-      scalableRight: 100,
-      fixedRight: 99
-    )
-    
+    let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
+                            left: Value(scalable: 100, fixed: 300),
+                            bottom: Value(scalable: 200, fixed: 50),
+                            right: Value(scalable: 100, fixed: 99))
+
     let scaled = insets.scale(by: 5)
     XCTAssertEqual(scaled.top, 10 * 5 + 20)
     XCTAssertEqual(scaled.left, 100 * 5 + 300)
@@ -126,16 +120,10 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testEdgeInsetsCanBeMutliplied() {
-    let insets = EdgeInsets(
-      scalableTop: 10,
-      fixedTop: 20,
-      scalableLeft: 100,
-      fixedLeft: 300,
-      scalableBottom: 200,
-      fixedBottom: 50,
-      scalableRight: 100,
-      fixedRight: 99
-    )
+    let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
+                            left: Value(scalable: 100, fixed: 300),
+                            bottom: Value(scalable: 200, fixed: 50),
+                            right: Value(scalable: 100, fixed: 99))
     
     let multiplied = insets * 5
     XCTAssertEqual(multiplied.top.scalable, 10 * 5)
@@ -149,27 +137,15 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testEdgeInsetsCanBeAdded() {
-    let value1 = EdgeInsets(
-      scalableTop: 10,
-      fixedTop: 20,
-      scalableLeft: 100,
-      fixedLeft: 300,
-      scalableBottom: 200,
-      fixedBottom: 50,
-      scalableRight: 100,
-      fixedRight: 99
-    )
-    
-    let value2 = EdgeInsets(
-      scalableTop: 11,
-      fixedTop: 201,
-      scalableLeft: 10,
-      fixedLeft: 12,
-      scalableBottom: 56,
-      fixedBottom: 11,
-      scalableRight: 8,
-      fixedRight: 991
-    )
+    let value1 = EdgeInsets(top: Value(scalable: 10, fixed: 20),
+                            left: Value(scalable: 100, fixed: 300),
+                            bottom: Value(scalable: 200, fixed: 50),
+                            right: Value(scalable: 100, fixed: 99))
+
+    let value2 = EdgeInsets(top: Value(scalable: 11, fixed: 201),
+                            left: Value(scalable: 10, fixed: 12),
+                            bottom: Value(scalable: 56, fixed: 11),
+                            right: Value(scalable: 8, fixed: 991))
     
     let sum = value1 + value2
     
@@ -184,16 +160,10 @@ class PlasticDimensionsTests: XCTestCase {
   }
   
   func testEdgeInsetsCanBeDivided() {
-    let insets = EdgeInsets(
-      scalableTop: 10,
-      fixedTop: 20,
-      scalableLeft: 100,
-      fixedLeft: 300,
-      scalableBottom: 200,
-      fixedBottom: 50,
-      scalableRight: 100,
-      fixedRight: 99
-    )
+    let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
+                            left: Value(scalable: 100, fixed: 300),
+                            bottom: Value(scalable: 200, fixed: 50),
+                            right: Value(scalable: 100, fixed: 99))
     
     let divided = insets / 5
     XCTAssertEqual(divided.top.scalable, 10 / 5)
