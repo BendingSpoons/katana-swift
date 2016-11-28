@@ -25,6 +25,11 @@ We feel that Katana helped us a lot since we started using it in production. At 
   s.social_media_url = 'https://twitter.com/katana_swift'
 
   s.ios.deployment_target = '8.3'
+  s.osx.deployment_target = '10.10'
+  
   s.source_files = ['Katana/**/*']
+  
+  s.ios.exclude_files = 'Katana/macOS/**/*'
+  s.osx.exclude_files = 'Katana/iOS/**/*'
   
 end
