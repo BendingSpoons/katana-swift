@@ -5,8 +5,8 @@ env:
     - PROJECT=Katana.xcodeproj
   matrix:
     - SCHEME="Katana iOS"
-      SDK=iphonesimulator10.0
-      SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
+      SDK=iphonesimulator10.1
+      SIMULATOR="platform=iOS Simulator,OS=10.1,name=iPhone 6s"
     - SCHEME="Katana macOS"
       SDK=macosx10.12
       SIMULATOR="platform=macOS,arch=x86_64"
