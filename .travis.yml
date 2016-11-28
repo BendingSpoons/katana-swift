@@ -9,7 +9,7 @@ env:
       SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
     - SCHEME="Katana macOS"
       SDK=macosx10.12
-      SIMULATOR="platform=OS X,arch=x86_64"
+      SIMULATOR="platform=macOS,arch=x86_64"
 
 before_install:
   - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6s (10.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
