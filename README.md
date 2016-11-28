@@ -84,7 +84,7 @@ In Katana you declaratively describe a specific piece of UI providing a  `NodeDe
 
 - `StateType` the internal state of the component (es. highlighted for a button)
 - `PropsType` the inputs coming from outside the component (es. backgroundColor for a view)
-- `NativeView` the UIKit element associated with the component
+- `NativeView` the UIKit/AppKit element associated with the component
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -216,6 +216,10 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 }
 ```
 
+### Note for layout in macOS
+
+Plastic is assuming that the coordinate system has its origin at the upper left corner of the drawing area (like in iOS), so if you want to use plastic on macOS, remember to specify `isFlipped = true` for all your custom native AppKit views that have children components. All the components we provide are already following this convention.
+
 ### You can find the complete example [here](https://github.com/BendingSpoons/katana-swift/blob/master/Demo)
 
 <table>
@@ -277,7 +281,7 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 
 ### Requirements
 
-- iOS 8.4+ / macOS 10.12+
+- iOS 8.4+ / macOS 10.10+
 
 - Xcode 8.0+
 
@@ -355,7 +359,7 @@ Then drag the built `Katana.framework` and `KatanaElements.framework` into your 
 - [x] leverage Plastic layout engine
 - [ ] support other layout engines
 - [ ] declarative Table element
-- [ ] macOS support
+- [x] macOS support
 - [ ] improve test coverage
 - [ ] expand documentation
 - [ ] write an example about wrapping UIKit view controllers
