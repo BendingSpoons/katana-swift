@@ -21,7 +21,7 @@ public extension Button {
     public var backgroundHighlightedColor: NSColor?
     
     public var title: NSAttributedString = NSAttributedString()
-    public var clickHandler: ClickHandlerClosure?;
+    public var clickHandler: ClickHandlerClosure?
     
     public init() {}
     
