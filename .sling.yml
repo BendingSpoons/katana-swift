@@ -12,11 +12,16 @@ cocoapods:
   skip_linting: true  # Cannot lint because it depends on Katana, released always together
 
 carthage:
-  - Katana
-  - KatanaElements
+  - Katana iOS
+  - KatanaElements iOS
+  - Katana macOS
+  - KatanaElements macOS
 
 tests:
   runs:
-    - scheme: Katana
+    - scheme: Katana iOS
       sdk: iphonesimulator10.0
       simulator: platform=iOS Simulator,OS=10.0,name=iPhone 6s
+    - scheme: Katana macOS
+      sdk: macosx10.12
+      simulator: platform=macOS,arch=x86_64
