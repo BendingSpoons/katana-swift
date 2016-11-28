@@ -16,8 +16,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
   @IBOutlet weak var window: NSWindow!
   var renderer: Renderer?
 
-  struct AppState: State {}
-
   func applicationDidFinishLaunching(_ aNotification: Notification) {
     let view = NSView()
     window.contentView = view
