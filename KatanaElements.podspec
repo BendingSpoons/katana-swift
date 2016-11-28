@@ -20,8 +20,12 @@ KatanaElements include UI elements to be used with the Katana framework and allo
   s.social_media_url = 'https://twitter.com/katana_swift'
 
   s.ios.deployment_target = '8.3'
+  s.osx.deployment_target = '10.10'
   
   s.source_files = ['KatanaElements/**/*']
   s.dependency 'Katana', "~> #{s.version.to_s}"
+  
+  s.ios.exclude_files = 'KatanaElements/macOS/**/*'
+  s.osx.exclude_files = 'KatanaElements/iOS/**/*'
   
 end
