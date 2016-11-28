@@ -47,16 +47,16 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
-                                            view: NSViewFlipped,
+                                            view: NSViewCustom,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true
     view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer?.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
-    view.layer?.borderColor = props.borderColor.cgColor
-    view.layer?.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
+    view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.borderColor = props.borderColor
+    view.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
   }
   
   public static func childrenDescriptions(props: Props,

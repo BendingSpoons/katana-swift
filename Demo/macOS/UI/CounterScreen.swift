@@ -28,7 +28,7 @@ extension CounterScreen {
 struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
   typealias StateType = EmptyState
   typealias PropsType = Props
-  typealias NativeView = NSViewFlipped
+  typealias NativeView = NSViewCustom
   
   var props: PropsType
   

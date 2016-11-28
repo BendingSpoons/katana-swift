@@ -24,7 +24,7 @@
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
-		65A722651DEC3E8D00013E7A /* NSViewFlipped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */; };
+		65A722651DEC3E8D00013E7A /* NSViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722641DEC3E8D00013E7A /* NSViewCustom.swift */; };
 		65BF2E671DE339C900441784 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		65BF2E681DE339C900441784 /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
 		65BF2E691DE339C900441784 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
@@ -279,7 +279,7 @@
 		6526475B1DEB89B4000483E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Demo/MacOS/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
-		65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSViewFlipped.swift; path = Katana/MacOS/NSViewFlipped.swift; sourceTree = SOURCE_ROOT; };
+		65A722641DEC3E8D00013E7A /* NSViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSViewCustom.swift; path = Katana/MacOS/NSViewCustom.swift; sourceTree = SOURCE_ROOT; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana/iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
@@ -510,7 +510,7 @@
 			children = (
 				65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */,
 				65BF2EA21DE363A100441784 /* NSView+Utils.swift */,
-				65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */,
+				65A722641DEC3E8D00013E7A /* NSViewCustom.swift */,
 				65BF2EA41DE363A700441784 /* Typealiases.swift */,
 				65BF2EA61DE363AE00441784 /* Info.plist */,
 				65BF2EA81DE363B400441784 /* Katana.h */,
@@ -1367,7 +1367,7 @@
 				65BF2E771DE339C900441784 /* Int+Katana.swift in Sources */,
 				65BF2E781DE339C900441784 /* Collections+Katana.swift in Sources */,
 				65BF2E791DE339C900441784 /* Anchor.swift in Sources */,
-				65A722651DEC3E8D00013E7A /* NSViewFlipped.swift in Sources */,
+				65A722651DEC3E8D00013E7A /* NSViewCustom.swift in Sources */,
 				65BF2E7A1DE339C900441784 /* Array+Plastic.swift in Sources */,
 				65BF2E7B1DE339C900441784 /* EdgeInsets.swift in Sources */,
 				65BF2E7C1DE339C900441784 /* CoordinateConvertible.swift in Sources */,

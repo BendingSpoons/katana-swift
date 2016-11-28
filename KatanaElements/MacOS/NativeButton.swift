@@ -13,18 +13,15 @@ public class NativeButton: NSButton {
   
   // MARK: - backgroundColor
   
-  public var backgroundNormalColor: NSColor = .white
-  public var backgroundHighlightedColor: NSColor = .white
-  
-  override public var wantsUpdateLayer: Bool {
-    return true
+  public var backgroundColor: NSColor = NSColor.white {
+    didSet {
+      self.needsDisplay = true
+    }
   }
   
-  override public func updateLayer() {
-    if let cell = self.cell, cell.isHighlighted {
-      self.backgroundColor = backgroundHighlightedColor
-    } else {
-      self.backgroundColor = backgroundNormalColor
+  public var backgroundHighlightedColor: NSColor = NSColor.white {
+    didSet {
+      self.needsDisplay = true
     }
   }
   
@@ -43,6 +40,20 @@ public class NativeButton: NSButton {
   
   @objc private func click() {
     clickHandler?()
+  }
+  
+  // MARK: - updates
+  
+  override public var wantsUpdateLayer: Bool {
+    return true
+  }
+  
+  override public func updateLayer() {
+    if let cell = self.cell, cell.isHighlighted {
+      self.layer?.backgroundColor = self.backgroundHighlightedColor.cgColor
+    } else {
+      self.layer?.backgroundColor = self.backgroundColor.cgColor
+    }
   }
   
   // MARK: - coordinate system

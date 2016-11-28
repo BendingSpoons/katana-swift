@@ -45,7 +45,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.isBordered = false
     view.alpha = props.alpha
     view.frame = props.frame
-    view.backgroundNormalColor = props.backgroundColor
+    view.backgroundColor = props.backgroundColor
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
     view.attributedTitle = props.title
     view.clickHandler = props.clickHandler
