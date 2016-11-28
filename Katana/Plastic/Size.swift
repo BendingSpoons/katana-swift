@@ -18,7 +18,7 @@ public struct Size: Equatable {
   public let height: Value
   
   /// an instance of `Size` where both the width and the height are zero
-  public static let zero = Size(0, 0)
+  public static let zero: Size = .scalable(0, 0)
   
   /**
    Creates an instance of `Size` where both widht and height are fixed
@@ -42,36 +42,6 @@ public struct Size: Equatable {
   */
   public static func scalable(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .scalable(width), height: .scalable(height))
-  }
-  
-  /**
-   Creates an instance of `Size` where both widht and height are scalable
-   
-   - parameter width:    the value of the width
-   - parameter height:   the value of the height
-   
-   - returns: an instance of `Size` where both width and height are scalable
-   
-   - warning: Always prefer the static method `scalable(_:_:)` instead of this constructor
-  */
-  public init(_ width: CGFloat, _ height: CGFloat) {
-    self.width = Value(width)
-    self.height = Value(height)
-  }
-
-  /**
-   Creates an instance of `Size` with the given values
-   
-   - parameter scalableWidth:    the scalable part of width
-   - parameter fixedWidth:       the fixed part of width
-   - parameter scalableHeight:   the scalable part of height
-   - parameter fixedHeight:      the fixed part of height
-   
-   - returns: an instance of `Size` with the given values
-  */
-  public init(scalableWidth: CGFloat, fixedWidth: CGFloat, scalableHeight: CGFloat, fixedHeight: CGFloat) {
-    self.width = Value(scalable: scalableWidth, fixed: fixedWidth)
-    self.height = Value(scalable: scalableHeight, fixed: fixedHeight)
   }
   
   /**

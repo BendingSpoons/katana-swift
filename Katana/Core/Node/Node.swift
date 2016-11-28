@@ -8,6 +8,8 @@
 
 import Foundation
 
+// swiftlint:disable file_length
+
 /// typealias for the dictionary used to store the nodes during the update phase
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
@@ -46,14 +48,14 @@ public class Node<Description: NodeDescription> {
   /// The children of the node
   public fileprivate(set) var children: [AnyNode]!
   
+  /// The current state of the node
+  public fileprivate(set) var state: Description.StateType
+  
   /// The children descriptions of the node
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
 
   /// The container in which the node will be drawn
   fileprivate var container: PlatformNativeView?
-  
-  /// The current state of the node
-  fileprivate(set) var state: Description.StateType
   
   /// The current description of the node
   fileprivate(set) var description: Description
@@ -205,14 +207,14 @@ extension Node {
    
    - parameter animation:     the animation to use to transition from the previous UI to the new one
    
-   - parameter nativeRenderCallback: a callback that is invoked when the native view has been updated
+   - parameter callback:               a callback that is invoked when the method has eneded its job
    - parameter childrenRenderCallback: a callback that is invoked every time a children is managed
    (e.g., added to the UI hierarchy)
    */
   fileprivate func reRender(childrenToAdd: [AnyNode],
                             viewIndexes: [Int],
                             animation: AnimationContainer,
-                            nativeRenderCallback: (() -> ())?,
+                            callback: (() -> ())?,
                             childrenRenderCallback: (() -> ())?) {
     
     guard let container = self.container else {
@@ -220,6 +222,9 @@ extension Node {
     }
     
     assert(viewIndexes.count == self.children.count)
+    
+    var nativeViewUpdateDone = false
+    var reRenderDone = false
     
     let update = { [weak self] (state: Description.StateType) -> () in
       self?.update(for: state)
@@ -234,8 +239,14 @@ extension Node {
                                            node: self)
       }
     }
+
+    
     Description.NativeView.animate(type: animation.nativeViewAnimation, updateBlock, completion: {
-      nativeRenderCallback?()
+      nativeViewUpdateDone = true
+      
+      if reRenderDone {
+        callback?()
+      }
     })
     
     
@@ -260,6 +271,11 @@ extension Node {
       if let viewToRemove = view {
         self.container?.removeChild(viewToRemove)
       }
+    }
+    
+    reRenderDone = true
+    if nativeViewUpdateDone {
+      callback?()
     }
   }
 }
@@ -577,7 +593,7 @@ extension Node {
       childrenToAdd: childrenToAdd,
       viewIndexes: viewIndexes,
       animation: animation,
-      nativeRenderCallback:  nativeViewCallback,
+      callback:  nativeViewCallback,
       childrenRenderCallback: childrenCallback
     )
   }

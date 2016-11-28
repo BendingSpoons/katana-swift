@@ -50,10 +50,10 @@ public protocol AnyStore: class {
  get pieces of information from the store's state when you need them.
  See `ConnectedNodeDescription` for more information about this topic
 */
-public class Store<StateType: State> {
+open class Store<StateType: State> {
   
   /// The current state of the application
-  public fileprivate(set) var state: StateType
+  open fileprivate(set) var state: StateType
   
   /// The  array of registered listeners
   fileprivate var listeners: [StoreListener]

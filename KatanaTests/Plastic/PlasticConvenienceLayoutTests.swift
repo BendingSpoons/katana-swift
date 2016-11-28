@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import Foundation
-
+// swiftlint:disable type_body_length
 
 import Foundation
 import XCTest
@@ -112,7 +111,51 @@ class PlasticConvenienceLayoutTests: XCTestCase {
     XCTAssertEqualWithAccuracy(v1.frame.size.height, v2.frame.size.height + 20, accuracy: CALCULATIONACCURACY)
     XCTAssertEqualWithAccuracy(v1.frame.size.width, v2.frame.size.width + 20, accuracy: CALCULATIONACCURACY)
   }
-  
+
+  func testShouldFitView() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+    
+    // no margins
+    v1.fit(v2)
+    XCTAssertEqual(v1.frame, v2.frame)
+
+    // with aspectRatio
+    v1.fit(v2, aspectRatio: 0.5)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x,
+                               v2.frame.origin.x + v2.size.width.fixed/4,
+                               accuracy: CALCULATIONACCURACY)
+    XCTAssertEqual(v1.frame.origin.y, v2.frame.origin.y)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width,
+                               v2.frame.size.width / 2,
+                               accuracy: CALCULATIONACCURACY)
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+    
+    // with fixed insets & aspectRatio
+    v1.fit(v2, aspectRatio: 0.5, insets: .fixed(10, 10, 10, 10))
+    
+    let newHeight = v2.height.unscaledValue - 10*2
+    let newWidth = newHeight / 2
+    
+    XCTAssertEqualWithAccuracy(v1.frame.origin.x,
+                               v2.frame.origin.x + (v2.frame.size.width - newWidth)/2,
+                               accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.origin.y,
+                               v2.frame.origin.y + 10,
+                               accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.height,
+                               newHeight,
+                               accuracy: CALCULATIONACCURACY)
+    XCTAssertEqualWithAccuracy(v1.frame.size.width,
+                               newWidth,
+                               accuracy: CALCULATIONACCURACY)
+  }
+
   func testShouldCenterBetweenLeftAndRight() {
     /*
      x

@@ -22,7 +22,7 @@ public extension View {
     public var borderWidth: Value = .zero
     public var borderColor = UIColor.clear
     public var clipsToBounds = false
-    public var isUserInteractionEnabled = false
+    public var isUserInteractionEnabled = true
     
     public init() {}
     
@@ -58,9 +58,9 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
     view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.layer.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
     view.layer.borderColor = props.borderColor.cgColor
-    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
+    view.layer.borderWidth = props.borderWidth.scale(by: node.plasticMultiplier)
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
   }

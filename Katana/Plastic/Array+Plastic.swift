@@ -39,13 +39,13 @@ extension Array where Element: PlasticView {
     }
     
     let leftmostOffset = (right.coordinate - left.coordinate - totalWidth) / 2.0
-    firstView.setLeft(left, offset: Value.fixed(leftmostOffset))
+    firstView.left = left + .fixed(leftmostOffset)
     
     for (index, view) in otherViews.enumerated() {
       let leftwardView = self[index] // take prev view
       let scaledSpacing = scaledSpacings[index]
       let anchor = Anchor(kind: .right, view: leftwardView)
-      view.setLeft(anchor, offset: .fixed(scaledSpacing))
+      view.left = anchor + .fixed(scaledSpacing)
     }
   }
   
@@ -79,13 +79,13 @@ extension Array where Element: PlasticView {
     }
     
     let upmostOffset = (bottom.coordinate - top.coordinate - totalHeight) / 2.0
-    firstView.setTop(top, offset: .fixed(upmostOffset))
+    firstView.top = top + .fixed(upmostOffset)
     
     for (index, view) in otherViews.enumerated() {
       let upperView = self[index]
       let scaledSpacing = scaledSpacings[index]
       let anchor = Anchor(kind: .bottom, view: upperView)
-      view.setTop(anchor, offset: .fixed(scaledSpacing))
+      view.top = anchor + .fixed(scaledSpacing)
     }
   }
   
@@ -143,12 +143,12 @@ extension Array where Element: PlasticView {
       view.width = .fixed(width)
       
       if index == 0 {
-        view.setLeft(left, offset: insets.left)
+        view.left = left + insets.left
       
       } else {
         let leftwardView = self[index-1]
         let spacing = spacings[index-1]
-        view.setLeft(leftwardView.right, offset: spacing)
+        view.left = leftwardView.right + spacing
       }
     }
   }
@@ -206,12 +206,12 @@ extension Array where Element: PlasticView {
       view.height = .fixed(height)
       
       if index == 0 {
-        view.setTop(top, offset: insets.top)
+        view.top = top + insets.top
       
       } else {
         let upperView = self[index-1]
         let spacing = spacings[index - 1]
-        view.setTop(upperView.bottom, offset: spacing)
+        view.top = upperView.bottom + spacing
       }
     }
   }

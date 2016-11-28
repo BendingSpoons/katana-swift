@@ -82,7 +82,7 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
       let image = views[key]
       image?.size = .scalable(250, 250)
       image?.centerX = views.nativeView.centerX
-      image?.setTop(views.nativeView.top, offset: .scalable(100))
+      image?.top = views.nativeView.top + 100
     }
     
     // titles
@@ -91,7 +91,7 @@ struct Intro: PlasticNodeDescription, PlasticReferenceSizeable {
       title?.height = .scalable(200)
       title?.width = views.nativeView.width * 0.9
       title?.centerX = views.nativeView.centerX
-      title?.setBottom(button.top, offset: .scalable(-100))
+      title?.bottom = button.top - 100
     }
   }
   

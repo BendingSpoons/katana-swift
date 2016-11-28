@@ -146,7 +146,7 @@ struct AnimationUtils {
       if var propsWithChildren = item.anyProps as? Childrenable {
         // the item has children, let's manage also the children
         let children = propsWithChildren.children
-        let target = (targetChildren[index!] as? AnyNodeDescriptionWithChildren).flatMap({ $0.children })
+        let target = (item as? AnyNodeDescriptionWithChildren).flatMap({ $0.children })
         
         propsWithChildren.children = updatedDescriptions(
           for: children,

@@ -54,9 +54,9 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
     view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
-    view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultipler)
+    view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
     view.borderColor = props.borderColor
-    view.borderWidth = props.borderWidth.scale(by: node.plasticMultipler)
+    view.borderWidth = props.borderWidth.scale(by: node.plasticMultiplier)
   }
   
   public static func childrenDescriptions(props: Props,

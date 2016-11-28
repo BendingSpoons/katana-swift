@@ -42,8 +42,9 @@ import Foundation
  
  ```
  struct A: AppSyncAction {
+  var payload: PropertyType
   func updateState(currentState: inout AppState) {
-    currentState.props = self.payload
+    currentState.property = self.payload
   }
  }
  ```

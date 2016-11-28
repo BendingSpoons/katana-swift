@@ -11,7 +11,7 @@ The main purpose of this example is to show the Katana animation system. Look at
 ## How animations work
 ### Show me the code
 Before digging into the theory of the animations, let's take a look to how you can use them.
-The only thing we need to know here is that a transition from an UI state A to another UI state B can involve insertion or remotion of UI elements. We refer to the formers as `leave elements` and to the latters as `entry elements`. This is because elements leave and entry in the UI.
+The only thing we need to know here is that a transition from an UI state A to another UI state B can involve insertion or removal of UI elements. We refer to the formers as `leave elements` and to the latters as `entry elements`. This is because elements leave and entry in the UI.
 
 This is the method you need to implement to define the animation logic
 ```swift
