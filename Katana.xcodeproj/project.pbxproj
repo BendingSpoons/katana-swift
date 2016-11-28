@@ -25,6 +25,7 @@
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
 		65A722651DEC3E8D00013E7A /* NSViewCustom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722641DEC3E8D00013E7A /* NSViewCustom.swift */; };
+		65A722ED1DECAF9B00013E7A /* TestImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722EC1DECAF9B00013E7A /* TestImageView.swift */; };
 		65BF2E671DE339C900441784 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		65BF2E681DE339C900441784 /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
 		65BF2E691DE339C900441784 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
@@ -280,6 +281,7 @@
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
 		65A722641DEC3E8D00013E7A /* NSViewCustom.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSViewCustom.swift; path = Katana/MacOS/NSViewCustom.swift; sourceTree = SOURCE_ROOT; };
+		65A722EC1DECAF9B00013E7A /* TestImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TestImageView.swift; path = KatanaTests/MacOS/TestImageView.swift; sourceTree = SOURCE_ROOT; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana/iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
@@ -532,6 +534,7 @@
 			isa = PBXGroup;
 			children = (
 				65BF2EEC1DE748BE00441784 /* Typealiases.swift */,
+				65A722EC1DECAF9B00013E7A /* TestImageView.swift */,
 				65BF2EE51DE7487C00441784 /* Info.plist */,
 			);
 			path = macOS;
@@ -1401,6 +1404,7 @@
 				65BF2EEF1DE8301E00441784 /* AnimationUtilsTests.swift in Sources */,
 				65BF2EF01DE8301E00441784 /* Image.swift in Sources */,
 				8111A4821DE8CB2F00872AD6 /* Typealiases.swift in Sources */,
+				65A722ED1DECAF9B00013E7A /* TestImageView.swift in Sources */,
 				65BF2EF11DE8301E00441784 /* View.swift in Sources */,
 				65BF2EF21DE8301E00441784 /* NodeDescriptionTest.swift in Sources */,
 				65BF2EF31DE8301E00441784 /* NodeTest.swift in Sources */,

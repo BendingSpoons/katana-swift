@@ -9,6 +9,7 @@
 import UIKit
 
 public typealias TestView = UIView
+public typealias BaseView = UIView
 public typealias TestImageView = UIImageView
 public typealias TestColor = UIColor
 public typealias TestImage = UIImage

@@ -40,13 +40,12 @@ public class NSViewCustom: NSView {
   override public var wantsUpdateLayer: Bool {
     return true
   }
-  
+
   override public func updateLayer() {
     self.layer?.backgroundColor = self.backgroundColor.cgColor
     self.layer?.cornerRadius = self.cornerRadius
     self.layer?.borderColor = self.borderColor.cgColor
     self.layer?.borderWidth = self.borderWidth
   }
-  
-  
+
 }

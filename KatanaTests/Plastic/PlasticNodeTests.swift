@@ -212,8 +212,8 @@ fileprivate class WeakNode {
 }
 
 fileprivate class WeakView {
-  weak var value: TestView?
-  init(value: TestView) {
+  weak var value: BaseView?
+  init(value: BaseView) {
     self.value = value
   }
 }
@@ -222,6 +222,6 @@ fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
   return (node.children.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children
 }
 
-fileprivate func collectView(view: TestView) -> [TestView] {
+fileprivate func collectView(view: BaseView) -> [BaseView] {
   return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
 }
