@@ -6,8 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import Foundation
-
+// swiftlint:disable type_body_length
 
 import Foundation
 import XCTest
