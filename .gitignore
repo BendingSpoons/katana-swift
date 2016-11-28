@@ -18,3 +18,4 @@ DerivedData
 .idea
 Pods/
 Carthage/
+/build
