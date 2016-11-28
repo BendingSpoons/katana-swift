@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import CoreGraphics
 
 /**
   Subclass of `Node` that implements all the logic needed to use the Plastic layout system.

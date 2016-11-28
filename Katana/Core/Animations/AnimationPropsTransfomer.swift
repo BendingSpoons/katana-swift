@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import CoreGraphics
 
 /**
  The transformer function used to update properties to perform entry and leave animations.

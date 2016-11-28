@@ -78,8 +78,10 @@ extension CodingLove {
 }
 
 struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
+
     typealias StateType = EmptyState
     typealias PropsType = Props
+    typealias NativeView = UIView
     
     var props: PropsType
     

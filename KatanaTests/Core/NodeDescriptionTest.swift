@@ -2,14 +2,14 @@ import XCTest
 import Katana
 
 class NodeDescriptionTest: XCTestCase {
-  private func view(withBackground color: UIColor, key: String?) -> View {
+  private func view(withBackground color: TestColor, key: String?) -> View {
     var props = ViewProps()
     props.backgroundColor = color
     props.key = key
     return View(props: props)
   }
   
-  private func image(withBackground color: UIColor, key: String?) -> Image {
+  private func image(withBackground color: TestColor, key: String?) -> Image {
     var props = ImageProps()
     props.backgroundColor = color
     props.key = key

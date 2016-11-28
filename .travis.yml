@@ -1,12 +1,16 @@
 language: objective-c
-osx_image: xcode8
+osx_image: xcode8.1
 env:
   global:
-  - PROJECT=Katana.xcodeproj
-  - SCHEME=Katana
-  - SDK=iphonesimulator10.0
-  - SIMULATOR="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
-  
+    - PROJECT=Katana.xcodeproj
+  matrix:
+    - SCHEME="Katana iOS"
+      SDK=iphonesimulator10.1
+      SIMULATOR="platform=iOS Simulator,OS=10.1,name=iPhone 6s"
+    - SCHEME="Katana macOS"
+      SDK=macosx10.12
+      SIMULATOR="platform=macOS,arch=x86_64"
+
 before_install:
   - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6s (10.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
   - echo $IOS_SIMULATOR_UDID
@@ -16,6 +20,7 @@ script:
   - set -o pipefail
   - xcodebuild -version
   - xcodebuild -showsdks
+  - instruments -s devices
 
   # Build Framework in Debug and Run Tests if specified
-  - travis_retry xcodebuild -project $PROJECT -scheme $SCHEME -sdk $SDK test -destination "$SIMULATOR" | xcpretty -c
+  - travis_retry xcodebuild -project $PROJECT -scheme "$SCHEME" -sdk $SDK test -destination "$SIMULATOR" | xcpretty -c

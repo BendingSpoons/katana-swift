@@ -77,8 +77,8 @@ public struct EdgeInsets: Equatable {
    - parameter multiplier: the multiplier to use to scale the insets
    - returns: an instance of `UIEdgeInsets` that is the result of the scaling process
   */
-  public func scale(by multiplier: CGFloat) -> UIEdgeInsets {
-    return UIEdgeInsets(
+  public func scale(by multiplier: CGFloat) -> FloatEdgeInsets {
+    return FloatEdgeInsets(
       top: self.top.scale(by: multiplier),
       left: self.left.scale(by: multiplier),
       bottom: self.bottom.scale(by: multiplier),

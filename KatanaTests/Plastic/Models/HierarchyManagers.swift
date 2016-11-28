@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import CoreGraphics
 @testable import Katana
 
 // dummy hierarchy manager that always like the view

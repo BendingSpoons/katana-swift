@@ -48,7 +48,7 @@ public struct Table: NodeDescription {
   public init(props: Props) {
     self.props = props
   }
-  
+
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: NativeTable,

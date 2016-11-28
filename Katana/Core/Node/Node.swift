@@ -6,7 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-import UIKit
+import Foundation
 
 // swiftlint:disable file_length
 
@@ -14,10 +14,11 @@ import UIKit
 private typealias ChildrenDictionary = [Int:[(node: AnyNode, index: Int)]]
 
 /**
-  Katana works by representing the UI as a tree. Beside the tree managed by UIKit with UIView (or subclasses) instances,
+  Katana works by representing the UI as a tree.
+ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through PlatformNativeViews,
   Katana holds a tree of instances of `Node`. The tree is composed as follows:
  
-  - each node of the tree is an instance of UIView (or subclasses);
+  - each node of the tree is an instance of PlatformNativeView (baked by UIKit/AppKit or subclasses);
  
   - the edges between nodes represent the parent/children (or view/subviews) relation.
  
@@ -54,7 +55,7 @@ public class Node<Description: NodeDescription> {
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
 
   /// The container in which the node will be drawn
-  fileprivate var container: DrawableContainer?
+  fileprivate var container: PlatformNativeView?
   
   /// The current description of the node
   fileprivate(set) var description: Description
@@ -158,7 +159,7 @@ public class Node<Description: NodeDescription> {
 extension Node {
   /**
    Renders the node in a given container. Draws a node basically means create
-   the necessary UIKit classes (most likely UIViews or subclasses) and add them to the UI hierarchy.
+   the necessary UIKit classes (most likely UIView/NSView or subclasses) and add them to the UI hierarchy.
    
    -note:
    This method should be invoked only once, the first time a node is drawn. For further updates of the UI managed by
@@ -166,12 +167,12 @@ extension Node {
    
    - parameter container: the container in which the node should be drawn
    */
-  func render(in container: DrawableContainer) {
+  func render(in container: PlatformNativeView) {
     if self.container != nil {
       fatalError("draw can only be call once on a node")
     }
     
-    self.container = container.addChild() { Description.NativeView() }
+    self.container = container.addChild() { Description.NativeView.make() }
     
     let update = { [weak self] (state: Description.StateType) in
       DispatchQueue.main.async {
@@ -238,8 +239,9 @@ extension Node {
                                            node: self)
       }
     }
+
     
-    animation.nativeViewAnimation.animate(updateBlock, completion: {
+    Description.NativeView.animate(type: animation.nativeViewAnimation, updateBlock, completion: {
       nativeViewUpdateDone = true
       
       if reRenderDone {
@@ -247,13 +249,14 @@ extension Node {
       }
     })
     
+    
     childrenToAdd.forEach { node in
       let node = node as! InternalAnyNode
       node.render(in: container)
       childrenRenderCallback?()
     }
     
-    var currentSubviews: [DrawableContainerChild?] =  container.children().map { $0 }
+    var currentSubviews: [PlatformNativeView?] =  container.children()
     let sorted = viewIndexes.isSorted
     
     for viewIndex in viewIndexes {
@@ -288,7 +291,7 @@ extension Node {
    
    - returns: the node that has been created. The node will have the current node as parent
    */
-  public func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode {
+  public func addManagedChild(with description: AnyNodeDescription, in container: PlatformNativeView) -> AnyNode {
     let node = description.makeNode(parent: self) as! InternalAnyNode
     self.managedChildren.append(node)
     node.render(in: container)

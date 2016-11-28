@@ -59,7 +59,7 @@ public protocol AnyNode: class {
    
    - returns: the node that has been created. The node will have the current node as parent
    */
-  func addManagedChild(with description: AnyNodeDescription, in container: DrawableContainer) -> AnyNode
+  func addManagedChild(with description: AnyNodeDescription, in container: PlatformNativeView) -> AnyNode
   
   /**
    Removes a managed child from the node. For more information about managed children see the `Node` class

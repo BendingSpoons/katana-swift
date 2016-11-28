@@ -8,7 +8,7 @@
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
 
-Katana is a modern Swift framework for writing iOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/), that gives structure to all the aspects of your app:
+Katana is a modern Swift framework for writing iOS and macOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/), that gives structure to all the aspects of your app:
 
 - __logic__: the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 - __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as isolated, reusable pieces of UI, since the way a component is rendered only depends on the current props and state of the component itself.
@@ -84,7 +84,7 @@ In Katana you declaratively describe a specific piece of UI providing a  `NodeDe
 
 - `StateType` the internal state of the component (es. highlighted for a button)
 - `PropsType` the inputs coming from outside the component (es. backgroundColor for a view)
-- `NativeView` the UIKit element associated with the component
+- `NativeView` the UIKit/AppKit element associated with the component
 
 ```swift
 struct CounterScreen: NodeDescription {
@@ -216,6 +216,10 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 }
 ```
 
+### Note for layout in macOS
+
+Plastic is assuming that the coordinate system has its origin at the upper left corner of the drawing area (like in iOS), so if you want to use plastic on macOS, remember to specify `isFlipped = true` for all your custom native AppKit views that have children components. All the components we provide are already following this convention.
+
 ### You can find the complete example [here](https://github.com/BendingSpoons/katana-swift/blob/master/Demo)
 
 <table>
@@ -276,7 +280,7 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 
 ### Requirements
 
-- iOS 8.4+
+- iOS 8.4+ / macOS 10.10+
 
 - Xcode 8.0+
 
@@ -377,7 +381,7 @@ renderer!.render(in: view)
 - [x] leverage Plastic layout engine
 - [ ] support other layout engines
 - [ ] declarative Table element
-- [ ] macOS support
+- [x] macOS support
 - [ ] improve test coverage
 - [ ] expand documentation
 - [ ] write an example about wrapping UIKit view controllers

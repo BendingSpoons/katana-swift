@@ -16,20 +16,20 @@ class PlasticNodeTests: XCTestCase {
   
   func testLayoutInvoked() {
     let renderer = Renderer(rootDescription: TestNode(props: EmptyProps()), store: nil)
-    renderer.render(in: UIView())
+    renderer.render(in: TestView())
     
     XCTAssertEqual(TestNode.invoked, true)
   }
   
   func testNodeDeallocationPlastic() {
-
+    
     let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
-  
+    
     var references = collectNodes(node: renderer.rootNode!).map { WeakNode(value: $0) }
     XCTAssert(references.count == 3)
     XCTAssert(references.filter { $0.value != nil }.count == 3)
     
-
+    
     renderer.rootNode!.update(with: App(props: AppProps(i:1)))
     XCTAssert(references.count == 3)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
@@ -39,7 +39,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 2)
     
     renderer.rootNode!.update(with: App(props: AppProps(i:2)))
-
+    
     XCTAssert(references.count == 2)
     XCTAssertEqual(references.filter { $0.value != nil }.count, 0)
     
@@ -51,11 +51,11 @@ class PlasticNodeTests: XCTestCase {
   func testViewDeallocationWithPlastic() {
     let renderer = Renderer(rootDescription: App(props: AppProps(i:0)), store: nil)
     
-    let rootVew = UIView()
+    let rootVew = TestView()
     renderer.render(in: rootVew)
     
     var references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEWTAG }
+      .filter { $0.tagValue ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     autoreleasepool {
@@ -65,7 +65,7 @@ class PlasticNodeTests: XCTestCase {
     XCTAssertEqual(references.filter { $0.value != nil }.count, 1)
     
     references = collectView(view: rootVew)
-      .filter { $0.tag ==  Katana.VIEWTAG }
+      .filter { $0.tagValue ==  Katana.VIEWTAG }
       .map { WeakView(value: $0) }
     
     XCTAssertEqual(references.count, 1)
@@ -80,8 +80,9 @@ private enum TestNodeKeys {
 }
 
 private struct TestNode: NodeDescription, PlasticNodeDescription {
+  typealias NativeView = TestView
   typealias Keys = TestNodeKeys
-
+  
   var props: EmptyProps
   
   init(props: EmptyProps) {
@@ -96,7 +97,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
                                           state: EmptyState,
                                           update: @escaping (EmptyState) -> (),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-   
+    
     var props = ViewProps()
     props.setKey(TestNodeKeys.One)
     
@@ -129,6 +130,7 @@ fileprivate struct AppProps: NodeDescriptionProps {
 }
 
 fileprivate struct App: NodeDescription {
+  public typealias NativeView = TestView
   
   var props: AppProps
   var children: [AnyNodeDescription] = []
@@ -138,10 +140,10 @@ fileprivate struct App: NodeDescription {
   }
   
   fileprivate static func childrenDescriptions(props: AppProps,
-                                 state: EmptyState,
-                                 update: @escaping (EmptyState) -> (),
-                                 dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
-
+                                               state: EmptyState,
+                                               update: @escaping (EmptyState) -> (),
+                                               dispatch:  @escaping StoreDispatch) -> [AnyNodeDescription] {
+    
     let i = props.i
     
     if i == 0 {
@@ -210,8 +212,8 @@ fileprivate class WeakNode {
 }
 
 fileprivate class WeakView {
-  weak var value: UIView?
-  init(value: UIView) {
+  weak var value: BaseView?
+  init(value: BaseView) {
     self.value = value
   }
 }
@@ -220,6 +222,6 @@ fileprivate func collectNodes(node: AnyNode) -> [AnyNode] {
   return (node.children.map { collectNodes(node: $0) }.reduce([], { $0 + $1 })) + node.children
 }
 
-fileprivate func collectView(view: UIView) -> [UIView] {
+fileprivate func collectView(view: BaseView) -> [BaseView] {
   return (view.subviews.map { collectView(view: $0) }.reduce([], { $0 + $1 })) + view.subviews
 }
