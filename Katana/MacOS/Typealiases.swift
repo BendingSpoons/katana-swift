@@ -6,6 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
-public typealias DefaultView = UIView
-public typealias FloatEdgeInsets = UIEdgeInsets
+import AppKit
+public typealias DefaultView = NSViewFlipped
+public typealias FloatEdgeInsets = Foundation.EdgeInsets

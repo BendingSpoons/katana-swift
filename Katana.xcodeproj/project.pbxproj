@@ -24,6 +24,7 @@
 		654994B01DD31C840057D4BB /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; };
 		654994B11DD31C840057D4BB /* KatanaElements.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 6513094F1DC3529F00007B6B /* KatanaElements.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
+		65A722651DEC3E8D00013E7A /* NSViewFlipped.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */; };
 		65BF2E671DE339C900441784 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813315201D7B726000FBE210 /* Node.swift */; };
 		65BF2E681DE339C900441784 /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */; };
 		65BF2E691DE339C900441784 /* AnyNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1277CEB1DD32037007F68E5 /* AnyNode.swift */; };
@@ -59,17 +60,17 @@
 		65BF2E871DE339C900441784 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314C1DC37DBF00982BE9 /* Action.swift */; };
 		65BF2E881DE339C900441784 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
 		65BF2E891DE339C900441784 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
-		65BF2E8A1DE339C900441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* Typealiases.swift */; };
+		65BF2E8A1DE339C900441784 /* StoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */; };
 		65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
 		65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
 		65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
 		65BF2E991DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */; };
 		65BF2E9D1DE3634100441784 /* UIView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */; };
-		65BF2E9F1DE3635000441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9E1DE3635000441784 /* DefaultView.swift */; };
+		65BF2E9F1DE3635000441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2E9E1DE3635000441784 /* Typealiases.swift */; };
 		65BF2EA11DE3639600441784 /* NSView+PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */; };
 		65BF2EA31DE363A100441784 /* NSView+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA21DE363A100441784 /* NSView+Utils.swift */; };
-		65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* DefaultView.swift */; };
+		65BF2EA51DE363A700441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EA41DE363A700441784 /* Typealiases.swift */; };
 		65BF2EA91DE363B400441784 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BF2EA81DE363B400441784 /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		65BF2EDB1DE745CF00441784 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BF2EDA1DE745CF00441784 /* Typealiases.swift */; };
 		65BF2EEE1DE8301E00441784 /* ChildrenAnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C51DD337710067F8E0 /* ChildrenAnimationsTests.swift */; };
@@ -184,7 +185,7 @@
 		A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314C1DC37DBF00982BE9 /* Action.swift */; };
 		A1CA31531DC37DBF00982BE9 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
 		A1CA31541DC37DBF00982BE9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
-		A1CA31551DC37DBF00982BE9 /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* Typealiases.swift */; };
+		A1CA31551DC37DBF00982BE9 /* StoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */; };
 		A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
 		A1CA315B1DC3A01F00982BE9 /* SyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */; };
 		A1CA315D1DC3A24000982BE9 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
@@ -278,13 +279,14 @@
 		6526475B1DEB89B4000483E9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Demo/MacOS/Base.lproj/MainMenu.xib; sourceTree = SOURCE_ROOT; };
 		6549948E1DD31BA70057D4BB /* Demo iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Demo iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		65A7223A1DDF5BAF00013E7A /* PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlatformNativeView.swift; sourceTree = "<group>"; };
+		65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NSViewFlipped.swift; path = Katana/MacOS/NSViewFlipped.swift; sourceTree = SOURCE_ROOT; };
 		65BF2E4E1DE2F37B00441784 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "AnimationOptions+UIViewAnimationOptions.swift"; path = "Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "UIView+PlatformNativeView.swift"; path = "Katana/iOS/UIView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
-		65BF2E9E1DE3635000441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = Katana/iOS/DefaultView.swift; sourceTree = SOURCE_ROOT; };
+		65BF2E9E1DE3635000441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Katana/iOS/Typealiases.swift; sourceTree = SOURCE_ROOT; };
 		65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+PlatformNativeView.swift"; path = "Katana/MacOS/NSView+PlatformNativeView.swift"; sourceTree = SOURCE_ROOT; };
 		65BF2EA21DE363A100441784 /* NSView+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "NSView+Utils.swift"; path = "Katana/MacOS/NSView+Utils.swift"; sourceTree = SOURCE_ROOT; };
-		65BF2EA41DE363A700441784 /* DefaultView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DefaultView.swift; path = Katana/MacOS/DefaultView.swift; sourceTree = SOURCE_ROOT; };
+		65BF2EA41DE363A700441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Katana/MacOS/Typealiases.swift; sourceTree = SOURCE_ROOT; };
 		65BF2EA61DE363AE00441784 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Katana/MacOS/Info.plist; sourceTree = SOURCE_ROOT; };
 		65BF2EA81DE363B400441784 /* Katana.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Katana.h; path = Katana/MacOS/Katana.h; sourceTree = SOURCE_ROOT; };
 		65BF2EDA1DE745CF00441784 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
@@ -381,7 +383,7 @@
 		A1CA314C1DC37DBF00982BE9 /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
 		A1CA314E1DC37DBF00982BE9 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A1CA314F1DC37DBF00982BE9 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		A1CA31501DC37DBF00982BE9 /* Typealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
+		A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTypealiases.swift; sourceTree = "<group>"; };
 		A1CA31581DC39E1700982BE9 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
 		A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncActionTests.swift; sourceTree = "<group>"; };
 		A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
@@ -495,7 +497,7 @@
 			children = (
 				65BF2E981DE3632600441784 /* AnimationOptions+UIViewAnimationOptions.swift */,
 				65BF2E9C1DE3634100441784 /* UIView+PlatformNativeView.swift */,
-				65BF2E9E1DE3635000441784 /* DefaultView.swift */,
+				65BF2E9E1DE3635000441784 /* Typealiases.swift */,
 				81FB7A721DE4DB5A00953EA0 /* Info.plist */,
 				81FB7A731DE4DB5A00953EA0 /* Katana.h */,
 			);
@@ -508,7 +510,8 @@
 			children = (
 				65BF2EA01DE3639600441784 /* NSView+PlatformNativeView.swift */,
 				65BF2EA21DE363A100441784 /* NSView+Utils.swift */,
-				65BF2EA41DE363A700441784 /* DefaultView.swift */,
+				65A722641DEC3E8D00013E7A /* NSViewFlipped.swift */,
+				65BF2EA41DE363A700441784 /* Typealiases.swift */,
 				65BF2EA61DE363AE00441784 /* Info.plist */,
 				65BF2EA81DE363B400441784 /* Katana.h */,
 			);
@@ -678,7 +681,7 @@
 				A1CA314C1DC37DBF00982BE9 /* Action.swift */,
 				A1CA314E1DC37DBF00982BE9 /* State.swift */,
 				A1CA314F1DC37DBF00982BE9 /* Store.swift */,
-				A1CA31501DC37DBF00982BE9 /* Typealiases.swift */,
+				A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */,
 				A1CA31581DC39E1700982BE9 /* SyncAction.swift */,
 				A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */,
 				A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */,
@@ -1360,10 +1363,11 @@
 				65BF2E741DE339C900441784 /* AnimationPropsTransfomer.swift in Sources */,
 				65BF2E751DE339C900441784 /* Renderer.swift in Sources */,
 				65BF2E761DE339C900441784 /* ConnectedNodeDescription.swift in Sources */,
-				65BF2EA51DE363A700441784 /* DefaultView.swift in Sources */,
+				65BF2EA51DE363A700441784 /* Typealiases.swift in Sources */,
 				65BF2E771DE339C900441784 /* Int+Katana.swift in Sources */,
 				65BF2E781DE339C900441784 /* Collections+Katana.swift in Sources */,
 				65BF2E791DE339C900441784 /* Anchor.swift in Sources */,
+				65A722651DEC3E8D00013E7A /* NSViewFlipped.swift in Sources */,
 				65BF2E7A1DE339C900441784 /* Array+Plastic.swift in Sources */,
 				65BF2E7B1DE339C900441784 /* EdgeInsets.swift in Sources */,
 				65BF2E7C1DE339C900441784 /* CoordinateConvertible.swift in Sources */,
@@ -1380,7 +1384,7 @@
 				65BF2E871DE339C900441784 /* Action.swift in Sources */,
 				65BF2E881DE339C900441784 /* State.swift in Sources */,
 				65BF2E891DE339C900441784 /* Store.swift in Sources */,
-				65BF2E8A1DE339C900441784 /* Typealiases.swift in Sources */,
+				65BF2E8A1DE339C900441784 /* StoreTypealiases.swift in Sources */,
 				65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */,
 				65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */,
 				65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */,
@@ -1452,7 +1456,7 @@
 				813315611D7B726000FBE210 /* ConnectedNodeDescription.swift in Sources */,
 				A1CA31511DC37DBF00982BE9 /* Action.swift in Sources */,
 				813315751D7B726000FBE210 /* EdgeInsets.swift in Sources */,
-				65BF2E9F1DE3635000441784 /* DefaultView.swift in Sources */,
+				65BF2E9F1DE3635000441784 /* Typealiases.swift in Sources */,
 				8133155D1D7B726000FBE210 /* Commons.swift in Sources */,
 				8133155F1D7B726000FBE210 /* NodeDescriptionWithChildren.swift in Sources */,
 				8133155E1D7B726000FBE210 /* NodeDescription.swift in Sources */,
@@ -1469,7 +1473,7 @@
 				A1C9C1C31DD32D570067F8E0 /* InternalNode.swift in Sources */,
 				A1C9C1CD1DD36BE50067F8E0 /* Animation.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
-				A1CA31551DC37DBF00982BE9 /* Typealiases.swift in Sources */,
+				A1CA31551DC37DBF00982BE9 /* StoreTypealiases.swift in Sources */,
 				A1C9C1CB1DD36BD90067F8E0 /* AnimationType.swift in Sources */,
 				A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */,
 				A15700671DD4C33700361068 /* AnimationPropsTransfomer.swift in Sources */,

@@ -5,6 +5,7 @@
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
+
 import AppKit
 import Katana
 
@@ -46,7 +47,7 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
   
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
-                                            view: NSView,
+                                            view: NSViewFlipped,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true

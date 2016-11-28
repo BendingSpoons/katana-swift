@@ -45,6 +45,11 @@ public class NativeButton: NSButton {
     clickHandler?()
   }
   
+  // MARK: - coordinate system
   
+  // In Katana macOS we stick with the iOS coordinate system
+  override public var isFlipped: Bool {
+    return true
+  }
   
 }
