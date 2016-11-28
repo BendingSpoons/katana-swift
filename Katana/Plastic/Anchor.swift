@@ -34,7 +34,7 @@ public struct Anchor: Equatable {
   let view: PlasticView
 
   /// the offset at which this anchor will be set, with respect to the anchor it will be assigned to
-  var offset: Value
+  let offset: Value
 
   /**
    Creates an anchor with a given type, related to a specific `PlasticView`
