@@ -32,16 +32,21 @@ public struct Anchor: Equatable {
   
   /// the `PlasticView` to which the anchor is associated to
   let view: PlasticView
-  
+
+  /// the offset at which this anchor will be set, with respect to the anchor it will be assigned to
+  var offset: Value
+
   /**
    Creates an anchor with a given type, related to a specific `PlasticView`
    
    - parameter kind: the kind of the anchor
    - parameter view: the view the anchor pertains to
+   - parameter offset: the offset at which this anchor will be set, with respect to the anchor it will be assigned to
   */
-  init(kind: Kind, view: PlasticView) {
+  init(kind: Kind, view: PlasticView, offset: Value = .zero) {
     self.kind = kind
     self.view = view
+    self.offset = offset
   }
   
   /**
@@ -51,27 +56,30 @@ public struct Anchor: Equatable {
   var coordinate: CGFloat {
     let absoluteOrigin = self.view.absoluteOrigin
     let size = self.view.frame
-    
+    let coord: CGFloat
+
     switch self.kind {
     case .left:
-      return absoluteOrigin.x
+      coord = absoluteOrigin.x
     
     case .right:
-      return absoluteOrigin.x + size.width
+      coord = absoluteOrigin.x + size.width
     
     case .centerX:
-      return absoluteOrigin.x + size.width / 2.0
+      coord = absoluteOrigin.x + size.width / 2.0
       
     case .top:
-      return absoluteOrigin.y
+      coord = absoluteOrigin.y
       
     case .bottom:
-      return absoluteOrigin.y + size.height
+      coord = absoluteOrigin.y + size.height
       
     case .centerY:
-      return absoluteOrigin.y + size.height / 2.0
+      coord = absoluteOrigin.y + size.height / 2.0
       
     }
+
+    return coord + view.scaleValue(offset)
   }
   
   /**
@@ -84,5 +92,33 @@ public struct Anchor: Equatable {
   */
   public static func == (lhs: Anchor, rhs: Anchor) -> Bool {
     return lhs.kind == rhs.kind && lhs.view === rhs.view
+  }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset + rhs`
+   */
+  public static func + (lhs: Anchor, rhs: Value) -> Anchor {
+    return Anchor(kind: lhs.kind, view: lhs.view, offset: lhs.offset + rhs)
+  }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset - rhs`
+   */
+  public static func - (lhs: Anchor, rhs: Value) -> Anchor {
+    return Anchor(kind: lhs.kind, view: lhs.view, offset: lhs.offset + -rhs)
+  }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset + Value.scalable(rhs)`
+   */
+  public static func + (lhs: Anchor, rhs: CGFloat) -> Anchor {
+    return lhs + .scalable(rhs)
+  }
+
+  /**
+   Create an anchor equal to `lhs`, but with an offset equal to `lhs.offset - Value.scalable(rhs)`
+   */
+  public static func - (lhs: Anchor, rhs: CGFloat) -> Anchor {
+    return lhs - .scalable(rhs)
   }
 }

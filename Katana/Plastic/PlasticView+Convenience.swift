@@ -18,8 +18,8 @@ extension PlasticView {
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used.
   */
   public func fillHorizontally(_ view: PlasticView, insets: EdgeInsets = .zero) {
-    self.setLeft(view.left, offset: insets.left)
-    self.setRight(view.right, offset: -insets.right)
+    self.left = view.left + insets.left
+    self.right = view.right - insets.right
   }
   
   /**
@@ -30,8 +30,8 @@ extension PlasticView {
    - parameter insets: the insets to use when filling the view frame. Only the left and right insets are used
   */
   public func fillVertically(_ view: PlasticView, insets: EdgeInsets = .zero) {
-    self.setTop(view.top, offset: insets.top)
-    self.setBottom(view.bottom, offset: -insets.bottom)
+    self.top = view.top + insets.top
+    self.bottom = view.bottom - insets.bottom
   }
   
   /**
@@ -81,10 +81,11 @@ extension PlasticView {
                 bottom: Anchor,
                  right: Anchor,
                 insets: EdgeInsets = .zero) {
-    self.setLeft(left, offset: insets.left)
-    self.setRight(right, offset: -insets.right)
-    self.setTop(top, offset: insets.top)
-    self.setBottom(bottom, offset: -insets.bottom)
+
+    self.left = left + insets.left
+    self.right = right - insets.right
+    self.top = top + insets.top
+    self.bottom = bottom - insets.bottom
   }
 
   /**
@@ -106,10 +107,7 @@ extension PlasticView {
                    aspectRatio: CGFloat = 1,
                    insets: EdgeInsets = .zero) {
 
-    self.setLeft(left, offset: insets.left)
-    self.setRight(right, offset: -insets.right)
-    self.setTop(top, offset: insets.top)
-    self.setBottom(bottom, offset: -insets.bottom)
+    self.fill(top: top, left: left, bottom: bottom, right: right, insets: insets)
 
     let width = self.width.unscaledValue
     let height = self.height.unscaledValue
@@ -133,7 +131,7 @@ extension PlasticView {
   */
   public func centerBetween(left: Anchor, right: Anchor) {
     let offset: Value = .fixed((right.coordinate - left.coordinate) / 2.0)
-    self.setCenterX(left, offset: offset)
+    self.centerX = left + offset
   }
   
   /**
@@ -145,7 +143,7 @@ extension PlasticView {
   */
   public func centerBetween(top: Anchor, bottom: Anchor) {
     let offset: Value = .fixed((bottom.coordinate - top.coordinate) / 2.0)
-    self.setCenterY(top, offset: offset)
+    self.centerY = top + offset
   }
   
   /**
@@ -167,9 +165,9 @@ extension PlasticView {
    - parameter insets: the insets to use when aligning edges
   */
   public func coverLeft(_ view: PlasticView, insets: EdgeInsets = .zero) {
-    self.setLeft(view.left, offset: insets.left)
-    self.setTop(view.top, offset: insets.top)
-    self.setBottom(view.bottom, offset: -insets.bottom)
+    self.left = view.left + insets.left
+    self.top = view.top + insets.top
+    self.bottom = view.bottom - insets.bottom
   }
   
   /**
@@ -180,9 +178,9 @@ extension PlasticView {
    - parameter insets: the insets to use when aligning edges
   */
   public func coverRight(_ view: PlasticView, insets: EdgeInsets = .zero) {
-    self.setRight(view.right, offset: -insets.right)
-    self.setTop(view.top, offset: insets.top)
-    self.setBottom(view.bottom, offset: -insets.bottom)
+    self.right = view.right - insets.right
+    self.top = view.top + insets.top
+    self.bottom = view.bottom - insets.bottom
   }
   
   /**
@@ -193,9 +191,9 @@ extension PlasticView {
    - parameter insets: the insets to use when aligning edges
   */
   public func asHeader(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) {
-    self.setLeft(view.left, offset: insets.left)
-    self.setRight(view.right, offset: -insets.right)
-    self.setTop(view.top, offset: insets.top)
+    self.left = view.left + insets.left
+    self.right = view.right - insets.right
+    self.top = view.top + insets.top
   }
   
   /**
@@ -206,8 +204,8 @@ extension PlasticView {
    - parameter insets: the insets to use when aligning edges
   */
   public func asFooter(_ view: PlasticView, insets: EdgeInsets = EdgeInsets.zero) {
-    self.setLeft(view.left, offset: insets.left)
-    self.setRight(view.right, offset: -insets.right)
-    self.setBottom(view.bottom, offset: -insets.bottom)
+    self.left = view.left + insets.left
+    self.right = view.right - insets.right
+    self.bottom = view.bottom - insets.bottom
   }
 }
