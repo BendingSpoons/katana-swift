@@ -14,7 +14,7 @@
     <a title="PlasticView Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -77,9 +77,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">– UIViewDrawableContainerChild</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -128,12 +125,6 @@
                 <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DrawableContainer.html">DrawableContainer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -150,6 +141,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
@@ -176,6 +170,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationProps.html">AnimationProps</a>
@@ -239,7 +236,7 @@ The idea is that Plastic will create a <code>PlasticView</code> for each node de
 <code>childrenDescriptions(props:state:update:dispatch:)</code>. You can then apply Plastic methods
 over the instances of <code>PlasticView</code> and achieve the desidered layout.</p>
 
-<p>This abstraction has been introduced to avoid to deal directly with <code>UIView</code> instances in the Katana
+<p>This abstraction has been introduced to avoid to deal directly with <code>UIView</code> or &lsquo;NSView&rsquo; instances in the Katana
 world. This allows us to implement some optimizations behinde the scenes (e.g., caching).</p>
 
           </section>
@@ -272,7 +269,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -302,7 +299,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L39">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L39">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -332,7 +329,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L157-L165">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L157-L178">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -362,7 +359,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L191-L199">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L182-L203">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -382,7 +379,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The bottom anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView9setBottomFTVS_6Anchor6offsetVS_5Value_T_">setBottom(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s bottom edge position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -394,70 +391,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L228-L236">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView9setBottomFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setBottom(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView9setBottomFTVS_6Anchor6offsetVS_5Value_T_">setBottom(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s bottom edge position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setBottom</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L244-L259">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L210-L231">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -477,7 +411,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The top anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView6setTopFTVS_6Anchor6offsetVS_5Value_T_">setTop(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s top edge position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -489,70 +423,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L266-L274">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView6setTopFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setTop(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView6setTopFTVS_6Anchor6offsetVS_5Value_T_">setTop(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s top edge position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setTop</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L282-L297">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L238-L259">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -572,7 +443,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The right anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView8setRightFTVS_6Anchor6offsetVS_5Value_T_">setRight(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s right edge position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -584,70 +455,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L304-L312">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView8setRightFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setRight(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView8setRightFTVS_6Anchor6offsetVS_5Value_T_">setRight(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s right edge position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setRight</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L320-L335">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L266-L287">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -667,7 +475,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The left anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView7setLeftFTVS_6Anchor6offsetVS_5Value_T_">setLeft(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s left edge position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -679,70 +487,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L343-L351">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView7setLeftFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setLeft(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView7setLeftFTVS_6Anchor6offsetVS_5Value_T_">setLeft(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s left edge position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setLeft</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L359-L375">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L294-L316">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -762,7 +507,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The horizontal center anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView10setCenterXFTVS_6Anchor6offsetVS_5Value_T_">setCenterX(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s horizontal center position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -774,70 +519,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L382-L390">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView10setCenterXFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setCenterX(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView10setCenterXFTVS_6Anchor6offsetVS_5Value_T_">setCenterX(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s horizontal center position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setCenterX</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L398-L414">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L323-L345">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -857,7 +539,7 @@ corresponded node description properties</p>
                       <div class="abstract">
                         <p>The vertical center anchor of the instance.</p>
 
-<p>Setting its value has the same effect of invoking <code><a href="../Classes/PlasticView.html#/s:FC6Katana11PlasticView10setCenterYFTVS_6Anchor6offsetVS_5Value_T_">setCenterY(_:offset:)</a></code> with an offset equal to <code>.zero</code></p>
+<p>Setting its value sets the view&rsquo;s vertical center position equal to the given anchor</p>
 
                       </div>
                       <div class="declaration">
@@ -869,70 +551,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L421-L429">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FC6Katana11PlasticView10setCenterYFTVS_6Anchor6offsetVS_5Value_T_"></a>
-                    <a name="//apple_ref/swift/Method/setCenterY(_:offset:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView10setCenterYFTVS_6Anchor6offsetVS_5Value_T_">setCenterY(_:offset:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Sets the view&rsquo;s vertical center position equal to the given anchor</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">setCenterY</span><span class="p">(</span><span class="n">_</span> <span class="nv">anchor</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">offset</span><span class="p">:</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>anchor</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the anchor</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>offset</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>an optional offset to use with respect to the anchor. The default value is <code>.zero</code></p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L437-L453">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L352-L374">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -962,7 +581,7 @@ corresponded node description properties</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView.swift#L456-L465">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView.swift#L377-L386">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1030,7 +649,7 @@ The vertical position and height of the called-upon view remain unchanged.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L20-L23">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L20-L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1094,7 +713,7 @@ insets. The horizontal position and width of the called-upon view remain unchang
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L32-L35">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L32-L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1157,7 +776,7 @@ insets. The horizontal position and width of the called-upon view remain unchang
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L43-L48">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L43-L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1165,9 +784,192 @@ insets. The horizontal position and width of the called-upon view remain unchang
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC6Katana11PlasticView4fillFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_"></a>
-                    <a name="//apple_ref/swift/Method/fill(top:left:bottom:right:aspectRatio:insets:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana11PlasticView4fillFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_">fill(top:left:bottom:right:aspectRatio:insets:)</a>
+                    <a name="/s:FC6Katana11PlasticView3fitFTS0_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_"></a>
+                    <a name="//apple_ref/swift/Method/fit(_:aspectRatio:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Katana11PlasticView3fitFTS0_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_">fit(_:aspectRatio:insets:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lets the view upon which this method is called fit the frame of another using optional insets and aspectRatio.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fit</span><span class="p">(</span><span class="n">_</span> <span class="nv">view</span><span class="p">:</span> <span class="kt">PlasticView</span><span class="p">,</span> <span class="nv">aspectRatio</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>view</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the view whose frame should be filled</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>aspectRatio</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the aspect ratio that the called-upon view should maintain. Give as width divided by height. Default value is 1</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the insets to use when filling the view frame</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L59-L66">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Katana11PlasticView4fillFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_6insetsVS_10EdgeInsets_T_"></a>
+                    <a name="//apple_ref/swift/Method/fill(top:left:bottom:right:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Katana11PlasticView4fillFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_6insetsVS_10EdgeInsets_T_">fill(top:left:bottom:right:insets:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lets the view upon which this method is called be stretched out between four separate view anchor positions.
+Optional insets can be used.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                  <span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                 <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the left view anchor position that the called-upon view’s left edge will be stretched towards</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>right</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the right view anchor position that the called-upon view’s right edge will be stretched towards</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>top</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the top view anchor position that the called-upon view’s top edge will be stretched towards</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bottom</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the bottom view anchor position that the called-upon view’s bottom edge will be stretched towards</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the insets to use for the given view anchors</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L79-L89">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Katana11PlasticView3fitFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_"></a>
+                    <a name="//apple_ref/swift/Method/fit(top:left:bottom:right:aspectRatio:insets:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Katana11PlasticView3fitFT3topVS_6Anchor4leftS1_6bottomS1_5rightS1_11aspectRatioV12CoreGraphics7CGFloat6insetsVS_10EdgeInsets_T_">fit(top:left:bottom:right:aspectRatio:insets:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1183,12 +985,12 @@ maintaining a certain aspect ratio. Optional insets can be used.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
-                  <span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
-                <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
-                 <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
-           <span class="nv">aspectRatio</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
-                <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fit</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">aspectRatio</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+                   <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -1256,7 +1058,7 @@ maintaining a certain aspect ratio. Optional insets can be used.</p>
                               </td>
                               <td>
                                 <div>
-                                  <p>the aspect ratio that the called-upon view should maintain. Give as width devided by height. Default value is 1</p>
+                                  <p>the aspect ratio that the called-upon view should maintain. Give as width divided by height. Default value is 1</p>
 
                                 </div>
                               </td>
@@ -1278,7 +1080,7 @@ maintaining a certain aspect ratio. Optional insets can be used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L62-L85">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L103-L123">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1342,7 +1144,7 @@ bottom edge of the view will remain the same.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L94-L97">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L132-L135">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1406,7 +1208,7 @@ right edge of the view will remain the same.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L106-L109">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L144-L147">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1457,7 +1259,7 @@ The size of the called-upon view will remain the same.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L117-L120">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L155-L158">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1521,7 +1323,7 @@ with some optional insets.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L129-L133">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L167-L171">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1585,7 +1387,7 @@ with some optional insets.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L142-L146">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L180-L184">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1649,7 +1451,7 @@ with some optional insets.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L155-L159">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L193-L197">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1713,7 +1515,7 @@ with some optional insets.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Plastic/PlasticView+Convenience.swift#L168-L172">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/PlasticView+Convenience.swift#L206-L210">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1723,7 +1525,7 @@ with some optional insets.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

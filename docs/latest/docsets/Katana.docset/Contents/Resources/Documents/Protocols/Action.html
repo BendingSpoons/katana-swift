@@ -14,7 +14,7 @@
     <a title="Action Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -77,9 +77,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">– UIViewDrawableContainerChild</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -128,12 +125,6 @@
                 <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DrawableContainer.html">DrawableContainer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -150,6 +141,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
@@ -176,6 +170,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationProps.html">AnimationProps</a>
@@ -235,7 +232,7 @@
                 </div>
               </div>
             <p>An action represents an event that leads to a change in the state of the application.
-It can be triggered from an user action, from a system event or any event in general.</p>
+It can be triggered from a user action, from a system event or any event in general.</p>
 
 <p>In general this protocol should not be used directly. Use <code><a href="../Protocols/SyncAction.html">SyncAction</a></code> and <code><a href="../Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
 
@@ -261,7 +258,7 @@ to note that <code>updateState(currentState:action:)</code> should be a
 <a href="https://en.wikipedia.org/wiki/Pure_function">pure function</a>, that is
 a function that given the same input always returns the same output and it also
 doesn&rsquo;t have any side effect. This is really important because it is an assumption
-that Katana (an related tools) make in order to implement some functionalities
+that Katana (and related tools) makes in order to implement some functionalities
 (e.g., not implemented yet, but possible in the future: time travel)</p>
 
                       </div>
@@ -312,7 +309,7 @@ that Katana (an related tools) make in order to implement some functionalities
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Action.swift#L41">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Action.swift#L41">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -355,7 +352,7 @@ that Katana (an related tools) make in order to implement some functionalities
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Action.swift#L50-L52">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Action.swift#L50-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -365,7 +362,7 @@ that Katana (an related tools) make in order to implement some functionalities
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

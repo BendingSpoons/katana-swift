@@ -14,7 +14,7 @@
     <a title="UIView Extension Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -77,9 +77,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">– UIViewDrawableContainerChild</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -128,12 +125,6 @@
                 <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DrawableContainer.html">DrawableContainer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -150,6 +141,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
@@ -176,6 +170,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationProps.html">AnimationProps</a>
@@ -237,9 +234,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild"></a>
-                    <a name="//apple_ref/swift/Struct/UIViewDrawableContainerChild" class="dashAnchor"></a>
-                    <a class="token" href="#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">UIViewDrawableContainerChild</a>
+                    <a name="/s:vE6KatanaCSo6UIView8tagValueSi"></a>
+                    <a name="//apple_ref/swift/Property/tagValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vE6KatanaCSo6UIView8tagValueSi">tagValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -247,19 +244,61 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>A struct that implements the <code><a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a></code> protocol</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
+
+</div>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">UIViewDrawableContainerChild</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">tagValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L78-L81">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L19-L26">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFE6KatanaCSo6UIView4makeFT_DS0_"></a>
+                    <a name="//apple_ref/swift/Method/make()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE6KatanaCSo6UIView4makeFT_DS0_">make()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implementation of the PlatformNativeView protocol.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">make</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L33-L35">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -277,11 +316,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -295,7 +334,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L88-L99">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L42-L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -303,9 +342,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE6KatanaCSo6UIView8addChildFFT_S0_PS_17DrawableContainer_"></a>
+                    <a name="/s:FE6KatanaCSo6UIView8addChildFFT_PS_18PlatformNativeView_PS1__"></a>
                     <a name="//apple_ref/swift/Method/addChild(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaCSo6UIView8addChildFFT_S0_PS_17DrawableContainer_">addChild(_:)</a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView8addChildFFT_PS_18PlatformNativeView_PS1__">addChild(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -313,11 +352,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -326,12 +365,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">UIView</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L106-L118">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L60-L75">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -339,9 +378,45 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE6KatanaCSo6UIView6updateFT4withFS0_T__T_"></a>
+                    <a name="/s:FE6KatanaCSo6UIView11addToParentFT6parentPS_18PlatformNativeView__T_"></a>
+                    <a name="//apple_ref/swift/Method/addToParent(parent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView11addToParentFT6parentPS_18PlatformNativeView__T_">addToParent(parent:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implementation of the PlatformNativeView protocol.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addToParent</span><span class="p">(</span><span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L82-L86">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE6KatanaCSo6UIView6updateFT4withFPS_18PlatformNativeView_T__T_"></a>
                     <a name="//apple_ref/swift/Method/update(with:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaCSo6UIView6updateFT4withFS0_T__T_">update(with:)</a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView6updateFT4withFPS_18PlatformNativeView_T__T_">update(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -349,11 +424,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -362,12 +437,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="n">with</span> <span class="nv">updateView</span><span class="p">:</span> <span class="p">(</span><span class="kt">UIView</span><span class="p">)</span><span class="o">-&gt;</span><span class="p">())</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">update</span><span class="p">(</span><span class="n">with</span> <span class="nv">updateView</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">)</span><span class="o">-&gt;</span><span class="p">())</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L125-L134">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L93-L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -375,9 +450,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE6KatanaCSo6UIView8childrenFT_GSaPS_22DrawableContainerChild__"></a>
+                    <a name="/s:FE6KatanaCSo6UIView8childrenFT_GSaPS_18PlatformNativeView__"></a>
                     <a name="//apple_ref/swift/Method/children()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaCSo6UIView8childrenFT_GSaPS_22DrawableContainerChild__">children()</a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView8childrenFT_GSaPS_18PlatformNativeView__">children()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -385,11 +460,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -398,12 +473,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">children</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a></span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">children</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">[</span><span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L141-L143">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L109-L111">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -411,9 +486,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE6KatanaCSo6UIView17bringChildToFrontFPS_22DrawableContainerChild_T_"></a>
+                    <a name="/s:FE6KatanaCSo6UIView17bringChildToFrontFPS_18PlatformNativeView_T_"></a>
                     <a name="//apple_ref/swift/Method/bringChildToFront(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaCSo6UIView17bringChildToFrontFPS_22DrawableContainerChild_T_">bringChildToFront(_:)</a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView17bringChildToFrontFPS_18PlatformNativeView_T_">bringChildToFront(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -421,11 +496,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -434,12 +509,12 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bringChildToFront</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">bringChildToFront</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L150-L160">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L118-L130">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -447,9 +522,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FE6KatanaCSo6UIView11removeChildFPS_22DrawableContainerChild_T_"></a>
+                    <a name="/s:FE6KatanaCSo6UIView11removeChildFPS_18PlatformNativeView_T_"></a>
                     <a name="//apple_ref/swift/Method/removeChild(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaCSo6UIView11removeChildFPS_22DrawableContainerChild_T_">removeChild(_:)</a>
+                    <a class="token" href="#/s:FE6KatanaCSo6UIView11removeChildFPS_18PlatformNativeView_T_">removeChild(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -457,11 +532,11 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Implementation of the DrawableContainer protocol.</p>
+                        <p>Implementation of the PlatformNativeView protocol.</p>
 
 <div class="aside aside-see-also">
     <p class="aside-title">See also</p>
-    <code><a href="../Protocols/DrawableContainer.html">DrawableContainer</a></code>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
 
 </div>
 
@@ -470,12 +545,48 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="kt"><a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">removeChild</span><span class="p">(</span><span class="n">_</span> <span class="nv">child</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/Node/DrawableContainer.swift#L167-L177">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L137-L147">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFE6KatanaCSo6UIView7animateFT4typeOS_13AnimationTypeFT_T_10completionGSqFT_T___T_"></a>
+                    <a name="//apple_ref/swift/Method/animate(type:_:completion:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE6KatanaCSo6UIView7animateFT4typeOS_13AnimationTypeFT_T_10completionGSqFT_T___T_">animate(type:_:completion:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implementation of the PlatformNativeView protocol.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">animate</span><span class="p">(</span><span class="nv">type</span><span class="p">:</span> <span class="kt"><a href="../Enums/AnimationType.html">AnimationType</a></span><span class="p">,</span> <span class="n">_</span> <span class="nv">block</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span><span class="o">-&gt;</span><span class="p">(),</span> <span class="nv">completion</span><span class="p">:</span> <span class="p">(()</span> <span class="o">-&gt;</span> <span class="p">())?)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/UIView+PlatformNativeView.swift#L154-L212">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -485,7 +596,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

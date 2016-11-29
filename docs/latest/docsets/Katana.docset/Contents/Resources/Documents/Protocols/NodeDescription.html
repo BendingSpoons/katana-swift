@@ -14,7 +14,7 @@
     <a title="NodeDescription Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -77,9 +77,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">– UIViewDrawableContainerChild</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -128,12 +125,6 @@
                 <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DrawableContainer.html">DrawableContainer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -150,6 +141,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
@@ -176,6 +170,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationProps.html">AnimationProps</a>
@@ -243,16 +240,18 @@ describes how a piece of UI should look like.</p>
 <p>In general, a description defines two things:</p>
 
 <ul>
-<li><p>how properties and state are used to personalise the instance of UIView (or subclass) associated with the <code><a href="../Classes/Node.html">Node</a></code> instance.
-This view is also named <strong>NativeView</strong></p></li>
+<li><p>how properties and state are used to personalise the instance of UIView/NSView (or subclass)
+associated with the <code><a href="../Classes/Node.html">Node</a></code> instance. This view is also named <strong>NativeView</strong></p></li>
 <li><p>what are the children descriptions given the properties and the state</p></li>
 </ul>
 
 <p><a href='#node-and-nodedescription-relationship' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='node-and-nodedescription-relationship'>Node and NodeDescription relationship</h3></p>
 
 <p>It is important to remember that the UI hierarchy has a 1:1 relationship with <code><a href="../Classes/Node.html">Node</a></code> instances
-and not with <code>NodeDescription</code>. This means that each <code>UIView</code> in the UIKit UI tree is connected to a <code><a href="../Classes/Node.html">Node</a></code> instance.
-This instance holds the description that is used to manage the <code>UIView</code> (and the children), properties and the state.</p>
+and not with <code>NodeDescription</code>. This means that each <code>UIView</code> in the UIKit UI tree
+(or <code>NSView</code> in the AppKit UI tree) is connected to a <code><a href="../Classes/Node.html">Node</a></code> instance.
+This instance holds the description that is used to manage the <code>UIView</code> (or <code>NSView</code>) (and the children),
+properties and the state.</p>
 
 <p>This is why all the <code>NodeDescription</code> methods are static.
 Description instances are meaningless and are used only as an easy to ready way
@@ -288,7 +287,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L173">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L174">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -318,37 +317,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L165">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana15NodeDescription10NativeView"></a>
-                    <a name="//apple_ref/swift/Alias/NativeView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana15NodeDescription10NativeView">NativeView</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The UIKit class that will be instantiated for this description. The default value is <code>UIView</code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">NativeView</span><span class="p">:</span> <span class="kt">UIView</span> <span class="o">=</span> <span class="kt">UIView</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L162">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L166">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -378,7 +347,37 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L168">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L169">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana15NodeDescription10NativeView"></a>
+                    <a name="//apple_ref/swift/Alias/NativeView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana15NodeDescription10NativeView">NativeView</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The PlatformNativeView class that will be instantiated for this description.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">NativeView</span><span class="p">:</span> <span class="kt"><a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a></span> <span class="o">=</span> <span class="kt">DefaultView</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L163">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -433,7 +432,7 @@ These instances are used by Katana to understand how to update the UI (update, r
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L181">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -554,7 +553,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L193">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L194">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -658,7 +657,7 @@ These instances are used by Katana to understand how to update the UI (update, r
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L210">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L211">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -773,7 +772,7 @@ for the children.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L230">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L231">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -810,7 +809,7 @@ for the children.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Core/NodeDescription/NodeDescription.swift#L241-L244">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/NodeDescription/NodeDescription.swift#L242-L245">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -820,7 +819,7 @@ for the children.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

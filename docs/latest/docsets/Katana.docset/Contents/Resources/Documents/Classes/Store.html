@@ -14,7 +14,7 @@
     <a title="Store Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -77,9 +77,6 @@
               <li class="nav-group-task">
                 <a href="../Extensions/UIView.html">UIView</a>
               </li>
-              <li class="nav-group-task">
-                <a href="../Extensions/UIView.html#/s:VE6KatanaCSo6UIView28UIViewDrawableContainerChild">– UIViewDrawableContainerChild</a>
-              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -128,12 +125,6 @@
                 <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DrawableContainer.html">DrawableContainer</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols.html#/s:P6Katana22DrawableContainerChild">DrawableContainerChild</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -150,6 +141,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
@@ -176,6 +170,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/AnimationProps.html">AnimationProps</a>
@@ -230,7 +227,7 @@
             <h1>Store</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight"><code><span class="n">open</span> <span class="kd">class</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="o">&gt;</span></code></pre>
 
                 </div>
               </div>
@@ -280,12 +277,12 @@ See <code><a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDesc
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span></code></pre>
+                          <pre class="highlight"><code><span class="n">open</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L56">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -321,7 +318,7 @@ side effects</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L101-L103">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L101-L103">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -389,7 +386,7 @@ side effects</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L112-L117">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L112-L117">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -445,7 +442,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L126-L133">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L126-L133">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -495,7 +492,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L140-L144">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L140-L144">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -535,7 +532,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.2.0/Katana/Store/Store.swift#L228-L230">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Store/Store.swift#L228-L230">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -545,7 +542,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-17)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
