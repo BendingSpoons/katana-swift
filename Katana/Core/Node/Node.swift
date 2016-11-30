@@ -608,6 +608,6 @@ extension Node {
    */
   public var renderer: Renderer? {
     guard self.myRenderer == nil else { return self.myRenderer! }
-    return self.parent!.renderer
+    return self.parent?.renderer
   }
 }
