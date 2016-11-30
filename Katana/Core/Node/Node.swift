@@ -324,7 +324,7 @@ extension Node {
       }
     }
     
-    let dispatch =  self.renderer.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     return type(of: description).childrenDescriptions(props: self.description.props,
                                                       state: self.state,
@@ -347,7 +347,7 @@ extension Node {
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.renderer.store else {
+      guard let store = self.renderer?.store else {
         fatalError("connected node lacks store")
       }
       
@@ -606,7 +606,7 @@ extension Node {
   /**
    The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns root.renderer
    */
-  public var renderer: Renderer {
+  public var renderer: Renderer? {
     guard self.myRenderer == nil else { return self.myRenderer! }
     return self.parent!.renderer
   }

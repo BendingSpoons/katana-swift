@@ -29,7 +29,7 @@ public protocol AnyNode: class {
   /**
    The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns `root.renderer`
    */
-  var renderer: Renderer { get }
+  var renderer: Renderer? { get }
   
   /**
    Updates the node with a new description. Invoking this method will cause an update of the piece of the UI managed by the node
