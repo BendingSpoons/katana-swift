@@ -9,17 +9,17 @@
 
 public typealias ClickHandlerClosure = () -> ()
 
-public class NativeButton: NSButton {
+open class NativeButton: NSButton {
   
   // MARK: - backgroundColor
   
-  public var backgroundColor: NSColor = NSColor.white {
+  open var backgroundColor: NSColor = NSColor.white {
     didSet {
       self.needsDisplay = true
     }
   }
   
-  public var backgroundHighlightedColor: NSColor = NSColor.white {
+  open var backgroundHighlightedColor: NSColor = NSColor.white {
     didSet {
       self.needsDisplay = true
     }
@@ -27,7 +27,7 @@ public class NativeButton: NSButton {
   
   // MARK: - clickHandler
   
-  public var clickHandler: ClickHandlerClosure? {
+  open var clickHandler: ClickHandlerClosure? {
     didSet {
       updateTarget()
     }
@@ -44,11 +44,11 @@ public class NativeButton: NSButton {
   
   // MARK: - updates
   
-  override public var wantsUpdateLayer: Bool {
+  open override var wantsUpdateLayer: Bool {
     return true
   }
   
-  override public func updateLayer() {
+  open override func updateLayer() {
     if let cell = self.cell, cell.isHighlighted {
       self.layer?.backgroundColor = self.backgroundHighlightedColor.cgColor
     } else {
@@ -59,7 +59,7 @@ public class NativeButton: NSButton {
   // MARK: - coordinate system
   
   // In Katana macOS we stick with the iOS coordinate system
-  override public var isFlipped: Bool {
+  open override var isFlipped: Bool {
     return true
   }
   
