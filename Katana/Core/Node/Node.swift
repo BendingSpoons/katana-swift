@@ -51,11 +51,11 @@ public class Node<Description: NodeDescription> {
   /// The current state of the node
   public fileprivate(set) var state: Description.StateType
   
+  /// The container in which the node will be drawn
+  public var container: PlatformNativeView?
+  
   /// The children descriptions of the node
   fileprivate var childrenDescriptions: [AnyNodeDescription]!
-
-  /// The container in which the node will be drawn
-  fileprivate var container: PlatformNativeView?
   
   /// The current description of the node
   fileprivate(set) var description: Description
