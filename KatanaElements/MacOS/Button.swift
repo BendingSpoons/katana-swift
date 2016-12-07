@@ -21,6 +21,8 @@ public extension Button {
     public var backgroundHighlightedColor: NSColor?
     
     public var title: NSAttributedString = NSAttributedString()
+    public var image: NSImage?
+    public var highlightedImage: NSImage?
     public var clickHandler: ClickHandlerClosure?
     
     public init() {}
@@ -41,10 +43,12 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true
-    view.setButtonType(NSMomentaryLightButton)
+    view.setButtonType(NSMomentaryChangeButton)
     view.isBordered = false
     view.alpha = props.alpha
     view.frame = props.frame
+    view.image = props.image
+    view.alternateImage = props.highlightedImage
     view.backgroundColor = props.backgroundColor
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
     view.attributedTitle = props.title
