@@ -148,7 +148,9 @@ extension NSView: PlatformNativeView {
     
     let child = child
     if let child = child as? NSView {
-      self.bringChildToFront(child)
+      // equivalent of UIView.bringSubviewToFront:
+      child.removeFromSuperview()
+      self.addSubview(child)
     }
   }
   
