@@ -50,7 +50,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
         $0.backgroundColor = .dogwoodRose
         $0.backgroundHighlightedColor = NSColor.dogwoodRose.darkish
         $0.title = "Decrement".centered
-        $0.clickHandler = {
+        $0.clickHandler = { button in
           dispatch(DecrementCounter())
         }
       })),
@@ -59,7 +59,7 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
         $0.backgroundColor = .japaneseIndigo
         $0.backgroundHighlightedColor = NSColor.japaneseIndigo.darkish
         $0.title = "Increment".centered
-        $0.clickHandler = {
+        $0.clickHandler = { button in
           dispatch(IncrementCounter())
         }
       }))
