@@ -24,6 +24,7 @@ public extension Button {
     public var image: NSImage?
     public var highlightedImage: NSImage?
     public var clickHandler: ClickHandlerClosure?
+    public var type: NSButtonType = NSMomentaryChangeButton
     
     public init() {}
     
@@ -43,7 +44,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
     view.wantsLayer = true
-    view.setButtonType(NSMomentaryChangeButton)
+    view.setButtonType(props.type)
     view.isBordered = false
     view.alpha = props.alpha
     view.frame = props.frame
