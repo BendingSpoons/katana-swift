@@ -76,6 +76,10 @@ public class Node<Description: NodeDescription> {
    */
   fileprivate weak var myRenderer: Renderer?
   
+  fileprivate var storeDispatch: StoreDispatch {
+    return self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+  }
+  
   
   
   /// The array of managed children of the node
@@ -154,8 +158,7 @@ public class Node<Description: NodeDescription> {
   }
   
   deinit {
-    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
-    Description.didUnmount(props: self.description.props, dispatch: dispatch)
+    Description.didUnmount(props: self.description.props, dispatch: self.storeDispatch)
   }
 }
 
@@ -194,8 +197,7 @@ extension Node {
     }
     
     
-    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
-    Description.didMount(props: self.description.props, dispatch: dispatch)
+    Description.didMount(props: self.description.props, dispatch: self.storeDispatch)
     
     children.forEach { child in
       let child = child as! InternalAnyNode
@@ -332,12 +334,10 @@ extension Node {
       }
     }
     
-    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
-    
     return type(of: description).childrenDescriptions(props: self.description.props,
                                                       state: self.state,
                                                       update: update,
-                                                      dispatch: dispatch)
+                                                      dispatch: self.storeDispatch)
   }
   
   /**
@@ -407,13 +407,12 @@ extension Node {
     var newState = state
     
     let update: (Description.StateType) -> () = { newState = $0 }
-    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
     
     Description.descriptionWillReceiveProps(
       state: state,
       currentProps: self.description.props,
       nextProps: description.props,
-      dispatch: dispatch,
+      dispatch: self.storeDispatch,
       update: update
     )
     
