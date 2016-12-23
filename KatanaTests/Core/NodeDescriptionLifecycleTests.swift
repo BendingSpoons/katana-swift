@@ -10,6 +10,30 @@ import Foundation
 import XCTest
 import Katana
 
+
+fileprivate struct InnerStruct: NodeDescription {
+  static var didMountInvoked: (() -> ())? = nil
+  static var didUnmountInvoked: (() -> ())? = nil
+  
+  fileprivate var props: EmptyProps
+  
+  fileprivate static func childrenDescriptions(props: EmptyProps,
+                                               state: EmptyState,
+                                               update: @escaping (EmptyState) -> (),
+                                               dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
+    return []
+  }
+  
+  fileprivate static func didMount(props: EmptyProps, dispatch: StoreDispatch) {
+    InnerStruct.didMountInvoked?()
+  }
+  
+  fileprivate static func didUnMount(props: EmptyProps, dispatch: StoreDispatch) {
+    InnerStruct.didUnmountInvoked?()
+  }
+}
+
+
 fileprivate struct TestStructProps: NodeDescriptionProps {
   fileprivate var alpha: CGFloat = 1.0
   fileprivate var key: String?
@@ -30,7 +54,13 @@ fileprivate struct TestStruct: NodeDescription {
                                                state: EmptyState,
                                                update: @escaping (EmptyState) -> (),
                                                dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-    return []
+    
+    if props.testVariable > 100 {
+      return [ InnerStruct(props: EmptyProps()) ]
+    
+    } else {
+      return []
+    }
   }
   
   fileprivate static func didMount(props: TestStructProps, dispatch: StoreDispatch) {
@@ -39,8 +69,7 @@ fileprivate struct TestStruct: NodeDescription {
 }
 
 class NodeDescriptionLifecycleTests: XCTestCase {
-  func testNodeDidMount() {
-   
+  func testBasicNodeDidMount() {
     var invokedProps: TestStructProps?
     var invoked: Bool = false
     
@@ -54,5 +83,28 @@ class NodeDescriptionLifecycleTests: XCTestCase {
     
     XCTAssertTrue(invoked)
     XCTAssertEqual(invokedProps?.testVariable, 100)
+  }
+  
+  func testInnerNodeDidMount() {
+    
+    var testStructInvokedProps: TestStructProps?
+    var testStructInvoked: Bool = false
+    var innerStructInvoked: Bool = false
+    
+    TestStruct.didMountInvoked = {
+      testStructInvokedProps = $0
+      testStructInvoked = true
+    }
+    
+    InnerStruct.didMountInvoked = {
+      innerStructInvoked = true
+    }
+    
+    let renderer = Renderer(rootDescription: TestStruct(props: TestStructProps(testVariable: 101)), store: nil)
+    renderer.render(in: TestView())
+    
+    XCTAssertTrue(testStructInvoked)
+    XCTAssertTrue(innerStructInvoked)
+    XCTAssertEqual(testStructInvokedProps?.testVariable, 101)
   }
 }
