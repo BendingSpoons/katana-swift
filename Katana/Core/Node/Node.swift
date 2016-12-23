@@ -189,6 +189,9 @@ extension Node {
     }
     
     
+    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    Description.didMount(props: self.description.props, dispatch: dispatch)
+    
     children.forEach { child in
       let child = child as! InternalAnyNode
       child.render(in: self.container!)

@@ -234,6 +234,15 @@ public protocol NodeDescription: AnyNodeDescription {
                                        currentState: StateType,
                                        nextState: StateType)
   
+  
+  /**
+   This method is invoked just after the backing node is rendered in the view's hierarchy.
+   Note that `childrenDescriptions` and `applyPropsToNativeView` will be invoked before this method
+   
+   - parameter props:     the initial props with which the description is created
+   - parameter dispastch: the store dispatch function
+  */
+  static func didMount(props: PropsType, dispatch: StoreDispatch)
 }
 
 public extension NodeDescription {
@@ -261,6 +270,10 @@ public extension NodeDescription {
                                        currentState: StateType,
                                        nextState: StateType) {
     // do nothing, which means no animations
+  }
+  
+  public static func didMount(props: PropsType, dispatch: StoreDispatch) {
+    // nothing
   }
 }
 
