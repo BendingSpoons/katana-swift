@@ -240,7 +240,7 @@ public protocol NodeDescription: AnyNodeDescription {
    Note that `childrenDescriptions` and `applyPropsToNativeView` will be invoked before this method
    
    - parameter props:     the initial props with which the description is created
-   - parameter dispastch: the store dispatch function
+   - parameter dispatch:  the store dispatch function. This closure is intentionally non escaping
   */
   static func didMount(props: PropsType, dispatch: StoreDispatch)
   
@@ -248,7 +248,7 @@ public protocol NodeDescription: AnyNodeDescription {
    This method is invoked just after the backing node is removed from the view's hierarchy.
    
    - parameter props:     the final props of the description
-   - parameter dispastch: the store dispatch function
+   - parameter dispastch: the store dispatch function. This closure is intentionally non escaping
    */
   static func didUnmount(props: PropsType, dispatch: StoreDispatch)
   
@@ -261,8 +261,9 @@ public protocol NodeDescription: AnyNodeDescription {
    - parameter state:           the current state of the description
    - parameter currentProps:    the current props of the description
    - parameter nextProps:       the just received props. They will be used as "props" in the next update cycle
-   - parameter dispatch:        the store dispatch function
-   - parameter update:          the update function. It can be used to update the state without triggering new update cycles
+   - parameter dispatch:        the store dispatch function. This closure is intentionally non escaping
+   - parameter update:          the update function. It can be used to update the state without triggering new update cycles.
+                                This closure is intentionally non escaping
   */
   static func descriptionWillReceiveProps(state: StateType,
                                           currentProps: PropsType,
