@@ -243,6 +243,14 @@ public protocol NodeDescription: AnyNodeDescription {
    - parameter dispastch: the store dispatch function
   */
   static func didMount(props: PropsType, dispatch: StoreDispatch)
+  
+  /**
+   This method is invoked just after the backing node is removed from the view's hierarchy.
+   
+   - parameter props:     the final props of the description
+   - parameter dispastch: the store dispatch function
+   */
+  static func didUnmount(props: PropsType, dispatch: StoreDispatch)
 }
 
 public extension NodeDescription {
@@ -272,9 +280,11 @@ public extension NodeDescription {
     // do nothing, which means no animations
   }
   
-  public static func didMount(props: PropsType, dispatch: StoreDispatch) {
-    // nothing
-  }
+  /// The default implementation does nothing
+  public static func didMount(props: PropsType, dispatch: StoreDispatch) {}
+  
+  /// The default implementation does nothing
+  public static func didUnmount(props: PropsType, dispatch: StoreDispatch) {}
 }
 
 extension AnyNodeDescription where Self: NodeDescription {

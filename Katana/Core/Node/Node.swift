@@ -152,6 +152,11 @@ public class Node<Description: NodeDescription> {
     // NOTE: this method is here because Swift doesn't support override of extension methods yet
     return children
   }
+  
+  deinit {
+    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    Description.didUnmount(props: self.description.props, dispatch: dispatch)
+  }
 }
 
 

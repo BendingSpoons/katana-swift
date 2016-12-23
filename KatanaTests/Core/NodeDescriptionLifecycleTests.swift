@@ -28,7 +28,7 @@ fileprivate struct InnerStruct: NodeDescription {
     InnerStruct.didMountInvoked?()
   }
   
-  fileprivate static func didUnMount(props: EmptyProps, dispatch: StoreDispatch) {
+  fileprivate static func didUnmount(props: EmptyProps, dispatch: StoreDispatch) {
     InnerStruct.didUnmountInvoked?()
   }
 }
@@ -106,5 +106,40 @@ class NodeDescriptionLifecycleTests: XCTestCase {
     XCTAssertTrue(testStructInvoked)
     XCTAssertTrue(innerStructInvoked)
     XCTAssertEqual(testStructInvokedProps?.testVariable, 101)
+  }
+  
+  
+  func testDidUnMount() {
+    var testStructInvokedProps: TestStructProps?
+    var testStructMountInvoked: Bool = false
+    var innerStructMountInvoked: Bool = false
+    var innerStructUnmountInvoked: Bool = false
+    
+    TestStruct.didMountInvoked = {
+      testStructInvokedProps = $0
+      testStructMountInvoked = true
+    }
+    
+    InnerStruct.didMountInvoked = {
+      innerStructMountInvoked = true
+    }
+    
+    InnerStruct.didUnmountInvoked = {
+      innerStructUnmountInvoked = true
+    }
+    
+    let renderer = Renderer(rootDescription: TestStruct(props: TestStructProps(testVariable: 200)), store: nil)
+    renderer.render(in: TestView())
+    
+    XCTAssertTrue(testStructMountInvoked)
+    XCTAssertTrue(innerStructMountInvoked)
+    XCTAssertFalse(innerStructUnmountInvoked)
+    XCTAssertEqual(testStructInvokedProps?.testVariable, 200)
+    
+    renderer.rootNode.update(with: TestStruct(props: TestStructProps(testVariable: 50)))
+    XCTAssertTrue(testStructMountInvoked)
+    XCTAssertTrue(innerStructMountInvoked)
+    XCTAssertTrue(innerStructUnmountInvoked)
+    XCTAssertEqual(testStructInvokedProps?.testVariable, 200) // this should not be invoked again
   }
 }
