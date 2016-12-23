@@ -403,11 +403,25 @@ extension Node {
       return
     }
     
+    // invoke the proper lifecycle hook
+    var newState = state
+    
+    let update: (Description.StateType) -> () = { newState = $0 }
+    let dispatch =  self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
+    
+    Description.descriptionWillReceiveProps(
+      state: state,
+      currentProps: self.description.props,
+      nextProps: description.props,
+      dispatch: dispatch,
+      update: update
+    )
+    
     // update the internal state
     let currentState = self.state
     let currentDescription = self.description
     self.description = description
-    self.state = state
+    self.state = newState
     
     // calculate new children
     let newChildrenDescriptions = self.processedChildrenDescriptionsBeforeDraw(

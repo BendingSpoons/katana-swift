@@ -251,6 +251,24 @@ public protocol NodeDescription: AnyNodeDescription {
    - parameter dispastch: the store dispatch function
    */
   static func didUnmount(props: PropsType, dispatch: StoreDispatch)
+  
+
+  /**
+   This method is invoked when new props (that trigger a new update cycle) are received.
+   You have the chance to update the internal state of the description without triggering a new render
+   (new state will be immediately available in the next update cycle).
+ 
+   - parameter state:           the current state of the description
+   - parameter currentProps:    the current props of the description
+   - parameter nextProps:       the just received props. They will be used as "props" in the next update cycle
+   - parameter dispatch:        the store dispatch function
+   - parameter update:          the update function. It can be used to update the state without triggering new update cycles
+  */
+  static func descriptionWillReceiveProps(state: StateType,
+                                          currentProps: PropsType,
+                                          nextProps: PropsType,
+                                          dispatch: StoreDispatch,
+                                          update: (StateType) -> ())
 }
 
 public extension NodeDescription {
@@ -285,6 +303,13 @@ public extension NodeDescription {
   
   /// The default implementation does nothing
   public static func didUnmount(props: PropsType, dispatch: StoreDispatch) {}
+  
+  /// The default implementation does nothing
+  static func descriptionWillReceiveProps(state: StateType,
+                                          currentProps: PropsType,
+                                          nextProps: PropsType,
+                                          dispatch: StoreDispatch,
+                                          update: (StateType) -> ()){}
 }
 
 extension AnyNodeDescription where Self: NodeDescription {
