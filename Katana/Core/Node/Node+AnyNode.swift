@@ -15,12 +15,9 @@ extension Node: AnyNode {
    - seeAlso: `AnyNode`
    */
   public var anyDescription: AnyNodeDescription {
-    get {
-      return self.description
-    }
+    return self.description
   }
-  
-  
+
   /**
    Implementation of the AnyNode protocol.
    
@@ -29,7 +26,7 @@ extension Node: AnyNode {
   public func update(with description: AnyNodeDescription) {
     self.update(with: description, animation: .none, completion: nil)
   }
-  
+
   /**
    Implementation of the AnyNode protocol.
    
@@ -39,11 +36,11 @@ extension Node: AnyNode {
     guard var description = description as? Description else {
       fatalError("Impossible to use the provided description to update the node")
     }
-    
+
     description.props = self.updatedPropsWithConnect(description: description, props: description.props)
     self.update(for: self.state, description: description, animation: animation, completion: completion)
   }
-  
+
   /**
    Implementation of the AnyNode protocol.
    

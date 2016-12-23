@@ -26,16 +26,16 @@ public extension TableCell {
                                             view: NativeView,
                                             update: @escaping (StateType)->(),
                                             node: AnyNode) {
-    
+
     view.frame = props.frame
-    
+
     view.update = { (highlighted: Bool) in
       var newState = state
       newState.highlighted = highlighted
       update(newState)
     }
   }
-  
+
   public static func anyDidTap(dispatch: StoreDispatch, props: Any, indexPath: IndexPath) {
     if let p = props as? PropsType {
       self.didTap(dispatch: dispatch, props: p, indexPath: indexPath)
@@ -45,7 +45,7 @@ public extension TableCell {
 
 public class NativeTableCell: UIView {
   var update: ((Bool) -> ())?
-  
+
   func setHighlighted(_ highlighted: Bool) {
     if let update = self.update {
       update(highlighted)

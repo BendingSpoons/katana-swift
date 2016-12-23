@@ -8,17 +8,17 @@
 import AppKit
 
 public class TestImageView: NSImageView {
-  
+
   public var backgroundColor: NSColor = NSColor.white {
     didSet {
       self.needsDisplay = true
     }
   }
-  
+
   override public var wantsUpdateLayer: Bool {
     return true
   }
-  
+
   override public func updateLayer() {
     self.layer?.backgroundColor = self.backgroundColor.cgColor
   }

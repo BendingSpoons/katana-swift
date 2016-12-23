@@ -16,7 +16,7 @@ class DummyHierarchyManager: CoordinateConvertible {
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     return absoluteValue
   }
-  
+
   func getYCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat {
     return absoluteValue
   }

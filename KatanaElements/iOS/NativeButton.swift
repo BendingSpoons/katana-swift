@@ -11,20 +11,20 @@ import Foundation
 public class NativeButton: UIButton {
 
   public typealias ButtonEvent = (NativeButton) -> ()
-  
+
   public var touchHandlers: [TouchHandlerEvent: TouchHandlerClosure] = [:] {
     didSet {
       updateTargets()
     }
   }
-  
+
   private func updateTargets() {
     self.didTouchUpInside = touchHandlers[.touchUpInside]
     self.didTouchDown = touchHandlers[.touchDown]
     self.didTouchUpOutside = touchHandlers[.touchUpOutside]
     self.didTouchCancel = touchHandlers[.touchCancel]
   }
-  
+
   public var didTouchUpInside: TouchHandlerClosure? {
     didSet {
       if didTouchUpInside != nil {
@@ -34,7 +34,7 @@ public class NativeButton: UIButton {
       }
     }
   }
-  
+
   public var didTouchDown: TouchHandlerClosure? {
     didSet {
       if didTouchDown != nil {
@@ -44,7 +44,7 @@ public class NativeButton: UIButton {
       }
     }
   }
-  
+
   public var didTouchUpOutside: TouchHandlerClosure? {
     didSet {
       if didTouchUpOutside != nil {
@@ -54,7 +54,7 @@ public class NativeButton: UIButton {
       }
     }
   }
-  
+
   public var didTouchCancel: TouchHandlerClosure? {
     didSet {
       if didTouchCancel != nil {
@@ -64,7 +64,7 @@ public class NativeButton: UIButton {
       }
     }
   }
-  
+
   // MARK: - Actions
   @objc private func didTouchUpInside(sender: NativeButton) {
     if let handler = didTouchUpInside {
@@ -77,13 +77,13 @@ public class NativeButton: UIButton {
       handler()
     }
   }
-  
+
   @objc private func didTouchCancel(sender: NativeButton) {
     if let handler = didTouchCancel {
       handler()
     }
   }
-  
+
   @objc private func didTouchUpOutside(sender: NativeButton) {
     if let handler = didTouchUpOutside {
       handler()

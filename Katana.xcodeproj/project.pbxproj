@@ -1254,7 +1254,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		81C3A4941D842F7F0079AD32 /* SwiftLint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1268,7 +1268,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		81FB7A761DE4DD7E00953EA0 /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1282,7 +1282,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		A12FF60F1DDA286E0007BF8F /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1296,7 +1296,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		A12FF6101DDA28850007BF8F /* Swiftlint */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1310,7 +1310,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

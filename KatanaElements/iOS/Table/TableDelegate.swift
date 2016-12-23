@@ -21,7 +21,7 @@ public extension TableDelegate {
   func numberOfSections() -> Int {
     return 1
   }
-  
+
   func isEqual(to anotherDelegate: TableDelegate) -> Bool {
     return false
   }
@@ -35,7 +35,7 @@ public struct EmptyTableDelegate: TableDelegate {
   public func numberOfRows(forSection section: Int) -> Int {
     return 0
   }
-  
+
   public func cellDescription(forRowAt indexPath: IndexPath) -> AnyNodeDescription {
     fatalError()
   }
@@ -43,7 +43,7 @@ public struct EmptyTableDelegate: TableDelegate {
   public func height(forRowAt indexPath: IndexPath) -> Value {
     fatalError()
   }
-  
+
   public func isEqual(to anotherDelegate: TableDelegate) -> Bool {
     return anotherDelegate is EmptyTableDelegate
   }

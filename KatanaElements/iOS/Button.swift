@@ -14,7 +14,7 @@ public extension Button {
     public var frame = CGRect.zero
     public var key: String?
     public var alpha: CGFloat = 1.0
-    
+
     public var backgroundColor = UIColor.white
     public var cornerRadius: Value = .zero
     public var borderWidth: Value = .zero
@@ -34,9 +34,9 @@ public extension Button {
     public var backgroundImages: [UIControlState: UIImage] = [:]
     public var attributedTitles: [UIControlState: NSAttributedString] = [:]
     public var touchHandlers: [TouchHandlerEvent: TouchHandlerClosure] = [:]
-    
+
     public init() {}
-    
+
     public static func == (lhs: Props, rhs: Props) -> Bool {
       // We can't detect whether handlers are changed
       return false
@@ -46,15 +46,15 @@ public extension Button {
 
 public struct Button: NodeDescription {
   public typealias NativeView = NativeButton
-  
+
   public var props: Props
-  
+
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: NativeButton,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
-    
+
     view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
@@ -70,8 +70,7 @@ public struct Button: NodeDescription {
     view.adjustsImageWhenHighlighted = props.adjustsImageWhenHighlighted
     view.adjustsImageWhenDisabled = props.adjustsImageWhenDisabled
     view.showsTouchWhenHighlighted = props.showsTouchWhenHighlighted
-    
-    
+
     // reset UIButton state
     for state in UIControlState.allValues {
       view.setTitle(nil, for: state)
@@ -81,43 +80,43 @@ public struct Button: NodeDescription {
       view.setBackgroundImage(nil, for: state)
       view.setAttributedTitle(nil, for: state)
     }
-    
+
     // set items from props
     for (state, title) in props.titles {
       view.setTitle(title, for: state)
     }
-    
+
     for (state, color) in props.titleColors {
       view.setTitleColor(color, for: state)
     }
-    
+
     for (state, color) in props.titleShadowColors {
       view.setTitleShadowColor(color, for: state)
     }
-    
+
     for (state, image) in props.images {
       view.setImage(image, for: state)
     }
-    
+
     for (state, image) in props.backgroundImages {
       view.setBackgroundImage(image, for: state)
     }
-    
+
     for (state, title) in props.attributedTitles {
       view.setAttributedTitle(title, for: state)
     }
-    
+
     view.touchHandlers = props.touchHandlers
-    
+
   }
-  
+
   public static func childrenDescriptions(props: Props,
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return []
   }
-  
+
   public init(props: Props) {
     self.props = props
   }
@@ -133,7 +132,7 @@ fileprivate extension UIControlState {
   fileprivate static var allValues: [UIControlState] {
     if #available(iOS 9.0, *) {
       return [.normal, .highlighted, .disabled, .selected, .application, .reserved, .focused]
-    
+
     } else {
       return [.normal, .highlighted, .disabled, .selected, .application, .reserved]
     }

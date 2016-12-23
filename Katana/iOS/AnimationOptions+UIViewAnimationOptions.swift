@@ -6,7 +6,6 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-
 public extension AnimationOptions {
   public var toUIViewAnimationOptions: UIViewAnimationOptions {
     return UIViewAnimationOptions(rawValue: self.rawValue)

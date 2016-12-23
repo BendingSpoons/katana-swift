@@ -14,24 +14,24 @@ public extension View {
     public var frame = CGRect.zero
     public var key: String?
     public var alpha: CGFloat = 1.0
-    
+
     public var children: [AnyNodeDescription] = []
-    
+
     public var backgroundColor = UIColor.white
     public var cornerRadius: Value = .zero
     public var borderWidth: Value = .zero
     public var borderColor = UIColor.clear
     public var clipsToBounds = false
     public var isUserInteractionEnabled = true
-    
+
     public init() {}
-    
+
     public static func == (lhs: Props, rhs: Props) -> Bool {
-      if lhs.children.count + rhs.children.count > 0 {
+      if (lhs.children.count + rhs.children.count) > 0 {
         // Heuristic, we always rerender when there is at least 1 child
         return false
       }
-      
+
       return
         lhs.frame == rhs.frame &&
           lhs.key == rhs.key &&
@@ -54,7 +54,7 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
                                             view: UIView,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
-    
+
     view.alpha = props.alpha
     view.frame = props.frame
     view.backgroundColor = props.backgroundColor
@@ -64,18 +64,18 @@ public struct View: NodeDescription, NodeDescriptionWithChildren {
     view.clipsToBounds = props.clipsToBounds
     view.isUserInteractionEnabled = props.isUserInteractionEnabled
   }
-  
+
   public static func childrenDescriptions(props: Props,
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
     return props.children
   }
-  
+
   public init(props: Props) {
     self.props = props
   }
-  
+
   public init(props: Props, _ children: () -> [AnyNodeDescription]) {
     self.props = props
     self.props.children = children()
