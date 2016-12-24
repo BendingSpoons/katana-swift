@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 public extension AnimationOptions {
+  /// the UIKit counterpart of `AnimationOptions`
   public var toUIViewAnimationOptions: UIViewAnimationOptions {
     return UIViewAnimationOptions(rawValue: self.rawValue)
   }

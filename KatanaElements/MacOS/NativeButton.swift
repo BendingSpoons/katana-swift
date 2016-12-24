@@ -6,7 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-public typealias ClickHandlerClosure = () -> ()
+public typealias ClickHandlerClosure = (NativeButton) -> ()
 
 open class NativeButton: NSButton {
 
@@ -38,7 +38,7 @@ open class NativeButton: NSButton {
   }
 
   @objc private func click() {
-    clickHandler?()
+    clickHandler?(self)
   }
 
   // MARK: - updates

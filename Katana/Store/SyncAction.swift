@@ -27,7 +27,7 @@ import Foundation
  }
  
  extension AppSyncAction {
-  func updateState(currentState: State) -> State {
+  func updatedState(currentState: State) -> State {
     guard var state = currentState as? AppState else {
       fatalError("Something went wrong")
     }
