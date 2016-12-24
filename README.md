@@ -388,7 +388,7 @@ renderer!.render(in: view)
 
 
 - [x] sync/async/sideEffect actions
-- [x] middlewares
+- [x] middleware
 - [x] automatic UI update
 - [x] native redux-like implementation
 - [x] native react-like implementation

@@ -38,7 +38,7 @@ public protocol AnyStore: class {
  Store's state. The only way to update the state is to dispatch an `Action`. At this point
  the store will execute the following operations:
  
- - it executes the middlewares
+ - it executes the middleware
  - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
@@ -58,8 +58,8 @@ open class Store<StateType: State> {
   /// The  array of registered listeners
   fileprivate var listeners: [StoreListener]
 
-  /// The array of
-  fileprivate let middlewares: [StoreMiddleware<StateType>]
+  /// The array of middleware of the store
+  fileprivate let middleware: [StoreMiddleware]
 
   /**
    The dependencies used in the actions side effects
@@ -75,8 +75,8 @@ open class Store<StateType: State> {
     var getState = { [unowned self] () -> StateType in
       return self.state
     }
-
-    var m = self.middlewares.map { middleware in
+    
+    var m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
 
@@ -93,26 +93,26 @@ open class Store<StateType: State> {
   }()
 
   /**
-   A convenience init method. The store won't have middlewares nor dependencies for the actions
+   A convenience init method. The store won't have middleware nor dependencies for the actions
    side effects
    
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middlewares: [], dependencies: EmptySideEffectDependencyContainer.self)
+    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
   }
 
   /**
    The default init method for the Store.
    
-   - parameter middlewares:   the middlewares to trigger when an action is dispatched
+   - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
   */
-  public init(middlewares: [StoreMiddleware<StateType>], dependencies: SideEffectDependencyContainer.Type) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
     self.listeners = []
     self.state = StateType()
-    self.middlewares = middlewares
+    self.middleware = middleware
     self.dependencies = dependencies
   }
 
@@ -145,28 +145,28 @@ open class Store<StateType: State> {
 }
 
 fileprivate extension Store {
-  /// Type used internally to store partially applied middlewares
+  /// Type used internally to store partially applied middleware
   fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> ()
 
   /**
-   This function composes the middlewares with the store dispatch
+   This function composes the middleware with the store dispatch
    
-   - parameter middlewares:   the middlewares to use
+   - parameter middleware:   the middleware to use
    - parameter storeDispatch: the store dispatch function
-   - returns: a function that invokes all the middlewares and then the store dispatch function
+   - returns: a function that invokes all the middleware and then the store dispatch function
   */
-  fileprivate func composeMiddlewares(_ middlewares: [PartiallyAppliedMiddleware],
+  fileprivate func composeMiddlewares(_ middleware: [PartiallyAppliedMiddleware],
                            with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
 
-    guard !middlewares.isEmpty else {
+    guard !middleware.isEmpty else {
       return storeDispatch
     }
-
-    guard middlewares.count > 1 else {
-      return middlewares.first!(storeDispatch)
+  
+    guard middleware.count > 1 else {
+      return middleware.first!(storeDispatch)
     }
-
-    var m = middlewares
+  
+    var m = middleware
     let last = m.removeLast()
 
     return m.reduce(last(storeDispatch), { chain, middleware in
