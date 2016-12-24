@@ -193,7 +193,7 @@ extension Node {
                                          node: self)
     }
 
-    Description.didMount(props: self.description.props, dispatch: self.storeDispatch)
+    Description.didMount(props: self.description.props, dispatch: self.storeDispatch, update: update)
 
     children.forEach { child in
       let child = child as! InternalAnyNode
@@ -402,12 +402,14 @@ extension Node {
       
       var syncStateUpdate = true
       
-      let update: (Description.StateType) -> () = {
+      let update = { [weak self] (state: Description.StateType) in
         if syncStateUpdate {
-          newState = $0
+          newState = state
           
         } else {
-          self.update(for: $0)
+          DispatchQueue.main.async {
+            self?.update(for: state)
+          }
         }
       }
       

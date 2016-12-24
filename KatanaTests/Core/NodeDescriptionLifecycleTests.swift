@@ -23,7 +23,9 @@ fileprivate struct InnerStruct: NodeDescription {
     return []
   }
 
-  fileprivate static func didMount(props: EmptyProps, dispatch: @escaping StoreDispatch) {
+  fileprivate static func didMount(props: EmptyProps,
+                                   dispatch: @escaping StoreDispatch,
+                                   update: @escaping (EmptyState) -> ()) {
     InnerStruct.didMountInvoked?()
   }
 
@@ -80,7 +82,10 @@ fileprivate struct TestStruct: NodeDescription {
     }
   }
 
-  fileprivate static func didMount(props: TestStructProps, dispatch: @escaping StoreDispatch) {
+  fileprivate static func didMount(props: TestStructProps,
+                                   dispatch: @escaping StoreDispatch,
+                                   update: @escaping (TestStructState) -> ()) {
+
     TestStruct.didMountInvoked?(props)
   }
 
@@ -239,8 +244,12 @@ class NodeDescriptionLifecycleTests: XCTestCase {
     XCTAssertEqual(TestStruct.states, [0, 50]) // also checks that the childrenDescriptions is invoked the proper number of times
     
     self.waitForExpectations(timeout: 10, handler: { err in
-      XCTAssertNil(err)
-      XCTAssertEqual(TestStruct.states, [0, 50, 999])
+      // we need to wait a little bit before the render.. we should find a better way
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        XCTAssertNotNil(renderer) // we need to keep renderer alive
+        XCTAssertNil(err)
+        XCTAssertEqual(TestStruct.states, [0, 50, 999])
+      }
     })
   }
 }

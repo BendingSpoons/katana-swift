@@ -238,8 +238,9 @@ public protocol NodeDescription: AnyNodeDescription {
    
    - parameter props:     the initial props with which the description is created
    - parameter dispatch:  the store dispatch function
+   - parameter update:    the update function. It will trigger a new render cycle
   */
-  static func didMount(props: PropsType, dispatch: @escaping StoreDispatch)
+  static func didMount(props: PropsType, dispatch: @escaping StoreDispatch, update: @escaping (StateType) -> ())
 
   /**
    This method is invoked just after the backing node is removed from the view's hierarchy.
@@ -295,7 +296,7 @@ public extension NodeDescription {
   }
 
   /// The default implementation does nothing
-  public static func didMount(props: PropsType, dispatch: @escaping StoreDispatch) {}
+  public static func didMount(props: PropsType, dispatch: @escaping StoreDispatch, update: @escaping (StateType) -> ()) {}
 
   /// The default implementation does nothing
   public static func didUnmount(props: PropsType, dispatch: @escaping StoreDispatch) {}
