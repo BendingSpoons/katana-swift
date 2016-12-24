@@ -296,9 +296,11 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 $ sudo gem install cocoapods
 ```
 
-To integrate Katana into your Xcode project using CocoaPods, add it to your `Podfile`:
+To integrate Katana into your Xcode project using CocoaPods you need to create a `Podfile`.
 
-```
+For iOS platforms, this is the content
+
+```ruby
 use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
 platform :ios, '8.4'
@@ -309,7 +311,20 @@ target 'MyApp' do
 end
 ```
 
-And run:
+On MacOS, instead, use the following
+
+```ruby
+use_frameworks!
+source 'https://github.com/CocoaPods/Specs.git'
+platform :osx, '10.11'
+
+target 'test' do
+  pod 'Katana'
+  pod 'KatanaElements'
+end
+```
+
+Now, you just need to run:
 
 ```bash
 $ pod install
