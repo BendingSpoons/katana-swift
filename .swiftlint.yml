@@ -35,7 +35,6 @@ whitelist_rules:
   - trailing_comma
   - trailing_newline
   - trailing_semicolon
-  - trailing_whitespace
   - type_body_length
   - type_name
   - variable_name

@@ -64,6 +64,34 @@
 			remoteGlobalIDString = 6513094E1DC3529F00007B6B;
 			remoteInfo = KatanaElements;
 		};
+		A145D8851E0EA0180027677A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65A8C5611DD602E700AB58F9 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2E4E1DE2F37B00441784;
+			remoteInfo = "Katana macOS";
+		};
+		A145D8871E0EA0180027677A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65A8C5611DD602E700AB58F9 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2F0C1DE8392800441784;
+			remoteInfo = "KatanaElements macOS";
+		};
+		A145D8891E0EA0180027677A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65A8C5611DD602E700AB58F9 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2EE11DE7487C00441784;
+			remoteInfo = "Katana macOS Tests";
+		};
+		A145D88B1E0EA0180027677A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 65A8C5611DD602E700AB58F9 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2F311DE83E6600441784;
+			remoteInfo = "Demo macOS";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -150,9 +178,13 @@
 			isa = PBXGroup;
 			children = (
 				65A8C5691DD602E700AB58F9 /* Katana.framework */,
-				65A8C56B1DD602E700AB58F9 /* KatanaTests.xctest */,
+				A145D8861E0EA0180027677A /* Katana.framework */,
 				65A8C56D1DD602E700AB58F9 /* KatanaElements.framework */,
-				65A8C56F1DD602E700AB58F9 /* Demo.app */,
+				A145D8881E0EA0180027677A /* KatanaElements.framework */,
+				65A8C56B1DD602E700AB58F9 /* Katana iOS Tests.xctest */,
+				A145D88A1E0EA0180027677A /* Katana macOS Tests.xctest */,
+				65A8C56F1DD602E700AB58F9 /* Demo iOS.app */,
+				A145D88C1E0EA0180027677A /* Demo macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -254,10 +286,10 @@
 			remoteRef = 65A8C5681DD602E700AB58F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65A8C56B1DD602E700AB58F9 /* KatanaTests.xctest */ = {
+		65A8C56B1DD602E700AB58F9 /* Katana iOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = KatanaTests.xctest;
+			path = "Katana iOS Tests.xctest";
 			remoteRef = 65A8C56A1DD602E700AB58F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -268,11 +300,39 @@
 			remoteRef = 65A8C56C1DD602E700AB58F9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		65A8C56F1DD602E700AB58F9 /* Demo.app */ = {
+		65A8C56F1DD602E700AB58F9 /* Demo iOS.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = Demo.app;
+			path = "Demo iOS.app";
 			remoteRef = 65A8C56E1DD602E700AB58F9 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A145D8861E0EA0180027677A /* Katana.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Katana.framework;
+			remoteRef = A145D8851E0EA0180027677A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A145D8881E0EA0180027677A /* KatanaElements.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KatanaElements.framework;
+			remoteRef = A145D8871E0EA0180027677A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A145D88A1E0EA0180027677A /* Katana macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Katana macOS Tests.xctest";
+			remoteRef = A145D8891E0EA0180027677A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A145D88C1E0EA0180027677A /* Demo macOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Demo macOS.app";
+			remoteRef = A145D88B1E0EA0180027677A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -303,7 +363,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
