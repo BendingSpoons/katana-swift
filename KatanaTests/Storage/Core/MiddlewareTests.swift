@@ -19,7 +19,7 @@ class MiddlewareTests: XCTestCase {
     
     let expectation = self.expectation(description: "Middleware")
     
-    let middleware: StoreMiddleware<AppState> = { getState, dispatch in
+    let middleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           dispatchedAction = action
@@ -51,7 +51,7 @@ class MiddlewareTests: XCTestCase {
     
     let expectation = self.expectation(description: "Middleware")
     
-    let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
+    let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("basic")
@@ -60,7 +60,7 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let secondMiddleware: StoreMiddleware<State> = { getState, dispatch in
+    let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("second")
@@ -94,7 +94,7 @@ class MiddlewareTests: XCTestCase {
     
     let expectation = self.expectation(description: "Middleware")
     
-    let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
+    let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("basic")
@@ -106,7 +106,7 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let secondMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
+    let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("second")
@@ -141,7 +141,7 @@ class MiddlewareTests: XCTestCase {
     
     let expectation = self.expectation(description: "Middleware")
     
-    let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
+    let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("basic")
@@ -150,7 +150,7 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let secondMiddleware: StoreMiddleware<State> = { getState, dispatch in
+    let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
           invokationOrder.append("second")

@@ -59,7 +59,7 @@ open class Store<StateType: State> {
   fileprivate var listeners: [StoreListener]
   
   /// The array of
-  fileprivate let middleware: [StoreMiddleware<StateType>]
+  fileprivate let middleware: [StoreMiddleware]
   
   /**
    The dependencies used in the actions side effects
@@ -109,7 +109,7 @@ open class Store<StateType: State> {
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
   */
-  public init(middleware: [StoreMiddleware<StateType>], dependencies: SideEffectDependencyContainer.Type) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
     self.listeners = []
     self.state = StateType.init()
     self.middleware = middleware
