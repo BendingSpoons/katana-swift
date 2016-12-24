@@ -14,7 +14,7 @@
     <a title="AnimationOptions Struct Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -225,7 +225,13 @@
         <section>
           <section class="section">
             <h1>AnimationOptions</h1>
-            <p>Undocumented</p>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnimationOptions</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+
+                </div>
+              </div>
+            <p>A set of options that can be used to personalise the animations</p>
 
           </section>
           <section class="section task-group-section">
@@ -234,9 +240,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vPs16RawRepresentable8rawValuewx8RawValue"></a>
+                    <a name="/s:vV6Katana16AnimationOptions8rawValueSu"></a>
                     <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vPs16RawRepresentable8rawValuewx8RawValue">rawValue</a>
+                    <a class="token" href="#/s:vV6Katana16AnimationOptions8rawValueSu">rawValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -244,7 +250,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>The raw value of the OptionSet</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -255,7 +262,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Animations/AnimationType.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Animations/AnimationType.swift#L18">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -263,9 +270,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FPs9OptionSetcFT8rawValuewx8RawValue_x"></a>
+                    <a name="/s:FV6Katana16AnimationOptionscFT8rawValueSu_S0_"></a>
                     <a name="//apple_ref/swift/Method/init(rawValue:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FPs9OptionSetcFT8rawValuewx8RawValue_x">init(rawValue:)</a>
+                    <a class="token" href="#/s:FV6Katana16AnimationOptionscFT8rawValueSu_S0_">init(rawValue:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -273,7 +280,9 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        
+                        <p>Creates a new AnimationOptions instance. Always prefer
+the static values instead of creating a new instance directly</p>
+
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
@@ -295,7 +304,7 @@
                               </td>
                               <td>
                                 <div>
-                                  <p>The raw value of the option set to create. Each bit of <code>rawValue</code> potentially represents an element of the option set, though raw values may include bits that are not defined as distinct values of the <code>OptionSet</code> type.</p>
+                                  <p>the raw value of the option</p>
 
                                 </div>
                               </td>
@@ -303,8 +312,13 @@
                           </tbody>
                         </table>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>an instance of AnimationOptions</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Animations/AnimationType.swift#L16-L18">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Animations/AnimationType.swift#L27-L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,11 +340,19 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>the UIKit counterpart of <code>AnimationOptions</code></p>
 
                       </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">toUIViewAnimationOptions</span><span class="p">:</span> <span class="kt">UIViewAnimationOptions</span></code></pre>
+
+                        </div>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift#L11-L13">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift#L11-L13">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -340,7 +362,7 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-12-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

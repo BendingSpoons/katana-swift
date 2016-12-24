@@ -14,7 +14,7 @@
     <a title="PlatformNativeView Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
+        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -256,19 +256,19 @@ or on serializable structures to store the UI representation and use it later.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The frame of the native view</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L23">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -286,19 +286,19 @@ or on serializable structures to store the UI representation and use it later.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>The alpha of the native view</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">CGFloat</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L26">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -316,19 +316,19 @@ or on serializable structures to store the UI representation and use it later.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>An unique tag value related to the native view</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">tagValue</span><span class="p">:</span> <span class="kt">Int</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L29">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -346,19 +346,24 @@ or on serializable structures to store the UI representation and use it later.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Creates a new instance of the platform native view</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">make</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="k">Self</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a valid instance of the platform native view</p>
+
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -394,7 +399,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L35">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -455,7 +460,7 @@ or on serializable structures to store the UI representation and use it later.</
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L45">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L53">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -473,19 +478,39 @@ or on serializable structures to store the UI representation and use it later.</
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Undocumented</p>
+                        <p>Adds the platform native view to a parent</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">addToParent</span><span class="p">(</span><span class="nv">parent</span><span class="p">:</span> <span class="kt">PlatformNativeView</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>parent</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the parent</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -541,7 +566,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L57">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L70">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -571,7 +596,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L60">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -621,7 +646,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L67">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L80">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -671,7 +696,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L74">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L87">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -750,7 +775,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Core/Node/PlatformNativeView.swift#L82">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.4.0/Katana/Core/Node/PlatformNativeView.swift#L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -760,7 +785,7 @@ or on serializable structures to store the UI representation and use it later.</
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-12-24)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

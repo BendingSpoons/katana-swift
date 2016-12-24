@@ -1,61 +1,6 @@
 {
   "warnings": [
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Animations/AnimationType.swift",
-      "line": null,
-      "symbol": "AnimationOptions",
-      "symbol_kind": "source.lang.swift.decl.extension",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Animations/AnimationType.swift",
-      "line": 13,
-      "symbol": "AnimationOptions",
-      "symbol_kind": "source.lang.swift.decl.struct",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Node/PlatformNativeView.swift",
-      "line": 24,
-      "symbol": "PlatformNativeView.frame",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Node/PlatformNativeView.swift",
-      "line": 25,
-      "symbol": "PlatformNativeView.alpha",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Node/PlatformNativeView.swift",
-      "line": 26,
-      "symbol": "PlatformNativeView.tagValue",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Node/PlatformNativeView.swift",
-      "line": 28,
-      "symbol": "PlatformNativeView.make()",
-      "symbol_kind": "source.lang.swift.decl.function.method.static",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/Core/Node/PlatformNativeView.swift",
-      "line": 47,
-      "symbol": "PlatformNativeView.addToParent(parent:)",
-      "symbol_kind": "source.lang.swift.decl.function.method.instance",
-      "warning": "undocumented"
-    },
-    {
-      "file": "/Users/bolismauro/BendingSpoons/katana-lib-swift/Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift",
-      "line": 11,
-      "symbol": "AnimationOptions.toUIViewAnimationOptions",
-      "symbol_kind": "source.lang.swift.decl.var.instance",
-      "warning": "undocumented"
-    }
+
   ],
   "source_directory": "/Users/bolismauro/BendingSpoons/katana-lib-swift"
 }
