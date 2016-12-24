@@ -395,18 +395,33 @@ extension Node {
       return
     }
 
-    // invoke the proper lifecycle hook
     var newState = state
-
-    let update: (Description.StateType) -> () = { newState = $0 }
-
-    Description.descriptionWillReceiveProps(
-      state: state,
-      currentProps: self.description.props,
-      nextProps: description.props,
-      dispatch: self.storeDispatch,
-      update: update
-    )
+    
+    // invoke the proper lifecycle hook if props changes
+    if self.description.props != description.props {
+      
+      var syncStateUpdate = true
+      
+      let update: (Description.StateType) -> () = {
+        if syncStateUpdate {
+          newState = $0
+          
+        } else {
+          self.update(for: $0)
+        }
+      }
+      
+      Description.descriptionWillReceiveProps(
+        state: state,
+        currentProps: self.description.props,
+        nextProps: description.props,
+        dispatch: self.storeDispatch,
+        update: update
+      )
+      
+      // too late, from now on an update will trigger a new update cycle
+      syncStateUpdate = false
+    }
 
     // update the internal state
     let currentState = self.state
