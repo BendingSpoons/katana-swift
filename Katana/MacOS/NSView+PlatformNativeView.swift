@@ -14,9 +14,9 @@ internal let VIEWTAG = 999987
  An extension of NSView that implements the `PlatformNativeView` protocol
  - seeAlso: `PlatformNativeView`
  */
- 
+
 extension NSView: PlatformNativeView {
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -30,7 +30,7 @@ extension NSView: PlatformNativeView {
       self.alphaValue = newValue
     }
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -44,7 +44,7 @@ extension NSView: PlatformNativeView {
       self.customTag = newValue
     }
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -62,11 +62,11 @@ extension NSView: PlatformNativeView {
   public func removeAllChildren() {
     if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-      
+
     } else {
       assert(Thread.isMainThread)
     }
-    
+
     self.subviews
       .filter { $0.tagValue == VIEWTAG }
       .forEach { $0.removeFromSuperview() }
@@ -80,20 +80,19 @@ extension NSView: PlatformNativeView {
   public func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView {
     if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-      
+
     } else {
       assert(Thread.isMainThread)
     }
-    
-    
+
     let child = child()
     child.tagValue = VIEWTAG
-    
+
     child.addToParent(parent: self)
-    
+
     return child
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -104,7 +103,7 @@ extension NSView: PlatformNativeView {
       parent.addSubview(self)
     }
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -113,14 +112,14 @@ extension NSView: PlatformNativeView {
   public func update(with updateView: (PlatformNativeView)->()) {
     if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-      
+
     } else {
       assert(Thread.isMainThread)
     }
-    
+
     updateView(self)
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -132,7 +131,7 @@ extension NSView: PlatformNativeView {
     }
     return subviews
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -141,17 +140,19 @@ extension NSView: PlatformNativeView {
   public func bringChildToFront(_ child: PlatformNativeView) {
     if #available(macOS 10.12, *) {
       dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
-      
+
     } else {
       assert(Thread.isMainThread)
     }
-    
+
     let child = child
     if let child = child as? NSView {
-      self.bringChildToFront(child)
+      // equivalent of UIView.bringSubviewToFront:
+      child.removeFromSuperview()
+      self.addSubview(child)
     }
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    
@@ -167,7 +168,7 @@ extension NSView: PlatformNativeView {
       child.removeFromSuperview()
     }
   }
-  
+
   /**
    Implementation of the PlatformNativeView protocol.
    

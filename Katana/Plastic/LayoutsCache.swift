@@ -27,16 +27,16 @@ extension CGSize: Hashable {
 fileprivate struct CacheKey: Hashable {
   /// The native view size of the node description
   let nativeViewSize: CGSize
-  
+
   /// The multiplier used to calculate the layout
   let multiplier: CGFloat
-  
+
   /// The layout hash returned by the node description
   let layoutHash: Int
-  
+
   /// The node description hash
   let nodeDescriptionHash: Int
-  
+
   /// the hash value of the instance
   var hashValue: Int {
     return
@@ -45,7 +45,7 @@ fileprivate struct CacheKey: Hashable {
         self.layoutHash ^
         self.nodeDescriptionHash
   }
-  
+
   /**
    Imlementation of the `Equatable` protocol.
    
@@ -62,21 +62,20 @@ fileprivate struct CacheKey: Hashable {
   }
 }
 
-
 /// A container for all the application cached layouts
 class LayoutsCache {
 
   /// Singleton to use in the application
   static let shared = LayoutsCache()
-  
+
   /// A dictionary that contains the cached layout results
   fileprivate var cache: [CacheKey: [String: CGRect]]
-  
+
   /// Init for the cache
   private init() {
     self.cache = [:]
   }
-  
+
   /**
    Add a new layout result to the cache
    
@@ -91,19 +90,19 @@ class LayoutsCache {
                    multiplier: CGFloat,
               nodeDescription: AnyNodeDescription,
               frames: [String: CGRect]) {
-    
+
     let nodeHash = ObjectIdentifier(type(of: nodeDescription)).hashValue
-    
+
     let key = CacheKey(
       nativeViewSize: nativeViewFrame.size,
       multiplier: multiplier,
       layoutHash: layoutHash,
       nodeDescriptionHash: nodeHash
     )
-    
+
     self.cache[key] = frames
   }
-  
+
   /**
    Retrieves the a cached layout result that is compatible with the given parameters
    
@@ -119,16 +118,16 @@ class LayoutsCache {
                   nativeViewFrame: CGRect,
                        multiplier: CGFloat,
                   nodeDescription: AnyNodeDescription) -> [String: CGRect]? {
-    
+
     let nodeHash = ObjectIdentifier(type(of: nodeDescription)).hashValue
-    
+
     let key = CacheKey(
       nativeViewSize: nativeViewFrame.size,
       multiplier: multiplier,
       layoutHash: layoutHash,
       nodeDescriptionHash: nodeHash
     )
-    
+
     return self.cache[key]
   }
 }

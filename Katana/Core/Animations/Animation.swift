@@ -26,16 +26,16 @@ import Foundation
 public struct Animation {
   /// The animation type to perform for the child
   let type: AnimationType
-  
+
   /// The entry phase transformers
   let entryTransformers: [AnimationPropsTransformer]
-  
+
   /// The leave entry phase transformers
   let leaveTransformers: [AnimationPropsTransformer]
-  
+
   /// An empty animation
   static let none = Animation(type: .none)
-  
+
   /**
    Creates an animation with the given values
    
@@ -47,12 +47,12 @@ public struct Animation {
   public init(type: AnimationType,
               entryTransformers: [AnimationPropsTransformer],
               leaveTransformers: [AnimationPropsTransformer]) {
-    
+
     self.type = type
     self.entryTransformers = entryTransformers
     self.leaveTransformers = leaveTransformers
   }
-  
+
   /**
    Creates an animation with the given values
    

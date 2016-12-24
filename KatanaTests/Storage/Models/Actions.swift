@@ -11,16 +11,16 @@ import Foundation
 
 public struct AddTodoAction: Action, Equatable {
   public let title: String
-  
+
   public func updatedState(currentState: State) -> State {
     guard var s = currentState as? AppState else { return currentState }
-    
+
     let todo = Todo(title: self.title, id: UUID().uuidString)
     s.todo.todos = s.todo.todos + [todo]
-    
+
     return s
   }
-  
+
   public static func == (lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title
   }
@@ -28,13 +28,13 @@ public struct AddTodoAction: Action, Equatable {
 
 struct RemoveTodoAction: Action {
   let id: String
-  
+
   func updatedState(currentState: State) -> State {
     guard var s = currentState as? AppState else { return currentState }
-    
+
     let todos = s.todo.todos.filter { $0.id != self.id }
     s.todo.todos = todos
-    
+
     return s
   }
 }
@@ -46,7 +46,7 @@ struct SyncAddTodoAction: SyncAction {
     guard var state = currentState as? AppState else {
       fatalError()
     }
-    
+
     let todo = Todo(title: self.payload, id: UUID().uuidString)
     state.todo.todos = state.todo.todos + [todo]
     return state
@@ -58,15 +58,15 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
     _ state: State,
     _ dispatch: @escaping StoreDispatch,
     _ dependencies: SideEffectDependencyContainer) -> ()
-  
+
   var sideEffectInvokedClosure: ActionWithSideEffectCallback?
   var updatedInvokedClosure: (() -> ())?
-  
+
   public func updatedState(currentState: State) -> State {
     self.updatedInvokedClosure?()
     return currentState
   }
-  
+
   func sideEffect(state: State,
                          dispatch: @escaping StoreDispatch,
                          dependencies: SideEffectDependencyContainer

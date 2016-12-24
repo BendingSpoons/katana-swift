@@ -31,7 +31,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                                                                 newFrames: updatedFrames)
     return newChildrenDescriptions
   }
-  
+
   /**
    Calculates the frames for the given node description.
    This method basically invokes the `layout` method of `PlasticNodeDescription`
@@ -48,7 +48,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                                      multiplier: multiplier)
     let selfType = type(of: description)
     let layoutHash = selfType.layoutHash(props: self.description.props, state: self.state)
-    
+
     // check if we have cache enabled, and there is a layout cached
     if let layoutHash = layoutHash, let newFrames = LayoutsCache.shared.getCachedLayout(layoutHash: layoutHash,
                                                                                         nativeViewFrame: frame,
@@ -56,7 +56,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                                                                         nodeDescription: self.description) {
         return newFrames
     }
-    
+
     // no cache enabled or no layout cached yet
     container.initialize()
     type(of: description).anyLayout(views: container, props: self.description.props, state: self.state)
@@ -71,7 +71,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
     }
     return newFrames
   }
-  
+
   /**
    Updates the given node descriptions with the provided frames.
   
@@ -83,7 +83,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
                                                         newFrames: [String: CGRect]) -> [AnyNodeDescription] {
     return childrenDescriptions.map {
       var newChildDescription = $0
-      
+
       if let key = newChildDescription.anyProps.key {
         if let frame = newFrames[key] {
           var newProps = newChildDescription.anyProps
@@ -91,7 +91,7 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
           newChildDescription = type(of: newChildDescription).init(anyProps: newProps)
         }
       }
-      
+
       if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
         n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
         return n as AnyNodeDescription
@@ -113,17 +113,17 @@ public extension AnyNode {
    - seeAlso: `PlasticReferenceSizeable`
   */
   public var plasticMultiplier: CGFloat {
-    
+
     guard let description = self.anyDescription as? PlasticReferenceSizeable else {
       return self.parent?.plasticMultiplier ?? 0.0
     }
-    
+
     let referenceSize = type(of: description).referenceSize
     let currentSize = self.anyDescription.anyProps.frame
-    
+
     let widthRatio = currentSize.width / referenceSize.width
     let heightRatio = currentSize.height / referenceSize.height
     return min(widthRatio, heightRatio)
-    
+
   }
 }

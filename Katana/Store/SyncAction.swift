@@ -53,7 +53,7 @@ public protocol SyncAction: Action {
 
   /// The payload type of the action
   associatedtype Payload
-  
+
   /// The payload of the action
   var payload: Payload { get }
 }

@@ -29,7 +29,7 @@ protocol CoordinateConvertible: class {
    - returns: the X coordinate in the `key` view coordinate system
    */
   func getXCoordinate(_ absoluteValue: CGFloat, inCoordinateSystemOfParentOfKey key: String) -> CGFloat
-  
+
   /**
    Given the Y coordinate in the absolute coordinate system (that is, the coordinate of the
    native view), this method returns the X coordinate in the coordinate system of the view

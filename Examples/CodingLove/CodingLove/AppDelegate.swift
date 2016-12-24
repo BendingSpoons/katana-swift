@@ -26,7 +26,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let view = (self.window?.rootViewController?.view)!
         let rootBounds = UIScreen.main.bounds
         
-        let store = Store<CodingLoveState>(middlewares: [], dependencies: PostsProvider.self)
+        let store = Store<CodingLoveState>(middleware: [], dependencies: PostsProvider.self)
         
         self.renderer = Renderer(rootDescription: CodingLove(props: CodingLove.Props.build({
             $0.frame = rootBounds

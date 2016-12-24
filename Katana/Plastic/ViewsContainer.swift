@@ -18,13 +18,13 @@ private let nativeViewKey = "//NATIVEVIEWKEY\\"
 internal enum HierarchyNode {
   /// The node is the native node
   case nativeView
-  
+
   /**
     The node is something with a static frame (no key) we save the frame of
     and the reference to the parent
   */
   indirect case staticFrame(CGRect, HierarchyNode)
-  
+
   /// The node is something with a dynamic frame (managed by plastic)
   case dynamicFrame(String)
 }
@@ -53,25 +53,25 @@ public class ViewsContainer<Key> {
 
   /// Dictionary that associates the node description key to the correspondent `PlasticView` instance
   fileprivate(set) var views: [String: PlasticView] = [:]
-  
+
   /// Dictionary used to store the relation between a node description key and its type
   fileprivate var hierarchy: [String: HierarchyNode] = [:]
-  
+
   /**
     An array of tuples where the first value is the key of the node description
     and the value is the node description itself
   */
   private var flatChildrenDescriptions: [(String, AnyNodeDescription)]
-  
+
   /// The list of node descriptions managed by the container
   private var childrenDescriptions: [AnyNodeDescription]
-  
+
   /// The frame of the native view
   private let nativeViewFrame: CGRect
-  
+
   /// The multiplier to use in the scaling operations
   private let multiplier: CGFloat
-  
+
   /// The `PlasticView` instance related to the native view
   lazy public var nativeView: PlasticView = {
     return PlasticView(
@@ -81,7 +81,7 @@ public class ViewsContainer<Key> {
       frame: self.nativeViewFrame
     )
   }()
-  
+
   /**
    The frames of the views managed by the container.
    The keys of the dictionary are the keys associated with the node descriptions while
@@ -89,14 +89,14 @@ public class ViewsContainer<Key> {
   */
   var frames: [String: CGRect] {
     var frames = [String: CGRect]()
-    
+
     for (key, value) in self.views {
       frames["\(key)"] = value.frame
     }
-    
+
     return frames
   }
-  
+
   /**
    Creates a new `ViewsContainer` instance with the given values
    
@@ -113,13 +113,12 @@ public class ViewsContainer<Key> {
     self.nativeViewFrame = nativeViewFrame
     self.multiplier = multiplier
     self.childrenDescriptions = childrenDescriptions
-    
+
     // create children placeholders
     self.flatChildrenDescriptions = [(String, AnyNodeDescription)]()
     flattenChildren(childrenDescriptions, accumulator: &self.flatChildrenDescriptions)
   }
-  
-  
+
   /// Prepares all the necessary data structures to use the instance in a layout operation
   func initialize() {
     self.flatChildrenDescriptions.forEach { key, node in
@@ -133,7 +132,7 @@ public class ViewsContainer<Key> {
 
     self.createChildrenHierarchy(for: self.childrenDescriptions, parentRepresentation: .nativeView, accumulator: &hierarchy)
   }
-  
+
   /**
    Gets the `PlasticView` instance related to the given key
    
@@ -146,7 +145,7 @@ public class ViewsContainer<Key> {
   public subscript(key: Key) -> PlasticView? {
     return self.views["\(key)"]
   }
-  
+
   /**
    This method basically explores the node descriptions hierarchy and returns the absolute origin of the node.
    Two cases are trivial: root and managed by plastic (since plastic already holds an absolute value).
@@ -160,15 +159,14 @@ public class ViewsContainer<Key> {
     switch node {
     case .nativeView:
       return self.nativeViewFrame.origin
-      
+
     case let .dynamicFrame(key):
       guard let node = self.views[key] else {
         fatalError("\(key) is not a valid node key")
       }
-      
+
       return node.absoluteOrigin
-      
-      
+
     case let .staticFrame(frame, parent):
       let parentOrigin = self.resolvedAbsoluteOrigin(for: parent)
       let currentOrigin = frame.origin
@@ -187,11 +185,11 @@ extension ViewsContainer: CoordinateConvertible {
     guard let node = self.hierarchy[key] else {
       fatalError("\(key) is not a valid node key")
     }
-    
+
     let origin = self.resolvedAbsoluteOrigin(for: node)
     return absoluteValue - origin.x
   }
-  
+
   /**
    Implementation of the CoordinateConvertible protocol.
    
@@ -201,7 +199,7 @@ extension ViewsContainer: CoordinateConvertible {
     guard let node = self.hierarchy[key] else {
       fatalError("\(key) is not a valid node key")
     }
-    
+
     let origin = self.resolvedAbsoluteOrigin(for: node)
     return absoluteValue - origin.y
   }
@@ -220,13 +218,13 @@ extension ViewsContainer {
       if let n = node as? AnyNodeDescriptionWithChildren {
         self.flattenChildren(n.children, accumulator: &accumulator)
       }
-      
+
       if let key = node.anyProps.key {
         accumulator.append((key, node))
       }
     }
   }
-  
+
   /**
    This method creates the hierarchy of the nodes.
    It populates the accumulator with items where the key is the key of a node and the value a pointer to the parent.
@@ -242,22 +240,21 @@ extension ViewsContainer {
   internal func createChildrenHierarchy(for childrenDescriptions: [AnyNodeDescription],
                             parentRepresentation: HierarchyNode,
                                      accumulator: inout [String: HierarchyNode]) {
-    
+
     childrenDescriptions.forEach { nodeDescription in
-      
+
       let currentRepresentation: HierarchyNode = {
         if let key = nodeDescription.anyProps.key {
           return .dynamicFrame(key)
         }
-        
+
         return .staticFrame(nodeDescription.anyProps.frame, parentRepresentation)
       }()
-      
-      
+
       if let key = nodeDescription.anyProps.key {
         accumulator[key] = parentRepresentation
       }
-      
+
       if let nodeDescription = nodeDescription as? AnyNodeDescriptionWithChildren {
         createChildrenHierarchy(for: nodeDescription.children,
                                 parentRepresentation: currentRepresentation,

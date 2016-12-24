@@ -44,7 +44,7 @@ public extension NodeDescriptionWithChildren {
     get {
       return self.props.children
     }
-    
+
     set(newValue) {
       self.props.children = newValue
     }

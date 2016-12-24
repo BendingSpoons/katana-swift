@@ -9,7 +9,7 @@
 import CoreGraphics
 /// Utilities methods for Array of `PlasticView` instances
 extension Array where Element: PlasticView {
-  
+
   /**
    Centers the view instances in the array together with a collection of inter-view spacings horizontally so that
    their sizes, top edges and bottom edges are preserved.
@@ -23,24 +23,24 @@ extension Array where Element: PlasticView {
   */
   public func centerBetween(left: Anchor, right: Anchor, spacings: [Value]? = nil) {
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
-    
+
     guard spacings.count == self.count - 1 else {
       fatalError("The number of spacings values should be equal to the number of views minus 1")
     }
-    
+
     let firstView = self[0]
     let otherViews = self.dropFirst()
     var totalWidth = firstView.width.unscaledValue
-    
+
     let scaledSpacings = zip(otherViews, spacings).map { (view, spacing) -> CGFloat in
       let scaled = view.scaleValue(spacing)
       totalWidth = totalWidth + scaled + view.frame.size.width
       return scaled
     }
-    
+
     let leftmostOffset = (right.coordinate - left.coordinate - totalWidth) / 2.0
     firstView.left = left + .fixed(leftmostOffset)
-    
+
     for (index, view) in otherViews.enumerated() {
       let leftwardView = self[index] // take prev view
       let scaledSpacing = scaledSpacings[index]
@@ -48,7 +48,7 @@ extension Array where Element: PlasticView {
       view.left = anchor + .fixed(scaledSpacing)
     }
   }
-  
+
   /**
    Centers the view instances in the array together with a collection of inter-view spacings vertically so that
    their sizes, left edges and right edges are preserved.
@@ -62,25 +62,24 @@ extension Array where Element: PlasticView {
   */
   public func centerBetween(top: Anchor, bottom: Anchor, spacings: [Value]? = nil) {
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
-    
+
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
     }
-    
+
     let firstView = self[0]
     let otherViews = self.dropFirst()
     var totalHeight = firstView.height.unscaledValue
-    
-    
+
     let scaledSpacings = zip(otherViews, spacings).map { (view, spacing) -> CGFloat in
       let scaled = firstView.scaleValue(spacing)
       totalHeight = totalHeight + scaled + view.height.unscaledValue
       return scaled
     }
-    
+
     let upmostOffset = (bottom.coordinate - top.coordinate - totalHeight) / 2.0
     firstView.top = top + .fixed(upmostOffset)
-    
+
     for (index, view) in otherViews.enumerated() {
       let upperView = self[index]
       let scaledSpacing = scaledSpacings[index]
@@ -88,7 +87,7 @@ extension Array where Element: PlasticView {
       view.top = anchor + .fixed(scaledSpacing)
     }
   }
-  
+
   /**
    Fills the horizontal space between two view anchors with the view instances in the array given a collection of
    inter-view spacings and insets. The final widths of the views will be determined by a collection of relational view
@@ -112,39 +111,39 @@ extension Array where Element: PlasticView {
                    insets: EdgeInsets = .zero,
                    spacings: [Value]? = nil,
                    widths: [CGFloat]? = nil) {
-    
+
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     let widths = widths ?? (0..<self.count).map { _ in 1 }
-    
+
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
     }
-    
+
     guard widths.count == self.count else {
       preconditionFailure("The number of widths should be equal to the number of views")
     }
-    
+
     let firstView = self[0]
-    
+
     // Determine the total available width excluding the spacings
     let insetsSpacing = firstView.scaleValue(insets.left) + firstView.scaleValue(insets.right)
     let totalSpacing = spacings.reduce(insetsSpacing, {
       return $0 + firstView.scaleValue($1)
     })
-    
+
     let totalAvailableWidth = right.coordinate - left.coordinate - totalSpacing
-    
+
     // Determine each view's width to preserve proportions within available width
     let totalReferenceWidth = widths.reduce(0, +)
-    
+
     for (index, view) in self.enumerated() {
       let referenceWidth = widths[index]
       let width = referenceWidth / totalReferenceWidth * totalAvailableWidth
       view.width = .fixed(width)
-      
+
       if index == 0 {
         view.left = left + insets.left
-      
+
       } else {
         let leftwardView = self[index-1]
         let spacing = spacings[index-1]
@@ -152,7 +151,7 @@ extension Array where Element: PlasticView {
       }
     }
   }
-  
+
   /**
    Fills the vertical space between two view anchors with the view instances in the array given a collection of
    inter-view spacings and insets. The final heights of the array views will be determined by a collection of relational view
@@ -175,39 +174,39 @@ extension Array where Element: PlasticView {
                 insets: EdgeInsets = .zero,
                 spacings: [Value]? = nil,
                 heights: [CGFloat]? = nil) {
-    
+
     let spacings = spacings ?? (0..<self.count - 1).map { _ in .zero }
     let heights = heights ?? (0..<self.count).map { _ in 1 }
-    
+
     guard spacings.count == self.count - 1 else {
       preconditionFailure("The number of spacings values should be equal to the number of views minus 1")
     }
-    
+
     guard heights.count == self.count else {
       preconditionFailure("The number of heights should be equal to the number of views")
     }
-    
+
     let firstView = self[0]
-    
+
     // Determine the total available width excluding the spacings
     let insetsSpacing = firstView.scaleValue(insets.top) + firstView.scaleValue(insets.bottom)
     let totalSpacing = spacings.reduce(insetsSpacing, {
       return $0 + firstView.scaleValue($1)
     })
-    
+
     let totalAvailableHeight = bottom.coordinate - top.coordinate - totalSpacing
-    
+
     // Determine each view's width to preserve proportions within available width
     let totalReferenceHeight = heights.reduce(0, +)
-    
+
     for (index, view) in self.enumerated() {
       let referenceHeight = heights[index]
       let height = referenceHeight / totalReferenceHeight * totalAvailableHeight
       view.height = .fixed(height)
-      
+
       if index == 0 {
         view.top = top + insets.top
-      
+
       } else {
         let upperView = self[index-1]
         let spacing = spacings[index - 1]

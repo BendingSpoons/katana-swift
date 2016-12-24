@@ -23,19 +23,19 @@ fileprivate struct TestDescription: AnyNodeDescription, Equatable {
     self.replaceKey = replaceKey
     self.payload = payload
   }
-  
+
   init(anyProps: AnyNodeDescriptionProps) {
     fatalError()
   }
-  
+
   public func makeNode(parent: AnyNode) -> AnyNode {
     fatalError()
   }
-  
+
   fileprivate func makeNode(renderer: Renderer) -> AnyNode {
     fatalError()
   }
-  
+
   static func == (l: TestDescription, r: TestDescription) -> Bool {
     return l.replaceKey == r.replaceKey && l.payload == r.payload
   }
@@ -52,7 +52,7 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "L".hashValue, payload: "10"),
       TestDescription(replaceKey: "Q".hashValue, payload: "10")
     ]
-    
+
     let b = [
       TestDescription(replaceKey: "4".hashValue, payload: "20"),
       TestDescription(replaceKey: "L".hashValue, payload: "20"),
@@ -62,7 +62,7 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "K".hashValue, payload: "20"),
       TestDescription(replaceKey: "9".hashValue, payload: "20")
     ]
-    
+
     let expected = [
       TestDescription(replaceKey: "4".hashValue, payload: "20"),
       TestDescription(replaceKey: "T".hashValue, payload: "10"),
@@ -74,14 +74,14 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "1".hashValue, payload: "20"),
       TestDescription(replaceKey: "2".hashValue, payload: "20"),
       TestDescription(replaceKey: "9".hashValue, payload: "20"),
-      TestDescription(replaceKey: "Q".hashValue, payload: "10"),
+      TestDescription(replaceKey: "Q".hashValue, payload: "10")
     ]
-    
+
     let result = AnimationUtils.mergedDescriptions(a, b, step: .firstIntermediate) as! [TestDescription]
-    
+
     XCTAssertEqual(result, expected)
   }
-  
+
   func testMergeSecondStep() {
     let a = [
       TestDescription(replaceKey: "T".hashValue, payload: "10"),
@@ -92,7 +92,7 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "L".hashValue, payload: "10"),
       TestDescription(replaceKey: "Q".hashValue, payload: "10")
     ]
-    
+
     let b = [
       TestDescription(replaceKey: "4".hashValue, payload: "20"),
       TestDescription(replaceKey: "L".hashValue, payload: "20"),
@@ -114,11 +114,11 @@ class AnimationUtilsTest: XCTestCase {
       TestDescription(replaceKey: "A".hashValue, payload: "10"),
       TestDescription(replaceKey: "W".hashValue, payload: "10"),
       TestDescription(replaceKey: "Q".hashValue, payload: "10"),
-      TestDescription(replaceKey: "9".hashValue, payload: "20"),
+      TestDescription(replaceKey: "9".hashValue, payload: "20")
     ]
-    
+
     let result = AnimationUtils.mergedDescriptions(a, b, step: .secondIntermediate) as! [TestDescription]
-    
+
     XCTAssertEqual(result, expected)
   }
 }

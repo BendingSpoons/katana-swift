@@ -19,7 +19,7 @@ public protocol AnyStore: class {
    - parameter action: the action to dispatch
   */
   func dispatch(_ action: AnyAction)
-  
+
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
    every time the Store's state changes
@@ -38,7 +38,7 @@ public protocol AnyStore: class {
  Store's state. The only way to update the state is to dispatch an `Action`. At this point
  the store will execute the following operations:
  
- - it executes the middlewares
+ - it executes the middleware
  - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
@@ -51,23 +51,23 @@ public protocol AnyStore: class {
  See `ConnectedNodeDescription` for more information about this topic
 */
 open class Store<StateType: State> {
-  
+
   /// The current state of the application
   open fileprivate(set) var state: StateType
-  
+
   /// The  array of registered listeners
   fileprivate var listeners: [StoreListener]
-  
-  /// The array of
-  fileprivate let middlewares: [StoreMiddleware<StateType>]
-  
+
+  /// The array of middleware of the store
+  fileprivate let middleware: [StoreMiddleware]
+
   /**
    The dependencies used in the actions side effects
    
    - seeAlso: `ActionWithSideEffect`
   */
   fileprivate let dependencies: SideEffectDependencyContainer.Type
-  
+
   /**
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched
   */
@@ -76,43 +76,43 @@ open class Store<StateType: State> {
       return self.state
     }
     
-    var m = self.middlewares.map { middleware in
+    var m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
-    
+
     // add the side effect function as the first in the chain
     m = [self.triggerSideEffect] + m
-    
+
     return self.composeMiddlewares(m, with: self.performDispatch)
   }()
-  
+
   /// The queue in witch actions are managed
   lazy private var dispatchQueue: DispatchQueue = {
     // serial by default
     return DispatchQueue(label: "katana.store.queue")
   }()
-  
+
   /**
-   A convenience init method. The store won't have middlewares nor dependencies for the actions
+   A convenience init method. The store won't have middleware nor dependencies for the actions
    side effects
    
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middlewares: [], dependencies: EmptySideEffectDependencyContainer.self)
+    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
   }
-  
+
   /**
    The default init method for the Store.
    
-   - parameter middlewares:   the middlewares to trigger when an action is dispatched
+   - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
   */
-  public init(middlewares: [StoreMiddleware<StateType>], dependencies: SideEffectDependencyContainer.Type) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
     self.listeners = []
-    self.state = StateType.init()
-    self.middlewares = middlewares
+    self.state = StateType()
+    self.middleware = middleware
     self.dependencies = dependencies
   }
 
@@ -126,12 +126,12 @@ open class Store<StateType: State> {
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     self.listeners.append(listener)
     let idx = listeners.count - 1
-    
+
     return { [weak self] in
       _ = self?.listeners.remove(at: idx)
     }
   }
-  
+
   /**
    Dispatches an action
    
@@ -145,35 +145,35 @@ open class Store<StateType: State> {
 }
 
 fileprivate extension Store {
-  /// Type used internally to store partially applied middlewares
+  /// Type used internally to store partially applied middleware
   fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> ()
 
   /**
-   This function composes the middlewares with the store dispatch
+   This function composes the middleware with the store dispatch
    
-   - parameter middlewares:   the middlewares to use
+   - parameter middleware:   the middleware to use
    - parameter storeDispatch: the store dispatch function
-   - returns: a function that invokes all the middlewares and then the store dispatch function
+   - returns: a function that invokes all the middleware and then the store dispatch function
   */
-  fileprivate func composeMiddlewares(_ middlewares: [PartiallyAppliedMiddleware],
+  fileprivate func composeMiddlewares(_ middleware: [PartiallyAppliedMiddleware],
                            with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
 
-    guard middlewares.count > 0 else {
+    guard !middleware.isEmpty else {
       return storeDispatch
     }
   
-    guard middlewares.count > 1 else {
-      return middlewares.first!(storeDispatch)
+    guard middleware.count > 1 else {
+      return middleware.first!(storeDispatch)
     }
   
-    var m = middlewares
+    var m = middleware
     let last = m.removeLast()
-  
+
     return m.reduce(last(storeDispatch), { chain, middleware in
       return middleware(chain)
     })
   }
-  
+
   /**
    Calculates the new state based on the current state and the given action.
    This method also invokes all the listeners
@@ -182,34 +182,34 @@ fileprivate extension Store {
   */
   fileprivate func performDispatch(_ action: AnyAction) {
     let newState = action.anyUpdatedState(currentState: self.state)
-    
+
     guard let typedNewState = newState as? StateType else {
       preconditionFailure("Action updateState returned a wrong state type")
     }
-    
+
     self.state = typedNewState
-    
+
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
       self.listeners.forEach { $0() }
     }
   }
-  
+
   /// Middleware-like function that executes the side effect of the action, if available
   fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((AnyAction) -> ()) {
     return { action in
       defer {
         next(action)
       }
-      
+
       guard let action = action as? AnyActionWithSideEffect else {
         return
       }
-      
+
       let state = self.state
       let dispatch = self.dispatch
       let container = self.dependencies.init(state: state, dispatch: dispatch)
-      
+
       action.anySideEffect(
         state: state,
         dispatch: dispatch,
