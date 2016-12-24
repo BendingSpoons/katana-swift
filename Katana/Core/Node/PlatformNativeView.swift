@@ -17,14 +17,23 @@ import CoreGraphics
  The most obvious implementation of this protocol is `UIView` for iOS or `NSView` for mac OS.
  It is possible to create custom containers that renders nodes on abstract structures (e.g., for testing)
  or on serializable structures to store the UI representation and use it later.
- 
- */
+*/
 public protocol PlatformNativeView : class {
   
-  var frame: CGRect { get set } // native
-  var alpha: CGFloat { get set }
-  var tagValue: Int { get set }
+  /// The frame of the native view
+  var frame: CGRect { get set }
   
+  /// The alpha of the native view
+  var alpha: CGFloat { get set }
+  
+  /// An unique tag value related to the native view
+  var tagValue: Int { get set }
+
+  /**
+   Creates a new instance of the platform native view
+   
+   - returns: a valid instance of the platform native view
+  */
   static func make() -> Self
   
   /**
@@ -44,6 +53,11 @@ public protocol PlatformNativeView : class {
    */
   @discardableResult func addChild(_ child: () -> PlatformNativeView) -> PlatformNativeView
   
+  /**
+   Adds the platform native view to a parent
+   
+   - parameter parent: the parent
+  */
   func addToParent(parent: PlatformNativeView)
   
   /**
