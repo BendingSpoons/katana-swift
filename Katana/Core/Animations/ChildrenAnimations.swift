@@ -14,10 +14,10 @@ import Foundation
 public struct ChildrenAnimations<Key> {
   /// It indicates whether we should perform a 4 step animation or not
   var shouldAnimate = false
-  
+
   /// The animations of the children
   var animations = [String: Animation]()
-  
+
   /// A default that is used for all the children without a specific animation
   public var allChildren: Animation = .none {
     didSet {
@@ -28,7 +28,7 @@ public struct ChildrenAnimations<Key> {
       self.shouldAnimate = true
     }
   }
-  
+
   /**
    Gets the `Animation` value relative to a specific key
    
@@ -41,12 +41,12 @@ public struct ChildrenAnimations<Key> {
     get {
       return self["\(key)"]
     }
-    
+
     set(newValue) {
       if case .none = newValue.type {
         return
       }
-      
+
       self.shouldAnimate = true
       self.animations["\(key)"] = newValue
     }
@@ -61,14 +61,14 @@ public struct ChildrenAnimations<Key> {
     get {
       fatalError("This subscript should not be used as a getter")
     }
-    
+
     set(newValue) {
       for value in key {
         self[value] = newValue
       }
     }
   }
-  
+
   /**
    Gets the `Animation` value relative to a specific key
    
@@ -86,7 +86,7 @@ public struct ChildrenAnimations<Key> {
 protocol AnyChildrenAnimations {
   /// It indicates whether we should perform a 4 step animation or not
   var shouldAnimate: Bool { get }
-  
+
   /**
    Gets the `Animation` value relative to a description
    
@@ -109,7 +109,7 @@ extension ChildrenAnimations: AnyChildrenAnimations {
     if let key = description.anyProps.key {
       return self[key]
     }
-    
+
     return self.allChildren
   }
 }

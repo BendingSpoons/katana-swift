@@ -40,10 +40,10 @@ public protocol AnyConnectedNodeDescription {
  - seeAlso: `Store`
 */
 public protocol ConnectedNodeDescription: AnyConnectedNodeDescription, NodeDescription {
-  
+
   /// The State used in the application
   associatedtype StoreState: State
-  
+
   /**
    This method is used to update the properties with pieces of information taken from the 
    central Store state.
@@ -67,11 +67,11 @@ public extension ConnectedNodeDescription {
    - seeAlso: `AnyConnectedNodeDescription`
   */
   static func anyConnect(parentProps: Any, storeState: Any) -> Any {
-    
+
     guard let parentProps = parentProps as? PropsType, let s = storeState as? StoreState else {
       fatalError("invalid signature of the connect function of \(type(of: self))")
     }
-    
+
     var parentPropsCopy = parentProps
     self.connect(props: &parentPropsCopy, to: s)
     return parentPropsCopy

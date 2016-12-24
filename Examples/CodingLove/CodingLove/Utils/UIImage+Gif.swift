@@ -130,7 +130,7 @@ extension UIImage {
         }
     }
     
-    internal class func gcdForArray(_ array: Array<Int>) -> Int {
+    internal class func gcdForArray(_ array: [Int]) -> Int {
         if array.isEmpty {
             return 1
         }

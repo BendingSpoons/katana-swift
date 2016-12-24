@@ -11,7 +11,7 @@ import CoreGraphics
  An abstract representation of a `PlasticView` layout property.
 */
 public struct Anchor: Equatable {
-  
+
   /// This enum represents the possible kinds of anchor
   public enum Kind {
     /// the left edge of the view the anchor pertains to
@@ -27,10 +27,10 @@ public struct Anchor: Equatable {
     /// the vertical center of the view the anchor pertains to
     case centerY
   }
-  
+
   /// the kind of the anchor
   let kind: Kind
-  
+
   /// the `PlasticView` to which the anchor is associated to
   let view: PlasticView
 
@@ -49,7 +49,7 @@ public struct Anchor: Equatable {
     self.view = view
     self.offset = offset
   }
-  
+
   /**
    As the `Anchor` instance symbolizes a line in a given view, this method will return that line's horizontal or vertical
    coordinate in the node description native view's coordinate system
@@ -62,27 +62,27 @@ public struct Anchor: Equatable {
     switch self.kind {
     case .left:
       coord = absoluteOrigin.x
-    
+
     case .right:
       coord = absoluteOrigin.x + size.width
-    
+
     case .centerX:
       coord = absoluteOrigin.x + size.width / 2.0
-      
+
     case .top:
       coord = absoluteOrigin.y
-      
+
     case .bottom:
       coord = absoluteOrigin.y + size.height
-      
+
     case .centerY:
       coord = absoluteOrigin.y + size.height / 2.0
-      
+
     }
 
     return coord + view.scaleValue(offset)
   }
-  
+
   /**
    Implementation of the Equatable protocol
    

@@ -22,6 +22,34 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A15A364A1E0EA0430059B2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2E4E1DE2F37B00441784;
+			remoteInfo = "Katana macOS";
+		};
+		A15A364C1E0EA0430059B2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2F0C1DE8392800441784;
+			remoteInfo = "KatanaElements macOS";
+		};
+		A15A364E1E0EA0430059B2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2EE11DE7487C00441784;
+			remoteInfo = "Katana macOS Tests";
+		};
+		A15A36501E0EA0430059B2D4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 65BF2F311DE83E6600441784;
+			remoteInfo = "Demo macOS";
+		};
 		A180316D1DD49E0800579400 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A18031661DD49E0800579400 /* Katana.xcodeproj */;
@@ -177,9 +205,13 @@
 			isa = PBXGroup;
 			children = (
 				A180316E1DD49E0800579400 /* Katana.framework */,
-				A18031701DD49E0800579400 /* KatanaTests.xctest */,
+				A15A364B1E0EA0430059B2D4 /* Katana.framework */,
 				A18031721DD49E0800579400 /* KatanaElements.framework */,
-				A18031741DD49E0800579400 /* Demo.app */,
+				A15A364D1E0EA0430059B2D4 /* KatanaElements.framework */,
+				A18031701DD49E0800579400 /* Katana iOS Tests.xctest */,
+				A15A364F1E0EA0430059B2D4 /* Katana macOS Tests.xctest */,
+				A18031741DD49E0800579400 /* Demo iOS.app */,
+				A15A36511E0EA0430059B2D4 /* Demo macOS.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -249,6 +281,34 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		A15A364B1E0EA0430059B2D4 /* Katana.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Katana.framework;
+			remoteRef = A15A364A1E0EA0430059B2D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A15A364D1E0EA0430059B2D4 /* KatanaElements.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = KatanaElements.framework;
+			remoteRef = A15A364C1E0EA0430059B2D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A15A364F1E0EA0430059B2D4 /* Katana macOS Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "Katana macOS Tests.xctest";
+			remoteRef = A15A364E1E0EA0430059B2D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A15A36511E0EA0430059B2D4 /* Demo macOS.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = "Demo macOS.app";
+			remoteRef = A15A36501E0EA0430059B2D4 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A180316E1DD49E0800579400 /* Katana.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -256,10 +316,10 @@
 			remoteRef = A180316D1DD49E0800579400 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A18031701DD49E0800579400 /* KatanaTests.xctest */ = {
+		A18031701DD49E0800579400 /* Katana iOS Tests.xctest */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.cfbundle;
-			path = KatanaTests.xctest;
+			path = "Katana iOS Tests.xctest";
 			remoteRef = A180316F1DD49E0800579400 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -270,10 +330,10 @@
 			remoteRef = A18031711DD49E0800579400 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		A18031741DD49E0800579400 /* Demo.app */ = {
+		A18031741DD49E0800579400 /* Demo iOS.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
-			path = Demo.app;
+			path = "Demo iOS.app";
 			remoteRef = A18031731DD49E0800579400 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
@@ -305,7 +365,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "version=`which swiftlint >/dev/null && swiftlint version`\nif [[ $version == \"0.13.0\" ]]; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint, use version 0.13.0\"\nfi";
+			shellScript = "if which swiftlint >/dev/null; then\n    swiftlint\nelse\n    echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 

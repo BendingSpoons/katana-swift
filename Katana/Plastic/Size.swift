@@ -10,16 +10,16 @@ import CoreGraphics
 
 /// `Size` is the scalable counterpart of `CGSize`
 public struct Size: Equatable {
-  
+
   /// The width value
   public let width: Value
-  
+
   /// The height value
   public let height: Value
-  
+
   /// an instance of `Size` where both the width and the height are zero
   public static let zero: Size = .scalable(0, 0)
-  
+
   /**
    Creates an instance of `Size` where both widht and height are fixed
    
@@ -43,7 +43,7 @@ public struct Size: Equatable {
   public static func scalable(_ width: CGFloat, _ height: CGFloat) -> Size {
     return Size(width: .scalable(width), height: .scalable(height))
   }
-  
+
   /**
    Creates an instance of `Size` with the given value
    
@@ -56,7 +56,7 @@ public struct Size: Equatable {
     self.width = width
     self.height = height
   }
-  
+
   /**
    Scales the size using a multiplier
    
@@ -69,7 +69,7 @@ public struct Size: Equatable {
       height: self.height.scale(by: multiplier)
     )
   }
-  
+
   /**
    Implements the multiplication for the `Size` instances
    
@@ -84,7 +84,7 @@ public struct Size: Equatable {
   public static func * (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width * rhs, height: lhs.height * rhs)
   }
-  
+
   /**
    Implements the addition for the `Size` instances
    
@@ -96,7 +96,7 @@ public struct Size: Equatable {
   public static func + (lhs: Size, rhs: Size) -> Size {
     return Size(width: lhs.width + rhs.width, height: lhs.height + rhs.height)
   }
-  
+
   /**
    Implements the division for the `Size` instances
    
@@ -107,7 +107,7 @@ public struct Size: Equatable {
   public static func / (lhs: Size, rhs: CGFloat) -> Size {
     return Size(width: lhs.width / rhs, height: lhs.height / rhs)
   }
-  
+
   /**
    Imlementation of the `Equatable` protocol.
    

@@ -12,7 +12,7 @@ import Foundation
 struct Todo: Equatable {
   let title: String
   let id: String
-  
+
   static func == (lhs: Todo, rhs: Todo) -> Bool {
     return lhs.title == rhs.title && lhs.id == rhs.id
   }
@@ -20,7 +20,7 @@ struct Todo: Equatable {
 
 struct User: Equatable {
   let username: String
-  
+
   static func == (lhs: User, rhs: User) -> Bool {
     return lhs.username == rhs.username
   }
@@ -28,7 +28,7 @@ struct User: Equatable {
 
 struct TodoState: State, Equatable {
   var todos: [Todo]
-  
+
   static func == (lhs: TodoState, rhs: TodoState) -> Bool {
     return lhs.todos == rhs.todos
   }
@@ -57,7 +57,7 @@ extension UserState {
 struct AppState: State, Equatable {
   var todo: TodoState
   var user: UserState
-  
+
   static func == (lhs: AppState, rhs: AppState) -> Bool {
     return lhs.todo == rhs.todo && lhs.user == rhs.user
   }

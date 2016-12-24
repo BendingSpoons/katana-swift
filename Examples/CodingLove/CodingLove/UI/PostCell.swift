@@ -51,7 +51,7 @@ struct PostCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCell, Co
                 $0.setKey(Keys.gifImage)
                 $0.image = UIImage.gif(data: (props.post?.imageData)!)
                 $0.backgroundColor = UIColor.lightGray
-            })),
+            }))
         ]
     }
     

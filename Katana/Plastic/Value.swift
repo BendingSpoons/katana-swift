@@ -14,21 +14,21 @@ import CoreGraphics
  `scalable * multiplier + fixed`.
 */
 public struct Value: Equatable {
-  
+
   /// The scalable part of the instance
   public let scalable: CGFloat
-  
+
   /// The fixed part of the instance
   public let fixed: CGFloat
-  
+
   /// Returns the unscaled value of the instance
   public var unscaledValue: CGFloat {
     return scalable + fixed
   }
-  
+
   /// an instance of `Value` with a value equals to 0
   public static let zero: Value = .scalable(0)
-  
+
   /**
    Creates a fixed instance of `Value`
    
@@ -48,7 +48,7 @@ public struct Value: Equatable {
   public static func scalable(_ scalable: CGFloat) -> Value {
     return Value(scalable: scalable, fixed: 0)
   }
-  
+
   /**
    Creates an instance of `Value` with the given values
    
@@ -61,7 +61,7 @@ public struct Value: Equatable {
     self.scalable = scalable
     self.fixed = fixed
   }
-  
+
   /**
    Scales the value using a multiplier
    
@@ -71,7 +71,7 @@ public struct Value: Equatable {
   public func scale(by multiplier: CGFloat) -> CGFloat {
     return self.scalable * multiplier + self.fixed
   }
-  
+
   /**
    Returns a new `Value` instance with the sign changed
    
@@ -82,7 +82,7 @@ public struct Value: Equatable {
   public static prefix func - (item: Value) -> Value {
     return Value(scalable: -item.scalable, fixed: -item.fixed)
   }
-  
+
   /**
    Implements the multiplication for the `Value` instances
    
@@ -111,7 +111,7 @@ public struct Value: Equatable {
   public static func *= (lhs: inout Value, rhs: CGFloat) {
     lhs = lhs * rhs
   }
-  
+
   /**
    Implements the addition for the `Value` instances
    
@@ -153,7 +153,7 @@ public struct Value: Equatable {
   public static func -= (lhs: inout Value, rhs: Value) {
     lhs = lhs - rhs
   }
-  
+
   /**
    Implements the division for the `Value` instances
    
@@ -174,7 +174,7 @@ public struct Value: Equatable {
   public static func /= (lhs: inout Value, rhs: CGFloat) {
     lhs = lhs / rhs
   }
-  
+
   /**
    Imlementation of the `Equatable` protocol.
    

@@ -58,7 +58,7 @@ struct FetchMoreCell: PlasticNodeDescription, PlasticReferenceSizeable, TableCel
                     ])
                 $0.textAlignment = .center
                 $0.backgroundColor = labelBackgroundColor
-            })),
+            }))
         ]
     }
     

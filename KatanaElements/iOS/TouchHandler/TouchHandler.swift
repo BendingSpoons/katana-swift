@@ -16,13 +16,13 @@ public extension TouchHandler {
     public var frame = CGRect.zero
     public var key: String?
     public var alpha: CGFloat = 1.0
-    
+
     public var children: [AnyNodeDescription] = []
     public var handlers: [TouchHandlerEvent: TouchHandlerClosure]?
     public var hitTestInsets: UIEdgeInsets = .zero
-    
+
     public init() {}
-    
+
     public static func == (lhs: Props, rhs: Props) -> Bool {
       // always re render, we haven't found a decent way to compare handlers so far
       return false
@@ -32,9 +32,9 @@ public extension TouchHandler {
 
 public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
   public typealias NativeView = NativeTouchHandler
-  
+
   public var props: Props
-  
+
   public static func applyPropsToNativeView(props: Props,
                                             state: EmptyState,
                                             view: NativeTouchHandler,
@@ -50,14 +50,14 @@ public struct TouchHandler: NodeDescription, NodeDescriptionWithChildren {
                                           state: EmptyState,
                                           update: @escaping (EmptyState)->(),
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-    
+
     return props.children
   }
-  
+
   public init(props: Props) {
     self.props = props
   }
-  
+
   public init(props: Props, _ children: () -> [AnyNodeDescription]) {
     self.props = props
     self.props.children = children()

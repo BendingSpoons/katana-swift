@@ -41,7 +41,6 @@ struct MinesweeperState: State {
   
 }
 
-
 // MARK: - Mines Operations
 extension MinesweeperState {
   fileprivate mutating func poseMines(numberOfMines: Int) {
@@ -99,14 +98,13 @@ extension MinesweeperState {
   }
 }
 
-
 // MARK: - Disclosure
 extension MinesweeperState {
   mutating func disclose(col: Int, row: Int) {
     guard !gameOver else { return }
     var cellsToDisclose = [(col, row)]
     
-    while cellsToDisclose.count > 0 {
+    while !cellsToDisclose.isEmpty {
       let index = cellsToDisclose.removeFirst()
       if(!self.isDisclosed(col: index.0, row: index.1 )) {
         self.discloseCellAt(col: index.0, row: index.1)
@@ -138,7 +136,6 @@ extension MinesweeperState {
     case easy, medium, hard
   }
 }
-
 
 // MARK: - Equality
 extension MinesweeperState {

@@ -12,13 +12,13 @@ import CoreGraphics
 public struct EmptyProps: NodeDescriptionProps {
   /// The alpha of the description
   public var alpha: CGFloat = 1.0
-  
+
   /// The key of the description
   public var key: String?
-  
+
   /// The frame of the description
   public var frame: CGRect = CGRect.zero
-  
+
   /**
    Implementation of the `Equatable` protocol
    
@@ -33,7 +33,6 @@ public struct EmptyProps: NodeDescriptionProps {
       lhs.alpha == rhs.alpha
   }
 
-  
   /**
     Default initializer of the struct
     - returns: a valid instance of EmptyProps
@@ -53,7 +52,7 @@ public struct EmptyState: NodeDescriptionState {
   public static func == (lhs: EmptyState, rhs: EmptyState) -> Bool {
     return true
   }
-  
+
   /**
    Default initializer of the struct
    - returns: a valid instance of EmptyState

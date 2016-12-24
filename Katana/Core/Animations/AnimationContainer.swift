@@ -16,13 +16,13 @@ import Foundation
 public struct AnimationContainer {
   /// The animation to use for the native view
   let nativeViewAnimation: AnimationType
-  
+
   /// The animations for the children
   let childrenAnimation: AnyChildrenAnimations
-  
+
   /// An empty animation
   public static let none = AnimationContainer(nativeViewAnimation: .none, childrenAnimation: ChildrenAnimations<Any>())
-  
+
   /**
    Creates a container with the given values
    
@@ -33,7 +33,7 @@ public struct AnimationContainer {
     self.nativeViewAnimation = nativeViewAnimation
     self.childrenAnimation = childrenAnimation
   }
-  
+
   /**
    Creates an instance of `AnimationContainer` for a given child
    
@@ -46,7 +46,7 @@ public struct AnimationContainer {
     let childChildrenAnimation = child is AnyNodeDescriptionWithChildren
       ? self.childrenAnimation
       : ChildrenAnimations<Any>()
-    
+
     return AnimationContainer(
       nativeViewAnimation: self.childrenAnimation[child].type,
       childrenAnimation: childChildrenAnimation
