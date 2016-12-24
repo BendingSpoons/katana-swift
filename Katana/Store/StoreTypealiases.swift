@@ -14,7 +14,7 @@ public typealias StoreListener = () -> ()
 /// Typealias for the `Store` listener unsubscribe closure
 public typealias StoreUnsubscribe = () -> ()
 
-/// Typealias for the `Store` middlewares
+/// Typealias for the `Store` middleware
 public typealias StoreMiddleware<StateType: State> =
   (_ getState: @escaping () -> StateType, _ dispatch: @escaping StoreDispatch) ->
     (_ next: @escaping StoreDispatch) ->

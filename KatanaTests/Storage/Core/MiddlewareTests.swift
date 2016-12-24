@@ -17,7 +17,7 @@ class MiddlewareTests: XCTestCase {
     var storeBefore: Any?
     var storeAfter: Any?
     
-    let expectation = self.expectation(description: "Middlewares")
+    let expectation = self.expectation(description: "Middleware")
     
     let middleware: StoreMiddleware<AppState> = { getState, dispatch in
       return { next in
@@ -31,7 +31,7 @@ class MiddlewareTests: XCTestCase {
       }
     }
     
-    let store = Store<AppState>(middlewares: [middleware], dependencies: EmptySideEffectDependencyContainer.self)
+    let store = Store<AppState>(middleware: [middleware], dependencies: EmptySideEffectDependencyContainer.self)
     let initialState = store.state
     let action = AddTodoAction(title: "New Todo")
     store.dispatch(action)
@@ -49,7 +49,7 @@ class MiddlewareTests: XCTestCase {
   func testMiddlewareCanBlockPropagation() {
     var invokationOrder: [String] = []
     
-    let expectation = self.expectation(description: "Middlewares")
+    let expectation = self.expectation(description: "Middleware")
     
     let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
       return { next in
@@ -70,7 +70,7 @@ class MiddlewareTests: XCTestCase {
     }
     
     let store = Store<AppState>(
-      middlewares: [basicMiddleware, secondMiddleware],
+      middleware: [basicMiddleware, secondMiddleware],
       dependencies: EmptySideEffectDependencyContainer.self
     )
     
@@ -92,7 +92,7 @@ class MiddlewareTests: XCTestCase {
     var storeAfter: Any?
     var invokationOrder: [String] = []
     
-    let expectation = self.expectation(description: "Middlewares")
+    let expectation = self.expectation(description: "Middleware")
     
     let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
       return { next in
@@ -117,7 +117,7 @@ class MiddlewareTests: XCTestCase {
     }
     
     let store = Store<AppState>(
-      middlewares: [basicMiddleware, secondMiddleware],
+      middleware: [basicMiddleware, secondMiddleware],
       dependencies: EmptySideEffectDependencyContainer.self
     )
     
@@ -139,7 +139,7 @@ class MiddlewareTests: XCTestCase {
   func testGenericMiddleware() {
     var invokationOrder: [String] = []
     
-    let expectation = self.expectation(description: "Middlewares")
+    let expectation = self.expectation(description: "Middleware")
     
     let basicMiddleware: StoreMiddleware<AppState> = { getState, dispatch in
       return { next in
@@ -161,7 +161,7 @@ class MiddlewareTests: XCTestCase {
     }
     
     let store = Store<AppState>(
-      middlewares: [basicMiddleware, secondMiddleware],
+      middleware: [basicMiddleware, secondMiddleware],
       dependencies: EmptySideEffectDependencyContainer.self
     )
     
