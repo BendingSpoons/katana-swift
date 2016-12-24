@@ -20,12 +20,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let view = NSView()
     window.contentView = view
     window.delegate = self
-    
+
     let store = Store<CounterState>()
     let screen = CounterScreen(props: CounterScreen.Props.build({
       $0.frame = view.bounds
     }))
-    
+
     renderer = Renderer(rootDescription: screen, store: store)
     renderer?.render(in: view)
   }

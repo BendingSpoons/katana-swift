@@ -10,7 +10,7 @@ import Foundation
 
 /// Extension of `ViewsContainer` with some helper methods
 public extension ViewsContainer {
-  
+
   /**
    Returns the views contained in the ViewsContainer that passes the filter
    
@@ -22,17 +22,16 @@ public extension ViewsContainer {
   */
   public func filtered(with filter: (String) -> Bool) -> [String: PlasticView] {
     var newDict = [String: PlasticView]()
-    
+
     for (key, view) in self.views {
       if filter(key) {
         newDict[key] = view
       }
     }
-    
+
     return newDict
   }
-  
-  
+
   /**
    Returns an array of views that passes the filter, and ordered using the `sort` closure
    

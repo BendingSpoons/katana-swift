@@ -10,22 +10,22 @@ import CoreGraphics
 
 /// `EdgeInsets` is the scalable counterpart of `UIEdgeInsets`
 public struct EdgeInsets: Equatable {
-  
+
   /// the top inset
   public let top: Value
-  
+
   /// the left inset
   public let left: Value
-  
+
   /// the bottom inset
   public let bottom: Value
-  
+
   /// the right inset
   public let right: Value
-  
+
   /// an instance of `EdgeInsets` with all the insets equal to zero
   public static let zero: EdgeInsets = .scalable(0, 0, 0, 0)
-  
+
   /**
    Creates an instance of `EdgeInsets` where all the insets are not scalable
    
@@ -53,7 +53,7 @@ public struct EdgeInsets: Equatable {
   public static func scalable(_ top: CGFloat, _ left: CGFloat, _ bottom: CGFloat, _ right: CGFloat) -> EdgeInsets {
     return EdgeInsets(top: .scalable(top), left: .scalable(left), bottom: .scalable(bottom), right: .scalable(right))
   }
-  
+
   /**
    Creates an instance of `EdgeInsets` with the given value
    
@@ -70,7 +70,7 @@ public struct EdgeInsets: Equatable {
     self.bottom = bottom
     self.right = right
   }
-  
+
   /**
    Scales the insets using a multiplier
    
@@ -85,7 +85,7 @@ public struct EdgeInsets: Equatable {
       right: self.right.scale(by: multiplier)
     )
   }
-  
+
   /**
    Implements the multiplication for the `EdgeInsets` instances
    
@@ -105,7 +105,7 @@ public struct EdgeInsets: Equatable {
       right: lhs.right * rhs
     )
   }
-  
+
   /**
    Implements the addition for the `EdgeInsets` instances
    
@@ -121,7 +121,7 @@ public struct EdgeInsets: Equatable {
       right: lhs.right + rhs.right
     )
   }
-  
+
   /**
    Implements the division for the `EdgeInsets` instances
    
@@ -137,7 +137,7 @@ public struct EdgeInsets: Equatable {
       right: lhs.right / rhs
     )
   }
-  
+
   /**
    Imlementation of the `Equatable` protocol.
    

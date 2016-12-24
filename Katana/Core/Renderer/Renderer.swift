@@ -26,7 +26,7 @@ import Foundation
 open class Renderer {
   /// The store that is used in the application
   public let store: AnyStore?
-  
+
   /**
     Reference to the Root's child
    
@@ -39,7 +39,7 @@ open class Renderer {
       }
     }
   }
-  
+
   /// The unsubscribe store closure
   private var unsubscribe: StoreUnsubscribe?
 
@@ -52,11 +52,11 @@ open class Renderer {
   */
   public init(rootDescription: AnyNodeDescription, store: AnyStore?) {
     self.store = store
-    
+
     let unsubscribe = self.store?.addListener({ [unowned self] in
       self.storeDidChange()
       })
-    
+
     self.unsubscribe = unsubscribe
     self.rootNode = rootDescription.makeNode(renderer: self)
   }
@@ -70,11 +70,11 @@ open class Renderer {
     guard let rootNode = self.rootNode else {
       fatalError("the node should be provided first")
     }
-    
+
     let n = rootNode as! InternalAnyNode
     n.render(in: container)
   }
-  
+
   /**
    Method that is used to manage an update in the store's state
   */
@@ -83,7 +83,7 @@ open class Renderer {
       self.explore(rootNode)
     }
   }
-  
+
   /**
    Method that explores a node (and recursively the children) and triggers an UI
    update if necessary. 
@@ -92,23 +92,23 @@ open class Renderer {
   */
   private func explore(_ node: AnyNode) {
     var childrenTable = [Int: AnyNode]()
-    
+
     for node in node.children {
       childrenTable[ObjectIdentifier(node).hashValue] = node
     }
-    
+
     if node.anyDescription is AnyConnectedNodeDescription {
       // ok the description is connected to the node, let's trigger an update
       node.update(with: node.anyDescription, animation: .none, completion: nil)
     }
-    
+
     node.children
       .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
       .forEach { explore($0) }
-    
+
     node.managedChildren.forEach { explore($0) }
   }
-  
+
   /// When the root is deallocated, we should unsubscribe it from the store changes
   deinit {
     self.unsubscribe?()

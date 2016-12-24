@@ -9,7 +9,6 @@
 import UIKit
 import Katana
 
-
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

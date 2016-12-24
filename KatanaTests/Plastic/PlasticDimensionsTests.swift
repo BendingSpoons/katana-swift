@@ -15,60 +15,60 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(Value.zero.scalable, 0)
     XCTAssertEqual(Value.zero.fixed, 0)
   }
-  
+
   func testValueShouldBeScalable() {
     let value = Value(scalable: 10, fixed: 20)
     XCTAssertEqual(value.scale(by: 20), 10 * 20 + 20)
   }
-  
+
   func testValueShouldHaveUnscaledValue() {
     let value = Value(scalable: 10, fixed: 20)
     XCTAssertEqual(value.unscaledValue, 10 + 20)
   }
-  
+
   func testValueCanBeInverted() {
     let value = Value(scalable: 10, fixed: 20)
     let invertedValue = -value
     XCTAssertEqual(invertedValue.scalable, -10)
     XCTAssertEqual(invertedValue.fixed, -20)
   }
-  
+
   func testValueCanBeMutliplied() {
     let value = Value(scalable: 10, fixed: 20)
     let multipliedValue = value * 100
     XCTAssertEqual(multipliedValue.scalable, 10 * 100)
     XCTAssertEqual(multipliedValue.fixed, 20 * 100)
   }
-  
+
   func testValueCanBeAdded() {
     let value1 = Value(scalable: 10, fixed: 20)
     let value2 = Value(scalable: 21, fixed: 33)
     let total = value1 + value2
-    
+
     XCTAssertEqual(total.scalable, 10 + 21)
     XCTAssertEqual(total.fixed, 20 + 33)
   }
-  
+
   func testValueCanBeDivided() {
     let value = Value(scalable: 10, fixed: 20)
     let multipliedValue = value / 100
     XCTAssertEqual(multipliedValue.scalable, 10 / 100)
     XCTAssertEqual(multipliedValue.fixed, 20 / 100)
   }
-  
+
   func testSizeShouldHaveZeroValue() {
     let zero = Size.zero
     XCTAssertEqual(zero.width, Value.zero)
     XCTAssertEqual(zero.height, Value.zero)
   }
-  
+
   func testSizeShouldBeScalable() {
     let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let scaled = size.scale(by: 100)
     XCTAssertEqual(scaled.width, 10 * 100 + 20)
     XCTAssertEqual(scaled.height, 100 * 100 + 300)
   }
-  
+
   func testSizeCanBeMutliplied() {
     let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let multipliedSize = size * 100
@@ -77,18 +77,18 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(multipliedSize.height.scalable, 100 * 100)
     XCTAssertEqual(multipliedSize.height.fixed, 300 * 100)
   }
-  
+
   func testSizeCanBeAdded() {
     let size1 = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let size2 = Size(width: Value(scalable: 20, fixed: 30), height: Value(scalable: 90, fixed: 10))
     let total = size1 + size2
-    
+
     XCTAssertEqual(total.width.scalable, 10 + 20)
     XCTAssertEqual(total.width.fixed, 20 + 30)
     XCTAssertEqual(total.height.scalable, 100 + 90)
     XCTAssertEqual(total.height.fixed, 300 + 10)
   }
-  
+
   func testSizeCanBeDivided() {
     let size = Size(width: Value(scalable: 10, fixed: 20), height: Value(scalable: 100, fixed: 300))
     let dividedSize = size / 100
@@ -97,7 +97,7 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(dividedSize.height.scalable, 100 / 100)
     XCTAssertEqual(dividedSize.height.fixed, 300 / 100)
   }
-  
+
   func testEdgeInsetsShouldHaveZeroValue() {
     let zero = EdgeInsets.zero
     XCTAssertEqual(zero.top, Value.zero)
@@ -105,7 +105,7 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(zero.bottom, Value.zero)
     XCTAssertEqual(zero.right, Value.zero)
   }
-  
+
   func testEdgeInsetsShouldBeScalable() {
     let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
                             left: Value(scalable: 100, fixed: 300),
@@ -118,13 +118,13 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(scaled.bottom, 200 * 5 + 50)
     XCTAssertEqual(scaled.right, 100 * 5 + 99)
   }
-  
+
   func testEdgeInsetsCanBeMutliplied() {
     let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
                             left: Value(scalable: 100, fixed: 300),
                             bottom: Value(scalable: 200, fixed: 50),
                             right: Value(scalable: 100, fixed: 99))
-    
+
     let multiplied = insets * 5
     XCTAssertEqual(multiplied.top.scalable, 10 * 5)
     XCTAssertEqual(multiplied.top.fixed, 20 * 5)
@@ -135,7 +135,7 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(multiplied.right.scalable, 100 * 5)
     XCTAssertEqual(multiplied.right.fixed, 99 * 5)
   }
-  
+
   func testEdgeInsetsCanBeAdded() {
     let value1 = EdgeInsets(top: Value(scalable: 10, fixed: 20),
                             left: Value(scalable: 100, fixed: 300),
@@ -146,9 +146,9 @@ class PlasticDimensionsTests: XCTestCase {
                             left: Value(scalable: 10, fixed: 12),
                             bottom: Value(scalable: 56, fixed: 11),
                             right: Value(scalable: 8, fixed: 991))
-    
+
     let sum = value1 + value2
-    
+
     XCTAssertEqual(sum.top.scalable, 10 + 11)
     XCTAssertEqual(sum.top.fixed, 20 + 201)
     XCTAssertEqual(sum.left.scalable, 100 + 10)
@@ -158,13 +158,13 @@ class PlasticDimensionsTests: XCTestCase {
     XCTAssertEqual(sum.right.scalable, 100 + 8)
     XCTAssertEqual(sum.right.fixed, 99 + 991)
   }
-  
+
   func testEdgeInsetsCanBeDivided() {
     let insets = EdgeInsets(top: Value(scalable: 10, fixed: 20),
                             left: Value(scalable: 100, fixed: 300),
                             bottom: Value(scalable: 200, fixed: 50),
                             right: Value(scalable: 100, fixed: 99))
-    
+
     let divided = insets / 5
     XCTAssertEqual(divided.top.scalable, 10 / 5)
     XCTAssertEqual(divided.top.fixed, 20 / 5)

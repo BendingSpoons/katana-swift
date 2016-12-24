@@ -12,10 +12,10 @@ import Foundation
 public enum AsyncActionState {
   /// The action has just been created
   case loading
-  
+
   /// The action's related operation has been completed
   case completed
-  
+
   /// The action's related operation has failed
   case failed
 }
@@ -81,28 +81,28 @@ public enum AsyncActionState {
  ```
 */
 public protocol AsyncAction: Action {
-  
+
   /// The type of payload when the state is `loading`
   associatedtype LoadingPayload
-  
+
   /// The type of payload when the state is `completed`
   associatedtype CompletedPayload
-  
+
   /// The type of payload when the state is `failed`
   associatedtype FailedPayload
-  
+
   /// The state of the action
   var state: AsyncActionState { get set }
-  
+
   /// The loading payload of the action
   var loadingPayload: LoadingPayload { get set }
-  
+
   /// The completed payload of the action. It has a value only when the state is `completed`
   var completedPayload: CompletedPayload? { get set }
-  
+
   /// The failed payload of the action. It has a value only when the state is `failed`
   var failedPayload: FailedPayload? { get set }
-  
+
   /**
    UpdateState function that will be used when the state of the action is `loading`
    
@@ -126,7 +126,7 @@ public protocol AsyncAction: Action {
    - returns: the new state
   */
   func updatedStateForFailed(currentState: State) -> State
-  
+
   /**
    Creates a new action
    
@@ -134,7 +134,7 @@ public protocol AsyncAction: Action {
    - returns: an instance of the action where the state must be `loading`
   */
   init(payload: LoadingPayload)
-  
+
   /**
    Creates a new action in the `completed` state
    
@@ -144,7 +144,7 @@ public protocol AsyncAction: Action {
               loading action and the provided completed payload
   */
   func completedAction(payload: CompletedPayload) -> Self
-  
+
   /**
    Creates a new action in the `failed` state
    
@@ -170,15 +170,15 @@ public extension AsyncAction {
     switch self.state {
     case .loading:
       return self.updatedStateForLoading(currentState: currentState)
-      
+
     case .completed:
       return self.updatedStateForCompleted(currentState: currentState)
-      
+
     case .failed:
       return self.updatedStateForFailed(currentState: currentState)
     }
   }
-  
+
   /**
    Creates a new action in the `completed` state
    
@@ -219,7 +219,7 @@ public extension AsyncAction where Self: ActionWithSideEffect {
   func anySideEffect(state: State,
                      dispatch: @escaping StoreDispatch,
                      dependencies: SideEffectDependencyContainer) {
-    
+
     if case .loading = self.state {
       self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
     }

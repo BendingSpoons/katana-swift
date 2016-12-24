@@ -48,7 +48,7 @@ public protocol PlasticNodeDescription: AnyPlasticNodeDescription, NodeDescripti
    - parameter state: the current state of the node description
   */
   static func layout(views: ViewsContainer<Keys>, props: PropsType, state: StateType)
-  
+
   /**
    The layout logic may be expensive in some cases. By implementing this method, you can actually
    cache the result of the layout.
@@ -83,12 +83,12 @@ public extension PlasticNodeDescription {
       layout(views: v, props: p, state: s)
     }
   }
-  
+
   /// default value is `nil`
   static func layoutHash(props: PropsType, state: StateType) -> Int? {
     return nil
   }
-  
+
   /**
    Creates an instance of `Node` given the parent `Node`.
    
@@ -98,7 +98,7 @@ public extension PlasticNodeDescription {
   public func makeNode(parent: AnyNode) -> AnyNode {
     return PlasticNode(description: self, parent: parent)
   }
-  
+
   /**
    Creates an instance of `Node` given the `Renderer` responsible to render the Nodes tree
    starting from this Plastic Node Description.
@@ -109,5 +109,5 @@ public extension PlasticNodeDescription {
   public func makeNode(renderer: Renderer) -> AnyNode {
     return PlasticNode(description: self, renderer: renderer)
   }
-  
+
 }

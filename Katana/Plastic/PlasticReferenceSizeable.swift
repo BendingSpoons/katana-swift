@@ -22,7 +22,7 @@ import CoreGraphics
  - the Plastic multiplier is the minimum of the two
 */
 public protocol PlasticReferenceSizeable {
-  
+
   /// the reference size of the `NodeDescription`
-  static var referenceSize: CGSize {get}
+  static var referenceSize: CGSize { get }
 }

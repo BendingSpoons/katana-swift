@@ -18,7 +18,7 @@ public typealias AnimationPropsTransformer = (_ props: AnyNodeDescriptionProps) 
 /// Built in implementations of `AnimationPropsTransformer`
 public struct AnimationProps {
   private init() {}
-  
+
   /**
    Scales the size of the element
    
@@ -28,21 +28,21 @@ public struct AnimationProps {
   public static func scale(percentage: CGFloat) -> AnimationPropsTransformer {
     return {
       var p = $0
-      
+
       p.frame.size = CGSize(
         width: $0.frame.size.width * percentage,
         height: $0.frame.size.height * percentage
       )
-      
+
       p.frame.origin = CGPoint(
         x: $0.frame.origin.x + $0.frame.size.width / 2.0,
         y: $0.frame.origin.y + $0.frame.size.height / 2.0
       )
-      
+
       return p
     }
   }
-  
+
   /**
    Moves the element to the left
    
@@ -74,7 +74,7 @@ public struct AnimationProps {
       return p
     }
   }
-  
+
   /**
    Fades the element. If uses in the `entry` context, the result is a `fade in` animation. When used
    in a `leave` context, the result is a `fade out` animation.

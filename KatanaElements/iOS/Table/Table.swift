@@ -15,16 +15,16 @@ public extension Table {
     public var frame = CGRect.zero
     public var key: String?
     public var alpha: CGFloat = 1.0
-    
+
     public var delegate: TableDelegate = EmptyTableDelegate()
     public var backgroundColor = UIColor.white
     public var cornerRadius: CGFloat = 0.0
     public var borderWidth: CGFloat = 0.0
     public var borderColor = UIColor.clear
     public var clipsToBounds = true
-    
+
     public init() {}
-    
+
     public static func == (lhs: Props, rhs: Props) -> Bool {
       return
         lhs.frame == rhs.frame &&
@@ -42,9 +42,9 @@ public extension Table {
 
 public struct Table: NodeDescription {
   public typealias NativeView = NativeTable
-  
+
   public var props: Props
-  
+
   public init(props: Props) {
     self.props = props
   }
@@ -54,7 +54,7 @@ public struct Table: NodeDescription {
                                             view: NativeTable,
                                             update: @escaping (EmptyState)->(),
                                             node: AnyNode) {
-    
+
     view.frame = props.frame
     view.alpha = props.alpha
     view.backgroundColor = props.backgroundColor
@@ -64,8 +64,7 @@ public struct Table: NodeDescription {
     view.clipsToBounds = props.clipsToBounds
     view.update(withparent: node, delegate: props.delegate)
   }
-  
-  
+
   public static func childrenDescriptions(props: Props,
                             state: EmptyState,
                             update: @escaping (EmptyState)->(),
