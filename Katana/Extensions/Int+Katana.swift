@@ -13,6 +13,7 @@ import Foundation
 extension Int {
   /// A random `Int` value
   static var random: Int {
-    return Int(arc4random_uniform(UInt32.max))
+    let maxRandom = MemoryLayout<Int>.size == MemoryLayout<Int32>.size ? UInt32(Int32.max) : UInt32.max
+    return Int(arc4random_uniform(maxRandom))
   }
 }
