@@ -19,7 +19,7 @@ public extension Button {
 
     public var backgroundColor: NSColor = .white
     public var backgroundHighlightedColor: NSColor?
-
+    public var cornerRadius: Value = .zero
     public var title: NSAttributedString = NSAttributedString()
     public var image: NSImage?
     public var highlightedImage: NSImage?
@@ -29,7 +29,7 @@ public extension Button {
     public init() {}
 
     public static func == (lhs: Props, rhs: Props) -> Bool {
-      // We can't detect whether clickHandler is changed
+      // We can't detect whether clickHandler is changed or not
       return false
     }
   }
@@ -54,6 +54,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
     view.attributedTitle = props.title
     view.clickHandler = props.clickHandler
+    view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
   }
 
   public static func childrenDescriptions(props: Props,
