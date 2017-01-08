@@ -109,7 +109,7 @@ public class PlasticView {
    - parameter value: the value to scale
    - returns: the scaled value
   */
-  func scaleValue(_ value: Value) -> CGFloat {
+  public func scaleValue(_ value: Value) -> CGFloat {
     return value.scale(by: multiplier)
   }
 
