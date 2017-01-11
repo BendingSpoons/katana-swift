@@ -24,6 +24,7 @@ public extension Button {
     public var image: NSImage?
     public var highlightedImage: NSImage?
     public var clickHandler: ClickHandlerClosure?
+    public var isEnabled: Bool = true
     public var type: NSButtonType = NSMomentaryChangeButton
     
     public init() {}
@@ -49,6 +50,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.alpha = props.alpha
     view.frame = props.frame
     view.image = props.image
+    view.isEnabled = props.isEnabled
     view.alternateImage = props.highlightedImage
     view.backgroundColor = props.backgroundColor
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
