@@ -60,6 +60,9 @@ open class Store<StateType: State> {
 
   /// The array of middleware of the store
   fileprivate let middleware: [StoreMiddleware]
+  
+  /// The action linker invoked to chain related actions together
+  fileprivate let actionLinker: ActionLinker
 
   /**
    The dependencies used in the actions side effects
@@ -99,7 +102,7 @@ open class Store<StateType: State> {
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
+    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self, links: [])
   }
 
   /**
@@ -109,11 +112,12 @@ open class Store<StateType: State> {
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
   */
-  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type, links: [ActionLinks]) {
     self.listeners = []
     self.state = StateType()
     self.middleware = middleware
     self.dependencies = dependencies
+    self.actionLinker = ActionLinker(links: links)
   }
 
   /**
@@ -139,8 +143,15 @@ open class Store<StateType: State> {
   */
   public func dispatch(_ action: AnyAction) {
     self.dispatchQueue.async {
+      
+      //TODO: to check if this is the correct way to do that
+      let oldState = self.state
+      
       self.dispatchFunction(action)
+      
+      self.actionLinker.dispatchLinkedActions(self.dispatch, forAction: action, oldState: oldState, newState: self.state)
     }
+    
   }
 }
 
