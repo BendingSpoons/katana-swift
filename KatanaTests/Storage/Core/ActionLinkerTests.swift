@@ -20,38 +20,38 @@ class ActionLinkerTests: XCTestCase {
   }
 
   //MARK Creation tests
-  func testCreationEmpty() {
-    let actionLinker = ActionLinker(links: [])
-    XCTAssertTrue(actionLinker.links.isEmpty)
+  func testReduceNothing() {
+    let res = ActionLinker.reduceLinks(from: [])
+    XCTAssertTrue(res.isEmpty)
   }
   
-  func testCreationOneSourceActionOneLink() {
-    let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
-    XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
+  func testReduceOneSourceActionOneLink() {
+    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
+    XCTAssertEqual(res.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
     
   }
 
   func testCreationOneSourceActionTwoLinks() {
-    let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self,
+    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self,
                                                        links: [LinkedAction1.self, LinkedAction1.self])])
-    XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
+    XCTAssertEqual(res.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
   func testCreationTwoSourceActionOneLink() {
-    let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
+    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
                                             ActionLinks(source: BaseAction2.self, links: [LinkedAction1.self])])
-    XCTAssertEqual(actionLinker.links.count, 2)
-    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
-    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction2.self)]!.count, 1)
+    XCTAssertEqual(res.count, 2)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction2.self)]!.count, 1)
   }
   
   func testCreationTwoSameSourceActionOneLink() {
-    let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
+    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
                                             ActionLinks(source: BaseAction.self, links: [LinkedAction2.self])])
-    XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
+    XCTAssertEqual(res.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
 //MARK SyncAction
@@ -59,7 +59,8 @@ class ActionLinkerTests: XCTestCase {
   func testNoChaining() {
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [], dependencies: EmptySideEffectDependencyContainer.self, links: [])
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: [])],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener { expectation.fulfill() }
     store.dispatch(BaseAction())
     XCTAssertTrue(true)
@@ -75,9 +76,10 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
+    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 2 {
@@ -99,10 +101,11 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction.self,
-                                                                links: [LinkedAction1.self, LinkedAction1.self])])
+    let linksArray = [ActionLinks(source: BaseAction.self,
+                                  links: [LinkedAction1.self, LinkedAction1.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 3 {
@@ -125,10 +128,11 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
-                                                    ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
+    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
+                      ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 3 {
@@ -151,10 +155,11 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
-                                                    ActionLinks(source: BaseAction2.self, links: [LinkedAction1.self])])
+    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
+                      ActionLinks(source: BaseAction2.self, links: [LinkedAction1.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 2 {
@@ -192,9 +197,10 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction2.self, links: [LinkedAction3.self])])
+    let linksArray = [ActionLinks(source: BaseAction2.self, links: [LinkedAction3.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 2 {
@@ -216,9 +222,10 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAction.self, links: [LinkedAction3.self])])
+    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction3.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 1 {
@@ -242,9 +249,10 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction4.self])])
+    let linksArray = [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction4.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 2 {
@@ -275,9 +283,10 @@ class ActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [],
-                                            dependencies: EmptySideEffectDependencyContainer.self,
-                                            links: [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction5.self])])
+    let linksArray = [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction5.self])]
+    
+    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
+                                            dependencies: EmptySideEffectDependencyContainer.self)
     _ = store.addListener {
       count += 1
       if count == 2 {
