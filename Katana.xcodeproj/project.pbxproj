@@ -475,6 +475,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5115A7011E27D8E4007EA0FB /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				5115A7021E27D8EE007EA0FB /* ActionLinker */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
+		5115A7021E27D8EE007EA0FB /* ActionLinker */ = {
+			isa = PBXGroup;
+			children = (
+				5115A6F31E26A425007EA0FB /* LinkeableAction.swift */,
+				5115A6F51E26A67E007EA0FB /* ActionLinks.swift */,
+				5115A6F71E26A6E9007EA0FB /* ActionLinker.swift */,
+			);
+			path = ActionLinker;
+			sourceTree = "<group>";
+		};
 		652647431DEB2D7B000483E9 /* Common */ = {
 			isa = PBXGroup;
 			children = (
@@ -696,6 +714,7 @@
 		8133154A1D7B726000FBE210 /* Store */ = {
 			isa = PBXGroup;
 			children = (
+				5115A7011E27D8E4007EA0FB /* Middleware */,
 				A1CA314C1DC37DBF00982BE9 /* Action.swift */,
 				A1CA314E1DC37DBF00982BE9 /* State.swift */,
 				A1CA314F1DC37DBF00982BE9 /* Store.swift */,
@@ -704,9 +723,6 @@
 				A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */,
 				A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */,
 				A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */,
-				5115A6F31E26A425007EA0FB /* LinkeableAction.swift */,
-				5115A6F51E26A67E007EA0FB /* ActionLinks.swift */,
-				5115A6F71E26A6E9007EA0FB /* ActionLinker.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
