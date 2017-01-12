@@ -60,9 +60,6 @@ open class Store<StateType: State> {
 
   /// The array of middleware of the store
   fileprivate let middleware: [StoreMiddleware]
-  
-  /// The action linker invoked to chain related actions together
-  fileprivate let actionLinker: ActionLinker
 
   /**
    The dependencies used in the actions side effects
@@ -102,7 +99,7 @@ open class Store<StateType: State> {
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self, links: [])
+    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
   }
 
   /**
@@ -110,15 +107,13 @@ open class Store<StateType: State> {
    
    - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
-   - parameter links: the list of ActionLinks that can be invoked after an action is triggered
    - returns: An instance of store configured with the given properties
   */
-  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type, links: [ActionLinks]) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
     self.listeners = []
     self.state = StateType()
     self.middleware = middleware
     self.dependencies = dependencies
-    self.actionLinker = ActionLinker(links: links)
   }
 
   /**
@@ -187,7 +182,6 @@ fileprivate extension Store {
    - parameter action: the action that has been dispatched
   */
   fileprivate func performDispatch(_ action: AnyAction) {
-    let oldState = self.state
     let newState = action.anyUpdatedState(currentState: self.state)
 
     guard let typedNewState = newState as? StateType else {
@@ -200,8 +194,6 @@ fileprivate extension Store {
     DispatchQueue.main.async {
       self.listeners.forEach { $0() }
     }
-    
-    self.actionLinker.dispatchActions(for: self.state, oldState: oldState, sourceAction: action, dispatch: self.dispatch)
   }
 
   /// Middleware-like function that executes the side effect of the action, if available
