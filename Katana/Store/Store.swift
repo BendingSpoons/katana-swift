@@ -144,7 +144,6 @@ open class Store<StateType: State> {
   public func dispatch(_ action: AnyAction) {
     self.dispatchQueue.async {
       
-      //TODO: to check if this is the correct way to do that
       let oldState = self.state
       
       self.dispatchFunction(action)
