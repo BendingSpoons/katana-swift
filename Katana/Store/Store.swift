@@ -110,6 +110,7 @@ open class Store<StateType: State> {
    
    - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
+   - parameter links: the list of ActionLinks that can be invoked after an action is triggered
    - returns: An instance of store configured with the given properties
   */
   public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type, links: [ActionLinks]) {
@@ -143,12 +144,7 @@ open class Store<StateType: State> {
   */
   public func dispatch(_ action: AnyAction) {
     self.dispatchQueue.async {
-      
-      let oldState = self.state
-      
       self.dispatchFunction(action)
-      
-      self.actionLinker.dispatchLinkedActions(self.dispatch, forAction: action, oldState: oldState, newState: self.state)
     }
     
   }
@@ -191,6 +187,7 @@ fileprivate extension Store {
    - parameter action: the action that has been dispatched
   */
   fileprivate func performDispatch(_ action: AnyAction) {
+    let oldState = self.state
     let newState = action.anyUpdatedState(currentState: self.state)
 
     guard let typedNewState = newState as? StateType else {
@@ -203,6 +200,8 @@ fileprivate extension Store {
     DispatchQueue.main.async {
       self.listeners.forEach { $0() }
     }
+    
+    self.actionLinker.dispatchActions(for: self.state, oldState: oldState, sourceAction: action, dispatch: self.dispatch)
   }
 
   /// Middleware-like function that executes the side effect of the action, if available

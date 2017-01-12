@@ -14,7 +14,7 @@ import Foundation
  The ActionLinker is responsible to check if there are actions that must be issued after a source actionis dispatched.
  For each of this actions, it checks if the conditions are met: if yes, they are dispatched.
  */
-struct ActionLinker {
+public struct ActionLinker {
 
   /**
    Dictionary used to store the links.
@@ -32,12 +32,12 @@ struct ActionLinker {
    
    - parameter links: the array of ActionLinks to register.
    */
-  init(links: [ActionLinks]) {
+  public init(links: [ActionLinks]) {
     var tmpLinks: [String: [LinkeableAction.Type]] = [:]
     
     /// Create the dictionary for a fast and efficient access to the actions.
     for tuple in links {
-      let actionType = String(reflecting: tuple.source)
+      let actionType = ActionLinker.stringName(for: tuple.source)
       tmpLinks[actionType] = tmpLinks[actionType] ?? []
       tmpLinks[actionType] = tmpLinks[actionType]! + tuple.links
     }
@@ -56,16 +56,39 @@ struct ActionLinker {
    - parameter oldState: state of the application before the source action is applied
    - parameter newState: state of the application after the source action is applied
    */
-  func dispatchLinkedActions(_ dispatch: (Action) -> Void, forAction source: AnyAction, oldState: State, newState: State) {
-    let linkedActions = self.links[ String(reflecting:(type(of: source)))]
+  public func dispatchActions(for newState: State, oldState: State, sourceAction: AnyAction, dispatch: (Action) -> Void) {
+    let linkedActions = self.links[ActionLinker.stringName(for: sourceAction)]
     
-    if let actions = linkedActions {
-      for action in actions {
-        if let sourceAction = source as? Action,
-          let action = action.init(oldState: oldState, newState: newState, sourceAction: sourceAction) {
+    guard let actions = linkedActions else {
+      return
+    }
+    
+    for action in actions {
+      if let source = sourceAction as? Action,
+        let action = action.init(oldState: oldState, newState: newState, sourceAction: source) {
           dispatch(action)
-        }
       }
     }
+    
+  }
+
+  /**
+   This takes an AnyAction and returns the name of the action by considering its namespace.
+   
+   - parameter action: the action for which you need the name.
+   - return the namespaced name of the Action
+   */
+  public static func stringName(for action: AnyAction) -> String {
+    return String(reflecting:(type(of: action)))
+  }
+  
+  /**
+   This takes an Action.Type and returns the name of the action by considering its namespace.
+   
+   - parameter action: the action type for which you need the name.
+   - return the namespaced name of the Action.Type
+   */
+  public static func stringName(for actionType: Action.Type) -> String {
+    return String(reflecting:actionType)
   }
 }

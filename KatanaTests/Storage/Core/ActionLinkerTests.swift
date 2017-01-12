@@ -28,7 +28,7 @@ class ActionLinkerTests: XCTestCase {
   func testCreationOneSourceActionOneLink() {
     let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
     XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[String(reflecting:BaseAction.self)]!.count, 1)
+    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
     
   }
 
@@ -36,22 +36,22 @@ class ActionLinkerTests: XCTestCase {
     let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self,
                                                        links: [LinkedAction1.self, LinkedAction1.self])])
     XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[String(reflecting:BaseAction.self)]!.count, 2)
+    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
   func testCreationTwoSourceActionOneLink() {
     let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
                                             ActionLinks(source: BaseAction2.self, links: [LinkedAction1.self])])
     XCTAssertEqual(actionLinker.links.count, 2)
-    XCTAssertEqual(actionLinker.links[String(reflecting:BaseAction.self)]!.count, 1)
-    XCTAssertEqual(actionLinker.links[String(reflecting:BaseAction2.self)]!.count, 1)
+    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
+    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction2.self)]!.count, 1)
   }
   
   func testCreationTwoSameSourceActionOneLink() {
     let actionLinker = ActionLinker(links: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
                                             ActionLinks(source: BaseAction.self, links: [LinkedAction2.self])])
     XCTAssertEqual(actionLinker.links.count, 1)
-    XCTAssertEqual(actionLinker.links[String(reflecting:BaseAction.self)]!.count, 2)
+    XCTAssertEqual(actionLinker.links[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
 //MARK SyncAction
@@ -307,11 +307,11 @@ class ActionLinkerTests: XCTestCase {
 }
 
 //MARK Mocking
-struct ActionLinkerAppState: State {
+fileprivate struct ActionLinkerAppState: State {
   var int: Int = 0
 }
 
-struct BaseAction: Action {
+fileprivate struct BaseAction: Action {
   func updatedState(currentState: State) -> State {
     var newState = currentState as! ActionLinkerAppState
     newState.int = 20
@@ -319,7 +319,7 @@ struct BaseAction: Action {
   }
 }
 
-struct BaseAction2: Action {
+fileprivate struct BaseAction2: Action {
   func updatedState(currentState: State) -> State {
     var newState = currentState as! ActionLinkerAppState
     newState.int = 10
@@ -327,7 +327,7 @@ struct BaseAction2: Action {
   }
 }
 
-struct LinkedAction1: LinkeableAction {
+fileprivate struct LinkedAction1: LinkeableAction {
   init() {
     
   }
@@ -343,7 +343,7 @@ struct LinkedAction1: LinkeableAction {
   }
 }
 
-struct LinkedAction2: LinkeableAction {
+fileprivate struct LinkedAction2: LinkeableAction {
   init() {
     
   }
@@ -360,7 +360,7 @@ struct LinkedAction2: LinkeableAction {
   
 }
 
-struct LinkedAction3: LinkeableAction {
+fileprivate struct LinkedAction3: LinkeableAction {
   init() {
     
   }
@@ -428,7 +428,7 @@ fileprivate struct BaseAsyncAction: AsyncAction {
   }
 }
 
-struct LinkedAction4: LinkeableAction {
+fileprivate struct LinkedAction4: LinkeableAction {
   init() {
     
   }
@@ -452,7 +452,7 @@ struct LinkedAction4: LinkeableAction {
   }
 }
 
-struct LinkedAction5: LinkeableAction {
+fileprivate struct LinkedAction5: LinkeableAction {
   init() {
     
   }
