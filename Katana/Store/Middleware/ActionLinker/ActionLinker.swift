@@ -105,11 +105,14 @@ public struct ActionLinker {
           let oldState = getState()
           next(action)
           let newState = getState()
-          ActionLinker.dispatchActions(for: newState,
-                                       oldState: oldState,
-                                       sourceAction: action,
-                                       links: reducedLinks,
-                                       dispatch: dispatch)
+          
+          ActionLinker.dispatchActions(
+            for: newState,
+            oldState: oldState,
+            sourceAction: action,
+            links: reducedLinks,
+            dispatch: dispatch
+          )
         }
       }
     }
