@@ -19,10 +19,10 @@ public struct ActionLinker {
   /**
    Function that takes an array of action links and reduce them to a dictionary.
    This is useful to get efficiently all the links of a specific source action.
-   WARNING: it does not remove duplicated actions!
    
    - parameter from: the array to be reduced
    - returns: a dictionary with the name of the action and the list of linked actions
+   - warning: it does not remove duplicated actions!
    */
   static func reduceLinks(from array: [ActionLinks]) -> [String: [LinkeableAction.Type]] {
     var tmpLinks: [String: [LinkeableAction.Type]] = [:]
