@@ -23,6 +23,12 @@ open class NativeButton: NSButton {
       self.needsDisplay = true
     }
   }
+  
+  open var cornerRadius: CGFloat = 0 {
+    didSet {
+      self.needsDisplay = true
+    }
+  }
 
   // MARK: - clickHandler
 
@@ -53,6 +59,7 @@ open class NativeButton: NSButton {
     } else {
       self.layer?.backgroundColor = self.backgroundColor.cgColor
     }
+    self.layer?.cornerRadius = self.cornerRadius
   }
 
   // MARK: - coordinate system

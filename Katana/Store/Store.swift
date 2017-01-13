@@ -141,6 +141,7 @@ open class Store<StateType: State> {
     self.dispatchQueue.async {
       self.dispatchFunction(action)
     }
+    
   }
 }
 

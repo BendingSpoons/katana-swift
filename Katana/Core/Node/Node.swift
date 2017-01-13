@@ -193,7 +193,7 @@ extension Node {
                                          node: self)
     }
 
-    Description.didMount(props: self.description.props, dispatch: self.storeDispatch)
+    Description.didMount(props: self.description.props, dispatch: self.storeDispatch, update: update)
 
     children.forEach { child in
       let child = child as! InternalAnyNode
@@ -395,18 +395,35 @@ extension Node {
       return
     }
 
-    // invoke the proper lifecycle hook
     var newState = state
-
-    let update: (Description.StateType) -> () = { newState = $0 }
-
-    Description.descriptionWillReceiveProps(
-      state: state,
-      currentProps: self.description.props,
-      nextProps: description.props,
-      dispatch: self.storeDispatch,
-      update: update
-    )
+    
+    // invoke the proper lifecycle hook if props changes
+    if self.description.props != description.props {
+      
+      var syncStateUpdate = true
+      
+      let update = { [weak self] (state: Description.StateType) in
+        if syncStateUpdate {
+          newState = state
+          
+        } else {
+          DispatchQueue.main.async {
+            self?.update(for: state)
+          }
+        }
+      }
+      
+      Description.descriptionWillReceiveProps(
+        state: state,
+        currentProps: self.description.props,
+        nextProps: description.props,
+        dispatch: self.storeDispatch,
+        update: update
+      )
+      
+      // too late, from now on an update will trigger a new update cycle
+      syncStateUpdate = false
+    }
 
     // update the internal state
     let currentState = self.state
