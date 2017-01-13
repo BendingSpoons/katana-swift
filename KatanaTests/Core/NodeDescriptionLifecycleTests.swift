@@ -23,11 +23,13 @@ fileprivate struct InnerStruct: NodeDescription {
     return []
   }
 
-  fileprivate static func didMount(props: EmptyProps, dispatch: StoreDispatch) {
+  fileprivate static func didMount(props: EmptyProps,
+                                   dispatch: @escaping StoreDispatch,
+                                   update: @escaping (EmptyState) -> ()) {
     InnerStruct.didMountInvoked?()
   }
 
-  fileprivate static func didUnmount(props: EmptyProps, dispatch: StoreDispatch) {
+  fileprivate static func didUnmount(props: EmptyProps, dispatch: @escaping StoreDispatch) {
     InnerStruct.didUnmountInvoked?()
   }
 }
@@ -59,6 +61,8 @@ fileprivate struct TestStruct: NodeDescription {
   static var didMountInvoked: ((TestStructProps) -> ())? = nil
   static var willReceivePropsInvoked: ((TestStructProps, TestStructProps) -> ())? = nil
   static var states: [Int] = []
+  static var useAsyncUpdate: Bool = false
+  static var asyncUpdateCallback: (() -> ())?
 
   fileprivate var props: TestStructProps
 
@@ -78,18 +82,31 @@ fileprivate struct TestStruct: NodeDescription {
     }
   }
 
-  fileprivate static func didMount(props: TestStructProps, dispatch: StoreDispatch) {
+  fileprivate static func didMount(props: TestStructProps,
+                                   dispatch: @escaping StoreDispatch,
+                                   update: @escaping (TestStructState) -> ()) {
+
     TestStruct.didMountInvoked?(props)
   }
 
   fileprivate static func descriptionWillReceiveProps(state: TestStructState,
                                                       currentProps: TestStructProps,
                                                       nextProps: TestStructProps,
-                                                      dispatch: StoreDispatch,
-                                                      update: (TestStructState) -> ()) {
+                                                      dispatch: @escaping StoreDispatch,
+                                                      update: @escaping (TestStructState) -> ()) {
 
-    update(TestStructState(state: nextProps.testVariable))
+    if state.state != 999 {
+      update(TestStructState(state: nextProps.testVariable))
+    }
+    
     TestStruct.willReceivePropsInvoked?(currentProps, nextProps)
+    
+    if TestStruct.useAsyncUpdate {
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+        update(TestStructState(state: 999))
+        TestStruct.asyncUpdateCallback?()
+      })
+    }
   }
 }
 
@@ -192,5 +209,47 @@ class NodeDescriptionLifecycleTests: XCTestCase {
     XCTAssertEqual(willReceiveCurrentProps?.testVariable, 200)
     XCTAssertEqual(willReceiveNextProps?.testVariable, 50)
     XCTAssertEqual(TestStruct.states, [0, 50]) // also checks that the childrenDescriptions is invoked the proper number of times
+  }
+  
+  func testWillReceivePropsAsyncUpdate() {
+    var willReceiveCurrentProps: TestStructProps?
+    var willReceiveNextProps: TestStructProps?
+    var willReceiveInvoked: Bool = false
+    let expecation = self.expectation(description: "Render")
+    
+    TestStruct.states = []
+    TestStruct.useAsyncUpdate = true
+    
+    TestStruct.asyncUpdateCallback = {
+      expecation.fulfill()
+    }
+    
+    TestStruct.willReceivePropsInvoked = { curr, next in
+      willReceiveInvoked = true
+      willReceiveCurrentProps = curr
+      willReceiveNextProps = next
+    }
+    
+    let renderer = Renderer(rootDescription: TestStruct(props: TestStructProps(testVariable: 200)), store: nil)
+    renderer.render(in: TestView())
+    
+    XCTAssertFalse(willReceiveInvoked)
+    XCTAssertEqual(TestStruct.states, [0])
+    
+    renderer.rootNode.update(with: TestStruct(props: TestStructProps(testVariable: 50)))
+    
+    XCTAssertTrue(willReceiveInvoked)
+    XCTAssertEqual(willReceiveCurrentProps?.testVariable, 200)
+    XCTAssertEqual(willReceiveNextProps?.testVariable, 50)
+    XCTAssertEqual(TestStruct.states, [0, 50]) // also checks that the childrenDescriptions is invoked the proper number of times
+    
+    self.waitForExpectations(timeout: 10, handler: { err in
+      // we need to wait a little bit before the render.. we should find a better way
+      DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        XCTAssertNotNil(renderer) // we need to keep renderer alive
+        XCTAssertNil(err)
+        XCTAssertEqual(TestStruct.states, [0, 50, 999])
+      }
+    })
   }
 }
