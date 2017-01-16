@@ -76,12 +76,12 @@ open class Store<StateType: State> {
       return self.state
     }
     
-    var m = self.middleware.map { middleware in
+    var m = self.middleware.reversed().map { middleware in
       middleware(getState, self.dispatch)
     }
 
     // add the side effect function as the first in the chain
-    m = [self.triggerSideEffect] + m
+    m.append(self.triggerSideEffect)
 
     return self.composeMiddlewares(m, with: self.performDispatch)
   }()
