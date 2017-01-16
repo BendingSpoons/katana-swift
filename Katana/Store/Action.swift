@@ -8,23 +8,13 @@
 
 import Foundation
 
-/// Type Erasure for `Action`
-public protocol AnyAction {
-  /**
-   Creates a new state starting from the current state and an action
-   
-   - seeAlso: `Action`, `updateState(currentState:action:)` method
-  */
-  func anyUpdatedState(currentState: State) -> State
-}
-
 /**
  An action represents an event that leads to a change in the state of the application.
  It can be triggered from a user action, from a system event or any event in general.
  
  In general this protocol should not be used directly. Use `SyncAction` and `AsyncAction` instead
 */
-public protocol Action: AnyAction {
+public protocol Action {
   /**
    Creates the new state starting from the current state and the action. It is important
    to note that `updateState(currentState:action:)` should be a 
@@ -39,15 +29,4 @@ public protocol Action: AnyAction {
    - returns: the new state
   */
   func updatedState(currentState: State) -> State
-}
-
-public extension Action {
-  /**
-   Implementation of the AnyAction protocol.
-   
-   - seeAlso: `AnyAction`
-  */
-  func anyUpdatedState(currentState: State) -> State {
-    return self.updatedState(currentState: currentState)
-  }
 }

@@ -18,7 +18,7 @@ public protocol AnyStore: class {
    
    - parameter action: the action to dispatch
   */
-  func dispatch(_ action: AnyAction)
+  func dispatch(_ action: Action)
 
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
@@ -137,7 +137,7 @@ open class Store<StateType: State> {
    
    - parameter action: the action to dispatch
   */
-  public func dispatch(_ action: AnyAction) {
+  public func dispatch(_ action: Action) {
     self.dispatchQueue.async {
       self.dispatchFunction(action)
     }
@@ -147,7 +147,7 @@ open class Store<StateType: State> {
 
 fileprivate extension Store {
   /// Type used internally to store partially applied middleware
-  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: AnyAction) -> ()
+  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: Action) -> ()
 
   /**
    This function composes the middleware with the store dispatch
@@ -181,8 +181,8 @@ fileprivate extension Store {
    
    - parameter action: the action that has been dispatched
   */
-  fileprivate func performDispatch(_ action: AnyAction) {
-    let newState = action.anyUpdatedState(currentState: self.state)
+  fileprivate func performDispatch(_ action: Action) {
+    let newState = action.updatedState(currentState: self.state)
 
     guard let typedNewState = newState as? StateType else {
       preconditionFailure("Action updateState returned a wrong state type")
@@ -197,7 +197,7 @@ fileprivate extension Store {
   }
 
   /// Middleware-like function that executes the side effect of the action, if available
-  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((AnyAction) -> ()) {
+  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((Action) -> ()) {
     return { action in
       defer {
         next(action)

@@ -18,7 +18,7 @@ public typealias StoreUnsubscribe = () -> ()
 public typealias StoreMiddleware =
   (_ getState: @escaping () -> State, _ dispatch: @escaping StoreDispatch) ->
     (_ next: @escaping StoreDispatch) ->
-      (_ action: AnyAction) -> ()
+      (_ action: Action) -> ()
 
 /// Typealias for the `Store` dispatch function
-public typealias StoreDispatch = (_: AnyAction) -> ()
+public typealias StoreDispatch = (_: Action) -> ()

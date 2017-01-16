@@ -13,7 +13,7 @@ import XCTest
 class MiddlewareTests: XCTestCase {
   func testBasicMiddleware() {
 
-    var dispatchedAction: AnyAction?
+    var dispatchedAction: Action?
     var storeBefore: Any?
     var storeAfter: Any?
     
@@ -87,7 +87,7 @@ class MiddlewareTests: XCTestCase {
   }
 
   func testMiddlewareChaining() {
-    var dispatchedAction: AnyAction?
+    var dispatchedAction: Action?
     var storeBefore: Any?
     var storeAfter: Any?
     var invokationOrder: [String] = []

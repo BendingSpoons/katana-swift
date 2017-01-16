@@ -50,7 +50,7 @@ public struct ActionLinker {
    */
   static func dispatchActions(for newState: State,
                               oldState: State,
-                              sourceAction: AnyAction,
+                              sourceAction: Action,
                               links: [String: [LinkeableAction.Type]],
                               dispatch: (Action) -> Void) {
     
@@ -61,8 +61,7 @@ public struct ActionLinker {
     }
     
     for action in actions {
-      if let source = sourceAction as? Action,
-        let action = action.init(oldState: oldState, newState: newState, sourceAction: source) {
+      if let action = action.init(oldState: oldState, newState: newState, sourceAction: sourceAction) {
           dispatch(action)
       }
     }
@@ -75,7 +74,7 @@ public struct ActionLinker {
    - parameter action: the action for which you need the name.
    - returns: the namespaced name of the Action
    */
-  static func stringName(for action: AnyAction) -> String {
+  static func stringName(for action: Action) -> String {
     return String(reflecting:(type(of: action)))
   }
   

@@ -9,7 +9,7 @@
 import Foundation
 
 /// Type Erasure for `ActionWithSideEffect`
-public protocol AnyActionWithSideEffect: AnyAction {
+public protocol AnyActionWithSideEffect {
   /**
    Performs a side effect for the action
    
