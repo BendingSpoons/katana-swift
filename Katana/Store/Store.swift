@@ -69,22 +69,10 @@ open class Store<StateType: State> {
   fileprivate let dependencies: SideEffectDependencyContainer.Type
 
   /**
-    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
+    The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
+    The variable is explicitly unwrapped because of the init method
   */
-  lazy fileprivate var dispatchFunction: StoreDispatch = {
-    var getState = { [unowned self] () -> StateType in
-      return self.state
-    }
-    
-    var m = self.middleware.reversed().map { middleware in
-      middleware(getState, self.dispatch)
-    }
-
-    // add the side effect function as the first in the chain
-    m.append(self.triggerSideEffect)
-
-    return self.composeMiddlewares(m, with: self.performDispatch)
-  }()
+  fileprivate var dispatchFunction: StoreDispatch!
 
   /// The queue in witch actions are managed
   lazy private var dispatchQueue: DispatchQueue = {
@@ -114,6 +102,21 @@ open class Store<StateType: State> {
     self.state = StateType()
     self.middleware = middleware
     self.dependencies = dependencies
+    
+    // create the dispatch function
+
+    let getState = { [unowned self] () -> StateType in
+      return self.state
+    }
+    
+    var m = self.middleware.reversed().map { middleware in
+      middleware(getState, self.dispatch)
+    }
+    
+    // add the side effect function as the first in the chain
+    m.append(self.triggerSideEffect)
+    
+    self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
   }
 
   /**

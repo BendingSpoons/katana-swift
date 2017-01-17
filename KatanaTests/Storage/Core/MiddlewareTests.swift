@@ -173,4 +173,31 @@ class MiddlewareTests: XCTestCase {
       XCTAssertEqual(invokationOrder, ["basic", "second"])
     }
   }
+  
+  func testMiddlewareInitializedImmediately() {
+    
+    var invoked = false
+    let expectation = self.expectation(description: "Middleware")
+    
+    let basicMiddleware: StoreMiddleware = { getState, dispatch in
+      invoked = true
+      expectation.fulfill()
+      
+      return { next in
+        return { action in
+          next(action)
+        }
+      }
+    }
+    
+    let _ = Store<AppState>(
+      middleware: [basicMiddleware],
+      dependencies: EmptySideEffectDependencyContainer.self
+    )
+    
+    self.waitForExpectations(timeout: 5) { (error) in
+      XCTAssertNil(error)
+      XCTAssert(invoked)
+    }
+  }
 }
