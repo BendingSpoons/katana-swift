@@ -89,9 +89,6 @@
                 <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyAction.html">AnyAction</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
@@ -166,7 +163,7 @@
                 <a href="../Structs/ActionLinker.html">ActionLinker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs.html#/s:V6Katana11ActionLinks">ActionLinks</a>
+                <a href="../Structs/ActionLinks.html">ActionLinks</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Structs/Anchor.html">Anchor</a>
@@ -291,7 +288,7 @@ See <code><a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDesc
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L56">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L56">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -327,7 +324,7 @@ side effects</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L101-L103">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L89-L91">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -335,9 +332,9 @@ side effects</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC6Katana5StorecFT10middlewareGSaFTFT_PS_5State_FPS_9AnyAction_T__FFPS2__T_FPS2__T__12dependenciesPMPS_29SideEffectDependencyContainer__GS0_x_"></a>
+                    <a name="/s:FC6Katana5StorecFT10middlewareGSaFTFT_PS_5State_FPS_6Action_T__FFPS2__T_FPS2__T__12dependenciesPMPS_29SideEffectDependencyContainer__GS0_x_"></a>
                     <a name="//apple_ref/swift/Method/init(middleware:dependencies:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana5StorecFT10middlewareGSaFTFT_PS_5State_FPS_9AnyAction_T__FFPS2__T_FPS2__T__12dependenciesPMPS_29SideEffectDependencyContainer__GS0_x_">init(middleware:dependencies:)</a>
+                    <a class="token" href="#/s:FC6Katana5StorecFT10middlewareGSaFTFT_PS_5State_FPS_6Action_T__FFPS2__T_FPS2__T__12dependenciesPMPS_29SideEffectDependencyContainer__GS0_x_">init(middleware:dependencies:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -395,7 +392,7 @@ side effects</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L112-L117">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L100-L120">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -451,7 +448,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L126-L133">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L129-L136">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -459,9 +456,9 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FC6Katana5Store8dispatchFPS_9AnyAction_T_"></a>
+                    <a name="/s:FC6Katana5Store8dispatchFPS_6Action_T_"></a>
                     <a name="//apple_ref/swift/Method/dispatch(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FC6Katana5Store8dispatchFPS_9AnyAction_T_">dispatch(_:)</a>
+                    <a class="token" href="#/s:FC6Katana5Store8dispatchFPS_6Action_T_">dispatch(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -476,7 +473,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnyAction.html">AnyAction</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -501,7 +498,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L140-L145">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L143-L148">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -541,7 +538,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.1/Katana/Store/Store.swift#L229-L231">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L232-L234">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -551,7 +548,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-16)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
