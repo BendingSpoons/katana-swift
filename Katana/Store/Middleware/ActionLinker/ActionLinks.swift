@@ -19,7 +19,14 @@ public struct ActionLinks {
   ///All the actions that must be dispatched after the source has been triggered.
   let links: [LinkeableAction.Type]
 
-  init(source: Action.Type, links: [LinkeableAction.Type]) {
+  /**
+   Initializer to create an ActionLinks.
+   It must be public so other libs can export their own links.
+   
+   - parameter source: the Action.Type that is the source of the link.
+   - parameter links: the array of dependant actions that should be invoked after the first.
+   */
+  public init(source: Action.Type, links: [LinkeableAction.Type]) {
     self.source = source
     self.links = links
   }
