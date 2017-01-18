@@ -200,6 +200,7 @@
 		A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
 		A1CA315B1DC3A01F00982BE9 /* SyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */; };
 		A1CA315D1DC3A24000982BE9 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
+		A1CF3BB91E2FB935007C9E0E /* NodeDescriptionShouldUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */; };
 		A1F88CD31DD0C040004A8285 /* AnimationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F88CD21DD0C040004A8285 /* AnimationContainer.swift */; };
 /* End PBXBuildFile section */
 
@@ -404,6 +405,7 @@
 		A1CA31581DC39E1700982BE9 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
 		A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncActionTests.swift; sourceTree = "<group>"; };
 		A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
+		A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionShouldUpdateTests.swift; sourceTree = "<group>"; };
 		A1F88CD21DD0C040004A8285 /* AnimationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -791,6 +793,7 @@
 				81911D9E1D7D916B00123C54 /* NodeTest.swift */,
 				81911D9F1D7D916B00123C54 /* RenderContainersTest.swift */,
 				A19385461E0D1F2100F436D6 /* NodeDescriptionLifecycleTests.swift */,
+				A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1570,6 +1573,7 @@
 				A17AF9CC1DC9F5EF00F6076E /* Image.swift in Sources */,
 				A1C9C1C81DD339D00067F8E0 /* AnimationUtilsTests.swift in Sources */,
 				81911DC41D7D916B00123C54 /* StoreTests.swift in Sources */,
+				A1CF3BB91E2FB935007C9E0E /* NodeDescriptionShouldUpdateTests.swift in Sources */,
 				A19385481E0D1F3C00F436D6 /* NodeDescriptionLifecycleTests.swift in Sources */,
 				81911DBE1D7D916B00123C54 /* PlasticConvenienceLayoutTests.swift in Sources */,
 				81911DC01D7D916B00123C54 /* PlasticNodeTests.swift in Sources */,

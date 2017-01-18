@@ -390,7 +390,14 @@ extension Node {
               force: Bool = false,
               completion: NodeUpdateCompletion? = nil) {
 
-    guard force || self.description.props != description.props || self.state != state else {
+    let shouldUpdate = Description.shouldUpdate(
+      currentProps: self.description.props,
+      nextProps: description.props,
+      currentState: self.state,
+      nextState: state
+    )
+    
+    guard force || shouldUpdate else {
       completion?()
       return
     }

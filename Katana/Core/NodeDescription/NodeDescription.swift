@@ -65,6 +65,8 @@ public extension AnyNodeDescriptionProps {
   }
 }
 
+public typealias NodeDescriptionUpdate<T> = (newState: T, completion: (() ->())?)
+
 /**
  Protocol that is used for structs that represent the properties of a `NodeDescription`.
  
@@ -266,6 +268,20 @@ public protocol NodeDescription: AnyNodeDescription {
                                           nextProps: PropsType,
                                           dispatch: @escaping StoreDispatch,
                                           update: @escaping (StateType) -> ())
+
+  /**
+   This method is used to undestand whether a description should be updated when either the props
+   or the state change.
+   
+   - parameter currentProps:    the props that have been used to create the current UI
+   - parameter nextProps:       the props that will be used in the next UI update cycle
+   - parameter currentState:    the state that has been used to create the current UI
+   - parameter nextState:       the state that will be used in the next UI update cycle
+   */
+  static func shouldUpdate(currentProps: PropsType,
+                           nextProps: PropsType,
+                           currentState: StateType,
+                           nextState: StateType) -> Bool
 }
 
 public extension NodeDescription {
@@ -307,6 +323,18 @@ public extension NodeDescription {
                                           nextProps: PropsType,
                                           dispatch: @escaping StoreDispatch,
                                           update: @escaping (StateType) -> ()) {}
+  
+  /**
+    The default implementation compares the props and the states leveraging the `Equatable` protocol.
+    It returns true if either the props or the state is changed
+  */
+  static func shouldUpdate(currentProps: PropsType,
+                           nextProps: PropsType,
+                           currentState: StateType,
+                           nextState: StateType) -> Bool {
+    
+    return currentProps != nextProps || currentState != nextState
+  }
 }
 
 extension AnyNodeDescription where Self: NodeDescription {
