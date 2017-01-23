@@ -21,6 +21,7 @@ public extension Button {
     public var backgroundHighlightedColor: NSColor?
     public var cornerRadius: Value = .zero
     public var title: NSAttributedString = NSAttributedString()
+    public var toolTip: String?
     public var image: NSImage?
     public var highlightedImage: NSImage?
     public var clickHandler: ClickHandlerClosure?
@@ -57,6 +58,7 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.attributedTitle = props.title
     view.clickHandler = props.clickHandler
     view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
+    view.toolTip = props.toolTip
   }
 
   public static func childrenDescriptions(props: Props,
