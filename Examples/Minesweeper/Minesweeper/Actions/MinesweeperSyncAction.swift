@@ -8,7 +8,7 @@
 
 import Katana
 
-protocol MinesweeperSyncAction: SyncAction {
+protocol MinesweeperSyncAction: Action {
   func updatedState(currentState: inout MinesweeperState)
 }
 

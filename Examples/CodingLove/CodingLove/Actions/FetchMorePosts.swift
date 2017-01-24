@@ -50,7 +50,11 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         newState.loading = false
         return newState
     }
-    
+  
+    func updatedStateForProgress(currentState: State) -> State {
+      return currentState
+    }
+  
     public func sideEffect(
         state: State,
         dispatch: @escaping StoreDispatch,
@@ -65,10 +69,12 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
         postsProvider.fetchPosts(for: page) { (result, errorMessage) in
             if let data = result {
                 let (posts, allFetched) = data
-                dispatch(self.completedAction(payload: CompletedActionPayload(posts: posts, allFetched: allFetched)))
+                dispatch(self.completedAction {
+                  $0.completedPayload = CompletedActionPayload(posts: posts, allFetched: allFetched)
+                })
             
             } else {
-                dispatch(self.failedAction(payload: errorMessage!))
+                dispatch(self.failedAction { $0.failedPayload = errorMessage! })
             }
         }
     }

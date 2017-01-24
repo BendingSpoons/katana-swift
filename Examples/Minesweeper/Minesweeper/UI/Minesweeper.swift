@@ -32,11 +32,11 @@ struct Minesweeper: NodeDescription, ConnectedNodeDescription, PlasticNodeDescri
     
     let button = Button(props: Button.Props.build({
       $0.setKey(Keys.title)
-      $0.titles = [.normal : text]
+      $0.titles = [.normal: text]
       $0.borderColor = .darkGray
       $0.borderWidth = .fixed(2)
       $0.titleColors = [.normal: .black, .highlighted: .lightGray]
-      $0.touchHandlers = [.touchUpInside : buttonTap]
+      $0.touchHandlers = [.touchUpInside: buttonTap]
     }))
     
     let minesweeperGrid = MinesweeperGrid(props: MinesweeperGrid.Props.build({
