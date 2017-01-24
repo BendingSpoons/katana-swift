@@ -51,7 +51,6 @@ public enum AsyncActionState: Equatable {
   }
 }
 
-
 public protocol AnyAsyncAction {
 
   /// The state of the action
@@ -143,7 +142,6 @@ public protocol AsyncAction: Action, AnyAsyncAction {
   */
   func updatedStateForFailed(currentState: State) -> State
   
-
   func updatedStateForProgress(currentState: State) -> State
 
   /**
