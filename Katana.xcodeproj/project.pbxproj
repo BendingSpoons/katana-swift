@@ -70,7 +70,6 @@
 		65BF2E881DE339C900441784 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
 		65BF2E891DE339C900441784 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
 		65BF2E8A1DE339C900441784 /* StoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */; };
-		65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
 		65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
 		65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */; };
 		65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */; };
@@ -197,7 +196,6 @@
 		A1CA31531DC37DBF00982BE9 /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314E1DC37DBF00982BE9 /* State.swift */; };
 		A1CA31541DC37DBF00982BE9 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA314F1DC37DBF00982BE9 /* Store.swift */; };
 		A1CA31551DC37DBF00982BE9 /* StoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */; };
-		A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA31581DC39E1700982BE9 /* SyncAction.swift */; };
 		A1CA315B1DC3A01F00982BE9 /* SyncActionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */; };
 		A1CA315D1DC3A24000982BE9 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
 		A1CF3BB91E2FB935007C9E0E /* NodeDescriptionShouldUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */; };
@@ -402,7 +400,6 @@
 		A1CA314E1DC37DBF00982BE9 /* State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
 		A1CA314F1DC37DBF00982BE9 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreTypealiases.swift; sourceTree = "<group>"; };
-		A1CA31581DC39E1700982BE9 /* SyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncAction.swift; sourceTree = "<group>"; };
 		A1CA315A1DC3A01F00982BE9 /* SyncActionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SyncActionTests.swift; sourceTree = "<group>"; };
 		A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
 		A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionShouldUpdateTests.swift; sourceTree = "<group>"; };
@@ -721,7 +718,6 @@
 				A1CA314E1DC37DBF00982BE9 /* State.swift */,
 				A1CA314F1DC37DBF00982BE9 /* Store.swift */,
 				A1CA31501DC37DBF00982BE9 /* StoreTypealiases.swift */,
-				A1CA31581DC39E1700982BE9 /* SyncAction.swift */,
 				A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */,
 				A116384D1DC4A6450068F0A7 /* ActionWithSideEffect.swift */,
 				A116384F1DC4A6800068F0A7 /* SideEffectDependencyContainer.swift */,
@@ -1429,7 +1425,6 @@
 				65BF2E881DE339C900441784 /* State.swift in Sources */,
 				65BF2E891DE339C900441784 /* Store.swift in Sources */,
 				65BF2E8A1DE339C900441784 /* StoreTypealiases.swift in Sources */,
-				65BF2E8B1DE339C900441784 /* SyncAction.swift in Sources */,
 				65BF2E8C1DE339C900441784 /* AsyncAction.swift in Sources */,
 				65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */,
 				5115A6FF1E27C5DC007EA0FB /* ActionLinks.swift in Sources */,
@@ -1525,7 +1520,6 @@
 				A1CA31551DC37DBF00982BE9 /* StoreTypealiases.swift in Sources */,
 				5115A6F61E26A67E007EA0FB /* ActionLinks.swift in Sources */,
 				A1C9C1CB1DD36BD90067F8E0 /* AnimationType.swift in Sources */,
-				A1CA31591DC39E1700982BE9 /* SyncAction.swift in Sources */,
 				A15700671DD4C33700361068 /* AnimationPropsTransfomer.swift in Sources */,
 				813315791D7B726000FBE210 /* PlasticReferenceSizeable.swift in Sources */,
 				813315731D7B726000FBE210 /* Anchor.swift in Sources */,
