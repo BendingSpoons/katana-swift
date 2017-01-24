@@ -260,7 +260,10 @@ class ActionLinkerTests: XCTestCase {
       }
     }
     
-    var baseAsyncAction = BaseAsyncAction(payload: 10).completedAction(payload: 100)
+    var baseAsyncAction = BaseAsyncAction(payload: 10).completedAction {
+      $0.completedPayload = 100
+    }
+
     baseAsyncAction.invokedCompletedClosure = {
       count += 1
     }
@@ -294,7 +297,10 @@ class ActionLinkerTests: XCTestCase {
       }
     }
     
-    var baseAsyncAction = BaseAsyncAction(payload: 10).failedAction(payload: -100)
+    var baseAsyncAction = BaseAsyncAction(payload: 10).failedAction {
+      $0.failedPayload = -100
+    }
+
     baseAsyncAction.invokedCompletedClosure = {
       count += 1
     }

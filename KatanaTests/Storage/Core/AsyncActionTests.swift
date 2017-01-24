@@ -94,7 +94,9 @@ class AsyncActionTests: XCTestCase {
 
     let store = Store<AppState>()
 
-    var action = AsyncTestAction(payload: 10).completedAction(payload: "A")
+    var action = AsyncTestAction(payload: 10).completedAction {
+      $0.completedPayload = "A"
+    }
 
     action.invokedLoadingClosure = {
       invokedLoading = true
@@ -130,7 +132,9 @@ class AsyncActionTests: XCTestCase {
 
     let store = Store<AppState>()
 
-    var action = AsyncTestAction(payload: 10).failedAction(payload: "Error")
+    var action = AsyncTestAction(payload: 10).failedAction {
+      $0.failedPayload = "Error"
+    }
 
     action.invokedLoadingClosure = {
       invokedLoading = true
@@ -159,7 +163,10 @@ class AsyncActionTests: XCTestCase {
 
   func testCompletedAction() {
     let action = AsyncTestAction(payload: 10)
-    let completedAction = action.completedAction(payload: "A")
+    
+    let completedAction = action.completedAction {
+      $0.completedPayload = "A"
+    }
 
     XCTAssertEqual(completedAction.state, .completed)
     XCTAssertEqual(completedAction.loadingPayload, action.loadingPayload)
@@ -168,7 +175,10 @@ class AsyncActionTests: XCTestCase {
 
   func testFailedAction() {
     let action = AsyncTestAction(payload: 10)
-    let completedAction = action.failedAction(payload: "Error")
+    
+    let completedAction = action.failedAction {
+      $0.failedPayload = "Error"
+    }
 
     XCTAssertEqual(completedAction.state, .failed)
     XCTAssertEqual(completedAction.loadingPayload, action.loadingPayload)
@@ -200,7 +210,10 @@ class AsyncActionTests: XCTestCase {
 
     let expectation = self.expectation(description: "Store listener")
     let store = Store<AppState>()
-    var action = AsyncTestAction(payload: 10).completedAction(payload: "A")
+    
+    var action = AsyncTestAction(payload: 10).completedAction {
+      $0.failedPayload = "Error"
+    }
 
     action.invokedSideEffectClosure = {
       invoked = true
@@ -224,7 +237,10 @@ class AsyncActionTests: XCTestCase {
 
     let expectation = self.expectation(description: "Store listener")
     let store = Store<AppState>()
-    var action = AsyncTestAction(payload: 10).failedAction(payload: "A")
+    
+    var action = AsyncTestAction(payload: 10).failedAction {
+      $0.failedPayload = "A"
+    }
 
     action.invokedSideEffectClosure = {
       invoked = true

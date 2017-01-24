@@ -82,26 +82,8 @@ public enum AsyncActionState {
 */
 public protocol AsyncAction: Action {
 
-  /// The type of payload when the state is `loading`
-  associatedtype LoadingPayload
-
-  /// The type of payload when the state is `completed`
-  associatedtype CompletedPayload
-
-  /// The type of payload when the state is `failed`
-  associatedtype FailedPayload
-
   /// The state of the action
   var state: AsyncActionState { get set }
-
-  /// The loading payload of the action
-  var loadingPayload: LoadingPayload { get set }
-
-  /// The completed payload of the action. It has a value only when the state is `completed`
-  var completedPayload: CompletedPayload? { get set }
-
-  /// The failed payload of the action. It has a value only when the state is `failed`
-  var failedPayload: FailedPayload? { get set }
 
   /**
    UpdateState function that will be used when the state of the action is `loading`
@@ -128,32 +110,26 @@ public protocol AsyncAction: Action {
   func updatedStateForFailed(currentState: State) -> State
 
   /**
-   Creates a new action
-   
-   - parameter payload: the payload to assign to the action
-   - returns: an instance of the action where the state must be `loading`
-  */
-  init(payload: LoadingPayload)
-
-  /**
    Creates a new action in the `completed` state
    
-   - parameter payload: the payload of the completed action
+   - parameter configuration: a block that updates the loading action
+                              with the information of the completion
    - returns: a new instance of the action, where the state is `completed`.
               This new action will have the loading payload inerithed from the initial
               loading action and the provided completed payload
   */
-  func completedAction(payload: CompletedPayload) -> Self
+  func completedAction(_ configuration: (inout Self) -> ()) -> Self
 
   /**
    Creates a new action in the `failed` state
    
-   - parameter payload: the payload of the failed action
+   - parameter configuration: a block that updates the loading action
+                              with the information of the failure
    - returns: a new instance of the action, where the state is `failed`.
               This new action will have the loading payload inerithed from the initial
               loading action and the provided failed payload
   */
-  func failedAction(payload: FailedPayload) -> Self
+  func failedAction(_ configuration: (inout Self) -> ()) -> Self
 }
 
 public extension AsyncAction {
@@ -187,10 +163,10 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided completed payload
   */
-  public func completedAction(payload: CompletedPayload) -> Self {
+  public func completedAction(_ configuration: (inout Self) -> ()) -> Self {
     var copy = self
-    copy.completedPayload = payload
     copy.state = .completed
+    configuration(&copy)
     return copy
   }
 
@@ -202,10 +178,10 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided failed payload
   */
-  public func failedAction(payload: FailedPayload) -> Self {
+  public func failedAction(_ configuration: (inout Self) -> ()) -> Self {
     var copy = self
-    copy.failedPayload = payload
     copy.state = .failed
+    configuration(&copy)
     return copy
   }
 }
