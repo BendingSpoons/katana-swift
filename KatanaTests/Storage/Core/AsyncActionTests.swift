@@ -19,6 +19,7 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
   var invokedLoadingClosure: () -> () = { _ in }
   var invokedCompletedClosure: () -> () = { _ in }
   var invokedFailedClosure: () -> () = { _ in }
+  var invokedProgressClosure: (Double) -> () = { _ in }
   var invokedSideEffectClosure: () -> () = { _ in }
 
   init(payload: Int) {
@@ -38,6 +39,11 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
 
   func updatedStateForFailed(currentState: State) -> State {
     self.invokedFailedClosure()
+    return currentState
+  }
+  
+  fileprivate func updatedStateForProgress(currentState: State) -> State {
+    self.invokedProgressClosure(self.state.progressPercentage!)
     return currentState
   }
 
@@ -160,6 +166,52 @@ class AsyncActionTests: XCTestCase {
       XCTAssertTrue(invokedFailed)
     }
   }
+  
+  func testProgressInvoked() {
+    var invokedLoading = false
+    var invokedCompleted = false
+    var invokedFailed = false
+    var invokedProgress = false
+    var progressAmount: Double?
+    
+    let expectation = self.expectation(description: "Store listener")
+    
+    let store = Store<AppState>()
+    
+    var action = AsyncTestAction(payload: 10).progressAction(percentage: 39.99)
+    
+    action.invokedLoadingClosure = {
+      invokedLoading = true
+      expectation.fulfill()
+    }
+    
+    action.invokedCompletedClosure = {
+      invokedCompleted = true
+      expectation.fulfill()
+    }
+    
+    action.invokedFailedClosure = {
+      invokedFailed = true
+      expectation.fulfill()
+    }
+    
+    action.invokedProgressClosure = {
+      invokedProgress = true
+      progressAmount = $0
+      expectation.fulfill()
+    }
+    
+    store.dispatch(action)
+    
+    self.waitForExpectations(timeout: 2.0) { (err: Error?) in
+      XCTAssertNil(err)
+      XCTAssertFalse(invokedLoading)
+      XCTAssertFalse(invokedCompleted)
+      XCTAssertTrue(invokedProgress)
+      XCTAssertEqual(progressAmount, 39.99)
+      XCTAssertFalse(invokedFailed)
+    }
+  }
 
   func testCompletedAction() {
     let action = AsyncTestAction(payload: 10)
@@ -168,7 +220,7 @@ class AsyncActionTests: XCTestCase {
       $0.completedPayload = "A"
     }
 
-    XCTAssertEqual(completedAction.state, .completed)
+    XCTAssertEqual(completedAction.state, AsyncActionState.completed)
     XCTAssertEqual(completedAction.loadingPayload, action.loadingPayload)
     XCTAssertEqual(completedAction.completedPayload, "A")
   }
@@ -180,7 +232,7 @@ class AsyncActionTests: XCTestCase {
       $0.failedPayload = "Error"
     }
 
-    XCTAssertEqual(completedAction.state, .failed)
+    XCTAssertEqual(completedAction.state, AsyncActionState.failed)
     XCTAssertEqual(completedAction.loadingPayload, action.loadingPayload)
     XCTAssertEqual(completedAction.failedPayload, "Error")
   }
@@ -253,6 +305,31 @@ class AsyncActionTests: XCTestCase {
       expectation.fulfill()
     }
 
+    self.waitForExpectations(timeout: 10.0) { (err: Error?) in
+      XCTAssertNil(err)
+      XCTAssertFalse(invoked)
+    }
+  }
+  
+  func testSideEffectProgress() {
+    var invoked = false
+    
+    let expectation = self.expectation(description: "Store listener")
+    let store = Store<AppState>()
+    
+    var action = AsyncTestAction(payload: 10).progressAction(percentage: 10)
+    
+    action.invokedSideEffectClosure = {
+      invoked = true
+      expectation.fulfill()
+    }
+    
+    store.dispatch(action)
+    
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+      expectation.fulfill()
+    }
+    
     self.waitForExpectations(timeout: 10.0) { (err: Error?) in
       XCTAssertNil(err)
       XCTAssertFalse(invoked)

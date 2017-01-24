@@ -399,7 +399,7 @@ fileprivate struct LinkedAction3: LinkeableAction {
 //MARK Mocking for the async testing
 
 fileprivate struct BaseAsyncAction: AsyncAction {
-
+  
   public init(payload: Int) {
     self.loadingPayload = payload
     self.failedPayload = nil
@@ -440,6 +440,10 @@ fileprivate struct BaseAsyncAction: AsyncAction {
     newState.int = -100
     self.invokedFailedClosure()
     return newState
+  }
+  
+  public func updatedStateForProgress(currentState: State) -> State {
+    return currentState
   }
 }
 

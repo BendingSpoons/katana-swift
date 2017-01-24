@@ -9,7 +9,7 @@
 import Foundation
 
 /// This enum represents the state of an `AsyncAction`
-public enum AsyncActionState {
+public enum AsyncActionState: Equatable {
   /// The action has just been created
   case loading
 
@@ -18,6 +18,37 @@ public enum AsyncActionState {
 
   /// The action's related operation has failed
   case failed
+  
+  case progress(percentage: Double)
+  
+  public var progressPercentage: Double? {
+    switch self {
+    case let .progress(percentage: progress):
+      return progress
+    
+    case .completed, .failed, .loading:
+      return nil
+    }
+  }
+  
+  public static func == (lhs: AsyncActionState, rhs: AsyncActionState) -> Bool {
+    switch (lhs, rhs) {
+    case (.loading, .loading):
+      return true
+      
+    case (.completed, .completed):
+      return true
+      
+    case (.failed, .failed):
+      return true
+      
+    case let (.progress(lAmount), .progress(rAmount)):
+      return lAmount == rAmount
+      
+    default:
+      return false
+    }
+  }
 }
 
 /**
@@ -108,6 +139,9 @@ public protocol AsyncAction: Action {
    - returns: the new state
   */
   func updatedStateForFailed(currentState: State) -> State
+  
+
+  func updatedStateForProgress(currentState: State) -> State
 
   /**
    Creates a new action in the `completed` state
@@ -130,6 +164,8 @@ public protocol AsyncAction: Action {
               loading action and the provided failed payload
   */
   func failedAction(_ configuration: (inout Self) -> ()) -> Self
+  
+  func progressAction(percentage: Double) -> Self
 }
 
 public extension AsyncAction {
@@ -152,6 +188,9 @@ public extension AsyncAction {
 
     case .failed:
       return self.updatedStateForFailed(currentState: currentState)
+      
+    case .progress:
+      return self.updatedStateForProgress(currentState: currentState)
     }
   }
 
@@ -182,6 +221,12 @@ public extension AsyncAction {
     var copy = self
     copy.state = .failed
     configuration(&copy)
+    return copy
+  }
+  
+  public func progressAction(percentage: Double) -> Self {
+    var copy = self
+    copy.state = .progress(percentage: percentage)
     return copy
   }
 }
