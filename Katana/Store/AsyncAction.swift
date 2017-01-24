@@ -51,6 +51,13 @@ public enum AsyncActionState: Equatable {
   }
 }
 
+
+public protocol AnyAsyncAction {
+
+  /// The state of the action
+  var state: AsyncActionState { get set }
+}
+
 /**
  Protocol that represents an `async` action.
  
@@ -111,11 +118,7 @@ public enum AsyncActionState: Equatable {
  }
  ```
 */
-public protocol AsyncAction: Action {
-
-  /// The state of the action
-  var state: AsyncActionState { get set }
-
+public protocol AsyncAction: Action, AnyAsyncAction {
   /**
    UpdateState function that will be used when the state of the action is `loading`
    
@@ -228,21 +231,5 @@ public extension AsyncAction {
     var copy = self
     copy.state = .progress(percentage: percentage)
     return copy
-  }
-}
-
-public extension AsyncAction where Self: ActionWithSideEffect {
-  /**
-   Implementation of the `ActionWithSideEffect` type erasure.
-   We don't invoke the side effect if the state of the action is not loading.
-   This is because we want to trigger side effects only during the loading phase.
-  */
-  func anySideEffect(state: State,
-                     dispatch: @escaping StoreDispatch,
-                     dependencies: SideEffectDependencyContainer) {
-
-    if case .loading = self.state {
-      self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
-    }
   }
 }

@@ -206,7 +206,11 @@ fileprivate extension Store {
         next(action)
       }
 
-      guard let action = action as? AnyActionWithSideEffect else {
+      guard let action = action as? ActionWithSideEffect else {
+        return
+      }
+      
+      if let async = action as? AnyAsyncAction, async.state != .loading {
         return
       }
 
@@ -214,7 +218,7 @@ fileprivate extension Store {
       let dispatch = self.dispatch
       let container = self.dependencies.init(state: state, dispatch: dispatch)
 
-      action.anySideEffect(
+      action.sideEffect(
         state: state,
         dispatch: dispatch,
         dependencies: container
