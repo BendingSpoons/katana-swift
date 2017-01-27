@@ -89,7 +89,7 @@
                 <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
@@ -150,9 +150,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/SyncAction.html">SyncAction</a>
               </li>
             </ul>
           </li>
@@ -239,7 +236,7 @@
               </div>
             <p>Katana works by representing the UI as a tree.
 Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) instances through PlatformNativeViews,
- Katana holds a tree of instances of <code>Node</code>. The tree is composed as follows:</p>
+Katana holds a tree of instances of <code>Node</code>. The tree is composed as follows:</p>
 
 <ul>
 <li><p>each node of the tree is an instance of PlatformNativeView (baked by UIKit/AppKit or subclasses);</p></li>
@@ -247,25 +244,26 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
 </ul>
 
 <p>Each <code>Node</code> instance is characterized by a description (which is an implementation of <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code>).
- Since descriptions are stateless, the <code>Node</code> also holds properties and state. It is also in charge of managing the lifecycle
- of the UI and in particular to invoke the methods <code>childrenDescriptions</code> and
- <code>applyPropsToNativeView</code> of <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code> when needed.</p>
+Since descriptions are stateless, the <code>Node</code> also holds properties and state. It is also in charge of managing the lifecycle
+of the UI and in particular to invoke the methods <code>childrenDescriptions</code> and
+<code>applyPropsToNativeView</code> of <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code> when needed.</p>
 
 <p>In general this class is never used during the development of an application. Developers usually work with <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code>.</p>
 
-<p>## Managed Children
- Most of the time, <code>Node</code> is able to generate and handle its children automatically by using the description methods.</p>
+<p><a href='#managed-children' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='managed-children'>Managed Children</h2></p>
+
+<p>Most of the time, <code>Node</code> is able to generate and handle its children automatically by using the description methods.</p>
 
 <p>That being said, there are cases where this is not possible
- (e.g., in a table, when you need to generate and handle the nodes contained in the cells).
- In order to maintain an unique tree to represent the UI, we ask to handle these
- cases manually by invoking two methods: <code>addManagedChild(with:in:)</code> and <code>removeManagedChild(node:)</code>.</p>
+(e.g., in a table, when you need to generate and handle the nodes contained in the cells).
+In order to maintain an unique tree to represent the UI, we ask to handle these
+cases manually by invoking two methods: <code>addManagedChild(with:in:)</code> and <code>removeManagedChild(node:)</code>.</p>
 
 <p>Having a single tree is important for several reasons.
- For example we may want to run automatic tests on the tree and verify some conditions (e.g., there is a button).</p>
+For example we may want to run automatic tests on the tree and verify some conditions (e.g., there is a button).</p>
 
 <p>Managed children are added to act as a workaround of a current limitation of Katana.
- We definitively want to remove this limitation and automate the management of the children in all the cases.</p>
+We definitively want to remove this limitation and automate the management of the children in all the cases.</p>
 
           </section>
           <section class="section task-group-section">
@@ -296,7 +294,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L49">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,7 +324,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L52">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -356,7 +354,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L55">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L55">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -386,7 +384,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L69">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L69">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -416,7 +414,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L84">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L84">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -484,7 +482,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L93-L95">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L93-L95">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -558,7 +556,7 @@ Beside the tree managed by UIKit/AppKit with UIView/NSView (or subclasses) insta
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L106-L108">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L106-L108">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -617,7 +615,7 @@ descriptions before they are actually used.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L153-L156">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L153-L156">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -689,7 +687,7 @@ descriptions before they are actually used.</p>
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L297-L302">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L297-L302">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -739,7 +737,7 @@ descriptions before they are actually used.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L309-L312">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L309-L312">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -773,7 +771,7 @@ descriptions before they are actually used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node.swift#L637-L640">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node.swift#L655-L658">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -813,7 +811,7 @@ descriptions before they are actually used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node+AnyNode.swift#L17-L19">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node+AnyNode.swift#L17-L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -849,7 +847,7 @@ descriptions before they are actually used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node+AnyNode.swift#L26-L28">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node+AnyNode.swift#L26-L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -885,7 +883,7 @@ descriptions before they are actually used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node+AnyNode.swift#L35-L42">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node+AnyNode.swift#L35-L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -921,7 +919,7 @@ descriptions before they are actually used.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/Node+AnyNode.swift#L49-L51">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/Node+AnyNode.swift#L49-L51">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -931,7 +929,7 @@ descriptions before they are actually used.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

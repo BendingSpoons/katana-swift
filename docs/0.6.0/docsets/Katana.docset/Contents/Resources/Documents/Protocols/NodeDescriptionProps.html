@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SyncAction Protocol Reference</title>
+    <title>NodeDescriptionProps Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Protocol/SyncAction" class="dashAnchor"></a>
-    <a title="SyncAction Protocol Reference"></a>
+    <a name="//apple_ref/swift/Protocol/NodeDescriptionProps" class="dashAnchor"></a>
+    <a title="NodeDescriptionProps Protocol Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">Katana Reference</a>
         <img id="carat" src="../img/carat.png" />
-        SyncAction Protocol Reference
+        NodeDescriptionProps Protocol Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -89,7 +89,7 @@
                 <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
@@ -150,9 +150,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/SyncAction.html">SyncAction</a>
               </li>
             </ul>
           </li>
@@ -230,51 +227,17 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>SyncAction</h1>
+            <h1>NodeDescriptionProps</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SyncAction</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionProps</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
 
                 </div>
               </div>
-            <p>Protocol that represents a <code>sync</code> action.</p>
+            <p>Protocol that is used for structs that represent the properties of a <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code>.</p>
 
-<p>A <code>SyncAction</code> is just an abstraction over <code><a href="../Protocols/Action.html">Action</a></code> that provides a way to structure
-your action. In particular the action payload should be assigned to a single <code>payload</code> value
-(which can be anything). We introduced this pattern to allow future automatic behaviours such as
-automatic serialization/deserialization of the actions
-(that can be used for debugging, time travel and so on)</p>
-
-<p><a href='#tip-amp-tricks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='tip-amp-tricks'>Tip &amp; Tricks</h4></p>
-
-<p>Since the <code><a href="../Protocols/Action.html">Action</a></code> protocol is very generic when it comes to the state type that should be updated, a pattern
-we want to promote is to put in your application a protocol like the following:</p>
-
-<pre class="highlight plaintext"><code>protocol AppSyncAction: SyncAction {
- func updateState(currentState: inout AppState)
-}
-
-extension AppSyncAction {
- func updatedState(currentState: State) -&gt; State {
-   guard var state = currentState as? AppState else {
-     fatalError("Something went wrong")
-   }
-
-   self.updateState(currentState: &amp;state)
-   return state
- }
-}
-</code></pre>
-
-<p>In this way you can save a lot of code since you can use your actions in the following way</p>
-
-<pre class="highlight plaintext"><code>struct A: AppSyncAction {
- var payload: PropertyType
- func updateState(currentState: inout AppState) {
-   currentState.property = self.payload
- }
-}
-</code></pre>
+<p>This protocol requires instances to be equatable. Katana uses this requirement to
+avoid to update the UI if the properties (and the state) are not changed.</p>
 
           </section>
           <section class="section task-group-section">
@@ -283,59 +246,72 @@ extension AppSyncAction {
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:vP6Katana10SyncAction7payloadwx7Payload"></a>
-                    <a name="//apple_ref/swift/Property/payload" class="dashAnchor"></a>
-                    <a class="token" href="#/s:vP6Katana10SyncAction7payloadwx7Payload">payload</a>
+                    <a name="/s:ZFE6KatanaPS_20NodeDescriptionPropsoi2eeFTxx_Sb"></a>
+                    <a name="//apple_ref/swift/Method/==(_:_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE6KatanaPS_20NodeDescriptionPropsoi2eeFTxx_Sb">==(_:_:)</a>
                     </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The payload of the action</p>
+                        <p>Default implementation of the function required by <code>Equatable</code>. It always returns <code>false</code>.
+Developers can use this as the default implementation and then implement the proper equatable logic
+to optimise performances (e.g., avoid useless UI updates)</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">var</span> <span class="nv">payload</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SyncAction.html#/s:P6Katana10SyncAction7Payload">Payload</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="o">==</span> <span class="p">(</span><span class="nv">l</span><span class="p">:</span> <span class="k">Self</span><span class="p">,</span> <span class="nv">r</span><span class="p">:</span> <span class="k">Self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/SyncAction.swift#L58">Show on GitHub</a>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>l</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the first props</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>r</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the second props</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
                       </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana10SyncAction7Payload"></a>
-                    <a name="//apple_ref/swift/Alias/Payload" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana10SyncAction7Payload">Payload</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The payload type of the action</p>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>always false</p>
 
                       </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">Payload</span></code></pre>
-
-                        </div>
-                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/SyncAction.swift#L55">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L88-L90">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -345,7 +321,7 @@ extension AppSyncAction {
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

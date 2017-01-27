@@ -89,7 +89,7 @@
                 <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
@@ -150,9 +150,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/SyncAction.html">SyncAction</a>
               </li>
             </ul>
           </li>
@@ -293,67 +290,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L173">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana15NodeDescription9PropsType"></a>
-                    <a name="//apple_ref/swift/Alias/PropsType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana15NodeDescription9PropsType">PropsType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The type of properties that this description uses. The default value is <code><a href="../Structs/EmptyProps.html">EmptyProps</a></code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">PropsType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/EmptyProps.html">EmptyProps</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L165">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana15NodeDescription9StateType"></a>
-                    <a name="//apple_ref/swift/Alias/StateType" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana15NodeDescription9StateType">StateType</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The type of state that this description uses. The default value is <code><a href="../Structs/EmptyState.html">EmptyState</a></code></p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">StateType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/EmptyState.html">EmptyState</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L168">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L175">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -383,7 +320,67 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L162">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L164">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana15NodeDescription9PropsType"></a>
+                    <a name="//apple_ref/swift/Alias/PropsType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana15NodeDescription9PropsType">PropsType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of properties that this description uses. The default value is <code><a href="../Structs/EmptyProps.html">EmptyProps</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">PropsType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/EmptyProps.html">EmptyProps</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L167">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana15NodeDescription9StateType"></a>
+                    <a name="//apple_ref/swift/Alias/StateType" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana15NodeDescription9StateType">StateType</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The type of state that this description uses. The default value is <code><a href="../Structs/EmptyState.html">EmptyState</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">associatedtype</span> <span class="kt">StateType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a></span> <span class="o">=</span> <span class="kt"><a href="../Structs/EmptyState.html">EmptyState</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L170">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -438,7 +435,7 @@ These instances are used by Katana to understand how to update the UI (update, r
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L181">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L183">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -559,7 +556,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L193">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L195">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -663,7 +660,7 @@ These instances are used by Katana to understand how to update the UI (update, r
 
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L210">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L212">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -778,7 +775,7 @@ for the children.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L229">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L231">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -863,7 +860,7 @@ Note that <code>childrenDescriptions</code> and <code>applyPropsToNativeView</co
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L243">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L245">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -934,7 +931,7 @@ Note that <code>childrenDescriptions</code> and <code>applyPropsToNativeView</co
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L251">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L253">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1046,7 +1043,106 @@ You have the chance to update the internal state of the description without trig
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L264">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L266">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFP6Katana15NodeDescription12shouldUpdateFT12currentPropswx9PropsType9nextPropswxS1_12currentStatewx9StateType9nextStatewxS2__Sb"></a>
+                    <a name="//apple_ref/swift/Method/shouldUpdate(currentProps:nextProps:currentState:nextState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP6Katana15NodeDescription12shouldUpdateFT12currentPropswx9PropsType9nextPropswxS1_12currentStatewx9StateType9nextStatewxS2__Sb">shouldUpdate(currentProps:nextProps:currentState:nextState:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This method is used to undestand whether a description should be updated when either the props
+or the state change.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>The default implementation compares the props and the states leveraging the <code>Equatable</code> protocol.
+It returns true if either the props or the state is changed</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">shouldUpdate</span><span class="p">(</span><span class="nv">currentProps</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescription.html#/s:P6Katana15NodeDescription9PropsType">PropsType</a></span><span class="p">,</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>currentProps</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the props that have been used to create the current UI</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nextProps</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the props that will be used in the next UI update cycle</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>currentState</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the state that has been used to create the current UI</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>nextState</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the state that will be used in the next UI update cycle</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L281">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1083,7 +1179,7 @@ You have the chance to update the internal state of the description without trig
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L274-L277">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L290-L293">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1093,7 +1189,7 @@ You have the chance to update the internal state of the description without trig
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

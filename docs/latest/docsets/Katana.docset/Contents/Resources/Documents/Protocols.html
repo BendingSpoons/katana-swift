@@ -88,7 +88,7 @@
                 <a href="Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+                <a href="Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
@@ -149,9 +149,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/State.html">State</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="Protocols/SyncAction.html">SyncAction</a>
               </li>
             </ul>
           </li>
@@ -262,7 +259,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L12-L19">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L12-L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -317,7 +314,7 @@ In this way we are able to effectively trigger UI changes only where and when ne
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L42-L60">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L42-L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -342,7 +339,7 @@ In this way we are able to effectively trigger UI changes only where and when ne
                         <p>An action represents an event that leads to a change in the state of the application.
 It can be triggered from a user action, from a system event or any event in general.</p>
 
-<p>In general this protocol should not be used directly. Use <code><a href="Protocols/SyncAction.html">SyncAction</a></code> and <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
 
                         <a href="Protocols/Action.html" class="slightly-smaller">See more</a>
                       </div>
@@ -355,7 +352,7 @@ It can be triggered from a user action, from a system event or any event in gene
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Action.swift#L17-L32">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/Action.swift#L17-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -390,7 +387,7 @@ It can be triggered from a user action, from a system event or any event in gene
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L12-L15">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L12-L15">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -437,7 +434,7 @@ protocol and it allows to implement the following behaviour:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L36-L39">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L36-L39">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -468,7 +465,7 @@ protocol and it allows to implement the following behaviour:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L55-L58">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L55-L58">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -506,7 +503,7 @@ avoid to update the UI if the state (and the props) are not changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L16-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L16-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -537,7 +534,7 @@ avoid to update the UI if the state (and the props) are not changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L40-L59">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L40-L59">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -571,7 +568,7 @@ avoid to update the UI if the properties (and the state) are not changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L74">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L76">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -602,7 +599,7 @@ avoid to update the UI if the properties (and the state) are not changed.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L92-L127">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L94-L129">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -658,7 +655,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/NodeDescription/NodeDescription.swift#L159-L269">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/NodeDescription/NodeDescription.swift#L161-L285">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -693,7 +690,7 @@ These instances are used by Katana to understand how to update the UI (update, r
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/AnyNode.swift#L15-L73">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/AnyNode.swift#L15-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -729,7 +726,7 @@ called source, is dispatched by the Store.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -764,7 +761,7 @@ called source, is dispatched by the Store.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/SideEffectDependencyContainer.swift#L14-L24">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/SideEffectDependencyContainer.swift#L14-L24">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -805,79 +802,7 @@ or on serializable structures to store the UI representation and use it later.</
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Core/Node/PlatformNativeView.swift#L20-L96">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana10SyncAction"></a>
-                    <a name="//apple_ref/swift/Protocol/SyncAction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana10SyncAction">SyncAction</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Protocol that represents a <code>sync</code> action.</p>
-
-<p>A <code>SyncAction</code> is just an abstraction over <code><a href="Protocols/Action.html">Action</a></code> that provides a way to structure
-your action. In particular the action payload should be assigned to a single <code>payload</code> value
-(which can be anything). We introduced this pattern to allow future automatic behaviours such as
-automatic serialization/deserialization of the actions
-(that can be used for debugging, time travel and so on)</p>
-
-<p><a href='#tip-amp-tricks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h4 id='tip-amp-tricks'>Tip &amp; Tricks</h4></p>
-
-<p>Since the <code><a href="Protocols/Action.html">Action</a></code> protocol is very generic when it comes to the state type that should be updated, a pattern
-we want to promote is to put in your application a protocol like the following:</p>
-
-<pre class="highlight plaintext"><code>protocol AppSyncAction: SyncAction {
- func updateState(currentState: inout AppState)
-}
-
-extension AppSyncAction {
- func updatedState(currentState: State) -&gt; State {
-   guard var state = currentState as? AppState else {
-     fatalError("Something went wrong")
-   }
-
-   self.updateState(currentState: &amp;state)
-   return state
- }
-}
-</code></pre>
-
-<p>In this way you can save a lot of code since you can use your actions in the following way</p>
-
-<pre class="highlight plaintext"><code>struct A: AppSyncAction {
- var payload: PropertyType
- func updateState(currentState: inout AppState) {
-   currentState.property = self.payload
- }
-}
-</code></pre>
-
-                        <a href="Protocols/SyncAction.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SyncAction</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/SyncAction.swift#L52-L59">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Core/Node/PlatformNativeView.swift#L20-L96">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -922,7 +847,7 @@ is calculated in the following way:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Plastic/PlasticReferenceSizeable.swift#L24-L28">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Plastic/PlasticReferenceSizeable.swift#L24-L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -959,7 +884,7 @@ struct that has to implement the <code>State</code> protocol.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/State.swift#L16-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/State.swift#L16-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -968,37 +893,6 @@ struct that has to implement the <code>State</code> protocol.</p>
             </div>
             <div class="task-group">
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana23AnyActionWithSideEffect"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyActionWithSideEffect" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana23AnyActionWithSideEffect">AnyActionWithSideEffect</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type Erasure for <code><a href="Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a></code></p>
-
-                        <a href="Protocols/AnyActionWithSideEffect.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyActionWithSideEffect</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/ActionWithSideEffect.swift#L12-L23">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1042,12 +936,12 @@ information in the <code><a href="Classes/Store.html">Store</a></code></p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/ActionWithSideEffect.swift#L49-L63">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/ActionWithSideEffect.swift#L35-L49">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1082,7 +976,7 @@ information in the <code><a href="Classes/Store.html">Store</a></code></p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Plastic/PlasticNodeDescription.swift#L12-L19">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Plastic/PlasticNodeDescription.swift#L12-L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1113,7 +1007,7 @@ information in the <code><a href="Classes/Store.html">Store</a></code></p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Plastic/PlasticNodeDescription.swift#L24-L73">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Plastic/PlasticNodeDescription.swift#L24-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1148,7 +1042,7 @@ information in the <code><a href="Classes/Store.html">Store</a></code></p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/Store.swift#L12-L31">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/Store.swift#L12-L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1157,6 +1051,37 @@ information in the <code><a href="Classes/Store.html">Store</a></code></p>
             </div>
             <div class="task-group">
               <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana14AnyAsyncAction"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyAsyncAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana14AnyAsyncAction">AnyAsyncAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Erasure for <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code></p>
+
+                        <a href="Protocols/AnyAsyncAction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyAsyncAction</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/AsyncAction.swift#L58-L62">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -1177,18 +1102,10 @@ your action.</p>
 
 <p>You typically use an <code>Async</code> action when you have to deal with operations that are asynchronous.
 In the most common scenario, you dispatch the initial action, execute an operation in the side effect 
-and then dispatch a completed/failed action based on the result of the operation.</p>
+and then dispatch a completed/failed action based on the result of the operation. If the action has a concept
+of progress, you can also dispatch progress actions.</p>
 
-<p>This protocol offers two main advantages:</p>
-
-<ul>
-<li><p>The way in which the action payloads are defined is enforced. We introduced this pattern to
-allow future automatic behaviours such as automatic serialization/deserialization of the actions
-(that can be used for debugging, time travel and so on)</p></li>
-<li><p>Convenient separation of the updateStae function based on the state of the action
-(<code>updatedStateForLoading(currentState: action:)</code>, <code>updatedStateForCompleted(currentState: action:)</code>
-and <code>updatedStateForFailed(currentState: action:)</code>)</p></li>
-</ul>
+<p>This protocol has as the main goal to standardize the way async actions are managed.</p>
 
 <p>It is important to note that this is just a a convenience approach to something you can do anyway.
 You can for instance create three actions: <code>performOperation</code>, <code>OperationCompleted</code> and <code>OperationFailed</code> and achieve
@@ -1201,7 +1118,7 @@ we want to promote is to put in your application a protocol like the following:<
 
 <pre class="highlight plaintext"><code>protocol AppSyncAction: AsyncAction {
  func updatedStateForLoading(currentState: inout AppState)
- // same for completed and failed
+ // same for completed, failed and progress
 }
 
 extension AppSyncAction {
@@ -1214,7 +1131,7 @@ extension AppSyncAction {
    return state
  }
 
- // same for completed and failed
+ // same for completed, failed and progress
 }
 </code></pre>
 
@@ -1225,7 +1142,7 @@ extension AppSyncAction {
    state.props = action.payload
  }
 
- // same for completed and failed
+ // same for completed, failed and progress
 }
 </code></pre>
 
@@ -1235,12 +1152,12 @@ extension AppSyncAction {
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AsyncAction</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AsyncAction</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/AnyAsyncAction.html">AnyAsyncAction</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/AsyncAction.swift#L83-L157">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/AsyncAction.swift#L117-L182">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1250,7 +1167,7 @@ extension AppSyncAction {
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

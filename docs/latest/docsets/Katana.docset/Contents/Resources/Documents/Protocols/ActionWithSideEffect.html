@@ -89,7 +89,7 @@
                 <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
@@ -150,9 +150,6 @@
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
-              </li>
-              <li class="nav-group-task">
-                <a href="../Protocols/SyncAction.html">SyncAction</a>
               </li>
             </ul>
           </li>
@@ -233,7 +230,7 @@
             <h1>ActionWithSideEffect</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a></span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span></code></pre>
 
                 </div>
               </div>
@@ -337,56 +334,7 @@ before it goes in the <code>updateState(currentState:action:)</code> function.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/ActionWithSideEffect.swift#L58">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FE6KatanaPS_20ActionWithSideEffect13anySideEffectFT5statePS_5State_8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_"></a>
-                    <a name="//apple_ref/swift/Method/anySideEffect(state:dispatch:dependencies:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FE6KatanaPS_20ActionWithSideEffect13anySideEffectFT5statePS_5State_8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_">anySideEffect(state:dispatch:dependencies:)</a>
-                    </code>
-                      <span class="declaration-note">
-                        Extension method
-                      </span>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Default implementation of <code>anySideEffect</code>.
-It invokes <code><a href="../Protocols/ActionWithSideEffect.html#/s:FP6Katana20ActionWithSideEffect10sideEffectFT5statePS_5State_8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_">sideEffect(state:dispatch:dependencies:)</a></code> by casting the parameters
-to the proper types.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <code><a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a></code>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">func</span> <span class="nf">anySideEffect</span><span class="p">(</span>
-    <span class="nv">state</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span>
-    <span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StoreDispatch</span><span class="p">,</span>
-    <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span>
-  <span class="p">)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.5.2/Katana/Store/ActionWithSideEffect.swift#L73-L80">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.0/Katana/Store/ActionWithSideEffect.swift#L44">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -396,7 +344,7 @@ to the proper types.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-17)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
