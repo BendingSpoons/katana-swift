@@ -39,7 +39,7 @@ struct RemoveTodoAction: Action {
   }
 }
 
-struct SyncAddTodoAction: SyncAction {
+struct SyncAddTodoAction: Action {
   var payload: String
 
   func updatedState(currentState: State) -> State {

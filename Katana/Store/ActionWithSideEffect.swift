@@ -8,20 +8,6 @@
 
 import Foundation
 
-/// Type Erasure for `ActionWithSideEffect`
-public protocol AnyActionWithSideEffect {
-  /**
-   Performs a side effect for the action
-   
-   - seeAlso: `ActionWithSideEffect`, `sideEffect(state:dispatch:dependencies:)`
-  */
-  func anySideEffect(
-    state: State,
-    dispatch: @escaping StoreDispatch,
-    dependencies: SideEffectDependencyContainer
-  )
-}
-
 /**
  `Action` can implement this protocol to perform side effects when an instance is
  dispatched.
@@ -46,7 +32,7 @@ public protocol AnyActionWithSideEffect {
  in the classes that there are in the dependencies, since we want to store all the relevant
  information in the `Store`
 */
-public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
+public protocol ActionWithSideEffect: Action {
   /**
    Performs the side effect. This method is invoked when the action is dispatched,
    before it goes in the `updateState(currentState:action:)` function.
@@ -60,22 +46,4 @@ public protocol ActionWithSideEffect: Action, AnyActionWithSideEffect {
     dispatch: @escaping StoreDispatch,
     dependencies: SideEffectDependencyContainer
   )
-}
-
-public extension ActionWithSideEffect {
-  /**
-   Default implementation of `anySideEffect`.
-   It invokes `sideEffect(state:dispatch:dependencies:)` by casting the parameters
-   to the proper types.
-   
-   - seeAlso: `AnyActionWithSideEffect`
-  */
-  func anySideEffect(
-    state: State,
-    dispatch: @escaping StoreDispatch,
-    dependencies: SideEffectDependencyContainer
-  ) {
-
-    self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
-  }
 }

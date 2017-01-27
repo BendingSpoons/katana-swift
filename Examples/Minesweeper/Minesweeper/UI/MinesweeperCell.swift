@@ -39,7 +39,7 @@ struct MinesweeperCell: PlasticNodeDescription, ConnectedNodeDescription {
     }
     
     let textColor = colorForNumber(props.minesNearby)
-    let textAttributes = [NSForegroundColorAttributeName : textColor, NSFontAttributeName : UIFont.boldSystemFont(ofSize: 16)]
+    let textAttributes = [NSForegroundColorAttributeName: textColor, NSFontAttributeName: UIFont.boldSystemFont(ofSize: 16)]
     
     let mineImage = Image(props: Image.Props.build({
       $0.setKey(Keys.mineImage)
