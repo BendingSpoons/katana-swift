@@ -527,7 +527,6 @@ extension Node {
     // if there aren't children that are added in the animated transition, we don't need the first step
     let needsFirstStep = initialChildren.count != firstTransitionChildren.count
     
-    
     let finalCompletion = { [weak self] in
       // we need to check the animation hash. If it is the same it means the animation has not been interrupted.
       // If an animation is interrupted, we don't need to execute the last step for that specific animation
@@ -541,7 +540,6 @@ extension Node {
       
       self?.animationID = nil
     }
-    
     
     if !needsFirstStep {
       self.update(newChildrenDescriptions: secondTransitionChildren, animation: animation, completion: finalCompletion)

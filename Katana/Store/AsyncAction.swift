@@ -9,7 +9,7 @@
 import Foundation
 
 /// This enum represents the state of an `AsyncAction`
-public enum AsyncActionState {
+public enum AsyncActionState: Equatable {
   /// The action has just been created
   case loading
 
@@ -18,6 +18,47 @@ public enum AsyncActionState {
 
   /// The action's related operation has failed
   case failed
+  
+  /// The action's related operation is in progress
+  case progress(percentage: Double)
+  
+  /// The progress percentage associated with the state. Only available if the value of the enum is `.progress`
+  public var progressPercentage: Double? {
+    switch self {
+    case let .progress(percentage: progress):
+      return progress
+    
+    case .completed, .failed, .loading:
+      return nil
+    }
+  }
+  
+  /// Implementation of the `Equatable` protocol
+  public static func == (lhs: AsyncActionState, rhs: AsyncActionState) -> Bool {
+    switch (lhs, rhs) {
+    case (.loading, .loading):
+      return true
+      
+    case (.completed, .completed):
+      return true
+      
+    case (.failed, .failed):
+      return true
+      
+    case let (.progress(lAmount), .progress(rAmount)):
+      return lAmount == rAmount
+      
+    default:
+      return false
+    }
+  }
+}
+
+/// Type Erasure for `AsyncAction`
+public protocol AnyAsyncAction {
+
+  /// The state of the action
+  var state: AsyncActionState { get set }
 }
 
 /**
@@ -28,17 +69,10 @@ public enum AsyncActionState {
  
  You typically use an `Async` action when you have to deal with operations that are asynchronous.
  In the most common scenario, you dispatch the initial action, execute an operation in the side effect 
- and then dispatch a completed/failed action based on the result of the operation.
+ and then dispatch a completed/failed action based on the result of the operation. If the action has a concept
+ of progress, you can also dispatch progress actions.
  
- This protocol offers two main advantages:
-
- * The way in which the action payloads are defined is enforced. We introduced this pattern to
-   allow future automatic behaviours such as automatic serialization/deserialization of the actions
-   (that can be used for debugging, time travel and so on)
- 
- * Convenient separation of the updateStae function based on the state of the action
-   (`updatedStateForLoading(currentState: action:)`, `updatedStateForCompleted(currentState: action:)`
-    and `updatedStateForFailed(currentState: action:)`)
+ This protocol has as the main goal to standardize the way async actions are managed.
  
  It is important to note that this is just a a convenience approach to something you can do anyway.
  You can for instance create three actions: `performOperation`, `OperationCompleted` and `OperationFailed` and achieve
@@ -51,7 +85,7 @@ public enum AsyncActionState {
  ```
  protocol AppSyncAction: AsyncAction {
   func updatedStateForLoading(currentState: inout AppState)
-  // same for completed and failed
+  // same for completed, failed and progress
  }
  
  extension AppSyncAction {
@@ -64,7 +98,7 @@ public enum AsyncActionState {
     return state
   }
  
-  // same for completed and failed
+  // same for completed, failed and progress
  }
  ```
  
@@ -76,33 +110,11 @@ public enum AsyncActionState {
     state.props = action.payload
   }
  
-  // same for completed and failed
+  // same for completed, failed and progress
  }
  ```
 */
-public protocol AsyncAction: Action {
-
-  /// The type of payload when the state is `loading`
-  associatedtype LoadingPayload
-
-  /// The type of payload when the state is `completed`
-  associatedtype CompletedPayload
-
-  /// The type of payload when the state is `failed`
-  associatedtype FailedPayload
-
-  /// The state of the action
-  var state: AsyncActionState { get set }
-
-  /// The loading payload of the action
-  var loadingPayload: LoadingPayload { get set }
-
-  /// The completed payload of the action. It has a value only when the state is `completed`
-  var completedPayload: CompletedPayload? { get set }
-
-  /// The failed payload of the action. It has a value only when the state is `failed`
-  var failedPayload: FailedPayload? { get set }
-
+public protocol AsyncAction: Action, AnyAsyncAction {
   /**
    UpdateState function that will be used when the state of the action is `loading`
    
@@ -128,40 +140,53 @@ public protocol AsyncAction: Action {
   func updatedStateForFailed(currentState: State) -> State
 
   /**
-   Creates a new action
+   UpdateState function that will be used when the state of the action is `progress`
    
-   - parameter payload: the payload to assign to the action
-   - returns: an instance of the action where the state must be `loading`
+   - parameter state:   the current state of the application
+   - returns: the new state
   */
-  init(payload: LoadingPayload)
+  func updatedStateForProgress(currentState: State) -> State
 
   /**
    Creates a new action in the `completed` state
    
-   - parameter payload: the payload of the completed action
+   - parameter configuration: a block that updates the loading action
+                              with the information of the completion
    - returns: a new instance of the action, where the state is `completed`.
               This new action will have the loading payload inerithed from the initial
-              loading action and the provided completed payload
+              loading action and the provided additional information
   */
-  func completedAction(payload: CompletedPayload) -> Self
+  func completedAction(_ configuration: (inout Self) -> ()) -> Self
 
   /**
    Creates a new action in the `failed` state
    
-   - parameter payload: the payload of the failed action
+   - parameter configuration: a block that updates the loading action
+                              with the information of the failure
    - returns: a new instance of the action, where the state is `failed`.
               This new action will have the loading payload inerithed from the initial
-              loading action and the provided failed payload
+              loading action and the provided additional information
   */
-  func failedAction(payload: FailedPayload) -> Self
+  func failedAction(_ configuration: (inout Self) -> ()) -> Self
+  
+  /**
+   Creates a new action in the `progress` state
+   
+   - parameter progress: the progress amount to set
+
+   - returns: a new instance of the action, where the state is `progress`.
+              This new action will have the loading payload inerithed from the initial
+              loading action and the defined progress value
+  */
+  func progressAction(percentage: Double) -> Self
 }
 
 public extension AsyncAction {
   /**
    Creates a new state starting from the current state and the dispatched action.
    `AsyncAction` implements a default behaviour that invokes 
-   `updatedStateForLoading(currentState:)`, `updatedStateForCompleted(currentState:)`
-   or `updatedStateForFailed(currentState:)` based on the action's state
+   `updatedStateForLoading(currentState:)`, `updatedStateForCompleted(currentState:)`,
+   `updatedStateForFailed(currentState:)` or `updateStateForProgress(currentState:)` based on the action's state
    
    - parameter state:  the current state
    - returns: the new state
@@ -176,52 +201,58 @@ public extension AsyncAction {
 
     case .failed:
       return self.updatedStateForFailed(currentState: currentState)
+      
+    case .progress:
+      return self.updatedStateForProgress(currentState: currentState)
     }
   }
 
   /**
    Creates a new action in the `completed` state
    
-   - parameter payload: the payload of the completed action
+   - parameter configuration: a block that updates the loading action
+   with the information of the completion
+  
    - returns: a new instance of the action, where the state is `completed`.
    This new action will have the loading payload inerithed from the initial
-   loading action and the provided completed payload
+   loading action and the provided additional information
   */
-  public func completedAction(payload: CompletedPayload) -> Self {
+  public func completedAction(_ configuration: (inout Self) -> ()) -> Self {
     var copy = self
-    copy.completedPayload = payload
     copy.state = .completed
+    configuration(&copy)
     return copy
   }
-
+  
   /**
    Creates a new action in the `failed` state
    
-   - parameter payload: the payload of the failed action
+   - parameter configuration: a block that updates the loading action
+   with the information of the failure
+   
    - returns: a new instance of the action, where the state is `failed`.
    This new action will have the loading payload inerithed from the initial
-   loading action and the provided failed payload
-  */
-  public func failedAction(payload: FailedPayload) -> Self {
+   loading action and the provided additional information
+   */
+  public func failedAction(_ configuration: (inout Self) -> ()) -> Self {
     var copy = self
-    copy.failedPayload = payload
     copy.state = .failed
+    configuration(&copy)
     return copy
   }
-}
-
-public extension AsyncAction where Self: ActionWithSideEffect {
+  
   /**
-   Implementation of the `ActionWithSideEffect` type erasure.
-   We don't invoke the side effect if the state of the action is not loading.
-   This is because we want to trigger side effects only during the loading phase.
+   Creates a new action in the `progress` state
+   
+   - parameter progress: the progress amount to set
+   
+   - returns: a new instance of the action, where the state is `progress`.
+   This new action will have the loading payload inerithed from the initial
+   loading action and the defined progress value
   */
-  func anySideEffect(state: State,
-                     dispatch: @escaping StoreDispatch,
-                     dependencies: SideEffectDependencyContainer) {
-
-    if case .loading = self.state {
-      self.sideEffect(state: state, dispatch: dispatch, dependencies: dependencies)
-    }
+  public func progressAction(percentage: Double) -> Self {
+    var copy = self
+    copy.state = .progress(percentage: percentage)
+    return copy
   }
 }
