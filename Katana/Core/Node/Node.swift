@@ -521,16 +521,13 @@ extension Node {
     let randomID = Int.random
     self.animationID = randomID
     
-    // if there aren't children that are removed in the animated transition, we don't need the last step
-    let needsLastStep = finalChildren.count != secondTransitionChildren.count
-    
     // if there aren't children that are added in the animated transition, we don't need the first step
     let needsFirstStep = initialChildren.count != firstTransitionChildren.count
     
     let finalCompletion = { [weak self] in
       // we need to check the animation hash. If it is the same it means the animation has not been interrupted.
       // If an animation is interrupted, we don't need to execute the last step for that specific animation
-      if let id = self?.animationID, id == randomID, needsLastStep {
+      if let id = self?.animationID, id == randomID {
         // final state
         self?.update(newChildrenDescriptions: finalChildren, animation: .none, completion: completion)
         
