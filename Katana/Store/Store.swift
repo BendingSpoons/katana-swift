@@ -66,7 +66,7 @@ open class Store<StateType: State> {
    
    - seeAlso: `ActionWithSideEffect`
   */
-  fileprivate let dependencies: SideEffectDependencyContainer.Type
+  fileprivate var dependencies: SideEffectDependencyContainer!
 
   /**
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
@@ -101,8 +101,6 @@ open class Store<StateType: State> {
     self.listeners = []
     self.state = StateType()
     self.middleware = middleware
-    self.dependencies = dependencies
-    
     // create the dispatch function
 
     let getState = { [unowned self] () -> StateType in
@@ -114,6 +112,7 @@ open class Store<StateType: State> {
     }
     
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
+    self.dependencies = dependencies.init(dispatch: self.dispatchFunction)
   }
 
   /**
@@ -216,14 +215,11 @@ fileprivate extension Store {
       return
     }
 
-    let dispatch = self.dispatch
-    let container = self.dependencies.init(state: state, dispatch: dispatch)
-
     action.sideEffect(
       currentState: currentState,
       previousState: previousState,
-      dispatch: dispatch,
-      dependencies: container
+      dispatch: self.dispatch,
+      dependencies: self.dependencies
     )
   }
 }

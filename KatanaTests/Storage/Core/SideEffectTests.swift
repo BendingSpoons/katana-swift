@@ -59,28 +59,33 @@ class SideEffectTests: XCTestCase {
     }
   }
 
-  func containerInvokedWithProperState() {
-    var invokedContainer: SideEffectDependencyContainer?
+  func testSideEffectInvokedWithSameContainer() {
+    var firstInvokedContainer: SideEffectDependencyContainer?
+    var secondInvokedContainer: SideEffectDependencyContainer?
 
     let expectation = self.expectation(description: "Side effect")
 
-    let action = SpyActionWithSideEffect(sideEffectInvokedClosure: { (currentState, previousState, _, dependencyContainer)  in
-      invokedContainer = dependencyContainer
-      expectation.fulfill()
+    let action = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, _, dependencyContainer)  in
+      firstInvokedContainer = dependencyContainer
 
     }, updatedInvokedClosure: nil)
     
+    let secondAction = SpyActionWithSideEffect(sideEffectInvokedClosure: { (_, _, _, dependencyContainer)  in
+      secondInvokedContainer = dependencyContainer
+      expectation.fulfill()
+      
+    }, updatedInvokedClosure: nil)
+    
     let store = Store<AppState>(middleware: [], dependencies: SimpleDependencyContainer.self)
-    let initialState = store.state
+    
     store.dispatch(action)
+    store.dispatch(secondAction)
 
     self.waitForExpectations(timeout: 10) { (error) in
       XCTAssertNil(error)
-
-      let c = invokedContainer as? SimpleDependencyContainer
-
-      XCTAssertNotNil(c)
-      XCTAssertEqual(c?.state, initialState)
+      XCTAssertNotNil(firstInvokedContainer)
+      XCTAssertNotNil(secondInvokedContainer)
+      XCTAssertTrue(firstInvokedContainer === secondInvokedContainer)
     }
   }
 

@@ -26,11 +26,6 @@ import Foundation
  of the things you need in the side effect. For example, in a test, you may want to
  inject a mocked version of the class that manages the API requests, in order to control
  the result of the network call.
- 
- Every time a side effect is triggered, the dependencies (or better, the `SideEffectDependencyContainer`)
- is instantiated from scratch. We do this to avoid that pieces of state are saved in the managers or
- in the classes that there are in the dependencies, since we want to store all the relevant
- information in the `Store`
 */
 public protocol ActionWithSideEffect: Action {
   /**
