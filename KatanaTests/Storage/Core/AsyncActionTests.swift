@@ -46,10 +46,12 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
     self.invokedProgressClosure(self.state.progressPercentage!)
     return currentState
   }
-
-  func sideEffect(state: State,
-                  dispatch: @escaping StoreDispatch,
-                  dependencies: SideEffectDependencyContainer) {
+  
+  public func sideEffect(
+    currentState: State,
+    previousState: State,
+    dispatch: @escaping StoreDispatch,
+    dependencies: SideEffectDependencyContainer) {
 
     self.invokedSideEffectClosure()
   }

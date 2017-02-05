@@ -109,7 +109,7 @@ open class Store<StateType: State> {
       return self.state
     }
     
-    var m = self.middleware.map { middleware in
+    let m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
     
@@ -188,10 +188,11 @@ fileprivate extension Store {
       preconditionFailure("Action updateState returned a wrong state type")
     }
 
+    let previousState = self.state
     self.state = typedNewState
 
     // executes the side effects, if needed
-    self.triggerSideEffect(for: action, state: typedNewState)
+    self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
     
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
@@ -203,9 +204,10 @@ fileprivate extension Store {
     Executes the side effect, if available
    
     - parameter action: the dispatched action
-    - parameter state: the current state
+    - parameter previousState: the previous state
+    - parameter currentState: the current state
   */
-  fileprivate func triggerSideEffect(for action: Action, state: StateType) {
+  fileprivate func triggerSideEffect(for action: Action, previousState: StateType, currentState: StateType) {
     guard let action = action as? ActionWithSideEffect else {
       return
     }
@@ -218,7 +220,8 @@ fileprivate extension Store {
     let container = self.dependencies.init(state: state, dispatch: dispatch)
 
     action.sideEffect(
-      state: state,
+      currentState: currentState,
+      previousState: previousState,
       dispatch: dispatch,
       dependencies: container
     )

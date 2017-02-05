@@ -19,7 +19,7 @@ import Foundation
  interact with disk, network and so on.
  
  ### Dependencies
- You can see from the `sideEffect(state:dispatch:dependencies:)` signature that
+ You can see from the `sideEffect(currentState:previousState:dispatch:dependencies:)` signature that
  a side effect takes as input some dependencies. This is a form of dependency injection
  for the side effects. By using only methods coming from the dependencies (instead of relying on
  global imports), testing is much more easier since you can inject a mocked version
@@ -35,14 +35,18 @@ import Foundation
 public protocol ActionWithSideEffect: Action {
   /**
    Performs the side effect. This method is invoked when the action is dispatched,
-   before it goes in the `updateState(currentState:action:)` function.
+   after the `updateState(currentState:action:)` function.
    
-   - parameter state:         the current state
-   - parameter dispatch:      a closure that can be used to dispatch new actions
-   - parameter dependencies:  the dependencies of the side effect
+   - parameter currentState:    the current state. The one returned by the
+                                `updateState(currentState:action:)` method
+   - parameter previousState:   the state of the store before the `updateState(currentState:action:)`
+                                invokation
+   - parameter dispatch:        a closure that can be used to dispatch new actions
+   - parameter dependencies:    the dependencies of the side effect
   */
   func sideEffect(
-    state: State,
+    currentState: State,
+    previousState: State,
     dispatch: @escaping StoreDispatch,
     dependencies: SideEffectDependencyContainer
   )
