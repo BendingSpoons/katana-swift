@@ -14,7 +14,7 @@ import Foundation
  
  A side effect is nothing more than a piece of code that can interact with external
  services or APIs (e.g., make a network request, get information from the disk and so on).
- Side effects are needed because the `updateState(currentState:)` function (which is the only other operation
+ Side effects are needed because the `updatedState(currentState:)` function (which is the only other operation
  that is performed when an action is dispatched) must be pure and therefore it cannot
  interact with disk, network and so on.
  
