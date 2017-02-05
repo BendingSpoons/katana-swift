@@ -10,7 +10,6 @@ import Foundation
 import Katana
 
 struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
-    
     public struct CompletedActionPayload {
         var posts: [Post]
         var allFetched: Bool = false
@@ -56,26 +55,26 @@ struct FetchMorePosts: AsyncAction, ActionWithSideEffect {
     }
   
     public func sideEffect(
-        state: State,
-        dispatch: @escaping StoreDispatch,
-        dependencies: SideEffectDependencyContainer
-    ) {
-        
-        let castedState = state as! CodingLoveState
-        let page: Int = castedState.page
-        
-        let postsProvider = dependencies as! PostsProvider
-        
-        postsProvider.fetchPosts(for: page) { (result, errorMessage) in
-            if let data = result {
-                let (posts, allFetched) = data
-                dispatch(self.completedAction {
-                  $0.completedPayload = CompletedActionPayload(posts: posts, allFetched: allFetched)
-                })
-            
-            } else {
-                dispatch(self.failedAction { $0.failedPayload = errorMessage! })
-            }
+      currentState: State,
+      previousState: State,
+      dispatch: @escaping StoreDispatch,
+      dependencies: SideEffectDependencyContainer) {
+    
+      let castedState = currentState as! CodingLoveState
+      let page: Int = castedState.page
+      
+      let postsProvider = dependencies as! PostsProvider
+      
+      postsProvider.fetchPosts(for: page) { (result, errorMessage) in
+        if let data = result {
+          let (posts, allFetched) = data
+          dispatch(self.completedAction {
+            $0.completedPayload = CompletedActionPayload(posts: posts, allFetched: allFetched)
+          })
+          
+        } else {
+          dispatch(self.failedAction { $0.failedPayload = errorMessage! })
         }
+      }
     }
 }
