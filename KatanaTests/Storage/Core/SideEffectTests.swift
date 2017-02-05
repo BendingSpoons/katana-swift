@@ -109,7 +109,7 @@ class SideEffectTests: XCTestCase {
       XCTAssertNil(error)
 
       XCTAssertEqual(invocationOrder, [
-        "side effect 1", "update state 1", "side effect 2", "update state 2"
+        "update state 1", "side effect 1", "update state 2", "side effect 2"
       ])
     }
   }

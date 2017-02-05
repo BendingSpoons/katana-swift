@@ -39,9 +39,9 @@ public protocol AnyStore: class {
  the store will execute the following operations:
  
  - it executes the middleware
- - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
+ - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it invokes all the listeners
  
  #### UI Integration
@@ -109,12 +109,9 @@ open class Store<StateType: State> {
       return self.state
     }
     
-    var m = self.middleware.reversed().map { middleware in
+    var m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
-    
-    // add the side effect function as the first in the chain
-    m.append(self.triggerSideEffect)
     
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
   }
@@ -193,37 +190,38 @@ fileprivate extension Store {
 
     self.state = typedNewState
 
+    // executes the side effects, if needed
+    self.triggerSideEffect(for: action, state: typedNewState)
+    
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
       self.listeners.forEach { $0() }
     }
   }
 
-  /// Middleware-like function that executes the side effect of the action, if available
-  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((Action) -> ()) {
-    return { action in
-      defer {
-        next(action)
-      }
-
-      guard let action = action as? ActionWithSideEffect else {
-        return
-      }
-      
-      if let async = action as? AnyAsyncAction, async.state != .loading {
-        return
-      }
-
-      let state = self.state
-      let dispatch = self.dispatch
-      let container = self.dependencies.init(state: state, dispatch: dispatch)
-
-      action.sideEffect(
-        state: state,
-        dispatch: dispatch,
-        dependencies: container
-      )
+  /**
+    Executes the side effect, if available
+   
+    - parameter action: the dispatched action
+    - parameter state: the current state
+  */
+  fileprivate func triggerSideEffect(for action: Action, state: StateType) {
+    guard let action = action as? ActionWithSideEffect else {
+      return
     }
+    
+    if let async = action as? AnyAsyncAction, async.state != .loading {
+      return
+    }
+
+    let dispatch = self.dispatch
+    let container = self.dependencies.init(state: state, dispatch: dispatch)
+
+    action.sideEffect(
+      state: state,
+      dispatch: dispatch,
+      dependencies: container
+    )
   }
 }
 
