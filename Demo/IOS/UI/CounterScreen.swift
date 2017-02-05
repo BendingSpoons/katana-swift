@@ -50,10 +50,10 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
         $0.setKey(Keys.decrementButton)
         $0.titles[.normal] = "Decrement"
         $0.backgroundColor = .dogwoodRose
-        $0.titleColors = [.highlighted : .jet]
+        $0.titleColors = [.highlighted: .jet]
 
         $0.touchHandlers = [
-          .touchUpInside : {
+          .touchUpInside: {
             dispatch(DecrementCounter())
           }
         ]
@@ -62,10 +62,10 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
         $0.setKey(Keys.incrementButton)
         $0.titles[.normal] = "Increment"
         $0.backgroundColor = .japaneseIndigo
-        $0.titleColors = [.highlighted : .jet]
+        $0.titleColors = [.highlighted: .jet]
 
         $0.touchHandlers = [
-          .touchUpInside : {
+          .touchUpInside: {
             dispatch(IncrementCounter())
           }
         ]
