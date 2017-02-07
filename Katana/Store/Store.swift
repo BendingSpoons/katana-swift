@@ -39,9 +39,9 @@ public protocol AnyStore: class {
  the store will execute the following operations:
  
  - it executes the middleware
- - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it creates the new state, by invoking the `updateState` function of the action
  - it updates the state
+ - it executes the side effect of the action, if implemented (see `ActionWithSideEffect`)
  - it invokes all the listeners
  
  #### UI Integration
@@ -66,7 +66,7 @@ open class Store<StateType: State> {
    
    - seeAlso: `ActionWithSideEffect`
   */
-  fileprivate let dependencies: SideEffectDependencyContainer.Type
+  fileprivate var dependencies: SideEffectDependencyContainer!
 
   /**
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
@@ -101,22 +101,18 @@ open class Store<StateType: State> {
     self.listeners = []
     self.state = StateType()
     self.middleware = middleware
-    self.dependencies = dependencies
-    
     // create the dispatch function
 
     let getState = { [unowned self] () -> StateType in
       return self.state
     }
     
-    var m = self.middleware.reversed().map { middleware in
+    let m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
     
-    // add the side effect function as the first in the chain
-    m.append(self.triggerSideEffect)
-    
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
+    self.dependencies = dependencies.init(dispatch: self.dispatchFunction)
   }
 
   /**
@@ -191,39 +187,40 @@ fileprivate extension Store {
       preconditionFailure("Action updateState returned a wrong state type")
     }
 
+    let previousState = self.state
     self.state = typedNewState
 
+    // executes the side effects, if needed
+    self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
+    
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
       self.listeners.forEach { $0() }
     }
   }
 
-  /// Middleware-like function that executes the side effect of the action, if available
-  fileprivate func triggerSideEffect(next: @escaping StoreDispatch) -> ((Action) -> ()) {
-    return { action in
-      defer {
-        next(action)
-      }
-
-      guard let action = action as? ActionWithSideEffect else {
-        return
-      }
-      
-      if let async = action as? AnyAsyncAction, async.state != .loading {
-        return
-      }
-
-      let state = self.state
-      let dispatch = self.dispatch
-      let container = self.dependencies.init(state: state, dispatch: dispatch)
-
-      action.sideEffect(
-        state: state,
-        dispatch: dispatch,
-        dependencies: container
-      )
+  /**
+    Executes the side effect, if available
+   
+    - parameter action: the dispatched action
+    - parameter previousState: the previous state
+    - parameter currentState: the current state
+  */
+  fileprivate func triggerSideEffect(for action: Action, previousState: StateType, currentState: StateType) {
+    guard let action = action as? ActionWithSideEffect else {
+      return
     }
+    
+    if let async = action as? AnyAsyncAction, async.state != .loading {
+      return
+    }
+
+    action.sideEffect(
+      currentState: currentState,
+      previousState: previousState,
+      dispatch: self.dispatch,
+      dependencies: self.dependencies
+    )
   }
 }
 
