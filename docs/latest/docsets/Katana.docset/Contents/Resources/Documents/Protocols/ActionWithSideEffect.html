@@ -32,6 +32,9 @@
             <a href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Node.html">Node</a>
               </li>
               <li class="nav-group-task">
@@ -190,9 +193,6 @@
                 <a href="../Structs/EmptyProps.html">EmptyProps</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
-              </li>
-              <li class="nav-group-task">
                 <a href="../Structs/EmptyState.html">EmptyState</a>
               </li>
               <li class="nav-group-task">
@@ -239,24 +239,19 @@ dispatched.</p>
 
 <p>A side effect is nothing more than a piece of code that can interact with external
 services or APIs (e.g., make a network request, get information from the disk and so on).
-Side effects are needed because the <code>updateState(currentState:)</code> function (which is the only other operation
+Side effects are needed because the <code>updatedState(currentState:)</code> function (which is the only other operation
 that is performed when an action is dispatched) must be pure and therefore it cannot
 interact with disk, network and so on.</p>
 
 <p><a href='#dependencies' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='dependencies'>Dependencies</h3></p>
 
-<p>You can see from the <code>sideEffect(state:dispatch:dependencies:)</code> signature that
+<p>You can see from the <code>sideEffect(currentState:previousState:dispatch:dependencies:)</code> signature that
 a side effect takes as input some dependencies. This is a form of dependency injection
 for the side effects. By using only methods coming from the dependencies (instead of relying on
 global imports), testing is much more easier since you can inject a mocked version
 of the things you need in the side effect. For example, in a test, you may want to
 inject a mocked version of the class that manages the API requests, in order to control
 the result of the network call.</p>
-
-<p>Every time a side effect is triggered, the dependencies (or better, the <code><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></code>)
-is instantiated from scratch. We do this to avoid that pieces of state are saved in the managers or
-in the classes that there are in the dependencies, since we want to store all the relevant
-information in the <code><a href="../Classes/Store.html">Store</a></code></p>
 
           </section>
           <section class="section task-group-section">
@@ -265,9 +260,9 @@ information in the <code><a href="../Classes/Store.html">Store</a></code></p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FP6Katana20ActionWithSideEffect10sideEffectFT5statePS_5State_8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_"></a>
-                    <a name="//apple_ref/swift/Method/sideEffect(state:dispatch:dependencies:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FP6Katana20ActionWithSideEffect10sideEffectFT5statePS_5State_8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_">sideEffect(state:dispatch:dependencies:)</a>
+                    <a name="/s:FP6Katana20ActionWithSideEffect10sideEffectFT12currentStatePS_5State_13previousStatePS1__8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_"></a>
+                    <a name="//apple_ref/swift/Method/sideEffect(currentState:previousState:dispatch:dependencies:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FP6Katana20ActionWithSideEffect10sideEffectFT12currentStatePS_5State_13previousStatePS1__8dispatchFPS_6Action_T_12dependenciesPS_29SideEffectDependencyContainer__T_">sideEffect(currentState:previousState:dispatch:dependencies:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -276,7 +271,7 @@ information in the <code><a href="../Classes/Store.html">Store</a></code></p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>Performs the side effect. This method is invoked when the action is dispatched,
-before it goes in the <code>updateState(currentState:action:)</code> function.</p>
+after the <code>updateState(currentState:action:)</code> function.</p>
 
                       </div>
                       <div class="declaration">
@@ -294,12 +289,25 @@ before it goes in the <code>updateState(currentState:action:)</code> function.</
                             <tr>
                               <td>
                                 <code>
-                                <em>state</em>
+                                <em>currentState</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>the current state</p>
+                                  <p>the current state. The one returned by the <code>updateState(currentState:action:)</code> method</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>previousState</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the state of the store before the <code>updateState(currentState:action:)</code> invokation</p>
 
                                 </div>
                               </td>
@@ -334,7 +342,7 @@ before it goes in the <code>updateState(currentState:action:)</code> function.</
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.6.1/Katana/Store/ActionWithSideEffect.swift#L44">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.0/Katana/Store/ActionWithSideEffect.swift#L42">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -344,7 +352,7 @@ before it goes in the <code>updateState(currentState:action:)</code> function.</
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-01-31)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-02-07)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
