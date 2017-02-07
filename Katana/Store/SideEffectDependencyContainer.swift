@@ -8,29 +8,25 @@
 
 import Foundation
 
-/**
- Protocol that the side effect dependencies container should implement
-*/
-public protocol SideEffectDependencyContainer {
+/// Protocol that the side effect dependencies container should implement
+public protocol SideEffectDependencyContainer: class {
   /**
    Creates a new instance of the container.
-   A new container is created every time a side effect is invoked
+   The container is instantiated when the store is instantiated
    
-   - parameter state:     the current state
    - parameter dispatch:  a closure that can be used to dispatch actions
    - returns: an instance of the container
   */
-  init(state: State, dispatch: @escaping StoreDispatch)
+  init(dispatch: @escaping StoreDispatch)
 }
 
 /// An empty dependencies container. It can be used for testing purposes or you don't need dependencies
-public struct EmptySideEffectDependencyContainer: SideEffectDependencyContainer {
+public class EmptySideEffectDependencyContainer: SideEffectDependencyContainer {
   /**
-   Creates the empty dependency container
+   Creates an empty dependency container
    
-   - parameter state:     the current state
    - parameter dispatch:  a closure that can be used to dispatch actions
    - returns: an instance of the container
   */
-  public init(state: State, dispatch: @escaping StoreDispatch) {}
+  public required init(dispatch: @escaping StoreDispatch) {}
 }

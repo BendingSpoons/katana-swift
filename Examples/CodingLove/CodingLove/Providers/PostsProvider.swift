@@ -11,12 +11,8 @@ import Katana
 
 let postsPerPage = 3
 
-struct PostsProvider: SideEffectDependencyContainer {
-    var posts: [Post]
-    
-    public init(state: State, dispatch: @escaping StoreDispatch) {
-        self.posts = [Post]()
-    }
+class PostsProvider: SideEffectDependencyContainer {
+    public required init(dispatch: @escaping StoreDispatch) {}
     
     public func fetchPosts(for page: Int, completion: @escaping (([Post], Bool)?, String?) -> ()) {
         DispatchQueue.global().async {

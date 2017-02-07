@@ -55,7 +55,8 @@ struct SyncAddTodoAction: Action {
 
 struct SpyActionWithSideEffect: ActionWithSideEffect {
   typealias ActionWithSideEffectCallback = (
-    _ state: State,
+    _ currentState: State,
+    _ previousState: State,
     _ dispatch: @escaping StoreDispatch,
     _ dependencies: SideEffectDependencyContainer) -> ()
 
@@ -66,11 +67,13 @@ struct SpyActionWithSideEffect: ActionWithSideEffect {
     self.updatedInvokedClosure?()
     return currentState
   }
-
-  func sideEffect(state: State,
-                         dispatch: @escaping StoreDispatch,
-                         dependencies: SideEffectDependencyContainer
-    ) {
-    self.sideEffectInvokedClosure?(state, dispatch, dependencies)
+  
+  public func sideEffect(
+    currentState: State,
+    previousState: State,
+    dispatch: @escaping StoreDispatch,
+    dependencies: SideEffectDependencyContainer) {
+    
+    self.sideEffectInvokedClosure?(currentState, previousState, dispatch, dependencies)
   }
 }
