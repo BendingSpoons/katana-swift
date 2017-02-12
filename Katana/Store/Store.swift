@@ -112,7 +112,7 @@ open class Store<StateType: State> {
     }
     
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
-    self.dependencies = dependencies.init(dispatch: self.dispatchFunction)
+    self.dependencies = dependencies.init(dispatch: self.dispatchFunction, getState: getState)
   }
 
   /**

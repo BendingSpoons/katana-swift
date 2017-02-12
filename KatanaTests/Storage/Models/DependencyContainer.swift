@@ -10,5 +10,7 @@ import Foundation
 import Katana
 
 class SimpleDependencyContainer: SideEffectDependencyContainer {
-  public required init(dispatch: @escaping StoreDispatch) {}
+  public required init(dispatch: @escaping StoreDispatch, getState: @escaping () -> State) {
+    
+  }
 }
