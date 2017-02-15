@@ -19,6 +19,8 @@ public extension Button {
 
     public var backgroundColor: NSColor = .white
     public var backgroundHighlightedColor: NSColor?
+    public var borderColor: NSColor = .clear
+    public var borderWidth: Value = .zero
     public var cornerRadius: Value = .zero
     public var title: NSAttributedString = NSAttributedString()
     public var toolTip: String?
@@ -57,6 +59,8 @@ public struct Button: NodeDescription, NodeDescriptionWithChildren {
     view.backgroundHighlightedColor = props.backgroundHighlightedColor ?? props.backgroundColor
     view.attributedTitle = props.title
     view.clickHandler = props.clickHandler
+    view.borderColor = props.borderColor
+    view.borderWidth = props.borderWidth.scale(by: node.plasticMultiplier)
     view.cornerRadius = props.cornerRadius.scale(by: node.plasticMultiplier)
     view.toolTip = props.toolTip
   }

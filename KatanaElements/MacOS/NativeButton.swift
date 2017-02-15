@@ -24,6 +24,18 @@ open class NativeButton: NSButton {
     }
   }
   
+  open var borderColor: NSColor = NSColor.clear {
+    didSet {
+      self.needsDisplay = true
+    }
+  }
+  
+  open var borderWidth: CGFloat = 0 {
+    didSet {
+      self.needsDisplay = true
+    }
+  }
+  
   open var cornerRadius: CGFloat = 0 {
     didSet {
       self.needsDisplay = true
@@ -59,6 +71,8 @@ open class NativeButton: NSButton {
     } else {
       self.layer?.backgroundColor = self.backgroundColor.cgColor
     }
+    self.layer?.borderColor = self.borderColor.cgColor
+    self.layer?.borderWidth = self.borderWidth
     self.layer?.cornerRadius = self.cornerRadius
   }
 
