@@ -217,7 +217,7 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided additional information
   */
-  public func completedAction(_ configuration: (inout Self) -> ()) -> Self {
+  public func completedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
     var copy = self
     copy.state = .completed
     configuration(&copy)
@@ -234,7 +234,7 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided additional information
    */
-  public func failedAction(_ configuration: (inout Self) -> ()) -> Self {
+  public func failedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
     var copy = self
     copy.state = .failed
     configuration(&copy)
