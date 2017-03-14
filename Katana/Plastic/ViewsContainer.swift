@@ -91,7 +91,7 @@ public class ViewsContainer<Key> {
     var frames = [String: CGRect]()
 
     for (key, value) in self.views {
-      frames["\(key)"] = value.frame
+      frames["\(key)"] = value.frame.retinaRounded
     }
 
     return frames
@@ -261,5 +261,32 @@ extension ViewsContainer {
                                 accumulator: &accumulator)
       }
     }
+  }
+}
+
+fileprivate extension CGRect {
+  
+  /**
+   Round the CGRect value to the closest possible decimal
+   value allowed by the retina scale
+   */
+  fileprivate var retinaRounded: CGRect {
+    return CGRect(
+      x: self.origin.x.retinaRounded,
+      y: self.origin.y.retinaRounded,
+      width: self.size.width.retinaRounded,
+      height: self.size.height.retinaRounded
+    )
+  }
+}
+
+fileprivate extension CGFloat {
+  
+  /**
+    Round the CGFloat value to the closest possible decimal
+    value allowed by the retina scale
+  */
+  var retinaRounded: CGFloat {
+    return (self * UIScreen.main.scale).rounded() / UIScreen.main.scale
   }
 }
