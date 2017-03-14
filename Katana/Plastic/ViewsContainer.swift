@@ -287,6 +287,6 @@ fileprivate extension CGFloat {
     value allowed by the retina scale
   */
   var retinaRounded: CGFloat {
-    return (self * UIScreen.main.scale).rounded() / UIScreen.main.scale
+    return (self * Screen.retinaScale).rounded() / Screen.retinaScale
   }
 }

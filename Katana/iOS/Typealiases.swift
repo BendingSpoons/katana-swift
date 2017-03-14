@@ -8,3 +8,10 @@
 
 public typealias DefaultView = UIView
 public typealias FloatEdgeInsets = UIEdgeInsets
+public typealias Screen = UIScreen
+
+extension UIScreen {
+  static var retinaScale: CGFloat {
+    return UIScreen.main.scale
+  }
+}
