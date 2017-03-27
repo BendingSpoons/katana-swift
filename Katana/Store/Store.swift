@@ -74,7 +74,7 @@ open class Store<StateType: State> {
   */
   fileprivate var dispatchFunction: StoreDispatch!
 
-  /// The queue in witch actions are managed
+  /// The queue in which actions are managed
   lazy private var dispatchQueue: DispatchQueue = {
     // serial by default
     return DispatchQueue(label: "katana.store.queue")
