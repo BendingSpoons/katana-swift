@@ -74,9 +74,6 @@ public class Node<Description: NodeDescription> {
    */
   fileprivate weak var myRenderer: Renderer?
   
-  /// Whether the state is mocked
-  fileprivate let isStateMocked: Bool
-  
   fileprivate var storeDispatch: StoreDispatch {
     return self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
   }
@@ -143,11 +140,9 @@ public class Node<Description: NodeDescription> {
       let mockedState = stateMockProvider.state(for: Description.self, props: self.description.props) {
       
       self.state = mockedState
-      self.isStateMocked = true
       
     } else {
       self.state = Description.StateType()
-      self.isStateMocked = false
     }
     
     self.childrenDescriptions  = self.processedChildrenDescriptionsBeforeDraw(
@@ -392,11 +387,6 @@ extension Node {
    - parameter state: the new state
    */
   func update(for state: Description.StateType) {
-    guard !self.isStateMocked else {
-      // state shuldn't change because of internal updates if the state is mocked
-      return
-    }
-
     self.update(for: state, description: self.description, animation: .none)
   }
   
@@ -423,7 +413,6 @@ extension Node {
     let stateToUse: Description.StateType
       
     if
-      self.isStateMocked,
       let provider = self.renderer?.stateMockProvider,
       let mockedState = provider.state(for: Description.self, props: description.props) {
       
