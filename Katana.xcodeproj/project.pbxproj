@@ -203,6 +203,7 @@
 		A1F8E2D91E90EEE400243FCB /* StateMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */; };
 		A1F8E2DC1E90F9D500243FCB /* StateMockProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */; };
 		A1F8E2DD1E90F9D600243FCB /* StateMockProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */; };
+		A1F8E2DE1E9120F300243FCB /* StateMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -1436,6 +1437,7 @@
 				65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */,
 				5115A6FF1E27C5DC007EA0FB /* ActionLinks.swift in Sources */,
 				65BF2EA11DE3639600441784 /* NSView+PlatformNativeView.swift in Sources */,
+				A1F8E2DE1E9120F300243FCB /* StateMockProvider.swift in Sources */,
 				65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
