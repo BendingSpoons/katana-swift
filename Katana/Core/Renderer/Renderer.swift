@@ -51,6 +51,7 @@ open class Renderer {
    
    - parameter rootDescription: the root node description
    - parameter store: the store of the application
+   - parameter stateMockProvider: an optional `StateMockProvider` that can be used to mock the internal states
    - returns: An instance of Renderer that manages rendering and store updates
   */
   public init(rootDescription: AnyNodeDescription, store: AnyStore?, stateMockProvider: StateMockProvider? = nil) {
