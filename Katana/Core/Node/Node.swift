@@ -63,9 +63,7 @@ public class Node<Description: NodeDescription> {
   /// An ID that represent the animation that is currently running
   fileprivate var animationID: Int?
   
-  /**
-   The parent of the node.
-   */
+  /// The parent of the node.
   public fileprivate(set) weak var parent: AnyNode?
   
   /**
@@ -133,13 +131,11 @@ public class Node<Description: NodeDescription> {
     
     let rootRenderer = (renderer != nil ? renderer : parent?.renderer)
     
-    let connectedProps = Node.updatedPropsWithConnect(
+    self.description.props = Node.updatedPropsWithConnect(
       description: description,
       props: description.props,
       store: rootRenderer?.store
     )
-  
-    self.description.props = connectedProps
     
     if
       let unwrappedRootRenderer = rootRenderer,
@@ -396,6 +392,11 @@ extension Node {
    - parameter state: the new state
    */
   func update(for state: Description.StateType) {
+    guard !self.isStateMocked else {
+      // state shuldn't change because of internal updates if the state is mocked
+      return
+    }
+
     self.update(for: state, description: self.description, animation: .none)
   }
   
@@ -418,11 +419,25 @@ extension Node {
               force: Bool = false,
               completion: NodeUpdateCompletion? = nil) {
     
+    // Overwrite the state if the state is mocked
+    let stateToUse: Description.StateType
+      
+    if
+      self.isStateMocked,
+      let provider = self.renderer?.stateMockProvider,
+      let mockedState = provider.state(for: Description.self, props: description.props) {
+      
+      stateToUse = mockedState
+    
+    } else {
+      stateToUse = state
+    }
+      
     let shouldUpdate = Description.shouldUpdate(
       currentProps: self.description.props,
       nextProps: description.props,
       currentState: self.state,
-      nextState: state
+      nextState: stateToUse
     )
     
     guard force || shouldUpdate else {
@@ -430,7 +445,7 @@ extension Node {
       return
     }
     
-    var newState = state
+    var newState = stateToUse
     
     // invoke the proper lifecycle hook if props changes
     if self.description.props != description.props {
