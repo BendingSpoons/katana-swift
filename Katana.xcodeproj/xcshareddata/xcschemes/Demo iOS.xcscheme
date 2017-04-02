@@ -1,20 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0810"
+   LastUpgradeVersion = "0700"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
-            buildForTesting = "YES"
+            buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
             buildForArchiving = "YES"
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "6549948D1DD31BA70057D4BB"
+               BlueprintIdentifier = "686AEF0312A3C3E3ECE56F93"
                BuildableName = "Demo iOS.app"
                BlueprintName = "Demo iOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6549948D1DD31BA70057D4BB"
+            BlueprintIdentifier = "686AEF0312A3C3E3ECE56F93"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6549948D1DD31BA70057D4BB"
+            BlueprintIdentifier = "686AEF0312A3C3E3ECE56F93"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -65,7 +65,7 @@
       </AdditionalOptions>
    </LaunchAction>
    <ProfileAction
-      buildConfiguration = "Release"
+      buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES"
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "6549948D1DD31BA70057D4BB"
+            BlueprintIdentifier = "686AEF0312A3C3E3ECE56F93"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">

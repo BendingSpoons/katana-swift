@@ -41,7 +41,11 @@ class StoreTests: XCTestCase {
 
     _ = store.addListener { [unowned store] in
       newState = store.state
-      dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      
+      if #available(iOS 10.0, OSX 10.12, *) {
+        dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      }
+      
       expectation.fulfill()
     }
 
