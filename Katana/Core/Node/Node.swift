@@ -76,6 +76,9 @@ public class Node<Description: NodeDescription> {
    */
   fileprivate weak var myRenderer: Renderer?
   
+  /// Whether the state is mocked
+  fileprivate let isStateMocked: Bool
+  
   fileprivate var storeDispatch: StoreDispatch {
     return self.renderer?.store?.dispatch ?? { fatalError("\($0) cannot be dispatched. Store not avaiable.") }
   }
@@ -125,11 +128,31 @@ public class Node<Description: NodeDescription> {
     }
     
     self.description = description
-    self.state = Description.StateType()
     self.parent = parent
     self.myRenderer = renderer
     
-    self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
+    let rootRenderer = (renderer != nil ? renderer : parent?.renderer)
+    
+    let connectedProps = Node.updatedPropsWithConnect(
+      description: description,
+      props: description.props,
+      store: rootRenderer?.store
+    )
+  
+    self.description.props = connectedProps
+    
+    if
+      let unwrappedRootRenderer = rootRenderer,
+      let stateMockProvider = unwrappedRootRenderer.stateMockProvider,
+      let mockedState = stateMockProvider.state(for: Description.self, props: self.description.props) {
+      
+      self.state = mockedState
+      self.isStateMocked = true
+      
+    } else {
+      self.state = Description.StateType()
+      self.isStateMocked = false
+    }
     
     self.childrenDescriptions  = self.processedChildrenDescriptionsBeforeDraw(
       self.getChildrenDescriptions()
@@ -341,14 +364,19 @@ extension Node {
    
    - parameter description: the `NodeDescription` to use to update the properties
    - parameter props:       the properties to update
+   - parameter store:       the store to which the node is connected to
    
    - returns: the updated properties
    */
-  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
+  static func updatedPropsWithConnect(
+    description: Description,
+    props: Description.PropsType,
+    store: AnyStore?) -> Description.PropsType {
+
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.renderer?.store else {
+      guard let store = store else {
         fatalError("connected node lacks store")
       }
       
