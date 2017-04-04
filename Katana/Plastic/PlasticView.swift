@@ -69,8 +69,8 @@ public class PlasticView {
     }
 
     set(newValue) {
-      oldestConstraintX = newestConstraintX
-      newestConstraintX = newValue
+      self.oldestConstraintX = newestConstraintX
+      self.newestConstraintX = newValue
     }
   }
 
@@ -81,8 +81,8 @@ public class PlasticView {
     }
 
     set(newValue) {
-      oldestConstraintY = newestConstraintY
-      newestConstraintY = newValue
+      self.oldestConstraintY = newestConstraintY
+      self.newestConstraintY = newValue
     }
   }
 
@@ -217,10 +217,10 @@ public class PlasticView {
       let newBottom = newValue.coordinate
       var newHeight = scaleValue(self.height)
 
-      if oldestConstraintY == .top {
+      if self.oldestConstraintY == .top {
         newHeight = max(newBottom - self.top.coordinate, 0)
 
-      } else if oldestConstraintY == .centerY {
+      } else if self.oldestConstraintY == .centerY {
         newHeight = max(2 * (newBottom - self.centerY.coordinate), 0)
       }
 
@@ -245,10 +245,10 @@ public class PlasticView {
       let newTop = newValue.coordinate
       var newHeight = scaleValue(self.height)
 
-      if self.constraintY == .bottom {
+      if self.oldestConstraintY == .bottom {
         newHeight = max(self.bottom.coordinate - newTop, 0)
 
-      } else if self.constraintY == .centerY {
+      } else if self.oldestConstraintY == .centerY {
         newHeight = max(2.0 * (self.centerY.coordinate - newTop), 0.0)
       }
 

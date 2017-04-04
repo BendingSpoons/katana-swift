@@ -32,6 +32,175 @@ class PlasticBasicLayoutTests: XCTestCase {
     XCTAssertEqual(v1.frame.size.height, v2Frame.size.height)
   }
 
+  func testShouldAssignHeightFromTopAndBottom() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.top = v2.top
+    v1.bottom = v2.bottom
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+  func testShouldAssignHeightFromBottomAndTop() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.bottom = v2.bottom
+    v1.top = v2.top
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+  func testShouldAssignHeightFromCenterYAndBottom() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.centerY = v2.centerY
+    v1.bottom = v2.bottom
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+  func testShouldAssignHeightFromBottomAndCenterY() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.bottom = v2.bottom
+    v1.centerY = v2.centerY
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+  func testShouldAssignHeightFromTopAndCenterY() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.top = v2.top
+    v1.centerY = v2.centerY
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+  func testShouldAssignHeightFromCenterYAndTop() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.centerY = v2.centerY
+    v1.top = v2.top
+    XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
+  }
+
+
+  func testShouldAssignWidthFromLeftAndRight() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.left = v2.left
+    v1.right = v2.right
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
+  func testShouldAssignWidthFromRightAndLeft() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.right = v2.right
+    v1.left = v2.left
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
+  func testShouldAssignWidthFromLeftAndCenterX() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.left = v2.left
+    v1.centerX = v2.centerX
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
+  func testShouldAssignWidthFromCenterXAndLeft() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.centerX = v2.centerX
+    v1.left = v2.left
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
+  func testShouldAssignWidthFromCenterXAndRight() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.centerX = v2.centerX
+    v1.right = v2.right
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
+  func testShouldAssignWidthFromRightAndCenterX() {
+    let hM = DummyHierarchyManager()
+    let multiplier: CGFloat = 0.66
+
+    let v1 = PlasticView(hierarchyManager: hM, key: "A", multiplier: multiplier, frame: .zero)
+
+    let v2Frame = CGRect(x: 20, y: 50, width: 400, height: 400)
+    let v2 = PlasticView(hierarchyManager: hM, key: "B", multiplier: multiplier, frame: v2Frame)
+
+    v1.right = v2.right
+    v1.centerX = v2.centerX
+    XCTAssertEqual(v1.frame.size.width, v2.frame.size.width)
+  }
+
   func testShouldAssignWidth() {
     let hM = DummyHierarchyManager()
     let multiplier: CGFloat = 0.66
