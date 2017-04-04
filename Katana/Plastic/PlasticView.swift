@@ -165,10 +165,10 @@ public class PlasticView {
       let newHeight = max(scaleValue(newValue), 0)
       var newTop = self.top.coordinate
 
-      if oldestConstraintY == .bottom {
+      if self.oldestConstraintY == .bottom {
         newTop = self.bottom.coordinate - newHeight
 
-      } else if oldestConstraintY == .centerY {
+      } else if self.oldestConstraintY == .centerY {
         newTop = self.centerY.coordinate - newHeight / 2.0
       }
 
