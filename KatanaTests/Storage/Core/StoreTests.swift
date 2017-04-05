@@ -34,6 +34,26 @@ class StoreTests: XCTestCase {
     }
   }
 
+  func testDispatchWithinMiddleware() {
+    let middleware: StoreMiddleware = { getState, dispatch in
+      dispatch(AddTodoAction(title: "New Todo"))
+      return { next in
+        return { action in
+          next(action)
+        }
+      }
+    }
+
+    let store = Store<AppState>(
+      middleware: [middleware],
+      dependencies: EmptySideEffectDependencyContainer.self
+    )
+
+    let state = store.state
+    XCTAssertEqual(state.todo.todos.count, 1)
+    XCTAssertEqual(state.todo.todos[0].title, "New Todo")
+  }
+
   func testListener() {
     let expectation = self.expectation(description: "Store listener")
     let store = Store<AppState>()

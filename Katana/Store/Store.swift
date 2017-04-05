@@ -72,10 +72,10 @@ open class Store<StateType: State> {
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
     The variable is explicitly unwrapped because of the init method
   */
-  fileprivate var dispatchFunction: StoreDispatch!
+  fileprivate var dispatchFunction: StoreDispatch
 
   /// The queue in which actions are managed
-  lazy private var dispatchQueue: DispatchQueue = {
+  lazy fileprivate var dispatchQueue: DispatchQueue = {
     // serial by default
     return DispatchQueue(label: "katana.store.queue")
   }()
@@ -103,6 +103,12 @@ open class Store<StateType: State> {
     self.middleware = middleware
     // create the dispatch function
 
+    var temporaryActionQueue: [Action] = []
+
+    self.dispatchFunction = { action in
+      temporaryActionQueue.append(action)
+    }
+
     let getState = { [unowned self] () -> StateType in
       return self.state
     }
@@ -112,6 +118,9 @@ open class Store<StateType: State> {
     }
     
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
+    for action in temporaryActionQueue {
+      self.dispatchFunction(action)
+    }
     self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
   }
 
@@ -137,10 +146,7 @@ open class Store<StateType: State> {
    - parameter action: the action to dispatch
   */
   public func dispatch(_ action: Action) {
-    self.dispatchQueue.async {
-      self.dispatchFunction(action)
-    }
-    
+    self.dispatchFunction(action)
   }
 }
 
@@ -169,9 +175,15 @@ fileprivate extension Store {
     var m = middleware
     let last = m.removeLast()
 
-    return m.reduce(last(storeDispatch), { chain, middleware in
+    let dispatch = m.reduce(last(storeDispatch), { chain, middleware in
       return middleware(chain)
     })
+
+    return { action in
+      self.dispatchQueue.async {
+        dispatch(action)
+      }
+    }
   }
 
   /**
