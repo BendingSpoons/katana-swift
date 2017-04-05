@@ -116,12 +116,13 @@ open class Store<StateType: State> {
     let m = self.middleware.map { middleware in
       middleware(getState, self.dispatch)
     }
-    
+
+    self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
+
     self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
     for action in temporaryActionQueue {
       self.dispatchFunction(action)
     }
-    self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
   }
 
   /**
