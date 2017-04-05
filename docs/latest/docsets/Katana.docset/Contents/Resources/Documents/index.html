@@ -211,6 +211,18 @@
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -299,10 +311,8 @@
 <span class="p">}</span>
 </code></pre>
 
-<p>The app <code>State</code> can only be modified by an <code>Action</code>. An <code>Action</code> represents an event that leads to a change in the <code>State</code> of the app. There are two kind of actions: <code>SyncAction</code> and <code>AsyncAction</code>. You define the behaviour of the action implementing the <code>updatedState()</code> method that will return the new app <code>State</code> based on the current app <code>State</code> and the <code>Action</code> itself.</p>
-<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">IncrementCounter</span><span class="p">:</span> <span class="kt">SyncAction</span> <span class="p">{</span>
-  <span class="k">var</span> <span class="nv">payload</span><span class="p">:</span> <span class="p">()</span>
-
+<p>The app <code>State</code> can only be modified by an <code>Action</code>. An <code>Action</code> represents an event that leads to a change in the <code>State</code> of the app. You define the behaviour of the action implementing the <code>updatedState()</code> method that will return the new app <code>State</code> based on the current app <code>State</code> and the <code>Action</code> itself.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">IncrementCounter</span><span class="p">:</span> <span class="kt">Action</span> <span class="p">{</span>
   <span class="kd">func</span> <span class="nf">updatedState</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">State</span> <span class="p">{</span>
     <span class="k">guard</span> <span class="k">var</span> <span class="nv">state</span> <span class="o">=</span> <span class="n">currentState</span> <span class="k">as?</span> <span class="kt">CounterState</span> <span class="k">else</span> <span class="p">{</span> <span class="nf">fatalError</span><span class="p">(</span><span class="s">"wrong state type"</span><span class="p">)</span>     <span class="p">}</span>
     <span class="n">state</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
@@ -572,25 +582,6 @@ You can install Carthage downloading and running the <code>Carthage.pkg</code> f
 <span class="c1">// render the UI</span>
 <span class="n">renderer</span><span class="o">!.</span><span class="nf">render</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
 </code></pre>
-<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
-
-<ul>
-<li>[x] immutable state</li>
-<li><p>[x] unidirectional data flow</p></li>
-<li><p>[x] sync/async/sideEffect actions</p></li>
-<li><p>[x] middleware</p></li>
-<li><p>[x] automatic UI update</p></li>
-<li><p>[x] native redux-like implementation</p></li>
-<li><p>[x] native react-like implementation</p></li>
-<li><p>[x] declarative UI</p></li>
-<li><p>[x] leverage Plastic layout engine</p></li>
-<li><p>[ ] support other layout engines</p></li>
-<li><p>[ ] declarative Table element</p></li>
-<li><p>[x] macOS support</p></li>
-<li><p>[ ] improve test coverage</p></li>
-<li><p>[ ] expand documentation</p></li>
-<li><p>[ ] write an example about wrapping UIKit view controllers</p></li>
-</ul>
 <a href='#get-in-touch' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='get-in-touch'>Get in touch</h2>
 
 <ul>
@@ -625,7 +616,7 @@ Interested? <a href="http://bndspn.com/2fKggTa">Check us out</a>!</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-03-14)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

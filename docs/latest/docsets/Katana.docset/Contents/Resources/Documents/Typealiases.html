@@ -211,6 +211,18 @@
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -258,7 +270,132 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Core/Node/AnyNode.swift#L12">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Core/Node/AnyNode.swift#L12">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana15StoreMiddleware"></a>
+                    <a name="//apple_ref/swift/Alias/StoreMiddleware" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for the <code><a href="Classes/Store.html">Store</a></code> middleware. Note that the first part of the middleware
+(the one with <code>getState</code> and <code>dispatch</code>) is immediately invoked when the store is created</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StoreMiddleware</span> <span class="o">=</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Store/StoreTypealiases.swift#L21">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana13StoreListener"></a>
+                    <a name="//apple_ref/swift/Alias/StoreListener" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana13StoreListener">StoreListener</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for a <code><a href="Classes/Store.html">Store</a></code> listener</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StoreListener</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Store/StoreTypealiases.swift#L12">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana13StoreDispatch"></a>
+                    <a name="//apple_ref/swift/Alias/StoreDispatch" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana13StoreDispatch">StoreDispatch</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for the <code><a href="Classes/Store.html">Store</a></code> dispatch function</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StoreDispatch</span> <span class="o">=</span> <span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Store/StoreTypealiases.swift#L27">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana16StoreUnsubscribe"></a>
+                    <a name="//apple_ref/swift/Alias/StoreUnsubscribe" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Typealias for the <code><a href="Classes/Store.html">Store</a></code> listener unsubscribe closure</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StoreUnsubscribe</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Store/StoreTypealiases.swift#L15">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -293,7 +430,7 @@ The idea is that props are changed by chaining different transformers.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Core/Animations/AnimationPropsTransfomer.swift#L16">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.5/Katana/Core/Animations/AnimationPropsTransfomer.swift#L16">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -303,7 +440,7 @@ The idea is that props are changed by chaining different transformers.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-03-14)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-05)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
