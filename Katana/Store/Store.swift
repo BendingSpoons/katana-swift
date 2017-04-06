@@ -119,7 +119,13 @@ open class Store<StateType: State> {
 
     self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
 
-    self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
+    let composedMiddleware = self.composeMiddlewares(m, with: self.performDispatch)
+    self.dispatchFunction = { action in
+      self.dispatchQueue.async {
+        composedMiddleware(action)
+      }
+    }
+
     for action in temporaryActionQueue {
       self.dispatchFunction(action)
     }
@@ -176,15 +182,9 @@ fileprivate extension Store {
     var m = middleware
     let last = m.removeLast()
 
-    let dispatch = m.reduce(last(storeDispatch), { chain, middleware in
+    return m.reduce(last(storeDispatch), { chain, middleware in
       return middleware(chain)
     })
-
-    return { action in
-      self.dispatchQueue.async {
-        dispatch(action)
-      }
-    }
   }
 
   /**
