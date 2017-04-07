@@ -9,6 +9,8 @@
 import XCTest
 @testable import Katana
 
+//swiftlint:disable type_body_length
+
 class PlasticBasicLayoutTests: XCTestCase {
   func testShouldAssignHeight() {
     let hM = DummyHierarchyManager()
@@ -115,7 +117,6 @@ class PlasticBasicLayoutTests: XCTestCase {
     v1.top = v2.top
     XCTAssertEqual(v1.frame.size.height, v2.frame.size.height)
   }
-
 
   func testShouldAssignWidthFromLeftAndRight() {
     let hM = DummyHierarchyManager()
