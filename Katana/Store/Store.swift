@@ -69,8 +69,7 @@ open class Store<StateType: State> {
   fileprivate var dependencies: SideEffectDependencyContainer!
 
   /**
-    The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
-    The variable is explicitly unwrapped because of the init method
+    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
   */
   fileprivate var dispatchFunction: StoreDispatch?
 
