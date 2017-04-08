@@ -200,6 +200,10 @@
 		A1CA315D1DC3A24000982BE9 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */; };
 		A1CF3BB91E2FB935007C9E0E /* NodeDescriptionShouldUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */; };
 		A1F88CD31DD0C040004A8285 /* AnimationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F88CD21DD0C040004A8285 /* AnimationContainer.swift */; };
+		A1F8E2D91E90EEE400243FCB /* StateMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */; };
+		A1F8E2DC1E90F9D500243FCB /* StateMockProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */; };
+		A1F8E2DD1E90F9D600243FCB /* StateMockProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */; };
+		A1F8E2DE1E9120F300243FCB /* StateMockProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -404,6 +408,8 @@
 		A1CA315C1DC3A24000982BE9 /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
 		A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NodeDescriptionShouldUpdateTests.swift; sourceTree = "<group>"; };
 		A1F88CD21DD0C040004A8285 /* AnimationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationContainer.swift; sourceTree = "<group>"; };
+		A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMockProvider.swift; sourceTree = "<group>"; };
+		A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateMockProviderTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -522,6 +528,7 @@
 			isa = PBXGroup;
 			children = (
 				813315281D7B726000FBE210 /* Renderer.swift */,
+				A1F8E2D81E90EEE400243FCB /* StateMockProvider.swift */,
 			);
 			path = Renderer;
 			sourceTree = "<group>";
@@ -790,6 +797,7 @@
 				81911D9F1D7D916B00123C54 /* RenderContainersTest.swift */,
 				A19385461E0D1F2100F436D6 /* NodeDescriptionLifecycleTests.swift */,
 				A1CF3BB71E2FB7F0007C9E0E /* NodeDescriptionShouldUpdateTests.swift */,
+				A1F8E2DA1E90F9A800243FCB /* StateMockProviderTests.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -1429,6 +1437,7 @@
 				65BF2E8D1DE339C900441784 /* ActionWithSideEffect.swift in Sources */,
 				5115A6FF1E27C5DC007EA0FB /* ActionLinks.swift in Sources */,
 				65BF2EA11DE3639600441784 /* NSView+PlatformNativeView.swift in Sources */,
+				A1F8E2DE1E9120F300243FCB /* StateMockProvider.swift in Sources */,
 				65BF2E8E1DE339C900441784 /* SideEffectDependencyContainer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1446,6 +1455,7 @@
 				65BF2EF21DE8301E00441784 /* NodeDescriptionTest.swift in Sources */,
 				65BF2EF31DE8301E00441784 /* NodeTest.swift in Sources */,
 				65BF2EF41DE8301E00441784 /* RenderContainersTest.swift in Sources */,
+				A1F8E2DD1E90F9D600243FCB /* StateMockProviderTests.swift in Sources */,
 				65BF2EF51DE8301E00441784 /* Collections.swift in Sources */,
 				65BF2EF61DE8301E00441784 /* HierarchyManagers.swift in Sources */,
 				65BF2EF71DE8301E00441784 /* PlasticBasicLayoutTests.swift in Sources */,
@@ -1515,6 +1525,7 @@
 				65A7223B1DDF5BAF00013E7A /* PlatformNativeView.swift in Sources */,
 				8179CAFB1DDE5F3C000C2164 /* Int+Katana.swift in Sources */,
 				A1C9C1C31DD32D570067F8E0 /* InternalNode.swift in Sources */,
+				A1F8E2D91E90EEE400243FCB /* StateMockProvider.swift in Sources */,
 				A1C9C1CD1DD36BE50067F8E0 /* Animation.swift in Sources */,
 				8133155C1D7B726000FBE210 /* Node.swift in Sources */,
 				A1CA31551DC37DBF00982BE9 /* StoreTypealiases.swift in Sources */,
@@ -1556,6 +1567,7 @@
 				A1576C2D1DC72E03008281C0 /* SideEffectTests.swift in Sources */,
 				A16A746E1DD3DD1200C9560D /* Actions.swift in Sources */,
 				81911DBF1D7D916B00123C54 /* PlasticDimensionsTests.swift in Sources */,
+				A1F8E2DC1E90F9D500243FCB /* StateMockProviderTests.swift in Sources */,
 				81911DBB1D7D916B00123C54 /* HierarchyManagers.swift in Sources */,
 				81911DBC1D7D916B00123C54 /* PlasticBasicLayoutTests.swift in Sources */,
 				81911DC21D7D916B00123C54 /* MiddlewareTests.swift in Sources */,
