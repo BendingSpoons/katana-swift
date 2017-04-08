@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>StateMockProvider Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Class/StateMockProvider" class="dashAnchor"></a>
+    <a title="StateMockProvider Class Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Katana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        StateMockProvider Class Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Node.html">Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticNode.html">PlasticNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticView.html">PlasticView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StateMockProvider.html">StateMockProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewsContainer.html">ViewsContainer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AnimationType.html">AnimationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6Katana9EmptyKeys">EmptyKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNode.html">AnyNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescription.html">AnyNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Childrenable.html">Childrenable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescription.html">NodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/State.html">State</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinker.html">ActionLinker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinks.html">ActionLinks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor.html">Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationProps.html">AnimationProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChildrenAnimations.html">ChildrenAnimations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyProps.html">EmptyProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyState.html">EmptyState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Value.html">Value</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Associated Types.html">Associated Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>StateMockProvider</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StateMockProvider</span></code></pre>
+
+                </div>
+              </div>
+            <p><code>StateMockProvider</code> is a class that can be used to mock the internal state of the descriptions
+for testing purposes.</p>
+
+<p>The basic idea is that the class encaspulates the possible mocks that are defined for a certain test case.
+State mocks are defined in relation to a Description type and a filter. When the UI is rendered, and a
+mock state provider is provided, Katana asks to the provider if there is a mocked state for the description
+it is managing given the props the description has. If there is a mocked state, this state overrides the state.</p>
+
+<p>It is important to note that this mechanism basically inhibits the <code>update</code> method in the descriptions.</p>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    it is important to remember that order matters. If two mocked state are available for the same context
+(that is, description and props), the first will be used.
+
+</div>
+
+<p><a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='usage'>Usage</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">mock</span> <span class="o">=</span> <span class="kt">StateMockProvider</span><span class="p">()</span></p>
+
+<p><span class="n">mock</span><span class="o">.</span><span class="nf">mockState</span><span class="p">(</span><span class="kt">ADescription</span><span class="o">.</span><span class="kt">State</span><span class="p">(),</span> <span class="nv">for</span><span class="p">:</span> <span class="kt">ADescription</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">passingFilter</span><span class="p">:</span> <span class="p">{</span> <span class="n">props</span> <span class="k">in</span>
+<span class="c1">// return true or false based on the props</span>
+<span class="p">})</span></p>
+
+<p><span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span><span class="nv">rootDescription</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span> <span class="nv">stateMockProvider</span><span class="p">:</span> <span class="n">mock</span><span class="p">)</span>
+</code></pre></p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C6Katana17StateMockProvider13FilterClosure"></a>
+                    <a name="//apple_ref/swift/Alias/FilterClosure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C6Katana17StateMockProvider13FilterClosure">FilterClosure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Closure that is used check whether a mocked state should be applied for a description
+that has some properties</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">FilterClosure</span><span class="o">&lt;</span><span class="kt">N</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescription.html">NodeDescription</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">props</span><span class="p">:</span> <span class="kt">N</span><span class="o">.</span><span class="kt"><a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>props</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the props of the description</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>whether the associated state should be applied or not</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.0/Katana/Core/Renderer/StateMockProvider.swift#L45">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Katana17StateMockProvidercFT_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Katana17StateMockProvidercFT_S0_">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new mock provider</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.0/Katana/Core/Renderer/StateMockProvider.swift#L51-L53">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC6Katana17StateMockProvider9mockStateuRxS_15NodeDescriptionrFTwx9StateType3forMx7passingFwx9PropsTypeSb_T_"></a>
+                    <a name="//apple_ref/swift/Method/mockState(_:for:passing:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC6Katana17StateMockProvider9mockStateuRxS_15NodeDescriptionrFTwx9StateType3forMx7passingFwx9PropsTypeSb_T_">mockState(_:for:passing:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Add a new mocked state</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="n">mockState</span><span class="o">&lt;</span><span class="kt">N</span><span class="p">:</span> <span class="kt"><a href="../Protocols/NodeDescription.html">NodeDescription</a></span><span class="o">&gt;</span><span class="p">(</span>
+    <span class="n">_</span> <span class="nv">mockedState</span><span class="p">:</span> <span class="kt">N</span><span class="o">.</span><span class="kt">StateType</span><span class="p">,</span>
+    <span class="k">for</span> <span class="nv">descriptionType</span><span class="p">:</span> <span class="kt">N</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span>
+    <span class="n">passing</span> <span class="nv">filter</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/StateMockProvider.html#/s:C6Katana17StateMockProvider13FilterClosure">FilterClosure</a></span><span class="o">&lt;</span><span class="kt">N</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mockedState</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the state to mock</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>descriptionType</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the description type to which the state will be applied to</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>filter</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a closure that is used to check whether a state should be applied to a specific description with props or not</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.0/Katana/Core/Renderer/StateMockProvider.swift#L63-L78">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-08)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
