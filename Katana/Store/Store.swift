@@ -113,6 +113,9 @@ open class Store<StateType: State> {
     // manage the middleware chain
     
     let getState = { [unowned self] () -> StateType in
+      //swiftlint:disable line_length
+      assert(!self.actionsQueue.isSuspended, "The state is not ready yet. You should wait until the state is ready to invoke getState. If you are performing operations in the dependenciesContainer's init, then the suggested way to approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly")
+      //swiftlint:enable line_length
       return self.state
     }
     
