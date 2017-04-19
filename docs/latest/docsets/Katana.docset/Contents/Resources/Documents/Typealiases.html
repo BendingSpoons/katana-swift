@@ -13,7 +13,7 @@
     <a title="Typealiases  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="index.html">Katana Docs</a> (99% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -112,7 +112,13 @@
                 <a href="Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/AnyNodeDescriptionWithRefProps.html">AnyNodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyPlatformNativeViewWithRef.html">AnyPlatformNativeViewWithRef</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/AnyStore.html">AnyStore</a>
@@ -130,6 +136,12 @@
                 <a href="Protocols/LinkeableAction.html">LinkeableAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/NativeViewRef.html">NativeViewRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NativeViewWithRef.html">NativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -140,6 +152,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P6Katana22NodeDescriptionWithRef">NodeDescriptionWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescriptionWithRefProps.html">NodeDescriptionWithRefProps</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
@@ -212,7 +230,13 @@
                 <a href="Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
               </li>
               <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana21AnyRefCallbackClosure">AnyRefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a>
               </li>
               <li class="nav-group-task">
                 <a href="Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
@@ -251,6 +275,70 @@
                 <li class="item">
                   <div>
                     <code>
+                    <a name="/s:6Katana21AnyRefCallbackClosure"></a>
+                    <a name="//apple_ref/swift/Alias/AnyRefCallbackClosure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana21AnyRefCallbackClosure">AnyRefCallbackClosure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type erasure for <code><a href="Typealiases.html#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">AnyRefCallbackClosure</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">anyRef</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L15">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana18RefCallbackClosure"></a>
+                    <a name="//apple_ref/swift/Alias/RefCallbackClosure" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Closure used to provide the ref in node descriptions that implement the <code><a href="Protocols.html#/s:P6Katana22NodeDescriptionWithRef">NodeDescriptionWithRef</a></code> protocol</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">RefCallbackClosure</span><span class="o">&lt;</span><span class="kt">Ref</span><span class="p">:</span>  <span class="kt"><a href="Protocols/NativeViewRef.html">NativeViewRef</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">(</span><span class="n">_</span> <span class="nv">ref</span><span class="p">:</span> <span class="kt">Ref</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L12">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
                     <a name="/s:6Katana20NodeUpdateCompletion"></a>
                     <a name="//apple_ref/swift/Alias/NodeUpdateCompletion" class="dashAnchor"></a>
                     <a class="token" href="#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
@@ -273,7 +361,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Core/Node/AnyNode.swift#L12">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Node/AnyNode.swift#L12">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -308,7 +396,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Store/StoreTypealiases.swift#L21">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/StoreTypealiases.swift#L21">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -338,7 +426,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Store/StoreTypealiases.swift#L12">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/StoreTypealiases.swift#L12">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -368,7 +456,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Store/StoreTypealiases.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/StoreTypealiases.swift#L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -398,7 +486,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Store/StoreTypealiases.swift#L15">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/StoreTypealiases.swift#L15">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -433,7 +521,7 @@ The idea is that props are changed by chaining different transformers.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.1/Katana/Core/Animations/AnimationPropsTransfomer.swift#L16">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Animations/AnimationPropsTransfomer.swift#L16">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -443,7 +531,7 @@ The idea is that props are changed by chaining different transformers.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-11)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
