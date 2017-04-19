@@ -1,5 +1,4 @@
 # build/
-*.xcodeproj
 *.xcworkspace
 *.pbxuser
 !default.pbxuser
@@ -20,4 +19,3 @@ Pods/
 Carthage/
 /build
 
-Katana.xcodeproj

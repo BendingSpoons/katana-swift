@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Scheme
+   LastUpgradeVersion = "0700"
+   version = "1.3">
+   <BuildAction
+      parallelizeBuildables = "YES"
+      buildImplicitDependencies = "YES">
+      <BuildActionEntries>
+         <BuildActionEntry
+            buildForAnalyzing = "YES"
+            buildForTesting = "NO"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO">
+            <BuildableReference
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '5795FB84FA60B8E982033AB7'
+               BlueprintName = 'Katana macOS'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana macOS.'>
+            </BuildableReference>
+         </BuildActionEntry>
+         <BuildActionEntry
+            buildForAnalyzing = "YES"
+            buildForTesting = "YES"
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO">
+            <BuildableReference
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '68EA96575FBD5E72DF75280E'
+               BlueprintName = 'Katana macOSTests'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana macOSTests.'>
+            </BuildableReference>
+         </BuildActionEntry>
+      </BuildActionEntries>
+   </BuildAction>
+   <TestAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '68EA96575FBD5E72DF75280E'
+               BlueprintName = 'Katana macOSTests'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana macOSTests.'>
+            </BuildableReference>
+         </TestableReference>
+      </Testables>
+   </TestAction>
+   <LaunchAction
+      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
+      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      launchStyle = "0"
+      useCustomWorkingDirectory = "NO"
+      ignoresPersistentStateOnLaunch = "NO"
+      debugDocumentVersioning = "YES"
+      debugServiceExtension = "internal"
+      buildConfiguration = "Debug"
+      allowLocationSimulation = "YES">
+      <AdditionalOptions>
+      </AdditionalOptions>
+      <BuildableProductRunnable
+         runnableDebuggingMode = "0">
+         <BuildableReference
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = '5795FB84FA60B8E982033AB7'
+            BlueprintName = 'Katana macOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Katana macOS.'>
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES"
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = '5795FB84FA60B8E982033AB7'
+            BlueprintName = 'Katana macOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Katana macOS.'>
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </ProfileAction>
+   <AnalyzeAction
+      buildConfiguration = "Debug">
+   </AnalyzeAction>
+   <ArchiveAction
+      buildConfiguration = "Release"
+      revealArchiveInOrganizer = "YES">
+   </ArchiveAction>
+</Scheme>
