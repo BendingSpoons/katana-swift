@@ -11,20 +11,18 @@ import Foundation
 public typealias RefCallbackClosure<Ref:  NativeViewRef> = (_ ref: Ref) -> Void
 public typealias AnyRefCallbackClosure = (_ anyRef: Any) -> Void
 
-public protocol AnyNodeDescriptionWithRef: AnyNodeDescription {
+public protocol AnyNodeDescriptionWithRefProps: AnyNodeDescriptionProps {
   var anyRefCallback: AnyRefCallbackClosure? { get }
 }
 
-public protocol NodeDescriptionWithRef: NodeDescription, AnyNodeDescriptionWithRef {
+public protocol NodeDescriptionWithRefProps: NodeDescriptionProps, AnyNodeDescriptionWithRefProps {
+  associatedtype RefType: NativeViewRef
 
-  // add some constraints to the NativeView
-  associatedtype NativeView: PlatformNativeViewWithRef
-  
-  var refCallback: RefCallbackClosure<NativeView.RefType>? { get }
+  var refCallback: RefCallbackClosure<RefType>? { get }
 }
 
-public extension NodeDescriptionWithRef {
-  var anyRefProvider: AnyRefCallbackClosure? {
+public extension NodeDescriptionWithRefProps {
+  var anyRefCallback: AnyRefCallbackClosure? {
     guard let refClosure = self.refCallback else {
       return nil
     }
@@ -33,32 +31,40 @@ public extension NodeDescriptionWithRef {
       // we want a crash here because it means there is something wrong
       // in the element implementation. Fail silently here could lead to
       // situations where is hard to debug the issue
-      let typedRefValue = refValue as! NativeView.RefType
+      let typedRefValue = refValue as! RefType
       refClosure(typedRefValue)
     }
   }
+}
+
+
+public protocol NodeDescriptionWithRef: NodeDescription {
+  // add some constraints to the NativeView
+  associatedtype NativeView: NativeViewWithRef
+    
+  associatedtype PropsType: NodeDescriptionWithRefProps
 }
 
 public protocol AnyPlatformNativeViewWithRef {
   var anyRef: Any { get }
 }
 
-public protocol PlatformNativeViewWithRef: PlatformNativeView {
+public protocol NativeViewWithRef: PlatformNativeView, AnyPlatformNativeViewWithRef {
   associatedtype RefType: NativeViewRef
   
   var ref: RefType { get }
 }
 
-public extension PlatformNativeViewWithRef {
+public extension NativeViewWithRef {
   var anyRef: Any {
     return self.ref
   }
 }
 
 public protocol NativeViewRef {
-  associatedtype NativeView: PlatformNativeView
+  associatedtype NativeViewType: PlatformNativeView
   
-  init(nativeView: NativeView)
+  init(nativeView: NativeViewType)
   
   var isValid: Bool { get }
 }

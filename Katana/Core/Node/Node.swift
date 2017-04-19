@@ -704,13 +704,13 @@ fileprivate extension Node {
   */
   fileprivate func manageRef(for description: Description, view: Description.NativeView) {
     guard
-      let descriptionWithRef = self.description as? AnyNodeDescriptionWithRef,
+      let propsWithRef = description.props as? AnyNodeDescriptionWithRefProps,
       let viewWithRef = view as? AnyPlatformNativeViewWithRef
       
       else {
         return
     }
     
-    descriptionWithRef.anyRefCallback?(viewWithRef.anyRef)
+    propsWithRef.anyRefCallback?(viewWithRef.anyRef)
   }
 }
