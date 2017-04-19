@@ -69,15 +69,23 @@ open class Store<StateType: State> {
   fileprivate var dependencies: SideEffectDependencyContainer!
 
   /**
-    The internal dispatch function. It combines all the operations that should be done when an action is dispatched.
-    The variable is explicitly unwrapped because of the init method
+    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
   */
-  fileprivate var dispatchFunction: StoreDispatch!
+  fileprivate var dispatchFunction: StoreDispatch?
 
   /// The queue in which actions are managed
-  lazy private var dispatchQueue: DispatchQueue = {
-    // serial by default
-    return DispatchQueue(label: "katana.store.queue")
+  lazy fileprivate var actionsQueue: OperationQueue = {
+    let operation = OperationQueue()
+    operation.maxConcurrentOperationCount = 1
+    operation.qualityOfService = .userInitiated
+    
+    // queue is initially supended. The store will enable the queue when
+    // all the setup is done.
+    // we basically enqueue all the dispatched actions until
+    // everything is needed to manage them is correctly sat up
+    operation.isSuspended = true
+    
+    return operation
   }()
 
   /**
@@ -101,18 +109,28 @@ open class Store<StateType: State> {
     self.listeners = []
     self.state = StateType()
     self.middleware = middleware
-    // create the dispatch function
-
+    
+    // manage the middleware chain
+    
     let getState = { [unowned self] () -> StateType in
+      //swiftlint:disable line_length
+      assert(!self.actionsQueue.isSuspended, "The state is not ready yet. You should wait until the state is ready to invoke getState. If you are performing operations in the dependenciesContainer's init, then the suggested way to approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly")
+      //swiftlint:enable line_length
       return self.state
     }
     
-    let m = self.middleware.map { middleware in
-      middleware(getState, self.dispatch)
+    let initializedMiddleware = self.middleware.map { middleware in
+      return middleware(getState, self.dispatch)
     }
     
-    self.dispatchFunction = self.composeMiddlewares(m, with: self.performDispatch)
+    // chain the middleware with the final step, which is the reduction of the state and the side effects management
+    self.dispatchFunction = Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
+    
+    // initialize the dependencies
     self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
+    
+    // and here we are finally able to start the actions management
+    self.actionsQueue.isSuspended = false
   }
 
   /**
@@ -137,10 +155,15 @@ open class Store<StateType: State> {
    - parameter action: the action to dispatch
   */
   public func dispatch(_ action: Action) {
-    self.dispatchQueue.async {
-      self.dispatchFunction(action)
-    }
     
+    // the dispatch function simply puts the action in the queue
+    self.actionsQueue.addOperation { [unowned self] in
+      guard let function = self.dispatchFunction else {
+        fatalError("Something is wrong, the action queue has been started before the initialization has been completed")
+      }
+      
+      function(action)
+    }
   }
 }
 
@@ -149,42 +172,16 @@ fileprivate extension Store {
   fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: Action) -> ()
 
   /**
-   This function composes the middleware with the store dispatch
-   
-   - parameter middleware:   the middleware to use
-   - parameter storeDispatch: the store dispatch function
-   - returns: a function that invokes all the middleware and then the store dispatch function
-  */
-  fileprivate func composeMiddlewares(_ middleware: [PartiallyAppliedMiddleware],
-                           with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
-
-    guard !middleware.isEmpty else {
-      return storeDispatch
-    }
-  
-    guard middleware.count > 1 else {
-      return middleware.first!(storeDispatch)
-    }
-  
-    var m = middleware
-    let last = m.removeLast()
-
-    return m.reduce(last(storeDispatch), { chain, middleware in
-      return middleware(chain)
-    })
-  }
-
-  /**
    Calculates the new state based on the current state and the given action.
-   This method also invokes all the listeners
+   This method also invokes all the listeners in the main queue
    
    - parameter action: the action that has been dispatched
   */
-  fileprivate func performDispatch(_ action: Action) {
+  fileprivate func manageAction(_ action: Action) {
     let newState = action.updatedState(currentState: self.state)
 
     guard let typedNewState = newState as? StateType else {
-      preconditionFailure("Action updateState returned a wrong state type")
+      preconditionFailure("Action updatedState returned a wrong state type")
     }
 
     let previousState = self.state
@@ -221,6 +218,37 @@ fileprivate extension Store {
       dispatch: self.dispatch,
       dependencies: self.dependencies
     )
+  }
+}
+
+// MARK: Utilities
+fileprivate extension Store {
+  
+  /**
+   This function composes the middleware with the store dispatch
+   
+   - parameter middleware:   the middleware to use
+   - parameter storeDispatch: the store dispatch function
+   - returns: a function that invokes all the middleware and then the store dispatch function
+   */
+  fileprivate static func composeMiddlewares(
+    _ middleware: [PartiallyAppliedMiddleware],
+    with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
+    
+    guard !middleware.isEmpty else {
+      return storeDispatch
+    }
+    
+    guard middleware.count > 1 else {
+      return middleware.first!(storeDispatch)
+    }
+    
+    var m = middleware
+    let last = m.removeLast()
+    
+    return m.reduce(last(storeDispatch), { chain, middleware in
+      return middleware(chain)
+    })
   }
 }
 

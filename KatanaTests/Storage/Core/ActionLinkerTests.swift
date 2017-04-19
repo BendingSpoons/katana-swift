@@ -253,12 +253,6 @@ class ActionLinkerTests: XCTestCase {
     
     let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: linksArray)],
                                             dependencies: EmptySideEffectDependencyContainer.self)
-    _ = store.addListener {
-      count += 1
-      if count == 2 {
-        expectation.fulfill()
-      }
-    }
     
     var baseAsyncAction = BaseAsyncAction(payload: 10).completedAction {
       $0.completedPayload = 100
@@ -268,14 +262,16 @@ class ActionLinkerTests: XCTestCase {
       count += 1
     }
     baseAsyncAction.invokedFailedClosure = {
-      count += 1
+      fatalError("It shouldn't happen")
     }
     
     store.dispatch(baseAsyncAction)
     
-    XCTAssertTrue(true)
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+      expectation.fulfill()
+    })
     
-    self.waitForExpectations(timeout: 2.0) { (err: Error?) in
+    self.waitForExpectations(timeout: 1.0) { (err: Error?) in
       let newState = store.state
       XCTAssertNotEqual(newState.int, 100)
       XCTAssertEqual(newState.int, 10)

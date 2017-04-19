@@ -13,7 +13,7 @@
     <a title="Classes  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">Katana Docs</a> (100% documented)</p>
+        <p><a href="index.html">Katana Docs</a> (99% documented)</p>
         <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -44,6 +44,9 @@
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/StateMockProvider.html">StateMockProvider</a>
               </li>
               <li class="nav-group-task">
                 <a href="Classes/Store.html">Store</a>
@@ -109,7 +112,13 @@
                 <a href="Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/AnyNodeDescriptionWithRefProps.html">AnyNodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyPlatformNativeViewWithRef.html">AnyPlatformNativeViewWithRef</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/AnyStore.html">AnyStore</a>
@@ -127,6 +136,12 @@
                 <a href="Protocols/LinkeableAction.html">LinkeableAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="Protocols/NativeViewRef.html">NativeViewRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NativeViewWithRef.html">NativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/NodeDescription.html">NodeDescription</a>
               </li>
               <li class="nav-group-task">
@@ -137,6 +152,12 @@
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols.html#/s:P6Katana22NodeDescriptionWithRef">NodeDescriptionWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescriptionWithRefProps.html">NodeDescriptionWithRefProps</a>
               </li>
               <li class="nav-group-task">
                 <a href="Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
@@ -209,7 +230,25 @@
                 <a href="Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
               </li>
               <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana21AnyRefCallbackClosure">AnyRefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
               </li>
             </ul>
           </li>
@@ -279,7 +318,7 @@ let keyView = views[.key] // please note that an optional value is returned
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Plastic/ViewsContainer.swift#L52-L176">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/ViewsContainer.swift#L52-L176">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -320,7 +359,7 @@ let keyView = views[.key] // please note that an optional value is returned
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Plastic/PlasticNode.swift#L17-L104">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/PlasticNode.swift#L17-L104">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -366,7 +405,7 @@ renderer!.render(in: view)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Core/Renderer/Renderer.swift#L26-L116">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Renderer/Renderer.swift#L26-L121">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -401,7 +440,67 @@ renderer!.render(in: view)
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Store/SideEffectDependencyContainer.swift#L25-L33">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/SideEffectDependencyContainer.swift#L25-L33">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:C6Katana17StateMockProvider"></a>
+                    <a name="//apple_ref/swift/Class/StateMockProvider" class="dashAnchor"></a>
+                    <a class="token" href="#/s:C6Katana17StateMockProvider">StateMockProvider</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p><code>StateMockProvider</code> is a class that can be used to mock the internal state of the descriptions
+for testing purposes.</p>
+
+<p>The basic idea is that the class encaspulates the possible mocks that are defined for a certain test case.
+State mocks are defined in relation to a Description type and a filter. When the UI is rendered, and a
+mock state provider is provided, Katana asks to the provider if there is a mocked state for the description
+it is managing given the props the description has. If there is a mocked state, this state overrides the state.</p>
+
+<p>It is important to note that this mechanism basically inhibits the <code>update</code> method in the descriptions.</p>
+
+<div class="aside aside-warning">
+    <p class="aside-title">Warning</p>
+    it is important to remember that order matters. If two mocked state are available for the same context
+(that is, description and props), the first will be used.
+
+</div>
+
+<p><a href='#usage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='usage'>Usage</h3>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">mock</span> <span class="o">=</span> <span class="kt">StateMockProvider</span><span class="p">()</span></p>
+
+<p><span class="n">mock</span><span class="o">.</span><span class="nf">mockState</span><span class="p">(</span><span class="kt">ADescription</span><span class="o">.</span><span class="kt">State</span><span class="p">(),</span> <span class="nv">for</span><span class="p">:</span> <span class="kt">ADescription</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">passingFilter</span><span class="p">:</span> <span class="p">{</span> <span class="n">props</span> <span class="k">in</span>
+<span class="c1">// return true or false based on the props</span>
+<span class="p">})</span></p>
+
+<p><span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span><span class="nv">rootDescription</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">,</span> <span class="nv">stateMockProvider</span><span class="p">:</span> <span class="n">mock</span><span class="p">)</span>
+</code></pre></p>
+
+                        <a href="Classes/StateMockProvider.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">StateMockProvider</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Renderer/StateMockProvider.swift#L36-L101">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -465,7 +564,7 @@ We definitively want to remove this limitation and automate the management of th
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Core/Node/Node.swift#L46-L161">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Node/Node.swift#L46-L175">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -506,7 +605,7 @@ world. This allows us to implement some optimizations behinde the scenes (e.g., 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Plastic/PlasticView.swift#L30-L386">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/PlasticView.swift#L30-L386">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -561,7 +660,7 @@ See <code><a href="Protocols/ConnectedNodeDescription.html">ConnectedNodeDescrip
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.7.4/Katana/Store/Store.swift#L53-L145">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/Store.swift#L53-L168">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -571,7 +670,7 @@ See <code><a href="Protocols/ConnectedNodeDescription.html">ConnectedNodeDescrip
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-03-14)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-19)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

@@ -74,7 +74,7 @@ class PlasticNodeTests: XCTestCase {
 }
 
 private enum TestNodeKeys {
-  case One
+  case one
 }
 
 private struct TestNode: NodeDescription, PlasticNodeDescription {
@@ -97,7 +97,7 @@ private struct TestNode: NodeDescription, PlasticNodeDescription {
                                           dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
 
     var props = ViewProps()
-    props.setKey(TestNodeKeys.One)
+    props.setKey(TestNodeKeys.one)
 
     return [
       View(props: props)

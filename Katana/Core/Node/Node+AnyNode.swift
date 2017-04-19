@@ -37,7 +37,12 @@ extension Node: AnyNode {
       fatalError("Impossible to use the provided description to update the node")
     }
 
-    description.props = self.updatedPropsWithConnect(description: description, props: description.props)
+    description.props = Node.updatedPropsWithConnect(
+      description: description,
+      props: description.props,
+      store: self.renderer?.store
+    )
+
     self.update(for: self.state, description: description, animation: animation, completion: completion)
   }
 

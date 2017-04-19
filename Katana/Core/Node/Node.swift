@@ -63,9 +63,7 @@ public class Node<Description: NodeDescription> {
   /// An ID that represent the animation that is currently running
   fileprivate var animationID: Int?
   
-  /**
-   The parent of the node.
-   */
+  /// The parent of the node.
   public fileprivate(set) weak var parent: AnyNode?
   
   /**
@@ -125,11 +123,27 @@ public class Node<Description: NodeDescription> {
     }
     
     self.description = description
-    self.state = Description.StateType()
     self.parent = parent
     self.myRenderer = renderer
     
-    self.description.props = self.updatedPropsWithConnect(description: description, props: self.description.props)
+    let rootRenderer = (renderer != nil ? renderer : parent?.renderer)
+    
+    self.description.props = Node.updatedPropsWithConnect(
+      description: description,
+      props: description.props,
+      store: rootRenderer?.store
+    )
+    
+    if
+      let unwrappedRootRenderer = rootRenderer,
+      let stateMockProvider = unwrappedRootRenderer.stateMockProvider,
+      let mockedState = stateMockProvider.state(for: Description.self, props: self.description.props) {
+      
+      self.state = mockedState
+      
+    } else {
+      self.state = Description.StateType()
+    }
     
     self.childrenDescriptions  = self.processedChildrenDescriptionsBeforeDraw(
       self.getChildrenDescriptions()
@@ -186,11 +200,16 @@ extension Node {
     }
     
     self.container?.update { view in
+      
+      let view = view as! Description.NativeView
+      
       Description.applyPropsToNativeView(props: self.description.props,
                                          state: self.state,
-                                         view: view as! Description.NativeView,
+                                         view: view,
                                          update: update,
                                          node: self)
+      
+      self.manageRef(for: self.description, view: view)
     }
     
     Description.didMount(props: self.description.props, dispatch: self.storeDispatch, update: update)
@@ -238,11 +257,16 @@ extension Node {
     
     let updateBlock = { () -> () in
       container.update { view in
+        
+        let view = view as! Description.NativeView 
+        
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
-                                           view: view as! Description.NativeView,
+                                           view: view,
                                            update: update,
                                            node: self)
+        
+        self.manageRef(for: self.description, view: view)
       }
     }
     
@@ -341,14 +365,19 @@ extension Node {
    
    - parameter description: the `NodeDescription` to use to update the properties
    - parameter props:       the properties to update
+   - parameter store:       the store to which the node is connected to
    
    - returns: the updated properties
    */
-  func updatedPropsWithConnect(description: Description, props: Description.PropsType) -> Description.PropsType {
+  static func updatedPropsWithConnect(
+    description: Description,
+    props: Description.PropsType,
+    store: AnyStore?) -> Description.PropsType {
+
     if let desc = description as? AnyConnectedNodeDescription {
       // description is connected to the store, we need to update it
       
-      guard let store = self.renderer?.store else {
+      guard let store = store else {
         fatalError("connected node lacks store")
       }
       
@@ -390,11 +419,24 @@ extension Node {
               force: Bool = false,
               completion: NodeUpdateCompletion? = nil) {
     
+    // Overwrite the state if the state is mocked
+    let stateToUse: Description.StateType
+      
+    if
+      let provider = self.renderer?.stateMockProvider,
+      let mockedState = provider.state(for: Description.self, props: description.props) {
+      
+      stateToUse = mockedState
+    
+    } else {
+      stateToUse = state
+    }
+      
     let shouldUpdate = Description.shouldUpdate(
       currentProps: self.description.props,
       nextProps: description.props,
       currentState: self.state,
-      nextState: state
+      nextState: stateToUse
     )
     
     guard force || shouldUpdate else {
@@ -402,7 +444,7 @@ extension Node {
       return
     }
     
-    var newState = state
+    var newState = stateToUse
     
     // invoke the proper lifecycle hook if props changes
     if self.description.props != description.props {
@@ -652,5 +694,23 @@ extension Node {
   public var renderer: Renderer? {
     guard self.myRenderer == nil else { return self.myRenderer! }
     return self.parent?.renderer
+  }
+}
+
+fileprivate extension Node {
+  
+  /**
+   Invokes, if needed, the ref callback for the given description using the given native view
+  */
+  fileprivate func manageRef(for description: Description, view: Description.NativeView) {
+    guard
+      let propsWithRef = description.props as? AnyNodeDescriptionWithRefProps,
+      let viewWithRef = view as? AnyPlatformNativeViewWithRef
+      
+      else {
+        return
+    }
+    
+    propsWithRef.anyRefCallback?(viewWithRef.anyRef)
   }
 }

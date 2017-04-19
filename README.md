@@ -47,12 +47,10 @@ struct CounterState: State {
 }
 ```
 
-The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. There are two kind of actions: `SyncAction` and `AsyncAction`. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
+The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
 
 ```swift
-struct IncrementCounter: SyncAction {
-  var payload: ()
-
+struct IncrementCounter: Action {
   func updatedState(currentState: State) -> State {
     guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
     state.counter += 1
@@ -380,27 +378,6 @@ let renderer = Renderer(rootDescription: description, store: nil)
 // render the UI
 renderer!.render(in: view)
 ```
-
-## Roadmap
-
-- [x] immutable state
-- [x] unidirectional data flow
-
-
-- [x] sync/async/sideEffect actions
-- [x] middleware
-- [x] automatic UI update
-- [x] native redux-like implementation
-- [x] native react-like implementation
-- [x] declarative UI
-- [x] leverage Plastic layout engine
-- [ ] support other layout engines
-- [ ] declarative Table element
-- [x] macOS support
-- [ ] improve test coverage
-- [ ] expand documentation
-- [ ] write an example about wrapping UIKit view controllers
-
 
 
 ## Get in touch 

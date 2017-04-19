@@ -90,3 +90,30 @@ extension NativeTable: UITableViewDelegate {
     cell.didTap(atIndexPath: indexPath)
   }
 }
+
+extension NativeTable: NativeViewWithRef {
+  public typealias RefType = TableRef
+  
+  public var ref: RefType {
+    return TableRef(nativeView: self)
+  }
+}
+
+public struct TableRef: NativeViewRef {
+  public typealias NativeViewType = NativeTable
+
+  private weak var nativeView: NativeViewType?
+  
+  public var isValid: Bool {
+    return self.nativeView != nil
+  }
+  
+  public init(nativeView: NativeViewType) {
+    weak var s: NativeViewType? = nativeView
+    self.nativeView = s
+  }
+  
+  public func scroll(at indexPath: IndexPath, at position: UITableViewScrollPosition, animated: Bool) {
+    self.nativeView?.scrollToRow(at: indexPath, at: position, animated: animated)
+  }
+}

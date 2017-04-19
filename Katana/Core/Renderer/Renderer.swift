@@ -26,6 +26,9 @@ import Foundation
 open class Renderer {
   /// The store that is used in the application
   public let store: AnyStore?
+  
+  /// The state mock provider to use in the application
+  let stateMockProvider: StateMockProvider?
 
   /**
     Reference to the Root's child
@@ -48,14 +51,16 @@ open class Renderer {
    
    - parameter rootDescription: the root node description
    - parameter store: the store of the application
+   - parameter stateMockProvider: an optional `StateMockProvider` that can be used to mock the internal states
    - returns: An instance of Renderer that manages rendering and store updates
   */
-  public init(rootDescription: AnyNodeDescription, store: AnyStore?) {
+  public init(rootDescription: AnyNodeDescription, store: AnyStore?, stateMockProvider: StateMockProvider? = nil) {
     self.store = store
+    self.stateMockProvider = stateMockProvider
 
     let unsubscribe = self.store?.addListener({ [unowned self] in
       self.storeDidChange()
-      })
+    })
 
     self.unsubscribe = unsubscribe
     self.rootNode = rootDescription.makeNode(renderer: self)
