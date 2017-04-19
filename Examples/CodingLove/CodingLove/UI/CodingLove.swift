@@ -14,6 +14,7 @@ extension CodingLove {
     enum Keys {
         case tableView
         case titleLabel
+        case scrollToTopButton
     }
     
     struct Props: NodeDescriptionProps, Buildable {
@@ -91,28 +92,63 @@ struct CodingLove: ConnectedNodeDescription, PlasticNodeDescription, PlasticRefe
                                      state: StateType,
                                      update: @escaping (StateType)->(),
                                      dispatch: @escaping StoreDispatch) -> [AnyNodeDescription] {
-        return [
-            Label(props: Label.Props.build({
-                $0.setKey(Keys.titleLabel)
-                $0.text = NSAttributedString(string: "The Coding Love", attributes: [
-                    NSFontAttributeName: UIFont.systemFont(ofSize: 25)
+      
+        var tableRef: TableRef?
+      
+        // button
+        let button = Button(props: Button.Props.build({ props in
+            props.setKey(Keys.scrollToTopButton)
+            
+            props.titles[.normal] = "Top"
+            props.backgroundColor = .white
+            props.titleColors = [
+                .normal: .black,
+                .highlighted: UIColor.black.withAlphaComponent(0.3)
+            ]
+            
+            props.touchHandlers = [
+                .touchUpInside: {
+                    let idxPath = IndexPath(row: 0, section: 0)
+                    tableRef?.scroll(at: idxPath, at: .top, animated: true)
+                }
+            ]
+        }))
+        
+        // table
+        let table = Table(props: Table.Props.build({
+            $0.setKey(Keys.tableView)
+            $0.delegate = TableViewDelegate(posts: props.posts)
+          
+            $0.refCallback = { ref in
+              tableRef = ref
+            }
+        }))
+        
+        // label
+        let label = Label(props: Label.Props.build({
+            $0.setKey(Keys.titleLabel)
+            $0.text = NSAttributedString(string: "The Coding Love", attributes: [
+                NSFontAttributeName: UIFont.systemFont(ofSize: 25)
                 ])
-                $0.textAlignment = NSTextAlignment.center
-            })),
-            Table(props: Table.Props.build({
-                $0.setKey(Keys.tableView)
-                $0.delegate = TableViewDelegate(posts: props.posts)
-            }))
-        ]
+            $0.textAlignment = NSTextAlignment.center
+        }))
+      
+        return [ label, table, button ]
     }
     
     static func layout(views: ViewsContainer<Keys>, props: PropsType, state: EmptyState) {
         let rootView = views.nativeView
         let title = views[Keys.titleLabel]!
         let table = views[Keys.tableView]!
+        let button = views[Keys.scrollToTopButton]!
         
         title.asHeader(rootView, insets: .scalable(30, 0, 0, 0))
         title.height = .scalable(80)
+        
+        button.height = .scalable(80)
+        button.width = .scalable(100)
+        button.centerY = title.centerY
+        button.right = rootView.right - 15
         
         table.fillHorizontally(rootView)
         table.top = title.bottom

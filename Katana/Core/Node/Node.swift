@@ -200,11 +200,16 @@ extension Node {
     }
     
     self.container?.update { view in
+      
+      let view = view as! Description.NativeView
+      
       Description.applyPropsToNativeView(props: self.description.props,
                                          state: self.state,
-                                         view: view as! Description.NativeView,
+                                         view: view,
                                          update: update,
                                          node: self)
+      
+      self.manageRef(for: self.description, view: view)
     }
     
     Description.didMount(props: self.description.props, dispatch: self.storeDispatch, update: update)
@@ -252,11 +257,16 @@ extension Node {
     
     let updateBlock = { () -> () in
       container.update { view in
+        
+        let view = view as! Description.NativeView 
+        
         Description.applyPropsToNativeView(props: self.description.props,
                                            state: self.state,
-                                           view: view as! Description.NativeView,
+                                           view: view,
                                            update: update,
                                            node: self)
+        
+        self.manageRef(for: self.description, view: view)
       }
     }
     
@@ -684,5 +694,23 @@ extension Node {
   public var renderer: Renderer? {
     guard self.myRenderer == nil else { return self.myRenderer! }
     return self.parent?.renderer
+  }
+}
+
+fileprivate extension Node {
+  
+  /**
+   Invokes, if needed, the ref callback for the given description using the given native view
+  */
+  fileprivate func manageRef(for description: Description, view: Description.NativeView) {
+    guard
+      let propsWithRef = description.props as? AnyNodeDescriptionWithRefProps,
+      let viewWithRef = view as? AnyPlatformNativeViewWithRef
+      
+      else {
+        return
+    }
+    
+    propsWithRef.anyRefCallback?(viewWithRef.anyRef)
   }
 }
