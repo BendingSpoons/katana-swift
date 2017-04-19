@@ -188,6 +188,7 @@
 		A19385481E0D1F3C00F436D6 /* NodeDescriptionLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19385461E0D1F2100F436D6 /* NodeDescriptionLifecycleTests.swift */; };
 		A19385491E0D1F3E00F436D6 /* NodeDescriptionLifecycleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19385461E0D1F2100F436D6 /* NodeDescriptionLifecycleTests.swift */; };
 		A19CFBD71EA7826D00CBA236 /* Refs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CFBD61EA7826D00CBA236 /* Refs.swift */; };
+		A1A0C6B01EA7E3C5002A8EB2 /* Refs.swift in Sources */ = {isa = PBXBuildFile; fileRef = A19CFBD61EA7826D00CBA236 /* Refs.swift */; };
 		A1C9C1C31DD32D570067F8E0 /* InternalNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C21DD32D570067F8E0 /* InternalNode.swift */; };
 		A1C9C1C61DD337710067F8E0 /* ChildrenAnimationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C51DD337710067F8E0 /* ChildrenAnimationsTests.swift */; };
 		A1C9C1C81DD339D00067F8E0 /* AnimationUtilsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1C9C1C71DD339D00067F8E0 /* AnimationUtilsTests.swift */; };
@@ -1440,6 +1441,7 @@
 				65BF2E841DE339C900441784 /* ViewsContainer+Helpers.swift in Sources */,
 				65BF2E851DE339C900441784 /* ViewsContainer.swift in Sources */,
 				65BF2E861DE339C900441784 /* LayoutsCache.swift in Sources */,
+				A1A0C6B01EA7E3C5002A8EB2 /* Refs.swift in Sources */,
 				65BF2E871DE339C900441784 /* Action.swift in Sources */,
 				65BF2E881DE339C900441784 /* State.swift in Sources */,
 				65BF2E891DE339C900441784 /* Store.swift in Sources */,
