@@ -11,7 +11,7 @@ import UIKit
 import Katana
 
 public extension Table {
-  public struct Props: NodeDescriptionProps, Buildable {
+  public struct Props: NodeDescriptionProps, NodeDescriptionWithRefProps, Buildable {
     public var frame = CGRect.zero
     public var key: String?
     public var alpha: CGFloat = 1.0
@@ -22,6 +22,7 @@ public extension Table {
     public var borderWidth: CGFloat = 0.0
     public var borderColor = UIColor.clear
     public var clipsToBounds = true
+    public var refCallback: RefCallbackClosure<TableRef>?
 
     public init() {}
 
@@ -40,11 +41,11 @@ public extension Table {
   }
 }
 
-public struct Table: NodeDescription {
+public struct Table: NodeDescription, NodeDescriptionWithRef {
   public typealias NativeView = NativeTable
 
   public var props: Props
-
+  
   public init(props: Props) {
     self.props = props
   }
