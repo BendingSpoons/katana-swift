@@ -397,7 +397,13 @@ renderer!.render(in: view)
 - If you __have an idea__ on how to improve the framework or how to spread the word, please [get in touch](#get-in-touch);
 - If you want to __try the framework__ for your project or to write a demo, please send us the link of the repo.
 
-We'll be happy to send you a sticker with the logo as a sign of appreciation for any meaningful contribution.
+
+
+## Run the project
+
+In order to run the project, you need [xcake](https://github.com/jcampbell05/xcake). Once you have installed it, go in the Katana project root and run `xcake make`
+
+
 
 ## License
 
