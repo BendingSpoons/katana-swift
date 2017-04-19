@@ -177,7 +177,8 @@ demo_macos = target do |target|
     target.include_files = [
         "Demo/Common/**/*.swift",
         "Demo/macOS/**/*.swift",
-        "Demo/macOS/LunchScreen.storyboard",
+        "Demo/macOS/Assets.xcassets",
+        "Demo/macOS/Base.lproj/MainMenu.xib",
     ]
 
     target.all_configurations.each do |configuration|
