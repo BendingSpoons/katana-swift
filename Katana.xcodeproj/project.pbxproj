@@ -56,7 +56,7 @@
 		33E836F0A3E7D7A670A8252D /* LinkeableAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7B7D59AF3C6CF146CEE288C /* LinkeableAction.swift */; };
 		3492B6B51E05C238EFF62367 /* NodeDescriptionTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41642E0EFD01E157363A1033 /* NodeDescriptionTest.swift */; };
 		37802D59075A6E7A63455767 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B6ED346822F20A64AFEF2 /* ActionWithSideEffect.swift */; };
-		37A25BD8068F98464981588E /* Katana macOS. in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana macOS. */; };
+		37A25BD8068F98464981588E /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana.framework */; };
 		38087BAB676D7C440DA1B592 /* PlatformNativeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 16D5B340FD5369B35A454B77 /* PlatformNativeView.swift */; };
 		39449660DD2A59A74AA7954A /* MiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2F602602C78833420B816C07 /* MiddlewareTests.swift */; };
 		3B84A678789255BB7AD75723 /* Commons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B23D6CFF78E7A0C72B0835 /* Commons.swift */; };
@@ -69,7 +69,7 @@
 		44163ED06312E68898447ED8 /* Collections+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DC6EBB494EFE18F7BCA10A6 /* Collections+Katana.swift */; };
 		44A49AEE41E3E0444FD5A692 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 708CF31FBDA3740B291D7751 /* Katana.framework */; };
 		4506BC8079F93D557EEAE3D3 /* Collections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 84AFEAF98ACE56F016DF2AFC /* Collections.swift */; };
-		454B5FEE201B37BE46305CBC /* KatanaElements macOS. in Frameworks */ = {isa = PBXBuildFile; fileRef = 681975DB50F00CE976EFAC95 /* KatanaElements macOS. */; };
+		454B5FEE201B37BE46305CBC /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 681975DB50F00CE976EFAC95 /* KatanaElements.framework */; };
 		4603985A7C4E1EAEBEAFC6C2 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 5F88787A2A206340EC68A7EC /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		47AF3492C67A0E25D77946FC /* Highlightable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 379EC0774CB5EEBC44EB5F52 /* Highlightable.swift */; };
 		488E46717C6BFE6F009836A8 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFA99EC581B93BD2D620CAB /* SideEffectTests.swift */; };
@@ -127,7 +127,7 @@
 		8C848F31B74B40FD96A2A475 /* Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4FAA5FE4C1645FED5CEBF899 /* Actions.swift */; };
 		8D23D776316F43E9FC95564F /* ViewsContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9862AB4AC24CE7856B4F66 /* ViewsContainer.swift */; };
 		9271AD0B0B98A9D58D09CF9F /* InternalNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD367808344B1FDCA42DC1D7 /* InternalNode.swift */; };
-		92A86261D2CE9F228A16F199 /* Katana macOS. in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana macOS. */; };
+		92A86261D2CE9F228A16F199 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana.framework */; };
 		94906E6C763F1ACB92934DA0 /* Node.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B38C04CBC13178E5E2D2DC9 /* Node.swift */; };
 		95DFCF9832BA7905C0EF1F4C /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DC4386B6A18AC4149B06B76 /* States.swift */; };
 		96578B5FA994D622FC559D26 /* PlasticView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EFE2CD7AD89F7899720E600 /* PlasticView.swift */; };
@@ -188,7 +188,7 @@
 		D6E518FECCC208323B3624A4 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = D32B6ED346822F20A64AFEF2 /* ActionWithSideEffect.swift */; };
 		DC38FFAF1E05B30CFEF8D7F6 /* DependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2AC4C131EAAD2ED7036F0FB /* DependencyContainer.swift */; };
 		DDC42DD0E3003315EF570D18 /* PlasticNodeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D490079823328DEA208B243 /* PlasticNodeTests.swift */; };
-		DE3991DF7ED7F8C1FAE9F640 /* KatanaElements iOS. in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F59830AF7E87EEA4A078D20 /* KatanaElements iOS. */; };
+		DE3991DF7ED7F8C1FAE9F640 /* KatanaElements.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9F59830AF7E87EEA4A078D20 /* KatanaElements.framework */; };
 		DE9F4CEEC57AEBCCA46DCABB /* StateMockProviderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F785035834F6CD07BBA68934 /* StateMockProviderTests.swift */; };
 		E0862E03DDF4BFC80E4BE1FB /* Value.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA442A6D44EC648EF70A5939 /* Value.swift */; };
 		E14FB7C0FF9C52931D57D95B /* NodeDescriptionWithChildren.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA26A4CD55D8A4BA9D2B6D13 /* NodeDescriptionWithChildren.swift */; };
@@ -209,7 +209,7 @@
 		F42C2DAB9D9021BA0E1B26F9 /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61DFBD983725E6BA56350585 /* SideEffectDependencyContainer.swift */; };
 		F703B8D2C4A065C413475ECD /* AnimationPropsTransfomer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F31D7EDC109BB372E2FB9944 /* AnimationPropsTransfomer.swift */; };
 		F79546120883387FA64C3250 /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A21AED548D76DB4D11BFE647 /* AsyncAction.swift */; };
-		F7FD29EDA5FA4EC24A0C66A1 /* Katana macOS. in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana macOS. */; };
+		F7FD29EDA5FA4EC24A0C66A1 /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9B7C466AC9705F80EF5A74E9 /* Katana.framework */; };
 		F80A2A256FCDDE7F000990BE /* CounterScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9AB8AEE2859707BF3B1A8CC /* CounterScreen.swift */; };
 		FCBDDC9E68E5B8E4F2EDE750 /* PlasticConvenienceLayoutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C9A4C0E9F5E85B13C4AE3B0 /* PlasticConvenienceLayoutTests.swift */; };
 		FCE0888ECA3738C3C2312050 /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9494849A34C39E93186C48 /* StoreTests.swift */; };
@@ -322,7 +322,7 @@
 		6320B4F3D4F457339753C83D /* Image.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		66747A45929DE4078C2B0F65 /* Katana iOSTests. */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = file; name = "Katana iOSTests."; path = "Katana iOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		67C4A7426645E1BC337144DC /* Refs.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Refs.swift; sourceTree = "<group>"; };
-		681975DB50F00CE976EFAC95 /* KatanaElements macOS. */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = "KatanaElements macOS."; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		681975DB50F00CE976EFAC95 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6B38C04CBC13178E5E2D2DC9 /* Node.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Node.swift; sourceTree = "<group>"; };
 		6CBD836272695D0CC31C34EC /* PlasticView+Convenience.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "PlasticView+Convenience.swift"; sourceTree = "<group>"; };
 		6DE79FAC4CC3D74F643B145D /* LayoutsCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LayoutsCache.swift; sourceTree = "<group>"; };
@@ -351,8 +351,8 @@
 		91137B79F8E0567E80A64899 /* ViewsContainer+Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "ViewsContainer+Helpers.swift"; sourceTree = "<group>"; };
 		91C0D73026E4DF7531D42A52 /* AnimationContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AnimationContainer.swift; sourceTree = "<group>"; };
 		9ABC326BE4CDF1C68B5308E1 /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		9B7C466AC9705F80EF5A74E9 /* Katana macOS. */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = "Katana macOS."; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		9F59830AF7E87EEA4A078D20 /* KatanaElements iOS. */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.framework; name = "KatanaElements iOS."; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9B7C466AC9705F80EF5A74E9 /* Katana.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Katana.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9F59830AF7E87EEA4A078D20 /* KatanaElements.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = KatanaElements.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A18648A6DA34DB3A08BDF6B3 /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		A21AED548D76DB4D11BFE647 /* AsyncAction.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
 		A33B8BF44BE20B5B42F3ED86 /* Button.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
@@ -413,8 +413,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				37A25BD8068F98464981588E /* Katana macOS. in Frameworks */,
-				454B5FEE201B37BE46305CBC /* KatanaElements macOS. in Frameworks */,
+				37A25BD8068F98464981588E /* Katana.framework in Frameworks */,
+				454B5FEE201B37BE46305CBC /* KatanaElements.framework in Frameworks */,
 				9886A2663F90A0E0988D3CF2 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -424,7 +424,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A534756A4086488F8874C20F /* Katana.framework in Frameworks */,
-				DE3991DF7ED7F8C1FAE9F640 /* KatanaElements iOS. in Frameworks */,
+				DE3991DF7ED7F8C1FAE9F640 /* KatanaElements.framework in Frameworks */,
 				B3ABE1800D0D969A3B3404D7 /* Foundation.framework in Frameworks */,
 				5373A3FD92D470A4028F793C /* UIKit.framework in Frameworks */,
 			);
@@ -434,7 +434,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				92A86261D2CE9F228A16F199 /* Katana macOS. in Frameworks */,
+				92A86261D2CE9F228A16F199 /* Katana.framework in Frameworks */,
 				3217335461350F1DE5868966 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -463,7 +463,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F7FD29EDA5FA4EC24A0C66A1 /* Katana macOS. in Frameworks */,
+				F7FD29EDA5FA4EC24A0C66A1 /* Katana.framework in Frameworks */,
 				2C9B9642D0ED3FE77858FA22 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -635,11 +635,11 @@
 			children = (
 				66747A45929DE4078C2B0F65 /* Katana iOSTests. */,
 				708CF31FBDA3740B291D7751 /* Katana.framework */,
-				9F59830AF7E87EEA4A078D20 /* KatanaElements iOS. */,
+				9F59830AF7E87EEA4A078D20 /* KatanaElements.framework */,
 				007BAF2CD4D8965F55FE4587 /* Demo iOS. */,
 				E48F1AAC936124129EB6CE42 /* Katana macOSTests. */,
-				9B7C466AC9705F80EF5A74E9 /* Katana macOS. */,
-				681975DB50F00CE976EFAC95 /* KatanaElements macOS. */,
+				9B7C466AC9705F80EF5A74E9 /* Katana.framework */,
+				681975DB50F00CE976EFAC95 /* KatanaElements.framework */,
 				00B78D7C92B1DA24F3F0EFD1 /* Demo MacOS. */,
 			);
 			name = Products;
@@ -1022,7 +1022,7 @@
 			);
 			name = "KatanaElements macOS";
 			productName = "KatanaElements macOS";
-			productReference = 681975DB50F00CE976EFAC95 /* KatanaElements macOS. */;
+			productReference = 681975DB50F00CE976EFAC95 /* KatanaElements.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6C0D9C19565F7BABCC602457 /* Katana iOS */ = {
@@ -1094,7 +1094,7 @@
 			);
 			name = "Katana macOS";
 			productName = "Katana macOS";
-			productReference = 9B7C466AC9705F80EF5A74E9 /* Katana macOS. */;
+			productReference = 9B7C466AC9705F80EF5A74E9 /* Katana.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		BE058137CA529419B3AAFDF8 /* KatanaElements iOS */ = {
@@ -1113,7 +1113,7 @@
 			);
 			name = "KatanaElements iOS";
 			productName = "KatanaElements iOS";
-			productReference = 9F59830AF7E87EEA4A078D20 /* KatanaElements iOS. */;
+			productReference = 9F59830AF7E87EEA4A078D20 /* KatanaElements.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		C8E281C33D0C34FED99F3FAB /* Demo MacOS */ = {
