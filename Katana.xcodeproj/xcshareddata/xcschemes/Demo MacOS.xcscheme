@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "5D9709AF354767A3B41C1366"
+               BlueprintIdentifier = "C8E281C33D0C34FED99F3FAB"
                BuildableName = "Demo macOS.app"
                BlueprintName = "Demo MacOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -32,7 +32,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D9709AF354767A3B41C1366"
+            BlueprintIdentifier = "C8E281C33D0C34FED99F3FAB"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -55,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D9709AF354767A3B41C1366"
+            BlueprintIdentifier = "C8E281C33D0C34FED99F3FAB"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -74,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "5D9709AF354767A3B41C1366"
+            BlueprintIdentifier = "C8E281C33D0C34FED99F3FAB"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">

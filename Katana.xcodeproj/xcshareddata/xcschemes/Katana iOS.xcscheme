@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "B2960AF315A2BB96616E8477"
+               BlueprintIdentifier = "6C0D9C19565F7BABCC602457"
                BuildableName = "Katana.framework"
                BlueprintName = "Katana iOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2034D20282E56F1FD133155"
+               BlueprintIdentifier = "892A4F16AB706AE59D645180"
                BuildableName = "Katana iOSTests.xctest"
                BlueprintName = "Katana iOSTests"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F2034D20282E56F1FD133155"
+               BlueprintIdentifier = "892A4F16AB706AE59D645180"
                BuildableName = "Katana iOSTests.xctest"
                BlueprintName = "Katana iOSTests"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -56,7 +56,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B2960AF315A2BB96616E8477"
+            BlueprintIdentifier = "6C0D9C19565F7BABCC602457"
             BuildableName = "Katana.framework"
             BlueprintName = "Katana iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -79,7 +79,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B2960AF315A2BB96616E8477"
+            BlueprintIdentifier = "6C0D9C19565F7BABCC602457"
             BuildableName = "Katana.framework"
             BlueprintName = "Katana iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -98,7 +98,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "B2960AF315A2BB96616E8477"
+            BlueprintIdentifier = "6C0D9C19565F7BABCC602457"
             BuildableName = "Katana.framework"
             BlueprintName = "Katana iOS"
             ReferencedContainer = "container:Katana.xcodeproj">

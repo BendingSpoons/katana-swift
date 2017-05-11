@@ -56,6 +56,7 @@ katana_elements_ios = target do |target|
     target.deployment_target = 8.4
     target.language = :swift
     target.type = :framework
+    target.linked_targets = [katana_ios]
     target.include_files = [
         "KatanaElements/Common/**/*.swift",
         "KatanaElements/iOS/**/*.swift"
@@ -148,6 +149,7 @@ katana_elements_macos = target do |target|
     target.deployment_target = "10.10"
     target.language = :swift
     target.type = :framework
+    target.linked_targets = [katana_macos]
     target.include_files = [
         "KatanaElements/Common/**/*.swift",
         "KatanaElements/MacOS/**/*.swift"
