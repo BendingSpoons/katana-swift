@@ -609,7 +609,6 @@ extension Node {
     // signal that the node has been rendered
     self.renderer?.setNodeAsUpdatedInCurrentRenderCycle(self)
     
-    
     // manage completion block
     // if we don't have it, just don't do anything. But if we have it, we need to
     // wait until all the node.update, native view update and add of new nodes
