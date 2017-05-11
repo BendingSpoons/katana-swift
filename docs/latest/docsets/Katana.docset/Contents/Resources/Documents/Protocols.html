@@ -275,9 +275,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana27AnyConnectedNodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyConnectedNodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana27AnyConnectedNodeDescription">AnyConnectedNodeDescription</a>
+                    <a name="/s:P6Katana7AnyNode"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyNode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana7AnyNode">AnyNode</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -285,75 +285,20 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Type Erasure for <code><a href="Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a></code></p>
+                        <p>Type Erasure protocol for the <code><a href="Classes/Node.html">Node</a></code> class.</p>
 
-                        <a href="Protocols/AnyConnectedNodeDescription.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/AnyNode.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyConnectedNodeDescription</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNode</span><span class="p">:</span> <span class="kd">class</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L12-L19">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana24ConnectedNodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/ConnectedNodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana24ConnectedNodeDescription">ConnectedNodeDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>In applications developed with Katana, the application information is stored in a central Store.
-There are cases where you want to take pieces of information from the central store and use them in your UI.
-<code>ConnectedNodeDescription</code> is the protocol that is used to implement this behaviour.</p>
-
-<p>By implementing this protocol in a description you get two behaviours: store information merging and automatic UI update.</p>
-
-<p><a href='#merge-description-39-s-props-and-store-39-s-state' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='merge-description-39-s-props-and-store-39-s-state'>Merge description&rsquo;s props and Store&rsquo;s state</h3></p>
-
-<p>Every time there is an UI update (e.g., because either props or state are changed), Katana allows you to
-inject in the props information that are taken from the central Store. You can use the <code>connect</code>
-method to implement this behaviour.</p>
-
-<p><a href='#automatic-ui-update' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='automatic-ui-update'>Automatic UI update</h3></p>
-
-<p>Every time the Store&rsquo;s state changes, you may want to update the UI. When you adopt the <code>ConnectedNodeDescription</code>
-protocol, Katana will trigger an UI update to all the nodes that are related to the description.
-The system will search for all the nodes that have a description that implements this protocol. It will then
-calculate the new props, by invoking <code>connect</code>. If the properties are changed, then the UI update is triggered.
-In this way we are able to effectively trigger UI changes only where and when needed.</p>
-
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <code><a href="Classes/Store.html">Store</a></code>
-
-</div>
-
-                        <a href="Protocols/ConnectedNodeDescription.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ConnectedNodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L42-L60">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Node/AnyNode.swift#L15-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -365,9 +310,9 @@ In this way we are able to effectively trigger UI changes only where and when ne
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana6Action"></a>
-                    <a name="//apple_ref/swift/Protocol/Action" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana6Action">Action</a>
+                    <a name="/s:P6Katana18PlatformNativeView"></a>
+                    <a name="//apple_ref/swift/Protocol/PlatformNativeView" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana18PlatformNativeView">PlatformNativeView</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -375,23 +320,329 @@ In this way we are able to effectively trigger UI changes only where and when ne
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>An action represents an event that leads to a change in the state of the application.
-It can be triggered from a user action, from a system event or any event in general.</p>
+                        <p>This protocol abstracts how <code><a href="Classes/Node.html">Node</a></code> instances can be rendered. We have introduced this protocol
+to abstract the Katana world (nodes and descriptions) from the underlying implementation of how
+the UI is rendered.</p>
 
-<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+<p>The most obvious implementation of this protocol is <code>UIView</code> for iOS or <code>NSView</code> for mac OS.
+It is possible to create custom containers that renders nodes on abstract structures (e.g., for testing)
+or on serializable structures to store the UI representation and use it later.</p>
 
-                        <a href="Protocols/Action.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/PlatformNativeView.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/Action.swift#L17-L32">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Node/PlatformNativeView.swift#L20-L96">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana20NodeDescriptionState"></a>
+                    <a name="//apple_ref/swift/Protocol/NodeDescriptionState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana20NodeDescriptionState">NodeDescriptionState</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol that is used for structs that represent the state of a <code><a href="Classes/Node.html">Node</a></code>.</p>
+
+<p>This protocol requires instances to be equatable. Katana uses this requirement to
+avoid to update the UI if the state (and the props) are not changed.</p>
+
+                        <a href="Protocols/NodeDescriptionState.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionState</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescription.swift#L16-L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana23AnyNodeDescriptionProps"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyNodeDescriptionProps" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana23AnyNodeDescriptionProps">AnyNodeDescriptionProps</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Erasure for <code><a href="Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a></code></p>
+
+                        <a href="Protocols/AnyNodeDescriptionProps.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescriptionProps</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescription.swift#L40-L59">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana20NodeDescriptionProps"></a>
+                    <a name="//apple_ref/swift/Protocol/NodeDescriptionProps" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana20NodeDescriptionProps">NodeDescriptionProps</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol that is used for structs that represent the properties of a <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code>.</p>
+
+<p>This protocol requires instances to be equatable. Katana uses this requirement to
+avoid to update the UI if the properties (and the state) are not changed.</p>
+
+                        <a href="Protocols/NodeDescriptionProps.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionProps</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescription.swift#L76">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana18AnyNodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyNodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana18AnyNodeDescription">AnyNodeDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Erasure for the <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code> protocol</p>
+
+                        <a href="Protocols/AnyNodeDescription.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescription</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescription.swift#L94-L129">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana15NodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/NodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana15NodeDescription">NodeDescription</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <code>NodeDescription</code> defines a specific piece of UI. You can think of a <code>NodeDescription</code> as a stencil that
+describes how a piece of UI should look like.</p>
+
+<p><code>NodeDescription</code> methods are stateless. This is because the properties and the state are held
+ by a <code><a href="Classes/Node.html">Node</a></code> instance (see <code><a href="Classes/Node.html">Node</a></code> for more information) that Katana automatically creates.</p>
+
+<p>In general, a description defines two things:</p>
+
+<ul>
+<li><p>how properties and state are used to personalise the instance of UIView/NSView (or subclass)
+associated with the <code><a href="Classes/Node.html">Node</a></code> instance. This view is also named <strong>NativeView</strong></p></li>
+<li><p>what are the children descriptions given the properties and the state</p></li>
+</ul>
+
+<p><a href='#node-and-nodedescription-relationship' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='node-and-nodedescription-relationship'>Node and NodeDescription relationship</h3></p>
+
+<p>It is important to remember that the UI hierarchy has a 1:1 relationship with <code><a href="Classes/Node.html">Node</a></code> instances
+and not with <code>NodeDescription</code>. This means that each <code>UIView</code> in the UIKit UI tree
+(or <code>NSView</code> in the AppKit UI tree) is connected to a <code><a href="Classes/Node.html">Node</a></code> instance.
+This instance holds the description that is used to manage the <code>UIView</code> (or <code>NSView</code>) (and the children),
+properties and the state.</p>
+
+<p>This is why all the <code>NodeDescription</code> methods are static.
+Description instances are meaningless and are used only as an easy to ready way
+to describe the UI in the <code>childrenDescriptions(props:state:update:dispatch:)</code> method.
+These instances are used by Katana to understand how to update the UI (update, remove and add views) and then thrown away.</p>
+
+                        <a href="Protocols/NodeDescription.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescription.html">AnyNodeDescription</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescription.swift#L161-L285">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana30AnyNodeDescriptionWithChildren"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyNodeDescriptionWithChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana30AnyNodeDescriptionWithChildren">AnyNodeDescriptionWithChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Erasure for <code><a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a></code></p>
+
+                        <a href="Protocols/AnyNodeDescriptionWithChildren.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescriptionWithChildren</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescription.html">AnyNodeDescription</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L12-L15">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana27NodeDescriptionWithChildren"></a>
+                    <a name="//apple_ref/swift/Protocol/NodeDescriptionWithChildren" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana27NodeDescriptionWithChildren">NodeDescriptionWithChildren</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This is the protocol that descriptions (that is, concrete implementations of <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code>) need to
+implement if they contain children. For example the <code>View</code> component of <code>KatanaElements</code> implements this
+protocol and it allows to implement the following behaviour:</p>
+
+<pre class="highlight plaintext"><code>func childrenDescriptions(...) {
+ View(props: ViewProps()) {
+   return [
+     Image(props: ImageProps()),
+     Button(props: ButtonProps()),
+   ]
+ }
+}
+</code></pre>
+
+<p>Basically we can return a View description that holds some children.</p>
+
+<p>Katana will internally leverage this protocol to correctly handle the children (e.g., render and apply the layout).</p>
+
+                        <a href="Protocols/NodeDescriptionWithChildren.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionWithChildren</span><span class="p">:</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L36-L39">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana12Childrenable"></a>
+                    <a name="//apple_ref/swift/Protocol/Childrenable" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana12Childrenable">Childrenable</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>This protocol is used for properties of descriptions that implement the <code><a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a></code> protocol</p>
+
+                        <a href="Protocols/Childrenable.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Childrenable</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L55-L58">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -426,7 +677,7 @@ It can be triggered from a user action, from a system event or any event in gene
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L18-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L18-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -457,7 +708,7 @@ It can be triggered from a user action, from a system event or any event in gene
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L25-L37">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L25-L37">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -499,7 +750,7 @@ in it is safer.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L71-L78">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L71-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -530,7 +781,7 @@ in it is safer.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L81-L85">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L81-L85">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -562,7 +813,7 @@ NativeViews should provide the ref values.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L91-L98">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L91-L98">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -622,7 +873,7 @@ The init should be therefore implemented in the following way:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Refs/Refs.swift#L139-L145">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/Refs/Refs.swift#L139-L145">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -634,9 +885,9 @@ The init should be therefore implemented in the following way:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana30AnyNodeDescriptionWithChildren"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyNodeDescriptionWithChildren" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana30AnyNodeDescriptionWithChildren">AnyNodeDescriptionWithChildren</a>
+                    <a name="/s:P6Katana27AnyConnectedNodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyConnectedNodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana27AnyConnectedNodeDescription">AnyConnectedNodeDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -644,20 +895,20 @@ The init should be therefore implemented in the following way:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Type Erasure for <code><a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a></code></p>
+                        <p>Type Erasure for <code><a href="Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a></code></p>
 
-                        <a href="Protocols/AnyNodeDescriptionWithChildren.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/AnyConnectedNodeDescription.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescriptionWithChildren</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescription.html">AnyNodeDescription</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyConnectedNodeDescription</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L12-L15">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L12-L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -665,9 +916,9 @@ The init should be therefore implemented in the following way:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana27NodeDescriptionWithChildren"></a>
-                    <a name="//apple_ref/swift/Protocol/NodeDescriptionWithChildren" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana27NodeDescriptionWithChildren">NodeDescriptionWithChildren</a>
+                    <a name="/s:P6Katana24ConnectedNodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/ConnectedNodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana24ConnectedNodeDescription">ConnectedNodeDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -675,67 +926,44 @@ The init should be therefore implemented in the following way:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>This is the protocol that descriptions (that is, concrete implementations of <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code>) need to
-implement if they contain children. For example the <code>View</code> component of <code>KatanaElements</code> implements this
-protocol and it allows to implement the following behaviour:</p>
+                        <p>In applications developed with Katana, the application information is stored in a central Store.
+There are cases where you want to take pieces of information from the central store and use them in your UI.
+<code>ConnectedNodeDescription</code> is the protocol that is used to implement this behaviour.</p>
 
-<pre class="highlight plaintext"><code>func childrenDescriptions(...) {
- View(props: ViewProps()) {
-   return [
-     Image(props: ImageProps()),
-     Button(props: ButtonProps()),
-   ]
- }
-}
-</code></pre>
+<p>By implementing this protocol in a description you get two behaviours: store information merging and automatic UI update.</p>
 
-<p>Basically we can return a View description that holds some children.</p>
+<p><a href='#merge-description-39-s-props-and-store-39-s-state' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='merge-description-39-s-props-and-store-39-s-state'>Merge description&rsquo;s props and Store&rsquo;s state</h3></p>
 
-<p>Katana will internally leverage this protocol to correctly handle the children (e.g., render and apply the layout).</p>
+<p>Every time there is an UI update (e.g., because either props or state are changed), Katana allows you to
+inject in the props information that are taken from the central Store. You can use the <code>connect</code>
+method to implement this behaviour.</p>
 
-                        <a href="Protocols/NodeDescriptionWithChildren.html" class="slightly-smaller">See more</a>
+<p><a href='#automatic-ui-update' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='automatic-ui-update'>Automatic UI update</h3></p>
+
+<p>Every time the Store&rsquo;s state changes, you may want to update the UI. When you adopt the <code>ConnectedNodeDescription</code>
+protocol, Katana will trigger an UI update to all the nodes that are related to the description.
+The system will search for all the nodes that have a description that implements this protocol. It will then
+calculate the new props, by invoking <code>connect</code>. If the properties are changed, then the UI update is triggered.
+In this way we are able to effectively trigger UI changes only where and when needed.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Classes/Store.html">Store</a></code>
+
+</div>
+
+                        <a href="Protocols/ConnectedNodeDescription.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionWithChildren</span><span class="p">:</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a></span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ConnectedNodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L36-L39">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana12Childrenable"></a>
-                    <a name="//apple_ref/swift/Protocol/Childrenable" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana12Childrenable">Childrenable</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This protocol is used for properties of descriptions that implement the <code><a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a></code> protocol</p>
-
-                        <a href="Protocols/Childrenable.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Childrenable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescriptionWithChildren.swift#L55-L58">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Core/StoreConnection/ConnectedNodeDescription.swift#L42-L60">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -747,9 +975,9 @@ protocol and it allows to implement the following behaviour:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana20NodeDescriptionState"></a>
-                    <a name="//apple_ref/swift/Protocol/NodeDescriptionState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana20NodeDescriptionState">NodeDescriptionState</a>
+                    <a name="/s:P6Katana25AnyPlasticNodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyPlasticNodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana25AnyPlasticNodeDescription">AnyPlasticNodeDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -757,23 +985,20 @@ protocol and it allows to implement the following behaviour:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Protocol that is used for structs that represent the state of a <code><a href="Classes/Node.html">Node</a></code>.</p>
+                        <p>Type Erasure for <code><a href="Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a></code></p>
 
-<p>This protocol requires instances to be equatable. Katana uses this requirement to
-avoid to update the UI if the state (and the props) are not changed.</p>
-
-                        <a href="Protocols/NodeDescriptionState.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/AnyPlasticNodeDescription.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionState</span><span class="p">:</span> <span class="kt">Equatable</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyPlasticNodeDescription</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescription.swift#L16-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Plastic/PlasticNodeDescription.swift#L12-L19">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -781,9 +1006,9 @@ avoid to update the UI if the state (and the props) are not changed.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana23AnyNodeDescriptionProps"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyNodeDescriptionProps" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana23AnyNodeDescriptionProps">AnyNodeDescriptionProps</a>
+                    <a name="/s:P6Katana22PlasticNodeDescription"></a>
+                    <a name="//apple_ref/swift/Protocol/PlasticNodeDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana22PlasticNodeDescription">PlasticNodeDescription</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -791,288 +1016,20 @@ avoid to update the UI if the state (and the props) are not changed.</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Type Erasure for <code><a href="Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a></code></p>
+                        <p>This protocol allows a <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code> to use the Plastic layout system.</p>
 
-                        <a href="Protocols/AnyNodeDescriptionProps.html" class="slightly-smaller">See more</a>
+                        <a href="Protocols/PlasticNodeDescription.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescriptionProps</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlasticNodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescription.swift#L40-L59">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana20NodeDescriptionProps"></a>
-                    <a name="//apple_ref/swift/Protocol/NodeDescriptionProps" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana20NodeDescriptionProps">NodeDescriptionProps</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Protocol that is used for structs that represent the properties of a <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code>.</p>
-
-<p>This protocol requires instances to be equatable. Katana uses this requirement to
-avoid to update the UI if the properties (and the state) are not changed.</p>
-
-                        <a href="Protocols/NodeDescriptionProps.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescriptionProps</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a></span><span class="p">,</span> <span class="kt">Equatable</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescription.swift#L76">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana18AnyNodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyNodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana18AnyNodeDescription">AnyNodeDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type Erasure for the <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code> protocol</p>
-
-                        <a href="Protocols/AnyNodeDescription.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNodeDescription</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescription.swift#L94-L129">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana15NodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/NodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana15NodeDescription">NodeDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>A <code>NodeDescription</code> defines a specific piece of UI. You can think of a <code>NodeDescription</code> as a stencil that
-describes how a piece of UI should look like.</p>
-
-<p><code>NodeDescription</code> methods are stateless. This is because the properties and the state are held
- by a <code><a href="Classes/Node.html">Node</a></code> instance (see <code><a href="Classes/Node.html">Node</a></code> for more information) that Katana automatically creates.</p>
-
-<p>In general, a description defines two things:</p>
-
-<ul>
-<li><p>how properties and state are used to personalise the instance of UIView/NSView (or subclass)
-associated with the <code><a href="Classes/Node.html">Node</a></code> instance. This view is also named <strong>NativeView</strong></p></li>
-<li><p>what are the children descriptions given the properties and the state</p></li>
-</ul>
-
-<p><a href='#node-and-nodedescription-relationship' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='node-and-nodedescription-relationship'>Node and NodeDescription relationship</h3></p>
-
-<p>It is important to remember that the UI hierarchy has a 1:1 relationship with <code><a href="Classes/Node.html">Node</a></code> instances
-and not with <code>NodeDescription</code>. This means that each <code>UIView</code> in the UIKit UI tree
-(or <code>NSView</code> in the AppKit UI tree) is connected to a <code><a href="Classes/Node.html">Node</a></code> instance.
-This instance holds the description that is used to manage the <code>UIView</code> (or <code>NSView</code>) (and the children),
-properties and the state.</p>
-
-<p>This is why all the <code>NodeDescription</code> methods are static.
-Description instances are meaningless and are used only as an easy to ready way
-to describe the UI in the <code>childrenDescriptions(props:state:update:dispatch:)</code> method.
-These instances are used by Katana to understand how to update the UI (update, remove and add views) and then thrown away.</p>
-
-                        <a href="Protocols/NodeDescription.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">NodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyNodeDescription.html">AnyNodeDescription</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/NodeDescription/NodeDescription.swift#L161-L285">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana7AnyNode"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyNode" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana7AnyNode">AnyNode</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type Erasure protocol for the <code><a href="Classes/Node.html">Node</a></code> class.</p>
-
-                        <a href="Protocols/AnyNode.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyNode</span><span class="p">:</span> <span class="kd">class</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Node/AnyNode.swift#L15-L73">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana15LinkeableAction"></a>
-                    <a name="//apple_ref/swift/Protocol/LinkeableAction" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana15LinkeableAction">LinkeableAction</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Protocol to identify a linked action that must be dispatched after another action, 
-called source, is dispatched by the Store.</p>
-
-                        <a href="Protocols/LinkeableAction.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">LinkeableAction</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana29SideEffectDependencyContainer"></a>
-                    <a name="//apple_ref/swift/Protocol/SideEffectDependencyContainer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana29SideEffectDependencyContainer">SideEffectDependencyContainer</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Protocol that the side effect dependencies container should implement</p>
-
-                        <a href="Protocols/SideEffectDependencyContainer.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SideEffectDependencyContainer</span><span class="p">:</span> <span class="kd">class</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/SideEffectDependencyContainer.swift#L12-L22">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana18PlatformNativeView"></a>
-                    <a name="//apple_ref/swift/Protocol/PlatformNativeView" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana18PlatformNativeView">PlatformNativeView</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This protocol abstracts how <code><a href="Classes/Node.html">Node</a></code> instances can be rendered. We have introduced this protocol
-to abstract the Katana world (nodes and descriptions) from the underlying implementation of how
-the UI is rendered.</p>
-
-<p>The most obvious implementation of this protocol is <code>UIView</code> for iOS or <code>NSView</code> for mac OS.
-It is possible to create custom containers that renders nodes on abstract structures (e.g., for testing)
-or on serializable structures to store the UI representation and use it later.</p>
-
-                        <a href="Protocols/PlatformNativeView.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlatformNativeView</span> <span class="p">:</span> <span class="kd">class</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Core/Node/PlatformNativeView.swift#L20-L96">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Plastic/PlasticNodeDescription.swift#L24-L73">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1117,7 +1074,7 @@ is calculated in the following way:</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/PlasticReferenceSizeable.swift#L24-L28">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Plastic/PlasticReferenceSizeable.swift#L24-L28">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1129,9 +1086,9 @@ is calculated in the following way:</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:P6Katana5State"></a>
-                    <a name="//apple_ref/swift/Protocol/State" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana5State">State</a>
+                    <a name="/s:P6Katana6Action"></a>
+                    <a name="//apple_ref/swift/Protocol/Action" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana6Action">Action</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -1139,22 +1096,23 @@ is calculated in the following way:</p>
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Protocol for the state of the applications.
-In Katana, all the relevant application information should be placed in a single
-struct that has to implement the <code>State</code> protocol.</p>
+                        <p>An action represents an event that leads to a change in the state of the application.
+It can be triggered from a user action, from a system event or any event in general.</p>
 
-                        <a href="Protocols/State.html" class="slightly-smaller">See more</a>
+<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+
+                        <a href="Protocols/Action.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">State</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/State.swift#L16-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/Action.swift#L17-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1206,108 +1164,7 @@ the result of the network call.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/ActionWithSideEffect.swift#L30-L48">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana25AnyPlasticNodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyPlasticNodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana25AnyPlasticNodeDescription">AnyPlasticNodeDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type Erasure for <code><a href="Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a></code></p>
-
-                        <a href="Protocols/AnyPlasticNodeDescription.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyPlasticNodeDescription</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/PlasticNodeDescription.swift#L12-L19">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana22PlasticNodeDescription"></a>
-                    <a name="//apple_ref/swift/Protocol/PlasticNodeDescription" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana22PlasticNodeDescription">PlasticNodeDescription</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>This protocol allows a <code><a href="Protocols/NodeDescription.html">NodeDescription</a></code> to use the Plastic layout system.</p>
-
-                        <a href="Protocols/PlasticNodeDescription.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlasticNodeDescription</span><span class="p">:</span> <span class="kt"><a href="Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="Protocols/NodeDescription.html">NodeDescription</a></span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Plastic/PlasticNodeDescription.swift#L24-L73">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:P6Katana8AnyStore"></a>
-                    <a name="//apple_ref/swift/Protocol/AnyStore" class="dashAnchor"></a>
-                    <a class="token" href="#/s:P6Katana8AnyStore">AnyStore</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Type Erasure for <code><a href="Classes/Store.html">Store</a></code></p>
-
-                        <a href="Protocols/AnyStore.html" class="slightly-smaller">See more</a>
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyStore</span><span class="p">:</span> <span class="kd">class</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/Store.swift#L12-L31">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/ActionWithSideEffect.swift#L30-L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1342,7 +1199,7 @@ the result of the network call.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/AsyncAction.swift#L58-L62">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/AsyncAction.swift#L58-L62">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1422,7 +1279,150 @@ extension AppSyncAction {
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.2/Katana/Store/AsyncAction.swift#L117-L182">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/AsyncAction.swift#L117-L182">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana15LinkeableAction"></a>
+                    <a name="//apple_ref/swift/Protocol/LinkeableAction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana15LinkeableAction">LinkeableAction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol to identify a linked action that must be dispatched after another action, 
+called source, is dispatched by the Store.</p>
+
+                        <a href="Protocols/LinkeableAction.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">LinkeableAction</span><span class="p">:</span> <span class="kt"><a href="Protocols/Action.html">Action</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana29SideEffectDependencyContainer"></a>
+                    <a name="//apple_ref/swift/Protocol/SideEffectDependencyContainer" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana29SideEffectDependencyContainer">SideEffectDependencyContainer</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol that the side effect dependencies container should implement</p>
+
+                        <a href="Protocols/SideEffectDependencyContainer.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SideEffectDependencyContainer</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/SideEffectDependencyContainer.swift#L12-L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana5State"></a>
+                    <a name="//apple_ref/swift/Protocol/State" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana5State">State</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Protocol for the state of the applications.
+In Katana, all the relevant application information should be placed in a single
+struct that has to implement the <code>State</code> protocol.</p>
+
+                        <a href="Protocols/State.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">State</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/State.swift#L16-L22">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:P6Katana8AnyStore"></a>
+                    <a name="//apple_ref/swift/Protocol/AnyStore" class="dashAnchor"></a>
+                    <a class="token" href="#/s:P6Katana8AnyStore">AnyStore</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Type Erasure for <code><a href="Classes/Store.html">Store</a></code></p>
+
+                        <a href="Protocols/AnyStore.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">AnyStore</span><span class="p">:</span> <span class="kd">class</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.3/Katana/Store/Store.swift#L12-L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -1432,7 +1432,7 @@ extension AppSyncAction {
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-04-19)</p>
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-05-11)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
