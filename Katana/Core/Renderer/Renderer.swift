@@ -30,6 +30,9 @@ open class Renderer {
   /// The state mock provider to use in the application
   let stateMockProvider: StateMockProvider?
 
+  /// Node IDs that have been updated in the current update cycle
+  private var currentUpdateCycleUpdatedNodes: Set<Int>
+  
   /**
     Reference to the Root's child
    
@@ -57,6 +60,7 @@ open class Renderer {
   public init(rootDescription: AnyNodeDescription, store: AnyStore?, stateMockProvider: StateMockProvider? = nil) {
     self.store = store
     self.stateMockProvider = stateMockProvider
+    self.currentUpdateCycleUpdatedNodes = []
 
     let unsubscribe = self.store?.addListener({ [unowned self] in
       self.storeDidChange()
@@ -84,9 +88,24 @@ open class Renderer {
    Method that is used to manage an update in the store's state
   */
   private func storeDidChange() {
+    /*
+     Since we are currently interested only in cycles that happens when the store
+     changes, we reset the set only when the store effectively changes.
+     
+     We may have update cycles triggered by other things (e.g., change a node description
+     state) but 1) renderer most likely won't be the source of the change and 2) we cannot
+     optimize them here
+    */
+    self.currentUpdateCycleUpdatedNodes = []
+
     if let rootNode = self.rootNode {
       self.explore(rootNode)
     }
+  }
+  
+  func setNodeAsUpdatedInCurrentRenderCycle(_ node: AnyNode) {
+    let id = ObjectIdentifier(node).hashValue
+    self.currentUpdateCycleUpdatedNodes.insert(id)
   }
 
   /**
@@ -109,6 +128,7 @@ open class Renderer {
 
     node.children
       .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
+      .filter { !self.currentUpdateCycleUpdatedNodes.contains(ObjectIdentifier($0).hashValue) }
       .forEach { explore($0) }
 
     node.managedChildren.forEach { explore($0) }
