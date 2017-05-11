@@ -7,42 +7,30 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "NO"
             buildForRunning = "YES"
             buildForProfiling = "YES"
-            buildForArchiving = "YES"
-            buildForAnalyzing = "YES">
+            buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "18733A4E0B9228477AB56E20"
-               BuildableName = "Demo macOS.app"
-               BlueprintName = "Demo MacOS"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '5D9709AF354767A3B41C1366'
+               BlueprintName = 'Demo MacOS'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Demo MacOS.'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18733A4E0B9228477AB56E20"
-            BuildableName = "Demo macOS.app"
-            BlueprintName = "Demo MacOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -50,34 +38,34 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18733A4E0B9228477AB56E20"
-            BuildableName = "Demo macOS.app"
-            BlueprintName = "Demo MacOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "18733A4E0B9228477AB56E20"
-            BuildableName = "Demo macOS.app"
-            BlueprintName = "Demo MacOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = '5D9709AF354767A3B41C1366'
+            BlueprintName = 'Demo MacOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Demo MacOS.'>
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES"
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = '5D9709AF354767A3B41C1366'
+            BlueprintName = 'Demo MacOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Demo MacOS.'>
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

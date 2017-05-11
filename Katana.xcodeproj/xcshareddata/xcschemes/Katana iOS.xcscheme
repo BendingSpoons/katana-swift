@@ -7,66 +7,56 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0349BC2394C73FDDD2954994"
-               BuildableName = "Katana.framework"
-               BlueprintName = "Katana iOS"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'B2960AF315A2BB96616E8477'
+               BlueprintName = 'Katana iOS'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana iOS.'>
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "YES"
             buildForRunning = "NO"
             buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForArchiving = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2DD33525C19C498EB24350A"
-               BuildableName = "Katana iOSTests.xctest"
-               BlueprintName = "Katana iOSTests"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'F2034D20282E56F1FD133155'
+               BlueprintName = 'Katana iOSTests'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana iOSTests.'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <AdditionalOptions>
+      </AdditionalOptions>
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D2DD33525C19C498EB24350A"
-               BuildableName = "Katana iOSTests.xctest"
-               BlueprintName = "Katana iOSTests"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'F2034D20282E56F1FD133155'
+               BlueprintName = 'Katana iOSTests'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'Katana iOSTests.'>
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0349BC2394C73FDDD2954994"
-            BuildableName = "Katana.framework"
-            BlueprintName = "Katana iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -74,34 +64,34 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0349BC2394C73FDDD2954994"
-            BuildableName = "Katana.framework"
-            BlueprintName = "Katana iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "0349BC2394C73FDDD2954994"
-            BuildableName = "Katana.framework"
-            BlueprintName = "Katana iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = 'B2960AF315A2BB96616E8477'
+            BlueprintName = 'Katana iOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Katana iOS.'>
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES"
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = 'B2960AF315A2BB96616E8477'
+            BlueprintName = 'Katana iOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'Katana iOS.'>
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
