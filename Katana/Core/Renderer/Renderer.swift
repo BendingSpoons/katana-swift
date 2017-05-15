@@ -31,7 +31,7 @@ open class Renderer {
   let stateMockProvider: StateMockProvider?
 
   /// Node IDs that have been updated in the current update cycle
-  private var currentUpdateCycleUpdatedNodes: Set<Int>
+  private var currentUpdateCycleUpdatedNodes: Set<ObjectIdentifier>
   
   /**
     Reference to the Root's child
@@ -104,7 +104,7 @@ open class Renderer {
   }
   
   func setNodeAsUpdatedInCurrentRenderCycle(_ node: AnyNode) {
-    let id = ObjectIdentifier(node).hashValue
+    let id = ObjectIdentifier(node)
     self.currentUpdateCycleUpdatedNodes.insert(id)
   }
 
@@ -115,10 +115,10 @@ open class Renderer {
    - parameter node: the node to explore
   */
   private func explore(_ node: AnyNode) {
-    var childrenTable = [Int: AnyNode]()
+    var childrenTable = [ObjectIdentifier: AnyNode]()
 
     for node in node.children {
-      childrenTable[ObjectIdentifier(node).hashValue] = node
+      childrenTable[ObjectIdentifier(node)] = node
     }
 
     if node.anyDescription is AnyConnectedNodeDescription {
@@ -127,11 +127,11 @@ open class Renderer {
     }
 
     node.children
-      .filter { childrenTable[ObjectIdentifier($0).hashValue] != nil }
-      .filter { !self.currentUpdateCycleUpdatedNodes.contains(ObjectIdentifier($0).hashValue) }
-      .forEach { explore($0) }
+      .flatMap { childrenTable[ObjectIdentifier($0)] }
+      .filter { !self.currentUpdateCycleUpdatedNodes.contains(ObjectIdentifier($0)) }
+      .forEach { self.explore($0) }
 
-    node.managedChildren.forEach { explore($0) }
+    node.managedChildren.forEach { self.explore($0) }
   }
 
   /// When the root is deallocated, we should unsubscribe it from the store changes
