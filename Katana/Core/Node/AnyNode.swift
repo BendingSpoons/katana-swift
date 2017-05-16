@@ -17,6 +17,9 @@ public protocol AnyNode: class {
   /// Type erasure for the `NodeDescription` that the node holds
   var anyDescription: AnyNodeDescription { get }
 
+  /// Type erasure for the `NodeDescriptionState` that the node holds
+  var anyState: Any { get }
+  
   /// Children nodes of the node
   var children: [AnyNode]! { get }
 
@@ -26,6 +29,9 @@ public protocol AnyNode: class {
   /// The parent of the node
   var parent: AnyNode? { get }
 
+  /// The container of the node
+  var container: PlatformNativeView? { get }
+  
   /**
    The renderer of the node. This is a computed variable that traverses the tree up to the root node and returns `root.renderer`
    */
