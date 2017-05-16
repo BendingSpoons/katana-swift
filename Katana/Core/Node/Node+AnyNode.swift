@@ -19,6 +19,15 @@ extension Node: AnyNode {
   }
 
   /**
+  Implementation of the AnyNode protocol.
+  
+  - seeAlso: `AnyNode`
+  */
+  public var anyState: Any {
+    return self.state
+  }
+  
+  /**
    Implementation of the AnyNode protocol.
    
    - seeAlso: `AnyNode`
