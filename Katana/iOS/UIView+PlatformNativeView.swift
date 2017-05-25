@@ -157,7 +157,7 @@ extension UIView: PlatformNativeView {
 
     switch type {
     case .none:
-      UIView.performWithoutAnimation(block)
+      block()
       completion?()
 
     case let .linear(duration):
