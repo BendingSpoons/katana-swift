@@ -121,14 +121,15 @@ open class Renderer {
       childrenTable[ObjectIdentifier(node)] = node
     }
 
-    if node.anyDescription is AnyConnectedNodeDescription {
+    let isNodeAlreadyUpdated = self.currentUpdateCycleUpdatedNodes.contains(ObjectIdentifier(node))
+    
+    if node.anyDescription is AnyConnectedNodeDescription && !isNodeAlreadyUpdated {
       // ok the description is connected to the node, let's trigger an update
       node.update(with: node.anyDescription, animation: .none, completion: nil)
     }
 
     node.children
       .flatMap { childrenTable[ObjectIdentifier($0)] }
-      .filter { !self.currentUpdateCycleUpdatedNodes.contains(ObjectIdentifier($0)) }
       .forEach { self.explore($0) }
 
     node.managedChildren.forEach { self.explore($0) }
