@@ -439,12 +439,14 @@ extension Node {
       nextState: stateToUse
     )
     
+    var newState = stateToUse
+    
     guard force || shouldUpdate else {
+      self.state = newState
+      self.description = description
       completion?()
       return
     }
-    
-    var newState = stateToUse
     
     // invoke the proper lifecycle hook if props changes
     if self.description.props != description.props {
