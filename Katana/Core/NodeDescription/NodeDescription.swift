@@ -86,6 +86,7 @@ public extension NodeDescriptionProps {
    - returns: always false
   */
   static func == (l: Self, r: Self) -> Bool {
+    print("Warning: default `==` implementation used for (\(String(reflecting: self.self))))")
     return false
   }
 }
