@@ -51,12 +51,13 @@ public protocol AnyStore: class {
  See `ConnectedNodeDescription` for more information about this topic
 */
 open class Store<StateType: State> {
+  typealias ListenerID = String
 
   /// The current state of the application
   open fileprivate(set) var state: StateType
 
   /// The  array of registered listeners
-  fileprivate var listeners: [StoreListener]
+  fileprivate var listeners: [ListenerID: StoreListener]
 
   /// The array of middleware of the store
   fileprivate let middleware: [StoreMiddleware]
@@ -106,7 +107,7 @@ open class Store<StateType: State> {
    - returns: An instance of store configured with the given properties
   */
   public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
-    self.listeners = []
+    self.listeners = [:]
     self.state = StateType()
     self.middleware = middleware
     
@@ -141,11 +142,11 @@ open class Store<StateType: State> {
    - returns: a closure that can be used to remove the listener
   */
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
-    self.listeners.append(listener)
-    let idx = listeners.count - 1
+    let listenerID: ListenerID = UUID().uuidString
+    self.listeners[listenerID] = listener
 
     return { [weak self] in
-      _ = self?.listeners.remove(at: idx)
+      _ = self?.listeners.removeValue(forKey: listenerID)
     }
   }
 
@@ -192,7 +193,7 @@ fileprivate extension Store {
     
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
-      self.listeners.forEach { $0() }
+      self.listeners.values.forEach { $0() }
     }
   }
 
