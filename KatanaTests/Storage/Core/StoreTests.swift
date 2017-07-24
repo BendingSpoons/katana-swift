@@ -84,6 +84,7 @@ class StoreTests: XCTestCase {
   func testListenerRemove() {
     let expectation = self.expectation(description: "Store listener")
     let secondExpectation = self.expectation(description: "Second Store listener")
+    var secondExpectationFullfilled: Bool = false
 
     let store = Store<AppState>()
     var firstState: AppState? = nil
@@ -91,8 +92,9 @@ class StoreTests: XCTestCase {
 
     // listener just to fullfill expectations
     _ = store.addListener {
-      if firstState != nil {
+      if firstState != nil && !secondExpectationFullfilled {
         secondExpectation.fulfill()
+        secondExpectationFullfilled = true
 
       } else {
         expectation.fulfill()
