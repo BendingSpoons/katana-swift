@@ -67,7 +67,7 @@ open class Store<StateType: State> {
    
    - seeAlso: `ActionWithSideEffect`
   */
-  fileprivate var dependencies: SideEffectDependencyContainer!
+  public var dependencies: SideEffectDependencyContainer!
 
   /**
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched
