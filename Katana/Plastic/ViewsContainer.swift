@@ -91,7 +91,7 @@ public class ViewsContainer<Key> {
     var frames = [String: CGRect]()
 
     for (key, value) in self.views {
-      frames["\(key)"] = value.frame.retinaRounded
+      frames["\(key)"] = value.frame.retinaRound()
     }
 
     return frames
@@ -264,29 +264,47 @@ extension ViewsContainer {
   }
 }
 
-fileprivate extension CGRect {
-  
+public extension CGRect {
   /**
-   Round the CGRect value to the closest possible decimal
-   value allowed by the retina scale
+   Returns the CGRect value rounded to the closest possible decimal
+   value allowed by the retina scale, according to the specified rule
+   (.toNearestOrAwayFromZero by default)
    */
-  fileprivate var retinaRounded: CGRect {
+  public func retinaRound(_ rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> CGRect {
     return CGRect(
-      x: self.origin.x.retinaRounded,
-      y: self.origin.y.retinaRounded,
-      width: self.size.width.retinaRounded,
-      height: self.size.height.retinaRounded
+      x: self.origin.x.retinaRound(rule),
+      y: self.origin.y.retinaRound(rule),
+      width: self.size.width.retinaRound(rule),
+      height: self.size.height.retinaRound(rule)
     )
+  }
+
+  /**
+   Rounds the CGRect value to the closest possible decimal
+   value allowed by the retina scale, according to the specified rule
+   (.toNearestOrAwayFromZero by default)
+   */
+  public mutating func retinaRounded(_ rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) {
+    self = self.retinaRound(rule)
   }
 }
 
-fileprivate extension CGFloat {
-  
+public extension CGFloat {
   /**
-    Round the CGFloat value to the closest possible decimal
-    value allowed by the retina scale
+    Returns the CGFloat value rounded to the closest possible decimal
+   value allowed by the retina scale, according to the specified rule
+   (.toNearestOrAwayFromZero by default)
   */
-  var retinaRounded: CGFloat {
-    return (self * Screen.retinaScale).rounded() / Screen.retinaScale
+  public func retinaRound(_ rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) -> CGFloat {
+    return (self * Screen.retinaScale).rounded(rule) / Screen.retinaScale
+  }
+
+  /**
+   Rounds the CGFloat value to the closest possible decimal
+   value allowed by the retina scale, according to the specified rule
+   (.toNearestOrAwayFromZero by default)
+   */
+  public mutating func retinaRounded(_ rule: FloatingPointRoundingRule = .toNearestOrAwayFromZero) {
+    self = self.retinaRound(rule)
   }
 }
