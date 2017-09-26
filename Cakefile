@@ -1,9 +1,5 @@
 project.name = "Katana"
 
-project.all_configurations.each do |configuration|
-    configuration.settings["SWIFT_VERSION"] = "3.0"
-end
-
 # Katana iOS Framework target
 katana_ios = target do |target|
     target.name = "Katana iOS"
@@ -22,6 +18,7 @@ katana_ios = target do |target|
     target.all_configurations.each do |configuration|
         configuration.settings["INFOPLIST_FILE"] = "Katana/iOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "Katana"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.headers_build_phase do |phase|
@@ -42,6 +39,7 @@ katana_ios = target do |target|
 
         unit_test.all_configurations.each do |configuration|
             configuration.settings["INFOPLIST_FILE"] = "KatanaTests/IOS/Info.plist"
+	    configuration.settings["SWIFT_VERSION"] = "3.0"
         end
     end
 
@@ -65,6 +63,7 @@ katana_elements_ios = target do |target|
     target.all_configurations.each do |configuration|
         configuration.settings["INFOPLIST_FILE"] = "KatanaElements/iOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "KatanaElements"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.headers_build_phase do |phase|
@@ -93,6 +92,7 @@ demo_ios = target do |target|
         configuration.product_bundle_identifier = "dk.bendingspoons.Demo"
         configuration.settings["INFOPLIST_FILE"] = "Demo/IOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "Demo iOS"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.scheme(target.name)
@@ -116,6 +116,7 @@ katana_macos = target do |target|
     target.all_configurations.each do |configuration|
         configuration.settings["INFOPLIST_FILE"] = "Katana/MacOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "Katana"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.headers_build_phase do |phase|
@@ -136,6 +137,7 @@ katana_macos = target do |target|
 
         unit_test.all_configurations.each do |configuration|
             configuration.settings["INFOPLIST_FILE"] = "KatanaTests/MacOS/Info.plist"
+	    configuration.settings["SWIFT_VERSION"] = "3.0"
         end
     end
 
@@ -158,6 +160,7 @@ katana_elements_macos = target do |target|
     target.all_configurations.each do |configuration|
         configuration.settings["INFOPLIST_FILE"] = "KatanaElements/MacOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "KatanaElements"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.headers_build_phase do |phase|
@@ -187,6 +190,7 @@ demo_macos = target do |target|
         configuration.product_bundle_identifier = "dk.bendingspoons.Demo"
         configuration.settings["INFOPLIST_FILE"] = "Demo/macOS/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "Demo macOS"
+	configuration.settings["SWIFT_VERSION"] = "3.0"
     end
 
     target.scheme(target.name)
