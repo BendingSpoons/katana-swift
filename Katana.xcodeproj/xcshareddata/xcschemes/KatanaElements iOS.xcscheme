@@ -7,42 +7,30 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
-               BuildableName = "KatanaElements.framework"
-               BlueprintName = "KatanaElements iOS"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = 'F3DE549B22E3AD67094F6E08'
+               BlueprintName = 'KatanaElements iOS'
+               ReferencedContainer = 'container:Katana.xcodeproj'
+               BuildableName = 'KatanaElements iOS.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "YES">
-      <Testables>
-      </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
-            BuildableName = "KatanaElements.framework"
-            BlueprintName = "KatanaElements iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
       <AdditionalOptions>
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -50,34 +38,34 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
-            BuildableName = "KatanaElements.framework"
-            BlueprintName = "KatanaElements iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
-            BuildableName = "KatanaElements.framework"
-            BlueprintName = "KatanaElements iOS"
-            ReferencedContainer = "container:Katana.xcodeproj">
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = 'F3DE549B22E3AD67094F6E08'
+            BlueprintName = 'KatanaElements iOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'KatanaElements iOS.framework'>
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES"
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = 'primary'
+            BlueprintIdentifier = 'F3DE549B22E3AD67094F6E08'
+            BlueprintName = 'KatanaElements iOS'
+            ReferencedContainer = 'container:Katana.xcodeproj'
+            BuildableName = 'KatanaElements iOS.framework'>
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>
