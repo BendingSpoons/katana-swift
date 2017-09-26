@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
+               BlueprintIdentifier = "A5E14F61DB6500743B545CF7"
                BuildableName = "KatanaElements.framework"
                BlueprintName = "KatanaElements iOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -26,13 +26,14 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
+            BlueprintIdentifier = "A5E14F61DB6500743B545CF7"
             BuildableName = "KatanaElements.framework"
             BlueprintName = "KatanaElements iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -45,6 +46,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -55,7 +57,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
+            BlueprintIdentifier = "A5E14F61DB6500743B545CF7"
             BuildableName = "KatanaElements.framework"
             BlueprintName = "KatanaElements iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -74,7 +76,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "BE058137CA529419B3AAFDF8"
+            BlueprintIdentifier = "A5E14F61DB6500743B545CF7"
             BuildableName = "KatanaElements.framework"
             BlueprintName = "KatanaElements iOS"
             ReferencedContainer = "container:Katana.xcodeproj">

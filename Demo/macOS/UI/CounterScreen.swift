@@ -85,19 +85,19 @@ struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticR
 }
 
 extension String {
-  func attributed(key: String, value: Any) -> NSMutableAttributedString {
+  func attributed(key: NSAttributedStringKey, value: Any) -> NSMutableAttributedString {
     return NSMutableAttributedString(string: self, attributes: [key: value])
   }
 
   var centered: NSMutableAttributedString {
     let style = NSMutableParagraphStyle()
     style.alignment = NSTextAlignment.center
-    return self.attributed(key: NSParagraphStyleAttributeName, value: style)
+    return self.attributed(key: NSAttributedStringKey.paragraphStyle, value: style)
   }
 }
 
 extension NSMutableAttributedString {
-  func attributed(key: String, value: Any) -> NSMutableAttributedString {
+  func attributed(key: NSAttributedStringKey, value: Any) -> NSMutableAttributedString {
     self.addAttribute(key, value: value, range: self.string.fullRange)
     return self
   }
@@ -111,28 +111,28 @@ extension String {
 
 extension NSColor {
   static var mediumAquamarine: NSColor {
-    return NSColor(colorLiteralRed: 89.0/255.0, green: 201.0/255.0, blue: 165.0/255.0, alpha: 1.0)
+    return NSColor(red: 89.0/255.0, green: 201.0/255.0, blue: 165.0/255.0, alpha: 1.0)
   }
 
   static var dogwoodRose: NSColor {
-    return NSColor(colorLiteralRed: 216.0/255.0, green: 30.0/255.0, blue: 91.0/255.0, alpha: 1.0)
+    return NSColor(red: 216.0/255.0, green: 30.0/255.0, blue: 91.0/255.0, alpha: 1.0)
   }
 
   static var japaneseIndigo: NSColor {
-    return NSColor(colorLiteralRed: 35.0/255.0, green: 57.0/255.0, blue: 91.0/255.0, alpha: 1.0)
+    return NSColor(red: 35.0/255.0, green: 57.0/255.0, blue: 91.0/255.0, alpha: 1.0)
   }
 
   static var jet: NSColor {
-    return NSColor(colorLiteralRed: 51.0/255.0, green: 49.0/255.0, blue: 46.0/255.0, alpha: 1.0)
+    return NSColor(red: 51.0/255.0, green: 49.0/255.0, blue: 46.0/255.0, alpha: 1.0)
   }
 
   var darkish: NSColor {
-    let red: Float = Float(self.redComponent)
-    let green: Float = Float(self.greenComponent)
-    let blue: Float = Float(self.blueComponent)
-    let alpha: Float = Float(self.alphaComponent)
-    let darkishDelta: Float = 0.03
-    return NSColor(colorLiteralRed: max(0.0, red - darkishDelta),
+    let red: CGFloat = CGFloat(self.redComponent)
+    let green: CGFloat = CGFloat(self.greenComponent)
+    let blue: CGFloat = CGFloat(self.blueComponent)
+    let alpha: CGFloat = CGFloat(self.alphaComponent)
+    let darkishDelta: CGFloat = 0.03
+    return NSColor(red: max(0.0, red - darkishDelta),
                    green: max(0.0, green - darkishDelta),
                    blue: max(0.0, blue - darkishDelta),
                    alpha: alpha)

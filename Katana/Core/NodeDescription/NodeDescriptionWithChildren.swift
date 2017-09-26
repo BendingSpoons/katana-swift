@@ -33,9 +33,8 @@ public protocol AnyNodeDescriptionWithChildren: AnyNodeDescription {
  
  Katana will internally leverage this protocol to correctly handle the children (e.g., render and apply the layout).
 */
-public protocol NodeDescriptionWithChildren: NodeDescription, AnyNodeDescriptionWithChildren {
-  /// Props should implement `Childrenable`
-  associatedtype PropsType: Childrenable
+/// Props should implement `Childrenable`
+public protocol NodeDescriptionWithChildren: NodeDescription, AnyNodeDescriptionWithChildren where PropsType: Childrenable {
 }
 
 public extension NodeDescriptionWithChildren {

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F46D7B7FCF7136BAD513EF08"
+               BlueprintIdentifier = "46CD1913728BE331E12485F9"
                BuildableName = "Demo iOS.app"
                BlueprintName = "Demo iOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -26,13 +26,34 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "8CE4EBC1EFF3EF402CFD3E1F"
+               BuildableName = "Katana iOSTests.xctest"
+               BlueprintName = "Katana iOSTests"
+               ReferencedContainer = "container:Katana.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "46A7F6F4AAD09C12CA61440B"
+               BuildableName = "Katana macOSTests.xctest"
+               BlueprintName = "Katana macOSTests"
+               ReferencedContainer = "container:Katana.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F46D7B7FCF7136BAD513EF08"
+            BlueprintIdentifier = "46CD1913728BE331E12485F9"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -45,6 +66,7 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -55,7 +77,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F46D7B7FCF7136BAD513EF08"
+            BlueprintIdentifier = "46CD1913728BE331E12485F9"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -74,7 +96,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F46D7B7FCF7136BAD513EF08"
+            BlueprintIdentifier = "46CD1913728BE331E12485F9"
             BuildableName = "Demo iOS.app"
             BlueprintName = "Demo iOS"
             ReferencedContainer = "container:Katana.xcodeproj">

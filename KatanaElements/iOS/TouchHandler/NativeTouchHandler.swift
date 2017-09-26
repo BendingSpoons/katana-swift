@@ -51,19 +51,19 @@ public final class NativeTouchHandler: UIControl {
     }
   }
 
-  func didTouchDown() {
+  @objc func didTouchDown() {
     self.invokeAllHandlers(for: .touchDown)
   }
 
-  func didTouchUpInside() {
+  @objc func didTouchUpInside() {
     self.invokeAllHandlers(for: .touchUpInside)
   }
 
-  func didTouchUpOutside() {
+  @objc func didTouchUpOutside() {
     self.invokeAllHandlers(for: .touchUpOutside)
   }
 
-  func didTouchCancel() {
+  @objc func didTouchCancel() {
     self.invokeAllHandlers(for: .touchCancel)
   }
 
