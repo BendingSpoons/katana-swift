@@ -68,13 +68,11 @@ public extension NodeDescriptionWithRefProps {
  In general refs, should be used as last resort. Declarative way is more appropriated in Katana and
  in it is safer.
 */
-public protocol NodeDescriptionWithRef: NodeDescription {
-  
-  /// Extra constrains for the native view
-  associatedtype NativeView: NativeViewWithRef
-  
-  /// Extra constrains for the props
-  associatedtype PropsType: NodeDescriptionWithRefProps
+/// Extra constrains for the native view: must conform to NativeViewWithRef
+/// Extra constrains for the props: must conform to NodeDescriptionWithRefProps
+public protocol NodeDescriptionWithRef: NodeDescription where
+  NativeView: NativeViewWithRef,
+  PropsType: NodeDescriptionWithRefProps {
 }
 
 /// Type erasure for `NativeViewWithRef`

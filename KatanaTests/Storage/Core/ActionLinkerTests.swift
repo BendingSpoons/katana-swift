@@ -19,7 +19,7 @@ class ActionLinkerTests: XCTestCase {
     super.tearDown()
   }
 
-  //MARK Creation tests
+  // MARK: Creation tests
   func testReduceNothing() {
     let res = ActionLinker.reduceLinks(from: [])
     XCTAssertTrue(res.isEmpty)
@@ -54,7 +54,7 @@ class ActionLinkerTests: XCTestCase {
     XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
-//MARK SyncAction
+  // MARK: SyncAction
   
   func testNoChaining() {
     let expectation = self.expectation(description: "Store listener")
@@ -243,7 +243,7 @@ class ActionLinkerTests: XCTestCase {
     }
   }
   
-//MARK AsyncActions
+  // MARK: AsyncActions
   
   func testAsyncCompleted() {
     var count = 0
@@ -317,7 +317,7 @@ class ActionLinkerTests: XCTestCase {
   
 }
 
-//MARK Mocking
+// MARK: Mocking
 fileprivate struct ActionLinkerAppState: State {
   var int: Int = 0
 }
@@ -392,7 +392,7 @@ fileprivate struct LinkedAction3: LinkeableAction {
   }
 }
 
-//MARK Mocking for the async testing
+// MARK: Mocking for the async testing
 
 fileprivate struct BaseAsyncAction: AsyncAction {
   
@@ -415,9 +415,9 @@ fileprivate struct BaseAsyncAction: AsyncAction {
   /// The state of the action
   public var state: AsyncActionState
 
-  var invokedLoadingClosure: () -> () = { _ in }
-  var invokedCompletedClosure: () -> () = { _ in }
-  var invokedFailedClosure: () -> () = { _ in }
+  var invokedLoadingClosure: () -> () = { }
+  var invokedCompletedClosure: () -> () = { }
+  var invokedFailedClosure: () -> () = { }
   
   func updatedStateForLoading(currentState: State) -> State {
     self.invokedLoadingClosure()

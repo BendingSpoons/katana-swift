@@ -28,7 +28,7 @@ public extension Button {
     public var highlightedImage: NSImage?
     public var clickHandler: ClickHandlerClosure?
     public var isEnabled: Bool = true
-    public var type: NSButtonType = NSMomentaryChangeButton
+    public var type: NSButton.ButtonType = .momentaryChange
     
     public init() {}
 
