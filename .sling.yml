@@ -21,5 +21,5 @@ tests:
       sdk: iphonesimulator11.0
       simulator: platform=iOS Simulator,OS=11.0,name=iPhone 6s
     - scheme: Katana macOS
-      sdk: macosx10.12
+      sdk: macosx10.12.6
       simulator: platform=macOS,arch=x86_64
