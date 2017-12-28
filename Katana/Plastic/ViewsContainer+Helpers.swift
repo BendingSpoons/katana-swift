@@ -44,7 +44,7 @@ public extension ViewsContainer {
     return self
       .filtered(with: filter)
       .map { $0.key }
-      .sorted()
+      .sorted(by: sort)
       .flatMap { self.views[$0] }
     }
 }
