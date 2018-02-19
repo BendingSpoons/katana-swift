@@ -1,6 +1,5 @@
 included:
   - Katana
-  - KatanaElements
   - KatanaTests
   - Demo
 
