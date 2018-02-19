@@ -21,23 +21,17 @@ katana = target do |target|
         phase.public << "Katana/Katana.h"
     end
 
-    # unit_tests_for target do |unit_test|
-    #     unit_test.linked_targets = [target]
-    #     unit_test.include_files = [
-    #         "KatanaTests/Animations/**/*.swift",
-    #         "KatanaTests/Core/**/*.swift",
-    #         "KatanaTests/Extensions/**/*.swift",
-    #         "KatanaTests/IOS/**/*.swift",
-    #         "KatanaTests/NodeDescriptions/**/*.swift",
-    #         "KatanaTests/Plastic/**/*.swift",
-    #         "KatanaTests/Storage/**/*.swift"
-    #     ]
+    unit_tests_for target do |unit_test|
+        unit_test.linked_targets = [target]
+        unit_test.include_files = [
+            "KatanaTests/**/*.swift",
+        ]
 
-    #     unit_test.all_configurations.each do |configuration|
-    #         configuration.settings["INFOPLIST_FILE"] = "KatanaTests/IOS/Info.plist"
-	#     configuration.settings["SWIFT_VERSION"] = "4.0"
-    #     end
-    # end
+        unit_test.all_configurations.each do |configuration|
+            configuration.settings["INFOPLIST_FILE"] = "KatanaTests/Info.plist"
+	        configuration.settings["SWIFT_VERSION"] = "4.0"
+        end
+    end
 
     target.scheme(target.name)
 end
