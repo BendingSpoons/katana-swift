@@ -5,11 +5,11 @@ env:
     - PROJECT=Katana.xcodeproj
   matrix:
     - SCHEME="Katana"
-      SDK=iphonesimulator11.2
-      SIMULATOR="platform=iOS Simulator,OS=11.2,name=iPhone 7"
+      SDK=iphonesimulator11.0
+      SIMULATOR="platform=iOS Simulator,OS=11.0,name=iPhone\ 8"
 
 before_install:
-  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 7 (11.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
+  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 8 (11.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
   - echo $IOS_SIMULATOR_UDID
   - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 
