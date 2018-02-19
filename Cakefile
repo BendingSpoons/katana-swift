@@ -36,27 +36,26 @@ katana = target do |target|
     target.scheme(target.name)
 end
 
-# # iOS Demo target
-# demo_ios = target do |target|
-#     target.name = "Demo iOS"
-#     target.platform = :ios
-#     target.language = :swift
-#     target.deployment_target = 9.0
-#     target.type = :application
-#     target.linked_targets = [katana_ios, katana_elements_ios]
+# iOS Demo target
+demo = target do |target|
+    target.name = "Demo"
+    target.platform = :ios
+    target.language = :swift
+    target.deployment_target = 9.0
+    target.type = :application
+    target.linked_targets = [katana]
     
-#     target.include_files = [
-#         "Demo/Common/**/*.swift",
-#         "Demo/IOS/**/*.swift",
-#         "Demo/IOS/LunchScreen.storyboard",
-#     ]
+    target.include_files = [
+        "Demo/**/*.swift",
+        "Demo/LaunchScreen.storyboard",
+    ]
 
-#     target.all_configurations.each do |configuration|
-#         configuration.product_bundle_identifier = "dk.bendingspoons.Demo"
-#         configuration.settings["INFOPLIST_FILE"] = "Demo/IOS/Info.plist"
-#         configuration.settings["PRODUCT_NAME"] = "Demo iOS"
-# 	configuration.settings["SWIFT_VERSION"] = "4.0"
-#     end
+    target.all_configurations.each do |configuration|
+        configuration.product_bundle_identifier = "com.bendingspoons.Demo"
+        configuration.settings["INFOPLIST_FILE"] = "Demo/Info.plist"
+        configuration.settings["PRODUCT_NAME"] = "Demo"
+	    configuration.settings["SWIFT_VERSION"] = "4.0"
+    end
 
-#     target.scheme(target.name)
-# end
+    target.scheme(target.name)
+end
