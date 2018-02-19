@@ -9,12 +9,16 @@ import Foundation
 import UIKit
 
 final class CounterView: UIView {
+  typealias Interaction = () -> Void
   
   var counterValue = 0 {
     didSet {
       self.update()
     }
   }
+  
+  var userDidTapIncrementButton: Interaction?
+  var userDidTapDecrementButton: Interaction?
   
   private lazy var counterLabel: UILabel = {
     let label = UILabel()
@@ -58,6 +62,9 @@ final class CounterView: UIView {
     self.addSubview(self.counterLabel)
     self.addSubview(self.incrementButton)
     self.addSubview(self.decrementButton)
+    
+    self.incrementButton.addTarget(self, action: #selector(handleIncrementButtonTap), for: .touchUpInside)
+    self.decrementButton.addTarget(self, action: #selector(handleDecrementButtonTap), for: .touchUpInside)
   }
   
   // MARK: Update
@@ -89,5 +96,14 @@ final class CounterView: UIView {
       width: self.frame.width / 2.0,
       height: self.frame.height / 2.0
     )
+  }
+  
+  // MARK: Button handlers
+  @objc func handleIncrementButtonTap() {
+    self.userDidTapIncrementButton?()
+  }
+  
+  @objc func handleDecrementButtonTap() {
+    self.userDidTapDecrementButton?()
   }
 }

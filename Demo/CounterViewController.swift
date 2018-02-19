@@ -17,6 +17,7 @@ class CounterViewController: UIViewController {
     self.store = store
     super.init(nibName: nil, bundle: nil)
     self.listenStore()
+    self.addInteractions()
   }
   
   required init?(coder aDecoder: NSCoder) {
@@ -32,6 +33,21 @@ class CounterViewController: UIViewController {
   }
   
   // MARK: Private
+  private func addInteractions() {
+    guard let view = self.view as? CounterView else {
+      return
+    }
+    
+    view.userDidTapIncrementButton = { [weak self] in
+      self?.store.dispatch(IncrementCounter())
+    }
+    
+    view.userDidTapDecrementButton = { [weak self] in
+      self?.store.dispatch(DecrementCounter())
+    }
+  }
+  
+  
   private func listenStore() {
     self.storeUnsubscribe = self.store.addListener { [weak self] in
       self?.storeDidChange()
