@@ -9,5 +9,5 @@ import Foundation
 import Katana
 
 struct AppState: State {
-  
+  var counter: Int = 0
 }

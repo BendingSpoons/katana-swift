@@ -18,9 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.main.bounds)
-    self.store = Store<AppState>(middleware: [], dependencies: AppDependenciesContainer.self)
+    let store = Store<AppState>(middleware: [], dependencies: AppDependenciesContainer.self)
+    self.store = store
 
-    self.window?.rootViewController = ViewController()
+    self.window?.rootViewController = CounterViewController(store: store)
     self.window?.makeKeyAndVisible()
     
     return true
