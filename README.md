@@ -7,37 +7,20 @@
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
+Katana is a modern Swift framework for writing iOS applications business logic, strongly inspired by [Redux](http://redux.js.org/).
 
-Katana is a modern Swift framework for writing iOS and macOS apps, strongly inspired by [React](https://facebook.github.io/react/) and [Redux](http://redux.js.org/), that gives structure to all the aspects of your app:
+In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 
-- __logic__: the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
-- __UI__: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as isolated, reusable pieces of UI, since the way a component is rendered only depends on the current props and state of the component itself.
-- __logic__ ↔️ __UI__: the UI components are connected to the app state and will be automatically updated on every state change. You control how they change, selecting the portion of app state that will feed the component props. To render this process as fast as possible, only the relevant portion of the UI is updated. 
-- __layout__: Katana defines a concise language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
+We feel that Katana helped us a lot since we started using it in production.  At [Bending Spoons](http://www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
+## Where is the UI?
 
-We feel that Katana helped us a lot since we started using it in production. At [Bending Spoons](http://www.bendingspoons.com) we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+The previous version of this library was a mix of UI and logic. Our idea was to create a framework to structure the application as a whole. By using Katana in more and more apps, we felt it was better to split the library in two pieces: logic, which you can find in this repository, and UI, which you can find [here](https://github.com/BendingSpoons/katana-ui-swift). You can also find the previous readme and source code [here](https://github.com/BendingSpoons/katana-swift/tree/a87dbe114458a46032d94e577b2fc5896a9a870f).
 
-
-
-|      | Katana                                   |
-| ---- | ---------------------------------------- |
-| 🎙   | Declaratively define your UI             |
-| 📦   | Store all your app state in a single place |
-| 💂   | Clearly define what are the actions that can change the state |
-| 😎   | Describe asynchronous actions like HTTP requests |
-| 💪   | Support for middleware                   |
-| 🎩   | Automatically update the UI when your app state changes |
-| 📐   | Automatically scale your UI to every size and aspect ratio |
-| 🐎   | Easily animate UI changes                |
-| 📝   | Gradually migrate your application to Katana |
-
-
-
+We wrote several successful applications using the declarative UI layer that Katana provides. We 
+still think that the declarative approach is really a good one when it comes to complex UIs that have to manage several states and transitions. At the same time, we also spent a considerable amunt of time in bridging UIKit's features into Katana UI layer. While in some cases the bridge was easy to implement, in other cases we had to create non trivial code to manage the gap between UIKit and Katana. We felt that being continously in contrast with UIKit really wasn't the way to go and so we decided to put some effort to fix this problem. The result is [Tempura](https://github.com/BendingSpoons/tempura-lib-swift). Tempura is a lightweight, UIKit friendly, UI layer that aims to provide a declarative-like approach to UI without being in contrast with UIKit. We love it, and we really encourage you to [check it out](https://github.com/BendingSpoons/tempura-lib-swift)! 
 
 ## Overview
-
-### Defining the logic of your app
 
 Your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
 
@@ -52,7 +35,7 @@ The app `State` can only be modified by an `Action`. An `Action` represents an e
 ```swift
 struct IncrementCounter: Action {
   func updatedState(currentState: State) -> State {
-    guard var state = currentState as? CounterState else { fatalError("wrong state type") 	  }
+    guard var state = currentState as? CounterState else { return currentState }
     state.counter += 1
     return state
   }
@@ -76,164 +59,46 @@ store.addListener() {
 
 
 
-### Defining the UI
+## Side Effects
 
-In Katana you declaratively describe a specific piece of UI providing a  `NodeDescription`. Each `NodeDescription` will define the component in terms of:
+Updating the application's state using pure functions is nice and it has a lot of benefits. Real world applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other part of your applications and then dispatch new actions to update your state.
 
-- `StateType` the internal state of the component (es. highlighted for a button)
-- `PropsType` the inputs coming from outside the component (es. backgroundColor for a view)
-- `NativeView` the UIKit/AppKit element associated with the component
+In order to leverage this functionality you have to adopt the `ActionWithSideEffect` protocol
 
 ```swift
-struct CounterScreen: NodeDescription {
-	typealias StateType = EmptyState
-	typealias PropsType = CounterScreenProps
-	typealias NativeView = UIView
-	
-	var props: PropsType
-}
-```
-
-Inside the `props` you want to specify all the inputs needed to render your `NativeView` and to feed your children components.
-
-```swift
-struct CounterScreenProps: NodeDescriptionProps {
-  var count: Int = 0
-  var frame: CGRect = .zero
-  var alpha: CGFloat = 1.0
-  var key: String?
-}
-```
-
-When it's time to render the component, the method `applyPropsToNativeView` is called: this is where we need to adjust our nativeView to reflect the  `props` and the `state`. _Note that for common properties like frame, backgroundColor and more we already provide a standard [applyPropsToNativeView](https://github.com/BendingSpoons/katana-swift/blob/master/KatanaElements/View.swift) so we got you covered._
-
-```swift
-struct CounterScreen: NodeDescription {
-  ...
-  public static func applyPropsToNativeView(props: PropsType,
-  											state: StateType,
-  											view: NativeView, ...) {
-  	view.frame = props.frame
-  	view.alpha = props.alpha
+struct IncrementCounter: ActionWithSideEffect {
+  func updatedState(currentState: State) -> State {
+	// some update state code here if needed
   }
-}
-```
-
-`NodeDescriptions` lets you split the UI into small independent, reusable pieces. That's why it is very common for a `NodeDescription` to be composed by other `NodeDescription`s as children, generating the UI tree. To define child components, implement the method `childrenDescriptions`.
-
-```swift
-struct CounterScreen: NodeDescription {
-  ...
-  public static func childrenDescriptions(props: PropsType,
-  											state: StateType, ...) -> 	  [AnyNodeDescription] {
-  	return [
-  		Label(props: LabelProps.build({ (labelProps) in
-          labelProps.key = CounterScreen.Keys.label.rawValue
-          labelProps.textAlignment = .center
-          labelProps.backgroundColor = .mediumAquamarine
-          labelProps.text = NSAttributedString(string: "Count: \(props.count)")
-      })),
-      Button(props: ButtonProps.build({ (buttonProps) in
-        buttonProps.key = CounterScreen.Keys.decrementButton.rawValue
-        buttonProps.titles[.normal] = "Decrement"
-        buttonProps.backgroundColor = .dogwoodRose
-        buttonProps.titleColors = [.highlighted : .red]
-        
-        buttonProps.touchHandlers = [
-          .touchUpInside : {
-            dispatch(DecrementCounter())
-          }
-        ]
-      })),
-      Button(props: ButtonProps.build({ (buttonProps) in
-        buttonProps.key = CounterScreen.Keys.incrementButton.rawValue
-        buttonProps.titles[.normal] = "Increment"
-        buttonProps.backgroundColor = .japaneseIndigo
-        buttonProps.titleColors = [.highlighted : .red]
-        
-        buttonProps.touchHandlers = [
-          .touchUpInside : {
-            dispatch(IncrementCounter())
-          }
-        ]
-      }))
-  	]
-  }
-}
-```
-
-
-
-### Attaching the UI to the Logic
-
-The `Renderer` is responsible for rendering the UI tree and updating it when the `Store` changes. 
-
-You create a `Renderer` object starting from the top level `NodeDescription` and the `Store`.
-
-```swift
-renderer = Renderer(rootDescription: counterScreen, store: store)
-renderer.render(in: view)
-```
-
-Every time a new app `State` is available, the `Store` dispatches an event that is captured by the `Renderer ` and dispatched down to the tree of UI components.
-If you want a component to receive updates from the `Store` just declare its `NodeDescription` as `ConnectedNodeDescription` and implement the method `connect` to attach the app `Store` to the component `props`.
-
-```swift
-struct CounterScreen: ConnectedNodeDescription {
-  ...
-  static func connect(props: inout PropsType, to storeState: StateType) {
-  	props.count = storeState.counter
-  }
-}
-```
-
-
-
-### Layout of the UI
-
-Katana has its own language (inspired by [Plastic](https://github.com/BendingSpoons/plastic-lib-iOS)) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
-If you want to opt in, just implement the `PlasticNodeDescription` protocol and its `layout` method where you can define the layout of the children, based on the given `referenceSize`. The layout system will use the reference size to compute the proper scaling. 
-
-```swift
-struct CounterScreen: ConnectedNodeDescription, PlasticNodeDescription, PlasticReferenceSizeable {
-  ...
-  static var referenceSize = CGSize(width: 640, height: 960)
-  
-  static func layout(views: ViewsContainer<CounterScreen.Keys>, props: PropsType, state: StateType) {
-    let nativeView = views.nativeView
     
-    let label = views[.label]!
-    let decrementButton = views[.decrementButton]!
-    let incrementButton = views[.incrementButton]!
-    label.asHeader(nativeView)
-    [label, decrementButton].fill(top: nativeView.top, bottom: nativeView.bottom)
-    incrementButton.top = decrementButton.top
-    incrementButton.bottom = decrementButton.bottom
-    [decrementButton, incrementButton].fill(left: nativeView.left, right: nativeView.right)
+  func sideEffect(
+    currentState: State,
+    previousState: State,
+    dispatch: @escaping StoreDispatch,
+    dependencies: SideEffectDependencyContainer) {
+      
+    // your logic here (e.g., network call)
   }
 }
 ```
 
-### Note for layout in macOS
+The last parameter of the signature is `dependencies`. This is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that implements the `SideEffectDependencyContainer` protocol and use it in the side effect
 
-Plastic is assuming that the coordinate system has its origin at the upper left corner of the drawing area (like in iOS), so if you want to use plastic on macOS, remember to specify `isFlipped = true` for all your custom native AppKit views that have children components. All the components we provide are already following this convention.
+```swift
+final class AppDependencies: SideEffectDependencyContainer {
+    required init(dispatch: @escaping StoreDispatch, getState: @escaping () -> State) {
+       // initialize your dependencies here
+    }
+}
+```
 
-### You can find the complete example [here](https://github.com/BendingSpoons/katana-swift/blob/master/Demo)
 
-<table>
-  <tr>
-    <th>
-      <img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/demo_counter.gif" width="300"/>
-    </th>
-  </tr>
-</table>
+
+
 
 
 
 ## Where to go from here
-
-### Getting started tutorial
-We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tutorial-swift).
 
 ### Give it a shot
 
@@ -241,32 +106,9 @@ We wrote a [getting started tutorial](https://github.com/BendingSpoons/katana-tu
 pod try Katana
 ```
 
-### Explore sample projects
+### Tempura
 
-<table>
- <tr>
-  <th>
-    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_pokeAnimation.gif?raw=true" width="200"/>
-  </th>
-  <th>
-    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_codingLove.gif?raw=true" width="200"/>
-  </th>
-  <th>
-    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_minesweeper.gif?raw=true" width="200"/>
-  </th>
- </tr>
- <tr>
-  <th>
-   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/PokeAnimations">Animations Example</a>
-  </th>
-  <th>
-   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/CodingLove">Table Example</a>
-  </th>
-  <th>
-   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/Minesweeper">Minesweeper Example</a>
-  </th>
- </tr>
-</table>
+Make awesome applications using Katana together with [Tempura](https://github.com/BendingSpoons/tempura-lib-swift)
 
 ### Check out the documentation
 
@@ -282,9 +124,7 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 
 - Xcode 8.0+
 
-- Swift 3.0+
-
-  ​
+- Swift 4.0+
 
 ### CocoaPods
 
@@ -305,20 +145,6 @@ platform :ios, '8.4'
 
 target 'MyApp' do
   pod 'Katana'
-  pod 'KatanaElements'
-end
-```
-
-On MacOS, instead, use the following
-
-```ruby
-use_frameworks!
-source 'https://github.com/CocoaPods/Specs.git'
-platform :osx, '10.11'
-
-target 'test' do
-  pod 'Katana'
-  pod 'KatanaElements'
 end
 ```
 
@@ -352,33 +178,7 @@ And Run:
 $ carthage update
 ```
 
-Then drag the built `Katana.framework` and `KatanaElements.framework` into your Xcode project.
-
-## Gradual Adoption
-
-You can easily integrate Katana in existing applications. This can be very useful in at least two scenarios:
-- You want to try katana in a real world application, but you don't want to rewrite it entirely
-- You want to gradually migrate your application to Katana
-
-A gradual adoption doesn't require nothing different from the standard Katana usage. You just need to render your initial `NodeDescription` in the view where you want to place the UI managed by Katana. 
-
-Assuming you are in a view controller and you have a `NodeDescription` named `Description`, you can do something like this:
-
-```swift
-// get the view where you want to render the UI managed by Katana
-let view = methodToGetView()
-let description = Description(props: Props.build {
-	$0.frame = view.frame
-})
-
-// here we are not using the store. But you can create it normally
-// You should also retain a reference to renderer, in order to don't deallocate all the UI that will be created when the method ends
-let renderer = Renderer(rootDescription: description, store: nil)
-
-// render the UI
-renderer!.render(in: view)
-```
-
+Then drag the built `Katana.framework` into your Xcode project.
 
 ## Get in touch 
 
@@ -396,13 +196,6 @@ renderer!.render(in: view)
 - If you __want to contribute__, submit a pull request;
 - If you __have an idea__ on how to improve the framework or how to spread the word, please [get in touch](#get-in-touch);
 - If you want to __try the framework__ for your project or to write a demo, please send us the link of the repo.
-
-
-
-## Run the project
-
-In order to run the project, you need [xcake](https://github.com/jcampbell05/xcake). Once you have installed it, go in the Katana project root and run `xcake make`
-
 
 
 ## License
