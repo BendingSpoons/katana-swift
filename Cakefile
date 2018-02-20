@@ -1,207 +1,61 @@
 project.name = "Katana"
 
-# Katana iOS Framework target
-katana_ios = target do |target|
-    target.name = "Katana iOS"
+# Katana Framework target
+katana = target do |target|
+    target.name = "Katana"
     target.platform = :ios
     target.deployment_target = 9.0
     target.language = :swift
     target.type = :framework
     target.include_files = [
-        "Katana/Core/**/*.swift",
-        "Katana/Extensions/**/*.swift",
-        "Katana/iOS/**/*.swift",
-        "Katana/Plastic/**/*.swift",
-        "Katana/Store/**/*.swift"
+        "Katana/**/*.swift",
     ]
 
     target.all_configurations.each do |configuration|
-        configuration.settings["INFOPLIST_FILE"] = "Katana/iOS/Info.plist"
+        configuration.settings["INFOPLIST_FILE"] = "Katana/Info.plist"
         configuration.settings["PRODUCT_NAME"] = "Katana"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
+	    configuration.settings["SWIFT_VERSION"] = "4.0"
     end
 
     target.headers_build_phase do |phase|
-        phase.public << "Katana/iOS/Katana.h"
+        phase.public << "Katana/Katana.h"
     end
 
     unit_tests_for target do |unit_test|
         unit_test.linked_targets = [target]
         unit_test.include_files = [
-            "KatanaTests/Animations/**/*.swift",
-            "KatanaTests/Core/**/*.swift",
-            "KatanaTests/Extensions/**/*.swift",
-            "KatanaTests/IOS/**/*.swift",
-            "KatanaTests/NodeDescriptions/**/*.swift",
-            "KatanaTests/Plastic/**/*.swift",
-            "KatanaTests/Storage/**/*.swift"
+            "KatanaTests/**/*.swift",
         ]
 
         unit_test.all_configurations.each do |configuration|
-            configuration.settings["INFOPLIST_FILE"] = "KatanaTests/IOS/Info.plist"
-	    configuration.settings["SWIFT_VERSION"] = "4.0"
+            configuration.settings["INFOPLIST_FILE"] = "KatanaTests/Info.plist"
+	        configuration.settings["SWIFT_VERSION"] = "4.0"
         end
-    end
-
-    target.scheme(target.name)
-end
-
-
-# Katana Elements iOS Framework target
-katana_elements_ios = target do |target|
-    target.name = "KatanaElements iOS"
-    target.platform = :ios
-    target.deployment_target = 9.0
-    target.language = :swift
-    target.type = :framework
-    target.linked_targets = [katana_ios]
-    target.include_files = [
-        "KatanaElements/Common/**/*.swift",
-        "KatanaElements/iOS/**/*.swift"
-    ]
-
-    target.all_configurations.each do |configuration|
-        configuration.settings["INFOPLIST_FILE"] = "KatanaElements/iOS/Info.plist"
-        configuration.settings["PRODUCT_NAME"] = "KatanaElements"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
-    end
-
-    target.headers_build_phase do |phase|
-        phase.public << "KatanaElements/iOS/KatanaElements.h"
     end
 
     target.scheme(target.name)
 end
 
 # iOS Demo target
-demo_ios = target do |target|
-    target.name = "Demo iOS"
+demo = target do |target|
+    target.name = "Demo"
     target.platform = :ios
     target.language = :swift
     target.deployment_target = 9.0
     target.type = :application
-    target.linked_targets = [katana_ios, katana_elements_ios]
+    target.linked_targets = [katana]
     
     target.include_files = [
-        "Demo/Common/**/*.swift",
-        "Demo/IOS/**/*.swift",
-        "Demo/IOS/LunchScreen.storyboard",
+        "Demo/**/*.swift",
+        "Demo/LaunchScreen.storyboard",
     ]
 
     target.all_configurations.each do |configuration|
-        configuration.product_bundle_identifier = "dk.bendingspoons.Demo"
-        configuration.settings["INFOPLIST_FILE"] = "Demo/IOS/Info.plist"
-        configuration.settings["PRODUCT_NAME"] = "Demo iOS"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
-    end
-
-    target.scheme(target.name)
-end
-
-# Katana MacOS Framework target
-katana_macos = target do |target|
-    target.name = "Katana macOS"
-    target.platform = :osx
-    target.deployment_target = "10.10"
-    target.language = :swift
-    target.type = :framework
-    target.include_files = [
-        "Katana/Core/**/*.swift",
-        "Katana/Extensions/**/*.swift",
-        "Katana/MacOS/**/*.swift",
-        "Katana/Plastic/**/*.swift",
-        "Katana/Store/**/*.swift"
-    ]
-
-    target.all_configurations.each do |configuration|
-        configuration.settings["INFOPLIST_FILE"] = "Katana/MacOS/Info.plist"
-        configuration.settings["PRODUCT_NAME"] = "Katana"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
-    end
-
-    target.headers_build_phase do |phase|
-        phase.public << "Katana/MacOS/Katana.h"
-    end
-
-    unit_tests_for target do |unit_test|
-        unit_test.linked_targets = [target]
-        unit_test.include_files = [
-            "KatanaTests/Animations/**/*.swift",
-            "KatanaTests/Core/**/*.swift",
-            "KatanaTests/Extensions/**/*.swift",
-            "KatanaTests/MacOS/**/*.swift",
-            "KatanaTests/NodeDescriptions/**/*.swift",
-            "KatanaTests/Plastic/**/*.swift",
-            "KatanaTests/Storage/**/*.swift"
-        ]
-
-        unit_test.all_configurations.each do |configuration|
-            configuration.settings["INFOPLIST_FILE"] = "KatanaTests/MacOS/Info.plist"
+        configuration.product_bundle_identifier = "com.bendingspoons.Demo"
+        configuration.settings["INFOPLIST_FILE"] = "Demo/Info.plist"
+        configuration.settings["PRODUCT_NAME"] = "Demo"
 	    configuration.settings["SWIFT_VERSION"] = "4.0"
-        end
     end
 
     target.scheme(target.name)
-end
-
-# Katana Elements macOS Framework target
-katana_elements_macos = target do |target|
-    target.name = "KatanaElements macOS"
-    target.platform = :osx
-    target.deployment_target = "10.10"
-    target.language = :swift
-    target.type = :framework
-    target.linked_targets = [katana_macos]
-    target.include_files = [
-        "KatanaElements/Common/**/*.swift",
-        "KatanaElements/MacOS/**/*.swift"
-    ]
-
-    target.all_configurations.each do |configuration|
-        configuration.settings["INFOPLIST_FILE"] = "KatanaElements/MacOS/Info.plist"
-        configuration.settings["PRODUCT_NAME"] = "KatanaElements"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
-    end
-
-    target.headers_build_phase do |phase|
-        phase.public << "KatanaElements/MacOS/KatanaElements.h"
-    end
-
-    target.scheme(target.name)
-end
-
-# macOS Demo target
-demo_macos = target do |target|
-    target.name = "Demo MacOS"
-    target.platform = :osx
-    target.language = :swift
-    target.deployment_target = "10.10"
-    target.type = :application
-    target.linked_targets = [katana_macos, katana_elements_macos]
-    
-    target.include_files = [
-        "Demo/Common/**/*.swift",
-        "Demo/macOS/**/*.swift",
-        "Demo/macOS/Assets.xcassets",
-        "Demo/macOS/Base.lproj/MainMenu.xib",
-    ]
-
-    target.all_configurations.each do |configuration|
-        configuration.product_bundle_identifier = "dk.bendingspoons.Demo"
-        configuration.settings["INFOPLIST_FILE"] = "Demo/macOS/Info.plist"
-        configuration.settings["PRODUCT_NAME"] = "Demo macOS"
-	configuration.settings["SWIFT_VERSION"] = "4.0"
-    end
-
-    target.scheme(target.name)
-end
-
-project.targets.each do |target|
-    target.shell_script_build_phase "Lint", <<-SCRIPT 
-    if which swiftlint >/dev/null; then
-        swiftlint
-    else
-        echo "warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint"
-    fi
-    SCRIPT
 end

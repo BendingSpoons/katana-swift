@@ -1,18 +1,15 @@
-language: objective-c
-osx_image: xcode8.1
+language: swift
+osx_image: xcode9
 env:
   global:
     - PROJECT=Katana.xcodeproj
   matrix:
-    - SCHEME="Katana iOS"
-      SDK=iphonesimulator10.1
-      SIMULATOR="platform=iOS Simulator,OS=10.1,name=iPhone 6s"
-    - SCHEME="Katana macOS"
-      SDK=macosx10.12
-      SIMULATOR="platform=macOS,arch=x86_64"
+    - SCHEME="Katana"
+      SDK=iphonesimulator11.0
+      SIMULATOR="platform=iOS Simulator,OS=11.0,name=iPhone 8"
 
 before_install:
-  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 6s (10.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
+  - export IOS_SIMULATOR_UDID=`instruments -s devices | grep "iPhone 8 (11.0" | awk -F '[ ]' '{print $4}' | awk -F '[[]' '{print $2}' | sed 's/.$//'`
   - echo $IOS_SIMULATOR_UDID
   - open -a "simulator" --args -CurrentDeviceUDID $IOS_SIMULATOR_UDID
 
