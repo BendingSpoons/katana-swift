@@ -15,10 +15,10 @@ We feel that Katana helped us a lot since we started using it in production.  At
 
 ## Where is the UI?
 
-The previous version of this library was a mix of UI and logic. Our idea was to create a framework to structure the application as a whole. By using Katana in more and more apps, we felt it was better to split the library in two pieces: logic, which you can find in this repository, and UI, which you can find [here](https://github.com/BendingSpoons/katana-ui-swift). You can also find the previous readme and source code [here](https://github.com/BendingSpoons/katana-swift/tree/a87dbe114458a46032d94e577b2fc5896a9a870f).
+The previous version of this library was a mix of UI and logic. Our idea was to create a framework to structure the application as a whole. By using Katana in more and more apps, we felt it was better to split the library in two pieces: logic, which you can find in this repository, and UI, that has been moved into a [separated repository](https://github.com/BendingSpoons/katana-ui-swift). You can also find the previous readme and source code [here](https://github.com/BendingSpoons/katana-swift/tree/a87dbe114458a46032d94e577b2fc5896a9a870f).
 
 We wrote several successful applications using the declarative UI layer that Katana provides. We 
-still think that the declarative approach is really a good one when it comes to complex UIs that have to manage several states and transitions. At the same time, we also spent a considerable amunt of time in bridging UIKit's features into Katana UI layer. While in some cases the bridge was easy to implement, in other cases we had to create non trivial code to manage the gap between UIKit and Katana. We felt that being continously in contrast with UIKit really wasn't the way to go and so we decided to put some effort to fix this problem. The result is [Tempura](https://github.com/BendingSpoons/tempura-lib-swift). Tempura is a lightweight, UIKit friendly, UI layer that aims to provide a declarative-like approach to UI without being in contrast with UIKit. We love it, and we really encourage you to [check it out](https://github.com/BendingSpoons/tempura-lib-swift)! 
+still think that the declarative approach is really a good one when it comes to complex UIs that have to manage several states and transitions. At the same time, we also spent a considerable amunt of time bridging UIKit's features into Katana UI layer. While in some cases the bridge was easy to implement, in other cases we had to create non trivial code to manage the gap between UIKit and Katana. We felt that being continously in contrast with UIKit really wasn't the way to go and so we decided to put some effort to fix this problem. The result is [Tempura](https://github.com/BendingSpoons/tempura-lib-swift). Tempura is a lightweight, UIKit friendly, UI layer that aims to provide a declarative-like approach to UI without being in contrast with UIKit. We love it, and we really encourage you to [check it out](https://github.com/BendingSpoons/tempura-lib-swift)! 
 
 ## Overview
 
@@ -61,7 +61,7 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Real world applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other part of your applications and then dispatch new actions to update your state.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other part of your applications and then dispatch new actions to update your state.
 
 In order to leverage this functionality you have to adopt the `ActionWithSideEffect` protocol
 
@@ -82,7 +82,9 @@ struct IncrementCounter: ActionWithSideEffect {
 }
 ```
 
-The last parameter of the signature is `dependencies`. This is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that implements the `SideEffectDependencyContainer` protocol and use it in the side effect
+#### Dependencies
+
+The last parameter of the side effect method signature is `dependencies`. This is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that implements the `SideEffectDependencyContainer` protocol and use it in the side effect
 
 ```swift
 final class AppDependencies: SideEffectDependencyContainer {
@@ -91,12 +93,6 @@ final class AppDependencies: SideEffectDependencyContainer {
     }
 }
 ```
-
-
-
-
-
-
 
 ## Where to go from here
 
