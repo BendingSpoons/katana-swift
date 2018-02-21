@@ -9,6 +9,7 @@ cocoapods:
   public_repo:
     email: katana@bendingspoons.com
     author: Bending Spoons
+  skip_linting: true
 
 carthage:
   - Katana
