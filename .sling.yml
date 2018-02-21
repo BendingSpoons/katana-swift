@@ -15,6 +15,6 @@ carthage:
 
 tests:
   runs:
-    - scheme: Katana iOS
+    - scheme: Katana
       sdk: iphonesimulator11.2
       simulator: platform=iOS Simulator,OS=11.2,name=iPhone 7
