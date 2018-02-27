@@ -1,4 +1,4 @@
-![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana_header.png)
+![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png)
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
@@ -98,8 +98,8 @@ Katana is meant to give structure to the logic part of your app. When it comes t
 - [Katana-UI](https://github.com/BendingSpoons/katana-ui-swift): With this library, we aimed to port React to UIKit, it allows you to create your app using a declarative approach. The library was initially bundled together with Katana. We decided to split as internally we don't use it anymore: in retrospect, we found that the impedance mismatch between the React-like approach and the imperative reality of UIKit was a no go for us.
 
 <p align="center">
-  <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/tempura.png" alt="Tempura" width="240" /></a>
-  <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
+  <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/tempura.png" alt="Tempura" width="240" /></a>
+  <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
 </p>
 
 ## Where to go from here
