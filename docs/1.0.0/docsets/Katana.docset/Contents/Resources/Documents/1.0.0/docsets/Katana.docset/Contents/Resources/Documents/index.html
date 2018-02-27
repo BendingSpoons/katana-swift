@@ -109,7 +109,7 @@
         <section>
           <section class="section">
             
-            <p><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana_header.png" alt="Katana"></p>
+            <p><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png" alt="Katana"></p>
 
 <p><a href="https://twitter.com/katana_swift"><img src="https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift" alt="Twitter URL"></a>
 <a href="https://travis-ci.org/BendingSpoons/katana-swift"><img src="https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master" alt="Build Status"></a>
@@ -125,12 +125,6 @@
 <p>We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several milions of times and Katana really helped us scaling them quickly and efficiently. <a href="http://www.bendingspoons.com">Bending Spoons</a>&lsquo;s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. </p>
 
 <p>We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ </p>
-<h2 id='where-is-the-ui' class='heading'>Where is the UI?</h2>
-
-<p>The previous version of this library was a mix of UI and logic. Our idea was to create a framework to structure the application as a whole. By using Katana in more and more apps, we felt it was better to split the library in two pieces: logic, which you can find in this repository, and UI, that has been moved into a <a href="https://github.com/BendingSpoons/katana-ui-swift">separated repository</a>. You can also find the previous readme and source code <a href="https://github.com/BendingSpoons/katana-swift/tree/a87dbe114458a46032d94e577b2fc5896a9a870f">here</a>.</p>
-
-<p>We wrote several successful applications using the declarative UI layer that Katana provides. We 
-still think that the declarative approach is really a good one when it comes to complex UIs that have to manage several states and transitions. At the same time, we also spent a considerable amunt of time bridging UIKit&rsquo;s features into Katana UI layer. While in some cases the bridge was easy to implement, in other cases we had to create non trivial code to manage the gap between UIKit and Katana. We felt that being continously in contrast with UIKit really wasn&rsquo;t the way to go and so we decided to put some effort to fix this problem. The result is <a href="https://github.com/BendingSpoons/tempura-lib-swift">Tempura</a>. Tempura is a lightweight, UIKit friendly, UI layer that aims to provide a declarative-like approach to UI without being in contrast with UIKit. We love it, and we really encourage you to <a href="https://github.com/BendingSpoons/tempura-lib-swift">check it out</a>! </p>
 <h2 id='overview' class='heading'>Overview</h2>
 
 <p>Your entire app <code><a href="Protocols/State.html">State</a></code> is defined in a single struct, all the relevant application information should be placed here.</p>
@@ -188,6 +182,19 @@ still think that the declarative approach is really a good one when it comes to 
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
+<h2 id='what-about-the-ui' class='heading'>What about the UI?</h2>
+
+<p>Katana is meant to give structure to the logic part of your app. When it comes to UI we propose two alternatives:</p>
+
+<ul>
+<li><p><a href="https://github.com/BendingSpoons/tempura-swift">Tempura</a>: an MVVC framework we built on top of Katana and that we happily use to develop the UI of all our apps at Bending Spoons.  Tempura is a lightweight, UIKit-friendly library that allows you to keep the UI automatically in sync with the state of your app. This is our suggested choice.</p></li>
+<li><p><a href="https://github.com/BendingSpoons/katana-ui-swift">Katana-UI</a>: With this library, we aimed to port React to UIKit, it allows you to create your app using a declarative approach. The library was initially bundled together with Katana. We decided to split as internally we don&rsquo;t use it anymore: in retrospect, we found that the impedance mismatch between the React-like approach and the imperative reality of UIKit was a no go for us.</p></li>
+</ul>
+
+<p align="center">
+  <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/tempura.png" alt="Tempura" width="240" /></a>
+  <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
+</p>
 <h2 id='where-to-go-from-here' class='heading'>Where to go from here</h2>
 <h3 id='give-it-a-shot' class='heading'>Give it a shot</h3>
 <pre class="highlight plaintext"><code>pod try Katana
@@ -278,7 +285,7 @@ Interested? <a href="http://bndspn.com/2fKggTa">Check us out</a>!</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-02-21)</p>
+          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons</a>. All rights reserved. (Last updated: 2018-02-27)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
