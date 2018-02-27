@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>PlasticNodeDescription Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/PlasticNodeDescription" class="dashAnchor"></a>
+    <a title="PlasticNodeDescription Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Katana Docs</a> (99% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Katana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        PlasticNodeDescription Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Node.html">Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticNode.html">PlasticNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticView.html">PlasticView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StateMockProvider.html">StateMockProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewsContainer.html">ViewsContainer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AnimationType.html">AnimationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6Katana9EmptyKeys">EmptyKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNode.html">AnyNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescription.html">AnyNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithRefProps.html">AnyNodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlatformNativeViewWithRef.html">AnyPlatformNativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Childrenable.html">Childrenable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NativeViewRef.html">NativeViewRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NativeViewWithRef.html">NativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescription.html">NodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P6Katana22NodeDescriptionWithRef">NodeDescriptionWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithRefProps.html">NodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/State.html">State</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinker.html">ActionLinker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinks.html">ActionLinks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor.html">Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationProps.html">AnimationProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChildrenAnimations.html">ChildrenAnimations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyProps.html">EmptyProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyState.html">EmptyState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Value.html">Value</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana21AnyRefCallbackClosure">AnyRefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Associated Types.html">Associated Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>PlasticNodeDescription</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">PlasticNodeDescription</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a></span><span class="p">,</span> <span class="kt"><a href="../Protocols/NodeDescription.html">NodeDescription</a></span></code></pre>
+
+                </div>
+              </div>
+            <p>This protocol allows a <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code> to use the Plastic layout system.</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFP6Katana22PlasticNodeDescription6layoutFT5viewsGCS_14ViewsContainerwx4Keys_5propswx9PropsType5statewx9StateType_T_"></a>
+                    <a name="//apple_ref/swift/Method/layout(views:props:state:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP6Katana22PlasticNodeDescription6layoutFT5viewsGCS_14ViewsContainerwx4Keys_5propswx9PropsType5statewx9StateType_T_">layout(views:props:state:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Node descriptions should implement this method and provide the proper layout logic.</p>
+
+<p>This method receives as input, beside the props and the state of the node description,
+a <code><a href="../Classes/ViewsContainer.html">ViewsContainer</a></code> that basically holds a placeholder for each node description with a key
+returned in the <code>childrenDescriptions</code> method. You can access these placeholders by using the
+same key.</p>
+
+<p>The following is an example of implementation:</p>
+
+<pre class="highlight plaintext"><code>// in the childrenDescriptions method
+return [
+ View(props: ViewProps(key: Keys.view))
+]
+
+// in the layout method
+// we make view with key `.view` as big as the native view
+views[.view]?.fill(views.nativeView)
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">layout</span><span class="p">(</span><span class="nv">views</span><span class="p">:</span> <span class="kt"><a href="../Classes/ViewsContainer.html">ViewsContainer</a></span><span class="o">&lt;</span><span class="kt">Keys</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">props</span><span class="p">:</span> <span class="kt"><a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>views</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the container that holds the node description children</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>props</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the current props of the node description</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the current state of the node description</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.4/Katana/Plastic/PlasticNodeDescription.swift#L50">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFP6Katana22PlasticNodeDescription10layoutHashFT5propswx9PropsType5statewx9StateType_GSqSi_"></a>
+                    <a name="//apple_ref/swift/Method/layoutHash(props:state:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFP6Katana22PlasticNodeDescription10layoutHashFT5propswx9PropsType5statewx9StateType_GSqSi_">layoutHash(props:state:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Default implementation
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The layout logic may be expensive in some cases. By implementing this method, you can actually
+cache the result of the layout.</p>
+
+<p>The idea is that, given a certain instance of props and state, you should return an hash value.
+The calculated hash value will be used to store and retrieve the result of the layout logic.
+This means that if you return an hash value that has been stored before, the <code><a href="../Protocols/PlasticNodeDescription.html#/s:ZFP6Katana22PlasticNodeDescription6layoutFT5viewsGCS_14ViewsContainerwx4Keys_5propswx9PropsType5statewx9StateType_T_">layout(views:props:state:)</a></code>
+method won&rsquo;t be invoked and the cached result will be used instead.</p>
+
+<p>Ideally you should somehow combine all the values (taken from both the props and the state) that influence
+the result of your layout logic. In the case where the layout is always the same (that is, frames never change),
+then you can return a constant value.</p>
+
+<p>The caching system is disabled by default. You can activate it for a specific implementation of <code>PlasticNodeDescription</code>
+by implementing this method.</p>
+
+                      </div>
+                      <h4>Default Implementation</h4>
+                      <div class="default_impl abstract">
+                        <p>default value is <code>nil</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">layoutHash</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt"><a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a></span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Int</span><span class="p">?</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>props</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the props that will be used in the layout</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the state that will be used in the layout</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>an hash value with the properties described in the description of the method</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.4/Katana/Plastic/PlasticNodeDescription.swift#L72">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFE6KatanaPS_22PlasticNodeDescription9anyLayoutFT5viewsP_5propsP_5stateP__T_"></a>
+                    <a name="//apple_ref/swift/Method/anyLayout(views:props:state:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFE6KatanaPS_22PlasticNodeDescription9anyLayoutFT5viewsP_5propsP_5stateP__T_">anyLayout(views:props:state:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implementation of the <code><a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a></code> protocol.</p>
+
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">static</span> <span class="kd">func</span> <span class="nf">anyLayout</span><span class="p">(</span><span class="nv">views</span><span class="p">:</span> <span class="kt">Any</span><span class="p">,</span> <span class="nv">props</span><span class="p">:</span> <span class="kt">Any</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">Any</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.4/Katana/Plastic/PlasticNodeDescription.swift#L81-L85">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE6KatanaPS_22PlasticNodeDescription8makeNodeFT6parentPS_7AnyNode__PS1__"></a>
+                    <a name="//apple_ref/swift/Method/makeNode(parent:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE6KatanaPS_22PlasticNodeDescription8makeNodeFT6parentPS_7AnyNode__PS1__">makeNode(parent:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an instance of <code><a href="../Classes/Node.html">Node</a></code> given the parent <code><a href="../Classes/Node.html">Node</a></code>.</p>
+
+<p>This method is the same as the <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code> <code>makeNode(parent:)</code> but it
+returns an instance of <code><a href="../Classes/PlasticNode.html">PlasticNode</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeNode</span><span class="p">(</span><span class="nv">parent</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnyNode.html">AnyNode</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/AnyNode.html">AnyNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.4/Katana/Plastic/PlasticNodeDescription.swift#L98-L100">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FE6KatanaPS_22PlasticNodeDescription8makeNodeFT8rendererCS_8Renderer_PS_7AnyNode_"></a>
+                    <a name="//apple_ref/swift/Method/makeNode(renderer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FE6KatanaPS_22PlasticNodeDescription8makeNodeFT8rendererCS_8Renderer_PS_7AnyNode_">makeNode(renderer:)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates an instance of <code><a href="../Classes/Node.html">Node</a></code> given the <code><a href="../Classes/Renderer.html">Renderer</a></code> responsible to render the Nodes tree
+starting from this Plastic Node Description.</p>
+
+<p>This method is the same as the <code><a href="../Protocols/NodeDescription.html">NodeDescription</a></code> <code>makeNode(renderer:)</code> but it
+returns an instance of <code><a href="../Classes/PlasticNode.html">PlasticNode</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">makeNode</span><span class="p">(</span><span class="nv">renderer</span><span class="p">:</span> <span class="kt"><a href="../Classes/Renderer.html">Renderer</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/AnyNode.html">AnyNode</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.4/Katana/Plastic/PlasticNodeDescription.swift#L109-L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-05-25)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
