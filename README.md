@@ -15,13 +15,6 @@ We feel that Katana helped us a lot since we started using it in production. Our
 
 We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
 
-## Where is the UI?
-
-The previous version of this library was a mix of UI and logic. Our idea was to create a framework to structure the application as a whole. By using Katana in more and more apps, we felt it was better to split the library in two pieces: logic, which you can find in this repository, and UI, that has been moved into a [separated repository](https://github.com/BendingSpoons/katana-ui-swift). You can also find the previous readme and source code [here](https://github.com/BendingSpoons/katana-swift/tree/a87dbe114458a46032d94e577b2fc5896a9a870f).
-
-We wrote several successful applications using the declarative UI layer that Katana provides. We 
-still think that the declarative approach is really a good one when it comes to complex UIs that have to manage several states and transitions. At the same time, we also spent a considerable amunt of time bridging UIKit's features into Katana UI layer. While in some cases the bridge was easy to implement, in other cases we had to create non trivial code to manage the gap between UIKit and Katana. We felt that being continously in contrast with UIKit really wasn't the way to go and so we decided to put some effort to fix this problem. The result is [Tempura](https://github.com/BendingSpoons/tempura-swift). Tempura is a lightweight, UIKit friendly, UI layer that aims to provide a declarative-like approach to UI without being in contrast with UIKit. We love it, and we really encourage you to [check it out](https://github.com/BendingSpoons/tempura-lib-swift)! 
-
 ## Overview
 
 Your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
@@ -95,6 +88,19 @@ final class AppDependencies: SideEffectDependencyContainer {
     }
 }
 ```
+
+## What about the UI?
+
+Katana is meant to give structure to the logic part of your app. When it comes to UI we propose two alternatives:
+
+- [Tempura](https://github.com/BendingSpoons/tempura-swift): an MVVC framework we built on top of Katana and that we happily use to develop the UI of all our apps at Bending Spoons.  Tempura is a lightweight, UIKit-friendly library that allows you to keep the UI automatically in sync with the state of your app. This is our suggested choice.
+
+- [Katana-UI](https://github.com/BendingSpoons/katana-ui-swift): With this library, we aimed to port React to UIKit, it allows you to create your app using a declarative approach. The library was initially bundled together with Katana. We decided to split as internally we don't use it anymore: in retrospect, we found that the impedance mismatch between the React-like approach and the imperative reality of UIKit was a no go for us.
+
+<p align="center">
+  <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/tempura.png" alt="Tempura" width="240" /></a>
+  <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
+</p>
 
 ## Where to go from here
 
