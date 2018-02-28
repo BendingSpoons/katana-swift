@@ -1,0 +1,1091 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>AnimationOptions Struct Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Struct/AnimationOptions" class="dashAnchor"></a>
+    <a title="AnimationOptions Struct Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Katana Docs</a> (99% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Katana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        AnimationOptions Struct Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Node.html">Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticNode.html">PlasticNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticView.html">PlasticView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/StateMockProvider.html">StateMockProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewsContainer.html">ViewsContainer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AnimationType.html">AnimationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6Katana9EmptyKeys">EmptyKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNode.html">AnyNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescription.html">AnyNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithRefProps.html">AnyNodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlatformNativeViewWithRef.html">AnyPlatformNativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Childrenable.html">Childrenable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NativeViewRef.html">NativeViewRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NativeViewWithRef.html">NativeViewWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescription.html">NodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols.html#/s:P6Katana22NodeDescriptionWithRef">NodeDescriptionWithRef</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithRefProps.html">NodeDescriptionWithRefProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/State.html">State</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinker.html">ActionLinker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinks.html">ActionLinks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor.html">Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationProps.html">AnimationProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChildrenAnimations.html">ChildrenAnimations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyProps.html">EmptyProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyState.html">EmptyState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Value.html">Value</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana21AnyRefCallbackClosure">AnyRefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana18RefCallbackClosure">RefCallbackClosure</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreDispatch">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreListener">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana15StoreMiddleware">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribe">StoreUnsubscribe</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Associated Types.html">Associated Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>AnimationOptions</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">AnimationOptions</span><span class="p">:</span> <span class="kt">OptionSet</span></code></pre>
+
+                </div>
+              </div>
+            <p>A set of options that can be used to personalise the animations</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV6Katana16AnimationOptions8rawValueSu"></a>
+                    <a name="//apple_ref/swift/Property/rawValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV6Katana16AnimationOptions8rawValueSu">rawValue</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The raw value of the OptionSet</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">let</span> <span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L18">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FV6Katana16AnimationOptionscFT8rawValueSu_S0_"></a>
+                    <a name="//apple_ref/swift/Method/init(rawValue:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FV6Katana16AnimationOptionscFT8rawValueSu_S0_">init(rawValue:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new AnimationOptions instance. Always prefer
+the static values instead of creating a new instance directly</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>rawValue</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the raw value of the option</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>an instance of AnimationOptions</p>
+
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L27-L29">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions13layoutSubviewS0_"></a>
+                    <a name="//apple_ref/swift/Variable/layoutSubview" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions13layoutSubviewS0_">layoutSubview</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Lay out subviews at commit time so that they are animated along with their parent.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">layoutSubview</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L32">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions20allowUserInteractionS0_"></a>
+                    <a name="//apple_ref/swift/Variable/allowUserInteraction" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions20allowUserInteractionS0_">allowUserInteraction</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allow the user to interact with views while they are being animated.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">allowUserInteraction</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">1</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L35">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions21beginFromCurrentStateS0_"></a>
+                    <a name="//apple_ref/swift/Variable/beginFromCurrentState" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions21beginFromCurrentStateS0_">beginFromCurrentState</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Start the animation from the current setting associated with an already in-flight animation.
+If this key is not present, any in-flight animations are allowed to finish
+before the new animation is started. If another animation is not in flight, this key has no effect.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">beginFromCurrentState</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">2</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L42">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions15repeatAnimationS0_"></a>
+                    <a name="//apple_ref/swift/Variable/repeatAnimation" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions15repeatAnimationS0_">repeatAnimation</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Repeat the animation indefinitely.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">repeatAnimation</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">3</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L45">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions11autoreverseS0_"></a>
+                    <a name="//apple_ref/swift/Variable/autoreverse" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions11autoreverseS0_">autoreverse</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Run the animation backwards and forwards. Must be combined with the <code><a href="../Structs/AnimationOptions.html#/s:ZvV6Katana16AnimationOptions15repeatAnimationS0_">repeatAnimation</a></code> option.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">autoreverse</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">4</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L48">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions25overrideInheritedDurationS0_"></a>
+                    <a name="//apple_ref/swift/Variable/overrideInheritedDuration" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions25overrideInheritedDurationS0_">overrideInheritedDuration</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Force the animation to use the original duration value specified when the
+animation was submitted. If this key is not present, the animation inherits the
+remaining duration of the in-flight animation, if any.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">overrideInheritedDuration</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">5</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L55">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions22overrideInheritedCurveS0_"></a>
+                    <a name="//apple_ref/swift/Variable/overrideInheritedCurve" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions22overrideInheritedCurveS0_">overrideInheritedCurve</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Force the animation to use the original curve value specified when the animation
+was submitted. If this key is not present, the animation inherits the curve
+of the in-flight animation, if any.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">overrideInheritedCurve</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">6</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L62">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions20allowAnimatedContentS0_"></a>
+                    <a name="//apple_ref/swift/Variable/allowAnimatedContent" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions20allowAnimatedContentS0_">allowAnimatedContent</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Animate the views by changing the property values dynamically and redrawing the view.
+If this key is not present, the views are animated using a snapshot image.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">allowAnimatedContent</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">7</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L68">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions23showHideTransitionViewsS0_"></a>
+                    <a name="//apple_ref/swift/Variable/showHideTransitionViews" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions23showHideTransitionViewsS0_">showHideTransitionViews</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>When present, this key causes views to be hidden or shown (instead of removed or added)
+when performing a view transition. Both views must already be present in the
+parent view’s hierarchy when using this key. If this key is not present,
+the to-view in a transition is added to, and the from-view is removed from,
+the parent view’s list of subviews.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">showHideTransitionViews</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">8</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L77">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions24overrideInheritedOptionsS0_"></a>
+                    <a name="//apple_ref/swift/Variable/overrideInheritedOptions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions24overrideInheritedOptionsS0_">overrideInheritedOptions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The option to not inherit the animation type or any options.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">overrideInheritedOptions</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">9</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L80">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions14curveEaseInOutS0_"></a>
+                    <a name="//apple_ref/swift/Variable/curveEaseInOut" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions14curveEaseInOutS0_">curveEaseInOut</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An ease-in ease-out curve causes the animation to begin slowly, accelerate
+through the middle of its duration, and then slow again before
+completing.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">curveEaseInOut</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L87">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions11curveEaseInS0_"></a>
+                    <a name="//apple_ref/swift/Variable/curveEaseIn" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions11curveEaseInS0_">curveEaseIn</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An ease-in curve causes the animation to begin slowly, and then speed up as it progresses.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">curveEaseIn</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions12curveEaseOutS0_"></a>
+                    <a name="//apple_ref/swift/Variable/curveEaseOut" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions12curveEaseOutS0_">curveEaseOut</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>An ease-out curve causes the animation to begin quickly, and then slow as it completes.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">curveEaseOut</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L93">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions11curveLinearS0_"></a>
+                    <a name="//apple_ref/swift/Variable/curveLinear" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions11curveLinearS0_">curveLinear</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A linear animation curve causes an animation to occur evenly over its duration.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">curveLinear</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">3</span> <span class="o">&lt;&lt;</span> <span class="mi">16</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L96">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions14transitionNoneS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionNone" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions14transitionNoneS0_">transitionNone</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>No transition is specified.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionNone</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L99">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions22transitionFlipFromLeftS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionFlipFromLeft" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions22transitionFlipFromLeftS0_">transitionFlipFromLeft</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that flips a view around its vertical axis from left to right.
+The left side of the view moves toward the front and right side toward the back.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionFlipFromLeft</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">1</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L105">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions23transitionFlipFromRightS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionFlipFromRight" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions23transitionFlipFromRightS0_">transitionFlipFromRight</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that flips a view around its vertical axis from right to left.
+The right side of the view moves toward the front and left side toward the back.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionFlipFromRight</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">2</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L111">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions16transitionCurlUpS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionCurlUp" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions16transitionCurlUpS0_">transitionCurlUp</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that curls a view up from the bottom.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionCurlUp</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">3</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L114">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions18transitionCurlDownS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionCurlDown" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions18transitionCurlDownS0_">transitionCurlDown</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that curls a view down from the top.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionCurlDown</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">4</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L117">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions23transitionCrossDissolveS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionCrossDissolve" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions23transitionCrossDissolveS0_">transitionCrossDissolve</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that dissolves from one view to the next.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionCrossDissolve</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">5</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L120">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions21transitionFlipFromTopS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionFlipFromTop" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions21transitionFlipFromTopS0_">transitionFlipFromTop</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that flips a view around its horizontal axis from top to bottom.
+The top side of the view moves toward the front and the bottom side toward the back.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionFlipFromTop</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">6</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L126">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvV6Katana16AnimationOptions24transitionFlipFromBottomS0_"></a>
+                    <a name="//apple_ref/swift/Variable/transitionFlipFromBottom" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvV6Katana16AnimationOptions24transitionFlipFromBottomS0_">transitionFlipFromBottom</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A transition that flips a view around its horizontal axis from bottom to top.
+The bottom side of the view moves toward the front and the top side toward the back.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">static</span> <span class="k">let</span> <span class="nv">transitionFlipFromBottom</span> <span class="o">=</span> <span class="kt">AnimationOptions</span><span class="p">(</span><span class="nv">rawValue</span><span class="p">:</span> <span class="mi">7</span> <span class="o">&lt;&lt;</span> <span class="mi">20</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/Core/Animations/AnimationType.swift#L132">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:vV6Katana16AnimationOptions24toUIViewAnimationOptionsVSC22UIViewAnimationOptions"></a>
+                    <a name="//apple_ref/swift/Property/toUIViewAnimationOptions" class="dashAnchor"></a>
+                    <a class="token" href="#/s:vV6Katana16AnimationOptions24toUIViewAnimationOptionsVSC22UIViewAnimationOptions">toUIViewAnimationOptions</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>the UIKit counterpart of <code>AnimationOptions</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">toUIViewAnimationOptions</span><span class="p">:</span> <span class="kt">UIViewAnimationOptions</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.8.9/Katana/iOS/AnimationOptions+UIViewAnimationOptions.swift#L11-L13">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-07-24)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.4</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

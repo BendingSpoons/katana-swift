@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Array Extension Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Extension/Array" class="dashAnchor"></a>
+    <a title="Array Extension Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Katana Docs</a> (97% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Katana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Array Extension Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/Node.html">Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticNode.html">PlasticNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/PlasticView.html">PlasticView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/ViewsContainer.html">ViewsContainer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AnimationType.html">AnimationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums.html#/s:O6Katana9EmptyKeys">EmptyKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyAction.html">AnyAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyActionWithSideEffect.html">AnyActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNode.html">AnyNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescription.html">AnyNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Childrenable.html">Childrenable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescription.html">NodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionState.html">NodeDescriptionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/PlatformNativeView.html">PlatformNativeView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SyncAction.html">SyncAction</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor.html">Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Anchor/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationOptions.html">AnimationOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/AnimationProps.html">AnimationProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ChildrenAnimations.html">ChildrenAnimations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyProps.html">EmptyProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/EmptyState.html">EmptyState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/Value.html">Value</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Associated Types.html">Associated Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Array</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Element</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt">RandomAccessCollection</span><span class="p">,</span> <span class="kt">MutableCollection</span></code></pre>
+
+                </div>
+              </div>
+            
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe6KatanaRxCS_11PlasticViewrSa13centerBetweenFT4leftVS_6Anchor5rightS1_8spacingsGSqGSaVS_5Value___T_"></a>
+                    <a name="//apple_ref/swift/Method/centerBetween(left:right:spacings:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe6KatanaRxCS_11PlasticViewrSa13centerBetweenFT4leftVS_6Anchor5rightS1_8spacingsGSqGSaVS_5Value___T_">centerBetween(left:right:spacings:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Centers the view instances in the array together with a collection of inter-view spacings horizontally so that
+their sizes, top edges and bottom edges are preserved.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">centerBetween</span><span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the left view anchor used for the horizontal centering</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>right</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the right view anchor used for the horizontal centering</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>individual spacings to use between the views. Must be an array of N-1 <code>Value</code> instances where N is the number of views in the view array. If <code>nil</code>, an array of <code>Value.zero</code> is used instead</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/Array+Plastic.swift#L24-L50">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe6KatanaRxCS_11PlasticViewrSa13centerBetweenFT3topVS_6Anchor6bottomS1_8spacingsGSqGSaVS_5Value___T_"></a>
+                    <a name="//apple_ref/swift/Method/centerBetween(top:bottom:spacings:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe6KatanaRxCS_11PlasticViewrSa13centerBetweenFT3topVS_6Anchor6bottomS1_8spacingsGSqGSaVS_5Value___T_">centerBetween(top:bottom:spacings:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Centers the view instances in the array together with a collection of inter-view spacings vertically so that
+their sizes, left edges and right edges are preserved.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">centerBetween</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span> <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the top view anchor used for the vertical centering</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>right</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the bottom view anchor used for the vertical centering</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>individual spacings to use between the views. Must be an array of N-1 <code>Value</code> instances where N is the number of views in the view array. If <code>nil</code>, an array of <code>Value.zero</code> is used instead</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/Array+Plastic.swift#L63-L90">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe6KatanaRxCS_11PlasticViewrSa4fillFT4leftVS_6Anchor5rightS1_6insetsVS_10EdgeInsets8spacingsGSqGSaVS_5Value__6widthsGSqGSaV12CoreGraphics7CGFloat___T_"></a>
+                    <a name="//apple_ref/swift/Method/fill(left:right:insets:spacings:widths:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe6KatanaRxCS_11PlasticViewrSa4fillFT4leftVS_6Anchor5rightS1_6insetsVS_10EdgeInsets8spacingsGSqGSaVS_5Value__6widthsGSqGSaV12CoreGraphics7CGFloat___T_">fill(left:right:insets:spacings:widths:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fills the horizontal space between two view anchors with the view instances in the array given a collection of
+inter-view spacings and insets. The final widths of the views will be determined by a collection of relational view
+widths.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">right</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                   <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
+                   <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                   <span class="nv">widths</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>left</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the left view anchor for the horizontal distribution of the views</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>right</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the right view anchor for the horizontal distribution of the views</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the insets for the left and right view anchors. The default value is <code>.zero</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a collection of <code>Value</code> intances used to calculate the spacings between the views. Must be an array of N-1 <code>Value</code> instances where N is the number of views in the view array. If <code>nil</code>, an array of <code>Value.zero</code> is used instead</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>widths</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a collection of CGFloats that are the view widths in relation to eachother. For example, by passing <code>[1, 2]</code> the method will give to the second view a width that is two times the width of the first view. Must contain N values where N is the number of views in the array. If <code>nil</code> all the views will have the same width</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/Array+Plastic.swift#L110-L154">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:Fe6KatanaRxCS_11PlasticViewrSa4fillFT3topVS_6Anchor6bottomS1_6insetsVS_10EdgeInsets8spacingsGSqGSaVS_5Value__7heightsGSqGSaV12CoreGraphics7CGFloat___T_"></a>
+                    <a name="//apple_ref/swift/Method/fill(top:bottom:insets:spacings:heights:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:Fe6KatanaRxCS_11PlasticViewrSa4fillFT3topVS_6Anchor6bottomS1_6insetsVS_10EdgeInsets8spacingsGSqGSaVS_5Value__7heightsGSqGSaV12CoreGraphics7CGFloat___T_">fill(top:bottom:insets:spacings:heights:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Fills the vertical space between two view anchors with the view instances in the array given a collection of
+inter-view spacings and insets. The final heights of the array views will be determined by a collection of relational view
+heights.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">fill</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                <span class="nv">bottom</span><span class="p">:</span> <span class="kt"><a href="../Structs/Anchor.html">Anchor</a></span><span class="p">,</span>
+                <span class="nv">insets</span><span class="p">:</span> <span class="kt"><a href="../Structs/EdgeInsets.html">EdgeInsets</a></span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span><span class="p">,</span>
+                <span class="nv">spacings</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Structs/Value.html">Value</a></span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">,</span>
+                <span class="nv">heights</span><span class="p">:</span> <span class="p">[</span><span class="kt">CGFloat</span><span class="p">]?</span> <span class="o">=</span> <span class="kc">nil</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>top</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the top view anchor for the vertical distribution of the views</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>bottom</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the bottom view anchor for the vertical distribution of the views</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>insets</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the insets for the top and bottom view anchors. The default value is <code>.zero</code></p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>spacings</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a collection of <code>Value</code> intances used to calculate the spacings between the views. Must be an array of N-1 <code>Value</code> instances where N is the number of views in the view array. If <code>nil</code>, an array of <code>Value.zero</code> is used instead</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>heights</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>a collection of CGFloats that are the view heights in relation to eachother. For example, by passing <code>[1, 2]</code> the method will give to the second view an height that is two times the height of the first view. Must contain N values where N is the number of views in the array. If <code>nil</code> all the views will have the same height</p>
+
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/0.3.0/Katana/Plastic/Array+Plastic.swift#L173-L217">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2016-11-29)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.2</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

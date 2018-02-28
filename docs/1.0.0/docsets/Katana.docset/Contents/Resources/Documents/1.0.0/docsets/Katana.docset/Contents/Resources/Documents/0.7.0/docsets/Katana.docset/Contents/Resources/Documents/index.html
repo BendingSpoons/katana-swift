@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Katana  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="Katana  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">Katana Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">Katana Reference</a>
+        <img id="carat" src="img/carat.png" />
+        Katana  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Node.html">Node</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PlasticNode.html">PlasticNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/PlasticView.html">PlasticView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Renderer.html">Renderer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/ViewsContainer.html">ViewsContainer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/AnimationType.html">AnimationType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums.html#/s:O6Katana9EmptyKeys">EmptyKeys</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Extensions/Array.html">Array</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/CGSize.html">CGSize</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/UIView.html">UIView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyConnectedNodeDescription.html">AnyConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyNode.html">AnyNode</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyNodeDescription.html">AnyNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyNodeDescriptionProps.html">AnyNodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyNodeDescriptionWithChildren.html">AnyNodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyPlasticNodeDescription.html">AnyPlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Childrenable.html">Childrenable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/ConnectedNodeDescription.html">ConnectedNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescription.html">NodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescriptionProps.html">NodeDescriptionProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescriptionState.html">NodeDescriptionState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/NodeDescriptionWithChildren.html">NodeDescriptionWithChildren</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PlasticNodeDescription.html">PlasticNodeDescription</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PlasticReferenceSizeable.html">PlasticReferenceSizeable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/PlatformNativeView.html">PlatformNativeView</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/State.html">State</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Structs.html">Structs</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Structs/ActionLinker.html">ActionLinker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ActionLinks.html">ActionLinks</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Anchor.html">Anchor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Anchor/Kind.html">– Kind</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Animation.html">Animation</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnimationContainer.html">AnimationContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnimationOptions.html">AnimationOptions</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/AnimationProps.html">AnimationProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/ChildrenAnimations.html">ChildrenAnimations</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EdgeInsets.html">EdgeInsets</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EmptyProps.html">EmptyProps</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/EmptyState.html">EmptyState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Size.html">Size</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Value.html">Value</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Typealiases.html">Typealiases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana25AnimationPropsTransformer">AnimationPropsTransformer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Typealiases.html#/s:6Katana20NodeUpdateCompletion">NodeUpdateCompletion</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Associated Types.html">Associated Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Associated Types.html#/s:P6Katana27NodeDescriptionWithChildren9PropsType">PropsType</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <p><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/katana_header.png" alt="Katana"></p>
+
+<p><a href="https://twitter.com/katana_swift"><img src="https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&amp;label=Follow%20katana_swift" alt="Twitter URL"></a>
+<a href="https://travis-ci.org/BendingSpoons/katana-swift"><img src="https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master" alt="Build Status"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg" alt="Docs"></a>
+<a href="https://github.com/Carthage/Carthage"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat" alt="Carthage compatible"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/v/Katana.svg" alt="CocoaPods"></a>
+<a href="https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE"><img src="https://img.shields.io/badge/Licence-MIT-lightgrey.svg" alt="Licence"></a></p>
+
+<p>Katana is a modern Swift framework for writing iOS and macOS apps, strongly inspired by <a href="https://facebook.github.io/react/">React</a> and <a href="http://redux.js.org/">Redux</a>, that gives structure to all the aspects of your app:</p>
+
+<ul>
+<li><strong>logic</strong>: the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.</li>
+<li><strong>UI</strong>: the UI is defined in terms of a tree of components declaratively described by props (the configuration data, i.e. a background color for a button) and state (the internal state data, i.e. the highlighted state for a button). This approach lets you think about components as isolated, reusable pieces of UI, since the way a component is rendered only depends on the current props and state of the component itself.</li>
+<li><strong>logic</strong> ↔️ <strong>UI</strong>: the UI components are connected to the app state and will be automatically updated on every state change. You control how they change, selecting the portion of app state that will feed the component props. To render this process as fast as possible, only the relevant portion of the UI is updated.</li>
+<li><strong>layout</strong>: Katana defines a concise language (inspired by <a href="https://github.com/BendingSpoons/plastic-lib-iOS">Plastic</a>) to describe fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.</li>
+</ul>
+
+<p>We feel that Katana helped us a lot since we started using it in production. At <a href="http://www.bendingspoons.com">Bending Spoons</a> we use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ </p>
+
+<table><thead>
+<tr>
+<th></th>
+<th>Katana</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>🎙</td>
+<td>Declaratively define your UI</td>
+</tr>
+<tr>
+<td>📦</td>
+<td>Store all your app state in a single place</td>
+</tr>
+<tr>
+<td>💂</td>
+<td>Clearly define what are the actions that can change the state</td>
+</tr>
+<tr>
+<td>😎</td>
+<td>Describe asynchronous actions like HTTP requests</td>
+</tr>
+<tr>
+<td>💪</td>
+<td>Support for middleware</td>
+</tr>
+<tr>
+<td>🎩</td>
+<td>Automatically update the UI when your app state changes</td>
+</tr>
+<tr>
+<td>📐</td>
+<td>Automatically scale your UI to every size and aspect ratio</td>
+</tr>
+<tr>
+<td>🐎</td>
+<td>Easily animate UI changes</td>
+</tr>
+<tr>
+<td>📝</td>
+<td>Gradually migrate your application to Katana</td>
+</tr>
+</tbody></table>
+<a href='#overview' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='overview'>Overview</h2>
+<a href='#defining-the-logic-of-your-app' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='defining-the-logic-of-your-app'>Defining the logic of your app</h3>
+
+<p>Your entire app <code>State</code> is defined in a single struct, all the relevant application information should be placed here.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterState</span><span class="p">:</span> <span class="kt">State</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">counter</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The app <code>State</code> can only be modified by an <code>Action</code>. An <code>Action</code> represents an event that leads to a change in the <code>State</code> of the app. There are two kind of actions: <code>SyncAction</code> and <code>AsyncAction</code>. You define the behaviour of the action implementing the <code>updatedState()</code> method that will return the new app <code>State</code> based on the current app <code>State</code> and the <code>Action</code> itself.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">IncrementCounter</span><span class="p">:</span> <span class="kt">SyncAction</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">payload</span><span class="p">:</span> <span class="p">()</span>
+
+  <span class="kd">func</span> <span class="nf">updatedState</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">State</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">var</span> <span class="nv">state</span> <span class="o">=</span> <span class="n">currentState</span> <span class="k">as?</span> <span class="kt">CounterState</span> <span class="k">else</span> <span class="p">{</span> <span class="nf">fatalError</span><span class="p">(</span><span class="s">"wrong state type"</span><span class="p">)</span>     <span class="p">}</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+    <span class="k">return</span> <span class="n">state</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code>Store</code> contains and manages your entire app <code>State</code> and it is responsible for dispatching <code>Actions</code> and updating the <code>State</code>.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">store</span> <span class="o">=</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="n">store</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="kt">IncrementCounter</span><span class="p">())</span>
+</code></pre>
+
+<p>You can ask the <code>Store</code> to be notified about every change in the app <code>State</code>.</p>
+<pre class="highlight swift"><code><span class="n">store</span><span class="o">.</span><span class="nf">addListener</span><span class="p">()</span> <span class="p">{</span>
+  <span class="c1">// the app state has changed</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#defining-the-ui' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='defining-the-ui'>Defining the UI</h3>
+
+<p>In Katana you declaratively describe a specific piece of UI providing a  <code>NodeDescription</code>. Each <code>NodeDescription</code> will define the component in terms of:</p>
+
+<ul>
+<li><code>StateType</code> the internal state of the component (es. highlighted for a button)</li>
+<li><code>PropsType</code> the inputs coming from outside the component (es. backgroundColor for a view)</li>
+<li><code>NativeView</code> the UIKit/AppKit element associated with the component</li>
+</ul>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">NodeDescription</span> <span class="p">{</span>
+    <span class="kd">typealias</span> <span class="kt">StateType</span> <span class="o">=</span> <span class="kt">EmptyState</span>
+    <span class="kd">typealias</span> <span class="kt">PropsType</span> <span class="o">=</span> <span class="kt">CounterScreenProps</span>
+    <span class="kd">typealias</span> <span class="kt">NativeView</span> <span class="o">=</span> <span class="kt">UIView</span>
+
+    <span class="k">var</span> <span class="nv">props</span><span class="p">:</span> <span class="kt">PropsType</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Inside the <code>props</code> you want to specify all the inputs needed to render your <code>NativeView</code> and to feed your children components.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreenProps</span><span class="p">:</span> <span class="kt">NodeDescriptionProps</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">count</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
+  <span class="k">var</span> <span class="nv">frame</span><span class="p">:</span> <span class="kt">CGRect</span> <span class="o">=</span> <span class="o">.</span><span class="n">zero</span>
+  <span class="k">var</span> <span class="nv">alpha</span><span class="p">:</span> <span class="kt">CGFloat</span> <span class="o">=</span> <span class="mf">1.0</span>
+  <span class="k">var</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>When it&rsquo;s time to render the component, the method <code>applyPropsToNativeView</code> is called: this is where we need to adjust our nativeView to reflect the  <code>props</code> and the <code>state</code>. <em>Note that for common properties like frame, backgroundColor and more we already provide a standard <a href="https://github.com/BendingSpoons/katana-swift/blob/master/KatanaElements/View.swift">applyPropsToNativeView</a> so we got you covered.</em></p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">NodeDescription</span> <span class="p">{</span>
+  <span class="o">...</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">applyPropsToNativeView</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">PropsType</span><span class="p">,</span>
+                                            <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span>
+                                            <span class="nv">view</span><span class="p">:</span> <span class="kt">NativeView</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">frame</span>
+    <span class="n">view</span><span class="o">.</span><span class="n">alpha</span> <span class="o">=</span> <span class="n">props</span><span class="o">.</span><span class="n">alpha</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p><code>NodeDescriptions</code> lets you split the UI into small independent, reusable pieces. That&rsquo;s why it is very common for a <code>NodeDescription</code> to be composed by other <code>NodeDescription</code>s as children, generating the UI tree. To define child components, implement the method <code>childrenDescriptions</code>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">NodeDescription</span> <span class="p">{</span>
+  <span class="o">...</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kd">func</span> <span class="nf">childrenDescriptions</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">PropsType</span><span class="p">,</span>
+                                            <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">,</span> <span class="o">...</span><span class="p">)</span> <span class="o">-&gt;</span>     <span class="p">[</span><span class="kt">AnyNodeDescription</span><span class="p">]</span> <span class="p">{</span>
+    <span class="k">return</span> <span class="p">[</span>
+        <span class="kt">Label</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">LabelProps</span><span class="o">.</span><span class="nf">build</span><span class="p">({</span> <span class="p">(</span><span class="n">labelProps</span><span class="p">)</span> <span class="k">in</span>
+          <span class="n">labelProps</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="kt">CounterScreen</span><span class="o">.</span><span class="kt">Keys</span><span class="o">.</span><span class="n">label</span><span class="o">.</span><span class="n">rawValue</span>
+          <span class="n">labelProps</span><span class="o">.</span><span class="n">textAlignment</span> <span class="o">=</span> <span class="o">.</span><span class="n">center</span>
+          <span class="n">labelProps</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">mediumAquamarine</span>
+          <span class="n">labelProps</span><span class="o">.</span><span class="n">text</span> <span class="o">=</span> <span class="kt">NSAttributedString</span><span class="p">(</span><span class="nv">string</span><span class="p">:</span> <span class="s">"Count: </span><span class="se">\(</span><span class="n">props</span><span class="o">.</span><span class="n">count</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+      <span class="p">})),</span>
+      <span class="kt">Button</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">ButtonProps</span><span class="o">.</span><span class="nf">build</span><span class="p">({</span> <span class="p">(</span><span class="n">buttonProps</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="kt">CounterScreen</span><span class="o">.</span><span class="kt">Keys</span><span class="o">.</span><span class="n">decrementButton</span><span class="o">.</span><span class="n">rawValue</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">titles</span><span class="p">[</span><span class="o">.</span><span class="n">normal</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Decrement"</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">dogwoodRose</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">titleColors</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="nv">highlighted</span> <span class="p">:</span> <span class="o">.</span><span class="n">red</span><span class="p">]</span>
+
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">touchHandlers</span> <span class="o">=</span> <span class="p">[</span>
+          <span class="o">.</span><span class="nv">touchUpInside</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nf">dispatch</span><span class="p">(</span><span class="kt">DecrementCounter</span><span class="p">())</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">})),</span>
+      <span class="kt">Button</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">ButtonProps</span><span class="o">.</span><span class="nf">build</span><span class="p">({</span> <span class="p">(</span><span class="n">buttonProps</span><span class="p">)</span> <span class="k">in</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">key</span> <span class="o">=</span> <span class="kt">CounterScreen</span><span class="o">.</span><span class="kt">Keys</span><span class="o">.</span><span class="n">incrementButton</span><span class="o">.</span><span class="n">rawValue</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">titles</span><span class="p">[</span><span class="o">.</span><span class="n">normal</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Increment"</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">backgroundColor</span> <span class="o">=</span> <span class="o">.</span><span class="n">japaneseIndigo</span>
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">titleColors</span> <span class="o">=</span> <span class="p">[</span><span class="o">.</span><span class="nv">highlighted</span> <span class="p">:</span> <span class="o">.</span><span class="n">red</span><span class="p">]</span>
+
+        <span class="n">buttonProps</span><span class="o">.</span><span class="n">touchHandlers</span> <span class="o">=</span> <span class="p">[</span>
+          <span class="o">.</span><span class="nv">touchUpInside</span> <span class="p">:</span> <span class="p">{</span>
+            <span class="nf">dispatch</span><span class="p">(</span><span class="kt">IncrementCounter</span><span class="p">())</span>
+          <span class="p">}</span>
+        <span class="p">]</span>
+      <span class="p">}))</span>
+    <span class="p">]</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#attaching-the-ui-to-the-logic' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='attaching-the-ui-to-the-logic'>Attaching the UI to the Logic</h3>
+
+<p>The <code>Renderer</code> is responsible for rendering the UI tree and updating it when the <code>Store</code> changes. </p>
+
+<p>You create a <code>Renderer</code> object starting from the top level <code>NodeDescription</code> and the <code>Store</code>.</p>
+<pre class="highlight swift"><code><span class="n">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span><span class="nv">rootDescription</span><span class="p">:</span> <span class="n">counterScreen</span><span class="p">,</span> <span class="nv">store</span><span class="p">:</span> <span class="n">store</span><span class="p">)</span>
+<span class="n">renderer</span><span class="o">.</span><span class="nf">render</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
+</code></pre>
+
+<p>Every time a new app <code>State</code> is available, the <code>Store</code> dispatches an event that is captured by the <code>Renderer</code> and dispatched down to the tree of UI components.
+If you want a component to receive updates from the <code>Store</code> just declare its <code>NodeDescription</code> as <code>ConnectedNodeDescription</code> and implement the method <code>connect</code> to attach the app <code>Store</code> to the component <code>props</code>.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">ConnectedNodeDescription</span> <span class="p">{</span>
+  <span class="o">...</span>
+  <span class="kd">static</span> <span class="kd">func</span> <span class="nf">connect</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">PropsType</span><span class="p">,</span> <span class="n">to</span> <span class="nv">storeState</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">props</span><span class="o">.</span><span class="n">count</span> <span class="o">=</span> <span class="n">storeState</span><span class="o">.</span><span class="n">counter</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#layout-of-the-ui' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='layout-of-the-ui'>Layout of the UI</h3>
+
+<p>Katana has its own language (inspired by <a href="https://github.com/BendingSpoons/plastic-lib-iOS">Plastic</a>) to programmatically define fully responsive layouts that will gracefully scale at every aspect ratio or size, including font sizes and images.
+If you want to opt in, just implement the <code>PlasticNodeDescription</code> protocol and its <code>layout</code> method where you can define the layout of the children, based on the given <code>referenceSize</code>. The layout system will use the reference size to compute the proper scaling. </p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterScreen</span><span class="p">:</span> <span class="kt">ConnectedNodeDescription</span><span class="p">,</span> <span class="kt">PlasticNodeDescription</span><span class="p">,</span> <span class="kt">PlasticReferenceSizeable</span> <span class="p">{</span>
+  <span class="o">...</span>
+  <span class="kd">static</span> <span class="k">var</span> <span class="nv">referenceSize</span> <span class="o">=</span> <span class="kt">CGSize</span><span class="p">(</span><span class="nv">width</span><span class="p">:</span> <span class="mi">640</span><span class="p">,</span> <span class="nv">height</span><span class="p">:</span> <span class="mi">960</span><span class="p">)</span>
+
+  <span class="kd">static</span> <span class="kd">func</span> <span class="nf">layout</span><span class="p">(</span><span class="nv">views</span><span class="p">:</span> <span class="kt">ViewsContainer</span><span class="o">&lt;</span><span class="kt">CounterScreen</span><span class="o">.</span><span class="kt">Keys</span><span class="o">&gt;</span><span class="p">,</span> <span class="nv">props</span><span class="p">:</span> <span class="kt">PropsType</span><span class="p">,</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">let</span> <span class="nv">nativeView</span> <span class="o">=</span> <span class="n">views</span><span class="o">.</span><span class="n">nativeView</span>
+
+    <span class="k">let</span> <span class="nv">label</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="o">.</span><span class="n">label</span><span class="p">]</span><span class="o">!</span>
+    <span class="k">let</span> <span class="nv">decrementButton</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="o">.</span><span class="n">decrementButton</span><span class="p">]</span><span class="o">!</span>
+    <span class="k">let</span> <span class="nv">incrementButton</span> <span class="o">=</span> <span class="n">views</span><span class="p">[</span><span class="o">.</span><span class="n">incrementButton</span><span class="p">]</span><span class="o">!</span>
+    <span class="n">label</span><span class="o">.</span><span class="nf">asHeader</span><span class="p">(</span><span class="n">nativeView</span><span class="p">)</span>
+    <span class="p">[</span><span class="n">label</span><span class="p">,</span> <span class="n">decrementButton</span><span class="p">]</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="nv">top</span><span class="p">:</span> <span class="n">nativeView</span><span class="o">.</span><span class="n">top</span><span class="p">,</span> <span class="nv">bottom</span><span class="p">:</span> <span class="n">nativeView</span><span class="o">.</span><span class="n">bottom</span><span class="p">)</span>
+    <span class="n">incrementButton</span><span class="o">.</span><span class="n">top</span> <span class="o">=</span> <span class="n">decrementButton</span><span class="o">.</span><span class="n">top</span>
+    <span class="n">incrementButton</span><span class="o">.</span><span class="n">bottom</span> <span class="o">=</span> <span class="n">decrementButton</span><span class="o">.</span><span class="n">bottom</span>
+    <span class="p">[</span><span class="n">decrementButton</span><span class="p">,</span> <span class="n">incrementButton</span><span class="p">]</span><span class="o">.</span><span class="nf">fill</span><span class="p">(</span><span class="nv">left</span><span class="p">:</span> <span class="n">nativeView</span><span class="o">.</span><span class="k">left</span><span class="p">,</span> <span class="nv">right</span><span class="p">:</span> <span class="n">nativeView</span><span class="o">.</span><span class="k">right</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<a href='#note-for-layout-in-macos' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='note-for-layout-in-macos'>Note for layout in macOS</h3>
+
+<p>Plastic is assuming that the coordinate system has its origin at the upper left corner of the drawing area (like in iOS), so if you want to use plastic on macOS, remember to specify <code>isFlipped = true</code> for all your custom native AppKit views that have children components. All the components we provide are already following this convention.</p>
+<a href='#you-can-find-the-complete-example-a-href-https-github-com-bendingspoons-katana-swift-blob-master-demo-here-a' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='you-can-find-the-complete-example-a-href-https-github-com-bendingspoons-katana-swift-blob-master-demo-here-a'>You can find the complete example <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Demo">here</a></h3>
+
+<table>
+  <tr>
+    <th>
+      <img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/Assets/demo_counter.gif" width="300"/>
+    </th>
+  </tr>
+</table>
+<a href='#where-to-go-from-here' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='where-to-go-from-here'>Where to go from here</h2>
+<a href='#getting-started-tutorial' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='getting-started-tutorial'>Getting started tutorial</h3>
+
+<p>We wrote a <a href="https://github.com/BendingSpoons/katana-tutorial-swift">getting started tutorial</a>.</p>
+<a href='#give-it-a-shot' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='give-it-a-shot'>Give it a shot</h3>
+<pre class="highlight plaintext"><code>pod try Katana
+</code></pre>
+<a href='#explore-sample-projects' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='explore-sample-projects'>Explore sample projects</h3>
+
+<table>
+ <tr>
+  <th>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_pokeAnimation.gif?raw=true" width="200"/>
+  </th>
+  <th>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_codingLove.gif?raw=true" width="200"/>
+  </th>
+  <th>
+    <img src="https://github.com/BendingSpoons/katana-swift/blob/master/Assets/demo_minesweeper.gif?raw=true" width="200"/>
+  </th>
+ </tr>
+ <tr>
+  <th>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/PokeAnimations">Animations Example</a>
+  </th>
+  <th>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/CodingLove">Table Example</a>
+  </th>
+  <th>
+   <a href="https://github.com/BendingSpoons/katana-swift/blob/master/Examples/Minesweeper">Minesweeper Example</a>
+  </th>
+ </tr>
+</table>
+<a href='#check-out-the-documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='check-out-the-documentation'>Check out the documentation</h3>
+
+<p><a href="http://katana.bendingspoons.com">Documentation</a></p>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+
+<p>Katana is available through <a href="https://cocoapods.org/">CocoaPods</a> and <a href="https://github.com/Carthage/Carthage">Carthage</a>, you can also drop <code>Katana.project</code> into your Xcode project.</p>
+<a href='#requirements' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='requirements'>Requirements</h3>
+
+<ul>
+<li><p>iOS 8.4+ / macOS 10.10+</p></li>
+<li><p>Xcode 8.0+</p></li>
+<li><p>Swift 3.0+</p></li>
+</ul>
+
+<p>​</p>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>CocoaPods</h3>
+
+<p><a href="https://cocoapods.org/">CocoaPods</a> is a dependency manager for Cocoa projects. You can install it with the following command:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>sudo gem install cocoapods
+</code></pre>
+
+<p>To integrate Katana into your Xcode project using CocoaPods you need to create a <code>Podfile</code>.</p>
+
+<p>For iOS platforms, this is the content</p>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+<span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'8.4'</span>
+
+<span class="n">target</span> <span class="s1">'MyApp'</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="s1">'Katana'</span>
+  <span class="n">pod</span> <span class="s1">'KatanaElements'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>On MacOS, instead, use the following</p>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+<span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+<span class="n">platform</span> <span class="ss">:osx</span><span class="p">,</span> <span class="s1">'10.11'</span>
+
+<span class="n">target</span> <span class="s1">'test'</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="s1">'Katana'</span>
+  <span class="n">pod</span> <span class="s1">'KatanaElements'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Now, you just need to run:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>pod install
+</code></pre>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+
+<p><a href="https://github.com/Carthage/Carthage">Carthage</a> is a decentralized dependency manager for Cocoa projects. 
+You can install Carthage downloading and running the <code>Carthage.pkg</code> file you can download from <a href="https://github.com/Carthage/Carthage/releases">here</a> or you can install it using <a href="http://brew.sh/">Homebrew</a> simply by running:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>brew update
+<span class="gp">$ </span>brew install carthage
+</code></pre>
+
+<p>To integrate Katana into your Xcode project using Carthage, add it to your <code>Cartfile</code>:</p>
+<pre class="highlight plaintext"><code>github "Bendingspoons/katana-swift"
+</code></pre>
+
+<p>And Run:</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>carthage update
+</code></pre>
+
+<p>Then drag the built <code>Katana.framework</code> and <code>KatanaElements.framework</code> into your Xcode project.</p>
+<a href='#gradual-adoption' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='gradual-adoption'>Gradual Adoption</h2>
+
+<p>You can easily integrate Katana in existing applications. This can be very useful in at least two scenarios:
+- You want to try katana in a real world application, but you don&rsquo;t want to rewrite it entirely
+- You want to gradually migrate your application to Katana</p>
+
+<p>A gradual adoption doesn&rsquo;t require nothing different from the standard Katana usage. You just need to render your initial <code>NodeDescription</code> in the view where you want to place the UI managed by Katana. </p>
+
+<p>Assuming you are in a view controller and you have a <code>NodeDescription</code> named <code>Description</code>, you can do something like this:</p>
+<pre class="highlight swift"><code><span class="c1">// get the view where you want to render the UI managed by Katana</span>
+<span class="k">let</span> <span class="nv">view</span> <span class="o">=</span> <span class="nf">methodToGetView</span><span class="p">()</span>
+<span class="k">let</span> <span class="nv">description</span> <span class="o">=</span> <span class="kt">Description</span><span class="p">(</span><span class="nv">props</span><span class="p">:</span> <span class="kt">Props</span><span class="o">.</span><span class="n">build</span> <span class="p">{</span>
+    <span class="nv">$0</span><span class="o">.</span><span class="n">frame</span> <span class="o">=</span> <span class="n">view</span><span class="o">.</span><span class="n">frame</span>
+<span class="p">})</span>
+
+<span class="c1">// here we are not using the store. But you can create it normally</span>
+<span class="c1">// You should also retain a reference to renderer, in order to don't deallocate all the UI that will be created when the method ends</span>
+<span class="k">let</span> <span class="nv">renderer</span> <span class="o">=</span> <span class="kt">Renderer</span><span class="p">(</span><span class="nv">rootDescription</span><span class="p">:</span> <span class="n">description</span><span class="p">,</span> <span class="nv">store</span><span class="p">:</span> <span class="kc">nil</span><span class="p">)</span>
+
+<span class="c1">// render the UI</span>
+<span class="n">renderer</span><span class="o">!.</span><span class="nf">render</span><span class="p">(</span><span class="nv">in</span><span class="p">:</span> <span class="n">view</span><span class="p">)</span>
+</code></pre>
+<a href='#roadmap' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='roadmap'>Roadmap</h2>
+
+<ul>
+<li>[x] immutable state</li>
+<li><p>[x] unidirectional data flow</p></li>
+<li><p>[x] sync/async/sideEffect actions</p></li>
+<li><p>[x] middleware</p></li>
+<li><p>[x] automatic UI update</p></li>
+<li><p>[x] native redux-like implementation</p></li>
+<li><p>[x] native react-like implementation</p></li>
+<li><p>[x] declarative UI</p></li>
+<li><p>[x] leverage Plastic layout engine</p></li>
+<li><p>[ ] support other layout engines</p></li>
+<li><p>[ ] declarative Table element</p></li>
+<li><p>[x] macOS support</p></li>
+<li><p>[ ] improve test coverage</p></li>
+<li><p>[ ] expand documentation</p></li>
+<li><p>[ ] write an example about wrapping UIKit view controllers</p></li>
+</ul>
+<a href='#get-in-touch' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='get-in-touch'>Get in touch</h2>
+
+<ul>
+<li>if you have <strong>any questions</strong> you can find us on twitter: <a href="https://twitter.com/maurobolis">@maurobolis</a>, <a href="https://twitter.com/luca_1987">@luca_1987</a>, <a href="https://twitter.com/smaramba">@smaramba</a></li>
+</ul>
+<a href='#special-thanks' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='special-thanks'>Special thanks</h2>
+
+<ul>
+<li><a href="http://bendingspoons.com/team.html">Everyone at Bending Spoons</a> for providing their priceless input;</li>
+<li><a href="https://twitter.com/orta">@orta</a> for providing input on how to opensource the project.</li>
+</ul>
+<a href='#contribute' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='contribute'>Contribute</h2>
+
+<ul>
+<li>If you&rsquo;ve <strong>found a bug</strong>, open an issue;</li>
+<li>If you have a <strong>feature request</strong>, open an issue;</li>
+<li>If you <strong>want to contribute</strong>, submit a pull request;</li>
+<li>If you <strong>have an idea</strong> on how to improve the framework or how to spread the word, please <a href="#get-in-touch">get in touch</a>;</li>
+<li>If you want to <strong>try the framework</strong> for your project or to write a demo, please send us the link of the repo.</li>
+</ul>
+
+<p>We&rsquo;ll be happy to send you a sticker with the logo as a sign of appreciation for any meaningful contribution.</p>
+<a href='#license' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='license'>License</h2>
+
+<p>Katana is available under the <a href="https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE">MIT license</a>.</p>
+<a href='#about' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='about'>About</h2>
+
+<p>Katana is maintained by Bending Spoons.
+We create our own tech products, used and loved by millions all around the world.
+Interested? <a href="http://bndspn.com/2fKggTa">Check us out</a>!</p>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2017 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2017-02-07)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>

@@ -1,0 +1,19 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/bolismauro/BendingSpoons/katana-swift/Katana/Core/Refs/Refs.swift",
+      "line": 142,
+      "symbol": "NativeViewRef.init(nativeView:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/bolismauro/BendingSpoons/katana-swift/Katana/Core/Refs/Refs.swift",
+      "line": 144,
+      "symbol": "NativeViewRef.isValid",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/bolismauro/BendingSpoons/katana-swift"
+}
