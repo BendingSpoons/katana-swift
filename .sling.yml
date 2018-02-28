@@ -7,7 +7,7 @@ documentation:
 
 cocoapods:
   public_repo:
-    email: katana@bendingspoons.com
+    email: opensource@bendingspoons.com
     author: Bending Spoons
   skip_linting: true
 
