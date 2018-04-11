@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "98CB98779B69DB81C40A8982"
+               BlueprintIdentifier = "AFF5B33E0D7EE95F1BB4B689"
                BuildableName = "Demo macOS.app"
                BlueprintName = "Demo MacOS"
                ReferencedContainer = "container:Katana.xcodeproj">
@@ -26,24 +26,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "46A7F6F4AAD09C12CA61440B"
-               BuildableName = "Katana macOSTests.xctest"
-               BlueprintName = "Katana macOSTests"
-               ReferencedContainer = "container:Katana.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98CB98779B69DB81C40A8982"
+            BlueprintIdentifier = "AFF5B33E0D7EE95F1BB4B689"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -56,7 +45,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      language = ""
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
@@ -67,7 +55,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98CB98779B69DB81C40A8982"
+            BlueprintIdentifier = "AFF5B33E0D7EE95F1BB4B689"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">
@@ -86,7 +74,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "98CB98779B69DB81C40A8982"
+            BlueprintIdentifier = "AFF5B33E0D7EE95F1BB4B689"
             BuildableName = "Demo macOS.app"
             BlueprintName = "Demo MacOS"
             ReferencedContainer = "container:Katana.xcodeproj">

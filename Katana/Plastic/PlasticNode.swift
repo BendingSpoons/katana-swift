@@ -93,7 +93,8 @@ public class PlasticNode<Description: PlasticNodeDescription>: Node<Description>
       }
 
       if var n = newChildDescription as? AnyNodeDescriptionWithChildren {
-        n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: n.children, newFrames: newFrames)
+        let cDesc = n.children
+        n.children = self.updatedChildrenDescriptionsWithNewFrames(childrenDescriptions: cDesc, newFrames: newFrames)
         return n as AnyNodeDescription
 
       } else {

@@ -187,7 +187,8 @@ struct AnimationUtils {
         .flatMap({ $0 as? AnyNodeDescriptionWithChildren })
         .flatMap({ $0.children })
       
-      propsWithChildren.children = self.mergedDescriptions(propsWithChildren.children, with: secondItemChildren ?? [])
+      let cDesc = propsWithChildren.children
+      propsWithChildren.children = self.mergedDescriptions(cDesc, with: secondItemChildren ?? [])
       return type(of: description).init(anyProps: propsWithChildren as! AnyNodeDescriptionProps)
     }
     

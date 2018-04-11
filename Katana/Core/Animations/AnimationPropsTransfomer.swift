@@ -54,7 +54,8 @@ public struct AnimationProps {
   public static func moveLeft(distance: CGFloat = 1000) -> AnimationPropsTransformer {
     return {
       var p = $0
-      p.frame.origin.x = p.frame.origin.x - distance
+      let newX = p.frame.origin.x - distance
+      p.frame.origin.x = newX
       return p
     }
   }
@@ -70,7 +71,8 @@ public struct AnimationProps {
   public static func moveRight(distance: CGFloat = 1000) -> AnimationPropsTransformer {
     return {
       var p = $0
-      p.frame.origin.x = p.frame.origin.x + distance
+      let newX = p.frame.origin.x + distance
+      p.frame.origin.x = newX
       return p
     }
   }
