@@ -51,7 +51,16 @@ public protocol AnyStore: class {
  See `ConnectedNodeDescription` for more information about this topic
 */
 open class Store<StateType: State> {
+  
+  /// Creates an empty state
+  private static func emptyStateInitializer() -> StateType {
+    return StateType()
+  }
+  
   typealias ListenerID = String
+  
+  /// Closure that is used to initialize the state
+  public typealias StateInitializer<T: State> = () -> T
 
   /// The current state of the application
   open fileprivate(set) var state: StateType
@@ -62,6 +71,9 @@ open class Store<StateType: State> {
   /// The array of middleware of the store
   fileprivate let middleware: [StoreMiddleware]
 
+  /// Whether the store is ready to execute operations
+  public var isReady: Bool { return self.actionsQueue.isSuspended }
+  
   /**
    The dependencies used in the actions side effects
    
@@ -91,47 +103,78 @@ open class Store<StateType: State> {
 
   /**
    A convenience init method. The store won't have middleware nor dependencies for the actions
-   side effects
+   side effects. The state will be created using the default init of the state
    
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
+    self.init(
+      middleware: [],
+      dependencies: EmptySideEffectDependencyContainer.self,
+      stateInitializer: Store<StateType>.emptyStateInitializer
+    )
   }
 
+  /**
+   A convenience init method for the Store. The initial state will be created using the default
+   init of the state type.
+   
+   - parameter middleware:   the middleware to trigger when an action is dispatched
+   - parameter dependencies:  the dependencies to use in the actions side effects
+   - returns: An instance of store configured with the given properties
+   */
+  convenience public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
+    self.init(
+      middleware: middleware,
+      dependencies: dependencies,
+      stateInitializer: Store<StateType>.emptyStateInitializer
+    )
+  }
+  
   /**
    The default init method for the Store.
    
    - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
+   - parameter stateInitializer:  a closure invoked to define the first state's value
    - returns: An instance of store configured with the given properties
   */
-  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
+  public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type, stateInitializer: @escaping StateInitializer<StateType>) {
     self.listeners = [:]
-    self.state = StateType()
     self.middleware = middleware
+    self.state = Store<StateType>.emptyStateInitializer()
+    self.dependencies = dependencies.init(dispatch: self.dispatch, getState: self.getState)
     
-    // manage the middleware chain
-    
-    let getState = { [unowned self] () -> StateType in
-      //swiftlint:disable line_length
-      assert(!self.actionsQueue.isSuspended, "The state is not ready yet. You should wait until the state is ready to invoke getState. If you are performing operations in the dependenciesContainer's init, then the suggested way to approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly")
-      //swiftlint:enable line_length
-      return self.state
+    /// Do the initialization operation async to avoid to block the store init caller
+    /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
+    /// if the stateInitializer function takes too much to do its job and we block the app's startup
+    DispatchQueue.main.async {
+      self.initializeInternalState(using: stateInitializer)
     }
+  }
+  
+  /// Creates and initializes the internal values.
+  /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
+  private func initializeInternalState(using stateInizializer: StateInitializer<StateType>) {
+    self.state = stateInizializer()
     
     let initializedMiddleware = self.middleware.map { middleware in
-      return middleware(getState, self.dispatch)
+      return middleware(self.getState, self.dispatch)
     }
     
     // chain the middleware with the final step, which is the reduction of the state and the side effects management
     self.dispatchFunction = Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
     
-    // initialize the dependencies
-    self.dependencies = dependencies.init(dispatch: self.dispatch, getState: getState)
-    
     // and here we are finally able to start the actions management
     self.actionsQueue.isSuspended = false
+  }
+  
+  private func getState() -> StateType {
+    //swiftlint:disable line_length
+    assert(!self.actionsQueue.isSuspended, "The state is not ready yet. You should wait until the state is ready to invoke getState. If you are performing operations in the dependenciesContainer's init, then the suggested way to approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly")
+    //swiftlint:enable line_length
+
+    return self.state
   }
 
   /**

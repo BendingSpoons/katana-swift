@@ -59,8 +59,11 @@ class ActionLinkerTests: XCTestCase {
   func testNoChaining() {
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<ActionLinkerAppState>(middleware: [ActionLinker.middleware(for: [])],
-                                            dependencies: EmptySideEffectDependencyContainer.self)
+    let store = Store<ActionLinkerAppState>(
+      middleware: [ActionLinker.middleware(for: [])],
+      dependencies: EmptySideEffectDependencyContainer.self
+    )
+    
     _ = store.addListener { expectation.fulfill() }
     store.dispatch(BaseAction())
     XCTAssertTrue(true)
