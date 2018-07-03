@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Action Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a name="//apple_ref/swift/Protocol/Action" class="dashAnchor"></a>
+    <a title="Action Protocol Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="../index.html">Katana Reference</a>
+        <img id="carat" src="../img/carat.png" />
+        Action Protocol Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="../Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/Store.html">Store</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Protocols/Action.html">Action</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/State.html">State</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinker.html">ActionLinker</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLinks.html">ActionLinks</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            <h1>Action</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span></code></pre>
+
+                </div>
+              </div>
+            <p>An action represents an event that leads to a change in the state of the application.
+It can be triggered from a user action, from a system event or any event in general.</p>
+
+<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="../Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+
+          </section>
+          <section class="section task-group-section">
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana6ActionP12updatedStateAA0D0_pAaE_p07currentD0_tF"></a>
+                    <a name="//apple_ref/swift/Method/updatedState(currentState:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana6ActionP12updatedStateAA0D0_pAaE_p07currentD0_tF">updatedState(currentState:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates the new state starting from the current state and the action. It is important
+to note that <code>updateState(currentState:action:)</code> should be a 
+<a href="https://en.wikipedia.org/wiki/Pure_function">pure function</a>, that is
+a function that given the same input always returns the same output and it also
+doesn&rsquo;t have any side effect. This is really important because it is an assumption
+that Katana (and related tools) makes in order to implement some functionalities
+(e.g., not implemented yet, but possible in the future: time travel)</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">updatedState</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>state</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the current state</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>action</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>the action that has been dispatched</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the new state</p>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.0/Katana/Action.swift#L31">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
