@@ -11,9 +11,6 @@ cocoapods:
     author: Bending Spoons
   skip_linting: true
 
-carthage:
-  - Katana
-
 tests:
   runs:
     - scheme: Katana
