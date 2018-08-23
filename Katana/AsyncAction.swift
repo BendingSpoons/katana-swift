@@ -54,6 +54,22 @@ public enum AsyncActionState: Equatable {
   }
 }
 
+/// Implementation of the `CustomDebugStringConvertible` protocol
+extension AsyncActionState: CustomDebugStringConvertible {
+  public var debugDescription: String {
+    switch self {
+    case .loading:
+      return "loading"
+    case .progress(let percentage):
+      return "progress(\(percentage))"
+    case .completed:
+      return "completed"
+    case .failed:
+      return "failed"
+    }
+  }
+}
+
 /// Type Erasure for `AsyncAction`
 public protocol AnyAsyncAction {
 
@@ -254,5 +270,13 @@ public extension AsyncAction {
     var copy = self
     copy.state = .progress(percentage: percentage)
     return copy
+  }
+}
+
+/// Implementation of the `CustomDebugStringConvertible` protocol
+extension AsyncAction {
+  public var debugDescription: String {
+    return String(reflecting: type(of: self))
+      + "." + self.state.debugDescription
   }
 }

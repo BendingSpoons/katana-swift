@@ -14,7 +14,7 @@ import Foundation
  
  In general this protocol should not be used directly. Use `SyncAction` and `AsyncAction` instead
 */
-public protocol Action {
+public protocol Action: CustomDebugStringConvertible {
   /**
    Creates the new state starting from the current state and the action. It is important
    to note that `updateState(currentState:action:)` should be a 
@@ -29,4 +29,11 @@ public protocol Action {
    - returns: the new state
   */
   func updatedState(currentState: State) -> State
+}
+
+/// Implementation of the `CustomDebugStringConvertible` protocol
+extension Action {
+  public var debugDescription: String {
+    return String(reflecting: type(of: self))
+  }
 }
