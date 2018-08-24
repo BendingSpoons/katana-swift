@@ -43,6 +43,6 @@ struct SetCounter: Action {
   }
   
   var debugDescription: String {
-    return String(reflecting: type(of: self)) + " to \(value)"
+    return "\(String(reflecting: type(of: self))) to \(self.value)"
   }
 }

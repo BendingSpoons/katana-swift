@@ -26,7 +26,7 @@ public struct AddTodoAction: Action, Equatable {
   }
   
   public var debugDescription: String {
-    return String(reflecting: type(of: self)) + ".\(self.title)"
+    return "\(String(reflecting: type(of: self))).\(self.title)"
   }
 }
 

@@ -276,7 +276,6 @@ public extension AsyncAction {
 /// Implementation of the `CustomDebugStringConvertible` protocol
 extension AsyncAction {
   public var debugDescription: String {
-    return String(reflecting: type(of: self))
-      + "." + self.state.debugDescription
+    return "\(String(reflecting: type(of: self))).\(self.state.debugDescription)"
   }
 }
