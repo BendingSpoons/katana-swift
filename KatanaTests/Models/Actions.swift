@@ -24,6 +24,10 @@ public struct AddTodoAction: Action, Equatable {
   public static func == (lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title
   }
+  
+  public var debugDescription: String {
+    return String(reflecting: type(of: self)) + ".\(self.title)"
+  }
 }
 
 struct RemoveTodoAction: Action {

@@ -10,7 +10,7 @@ import Foundation
 import Katana
 import XCTest
 
-fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
+struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
   var loadingPayload: Int
   var completedPayload: String?
   var failedPayload: String?
@@ -42,7 +42,7 @@ fileprivate struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
     return currentState
   }
   
-  fileprivate func updatedStateForProgress(currentState: State) -> State {
+  func updatedStateForProgress(currentState: State) -> State {
     self.invokedProgressClosure(self.state.progressPercentage!)
     return currentState
   }
