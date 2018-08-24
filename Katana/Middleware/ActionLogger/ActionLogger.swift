@@ -28,14 +28,13 @@ public struct ActionLogger {
       return { next in
         return { action in
           
-          let previousState = getState()
           next(action)
-          let currentState = getState()
           
-          let actionType = type(of: action) as Action.Type
-          guard !blackList.contains(where: { $0 == actionType }) else { return }
-          
-          print("[Action]: \(action)")
+          DispatchQueue.global(qos: .utility).async {
+            let actionType = type(of: action) as Action.Type
+            guard !blackList.contains(where: { $0 == actionType }) else { return }
+            print("[Action]: \(action)")
+          }
         }
       }
     }
