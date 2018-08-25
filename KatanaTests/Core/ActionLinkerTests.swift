@@ -2,9 +2,10 @@
 //  ActionLinkerTests.swift
 //  Katana
 //
-//  Created by Riccardo Cipolleschi on 12/01/2017.
-//  Copyright © 2017 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2017 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
+
 import Foundation
 import XCTest
 @testable import Katana
