@@ -2,8 +2,9 @@
 //  AppDependenciesContainer.swift
 //  Demo
 //
-//  Created by Mauro Bolis on 19/02/2018.
-//
+//  Copyright © 2018 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Katana
