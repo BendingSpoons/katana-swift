@@ -83,12 +83,12 @@ public protocol AnyAsyncAction {
  we want to promote is to put in your application a protocol like the following:
  
  ```
- protocol AppSyncAction: AsyncAction {
+ protocol AppAsyncAction: AsyncAction {
   func updatedStateForLoading(currentState: inout AppState)
   // same for completed, failed and progress
  }
  
- extension AppSyncAction {
+ extension AppAsyncAction {
   func updatedStateForLoading(currentState: State) -> State {
     guard var state = state as? AppState else {
       fatalError("Something went wrong")

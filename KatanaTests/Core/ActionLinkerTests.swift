@@ -54,7 +54,7 @@ class ActionLinkerTests: XCTestCase {
     XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
-  // MARK: SyncAction
+  // MARK: Action
   
   func testNoChaining() {
     let expectation = self.expectation(description: "Store listener")
@@ -246,7 +246,7 @@ class ActionLinkerTests: XCTestCase {
     }
   }
   
-  // MARK: AsyncActions
+  // MARK: AsyncAction
   
   func testAsyncCompleted() {
     var count = 0

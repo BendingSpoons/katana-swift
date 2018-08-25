@@ -1,5 +1,5 @@
 //
-//  SyncActionTests.swift
+//  ActionTests.swift
 //  Katana
 //
 //  Copyright © 2016 Bending Spoons.
@@ -10,13 +10,13 @@ import Foundation
 import Katana
 import XCTest
 
-class SyncActionTests: XCTestCase {
+class ActionTests: XCTestCase {
   func testSyncAction() {
     let expectation = self.expectation(description: "Store listener")
 
     let store = Store<AppState>()
     _ = store.addListener { expectation.fulfill() }
-    store.dispatch(SyncAddTodoAction(payload: "New Todo"))
+    store.dispatch(AddTodoAction(title: "New Todo"))
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
       let newState = store.state
