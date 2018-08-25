@@ -89,6 +89,15 @@ final class AppDependencies: SideEffectDependencyContainer {
 }
 ```
 
+## Middleware
+
+When defining a `Store` you can provide a list of middleware layers that are triggered whenever an action is dispatched. Katana comes with a built in `ActionLogger` middleware that logs all the actions, but the one listed in the black list parameter.
+
+```swift
+let actionLogger = ActionLogger.middleware(blackList: [NotToLogAction.self])
+let store = Store<CounterState>(middleware: [actionLogger], dependencies: AppDependencies.self)
+```
+
 ## What about the UI?
 
 Katana is meant to give structure to the logic part of your app. When it comes to UI we propose two alternatives:

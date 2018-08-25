@@ -30,3 +30,20 @@ struct DecrementCounter: Action {
     return state
   }
 }
+
+struct SetCounter: Action {
+  let value: Int
+  
+  func updatedState(currentState: State) -> State {
+    guard var state = currentState as? AppState else {
+      return currentState
+    }
+    
+    state.counter = value
+    return state
+  }
+  
+  var debugDescription: String {
+    return "\(String(reflecting: type(of: self))) to \(self.value)"
+  }
+}

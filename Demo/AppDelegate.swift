@@ -18,7 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
     
     self.window = UIWindow(frame: UIScreen.main.bounds)
-    let store = Store<AppState>(middleware: [], dependencies: AppDependenciesContainer.self)
+    
+    let actionLogger: StoreMiddleware = ActionLogger.middleware(blackList: [
+      DecrementCounter.self
+      ])
+    let store = Store<AppState>(middleware: [actionLogger], dependencies: AppDependenciesContainer.self)
     self.store = store
 
     self.window?.rootViewController = CounterViewController(store: store)
