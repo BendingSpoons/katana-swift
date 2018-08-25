@@ -2,9 +2,10 @@
 //  ActionLinkerTests.swift
 //  Katana
 //
-//  Created by Riccardo Cipolleschi on 12/01/2017.
-//  Copyright © 2017 Bending Spoons. All rights reserved.
-//
+//  Copyright © 2017 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
+
 import Foundation
 import XCTest
 @testable import Katana
@@ -54,7 +55,7 @@ class ActionLinkerTests: XCTestCase {
     XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
   }
   
-  // MARK: SyncAction
+  // MARK: Action
   
   func testNoChaining() {
     let expectation = self.expectation(description: "Store listener")
@@ -246,7 +247,7 @@ class ActionLinkerTests: XCTestCase {
     }
   }
   
-  // MARK: AsyncActions
+  // MARK: AsyncAction
   
   func testAsyncCompleted() {
     var count = 0

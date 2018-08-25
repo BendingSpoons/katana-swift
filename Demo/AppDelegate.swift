@@ -2,9 +2,9 @@
 //  AppDelegate.swift
 //  Demo
 //
-//  Created by Mauro Bolis on 19/02/2018.
-//  Copyright © 2018 Mauro Bolis. All rights reserved.
-//
+//  Copyright © 2018 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import UIKit
 import Katana
@@ -27,4 +27,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     return true
   }
 }
-

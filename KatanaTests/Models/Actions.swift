@@ -9,7 +9,7 @@
 import Foundation
 @testable import Katana
 
-public struct AddTodoAction: Action, Equatable {
+public struct AddTodoAction: Action {
   public let title: String
 
   public func updatedState(currentState: State) -> State {
@@ -20,7 +20,9 @@ public struct AddTodoAction: Action, Equatable {
 
     return s
   }
+}
 
+extension AddTodoAction: Equatable {
   public static func == (lhs: AddTodoAction, rhs: AddTodoAction) -> Bool {
     return lhs.title == rhs.title
   }
@@ -36,20 +38,6 @@ struct RemoveTodoAction: Action {
     s.todo.todos = todos
 
     return s
-  }
-}
-
-struct SyncAddTodoAction: Action {
-  var payload: String
-
-  func updatedState(currentState: State) -> State {
-    guard var state = currentState as? AppState else {
-      fatalError()
-    }
-
-    let todo = Todo(title: self.payload, id: UUID().uuidString)
-    state.todo.todos = state.todo.todos + [todo]
-    return state
   }
 }
 
