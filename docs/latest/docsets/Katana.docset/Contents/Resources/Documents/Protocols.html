@@ -84,6 +84,9 @@
               <li class="nav-group-task">
                 <a href="Structs/ActionLinks.html">ActionLinks</a>
               </li>
+              <li class="nav-group-task">
+                <a href="Structs/ActionLogger.html">ActionLogger</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -142,7 +145,7 @@ called source, is dispatched by the Store.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Middleware/ActionLinker/LinkeableAction.swift#L15-L52">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -179,7 +182,7 @@ struct that has to implement the <code>State</code> protocol.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/State.swift#L16-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/State.swift#L16-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -214,7 +217,7 @@ struct that has to implement the <code>State</code> protocol.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L58-L62">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L74-L78">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -251,12 +254,12 @@ the same result. <code>AsyncAction</code> just provide a way to abstract and sim
 
 <p>Since the <code><a href="Protocols/Action.html">Action</a></code> protocol is very generic when it comes to the state type that should be updated, a pattern
 we want to promote is to put in your application a protocol like the following:</p>
-<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppSyncAction</span><span class="p">:</span> <span class="kt">AsyncAction</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppAsyncAction</span><span class="p">:</span> <span class="kt">AsyncAction</span> <span class="p">{</span>
  <span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">AppState</span><span class="p">)</span>
  <span class="c1">// same for completed, failed and progress</span>
 <span class="p">}</span>
 
-<span class="kd">extension</span> <span class="kt">AppSyncAction</span> <span class="p">{</span>
+<span class="kd">extension</span> <span class="kt">AppAsyncAction</span> <span class="p">{</span>
  <span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">State</span> <span class="p">{</span>
    <span class="k">guard</span> <span class="k">var</span> <span class="nv">state</span> <span class="o">=</span> <span class="n">state</span> <span class="k">as?</span> <span class="kt">AppState</span> <span class="k">else</span> <span class="p">{</span>
      <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Something went wrong"</span><span class="p">)</span>
@@ -291,7 +294,7 @@ we want to promote is to put in your application a protocol like the following:<
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L117-L182">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L133-L198">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -326,7 +329,7 @@ we want to promote is to put in your application a protocol like the following:<
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/Store.swift#L12-L31">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L12-L31">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -361,7 +364,7 @@ we want to promote is to put in your application a protocol like the following:<
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/SideEffectDependencyContainer.swift#L12-L22">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/SideEffectDependencyContainer.swift#L12-L22">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -386,7 +389,7 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>An action represents an event that leads to a change in the state of the application.
 It can be triggered from a user action, from a system event or any event in general.</p>
 
-<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+<p>In general this protocol should not be used directly.</p>
 
                         <a href="Protocols/Action.html" class="slightly-smaller">See more</a>
                       </div>
@@ -394,12 +397,12 @@ It can be triggered from a user action, from a system event or any event in gene
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/Action.swift#L17-L32">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Action.swift#L17-L32">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -450,7 +453,7 @@ the result of the network call.</p>
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/ActionWithSideEffect.swift#L30-L48">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/ActionWithSideEffect.swift#L30-L48">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -460,7 +463,7 @@ the result of the network call.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-09-18)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

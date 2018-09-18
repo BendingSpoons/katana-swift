@@ -85,6 +85,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ActionLinks.html">ActionLinks</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLogger.html">ActionLogger</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -135,12 +138,12 @@ the same result. <code>AsyncAction</code> just provide a way to abstract and sim
 
 <p>Since the <code><a href="../Protocols/Action.html">Action</a></code> protocol is very generic when it comes to the state type that should be updated, a pattern
 we want to promote is to put in your application a protocol like the following:</p>
-<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppSyncAction</span><span class="p">:</span> <span class="kt">AsyncAction</span> <span class="p">{</span>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppAsyncAction</span><span class="p">:</span> <span class="kt">AsyncAction</span> <span class="p">{</span>
  <span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">AppState</span><span class="p">)</span>
  <span class="c1">// same for completed, failed and progress</span>
 <span class="p">}</span>
 
-<span class="kd">extension</span> <span class="kt">AppSyncAction</span> <span class="p">{</span>
+<span class="kd">extension</span> <span class="kt">AppAsyncAction</span> <span class="p">{</span>
  <span class="kd">func</span> <span class="nf">updatedStateForLoading</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt">State</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">State</span> <span class="p">{</span>
    <span class="k">guard</span> <span class="k">var</span> <span class="nv">state</span> <span class="o">=</span> <span class="n">state</span> <span class="k">as?</span> <span class="kt">AppState</span> <span class="k">else</span> <span class="p">{</span>
      <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Something went wrong"</span><span class="p">)</span>
@@ -171,9 +174,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP22updatedStateForLoadingAA0E0_pAaE_p07currentE0_tF"></a>
+                    <a name="/s:6Katana11AsyncActionP22updatedStateForLoading07currentE0AA0E0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedStateForLoading(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP22updatedStateForLoadingAA0E0_pAaE_p07currentE0_tF">updatedStateForLoading(currentState:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP22updatedStateForLoading07currentE0AA0E0_pAaF_p_tF">updatedStateForLoading(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -216,7 +219,7 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L124">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L140">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -224,9 +227,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP24updatedStateForCompletedAA0E0_pAaE_p07currentE0_tF"></a>
+                    <a name="/s:6Katana11AsyncActionP24updatedStateForCompleted07currentE0AA0E0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedStateForCompleted(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP24updatedStateForCompletedAA0E0_pAaE_p07currentE0_tF">updatedStateForCompleted(currentState:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP24updatedStateForCompleted07currentE0AA0E0_pAaF_p_tF">updatedStateForCompleted(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -269,7 +272,7 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L132">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L148">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -277,9 +280,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP21updatedStateForFailedAA0E0_pAaE_p07currentE0_tF"></a>
+                    <a name="/s:6Katana11AsyncActionP21updatedStateForFailed07currentE0AA0E0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedStateForFailed(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP21updatedStateForFailedAA0E0_pAaE_p07currentE0_tF">updatedStateForFailed(currentState:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP21updatedStateForFailed07currentE0AA0E0_pAaF_p_tF">updatedStateForFailed(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -322,7 +325,7 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L140">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L156">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -330,9 +333,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP23updatedStateForProgressAA0E0_pAaE_p07currentE0_tF"></a>
+                    <a name="/s:6Katana11AsyncActionP23updatedStateForProgress07currentE0AA0E0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedStateForProgress(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP23updatedStateForProgressAA0E0_pAaE_p07currentE0_tF">updatedStateForProgress(currentState:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP23updatedStateForProgress07currentE0AA0E0_pAaF_p_tF">updatedStateForProgress(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -375,7 +378,7 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L148">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L164">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -383,9 +386,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP09completedC0xyxzcF"></a>
+                    <a name="/s:6Katana11AsyncActionP09completedC0yxyxzXEF"></a>
                     <a name="//apple_ref/swift/Method/completedAction(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP09completedC0xyxzcF">completedAction(_:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP09completedC0yxyxzXEF">completedAction(_:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -439,7 +442,7 @@ we want to promote is to put in your application a protocol like the following:<
        loading action and the provided additional information</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L159">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L175">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -447,9 +450,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP06failedC0xyxzcF"></a>
+                    <a name="/s:6Katana11AsyncActionP06failedC0yxyxzXEF"></a>
                     <a name="//apple_ref/swift/Method/failedAction(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP06failedC0xyxzcF">failedAction(_:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP06failedC0yxyxzXEF">failedAction(_:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -503,7 +506,7 @@ we want to promote is to put in your application a protocol like the following:<
        loading action and the provided additional information</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L170">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L186">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -511,9 +514,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionP08progressC0xSd10percentage_tF"></a>
+                    <a name="/s:6Katana11AsyncActionP08progressC010percentagexSd_tF"></a>
                     <a name="//apple_ref/swift/Method/progressAction(percentage:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionP08progressC0xSd10percentage_tF">progressAction(percentage:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionP08progressC010percentagexSd_tF">progressAction(percentage:)</a>
                     </code>
                       <span class="declaration-note">
                         Default implementation
@@ -566,7 +569,7 @@ we want to promote is to put in your application a protocol like the following:<
        loading action and the defined progress value</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L181">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L197">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -578,9 +581,9 @@ we want to promote is to put in your application a protocol like the following:<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana11AsyncActionPAAE12updatedStateAA0E0_pAaE_p07currentE0_tF"></a>
+                    <a name="/s:6Katana11AsyncActionPAAE12updatedState07currentE0AA0E0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedState(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana11AsyncActionPAAE12updatedStateAA0E0_pAaE_p07currentE0_tF">updatedState(currentState:)</a>
+                    <a class="token" href="#/s:6Katana11AsyncActionPAAE12updatedState07currentE0AA0E0_pAaF_p_tF">updatedState(currentState:)</a>
                     </code>
                       <span class="declaration-note">
                         Extension method
@@ -593,8 +596,8 @@ we want to promote is to put in your application a protocol like the following:<
                       <div class="abstract">
                         <p>Creates a new state starting from the current state and the dispatched action.
 <code>AsyncAction</code> implements a default behaviour that invokes 
-<code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP22updatedStateForLoadingAA0E0_pAaE_p07currentE0_tF">updatedStateForLoading(currentState:)</a></code>, <code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP24updatedStateForCompletedAA0E0_pAaE_p07currentE0_tF">updatedStateForCompleted(currentState:)</a></code>,
-<code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP21updatedStateForFailedAA0E0_pAaE_p07currentE0_tF">updatedStateForFailed(currentState:)</a></code> or <code>updateStateForProgress(currentState:)</code> based on the action&rsquo;s state</p>
+<code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP22updatedStateForLoading07currentE0AA0E0_pAaF_p_tF">updatedStateForLoading(currentState:)</a></code>, <code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP24updatedStateForCompleted07currentE0AA0E0_pAaF_p_tF">updatedStateForCompleted(currentState:)</a></code>,
+<code><a href="../Protocols/AsyncAction.html#/s:6Katana11AsyncActionP21updatedStateForFailed07currentE0AA0E0_pAaF_p_tF">updatedStateForFailed(currentState:)</a></code> or <code>updateStateForProgress(currentState:)</code> based on the action&rsquo;s state</p>
 
                       </div>
                       <div class="declaration">
@@ -629,7 +632,43 @@ we want to promote is to put in your application a protocol like the following:<
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/AsyncAction.swift#L194-L208">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L210-L224">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp">debugDescription</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/AsyncAction.swift#L278-L280">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -639,7 +678,7 @@ we want to promote is to put in your application a protocol like the following:<
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-09-18)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

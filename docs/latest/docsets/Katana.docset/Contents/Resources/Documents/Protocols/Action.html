@@ -85,6 +85,9 @@
               <li class="nav-group-task">
                 <a href="../Structs/ActionLinks.html">ActionLinks</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ActionLogger.html">ActionLogger</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -112,14 +115,14 @@
             <h1>Action</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Action</span><span class="p">:</span> <span class="kt">CustomDebugStringConvertible</span></code></pre>
 
                 </div>
               </div>
             <p>An action represents an event that leads to a change in the state of the application.
 It can be triggered from a user action, from a system event or any event in general.</p>
 
-<p>In general this protocol should not be used directly. Use <code>SyncAction</code> and <code><a href="../Protocols/AsyncAction.html">AsyncAction</a></code> instead</p>
+<p>In general this protocol should not be used directly.</p>
 
           </section>
           <section class="section task-group-section">
@@ -128,9 +131,9 @@ It can be triggered from a user action, from a system event or any event in gene
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana6ActionP12updatedStateAA0D0_pAaE_p07currentD0_tF"></a>
+                    <a name="/s:6Katana6ActionP12updatedState07currentD0AA0D0_pAaF_p_tF"></a>
                     <a name="//apple_ref/swift/Method/updatedState(currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana6ActionP12updatedStateAA0D0_pAaE_p07currentD0_tF">updatedState(currentState:)</a>
+                    <a class="token" href="#/s:6Katana6ActionP12updatedState07currentD0AA0D0_pAaF_p_tF">updatedState(currentState:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -191,7 +194,43 @@ that Katana (and related tools) makes in order to implement some functionalities
                         <p>the new state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/1.1.1/Katana/Action.swift#L31">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Action.swift#L31">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp"></a>
+                    <a name="//apple_ref/swift/Property/debugDescription" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s28CustomDebugStringConvertibleP16debugDescriptionSSvp">debugDescription</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">debugDescription</span><span class="p">:</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Action.swift#L36-L38">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -201,7 +240,7 @@ that Katana (and related tools) makes in order to implement some functionalities
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-07-03)</p>
+          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-09-18)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
