@@ -15,8 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
   var window: UIWindow?
   var store: Store<AppState>?
 
-  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-    
+  func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
     self.window = UIWindow(frame: UIScreen.main.bounds)
     
     let actionLogger: StoreMiddleware = ActionLogger.middleware(blackList: [
@@ -24,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
       ])
     let store = Store<AppState>(middleware: [actionLogger], dependencies: AppDependenciesContainer.self)
     self.store = store
-
+    
     self.window?.rootViewController = CounterViewController(store: store)
     self.window?.makeKeyAndVisible()
     

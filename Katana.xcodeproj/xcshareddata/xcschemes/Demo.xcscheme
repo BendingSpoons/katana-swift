@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "098CF291D1F25D75E1EFD614"
+               BlueprintIdentifier = "178BF97FAD86DB248C290F2D"
                BlueprintName = "Demo"
                ReferencedContainer = "container:Katana.xcodeproj"
                BuildableName = "Demo.app">
@@ -46,7 +46,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "098CF291D1F25D75E1EFD614"
+            BlueprintIdentifier = "178BF97FAD86DB248C290F2D"
             BlueprintName = "Demo"
             ReferencedContainer = "container:Katana.xcodeproj"
             BuildableName = "Demo.app">
@@ -62,7 +62,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "098CF291D1F25D75E1EFD614"
+            BlueprintIdentifier = "178BF97FAD86DB248C290F2D"
             BlueprintName = "Demo"
             ReferencedContainer = "container:Katana.xcodeproj"
             BuildableName = "Demo.app">
