@@ -14,5 +14,5 @@ cocoapods:
 tests:
   runs:
     - scheme: Katana
-      sdk: iphonesimulator11.3
-      simulator: platform=iOS Simulator,OS=11.3,name=iPhone 7
+      sdk: iphonesimulator12.0
+      simulator: platform=iOS Simulator,OS=12.0,name=iPhone 8
