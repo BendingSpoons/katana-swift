@@ -1,3 +1,4 @@
+
 ![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png)
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
@@ -14,6 +15,11 @@ In few words, the app state is entirely described by a single serializable data 
 We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several milions of times and Katana really helped us scaling them quickly and efficiently. [Bending Spoons](http://www.bendingspoons.com)'s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. 
 
 We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+
+## Experimental Branch
+**This is an experimental version of Katana. It is not guaranteed that APIs are stable or the documentation is updated. It may completely be that we will throw away all the work we've done because the result is not satisfying.**
+
+
 
 ## Overview
 
