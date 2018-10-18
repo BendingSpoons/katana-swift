@@ -19,7 +19,7 @@ We use a lot of open source projects ourselves and we wanted to give something b
 ## Experimental Branch
 **This is an experimental version of Katana. It is not guaranteed that APIs are stable or the documentation is updated. It may completely be that we will throw away all the work we've done because the result is not satisfying.**
 
-
+Part of the code has been taken from [Hydra](https://github.com/malcommac/Hydra/). The code has been copied in this repository to speed up the iteration process and understand better if Hydra is a good fit for Katana, as Katana may need some ad-hoc changes. All the credits for the Hydra code go to [malcommac](https://github.com/malcommac) and the other maintainers of the library.
 
 ## Overview
 
