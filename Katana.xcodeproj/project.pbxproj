@@ -1,7 +1,8 @@
 // !$*UTF8*$!
 {
-	archiveVersion = "";
-	classes = "";
+	archiveVersion = 1;
+	classes = {
+	};
 	objectVersion = 46;
 	objects = {
 
@@ -35,6 +36,10 @@
 		A1161A4CE095E8041F80BA48 /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B3637E111BBAEC7B84A131A /* States.swift */; };
 		A166715FD870968207987803 /* Promise+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 989314F46C7BB89E33B67B62 /* Promise+Map.swift */; };
 		A4F7BE1DDF4E21A8149356A7 /* Promise+All.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC5D25A63585B13305E31C3A /* Promise+All.swift */; };
+		A7F5DC4E2178CDA000ADE80C /* StateUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5DC4D2178CDA000ADE80C /* StateUpdater.swift */; };
+		A7F5DC502178CDC700ADE80C /* State.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5DC4F2178CDC700ADE80C /* State.swift */; };
+		A7F5DC522178CE7600ADE80C /* SideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5DC512178CE7600ADE80C /* SideEffect.swift */; };
+		A7F5DC542178EBB300ADE80C /* SideEffectDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F5DC532178EBB300ADE80C /* SideEffectDependencyContainer.swift */; };
 		B1C6AB6699C81708A70BA5ED /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD62E0A5D27CCF8E9ABA7072 /* StoreTests.swift */; };
 		B3F6377F54DFF453A49B322F /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 784EDED7CDCAA32B454EB348 /* Promise+Catch.swift */; };
 		C39CC0875EB376E0FE7462BB /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CF61AF251484DF7BDAEE6DEA /* Foundation.framework */; };
@@ -85,6 +90,10 @@
 		989314F46C7BB89E33B67B62 /* Promise+Map.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Map.swift"; sourceTree = "<group>"; };
 		9C7BA4A7FD3D3A2A50FC39FB /* DependencyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DependencyContainer.swift; sourceTree = "<group>"; };
 		A159FCEB4662A682A2EAA584 /* Promise+Pass.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Pass.swift"; sourceTree = "<group>"; };
+		A7F5DC4D2178CDA000ADE80C /* StateUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StateUpdater.swift; sourceTree = "<group>"; };
+		A7F5DC4F2178CDC700ADE80C /* State.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = State.swift; sourceTree = "<group>"; };
+		A7F5DC512178CE7600ADE80C /* SideEffect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffect.swift; sourceTree = "<group>"; };
+		A7F5DC532178EBB300ADE80C /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
 		AB410676C63E55CD82D9CB89 /* ActionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = ActionTests.swift; sourceTree = "<group>"; };
 		AC5D25A63585B13305E31C3A /* Promise+All.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+All.swift"; sourceTree = "<group>"; };
 		B9E063C5F24AD4DA64A05019 /* Promise+Retry.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Retry.swift"; sourceTree = "<group>"; };
@@ -128,7 +137,6 @@
 			children = (
 				0DD48CC4F8E3E09B41EED80B /* Hydra */,
 			);
-			name = External;
 			path = External;
 			sourceTree = "<group>";
 		};
@@ -186,7 +194,6 @@
 				8AEA6711C84438165A1B5E5A /* Promise+Validate.swift */,
 				F7CFF70B0D640CB355BE0E63 /* Promise+Then.swift */,
 			);
-			name = Hydra;
 			path = Hydra;
 			sourceTree = "<group>";
 		};
@@ -195,7 +202,6 @@
 			children = (
 				5263D44558CE25E401533E2E /* Legacy */,
 			);
-			name = KatanaTests;
 			path = KatanaTests;
 			sourceTree = "<group>";
 		};
@@ -210,7 +216,6 @@
 				6F08E96D253D3E066AFD192E /* ActionLinkerTests.swift */,
 				DD62E0A5D27CCF8E9ABA7072 /* StoreTests.swift */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -220,7 +225,6 @@
 				28153734C3BDA2A9DE79C0AD /* Core */,
 				DFFFA0D90CB2F8EF2079B0A3 /* Models */,
 			);
-			name = Legacy;
 			path = Legacy;
 			sourceTree = "<group>";
 		};
@@ -240,18 +244,20 @@
 				7B3637E111BBAEC7B84A131A /* States.swift */,
 				3760E8F4E2E0740C92638A7A /* Actions.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
 		EB529EAC971810FCA18C018F /* Katana */ = {
 			isa = PBXGroup;
 			children = (
-				40B8690752EFB4412EE1691E /* Store.swift */,
 				03BB67A24F0C43677C1B085D /* External */,
+				40B8690752EFB4412EE1691E /* Store.swift */,
 				CC67744F5A62B26E7D80458C /* Katana.h */,
+				A7F5DC4D2178CDA000ADE80C /* StateUpdater.swift */,
+				A7F5DC4F2178CDC700ADE80C /* State.swift */,
+				A7F5DC512178CE7600ADE80C /* SideEffect.swift */,
+				A7F5DC532178EBB300ADE80C /* SideEffectDependencyContainer.swift */,
 			);
-			name = Katana;
 			path = Katana;
 			sourceTree = "<group>";
 		};
@@ -344,13 +350,16 @@
 				E2C0761ACD4A3619FA7FB568 /* Promise+Cancel.swift in Sources */,
 				B3F6377F54DFF453A49B322F /* Promise+Catch.swift in Sources */,
 				640D50579EA388738A448525 /* Promise+Async.swift in Sources */,
+				A7F5DC502178CDC700ADE80C /* State.swift in Sources */,
 				1E926D31A6C8D73B9552FDAA /* Promise+Any.swift in Sources */,
 				0241999A1BDFEBAFBC818695 /* Promise+Await.swift in Sources */,
+				A7F5DC522178CE7600ADE80C /* SideEffect.swift in Sources */,
 				7299207C58C95A82070B5326 /* DispatchTimerWrapper.swift in Sources */,
 				5A7AC2196C9EFCB1066FDC2C /* Promise+Defer.swift in Sources */,
 				2F7D516A790D877DBE1E0BB9 /* Promise+Always.swift in Sources */,
 				F7F29F08852A61B33067E8B1 /* Context.swift in Sources */,
 				911928A89BE053B5D05ABDBA /* Promise+Observer.swift in Sources */,
+				A7F5DC4E2178CDA000ADE80C /* StateUpdater.swift in Sources */,
 				EB3C1AB517556848F3A48A3B /* Promise+State.swift in Sources */,
 				D47E6E65288F06E39A5EBDF3 /* Promise+Timeout.swift in Sources */,
 				A4F7BE1DDF4E21A8149356A7 /* Promise+All.swift in Sources */,
@@ -358,6 +367,7 @@
 				A166715FD870968207987803 /* Promise+Map.swift in Sources */,
 				63FB4F3D60076558F578B96A /* Promise+Zip.swift in Sources */,
 				5F3DD9B48F0077F28AAF9FC5 /* Promise+Validate.swift in Sources */,
+				A7F5DC542178EBB300ADE80C /* SideEffectDependencyContainer.swift in Sources */,
 				08A70E17B0CC891DFF0EE5ED /* Promise+Then.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -528,8 +538,7 @@
 				PRODUCT_NAME = Katana;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -571,8 +580,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};

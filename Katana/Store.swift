@@ -1,13 +1,13 @@
-////
-////  Store.swift
-////  Katana
-////
-////  Copyright © 2016 Bending Spoons.
-////  Distributed under the MIT License.
-////  See the LICENSE file for more information.
 //
-//import Foundation
+//  Store.swift
+//  Katana
 //
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
+
+import Foundation
+
 ///// Type Erasure for `Store`
 //public protocol AnyStore: class {
 //  /// Type Erasure for the `Store` `state`
