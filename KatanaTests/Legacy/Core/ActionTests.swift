@@ -9,8 +9,6 @@
 import Foundation
 import Katana
 import XCTest
-import Quick
-import Nimble
 
 class ActionTests: XCTestCase {
   func testSyncAction() {
