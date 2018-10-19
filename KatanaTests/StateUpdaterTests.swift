@@ -22,9 +22,11 @@ class StateUpdaterTests: QuickSpec {
       
       describe("when managing a state update") {
         it("is able to update the state") {
-          
+
           let todo = Todo(title: "test", id: "ABC")
-          
+
+          expect(store.isReady).toEventually(beTruthy())
+
           waitUntil { done in
             store
               .dispatch(AddTodo(todo: todo))
@@ -36,10 +38,12 @@ class StateUpdaterTests: QuickSpec {
           }
         }
         
-        it("dispatches state updaters serially") {
+        it("dispatches state updaters serially when using promises") {
           
           let todo = Todo(title: "test", id: "ABC")
           let user = User(username: "the_username")
+          
+          expect(store.isReady).toEventually(beTruthy())
           
           waitUntil { done in
             store
@@ -49,7 +53,9 @@ class StateUpdaterTests: QuickSpec {
                 expect(store.state.todo.todos.first) == todo
                 expect(store.state.user.users.count) == 0
               }
-              .thenDispatch(AddUser(user: user))
+              .then {
+                return store.dispatch(AddUser(user: user))
+              }
               .then {
                 expect(store.state.todo.todos.count) == 1
                 expect(store.state.todo.todos.first) == todo
@@ -58,6 +64,21 @@ class StateUpdaterTests: QuickSpec {
                 done()
               }
           }
+        }
+        
+        it("dispatches state updaters serially") {
+          let todo1 = Todo(title: "test", id: "ABC")
+          let todo2 = Todo(title: "test1", id: "DEF")
+          let todo3 = Todo(title: "test2", id: "GHI")
+          
+          expect(store.isReady).toEventually(beTruthy())
+          
+          store.dispatch(AddTodoWithDelay(todo: todo1, waitingTime: 3))
+          store.dispatch(AddTodoWithDelay(todo: todo2, waitingTime: 2))
+          store.dispatch(AddTodoWithDelay(todo: todo3, waitingTime: 0))
+          
+          expect(store.state.todo.todos.count).toEventually(be(3), timeout: 100)
+          expect(store.state.todo.todos) == [todo1, todo2, todo3]
         }
       }
     }
@@ -77,5 +98,16 @@ struct AddUser: TestStateUpdater {
   
   func updatedState(_ state: inout AppState) {
     state.user.users.append(self.user)
+  }
+}
+
+struct AddTodoWithDelay: TestStateUpdater {
+  let todo: Todo
+  let waitingTime: TimeInterval
+  
+  func updatedState(_ state: inout AppState) {
+    // Note: this is just for testing, never do things like this in real apps
+    Thread.sleep(forTimeInterval: self.waitingTime)
+    state.todo.todos.append(self.todo)
   }
 }

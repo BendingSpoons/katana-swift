@@ -21,6 +21,7 @@ class StoreTest: QuickSpec {
       }
       
       it("initializes the state as empty by default") {
+        expect(store.isReady).toEventually(beTruthy())
         expect(store.state) == AppState()
       }
       

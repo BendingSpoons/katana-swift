@@ -67,10 +67,10 @@ open class Store<StateType: State> {
 //
 //  /// The array of middleware of the store
 //  fileprivate let middleware: [StoreMiddleware]
-//
-//  /// Whether the store is ready to execute operations
-//  public var isReady: Bool { return self.actionsQueue.isSuspended }
-//
+
+  /// Whether the store is ready to execute operations
+  public private(set) var isReady: Bool
+
 //  /**
 //   The dependencies used in the actions side effects
 //
@@ -78,26 +78,24 @@ open class Store<StateType: State> {
 //  */
 //  public var dependencies: SideEffectDependencyContainer!
 //
-//  /**
-//    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
-//  */
-//  fileprivate var dispatchFunction: StoreDispatch?
+  /**
+    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
+  */
+  fileprivate var handleUpdateState: StoreDispatch?
 //
-//  /// The queue in which actions are managed
-//  lazy fileprivate var actionsQueue: OperationQueue = {
-//    let operation = OperationQueue()
-//    operation.maxConcurrentOperationCount = 1
-//    operation.qualityOfService = .userInitiated
-//
-//    // queue is initially supended. The store will enable the queue when
-//    // all the setup is done.
-//    // we basically enqueue all the dispatched actions until
-//    // everything is needed to manage them is correctly sat up
-//    operation.isSuspended = true
-//
-//    return operation
-//  }()
-//
+  /// The queue in which actions are managed
+  lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
+    let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
+    
+    // queue is initially supended. The store will enable the queue when
+    // all the setup is done.
+    // we basically enqueue all the dispatched actions until
+    // everything is needed to manage them is correctly sat up
+    d.suspend()
+
+    return d
+  }()
+
   /**
    A convenience init method. The store won't have middleware nor dependencies for the actions
    side effects. The state will be created using the default init of the state
@@ -142,31 +140,35 @@ open class Store<StateType: State> {
 //    self.middleware = middleware
     self.state = Store<StateType>.emptyStateInitializer()
 //    self.dependencies = dependencies.init(dispatch: self.dispatch, getState: self.getState)
-//
-//    /// Do the initialization operation async to avoid to block the store init caller
-//    /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
-//    /// if the stateInitializer function takes too much to do its job and we block the app's startup
-//    DispatchQueue.main.async {
-//      self.initializeInternalState(using: stateInitializer)
-//    }
+    self.isReady = false
+
+    /// Do the initialization operation async to avoid to block the store init caller
+    /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
+    /// if the stateInitializer function takes too much to do its job and we block the app's startup
+    DispatchQueue.main.async {
+      self.initializeInternalState(using: stateInitializer)
+    }
   }
 
-//  /// Creates and initializes the internal values.
-//  /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
-//  private func initializeInternalState(using stateInizializer: StateInitializer<StateType>) {
-//    self.state = stateInizializer()
-//
+  /// Creates and initializes the internal values.
+  /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
+  private func initializeInternalState(using stateInizializer: StateInitializer<StateType>) {
+    self.state = stateInizializer()
+
+    #warning("restore")
 //    let initializedMiddleware = self.middleware.map { middleware in
 //      return middleware(self.getState, self.dispatch)
 //    }
-//
-//    // chain the middleware with the final step, which is the reduction of the state and the side effects management
-//    self.dispatchFunction = Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
-//
-//    // and here we are finally able to start the actions management
-//    self.actionsQueue.isSuspended = false
-//  }
-//
+
+    // chain the middleware with the final step, which is the reduction of the state and the side effects management
+    #warning("restore")
+    self.handleUpdateState = self.manageUpdateState//Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
+
+    // and here we are finally able to start the actions management
+    self.stateUpdaterQueue.resume()
+    self.isReady = true
+  }
+
 //  private func getState() -> StateType {
 //    //swiftlint:disable line_length
 //    assert(!self.actionsQueue.isSuspended, "The state is not ready yet. You should wait until the state is ready to invoke getState. If you are performing operations in the dependenciesContainer's init, then the suggested way to approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly")
@@ -208,12 +210,23 @@ open class Store<StateType: State> {
 //    }
 //  }
   
+  @discardableResult
   public func dispatch(_ updater: AnyStateUpdater) -> Promise<Void> {
-    return Promise<Void>(resolved: ())
+    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+      guard self.isReady else {
+        fatalError("Something is wrong, the action queue has been started before the initialization has been completed")
+      }
+      
+      self.handleUpdateState!(updater)
+      resolve(())
+    }
+    
+    // triggers the execution of the promise even though no one is listening for it
+    return promise.void
   }
 }
 //
-//fileprivate extension Store {
+fileprivate extension Store {
 //  /// Type used internally to store partially applied middleware
 //  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: Action) -> ()
 //
@@ -223,24 +236,26 @@ open class Store<StateType: State> {
 //
 //   - parameter action: the action that has been dispatched
 //  */
-//  fileprivate func manageAction(_ action: Action) {
-//    let newState = action.updatedState(currentState: self.state)
-//
-//    guard let typedNewState = newState as? StateType else {
-//      preconditionFailure("Action updatedState returned a wrong state type")
-//    }
-//
+  #warning("Restore")
+  fileprivate func manageUpdateState(_ stateUpdater: AnyStateUpdater) {
+    let newState = stateUpdater.updateState(currentState: self.state)
+
+    guard let typedNewState = newState as? StateType else {
+      preconditionFailure("Action updatedState returned a wrong state type")
+    }
+
 //    let previousState = self.state
-//    self.state = typedNewState
-//
+    self.state = typedNewState
+
 //    // executes the side effects, if needed
 //    self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
-//
-//    // listener are always invoked in the main queue
+
+    #warning("Restore")
+    // listener are always invoked in the main queue
 //    DispatchQueue.main.async {
 //      self.listeners.values.forEach { $0() }
 //    }
-//  }
+  }
 //
 //  /**
 //    Executes the side effect, if available
@@ -265,7 +280,7 @@ open class Store<StateType: State> {
 //      dependencies: self.dependencies
 //    )
 //  }
-//}
+}
 
 //// MARK: Utilities
 //fileprivate extension Store {
