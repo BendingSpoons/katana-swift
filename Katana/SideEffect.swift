@@ -2,8 +2,9 @@
 //  SideEffect.swift
 //  Katana
 //
-//  Created by Mauro Bolis on 18/10/2018.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 
