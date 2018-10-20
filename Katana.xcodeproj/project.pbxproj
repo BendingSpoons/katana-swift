@@ -28,6 +28,7 @@
 		9E30C3195E1D8768CC731E30 /* Promise.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7585BB900E0444C2D982F47 /* Promise.swift */; };
 		A0899BBD0C51B6ACB0EB36CC /* Promise+Defer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 705F6E8CCDD3C2A6642F6F74 /* Promise+Defer.swift */; };
 		A1B5D94A5224F361A32B2CE1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B95307950F442A471207AB37 /* Foundation.framework */; };
+		A74D0885217B13D70043C17D /* Promise+Katana.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74D0884217B13D70043C17D /* Promise+Katana.swift */; };
 		A77A2FF1217A159C001D715F /* States.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A2FF0217A159C001D715F /* States.swift */; };
 		A77A2FF3217A1676001D715F /* StoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A2FF2217A1676001D715F /* StoreTests.swift */; };
 		A77A2FF7217A1F5D001D715F /* StoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A2FF6217A1F5D001D715F /* StoreTypealiases.swift */; };
@@ -90,6 +91,7 @@
 		93FEC8D0D52DAC2F99E9F720 /* Context.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Context.swift; sourceTree = "<group>"; };
 		9533A8A92AED1CE751A3D91D /* StateUpdater.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = StateUpdater.swift; sourceTree = "<group>"; };
 		95D2ED3B7525D5598E668A78 /* DispatchTimerWrapper.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchTimerWrapper.swift; sourceTree = "<group>"; };
+		A74D0884217B13D70043C17D /* Promise+Katana.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Promise+Katana.swift"; sourceTree = "<group>"; };
 		A77A2FF0217A159C001D715F /* States.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = States.swift; sourceTree = "<group>"; };
 		A77A2FF2217A1676001D715F /* StoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTests.swift; sourceTree = "<group>"; };
 		A77A2FF6217A1F5D001D715F /* StoreTypealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTypealiases.swift; sourceTree = "<group>"; };
@@ -171,14 +173,15 @@
 		5A0501E43EA64C3C43F323B1 /* Katana */ = {
 			isa = PBXGroup;
 			children = (
+				27BA9D91FC98636D4066FA58 /* External */,
 				9533A8A92AED1CE751A3D91D /* StateUpdater.swift */,
 				48D165AFC563D92D6FE8CC24 /* State.swift */,
 				3DD5AC84E8F9BDDA25B7980B /* Store.swift */,
 				37AE93C962262BC03C923BCC /* SideEffect.swift */,
-				27BA9D91FC98636D4066FA58 /* External */,
 				58FBC8585A46622DE48AD4BE /* SideEffectDependencyContainer.swift */,
-				2C95F5EA6C28D089842E3AE8 /* Katana.h */,
 				A77A2FF6217A1F5D001D715F /* StoreTypealiases.swift */,
+				2C95F5EA6C28D089842E3AE8 /* Katana.h */,
+				A74D0884217B13D70043C17D /* Promise+Katana.swift */,
 			);
 			path = Katana;
 			sourceTree = "<group>";
@@ -408,6 +411,7 @@
 				E9580E00C63967779DDD8E3D /* StateUpdater.swift in Sources */,
 				B55E1E99864E159884EE1C8F /* State.swift in Sources */,
 				A77A2FF7217A1F5D001D715F /* StoreTypealiases.swift in Sources */,
+				A74D0885217B13D70043C17D /* Promise+Katana.swift in Sources */,
 				BC827DC1173BDB8A7AE4F930 /* Store.swift in Sources */,
 				359B6D265DD60429F02DE03A /* SideEffect.swift in Sources */,
 				D21677479D8A8B329577B25F /* Promise+Retry.swift in Sources */,

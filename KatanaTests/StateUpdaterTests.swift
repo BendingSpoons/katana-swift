@@ -53,9 +53,7 @@ class StateUpdaterTests: QuickSpec {
                 expect(store.state.todo.todos.first) == todo
                 expect(store.state.user.users.count) == 0
               }
-              .then {
-                return store.dispatch(AddUser(user: user))
-              }
+              .thenDispatch(AddUser(user: user))
               .then {
                 expect(store.state.todo.todos.count) == 1
                 expect(store.state.todo.todos.first) == todo

@@ -167,6 +167,8 @@ open class Store<StateType: State> {
     // and here we are finally able to start the actions management
     self.stateUpdaterQueue.resume()
     self.isReady = true
+    
+    SharedStoreContainer.sharedStore = self
   }
 
 //  private func getState() -> StateType {
