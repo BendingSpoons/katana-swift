@@ -14,10 +14,10 @@ import Nimble
 class StoreTest: QuickSpec {
   override func spec() {
     describe("The Store") {
-      var store: Store<AppState>!
+      var store: Store<AppState, TestDependenciesContainer>!
       
       beforeEach {
-        store = Store<AppState>()
+        store = Store<AppState, TestDependenciesContainer>()
       }
       
       it("initializes the state as empty by default") {

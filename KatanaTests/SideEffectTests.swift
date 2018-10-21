@@ -14,10 +14,10 @@ import Nimble
 class SideEffectTests: QuickSpec {
   override func spec() {
     describe("The Store") {
-      var store: Store<AppState>!
+      var store: Store<AppState, TestDependenciesContainer>!
       
       beforeEach {
-        store = Store<AppState>()
+        store = Store<AppState, TestDependenciesContainer>()
       }
       
       describe("when managing a side effect") {
@@ -42,7 +42,7 @@ class SideEffectTests: QuickSpec {
           let sideEffect1 = SpySideEffect(delay: 0) { context in firstDependenciesContainer = context.dependencies }
           let sideEffect2 = SpySideEffect(delay: 0) { context in secondDependenciesContainer = context.dependencies }
           
-          waitUntil { done in
+          waitUntil(timeout: 10) { done in
             store
               .dispatch(sideEffect1)
               .thenDispatch(sideEffect2)
@@ -59,8 +59,8 @@ class SideEffectTests: QuickSpec {
           let sideEffect2 = SpySideEffect(delay: 1) { context in invocationResults.append("2") }
           let sideEffect3 = SpySideEffect(delay: 0) { context in invocationResults.append("3") }
           
-          waitUntil { done in
-            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3)
+          waitUntil(timeout: 10) { done in
+            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3).then { done() }
           }
           
           expect(invocationResults) == ["1", "2", "3"]
@@ -84,7 +84,7 @@ class SideEffectTests: QuickSpec {
           let addTodo = AddTodo(todo: todo)
           let addUser = AddUser(user: user)
           
-          waitUntil { done in
+          waitUntil(timeout: 10) { done in
             store
               .dispatch(addTodo)
               .thenDispatch(sideEffect1)
@@ -114,7 +114,7 @@ class SideEffectTests: QuickSpec {
             secondState = context.getState()
           }
           
-          waitUntil { done in
+          waitUntil(timeout: 10) { done in
             store.dispatch(sideEffect).then { done() }
           }
           

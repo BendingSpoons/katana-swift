@@ -14,10 +14,10 @@ import Nimble
 class StateUpdaterTests: QuickSpec {
   override func spec() {
     describe("The Store") {
-      var store: Store<AppState>!
+      var store: Store<AppState, TestDependenciesContainer>!
       
       beforeEach {
-        store = Store<AppState>()
+        store = Store<AppState, TestDependenciesContainer>()
       }
       
       describe("when managing a state update") {

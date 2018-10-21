@@ -12,15 +12,15 @@ public protocol AnySideEffectContext {
   
 }
 
-public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
+public struct SideEffectContext<S, D>: AnySideEffectContext where S: State, D: SideEffectDependencyContainer {
   public let dependencies: D
-
-  public func getState() -> S {
-    fatalError()
-  }
+  public let getState: () -> S
+  public let dispatch: StoreDispatch
   
-  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
-    fatalError()
+  init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping StoreDispatch) {
+    self.dependencies = dependencies
+    self.dispatch = dispatch
+    self.getState = getState
   }
 }
 
