@@ -16,14 +16,14 @@ struct SharedStoreContainer {
 public extension Promise {
   
   @discardableResult
-  func thenDispatch(_ updater: AnyStateUpdater) -> Promise<Void> {
+  func thenDispatch(_ updater: Dispatchable) -> Promise<Void> {
     return self.then { _ in
       return SharedStoreContainer.sharedStore.dispatch(updater)
     }
   }
   
   @discardableResult
-  public func thenDispatch(_ body: @escaping ( (Value) throws -> AnyStateUpdater) ) -> Promise<Void> {
+  public func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {
     return self.then { value in
       let updater = try body(value)
       return SharedStoreContainer.sharedStore.dispatch(updater)

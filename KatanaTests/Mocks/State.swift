@@ -1,5 +1,5 @@
 //
-//  States.swift
+//  State.swift
 //  Katana
 //
 //  Copyright © 2016 Bending Spoons.
@@ -51,5 +51,9 @@ extension AppState {
 }
 
 protocol TestStateUpdater: StateUpdater where StateType == AppState {
+  
+}
+
+protocol TestSideEffect: SideEffect where StateType == AppState, Dependencies == TestDependenciesContainer {
   
 }

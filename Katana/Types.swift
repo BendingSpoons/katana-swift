@@ -26,4 +26,4 @@ public protocol Dispatchable {}
 //  (_ action: Action) -> ()
 
 /// Typealias for the `Store` dispatch function
-public typealias StoreDispatch = (_: Dispatchable) -> ()
+public typealias StoreDispatch = (_: Dispatchable) -> Promise<Void>

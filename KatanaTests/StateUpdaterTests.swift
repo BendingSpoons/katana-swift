@@ -83,7 +83,7 @@ class StateUpdaterTests: QuickSpec {
   }
 }
 
-struct AddTodo: TestStateUpdater {
+private struct AddTodo: TestStateUpdater {
   let todo: Todo
   
   func updatedState(_ state: inout AppState) {
@@ -91,7 +91,7 @@ struct AddTodo: TestStateUpdater {
   }
 }
 
-struct AddUser: TestStateUpdater {
+private struct AddUser: TestStateUpdater {
   let user: User
   
   func updatedState(_ state: inout AppState) {
@@ -99,7 +99,7 @@ struct AddUser: TestStateUpdater {
   }
 }
 
-struct AddTodoWithDelay: TestStateUpdater {
+private struct AddTodoWithDelay: TestStateUpdater {
   let todo: Todo
   let waitingTime: TimeInterval
   

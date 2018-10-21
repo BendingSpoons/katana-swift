@@ -13,7 +13,15 @@ public protocol AnySideEffectContext {
 }
 
 public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
+  public let dependencies: D
 
+  public func getState() -> S {
+    fatalError()
+  }
+  
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+    fatalError()
+  }
 }
 
 public protocol AnySideEffect: Dispatchable {
