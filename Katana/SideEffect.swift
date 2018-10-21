@@ -8,14 +8,31 @@
 
 import Foundation
 
-// lib
-
-public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
+public protocol AnySideEffectContext {
+  
 }
 
-public protocol SideEffect {
+public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
+
+}
+
+public protocol AnySideEffect: Dispatchable {
+  func sideEffect(_ context: AnySideEffectContext) throws
+}
+
+public protocol SideEffect: AnySideEffect {
   associatedtype StateType: State
   associatedtype Dependencies: SideEffectDependencyContainer
 
   func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws
+}
+
+public extension SideEffect {
+  public func sideEffect(_ context: AnySideEffectContext) throws {
+    guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
+      fatalError("Invalid context pased to side effect")
+    }
+    
+    try self.sideEffect(typedSideEffect)
+  }
 }

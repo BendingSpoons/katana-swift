@@ -8,6 +8,8 @@
 
 import Foundation
 
+public protocol Dispatchable {}
+
 ///// Typealias for a `Store` listener
 //public typealias StoreListener = () -> ()
 //
@@ -24,4 +26,4 @@ import Foundation
 //  (_ action: Action) -> ()
 
 /// Typealias for the `Store` dispatch function
-public typealias StoreDispatch = (_: AnyStateUpdater) -> ()
+public typealias StoreDispatch = (_: Dispatchable) -> ()

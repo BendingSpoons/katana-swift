@@ -14,7 +14,7 @@ public protocol AnyStore: class {
   var anyState: State { get }
 
   @discardableResult
-  func dispatch(_ updater: AnyStateUpdater) -> Promise<Void>
+  func dispatch(_ updater: Dispatchable) -> Promise<Void>
 
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
@@ -81,7 +81,7 @@ open class Store<StateType: State> {
   /**
     The internal dispatch function. It combines all the operations that should be done when an action is dispatched
   */
-  fileprivate var handleUpdateState: StoreDispatch?
+  fileprivate var handleUpdateState: ()?
 //
   /// The queue in which actions are managed
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
@@ -162,7 +162,7 @@ open class Store<StateType: State> {
 
     // chain the middleware with the final step, which is the reduction of the state and the side effects management
     #warning("restore")
-    self.handleUpdateState = self.manageUpdateState//Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
+//    self.handleUpdateState = self.manageUpdateState//Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
 
     // and here we are finally able to start the actions management
     self.stateUpdaterQueue.resume()
@@ -213,22 +213,32 @@ open class Store<StateType: State> {
 //  }
   
   @discardableResult
-  public func dispatch(_ updater: AnyStateUpdater) -> Promise<Void> {
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+    #if DEBUG
+    if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
+      fatalError("The parameter cannot implement both the state updater and the side effect")
+    }
+    #endif
+    
+    if let stateUpdater = dispatchable as? AnyStateUpdater {
+      return self.enqueueStateUpdater(stateUpdater)
+    }
+    
+    fatalError("Invalid parameter")
+  }
+}
+//
+fileprivate extension Store {
+  private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
     let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
-      guard self.isReady else {
-        fatalError("Something is wrong, the action queue has been started before the initialization has been completed")
-      }
-      
-      self.handleUpdateState!(updater)
+      self.manageUpdateState(stateUpdater)
       resolve(())
     }
     
     // triggers the execution of the promise even though no one is listening for it
     return promise.void
   }
-}
-//
-fileprivate extension Store {
+
 //  /// Type used internally to store partially applied middleware
 //  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: Action) -> ()
 //
@@ -240,6 +250,10 @@ fileprivate extension Store {
 //  */
   #warning("Restore")
   fileprivate func manageUpdateState(_ stateUpdater: AnyStateUpdater) {
+    guard self.isReady else {
+      fatalError("Something is wrong, the action queue has been started before the initialization has been completed")
+    }
+
     let newState = stateUpdater.updateState(currentState: self.state)
 
     guard let typedNewState = newState as? StateType else {

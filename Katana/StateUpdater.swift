@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol AnyStateUpdater {
+public protocol AnyStateUpdater: Dispatchable {
   func updateState(currentState: State) -> State
 }
 
