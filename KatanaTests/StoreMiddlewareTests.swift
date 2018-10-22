@@ -15,23 +15,23 @@ class StoreMiddlewareTests: QuickSpec {
     describe("The Store") {
       describe("when dealing with state updater") {
         
-        it("invokes the middleware") {
+        it("invokes the interceptors") {
           var dispatchedStateUpdater: AddTodo?
           var stateBefore: AppState?
           var stateAfter: AppState?
       
-          let middleware: StoreMiddleware = { getState, dispatch in
+          let interceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
-                dispatchedStateUpdater = action as? AddTodo
+              return { stateUpdater in
+                dispatchedStateUpdater = stateUpdater as? AddTodo
                 stateBefore = getState() as? AppState
-                next(action)
+                try next(stateUpdater)
                 stateAfter = getState() as? AppState
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [middleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
           
@@ -45,24 +45,25 @@ class StoreMiddlewareTests: QuickSpec {
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
           
-          let firstMiddleware: StoreMiddleware = { getState, dispatch in
+          let firstInterceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
+              return { stateUpdater in
                 invokationOrder.append("first")
-                next(action)
+                try next(stateUpdater)
               }
             }
           }
           
-          let secondMiddleware: StoreMiddleware = { getState, dispatch in
+          let secondInterceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
+              return { stateUpdater in
                 invokationOrder.append("second")
+                try next(stateUpdater)
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [firstMiddleware, secondMiddleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
@@ -72,16 +73,16 @@ class StoreMiddlewareTests: QuickSpec {
         it("allows the middleware to block the propagation") {
           var dispatchedStateUpdater: AddTodo?
           
-          let middleware: StoreMiddleware = { getState, dispatch in
+          let interceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
-                dispatchedStateUpdater = action as? AddTodo
-                // note: we are not calling next
+              return { stateUpdater in
+                dispatchedStateUpdater = stateUpdater as? AddTodo
+                throw StoreInterceptorChainBlocked()
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [middleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
           
@@ -98,18 +99,18 @@ class StoreMiddlewareTests: QuickSpec {
           var stateBefore: AppState?
           var stateAfter: AppState?
           
-          let middleware: StoreMiddleware = { getState, dispatch in
+          let interceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
-                dispatchedSideEffect = action as? DelaySideEffect
+              return { sideEffect in
+                dispatchedSideEffect = sideEffect as? DelaySideEffect
                 stateBefore = getState() as? AppState
-                next(action)
+                try next(sideEffect)
                 stateAfter = getState() as? AppState
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [middleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
           
@@ -123,24 +124,25 @@ class StoreMiddlewareTests: QuickSpec {
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
           
-          let firstMiddleware: StoreMiddleware = { getState, dispatch in
+          let firstInterceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
+              return { sideEffect in
                 invokationOrder.append("first")
-                next(action)
+                try next(sideEffect)
               }
             }
           }
           
-          let secondMiddleware: StoreMiddleware = { getState, dispatch in
+          let secondInterceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
+              return { sideEffect in
                 invokationOrder.append("second")
+                try next(sideEffect)
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [firstMiddleware, secondMiddleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
           store.dispatch(DelaySideEffect())
           
           expect(store.isReady).toEventually(beTrue())
@@ -151,16 +153,16 @@ class StoreMiddlewareTests: QuickSpec {
           var dispatchedStateUpdater: AddTodo?
           var invoked = false
           
-          let middleware: StoreMiddleware = { getState, dispatch in
+          let interceptor: StoreInterceptor = { getState, dispatch in
             return { next in
-              return { action in
-                dispatchedStateUpdater = action as? AddTodo
-                // note: we are not calling next
+              return { sideEffect in
+                dispatchedStateUpdater = sideEffect as? AddTodo
+                throw StoreInterceptorChainBlocked()
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(middleware: [middleware])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
           

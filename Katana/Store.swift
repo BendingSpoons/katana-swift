@@ -65,9 +65,9 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
 //  fileprivate var listeners: [ListenerID: StoreListener]
 
   /// The array of middleware of the store
-  fileprivate let middleware: [StoreMiddleware]
+  fileprivate let interceptors: [StoreInterceptor]
   
-  fileprivate var middlewareChain: PartiallyAppliedMiddleware!
+  fileprivate var initializedInterceptors: [InitializedInterceptor]!
 
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
@@ -115,7 +115,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
    - returns: An instance of store
   */
   convenience public init() {
-    self.init(middleware: [], stateInitializer: emptyStateInitializer)
+    self.init(interceptors: [], stateInitializer: emptyStateInitializer)
   }
 
   /**
@@ -126,9 +126,9 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
    */
-  convenience public init(middleware: [StoreMiddleware]) {
+  convenience public init(interceptors: [StoreInterceptor]) {
     self.init(
-      middleware: middleware,
+      interceptors: interceptors,
       stateInitializer: emptyStateInitializer
     )
   }
@@ -142,9 +142,9 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
    - returns: An instance of store configured with the given properties
   */
   #warning("implement")
-  public init(middleware: [StoreMiddleware], stateInitializer: @escaping StateInitializer<S>) {
+  public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
 //    self.listeners = [:]
-    self.middleware = middleware
+    self.interceptors = interceptors
     self.state = emptyStateInitializer()
     self.isReady = false
 
@@ -161,11 +161,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
 
-    // chain the middleware with the final step, which is the reduction of the state and the side effects management
-    #warning("restore")
-//    self.handleUpdateState = self.manageUpdateState//Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
-
-    self.middlewareChain = Store.composeMiddleware(self.middleware, getState: self.getState, dispatch: self.nonPromisableDispatch)
+    self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, getState: self.getState, dispatch: self.dispatch)
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
     // and here we are finally able to start the queues
@@ -228,7 +224,8 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
 fileprivate extension Store {
   private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
     let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
-      self.middlewareChain(self.manageUpdateState)(stateUpdater)
+      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageUpdateState)
+      try interceptorsChain(stateUpdater)
       resolve(())
     }
     
@@ -244,17 +241,16 @@ fileprivate extension Store {
 //   - parameter action: the action that has been dispatched
 //  */
   #warning("Restore")
-  fileprivate func manageUpdateState(_ dispatchable: Dispatchable) {
+  fileprivate func manageUpdateState(_ dispatchable: Dispatchable) throws {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
     }
     
     guard let stateUpdater = dispatchable as? AnyStateUpdater else {
-      // middleware returned another type of info. Let's just dispatch it
-      self.nonPromisableDispatch(dispatchable)
-      return
+      // interceptors changed the type.. let's re-dispatch it
+      return self.nonPromisableDispatch(dispatchable)
     }
-
+    
     let newState = stateUpdater.updateState(currentState: self.state)
 
     guard let typedNewState = newState as? S else {
@@ -301,32 +297,39 @@ fileprivate extension Store {
 
 fileprivate extension Store {
   private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Void> {
-    // triggers the execution of the promise even though no one is listening for it
-    return self.manageSideEffect(sideEffect).void
+    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
+      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageSideEffect)
+      try interceptorsChain(sideEffect)
+    }
+    
+    return promise.void
   }
   
-  fileprivate func manageSideEffect(_ sideEffect: AnySideEffect) -> Promise<Void> {
-    return async(in: .custom(queue: self.sideEffectQueue), token: nil) { [weak self] _ -> Void in
-      guard let self = self, self.isReady else {
-        fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
-      }
-      
-      let context = SideEffectContext<S, D>(
-        dependencies: self.dependencies,
-        getState: self.getState,
-        dispatch: self.dispatch
-      )
-      
-      self.middlewareChain({ _ in })(sideEffect)
-      try sideEffect.sideEffect(context)
+  fileprivate func manageSideEffect(_ dispatchable: Dispatchable) throws -> Void {
+    guard self.isReady else {
+      fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
     }
+    
+    guard let sideEffect = dispatchable as? AnySideEffect else {
+      // interceptor changed the type. Let's dispatch it
+      return self.nonPromisableDispatch(dispatchable)
+    }
+    
+    let context = SideEffectContext<S, D>(
+      dependencies: self.dependencies,
+      getState: self.getState,
+      dispatch: self.dispatch
+    )
+    
+    try sideEffect.sideEffect(context)
   }
 }
 
 // MARK: Middleware management
 fileprivate extension Store {
   /// Type used internally to store partially applied middleware (that is, a chain of middleware which doesn't handle the dispatchable item)
-  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ dispatchable: Dispatchable) -> ()
+  fileprivate typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext) -> (_ dispatchable: Dispatchable) throws -> Void
+  fileprivate typealias ThrowingDispatch = (_: Dispatchable) throws -> Void
   
   /**
    This function composes the middleware chain in a single invokable function
@@ -334,44 +337,31 @@ fileprivate extension Store {
    - parameter middleware:   the middleware to use
    - returns: a function that invokes all the middleware
    */
-  fileprivate static func composeMiddleware(
-    _ middleware: [StoreMiddleware],
+  fileprivate static func initializedInterceptors(
+    _ interceptors: [StoreInterceptor],
     getState: @escaping () -> State,
-    dispatch: @escaping StoreDispatch) -> PartiallyAppliedMiddleware {
+    dispatch: @escaping PromisableStoreDispatch) -> [InitializedInterceptor] {
     
-    // trick to handle all the case by adding a fake middleware
-    let emptyMiddleware: PartiallyAppliedMiddleware = { next in
-      return { dispatchable in
-        next(dispatchable)
-      }
+    return interceptors.map { interceptor in
+      return interceptor(getState, dispatch)
+    }
+  }
+  
+  fileprivate static func chainedInterceptors(_ interceptors: [InitializedInterceptor], with lastStep: @escaping ThrowingDispatch) -> ThrowingDispatch {
+    guard !interceptors.isEmpty else {
+      return lastStep
     }
     
-    guard !middleware.isEmpty else {
-      return emptyMiddleware
+    guard interceptors.count > 1 else {
+      return interceptors.first!(lastStep)
     }
     
-    var initializedMiddleware = middleware.map { middleware in
-      return middleware(getState, dispatch)
-    }
-
-    guard initializedMiddleware.count > 1 else {
-      return initializedMiddleware.first!
-    }
-
-    let last = initializedMiddleware.removeLast()
-    let emptyStoreDispatch: StoreDispatch = { _ in }
-
-    let mChain = initializedMiddleware.reduce(last(emptyStoreDispatch), { chain, middleware in
+    var m = interceptors
+    let last = m.removeLast()
+    
+    return m.reduce(last(lastStep), { chain, middleware in
       return middleware(chain)
     })
-    
-    return { next in
-      return { dispatchable in
-        #warning("once added to a real app, try to improve this")
-        mChain(dispatchable)
-        next(dispatchable)
-      }
-    }
   }
 }
 
