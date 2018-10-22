@@ -67,7 +67,7 @@ class StoreMiddlewareTests: QuickSpec {
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
-          expect(invokationOrder).toEventually(be(["first", "second"]))
+          expect(invokationOrder).toEventually(equal(["first", "second"]))
         }
         
         it("allows the middleware to block the propagation") {
@@ -117,8 +117,8 @@ class StoreMiddlewareTests: QuickSpec {
           store.dispatch(DelaySideEffect())
           
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
-          expect(stateBefore?.todo.todos.count).toEventually(be(0))
-          expect(stateAfter?.todo.todos.count).toEventually(be(0))
+          expect(stateBefore?.todo.todos.count).toEventually(equal(0))
+          expect(stateAfter?.todo.todos.count).toEventually(equal(0), timeout: 200)
         }
         
         it("invokes the middleware in the proper order") {
@@ -146,17 +146,17 @@ class StoreMiddlewareTests: QuickSpec {
           store.dispatch(DelaySideEffect())
           
           expect(store.isReady).toEventually(beTrue())
-          expect(invokationOrder).toEventually(be(["first", "second"]))
+          expect(invokationOrder).toEventually(equal(["first", "second"]))
         }
         
         it("allows the middleware to block the propagation") {
-          var dispatchedStateUpdater: AddTodo?
+          var dispatchedStateUpdater: SideEffectWithBlock?
           var invoked = false
           
           let interceptor: StoreInterceptor = { getState, dispatch in
             return { next in
               return { sideEffect in
-                dispatchedStateUpdater = sideEffect as? AddTodo
+                dispatchedStateUpdater = sideEffect as? SideEffectWithBlock
                 throw StoreInterceptorChainBlocked()
               }
             }
