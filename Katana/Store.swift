@@ -60,12 +60,14 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
 
   /// The current state of the application
   open fileprivate(set) var state: S
-//
+
 //  /// The  array of registered listeners
 //  fileprivate var listeners: [ListenerID: StoreListener]
-//
-//  /// The array of middleware of the store
-//  fileprivate let middleware: [StoreMiddleware]
+
+  /// The array of middleware of the store
+  fileprivate let middleware: [StoreMiddleware]
+  
+  fileprivate var middlewareChain: PartiallyAppliedMiddleware!
 
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
@@ -142,7 +144,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   #warning("implement")
   public init(middleware: [StoreMiddleware], stateInitializer: @escaping StateInitializer<S>) {
 //    self.listeners = [:]
-//    self.middleware = middleware
+    self.middleware = middleware
     self.state = emptyStateInitializer()
     self.isReady = false
 
@@ -159,15 +161,11 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
 
-    #warning("restore")
-//    let initializedMiddleware = self.middleware.map { middleware in
-//      return middleware(self.getState, self.dispatch)
-//    }
-
     // chain the middleware with the final step, which is the reduction of the state and the side effects management
     #warning("restore")
 //    self.handleUpdateState = self.manageUpdateState//Store.composeMiddlewares(initializedMiddleware, with: self.manageAction)
 
+    self.middlewareChain = Store.composeMiddleware(self.middleware, getState: self.getState, dispatch: self.nonPromisableDispatch)
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
     // and here we are finally able to start the queues
@@ -203,23 +201,6 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
 //      _ = self?.listeners.removeValue(forKey: listenerID)
 //    }
 //  }
-//
-//  /**
-//   Dispatches an action
-//
-//   - parameter action: the action to dispatch
-//  */
-//  public func dispatch(_ action: Action) {
-//
-//    // the dispatch function simply puts the action in the queue
-//    self.actionsQueue.addOperation { [unowned self] in
-//      guard let function = self.dispatchFunction else {
-//        fatalError("Something is wrong, the action queue has been started before the initialization has been completed")
-//      }
-//
-//      function(action)
-//    }
-//  }
   
   @discardableResult
   public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
@@ -238,12 +219,16 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
     
     fatalError("Invalid parameter")
   }
+  
+  fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
+    self.dispatch(dispatchable)
+  }
 }
 //
 fileprivate extension Store {
   private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
     let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
-      self.manageUpdateState(stateUpdater)
+      self.middlewareChain(self.manageUpdateState)(stateUpdater)
       resolve(())
     }
     
@@ -251,8 +236,6 @@ fileprivate extension Store {
     return promise.void
   }
 
-//  /// Type used internally to store partially applied middleware
-//  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ action: Action) -> ()
 //
 //  /**
 //   Calculates the new state based on the current state and the given action.
@@ -261,9 +244,15 @@ fileprivate extension Store {
 //   - parameter action: the action that has been dispatched
 //  */
   #warning("Restore")
-  fileprivate func manageUpdateState(_ stateUpdater: AnyStateUpdater) {
+  fileprivate func manageUpdateState(_ dispatchable: Dispatchable) {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
+    }
+    
+    guard let stateUpdater = dispatchable as? AnyStateUpdater else {
+      // middleware returned another type of info. Let's just dispatch it
+      self.nonPromisableDispatch(dispatchable)
+      return
     }
 
     let newState = stateUpdater.updateState(currentState: self.state)
@@ -310,40 +299,9 @@ fileprivate extension Store {
 //  }
 }
 
-//// MARK: Utilities
-//fileprivate extension Store {
-//
-//  /**
-//   This function composes the middleware with the store dispatch
-//
-//   - parameter middleware:   the middleware to use
-//   - parameter storeDispatch: the store dispatch function
-//   - returns: a function that invokes all the middleware and then the store dispatch function
-//   */
-//  fileprivate static func composeMiddlewares(
-//    _ middleware: [PartiallyAppliedMiddleware],
-//    with storeDispatch: @escaping StoreDispatch) -> StoreDispatch {
-//
-//    guard !middleware.isEmpty else {
-//      return storeDispatch
-//    }
-//
-//    guard middleware.count > 1 else {
-//      return middleware.first!(storeDispatch)
-//    }
-//
-//    var m = middleware
-//    let last = m.removeLast()
-//
-//    return m.reduce(last(storeDispatch), { chain, middleware in
-//      return middleware(chain)
-//    })
-//  }
-//}
-
 fileprivate extension Store {
   private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Void> {
-     // triggers the execution of the promise even though no one is listening for it
+    // triggers the execution of the promise even though no one is listening for it
     return self.manageSideEffect(sideEffect).void
   }
   
@@ -358,8 +316,61 @@ fileprivate extension Store {
         getState: self.getState,
         dispatch: self.dispatch
       )
-
+      
+      self.middlewareChain({ _ in })(sideEffect)
       try sideEffect.sideEffect(context)
+    }
+  }
+}
+
+// MARK: Middleware management
+fileprivate extension Store {
+  /// Type used internally to store partially applied middleware (that is, a chain of middleware which doesn't handle the dispatchable item)
+  fileprivate typealias PartiallyAppliedMiddleware = (_ next: @escaping StoreDispatch) -> (_ dispatchable: Dispatchable) -> ()
+  
+  /**
+   This function composes the middleware chain in a single invokable function
+
+   - parameter middleware:   the middleware to use
+   - returns: a function that invokes all the middleware
+   */
+  fileprivate static func composeMiddleware(
+    _ middleware: [StoreMiddleware],
+    getState: @escaping () -> State,
+    dispatch: @escaping StoreDispatch) -> PartiallyAppliedMiddleware {
+    
+    // trick to handle all the case by adding a fake middleware
+    let emptyMiddleware: PartiallyAppliedMiddleware = { next in
+      return { dispatchable in
+        next(dispatchable)
+      }
+    }
+    
+    guard !middleware.isEmpty else {
+      return emptyMiddleware
+    }
+    
+    var initializedMiddleware = middleware.map { middleware in
+      return middleware(getState, dispatch)
+    }
+
+    guard initializedMiddleware.count > 1 else {
+      return initializedMiddleware.first!
+    }
+
+    let last = initializedMiddleware.removeLast()
+    let emptyStoreDispatch: StoreDispatch = { _ in }
+
+    let mChain = initializedMiddleware.reduce(last(emptyStoreDispatch), { chain, middleware in
+      return middleware(chain)
+    })
+    
+    return { next in
+      return { dispatchable in
+        #warning("once added to a real app, try to improve this")
+        mChain(dispatchable)
+        next(dispatchable)
+      }
     }
   }
 }
