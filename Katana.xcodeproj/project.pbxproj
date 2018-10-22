@@ -34,6 +34,7 @@
 		A77A2FF7217A1F5D001D715F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A2FF6217A1F5D001D715F /* Types.swift */; };
 		A78ACF28217CAE1900700D52 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78ACF27217CAE1900700D52 /* SideEffectTests.swift */; };
 		A78ACF2A217CAF1600700D52 /* TestDependenciesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78ACF29217CAF1600700D52 /* TestDependenciesContainer.swift */; };
+		A7D39B72217DF1060091907C /* StoreMiddlewareTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D39B71217DF1060091907C /* StoreMiddlewareTests.swift */; };
 		A828B4D07D4090C3B88D47BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56856BFF6B59092BAD2410C8 /* UIKit.framework */; };
 		A8314A7DEA632A61CF549380 /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40804FBCF2F3C32C9131F88 /* Promise+Catch.swift */; };
 		A959F2557ACB5CC83739B84B /* Pods_Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 703366EE734D3C1E08C642D8 /* Pods_Katana.framework */; };
@@ -99,6 +100,7 @@
 		A77A2FF6217A1F5D001D715F /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		A78ACF27217CAE1900700D52 /* SideEffectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffectTests.swift; sourceTree = "<group>"; };
 		A78ACF29217CAF1600700D52 /* TestDependenciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependenciesContainer.swift; sourceTree = "<group>"; };
+		A7D39B71217DF1060091907C /* StoreMiddlewareTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreMiddlewareTests.swift; sourceTree = "<group>"; };
 		B342A737F6D615D4DEBA4696 /* Promise+Always.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Always.swift"; sourceTree = "<group>"; };
 		B40804FBCF2F3C32C9131F88 /* Promise+Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Catch.swift"; sourceTree = "<group>"; };
 		B95307950F442A471207AB37 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -206,6 +208,7 @@
 				0065D9DF55A68D9E95E6E857 /* StateUpdaterTests.swift */,
 				A77A2FF2217A1676001D715F /* StoreTests.swift */,
 				A78ACF27217CAE1900700D52 /* SideEffectTests.swift */,
+				A7D39B71217DF1060091907C /* StoreMiddlewareTests.swift */,
 			);
 			path = KatanaTests;
 			sourceTree = "<group>";
@@ -454,6 +457,7 @@
 				D7257B0213CAB45B65CB1A5C /* StateUpdaterTests.swift in Sources */,
 				A78ACF28217CAE1900700D52 /* SideEffectTests.swift in Sources */,
 				A77A2FF1217A159C001D715F /* State.swift in Sources */,
+				A7D39B72217DF1060091907C /* StoreMiddlewareTests.swift in Sources */,
 				A78ACF2A217CAF1600700D52 /* TestDependenciesContainer.swift in Sources */,
 				A77A2FF3217A1676001D715F /* StoreTests.swift in Sources */,
 			);

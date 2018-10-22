@@ -15,9 +15,9 @@ public protocol AnySideEffectContext {
 public struct SideEffectContext<S, D>: AnySideEffectContext where S: State, D: SideEffectDependencyContainer {
   public let dependencies: D
   public let getState: () -> S
-  public let dispatch: StoreDispatch
+  public let dispatch: PromisableStoreDispatch
   
-  init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping StoreDispatch) {
+  init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping PromisableStoreDispatch) {
     self.dependencies = dependencies
     self.dispatch = dispatch
     self.getState = getState

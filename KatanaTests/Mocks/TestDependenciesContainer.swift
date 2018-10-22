@@ -18,7 +18,7 @@ final class TestDependenciesContainer: SideEffectDependencyContainer {
   }
   
   
-  init(dispatch: @escaping StoreDispatch, getState: @escaping () -> State) {
+  init(dispatch: @escaping PromisableStoreDispatch, getState: @escaping () -> State) {
     
   }
 }

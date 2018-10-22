@@ -115,22 +115,21 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   convenience public init() {
     self.init(middleware: [], stateInitializer: emptyStateInitializer)
   }
-//
-//  /**
-//   A convenience init method for the Store. The initial state will be created using the default
-//   init of the state type.
-//
-//   - parameter middleware:   the middleware to trigger when an action is dispatched
-//   - parameter dependencies:  the dependencies to use in the actions side effects
-//   - returns: An instance of store configured with the given properties
-//   */
-//  convenience public init(middleware: [StoreMiddleware], dependencies: SideEffectDependencyContainer.Type) {
-//    self.init(
-//      middleware: middleware,
-//      dependencies: dependencies,
-//      stateInitializer: Store<StateType>.emptyStateInitializer
-//    )
-//  }
+
+  /**
+   A convenience init method for the Store. The initial state will be created using the default
+   init of the state type.
+
+   - parameter middleware:   the middleware to trigger when an action is dispatched
+   - parameter dependencies:  the dependencies to use in the actions side effects
+   - returns: An instance of store configured with the given properties
+   */
+  convenience public init(middleware: [StoreMiddleware]) {
+    self.init(
+      middleware: middleware,
+      stateInitializer: emptyStateInitializer
+    )
+  }
 
   /**
    The default init method for the Store.
@@ -375,6 +374,3 @@ extension Store: AnyStore {
     return self.state
   }
 }
-
-// MARK: Temporary types
-public protocol StoreMiddleware {}
