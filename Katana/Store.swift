@@ -23,8 +23,7 @@ public protocol AnyStore: class {
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
   */
-  #warning("restore")
-//  func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
+  func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
 }
 
 /// Creates an empty state
@@ -62,7 +61,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   open fileprivate(set) var state: S
 
 //  /// The  array of registered listeners
-//  fileprivate var listeners: [ListenerID: StoreListener]
+  fileprivate var listeners: [ListenerID: StoreListener]
 
   /// The array of middleware of the store
   fileprivate let interceptors: [StoreInterceptor]
@@ -78,11 +77,6 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
    - seeAlso: `ActionWithSideEffect`
   */
   public var dependencies: D!
-
-  /**
-    The internal dispatch function. It combines all the operations that should be done when an action is dispatched
-  */
-//  fileprivate var handleUpdateState: ()?
   
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
@@ -141,9 +135,8 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
    - parameter stateInitializer:  a closure invoked to define the first state's value
    - returns: An instance of store configured with the given properties
   */
-  #warning("implement")
   public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
-//    self.listeners = [:]
+    self.listeners = [:]
     self.interceptors = interceptors
     self.state = emptyStateInitializer()
     self.isReady = false
@@ -182,21 +175,21 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
     return self.state
   }
 
-//  /**
-//   Adds a listener to the store. A listener is basically a closure that is invoked
-//   every time the Store's state changes. The listener is always invoked in the main queue
-//
-//   - parameter listener: the listener closure
-//   - returns: a closure that can be used to remove the listener
-//  */
-//  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
-//    let listenerID: ListenerID = UUID().uuidString
-//    self.listeners[listenerID] = listener
-//
-//    return { [weak self] in
-//      _ = self?.listeners.removeValue(forKey: listenerID)
-//    }
-//  }
+  /**
+   Adds a listener to the store. A listener is basically a closure that is invoked
+   every time the Store's state changes. The listener is always invoked in the main queue
+
+   - parameter listener: the listener closure
+   - returns: a closure that can be used to remove the listener
+  */
+  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
+    let listenerID: ListenerID = UUID().uuidString
+    self.listeners[listenerID] = listener
+
+    return { [weak self] in
+      _ = self?.listeners.removeValue(forKey: listenerID)
+    }
+  }
   
   @discardableResult
   public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
@@ -233,14 +226,6 @@ fileprivate extension Store {
     return promise.void
   }
 
-//
-//  /**
-//   Calculates the new state based on the current state and the given action.
-//   This method also invokes all the listeners in the main queue
-//
-//   - parameter action: the action that has been dispatched
-//  */
-  #warning("Restore")
   fileprivate func manageUpdateState(_ dispatchable: Dispatchable) throws {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
@@ -257,42 +242,13 @@ fileprivate extension Store {
       preconditionFailure("Action updatedState returned a wrong state type")
     }
 
-//    let previousState = self.state
     self.state = typedNewState
 
-//    // executes the side effects, if needed
-//    self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
-
-    #warning("Restore")
     // listener are always invoked in the main queue
-//    DispatchQueue.main.async {
-//      self.listeners.values.forEach { $0() }
-//    }
+    DispatchQueue.main.async {
+      self.listeners.values.forEach { $0() }
+    }
   }
-//
-//  /**
-//    Executes the side effect, if available
-//
-//    - parameter action: the dispatched action
-//    - parameter previousState: the previous state
-//    - parameter currentState: the current state
-//  */
-//  fileprivate func triggerSideEffect(for action: Action, previousState: StateType, currentState: StateType) {
-//    guard let action = action as? ActionWithSideEffect else {
-//      return
-//    }
-//
-//    if let async = action as? AnyAsyncAction, async.state != .loading {
-//      return
-//    }
-//
-//    action.sideEffect(
-//      currentState: currentState,
-//      previousState: previousState,
-//      dispatch: self.dispatch,
-//      dependencies: self.dependencies
-//    )
-//  }
 }
 
 fileprivate extension Store {

@@ -10,12 +10,11 @@ import Foundation
 
 public protocol Dispatchable {}
 
-///// Typealias for a `Store` listener
-//public typealias StoreListener = () -> ()
-//
-///// Typealias for the `Store` listener unsubscribe closure
-//public typealias StoreUnsubscribe = () -> ()
+/// Typealias for a `Store` listener
+public typealias StoreListener = () -> ()
 
+/// Typealias for the `Store` listener unsubscribe closure
+public typealias StoreUnsubscribe = () -> ()
 
 public protocol Action: Dispatchable {}
 

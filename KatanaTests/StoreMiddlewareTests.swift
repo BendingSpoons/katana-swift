@@ -14,7 +14,6 @@ class StoreMiddlewareTests: QuickSpec {
   override func spec() {
     describe("The Store") {
       describe("when dealing with state updater") {
-        
         it("invokes the interceptors") {
           var dispatchedStateUpdater: AddTodo?
           var stateBefore: AppState?
