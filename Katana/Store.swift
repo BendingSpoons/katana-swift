@@ -295,7 +295,7 @@ fileprivate extension Store {
    */
   fileprivate static func initializedInterceptors(
     _ interceptors: [StoreInterceptor],
-    getState: @escaping () -> State,
+    getState: @escaping GetState,
     dispatch: @escaping PromisableStoreDispatch) -> [InitializedInterceptor] {
     
     return interceptors.map { interceptor in

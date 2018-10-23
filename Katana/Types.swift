@@ -16,12 +16,14 @@ public typealias StoreListener = () -> ()
 /// Typealias for the `Store` listener unsubscribe closure
 public typealias StoreUnsubscribe = () -> ()
 
+#warning("use real protocol, this is a temporary fix")
 public protocol Action: Dispatchable {}
 
 /**
  Typealias for the `Store` middleware. Note that the first part of the middleware
  (the one with `getState` and `dispatch`) is immediately invoked when the store is created
  */
+#warning("move in legacy")
 public typealias StoreMiddleware =
   (_ getState: @escaping () -> State, _ dispatch: @escaping StoreDispatch) ->
   (_ next: @escaping StoreDispatch) ->
@@ -29,9 +31,10 @@ public typealias StoreMiddleware =
 
 
 public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
+public typealias GetState = () -> State
 
 public typealias StoreInterceptor =
-  (_ getState: @escaping () -> State, _ dispatch: @escaping PromisableStoreDispatch) ->
+  (_ getState: @escaping GetState, _ dispatch: @escaping PromisableStoreDispatch) ->
   (_ next: @escaping StoreInterceptorNext) ->
   (_ dispatchable: Dispatchable) throws -> ()
 
@@ -39,8 +42,8 @@ public typealias StoreInterceptor =
 public typealias PromisableStoreDispatch = (_: Dispatchable) -> Promise<Void>
 
 /// Typealias for the `Store` dispatch function
-#warning("This should change to (_: Action) -> Void for compatibility reasons")
-public typealias StoreDispatch = (_: Dispatchable) -> Void
+#warning("move in legacy")
+public typealias StoreDispatch = (_: Action) -> Void
 
 public struct StoreInterceptorChainBlocked: Error {
 }

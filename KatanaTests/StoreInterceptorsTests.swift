@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import Katana
 
-class StoreMiddlewareTests: QuickSpec {
+class StoreInterceptorsTests: QuickSpec {
   override func spec() {
     describe("The Store") {
       describe("when dealing with state updater") {
