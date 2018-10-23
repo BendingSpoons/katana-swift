@@ -8,12 +8,6 @@
 
 import Foundation
 
-/// Typealias for a `Store` listener
-public typealias StoreListener = () -> ()
-
-/// Typealias for the `Store` listener unsubscribe closure
-public typealias StoreUnsubscribe = () -> ()
-
 /** 
  Typealias for the `Store` middleware. Note that the first part of the middleware
  (the one with `getState` and `dispatch`) is immediately invoked when the store is created
@@ -25,3 +19,29 @@ public typealias StoreMiddleware =
 
 /// Typealias for the `Store` dispatch function
 public typealias StoreDispatch = (_: Action) -> ()
+
+#warning("implement")
+//public func convertMiddlewareToInterceptor(_ middleware: @escaping StoreMiddleware) -> StoreInterceptor {
+//  return { getState, dispatch in
+//
+//    let legacyDispatch: StoreDispatch = { dispatchable in
+//      let _ = dispatch(dispatchable)
+//    }
+//
+//    let p = middleware(getState, legacyDispatch)
+//
+//    return { next in
+//
+//      let legacyNext: StoreDispatch = { nextiii in
+//        let _ = next(nextiii)
+//      }
+//
+//      let n = p(legacyNext)
+//
+//      return { action in
+//        #warning("complete & improve this")
+////        n(action)
+//      }
+//    }
+//  }
+//}

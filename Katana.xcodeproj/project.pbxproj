@@ -34,6 +34,15 @@
 		A77A2FF7217A1F5D001D715F /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = A77A2FF6217A1F5D001D715F /* Types.swift */; };
 		A78ACF28217CAE1900700D52 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78ACF27217CAE1900700D52 /* SideEffectTests.swift */; };
 		A78ACF2A217CAF1600700D52 /* TestDependenciesContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A78ACF29217CAF1600700D52 /* TestDependenciesContainer.swift */; };
+		A795EB42217F64370004E31D /* Dispatchable.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB41217F64370004E31D /* Dispatchable.swift */; };
+		A795EB4D217F64F10004E31D /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB43217F64F00004E31D /* ActionWithSideEffect.swift */; };
+		A795EB4E217F64F10004E31D /* AsyncAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB44217F64F00004E31D /* AsyncAction.swift */; };
+		A795EB4F217F64F10004E31D /* LegacyStoreTypealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB45217F64F00004E31D /* LegacyStoreTypealiases.swift */; };
+		A795EB50217F64F10004E31D /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB46217F64F00004E31D /* Action.swift */; };
+		A795EB51217F64F10004E31D /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB48217F64F00004E31D /* ActionLogger.swift */; };
+		A795EB52217F64F10004E31D /* LinkeableAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB4A217F64F00004E31D /* LinkeableAction.swift */; };
+		A795EB53217F64F10004E31D /* ActionLinker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB4B217F64F00004E31D /* ActionLinker.swift */; };
+		A795EB54217F64F10004E31D /* ActionLinks.swift in Sources */ = {isa = PBXBuildFile; fileRef = A795EB4C217F64F00004E31D /* ActionLinks.swift */; };
 		A7D39B72217DF1060091907C /* StoreInterceptorsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D39B71217DF1060091907C /* StoreInterceptorsTests.swift */; };
 		A828B4D07D4090C3B88D47BE /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56856BFF6B59092BAD2410C8 /* UIKit.framework */; };
 		A8314A7DEA632A61CF549380 /* Promise+Catch.swift in Sources */ = {isa = PBXBuildFile; fileRef = B40804FBCF2F3C32C9131F88 /* Promise+Catch.swift */; };
@@ -100,6 +109,15 @@
 		A77A2FF6217A1F5D001D715F /* Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		A78ACF27217CAE1900700D52 /* SideEffectTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideEffectTests.swift; sourceTree = "<group>"; };
 		A78ACF29217CAF1600700D52 /* TestDependenciesContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestDependenciesContainer.swift; sourceTree = "<group>"; };
+		A795EB41217F64370004E31D /* Dispatchable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatchable.swift; sourceTree = "<group>"; };
+		A795EB43217F64F00004E31D /* ActionWithSideEffect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionWithSideEffect.swift; sourceTree = "<group>"; };
+		A795EB44217F64F00004E31D /* AsyncAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncAction.swift; sourceTree = "<group>"; };
+		A795EB45217F64F00004E31D /* LegacyStoreTypealiases.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LegacyStoreTypealiases.swift; sourceTree = "<group>"; };
+		A795EB46217F64F00004E31D /* Action.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Action.swift; sourceTree = "<group>"; };
+		A795EB48217F64F00004E31D /* ActionLogger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLogger.swift; sourceTree = "<group>"; };
+		A795EB4A217F64F00004E31D /* LinkeableAction.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkeableAction.swift; sourceTree = "<group>"; };
+		A795EB4B217F64F00004E31D /* ActionLinker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLinker.swift; sourceTree = "<group>"; };
+		A795EB4C217F64F00004E31D /* ActionLinks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActionLinks.swift; sourceTree = "<group>"; };
 		A7D39B71217DF1060091907C /* StoreInterceptorsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreInterceptorsTests.swift; sourceTree = "<group>"; };
 		B342A737F6D615D4DEBA4696 /* Promise+Always.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Always.swift"; sourceTree = "<group>"; };
 		B40804FBCF2F3C32C9131F88 /* Promise+Catch.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Catch.swift"; sourceTree = "<group>"; };
@@ -179,6 +197,7 @@
 		5A0501E43EA64C3C43F323B1 /* Katana */ = {
 			isa = PBXGroup;
 			children = (
+				A795EB27217F63A00004E31D /* Legacy */,
 				27BA9D91FC98636D4066FA58 /* External */,
 				9533A8A92AED1CE751A3D91D /* StateUpdater.swift */,
 				48D165AFC563D92D6FE8CC24 /* State.swift */,
@@ -188,6 +207,7 @@
 				A77A2FF6217A1F5D001D715F /* Types.swift */,
 				2C95F5EA6C28D089842E3AE8 /* Katana.h */,
 				A74D0884217B13D70043C17D /* Promise+Katana.swift */,
+				A795EB41217F64370004E31D /* Dispatchable.swift */,
 			);
 			path = Katana;
 			sourceTree = "<group>";
@@ -199,6 +219,37 @@
 				A78ACF29217CAF1600700D52 /* TestDependenciesContainer.swift */,
 			);
 			path = Mocks;
+			sourceTree = "<group>";
+		};
+		A795EB27217F63A00004E31D /* Legacy */ = {
+			isa = PBXGroup;
+			children = (
+				A795EB46217F64F00004E31D /* Action.swift */,
+				A795EB43217F64F00004E31D /* ActionWithSideEffect.swift */,
+				A795EB44217F64F00004E31D /* AsyncAction.swift */,
+				A795EB45217F64F00004E31D /* LegacyStoreTypealiases.swift */,
+				A795EB47217F64F00004E31D /* Middleware */,
+			);
+			path = Legacy;
+			sourceTree = "<group>";
+		};
+		A795EB47217F64F00004E31D /* Middleware */ = {
+			isa = PBXGroup;
+			children = (
+				A795EB48217F64F00004E31D /* ActionLogger.swift */,
+				A795EB49217F64F00004E31D /* ActionLinker */,
+			);
+			path = Middleware;
+			sourceTree = "<group>";
+		};
+		A795EB49217F64F00004E31D /* ActionLinker */ = {
+			isa = PBXGroup;
+			children = (
+				A795EB4A217F64F00004E31D /* LinkeableAction.swift */,
+				A795EB4B217F64F00004E31D /* ActionLinker.swift */,
+				A795EB4C217F64F00004E31D /* ActionLinks.swift */,
+			);
+			path = ActionLinker;
 			sourceTree = "<group>";
 		};
 		B4AB15FFD0352E799158CA73 /* KatanaTests */ = {
@@ -418,8 +469,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				E9580E00C63967779DDD8E3D /* StateUpdater.swift in Sources */,
+				A795EB4D217F64F10004E31D /* ActionWithSideEffect.swift in Sources */,
 				B55E1E99864E159884EE1C8F /* State.swift in Sources */,
 				A77A2FF7217A1F5D001D715F /* Types.swift in Sources */,
+				A795EB53217F64F10004E31D /* ActionLinker.swift in Sources */,
 				A74D0885217B13D70043C17D /* Promise+Katana.swift in Sources */,
 				BC827DC1173BDB8A7AE4F930 /* Store.swift in Sources */,
 				359B6D265DD60429F02DE03A /* SideEffect.swift in Sources */,
@@ -427,6 +480,7 @@
 				D314268038539DDAF82F5CBB /* Commons.swift in Sources */,
 				714AF8D1A276EDEA8678A3C2 /* Promise+Pass.swift in Sources */,
 				FDBC63B5A1B4EBF1D2BA67E8 /* Promise+Reduce.swift in Sources */,
+				A795EB51217F64F10004E31D /* ActionLogger.swift in Sources */,
 				29A31447BEDB5ABB2B2B6E86 /* Promise+Recover.swift in Sources */,
 				6E06A06626A816223CB31225 /* Promise+Cancel.swift in Sources */,
 				A8314A7DEA632A61CF549380 /* Promise+Catch.swift in Sources */,
@@ -434,15 +488,21 @@
 				D062727C19831BDEEA21C85E /* Promise+Any.swift in Sources */,
 				990FEF4FA0B84EE405F27460 /* Promise+Await.swift in Sources */,
 				EFC557EE2B25653340FD3463 /* DispatchTimerWrapper.swift in Sources */,
+				A795EB50217F64F10004E31D /* Action.swift in Sources */,
 				A0899BBD0C51B6ACB0EB36CC /* Promise+Defer.swift in Sources */,
+				A795EB52217F64F10004E31D /* LinkeableAction.swift in Sources */,
+				A795EB54217F64F10004E31D /* ActionLinks.swift in Sources */,
 				4C3264420A168378A5331C06 /* Promise+Always.swift in Sources */,
 				4B3845F844C628FAF5EF83EC /* Context.swift in Sources */,
 				8811E8E10146AF314B1A828F /* Promise+Observer.swift in Sources */,
 				FCD7DC3CDE6C98B566FE692F /* Promise+State.swift in Sources */,
 				0E7C11288A5A0F445E9A5968 /* Promise+Timeout.swift in Sources */,
+				A795EB42217F64370004E31D /* Dispatchable.swift in Sources */,
 				8C1BEB5321C96332C983FD0D /* Promise+All.swift in Sources */,
+				A795EB4E217F64F10004E31D /* AsyncAction.swift in Sources */,
 				9E30C3195E1D8768CC731E30 /* Promise.swift in Sources */,
 				AEC13946059787AC1FA6BC54 /* Promise+Map.swift in Sources */,
+				A795EB4F217F64F10004E31D /* LegacyStoreTypealiases.swift in Sources */,
 				CEF7EBC7BD55991EAB463BE0 /* Promise+Zip.swift in Sources */,
 				71460779AE6486A918D40E60 /* Promise+Validate.swift in Sources */,
 				80CC6086B0208EB39D2183E7 /* Promise+Then.swift in Sources */,
