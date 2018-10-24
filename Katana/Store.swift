@@ -26,6 +26,15 @@ public protocol AnyStore: class {
   func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
 }
 
+open class PartialStore<S: State> {
+  /// The current state of the application
+  open fileprivate(set) var state: S
+  
+  fileprivate init(state: S) {
+    self.state = state
+  }
+}
+
 /// Creates an empty state
 private func emptyStateInitializer<S: State>() -> S {
   return S()
@@ -51,14 +60,11 @@ private func emptyStateInitializer<S: State>() -> S {
  get pieces of information from the store's state when you need them.
  See `ConnectedNodeDescription` for more information about this topic
 */
-open class Store<S: State, D: SideEffectDependencyContainer> {
+open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
 
   /// Closure that is used to initialize the state
   public typealias StateInitializer<T: State> = () -> T
-
-  /// The current state of the application
-  open fileprivate(set) var state: S
 
   /// The  array of registered listeners
   fileprivate var listeners: [ListenerID: StoreListener]
@@ -138,10 +144,13 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
     self.listeners = [:]
     self.interceptors = interceptors
-    self.state = emptyStateInitializer()
     self.isReady = false
+    
+    let emptyState: S = emptyStateInitializer()
+    super.init(state: emptyState)
+    
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
-
+    
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
     /// if the stateInitializer function takes too much to do its job and we block the app's startup
