@@ -78,6 +78,29 @@ class StateUpdaterTests: QuickSpec {
           expect(store.state.todo.todos.count).toEventually(be(3), timeout: 100)
           expect(store.state.todo.todos) == [todo1, todo2, todo3]
         }
+        
+        it("is able to handle state updater and actions together") {
+          let todo = Todo(title: "state updater", id: "1")
+          let stateUpdater = AddTodo(todo: todo)
+          let action = AddTodoAction(title: "action")
+          
+          expect(store.isReady).toEventually(beTruthy())
+          
+          waitUntil { done in
+            store
+              .dispatch(stateUpdater)
+              .thenDispatch(action)
+              .thenDispatch(action)
+              .thenDispatch(stateUpdater)
+              .then { done() }
+          }
+          
+          expect(store.state.todo.todos.count) == 4
+          expect(store.state.todo.todos[0]) == todo
+          expect(store.state.todo.todos[1].title) == "action"
+          expect(store.state.todo.todos[2].title) == "action"
+          expect(store.state.todo.todos[3]) == todo
+        }
       }
     }
   }
