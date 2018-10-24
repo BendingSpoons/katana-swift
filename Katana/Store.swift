@@ -60,7 +60,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   /// The current state of the application
   open fileprivate(set) var state: S
 
-//  /// The  array of registered listeners
+  /// The  array of registered listeners
   fileprivate var listeners: [ListenerID: StoreListener]
 
   /// The array of middleware of the store
@@ -91,7 +91,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   }()
   
   lazy fileprivate var sideEffectQueue: DispatchQueue = {
-    let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive)
+    let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
     // queue is initially supended. The store will enable the queue when
     // all the setup is done.

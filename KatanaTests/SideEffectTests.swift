@@ -66,6 +66,31 @@ class SideEffectTests: QuickSpec {
           expect(invocationResults) == ["1", "2", "3"]
         }
         
+        it("allows to invoke side effects from side effects") {
+          var invocationResults: [String] = []
+          
+          let sideEffect1 = SpySideEffect(delay: 3) { context in
+            invocationResults.append("1")
+          }
+          
+          let sideEffect2 = SpySideEffect(delay: 1) { context in
+            try await(context.dispatch(sideEffect1))
+            invocationResults.append("2")
+          }
+          
+          let sideEffect3 = SpySideEffect(delay: 0) { context in
+            invocationResults.append("3")
+          }
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(sideEffect2)
+              .thenDispatch(sideEffect3)
+              .then { done() }
+          }
+          
+          expect(invocationResults) == ["1", "2", "3"]
+        }
+        
         it("correctly mixes store updater and side effects") {
           let todo = Todo(title: "title", id: "id")
           let user = User(username: "username")
@@ -129,14 +154,14 @@ class SideEffectTests: QuickSpec {
 
 private struct SpySideEffect: TestSideEffect {
   var delay: TimeInterval
-  var invokationClosure: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) -> Void
+  var invokationClosure: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
 
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
     if delay != 0 {
       try await(context.dependencies.delay(of: self.delay))
     }
     
-    invokationClosure(context)
+    try invokationClosure(context)
   }
 }
 
