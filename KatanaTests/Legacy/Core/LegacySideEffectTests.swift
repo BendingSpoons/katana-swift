@@ -55,7 +55,7 @@ class LegacySideEffectTests: XCTestCase {
       XCTAssert(invoked)
       XCTAssertEqual(initialState, invokedPreviousState)
       XCTAssertEqual(store.state, invokedCurrentState)
-      XCTAssertNotNil(invokedContainer as? EmptySideEffectDependencyContainer)
+      XCTAssertNotNil(invokedContainer as? SimpleDependencyContainer)
     }
   }
 

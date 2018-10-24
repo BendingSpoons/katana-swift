@@ -193,18 +193,20 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   
   @discardableResult
   public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
-    #if DEBUG
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
-    #endif
     
     if let stateUpdater = dispatchable as? AnyStateUpdater {
       return self.enqueueStateUpdater(stateUpdater)
     
     } else if let sideEffect = dispatchable as? AnySideEffect {
       return self.enqueueSideEffect(sideEffect)
+    
+    } else if let action = dispatchable as? Action {
+      return self.enqueueAction(action)
     }
+    
     
     fatalError("Invalid parameter")
   }
@@ -226,7 +228,7 @@ fileprivate extension Store {
     return promise.void
   }
 
-  fileprivate func manageUpdateState(_ dispatchable: Dispatchable) throws {
+  private func manageUpdateState(_ dispatchable: Dispatchable) throws {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
     }
@@ -261,7 +263,7 @@ fileprivate extension Store {
     return promise.void
   }
   
-  fileprivate func manageSideEffect(_ dispatchable: Dispatchable) throws -> Void {
+  private func manageSideEffect(_ dispatchable: Dispatchable) throws -> Void {
     guard self.isReady else {
       fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
     }
@@ -278,6 +280,71 @@ fileprivate extension Store {
     )
     
     try sideEffect.sideEffect(context)
+  }
+}
+
+fileprivate extension Store {
+  private func enqueueAction(_ action: Action) -> Promise<Void> {
+    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageAction)
+      try interceptorsChain(action)
+      resolve(())
+    }
+    
+    // triggers the execution of the promise even though no one is listening for it
+    return promise.void
+  }
+  
+  private func manageAction(_ dispatchable: Dispatchable) throws -> Void {
+    guard self.isReady else {
+      fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
+    }
+    
+    guard let action = dispatchable as? Action else {
+      // interceptor changed the type. Let's dispatch it
+      return self.nonPromisableDispatch(dispatchable)
+    }
+    
+    let newState = action.updatedState(currentState: self.state)
+    
+    guard let typedNewState = newState as? S else {
+      fatalError("Action updatedState returned a wrong state type")
+    }
+    
+    let previousState = self.state
+    self.state = typedNewState
+    
+    // executes the side effects, if needed
+    self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
+    
+    // listener are always invoked in the main queue
+    DispatchQueue.main.async {
+      self.listeners.values.forEach { $0() }
+    }
+  }
+  
+  /**
+   Executes the side effect, if available
+   
+   - parameter action: the dispatched action
+   - parameter previousState: the previous state
+   - parameter currentState: the current state
+   */
+  fileprivate func triggerSideEffect(for action: Action, previousState: S, currentState: S) {
+    guard let action = action as? ActionWithSideEffect else {
+      return
+    }
+    
+    if let async = action as? AnyAsyncAction, async.state != .loading {
+      return
+    }
+    
+    action.sideEffect(
+      currentState: currentState,
+      previousState: previousState,
+      dispatch: self.nonPromisableDispatch,
+      dependencies: self.dependencies
+    )
   }
 }
 
