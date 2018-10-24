@@ -86,7 +86,7 @@ class StateUpdaterTests: QuickSpec {
 private struct AddTodo: TestStateUpdater {
   let todo: Todo
   
-  func updatedState(_ state: inout AppState) {
+  func updateState(_ state: inout AppState) {
     state.todo.todos.append(self.todo)
   }
 }
@@ -94,7 +94,7 @@ private struct AddTodo: TestStateUpdater {
 private struct AddUser: TestStateUpdater {
   let user: User
   
-  func updatedState(_ state: inout AppState) {
+  func updateState(_ state: inout AppState) {
     state.user.users.append(self.user)
   }
 }
@@ -103,7 +103,7 @@ private struct AddTodoWithDelay: TestStateUpdater {
   let todo: Todo
   let waitingTime: TimeInterval
   
-  func updatedState(_ state: inout AppState) {
+  func updateState(_ state: inout AppState) {
     // Note: this is just for testing, never do things like this in real apps
     Thread.sleep(forTimeInterval: self.waitingTime)
     state.todo.todos.append(self.todo)

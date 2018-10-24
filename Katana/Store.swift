@@ -236,7 +236,7 @@ fileprivate extension Store {
       return self.nonPromisableDispatch(dispatchable)
     }
     
-    let newState = stateUpdater.updateState(currentState: self.state)
+    let newState = stateUpdater.updatedState(currentState: self.state)
 
     guard let typedNewState = newState as? S else {
       preconditionFailure("Action updatedState returned a wrong state type")

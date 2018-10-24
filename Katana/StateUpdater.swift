@@ -9,22 +9,22 @@
 import Foundation
 
 public protocol AnyStateUpdater: Dispatchable {
-  func updateState(currentState: State) -> State
+  func updatedState(currentState: State) -> State
 }
 
 public protocol StateUpdater: AnyStateUpdater {
   associatedtype StateType: State
   
-  func updatedState(_ state: inout StateType)
+  func updateState(_ state: inout StateType)
 }
 
 public extension StateUpdater {
-  func updateState(currentState: State) -> State {
+  func updatedState(currentState: State) -> State {
     guard var typedState = currentState as? StateType else {
       fatalError("[Katana] updateState invoked with the wrong state type")
     }
     
-    self.updatedState(&typedState)
+    self.updateState(&typedState)
     return typedState
   }
 }

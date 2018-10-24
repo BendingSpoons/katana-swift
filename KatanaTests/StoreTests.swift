@@ -83,7 +83,7 @@ class StoreTest: QuickSpec {
 private struct AddTodo: TestStateUpdater {
   let todo: Todo
   
-  func updatedState(_ state: inout AppState) {
+  func updateState(_ state: inout AppState) {
     state.todo.todos.append(self.todo)
   }
 }
