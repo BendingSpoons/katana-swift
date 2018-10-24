@@ -12,26 +12,44 @@ import Foundation
 public protocol AnyStore: class {
   /// Type Erasure for the `Store` `state`
   var anyState: State { get }
-
+  
   @discardableResult
   func dispatch(_ updater: Dispatchable) -> Promise<Void>
-
+  
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
    every time the Store's state changes
    
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
-  */
+   */
   func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
 }
 
-open class PartialStore<S: State> {
+open class PartialStore<S: State>: AnyStore {
   /// The current state of the application
   open fileprivate(set) var state: S
   
+  /**
+   Implementation of the AnyStore protocol.
+   
+   - seeAlso: `AnyStore`
+   */
+  public var anyState: State {
+    return self.state
+  }
+  
   fileprivate init(state: S) {
     self.state = state
+  }
+  
+  @discardableResult
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
+  }
+  
+  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 }
 
@@ -59,29 +77,29 @@ private func emptyStateInitializer<S: State>() -> S {
  Katana will update the UI automatically when the state changes. It will also allow you to
  get pieces of information from the store's state when you need them.
  See `ConnectedNodeDescription` for more information about this topic
-*/
+ */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
-
+  
   /// Closure that is used to initialize the state
   public typealias StateInitializer<T: State> = () -> T
-
+  
   /// The  array of registered listeners
   fileprivate var listeners: [ListenerID: StoreListener]
-
+  
   /// The array of middleware of the store
   fileprivate let interceptors: [StoreInterceptor]
   
   fileprivate var initializedInterceptors: [InitializedInterceptor]!
-
+  
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
-
+  
   /**
    The dependencies used in the actions side effects
-
+   
    - seeAlso: `ActionWithSideEffect`
-  */
+   */
   public var dependencies: D!
   
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
@@ -92,7 +110,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     // we basically enqueue all the dispatched actions until
     // everything is needed to manage them is correctly sat up
     d.suspend()
-
+    
     return d
   }()
   
@@ -107,21 +125,21 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     return d
   }()
-
+  
   /**
    A convenience init method. The store won't have middleware nor dependencies for the actions
    side effects. The state will be created using the default init of the state
-
+   
    - returns: An instance of store
-  */
+   */
   convenience public init() {
     self.init(interceptors: [], stateInitializer: emptyStateInitializer)
   }
-
+  
   /**
    A convenience init method for the Store. The initial state will be created using the default
    init of the state type.
-
+   
    - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
    - returns: An instance of store configured with the given properties
@@ -132,15 +150,15 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       stateInitializer: emptyStateInitializer
     )
   }
-
+  
   /**
    The default init method for the Store.
-
+   
    - parameter middleware:   the middleware to trigger when an action is dispatched
    - parameter dependencies:  the dependencies to use in the actions side effects
    - parameter stateInitializer:  a closure invoked to define the first state's value
    - returns: An instance of store configured with the given properties
-  */
+   */
   public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
     self.listeners = [:]
     self.interceptors = interceptors
@@ -158,7 +176,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       self.initializeInternalState(using: stateInitializer)
     }
   }
-
+  
   /// Creates and initializes the internal values.
   /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
@@ -172,45 +190,45 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     SharedStoreContainer.sharedStore = self
   }
-
+  
   private func getState() -> S {
     assert(self.isReady, """
       The state is not ready yet. You should wait until the state is ready to invoke getState.
       If you are performing operations in the dependenciesContainer's init, then the suggested way to
       approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly
     """)
-
+    
     return self.state
   }
-
+  
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
    every time the Store's state changes. The listener is always invoked in the main queue
-
+   
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
-  */
-  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
+   */
+  override public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     let listenerID: ListenerID = UUID().uuidString
     self.listeners[listenerID] = listener
-
+    
     return { [weak self] in
       _ = self?.listeners.removeValue(forKey: listenerID)
     }
   }
   
   @discardableResult
-  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  override public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
     
     if let stateUpdater = dispatchable as? AnyStateUpdater {
       return self.enqueueStateUpdater(stateUpdater)
-    
+      
     } else if let sideEffect = dispatchable as? AnySideEffect {
       return self.enqueueSideEffect(sideEffect)
-    
+      
     } else if let action = dispatchable as? Action {
       return self.enqueueAction(action)
     }
@@ -235,7 +253,7 @@ fileprivate extension Store {
     // triggers the execution of the promise even though no one is listening for it
     return promise.void
   }
-
+  
   private func manageUpdateState(_ dispatchable: Dispatchable) throws {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
@@ -247,13 +265,13 @@ fileprivate extension Store {
     }
     
     let newState = stateUpdater.updatedState(currentState: self.state)
-
+    
     guard let typedNewState = newState as? S else {
       preconditionFailure("Action updatedState returned a wrong state type")
     }
-
+    
     self.state = typedNewState
-
+    
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
       self.listeners.values.forEach { $0() }
@@ -364,7 +382,7 @@ fileprivate extension Store {
   
   /**
    This function composes the middleware chain in a single invokable function
-
+   
    - parameter middleware:   the middleware to use
    - returns: a function that invokes all the middleware
    */
@@ -393,16 +411,5 @@ fileprivate extension Store {
     return m.reduce(last(lastStep), { chain, middleware in
       return middleware(chain)
     })
-  }
-}
-
-extension Store: AnyStore {
-  /**
-   Implementation of the AnyStore protocol.
-
-   - seeAlso: `AnyStore`
-  */
-  public var anyState: State {
-    return self.state
   }
 }
