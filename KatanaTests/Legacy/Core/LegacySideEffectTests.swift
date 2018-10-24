@@ -10,7 +10,7 @@ import Foundation
 import Katana
 import XCTest
 
-class SideEffectTests: XCTestCase {
+class LegacySideEffectTests: XCTestCase {
 
   func testSideEffectInvoked() {
     var invoked = false
@@ -21,7 +21,7 @@ class SideEffectTests: XCTestCase {
       expectation.fulfill()
     }, updatedInvokedClosure: nil)
 
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     store.dispatch(action)
 
     self.waitForExpectations(timeout: 10) { (error) in
@@ -46,7 +46,7 @@ class SideEffectTests: XCTestCase {
       expectation.fulfill()
     }, updatedInvokedClosure: nil)
     
-    let store = Store<AppState>(middleware: [], dependencies: EmptySideEffectDependencyContainer.self)
+    let store = Store<AppState, SimpleDependencyContainer>()
     let initialState = store.state
     store.dispatch(action)
 
@@ -76,7 +76,7 @@ class SideEffectTests: XCTestCase {
       
     }, updatedInvokedClosure: nil)
     
-    let store = Store<AppState>(middleware: [], dependencies: SimpleDependencyContainer.self)
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     store.dispatch(action)
     store.dispatch(secondAction)
@@ -110,7 +110,7 @@ class SideEffectTests: XCTestCase {
       action1expectation.fulfill()
     }
     
-    let store = Store<AppState>(middleware: [], dependencies: SimpleDependencyContainer.self)
+    let store = Store<AppState, SimpleDependencyContainer>()
     store.dispatch(action1)
 
     self.waitForExpectations(timeout: 10) { (error) in

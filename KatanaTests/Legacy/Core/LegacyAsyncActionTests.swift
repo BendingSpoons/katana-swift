@@ -57,7 +57,7 @@ struct AsyncTestAction: AsyncAction, ActionWithSideEffect {
   }
 }
 
-class AsyncActionTests: XCTestCase {
+class LegacyAsyncActionTests: XCTestCase {
   func testLoadingInvoked() {
     var invokedLoading = false
     var invokedCompleted = false
@@ -65,7 +65,7 @@ class AsyncActionTests: XCTestCase {
 
     let expectation = self.expectation(description: "Store listener")
 
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
 
     var action = AsyncTestAction(payload: 10)
     action.invokedLoadingClosure = {
@@ -100,7 +100,7 @@ class AsyncActionTests: XCTestCase {
 
     let expectation = self.expectation(description: "Store listener")
 
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
 
     var action = AsyncTestAction(payload: 10).completedAction {
       $0.completedPayload = "A"
@@ -138,7 +138,7 @@ class AsyncActionTests: XCTestCase {
 
     let expectation = self.expectation(description: "Store listener")
 
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
 
     var action = AsyncTestAction(payload: 10).failedAction {
       $0.failedPayload = "Error"
@@ -178,7 +178,7 @@ class AsyncActionTests: XCTestCase {
     
     let expectation = self.expectation(description: "Store listener")
     
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     var action = AsyncTestAction(payload: 10).progressAction(percentage: 39.99)
     
@@ -243,7 +243,7 @@ class AsyncActionTests: XCTestCase {
     var invoked = false
 
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     var action = AsyncTestAction(payload: 10)
 
     action.invokedSideEffectClosure = {
@@ -263,7 +263,7 @@ class AsyncActionTests: XCTestCase {
     var invoked = false
 
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     var action = AsyncTestAction(payload: 10).completedAction {
       $0.failedPayload = "Error"
@@ -290,7 +290,7 @@ class AsyncActionTests: XCTestCase {
     var invoked = false
 
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     var action = AsyncTestAction(payload: 10).failedAction {
       $0.failedPayload = "A"
@@ -317,7 +317,7 @@ class AsyncActionTests: XCTestCase {
     var invoked = false
     
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     var action = AsyncTestAction(payload: 10).progressAction(percentage: 10)
     

@@ -24,7 +24,7 @@ katana = target do |target|
     unit_tests_for target do |unit_test|
         unit_test.linked_targets = [target]
         unit_test.include_files = [
-            "KatanaTests/*.swift",
+            "KatanaTests/**/*.swift",
         ]
 
         unit_test.all_configurations.each do |configuration|

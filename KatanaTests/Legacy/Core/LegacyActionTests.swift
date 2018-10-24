@@ -10,11 +10,11 @@ import Foundation
 import Katana
 import XCTest
 
-class ActionTests: XCTestCase {
+class LegacyActionTests: XCTestCase {
   func testSyncAction() {
     let expectation = self.expectation(description: "Store listener")
 
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     _ = store.addListener { expectation.fulfill() }
     store.dispatch(AddTodoAction(title: "New Todo"))
 

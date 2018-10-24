@@ -11,7 +11,7 @@ import Foundation
 import Katana
 import XCTest
 
-class ActionDescriptionTests: XCTestCase {
+class LegacyActionDescriptionTests: XCTestCase {
   
   // MARK: - Actions
   func testActionDescription() {
@@ -27,7 +27,7 @@ class ActionDescriptionTests: XCTestCase {
   // MARK: - Async Actions
   private func testableAction() -> AsyncTestAction {
     let expectation = self.expectation(description: "Store listener")
-    let store = Store<AppState>()
+    let store = Store<AppState, SimpleDependencyContainer>()
     
     var action = AsyncTestAction(payload: 10)
     action.invokedLoadingClosure = {
