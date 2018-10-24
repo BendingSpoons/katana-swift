@@ -50,14 +50,18 @@ public struct ActionLinker {
    */
   static func dispatchActions(for newState: State,
                               oldState: State,
-                              sourceAction: Action,
+                              sourceDispatchable: Dispatchable,
                               links: [String: [LinkeableAction.Type]],
                               dispatch: (Action) -> Void) {
     
-    let linkedActions = links[ActionLinker.stringName(for: sourceAction)]
+    let linkedActions = links[ActionLinker.stringName(for: sourceDispatchable)]
     
     guard let actions = linkedActions else {
       return
+    }
+    
+    guard let sourceAction = sourceDispatchable as? Action else {
+      fatalError("ActionLinker doesn't work with non actions and it in Katana for retro compatibility reasons. Use the observer middleware if you want to observe a generic dispatchable item")
     }
     
     for action in actions {
@@ -74,7 +78,7 @@ public struct ActionLinker {
    - parameter action: the action for which you need the name.
    - returns: the namespaced name of the Action
    */
-  static func stringName(for action: Action) -> String {
+  static func stringName(for action: Dispatchable) -> String {
     return String(reflecting:(type(of: action)))
   }
   
@@ -108,7 +112,7 @@ public struct ActionLinker {
           ActionLinker.dispatchActions(
             for: newState,
             oldState: oldState,
-            sourceAction: action,
+            sourceDispatchable: action,
             links: reducedLinks,
             dispatch: dispatch
           )

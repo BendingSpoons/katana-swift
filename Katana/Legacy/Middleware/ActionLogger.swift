@@ -31,7 +31,7 @@ public struct ActionLogger {
           next(action)
           
           DispatchQueue.global(qos: .utility).async {
-            let actionType = type(of: action) as Action.Type
+            let actionType = type(of: action) as Dispatchable.Type
             guard !blackList.contains(where: { $0 == actionType }) else { return }
             print("[Action]: \(action.debugDescription)")
           }
