@@ -140,6 +140,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
     self.interceptors = interceptors
     self.state = emptyStateInitializer()
     self.isReady = false
+    self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
 
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
@@ -153,9 +154,7 @@ open class Store<S: State, D: SideEffectDependencyContainer> {
   /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
-
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, getState: self.getState, dispatch: self.dispatch)
-    self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
     // and here we are finally able to start the queues
     self.isReady = true
