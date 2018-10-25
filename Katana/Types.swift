@@ -1,5 +1,5 @@
 //
-//  StoreTypealiases.swift
+//  Types.swift
 //  Katana
 //
 //  Copyright © 2016 Bending Spoons.
