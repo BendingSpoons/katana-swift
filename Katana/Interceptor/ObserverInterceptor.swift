@@ -31,7 +31,9 @@ public struct ObserverInterceptor<S> where S: State {
     case whenDispatched(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
   }
   
-  public static func observe(_ items: [ObserverType] = []) -> StoreInterceptor {
+  private init() {}
+  
+  public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
     return { getState, dispatch in
       
       let logic = ObserverLogic(dispatch: dispatch, items: items)

@@ -51,6 +51,7 @@
 		A6EE104A80EAED4ABA49B485 /* Promise+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0702221244EC691712F6E0 /* Promise+Always.swift */; };
 		A70E40492181B75A00FB9C92 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70E40482181B75A00FB9C92 /* Interceptor.swift */; };
 		A76128862181B7A600B8330A /* ObserverInterceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76128852181B7A600B8330A /* ObserverInterceptor.swift */; };
+		A761288A2181CC5A00B8330A /* ObserverInterceptorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A76128892181CC5A00B8330A /* ObserverInterceptorTests.swift */; };
 		A76F0435ACFCB1F9F46E1282 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211DE5609D84C6BF904723D8 /* SideEffectTests.swift */; };
 		A789FB502181AE020065D499 /* DispatchableLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A789FB4F2181AE020065D499 /* DispatchableLogger.swift */; };
 		B19C39FEA6EBE43DC71FE3B5 /* Promise+Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */; };
@@ -127,6 +128,7 @@
 		A5E60C164298AEFAC6FCE988 /* Dispatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dispatchable.swift; sourceTree = "<group>"; };
 		A70E40482181B75A00FB9C92 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		A76128852181B7A600B8330A /* ObserverInterceptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObserverInterceptor.swift; sourceTree = "<group>"; };
+		A76128892181CC5A00B8330A /* ObserverInterceptorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObserverInterceptorTests.swift; sourceTree = "<group>"; };
 		A789FB4F2181AE020065D499 /* DispatchableLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchableLogger.swift; sourceTree = "<group>"; };
 		A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Await.swift"; sourceTree = "<group>"; };
 		AB51A9737E4C170340B56587 /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
@@ -341,12 +343,13 @@
 		EB3C66740F2E147859FBF6DC /* KatanaTests */ = {
 			isa = PBXGroup;
 			children = (
+				3629C7A691A9E8390E230D85 /* Legacy */,
 				64D55C6909898B511FAC87B4 /* Mocks */,
 				65FBF80DAFD1DC09B9F6DC46 /* StateUpdaterTests.swift */,
 				265B548CD8B975FCAEFE0222 /* StoreInterceptorsTests.swift */,
-				3629C7A691A9E8390E230D85 /* Legacy */,
 				211DE5609D84C6BF904723D8 /* SideEffectTests.swift */,
 				EB2688C1EBEAF59F3ECECE00 /* StoreTests.swift */,
+				A76128892181CC5A00B8330A /* ObserverInterceptorTests.swift */,
 			);
 			path = KatanaTests;
 			sourceTree = "<group>";
@@ -600,6 +603,7 @@
 				61CEA98851F78D1321D116C5 /* LegacyActions.swift in Sources */,
 				A76F0435ACFCB1F9F46E1282 /* SideEffectTests.swift in Sources */,
 				DCAD2E417DCA4BBC075B9C09 /* StoreTests.swift in Sources */,
+				A761288A2181CC5A00B8330A /* ObserverInterceptorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
