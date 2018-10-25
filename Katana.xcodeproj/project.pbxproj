@@ -49,6 +49,7 @@
 		A0F82D3D31DD857EF7671237 /* Action.swift in Sources */ = {isa = PBXBuildFile; fileRef = 14132730D4D42C93B5F91849 /* Action.swift */; };
 		A5386BB4DDF27CB6E89E771D /* LegacyActionLinkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006D9DFBC2CFDFD41E3C68C /* LegacyActionLinkerTests.swift */; };
 		A6EE104A80EAED4ABA49B485 /* Promise+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0702221244EC691712F6E0 /* Promise+Always.swift */; };
+		A70E40492181B75A00FB9C92 /* Interceptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A70E40482181B75A00FB9C92 /* Interceptor.swift */; };
 		A76F0435ACFCB1F9F46E1282 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211DE5609D84C6BF904723D8 /* SideEffectTests.swift */; };
 		A789FB502181AE020065D499 /* DispatchableLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A789FB4F2181AE020065D499 /* DispatchableLogger.swift */; };
 		B19C39FEA6EBE43DC71FE3B5 /* Promise+Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */; };
@@ -123,6 +124,7 @@
 		A214255DEDFD5870F56DAE08 /* Promise+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+State.swift"; sourceTree = "<group>"; };
 		A5E1951D5D5AB969C962CAC3 /* LegacyMiddlewareTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegacyMiddlewareTests.swift; sourceTree = "<group>"; };
 		A5E60C164298AEFAC6FCE988 /* Dispatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dispatchable.swift; sourceTree = "<group>"; };
+		A70E40482181B75A00FB9C92 /* Interceptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Interceptor.swift; sourceTree = "<group>"; };
 		A789FB4F2181AE020065D499 /* DispatchableLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchableLogger.swift; sourceTree = "<group>"; };
 		A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Await.swift"; sourceTree = "<group>"; };
 		AB51A9737E4C170340B56587 /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
@@ -309,6 +311,7 @@
 			isa = PBXGroup;
 			children = (
 				A789FB4F2181AE020065D499 /* DispatchableLogger.swift */,
+				A70E40482181B75A00FB9C92 /* Interceptor.swift */,
 			);
 			path = Interceptor;
 			sourceTree = "<group>";
@@ -550,6 +553,7 @@
 				875E5179994C072CFC3B4332 /* Promise+Pass.swift in Sources */,
 				8435970FF8B3CC24EFA28469 /* Promise+Reduce.swift in Sources */,
 				3013CB133C980275E1CB1963 /* Promise+Recover.swift in Sources */,
+				A70E40492181B75A00FB9C92 /* Interceptor.swift in Sources */,
 				C2ED373885525433966011A4 /* Promise+Cancel.swift in Sources */,
 				336519B861DAD122AB0E5BF7 /* Promise+Catch.swift in Sources */,
 				EFE80E4E31F1DDA99DD0BF93 /* Promise+Async.swift in Sources */,
