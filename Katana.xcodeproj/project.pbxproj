@@ -50,6 +50,7 @@
 		A5386BB4DDF27CB6E89E771D /* LegacyActionLinkerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A006D9DFBC2CFDFD41E3C68C /* LegacyActionLinkerTests.swift */; };
 		A6EE104A80EAED4ABA49B485 /* Promise+Always.swift in Sources */ = {isa = PBXBuildFile; fileRef = CD0702221244EC691712F6E0 /* Promise+Always.swift */; };
 		A76F0435ACFCB1F9F46E1282 /* SideEffectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 211DE5609D84C6BF904723D8 /* SideEffectTests.swift */; };
+		A789FB502181AE020065D499 /* DispatchableLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A789FB4F2181AE020065D499 /* DispatchableLogger.swift */; };
 		B19C39FEA6EBE43DC71FE3B5 /* Promise+Await.swift in Sources */ = {isa = PBXBuildFile; fileRef = A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */; };
 		B2A7B5080329FA2FF9861298 /* ActionLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = F12B6F1F098B7F49CB2B865B /* ActionLogger.swift */; };
 		B82773F2B2E77FA58F5A672D /* Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 986A6BCCCBD7B52762A8D9A1 /* Katana.framework */; };
@@ -122,6 +123,7 @@
 		A214255DEDFD5870F56DAE08 /* Promise+State.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+State.swift"; sourceTree = "<group>"; };
 		A5E1951D5D5AB969C962CAC3 /* LegacyMiddlewareTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegacyMiddlewareTests.swift; sourceTree = "<group>"; };
 		A5E60C164298AEFAC6FCE988 /* Dispatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dispatchable.swift; sourceTree = "<group>"; };
+		A789FB4F2181AE020065D499 /* DispatchableLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DispatchableLogger.swift; sourceTree = "<group>"; };
 		A8022034A5A2B2EE1B360E27 /* Promise+Await.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Await.swift"; sourceTree = "<group>"; };
 		AB51A9737E4C170340B56587 /* SideEffectDependencyContainer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SideEffectDependencyContainer.swift; sourceTree = "<group>"; };
 		ACC867E866BF1F39B1FD1D61 /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
@@ -227,14 +229,15 @@
 		8D0A32433EAE9E04D453EADF /* Katana */ = {
 			isa = PBXGroup;
 			children = (
+				A789FB4E2181ADF70065D499 /* Interceptor */,
+				FACAEF59302BAFF111C1D3F5 /* External */,
+				88C3F378F557E6FDDA7C4DB2 /* Legacy */,
 				A5E60C164298AEFAC6FCE988 /* Dispatchable.swift */,
 				CB852D380E5193C0CDDAB35D /* StateUpdater.swift */,
-				88C3F378F557E6FDDA7C4DB2 /* Legacy */,
 				2B156B6D6719EDFD19A653E6 /* State.swift */,
 				30C63A8A84F15E71856526D9 /* Promise+Katana.swift */,
 				ACC867E866BF1F39B1FD1D61 /* Store.swift */,
 				80D4A8918EB312031CA0E478 /* SideEffect.swift */,
-				FACAEF59302BAFF111C1D3F5 /* External */,
 				AB51A9737E4C170340B56587 /* SideEffectDependencyContainer.swift */,
 				E33BE66B1AAFD9E630AACAD8 /* Types.swift */,
 				9018CF05189FF4CB8071D71A /* Katana.h */,
@@ -300,6 +303,14 @@
 				986A6BCCCBD7B52762A8D9A1 /* Katana.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A789FB4E2181ADF70065D499 /* Interceptor */ = {
+			isa = PBXGroup;
+			children = (
+				A789FB4F2181AE020065D499 /* DispatchableLogger.swift */,
+			);
+			path = Interceptor;
 			sourceTree = "<group>";
 		};
 		AECD1011DE5506F4E7A6D8A5 /* Frameworks */ = {
@@ -526,6 +537,7 @@
 				8553CDB6316C32E1B223EFD5 /* ActionLinker.swift in Sources */,
 				356A7A36A3753CE89F38FB63 /* ActionLinks.swift in Sources */,
 				80451CA9F1EC96685006B21F /* AsyncAction.swift in Sources */,
+				A789FB502181AE020065D499 /* DispatchableLogger.swift in Sources */,
 				A0F82D3D31DD857EF7671237 /* Action.swift in Sources */,
 				F18AD4A6453C1BD25A283246 /* ActionWithSideEffect.swift in Sources */,
 				9CECBE00913D471D642524A2 /* LegacyStoreTypealiases.swift in Sources */,

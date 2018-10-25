@@ -200,3 +200,5 @@ private struct SideEffectWithBlock: TestSideEffect {
     try block(context)
   }
 }
+
+struct StoreInterceptorChainBlocked: Error {}
