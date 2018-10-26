@@ -37,7 +37,7 @@ Katana offers an `Interceptor` that can be used to observe the following events:
 * a `StateUpdater` or a `Side Effect` has been dispatched
 * a `Notification` has been posted
 
-Sometimes this is not enough and we need to observe the external world and bring the information we get from this observation back in the Katana world. As discussed in the [guideline (1)](#1), Managers are a passive member of our applications and therefore they cannot dispatch.
+Sometimes this is not enough and we need to observe the external world and bring the information we get from this observation back in the Katana world. As discussed in the [guideline (1)](#1-use-managers-to-encapsulate-the-logic), Managers are a passive member of our applications and therefore they cannot dispatch.
 
 To address this particular use case, when therefore introduce `EventObservers` which are classes that are added to the `Side Effect Dependencies` and have the only and single responsibility of listening for events coming from the external world (e.g., Firebase, Websockets, ...) and dispatch something back in the `Katana` world as a consequence of this event.  
 
@@ -48,7 +48,7 @@ While it may seem odd to separate Managers and `EventObservers`, this actually h
 
 When writing the logic of the applications, the temptation would be to create some high flexible side effects that take several inputs (that is, the struct that implements the side effects has several parameters) and implements different things according to these inputs.
 
-While code reuse is a great tool in software development, we noticed that applying this to Side effects leads to less maintainable applications. Moreover, assuming you are following [guideline (1)](#1), the logic is encapsulated in grouped, reusable functions. This means that you should try to keep Side effects simple and as close as possible to a simple chaining of manager function and dispatches. 
+While code reuse is a great tool in software development, we noticed that applying this to Side effects leads to less maintainable applications. Moreover, assuming you are following [guideline (1)](#1-use-managers-to-encapsulate-the-logic), the logic is encapsulated in grouped, reusable functions. This means that you should try to keep Side effects simple and as close as possible to a simple chaining of manager function and dispatches. 
 
 Regarding dispatching a side effect inside another side effect, it should be avoided if possible as it makes the whole logic more hard to follow. If you end up being in this situation, try to look at your code and consider leveraging managers more.
 
@@ -97,7 +97,7 @@ For more complex situations, you can even have the portion of the state that is 
 
 Documentation is a very important part of the applications. Having a great documentation allows other developers to jump in your codebase easily and be productive sooner. 
 
-[Guideline (4)](#4) defines the concept of public interface for a logic module. When applying that guideline to your code, you should also make sure the "public interface" if properly documented. A good documentation should include:
+[Guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers) defines the concept of public interface for a logic module. When applying that guideline to your code, you should also make sure the "public interface" if properly documented. A good documentation should include:
 
 * A description of what the function/side effect/state updater does
 * A description of the parameters
@@ -143,9 +143,9 @@ As you can see, the main folder contains 3 main folders: Logic, UI and State.
 
 The logic folder contains all the logic of the application (state updaters, side effects and managers) and the dependencies container.
 
-The logic is grouped following the [guideline (4)](#4): when there the logic is in a single file (e.g., Home.swift, which holds side effects strictly related to the `Home` view controller), the file should be directly in the logic folder. In any other case, the files should be grouped using folders (e.g., Login and Plan Generator). Overall logic should contain side effects, state updaters, managers and models related to the logic.
+The logic is grouped following the [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers): when there the logic is in a single file (e.g., Home.swift, which holds side effects strictly related to the `Home` view controller), the file should be directly in the logic folder. In any other case, the files should be grouped using folders (e.g., Login and Plan Generator). Overall logic should contain side effects, state updaters, managers and models related to the logic.
 
-The State folder contains all the structures that are part of the state. Note that, following  [guideline (4)](#4), you may want to co-locate the state with the logic to implement some information-hiding technique to your code (that is, put some variables private or file-private). This is the only allowed exception.
+The State folder contains all the structures that are part of the state. Note that, following  [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers), you may want to co-locate the state with the logic to implement some information-hiding technique to your code (that is, put some variables private or file-private). This is the only allowed exception.
 
 The UI folder is represented just for reference and should follow Tempura (or any other UI framework you are using) guidelines.
 
