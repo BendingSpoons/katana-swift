@@ -9,10 +9,12 @@
 import Foundation
 
 public protocol AnySideEffectContext {
-  
+  var getAnyState: () -> State { get }
+  var dispatch: PromisableStoreDispatch { get }
+  var anyDependencies: SideEffectDependencyContainer { get }
 }
 
-public struct SideEffectContext<S, D>: AnySideEffectContext where S: State, D: SideEffectDependencyContainer {
+public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
   public let dependencies: D
   public let getState: () -> S
   public let dispatch: PromisableStoreDispatch
@@ -21,6 +23,16 @@ public struct SideEffectContext<S, D>: AnySideEffectContext where S: State, D: S
     self.dependencies = dependencies
     self.dispatch = dispatch
     self.getState = getState
+  }
+}
+
+extension SideEffectContext: AnySideEffectContext {
+  public var getAnyState: () -> State {
+    return self.getState
+  }
+  
+  public var anyDependencies: SideEffectDependencyContainer {
+    return self.dependencies
   }
 }
 
