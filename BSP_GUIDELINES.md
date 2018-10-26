@@ -2,6 +2,16 @@
 
 This document is a collection of best practices and guidelines we defined using Katana in these years.
 
+  * [Goals](#goals)
+  * [Guidelines](#guidelines)
+      - [1. Use Managers to encapsulate the logic](#1-use-managers-to-encapsulate-the-logic)
+      - [2. Event Observers](#2-event-observers)
+      - [3. Avoid complex Side Effects](#3-avoid-complex-side-effects)
+      - [4. Leverage encapsulation, modularisation and visibility modifiers](#4-leverage-encapsulation--modularisation-and-visibility-modifiers)
+      - [5. Document](#5-document)
+      - [6. Project files structure](#6-project-files-structure)
+  * [How to contribute](#how-to-contribute)
+
 ## Goals
 
 Since the very early days of Bending Spoons, we enjoyed defining and share guidelines and best practices across all our projects. This has incredible advantages:
