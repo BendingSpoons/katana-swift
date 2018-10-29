@@ -12,6 +12,7 @@ import Foundation
  Protocol to identify a linked action that must be dispatched after another action, 
  called source, is dispatched by the Store.
  */
+@available(*, deprecated, message: "Use DispatchObserverDispatchable instead")
 public protocol LinkeableAction: Action {
   /**
    Failable initializer for the LinkedAction.

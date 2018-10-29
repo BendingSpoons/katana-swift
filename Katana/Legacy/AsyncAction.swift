@@ -9,6 +9,7 @@
 import Foundation
 
 /// This enum represents the state of an `AsyncAction`
+@available(*, deprecated, message: "Use SideEffect or StateUpdater instead")
 public enum AsyncActionState: Equatable {
   /// The action has just been created
   case loading
@@ -71,6 +72,7 @@ extension AsyncActionState: CustomDebugStringConvertible {
 }
 
 /// Type Erasure for `AsyncAction`
+@available(*, deprecated, message: "Use AnySideEffect or AnyStateUpdater instead")
 public protocol AnyAsyncAction {
 
   /// The state of the action
@@ -130,6 +132,7 @@ public protocol AnyAsyncAction {
  }
  ```
 */
+@available(*, deprecated, message: "Use SideEffect or StateUpdater instead")
 public protocol AsyncAction: Action, AnyAsyncAction {
   /**
    UpdateState function that will be used when the state of the action is `loading`

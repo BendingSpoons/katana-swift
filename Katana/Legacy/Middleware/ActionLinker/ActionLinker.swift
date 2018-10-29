@@ -14,6 +14,7 @@ import Foundation
  The ActionLinker is responsible to check if there are actions that must be issued after a source actionis dispatched.
  For each of this actions, it checks if the conditions are met: if yes, they are dispatched.
  */
+@available(*, deprecated, message: "Use ObserverInterceptor instead")
 public struct ActionLinker {
   
   /**

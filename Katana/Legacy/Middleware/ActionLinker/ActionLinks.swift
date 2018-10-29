@@ -11,6 +11,7 @@ import Foundation
 /**
  A struct that contains the link source and all the linked actions that depends on the first one.
  */
+@available(*, deprecated, message: "Use DispatchObserverDispatchable instead")
 public struct ActionLinks {
   
   ///Action type that is the source of the link.

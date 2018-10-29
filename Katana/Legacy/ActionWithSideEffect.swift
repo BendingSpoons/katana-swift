@@ -27,6 +27,7 @@ import Foundation
  inject a mocked version of the class that manages the API requests, in order to control
  the result of the network call.
 */
+@available(*, deprecated, message: "Use AnySideEffect instead")
 public protocol ActionWithSideEffect: Action {
   /**
    Performs the side effect. This method is invoked when the action is dispatched,

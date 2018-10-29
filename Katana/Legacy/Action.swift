@@ -14,6 +14,7 @@ import Foundation
  
  In general this protocol should not be used directly.
 */
+@available(*, deprecated, message: "Use AnyStateUpdater instead")
 public protocol Action: Dispatchable {
   /**
    Creates the new state starting from the current state and the action. It is important
