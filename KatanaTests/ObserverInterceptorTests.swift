@@ -25,8 +25,8 @@ class ObserverInterceptorTests: QuickSpec {
       // MARK: State
       describe("When listening for state changes") {
         it("works") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenStateChange({ (prev: AppState, curr: AppState) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [StateChangeAddUser.self])
           ])
@@ -41,8 +41,8 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenStateChange({ (prev: AppState, curr: AppState) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [StateChangeAddUser.self, StateChangeAddUser.self])
           ])
@@ -57,8 +57,8 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenStateChange({ (prev: AppState, curr: AppState) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
@@ -77,8 +77,8 @@ class ObserverInterceptorTests: QuickSpec {
       // MARK: Any State
       describe("When listening for any state changes") {
         it("works") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenAnyStateChange({ (prev: State, curr: State) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -96,8 +96,8 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenAnyStateChange({ (prev: State, curr: State) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -115,8 +115,8 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
-            .whenAnyStateChange({ (prev: State, curr: State) -> Bool in
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -137,7 +137,7 @@ class ObserverInterceptorTests: QuickSpec {
       // MARK: Dispatchable
       describe("When listening for dispatchable") {
         it("works") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .whenDispatched(AddTodo.self, [StateChangeAddUser.self])
           ])
           
@@ -151,7 +151,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .whenDispatched(AddTodo.self, [StateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
@@ -165,7 +165,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .whenDispatched(AddTodo.self, [NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
@@ -184,7 +184,7 @@ class ObserverInterceptorTests: QuickSpec {
         let testNotification = Notification.Name("Test_Notification")
         
         it("works") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onNotification(testNotification, [StateChangeAddUser.self])
           ])
           
@@ -198,7 +198,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
             ])
           
@@ -212,7 +212,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onNotification(testNotification, [NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
@@ -229,7 +229,7 @@ class ObserverInterceptorTests: QuickSpec {
       // MARK: On Start
       describe("When listening for store startup") {
         it("works") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onStart([StateChangeAddUser.self])
           ])
           
@@ -241,7 +241,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onStart([StateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
@@ -253,7 +253,7 @@ class ObserverInterceptorTests: QuickSpec {
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor<AppState>.observe([
+          let interceptor = ObserverInterceptor.observe([
             .onStart([NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
           

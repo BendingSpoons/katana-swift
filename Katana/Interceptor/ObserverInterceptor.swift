@@ -15,7 +15,6 @@ public protocol StateObserverDispatchable: Dispatchable {
   init?(prevState: State, currentState: State)
 }
 
-#warning("add also promise of the dispatched item")
 public protocol DispatchObserverDispatchable: Dispatchable {
   init?(dispatchedItem: Dispatchable, prevState: State, currentState: State)
 }
@@ -24,16 +23,25 @@ public protocol OnStartObserverDispatchable: Dispatchable {
   init?()
 }
 
-public struct ObserverInterceptor<S> where S: State {
+public struct ObserverInterceptor {
   public enum ObserverType {
-    public typealias StateChangeObserver = (_ prev: S, _ current: S) -> Bool
-    public typealias AnyStateChangeObserver = (_ prev: State, _ current: State) -> Bool
+    public typealias StateChangeObserver = (_ prev: State, _ current: State) -> Bool
+    public typealias TypedStateChangeObserver<S: State> = (_ prev: S, _ current: S) -> Bool
     
     case whenStateChange(_ observer: StateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
-    case whenAnyStateChange(_ observer: AnyStateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
     case onNotification(_ notification: Notification.Name, _ dispatchable: [NotificationObserverDispatchable.Type])
     case whenDispatched(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
     case onStart(_ dispatchable: [OnStartObserverDispatchable.Type])
+    
+    static func typedStateChange<S: State>(_ closure: @escaping TypedStateChangeObserver<S>) -> StateChangeObserver {
+      return { prev, current in
+        guard let typedPrev = prev as? S, let typedCurr = current as? S else {
+          return false
+        }
+        
+        return closure(typedPrev, typedCurr)
+      }
+    }
   }
   
   private init() {}
@@ -61,12 +69,12 @@ public struct ObserverInterceptor<S> where S: State {
   }
 }
 
-private struct ObserverLogic<S> where S: State {
+private struct ObserverLogic {
   let dispatch: PromisableStoreDispatch
-  let items: [ObserverInterceptor<S>.ObserverType]
+  let items: [ObserverInterceptor.ObserverType]
   let dispatchableDictionary: [String: [DispatchObserverDispatchable.Type]]
   
-  init(dispatch: @escaping PromisableStoreDispatch, items: [ObserverInterceptor<S>.ObserverType]) {
+  init(dispatch: @escaping PromisableStoreDispatch, items: [ObserverInterceptor.ObserverType]) {
     self.dispatch = dispatch
     self.items = items
     
@@ -112,7 +120,7 @@ private struct ObserverLogic<S> where S: State {
           continue
         }
         
-        self.dispatch(dispatchable)
+        _ = self.dispatch(dispatchable)
       }
     }
   }
@@ -142,9 +150,6 @@ private struct ObserverLogic<S> where S: State {
       case .onNotification, .onStart:
         continue // handled in a different way
         
-      case let .whenAnyStateChange(changeClosure, dispatchableItems):
-        self.handleStateChange(anyPrevState, anyCurrentState, changeClosure, dispatchableItems)
-        
       case let .whenStateChange(changeClosure, dispatchableItems):
         self.handleStateChange(anyPrevState, anyCurrentState, changeClosure, dispatchableItems)
         
@@ -157,20 +162,15 @@ private struct ObserverLogic<S> where S: State {
   fileprivate func handleStateChange(
     _ anyPrevState: State,
     _ anyCurrentState: State,
-    _ changeClosure: ObserverInterceptor<S>.ObserverType.StateChangeObserver,
+    _ changeClosure: ObserverInterceptor.ObserverType.StateChangeObserver,
     _ itemsToDispatch: [StateObserverDispatchable.Type]) {
     
-    guard
-      let prevState = anyPrevState as? S,
-      let currentState = anyCurrentState as? S,
-      changeClosure(prevState, currentState)
-      
-    else {
+    guard changeClosure(anyPrevState, anyCurrentState) else {
       return
     }
     
     for item in itemsToDispatch {
-      guard let dispatchable = item.init(prevState: prevState, currentState: currentState) else {
+      guard let dispatchable = item.init(prevState: anyPrevState, currentState: anyCurrentState) else {
         continue
       }
       
