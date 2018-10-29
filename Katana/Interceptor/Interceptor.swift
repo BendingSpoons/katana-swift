@@ -12,6 +12,6 @@ import Foundation
 public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
 
 public typealias StoreInterceptor =
-  (_ getState: @escaping GetState, _ dispatch: @escaping PromisableStoreDispatch) ->
+  (_ sideEffectDependencies: AnySideEffectContext) ->
   (_ next: @escaping StoreInterceptorNext) ->
   (_ dispatchable: Dispatchable) throws -> ()

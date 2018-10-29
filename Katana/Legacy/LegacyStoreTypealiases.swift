@@ -25,13 +25,13 @@ public typealias StoreMiddleware =
 public typealias StoreDispatch = (_: Action) -> ()
 
 public func middlewareToInterceptor(_ middleware: @escaping StoreMiddleware) -> StoreInterceptor {
-  return { getState, dispatch in
+  return { context in
     
     let legacyDispatch: StoreDispatch = { dispatchable in
-      let _ = dispatch(dispatchable)
+      let _ = context.dispatch(dispatchable)
     }
     
-    let initialisedMiddleware = middleware(getState, legacyDispatch)
+    let initialisedMiddleware = middleware(context.getAnyState, legacyDispatch)
     
     return { next in
       

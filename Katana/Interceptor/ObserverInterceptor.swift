@@ -39,18 +39,18 @@ public struct ObserverInterceptor<S> where S: State {
   private init() {}
   
   public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
-    return { getState, dispatch in
+    return { context in
       
-      let logic = ObserverLogic(dispatch: dispatch, items: items)
+      let logic = ObserverLogic(dispatch: context.dispatch, items: items)
       logic.listenNotifications()
       logic.handleOnStart()
       
       return { next in
         return { dispatchable in
           
-          let anyPrevState = getState()
+          let anyPrevState = context.getAnyState()
           try next(dispatchable)
-          let anyCurrState = getState()
+          let anyCurrState = context.getAnyState()
           
           DispatchQueue.global(qos: .userInitiated).async {
             logic.handleDispatchable(dispatchable, anyPrevState: anyPrevState, anyCurrentState: anyCurrState)

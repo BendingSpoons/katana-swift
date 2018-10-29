@@ -24,13 +24,12 @@ public struct DispatchableLogger {
    - See: `StoreInterceptor` for details
    */
   public static func interceptor(blackList: [Dispatchable.Type] = []) -> StoreInterceptor {
-    
-    return { getState, dispatch in
+    return { context in
       return { next in
         return { dispatchable in
-          
+
           try next(dispatchable)
-          
+
           DispatchQueue.global(qos: .utility).async {
             let actionType = type(of: dispatchable) as Dispatchable.Type
             guard !blackList.contains(where: { $0 == actionType }) else { return }

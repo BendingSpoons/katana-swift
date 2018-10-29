@@ -102,6 +102,8 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    */
   public var dependencies: D!
   
+  private var sideEffectContext: SideEffectContext<S, D>!
+  
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
     
@@ -169,6 +171,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
+    self.sideEffectContext = SideEffectContext<S, D>(
+      dependencies: self.dependencies,
+      getState: self.getState,
+      dispatch: self.dispatch
+    )
+    
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
     /// if the stateInitializer function takes too much to do its job and we block the app's startup
@@ -181,8 +189,8 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
-    self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, getState: self.getState, dispatch: self.dispatch)
-    
+    self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
+
     // and here we are finally able to start the queues
     self.isReady = true
     self.sideEffectQueue.resume()
@@ -299,13 +307,7 @@ fileprivate extension Store {
       return self.nonPromisableDispatch(dispatchable)
     }
     
-    let context = SideEffectContext<S, D>(
-      dependencies: self.dependencies,
-      getState: self.getState,
-      dispatch: self.dispatch
-    )
-    
-    try sideEffect.sideEffect(context)
+    try sideEffect.sideEffect(self.sideEffectContext)
   }
 }
 
@@ -388,11 +390,10 @@ fileprivate extension Store {
    */
   fileprivate static func initializedInterceptors(
     _ interceptors: [StoreInterceptor],
-    getState: @escaping GetState,
-    dispatch: @escaping PromisableStoreDispatch) -> [InitializedInterceptor] {
+    sideEffectContext: SideEffectContext<S, D>) -> [InitializedInterceptor] {
     
     return interceptors.map { interceptor in
-      return interceptor(getState, dispatch)
+      return interceptor(sideEffectContext)
     }
   }
   

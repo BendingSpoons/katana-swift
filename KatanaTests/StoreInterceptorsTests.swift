@@ -19,13 +19,13 @@ class StoreInterceptorsTests: QuickSpec {
           var stateBefore: AppState?
           var stateAfter: AppState?
       
-          let interceptor: StoreInterceptor = { getState, dispatch in
+          let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
                 dispatchedStateUpdater = stateUpdater as? AddTodo
-                stateBefore = getState() as? AppState
+                stateBefore = context.getAnyState() as? AppState
                 try next(stateUpdater)
-                stateAfter = getState() as? AppState
+                stateAfter = context.getAnyState() as? AppState
               }
             }
           }
@@ -44,7 +44,7 @@ class StoreInterceptorsTests: QuickSpec {
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
           
-          let firstInterceptor: StoreInterceptor = { getState, dispatch in
+          let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
                 invokationOrder.append("first")
@@ -53,7 +53,7 @@ class StoreInterceptorsTests: QuickSpec {
             }
           }
           
-          let secondInterceptor: StoreInterceptor = { getState, dispatch in
+          let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
                 invokationOrder.append("second")
@@ -72,7 +72,7 @@ class StoreInterceptorsTests: QuickSpec {
         it("allows the middleware to block the propagation") {
           var dispatchedStateUpdater: AddTodo?
           
-          let interceptor: StoreInterceptor = { getState, dispatch in
+          let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
                 dispatchedStateUpdater = stateUpdater as? AddTodo
@@ -98,13 +98,13 @@ class StoreInterceptorsTests: QuickSpec {
           var stateBefore: AppState?
           var stateAfter: AppState?
           
-          let interceptor: StoreInterceptor = { getState, dispatch in
+          let interceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
                 dispatchedSideEffect = sideEffect as? DelaySideEffect
-                stateBefore = getState() as? AppState
+                stateBefore = context.getAnyState() as? AppState
                 try next(sideEffect)
-                stateAfter = getState() as? AppState
+                stateAfter = context.getAnyState() as? AppState
               }
             }
           }
@@ -123,7 +123,7 @@ class StoreInterceptorsTests: QuickSpec {
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
           
-          let firstInterceptor: StoreInterceptor = { getState, dispatch in
+          let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
                 invokationOrder.append("first")
@@ -132,7 +132,7 @@ class StoreInterceptorsTests: QuickSpec {
             }
           }
           
-          let secondInterceptor: StoreInterceptor = { getState, dispatch in
+          let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
                 invokationOrder.append("second")
@@ -152,7 +152,7 @@ class StoreInterceptorsTests: QuickSpec {
           var dispatchedStateUpdater: SideEffectWithBlock?
           var invoked = false
           
-          let interceptor: StoreInterceptor = { getState, dispatch in
+          let interceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
                 dispatchedStateUpdater = sideEffect as? SideEffectWithBlock
