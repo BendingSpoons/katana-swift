@@ -26,6 +26,12 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   }
 }
 
+public extension AnySideEffectContext {
+  func awaitDispatch(_ dispatchable: Dispatchable) throws {
+    try await(self.dispatch(dispatchable))
+  }
+}
+
 extension SideEffectContext: AnySideEffectContext {
   public var getAnyState: () -> State {
     return self.getState
