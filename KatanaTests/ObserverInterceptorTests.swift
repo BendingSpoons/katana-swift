@@ -225,6 +225,45 @@ class ObserverInterceptorTests: QuickSpec {
           expect(store.state.user.users.count).toEventually(equal(1))
         }
       }
+      
+      // MARK: On Start
+      describe("When listening for store startup") {
+        it("works") {
+          let interceptor = ObserverInterceptor<AppState>.observe([
+            .onStart([StateChangeAddUser.self])
+          ])
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          expect(store.isReady).toEventually(beTrue())
+          expect(store.state.todo.todos.count).toEventually(equal(0))
+          expect(store.state.user.users.count).toEventually(equal(1))
+        }
+        
+        it("works with multiple items to dispatch") {
+          let interceptor = ObserverInterceptor<AppState>.observe([
+            .onStart([StateChangeAddUser.self, StateChangeAddUser.self])
+          ])
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          expect(store.isReady).toEventually(beTrue())
+          expect(store.state.todo.todos.count).toEventually(equal(0))
+          expect(store.state.user.users.count).toEventually(equal(2))
+        }
+        
+        it("handles nil init") {
+          let interceptor = ObserverInterceptor<AppState>.observe([
+            .onStart([NilStateChangeAddUser.self, StateChangeAddUser.self])
+          ])
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          expect(store.isReady).toEventually(beTrue())
+          expect(store.state.todo.todos.count).toEventually(equal(0))
+          expect(store.state.user.users.count).toEventually(equal(1))
+        }
+      }
     }
   }
 }
@@ -256,7 +295,7 @@ private struct AddTodoWithDelay: TestStateUpdater {
   }
 }
 
-private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable {
+private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
   init?(prevState: State, currentState: State) {
     
   }
@@ -266,6 +305,10 @@ private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, 
   }
   
   init?(notification: Notification) {
+    
+  }
+  
+  init?() {
     
   }
   
@@ -274,7 +317,7 @@ private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, 
   }
 }
 
-private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable {
+private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
   init?(prevState: State, currentState: State) {
     return nil
   }
@@ -284,6 +327,10 @@ private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchabl
   }
   
   init?(notification: Notification) {
+    return nil
+  }
+  
+  init?() {
     return nil
   }
   

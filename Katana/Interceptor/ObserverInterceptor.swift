@@ -20,6 +20,10 @@ public protocol DispatchObserverDispatchable: Dispatchable {
   init?(dispatchedItem: Dispatchable, prevState: State, currentState: State)
 }
 
+public protocol OnStartObserverDispatchable: Dispatchable {
+  init?()
+}
+
 public struct ObserverInterceptor<S> where S: State {
   public enum ObserverType {
     public typealias StateChangeObserver = (_ prev: S, _ current: S) -> Bool
@@ -29,6 +33,7 @@ public struct ObserverInterceptor<S> where S: State {
     case whenAnyStateChange(_ observer: AnyStateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
     case onNotification(_ notification: Notification.Name, _ dispatchable: [NotificationObserverDispatchable.Type])
     case whenDispatched(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
+    case onStart(_ dispatchable: [OnStartObserverDispatchable.Type])
   }
   
   private init() {}
@@ -38,6 +43,7 @@ public struct ObserverInterceptor<S> where S: State {
       
       let logic = ObserverLogic(dispatch: dispatch, items: items)
       logic.listenNotifications()
+      logic.handleOnStart()
       
       return { next in
         return { dispatchable in
@@ -92,6 +98,25 @@ private struct ObserverLogic<S> where S: State {
     }
   }
   
+  fileprivate func handleOnStart() {
+    for item in self.items {
+      
+      guard case let .onStart(itemsToDispatch) = item else {
+        continue
+      }
+      
+      
+      
+      for item in itemsToDispatch {
+        guard let dispatchable = item.init() else {
+          continue
+        }
+        
+        self.dispatch(dispatchable)
+      }
+    }
+  }
+  
   private func handleNotification(with name: NSNotification.Name, _ typesToDispatch: [NotificationObserverDispatchable.Type]) {
     NotificationCenter.default.addObserver(
       forName: name,
@@ -114,7 +139,7 @@ private struct ObserverLogic<S> where S: State {
   fileprivate func handleDispatchable(_ dispatchable: Dispatchable, anyPrevState: State, anyCurrentState: State) {
     for item in self.items {
       switch item {
-      case .onNotification:
+      case .onNotification, .onStart:
         continue // handled in a different way
         
       case let .whenAnyStateChange(changeClosure, dispatchableItems):
