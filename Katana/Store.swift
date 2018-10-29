@@ -185,30 +185,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     }
   }
   
-  /// Creates and initializes the internal values.
-  /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
-  private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
-    self.state = stateInizializer()
-    self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
-
-    // and here we are finally able to start the queues
-    self.isReady = true
-    self.sideEffectQueue.resume()
-    self.stateUpdaterQueue.resume()
-    
-    SharedStoreContainer.sharedStore = self
-  }
-  
-  private func getState() -> S {
-    assert(self.isReady, """
-      The state is not ready yet. You should wait until the state is ready to invoke getState.
-      If you are performing operations in the dependenciesContainer's init, then the suggested way to
-      approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly
-    """)
-    
-    return self.state
-  }
-  
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
    every time the Store's state changes. The listener is always invoked in the main queue
@@ -241,7 +217,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       return self.enqueueAction(action)
     }
     
-    
     fatalError("Invalid parameter")
   }
   
@@ -249,7 +224,35 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     self.dispatch(dispatchable)
   }
 }
-//
+
+// MARK: Private utilities
+private extension Store {
+  /// Creates and initializes the internal values.
+  /// Store doesn't start to work (that is, actions are not dispatched) till this function is executed
+  private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
+    self.state = stateInizializer()
+    self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
+    
+    // and here we are finally able to start the queues
+    self.isReady = true
+    self.sideEffectQueue.resume()
+    self.stateUpdaterQueue.resume()
+    
+    SharedStoreContainer.sharedStore = self
+  }
+  
+  private func getState() -> S {
+    assert(self.isReady, """
+      The state is not ready yet. You should wait until the state is ready to invoke getState.
+      If you are performing operations in the dependenciesContainer's init, then the suggested way to
+      approach this is to dispatch an action. This will guarantee that the actions are dispatched correctly
+    """)
+    
+    return self.state
+  }
+}
+
+// MARK: State Updater management
 fileprivate extension Store {
   private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
     let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
@@ -287,6 +290,7 @@ fileprivate extension Store {
   }
 }
 
+// MARK: Side Effect management
 fileprivate extension Store {
   private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Void> {
     let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
@@ -311,6 +315,7 @@ fileprivate extension Store {
   }
 }
 
+// MARK: Action management
 fileprivate extension Store {
   private func enqueueAction(_ action: Action) -> Promise<Void> {
     let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
