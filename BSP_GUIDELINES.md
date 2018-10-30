@@ -1,6 +1,6 @@
 # Bending Spoons Katana Guidelines
 
-This document is a collection of best practices and guidelines we defined using Katana in these years.
+This document is a collection of best practices and guidelines we defined using Katana in these years at [Bending Spoons](http://bendingspoons.com).
 
   * [Goals](#goals)
   * [Guidelines](#guidelines)
@@ -14,12 +14,11 @@ This document is a collection of best practices and guidelines we defined using 
 
 ## Goals
 
-Since the very early days of Bending Spoons, we enjoyed defining and share guidelines and best practices across all our projects. This has incredible advantages:
+Since the very early days of Bending Spoons, we enjoyed defining and share guidelines and best practices across all our projects. This has some incredible advantages:
 
-* You immediately feel at home when moving from a project to another, even if this project has started some time ago and you never saw it
-* When there are multiple, equivalent, ways to do one thing, picking one and being consistent allows everyone to immediately understand how the app works and introduce changes to the application, library or tool
+* When there are multiple, equivalent, ways to do one thing, picking one and being consistent allows everyone to immediately understand how things work and how to introduce changes to an application or a library, even if you are not familiar with the codebase.
 * By following shared patterns, we can implement automatic tooling with the assumption that some things are done in a specific way
-* When doing reviews of Pull Requests, the reviewers can use guidelines as a guideline also for their reviews
+* When doing reviews of Pull Requests, one can leverage guidelines to provide effective feedback 
 * New spooners can have a head start thanks to the consolidated, written knowledge that the guidelines carry over
 
 It is also important to define what this guideline is not. This document is not something that prevents you from exploring, testing and suggesting new ways of doing things. Exploration and curiosity are what allowed us to write this document, and they will be as much as important in the future in improving this documenting. Nothing is set in stone, and everything is challengable. If you want to contribute to this document, see "How to contribute" section 💪.
@@ -29,15 +28,15 @@ It is also important to define what this guideline is not. This document is not 
 <a href="1"></a>
 #### 1. Use Managers to encapsulate the logic
 
-A manager is a Swift structure that holds a bunch of functions that implement the logic related to a specific domain (e.g., login, fitness app plan generation, ...). 
+In order to accomplish the best possible level of modularization and reusability of our code, we define some object, that we call Manager responsible for handling specific parts of our business logic.
+A fitness app could, for example, need, a Login Manager, a Plan Generator, and even more generic logic to perform API calls or to track users metrics.
 
-Here are some guidelines to follow when creating a manager:
+The dependency container is responsible to initiate these managers and expose them to Katana's side effects. Here are some guidelines to follow when creating a manager:
 
-* Managers shouldn't contain state. All the pieces of information that functions need to perform their calculations are passed as a parameter
-* The only exception to the following rule is, for pragmatism, dependencies (e.g., the login manager may need the API manager. This is a dependency)
 * Managers are "passive", they are invoked by Katana `Side Effects` and they shouldn't interact with Katana in any way (that is, they cannot dispatch)
-* As a consequence, managers shouldn't have access to the Store `getState` and `dispatch` 
-* Managers should be added to the `Side Effect Dependencies Container`
+* As a consequence, managers shouldn't have access to the Store `getState` and `dispatch`
+* Managers shouldn't contain state. All the pieces of information that functions need to perform their calculations are passed as a parameter
+* Manager might need to use other managers to implement part of their logic. We call call these subordinate managers dependencies. Dependencies should be pass as parameters when initializing the manager. 
 
 <a href="2"></a>
 #### 2. Event Observers
@@ -49,7 +48,7 @@ Katana offers an `Interceptor` that can be used to observe the following events:
 
 Sometimes this is not enough and we need to observe the external world and bring the information we get from this observation back in the Katana world. As discussed in the [guideline (1)](#1-use-managers-to-encapsulate-the-logic), Managers are a passive member of our applications and therefore they cannot dispatch.
 
-To address this particular use case, when therefore introduce `EventObservers` which are classes that are added to the `Side Effect Dependencies` and have the only and single responsibility of listening for events coming from the external world (e.g., Firebase, Websockets, ...) and dispatch something back in the `Katana` world as a consequence of this event.  
+To address this particular use case, when therefore introduce `EventObservers`. These classes are created and owned by the dependency container and have the only and single responsibility of listening for events coming from the external world (e.g., Firebase, Websockets, ...) and dispatch something back in the `Katana` world as a consequence of this event.  
 
 While it may seem odd to separate Managers and `EventObservers`, this actually helps in keeping every piece simple and consistent. For instance, this separation is useful to prevent adding an internal state to the Managers, while it may be needed to implement complex cases of `EventObservers`.
 
@@ -103,7 +102,7 @@ For more complex situations, you can even have the portion of the state that is 
 
 <a href="5"></a>
 
-#### 5. Document
+#### 5. Documentation
 
 Documentation is a very important part of the applications. Having a great documentation allows other developers to jump in your codebase easily and be productive sooner. 
 
@@ -121,7 +120,7 @@ Documentation is a very important part of the applications. Having a great docum
 
 Projects can be organised in multiple ways. Each of them has pros and cons and most of the time how a project looks like heavily depends on things like personal taste and personal preferences. At the same time, having a shared project structure allows everyone to look at other people's code and properly understand where things are located.
 
-Here we define how BSP projects should be organised. It is the result of different tests and compromises.
+Here we define how Bending Spoons projects should be organised. It is the result of different iterations and optimizations.
 
 Assuming we have an application with two logic modules (Login and Plan Generator) and two UI sections (Login and  Home), here is how the project structure should look like:
 
@@ -161,4 +160,6 @@ The UI folder is represented just for reference and should follow Tempura (or an
 
 ## How to contribute
 
-Everything in Bending Spoons can be challenged, and these guidelines are not an exception. If you feel something is wrong or can be improved, just open a PR with your proposal.
+Everything in Bending Spoons can and should be challenged, and these guidelines are not an exception. If you feel something is wrong or can be improved, just open a PR with your proposal.
+
+Stay strong and keep coding 💪.
