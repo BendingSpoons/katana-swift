@@ -129,7 +129,8 @@ Assuming we have an application with two logic modules (Login and Plan Generator
 ProjectName
     |-- Logic
           |-- AppDependenciesContainer.swift
-          |-- Home.swift          
+          |-- Home
+                |-- Home.swift          
           |-- Login
                 |-- Login.swift // side effects and state updaters
                 |-- LoginManager.swift
@@ -141,6 +142,7 @@ ProjectName
           |-- Login
                 |-- LoginVC.swift
                 |-- LoginView.swift    
+                |-- LoginVM.swift    
           |-- Home
                 |-- HomeVC.swift
                 |-- HomeView.swift    
@@ -153,11 +155,11 @@ As you can see, the main folder contains 3 main folders: Logic, UI and State.
 
 The logic folder contains all the logic of the application (state updaters, side effects and managers) and the dependencies container.
 
-The logic is based on [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers). When all the logic is in a single file (e.g., Home.swift, which holds side effects strictly related to the `Home` view controller), the file should be directly in the logic folder. In any other case, the files should be grouped using folders (e.g., Login and Plan Generator). Overall logic should contain side effects, state updaters, managers and models related to the logic.
+The logic is based on [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers). Even if all the logic is in a single file (e.g., Home.swift, which holds side effects strictly related to the `Home` view controller), the file should be included in a folder to faciliate the search without having to guess if it's a folder or a file. Overall logic should contain side effects, state updaters, managers and models related to the logic.
 
 The State folder contains all the structures that are part of the state. Note that, following  [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers), you may want to co-locate the state with the logic to implement some information-hiding technique to your code (that is, put some variables private or file-private). This is the only allowed exception.
 
-The UI folder is represented just for reference and should follow Tempura (or any other UI framework you are using) guidelines.
+The UI folder is represented just for reference and should follow Tempura (or any other UI framework you are using) guidelines. It is important to note that the VM should always be seperated from the view to faciliate the lookup.
 
 ## How to contribute
 
