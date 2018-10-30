@@ -27,6 +27,9 @@ public protocol AnyStore: class {
 }
 
 open class PartialStore<S: State>: AnyStore {
+  /// Closure that is used to initialize the state
+  public typealias StateInitializer<T: State> = () -> T
+
   /// The current state of the application
   open fileprivate(set) var state: S
   
@@ -80,9 +83,6 @@ private func emptyStateInitializer<S: State>() -> S {
  */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
-  
-  /// Closure that is used to initialize the state
-  public typealias StateInitializer<T: State> = () -> T
   
   /// The  array of registered listeners
   fileprivate var listeners: [ListenerID: StoreListener]
