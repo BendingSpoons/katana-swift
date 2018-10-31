@@ -9,20 +9,32 @@
 import Foundation
 
 public protocol AnySideEffectContext {
-  var getAnyState: () -> State { get }
-  var dispatch: PromisableStoreDispatch { get }
   var anyDependencies: SideEffectDependencyContainer { get }
+  
+  func getAnyState() -> State
+  
+  @discardableResult
+  func dispatch(_ dispatchable: Dispatchable) -> Promise<Void>
 }
 
 public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
   public let dependencies: D
-  public let getState: () -> S
-  public let dispatch: PromisableStoreDispatch
+  private let getStateClosure: () -> S
+  private let dispatchClosure: PromisableStoreDispatch
   
   init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping PromisableStoreDispatch) {
     self.dependencies = dependencies
-    self.dispatch = dispatch
-    self.getState = getState
+    self.dispatchClosure = dispatch
+    self.getStateClosure = getState
+  }
+  
+  public func getState() -> S {
+    return self.getStateClosure()
+  }
+  
+  @discardableResult
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+    return self.dispatchClosure(dispatchable)
   }
 }
 
@@ -33,12 +45,12 @@ public extension AnySideEffectContext {
 }
 
 extension SideEffectContext: AnySideEffectContext {
-  public var getAnyState: () -> State {
-    return self.getState
-  }
-  
   public var anyDependencies: SideEffectDependencyContainer {
     return self.dependencies
+  }
+  
+  public func getAnyState() -> State {
+    return self.getState()
   }
 }
 

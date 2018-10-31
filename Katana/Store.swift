@@ -14,7 +14,7 @@ public protocol AnyStore: class {
   var anyState: State { get }
   
   @discardableResult
-  func dispatch(_ updater: Dispatchable) -> Promise<Void>
+  func dispatch(_ dispatchable: Dispatchable) -> Promise<Void>
   
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
