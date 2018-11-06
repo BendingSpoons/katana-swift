@@ -141,8 +141,7 @@ ProjectName
     |-- UI
           |-- Login
                 |-- LoginVC.swift
-                |-- LoginView.swift    
-                |-- LoginVM.swift    
+                |-- LoginView.swift  
           |-- Home
                 |-- HomeVC.swift
                 |-- HomeView.swift    
@@ -159,7 +158,7 @@ The logic is based on [guideline (4)](#4-leverage-encapsulation-modularisation-a
 
 The State folder contains all the structures that are part of the state. Note that, following  [guideline (4)](#4-leverage-encapsulation-modularisation-and-visibility-modifiers), you may want to co-locate the state with the logic to implement some information-hiding technique to your code (that is, put some variables private or file-private). This is the only allowed exception.
 
-The UI folder is represented just for reference and should follow Tempura (or any other UI framework you are using) guidelines. It is important to note that the VM should always be seperated from the view to faciliate the lookup.
+The UI folder is represented just for reference and should follow Tempura (or any other UI framework you are using) guidelines.
 
 ## How to contribute
 
