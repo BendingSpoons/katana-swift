@@ -33,7 +33,7 @@ public struct ObserverInterceptor {
     case whenDispatched(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
     case onStart(_ dispatchable: [OnStartObserverDispatchable.Type])
     
-    static func typedStateChange<S: State>(_ closure: @escaping TypedStateChangeObserver<S>) -> StateChangeObserver {
+    public static func typedStateChange<S: State>(_ closure: @escaping TypedStateChangeObserver<S>) -> StateChangeObserver {
       return { prev, current in
         guard let typedPrev = prev as? S, let typedCurr = current as? S else {
           return false
