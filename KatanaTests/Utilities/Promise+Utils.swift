@@ -25,24 +25,38 @@ struct PromiseResult<T> {
   }
 }
 
-func makePromise<T>(named name: String? = nil, in context: Context? = nil, token: InvalidationToken? = nil, value: T) -> Promise<T> {
+func makePromise<T>(named name: String? = nil,
+                    in context: Context? = nil,
+                    token: InvalidationToken? = nil,
+                    value: T,
+                    waitBeforeResolving resolvingDelay: TimeInterval? = nil,
+                    waitBeforeCancelling cancelingDelay: TimeInterval? = nil) -> Promise<T> {
   let promise = Promise<T>(in: context, token: token) { resolve, _, operation in
     if operation.isCancelled {
+      if let delay = cancelingDelay { Thread.sleep(forTimeInterval: delay) }
       operation.cancel()
       return
     }
+    if let delay = resolvingDelay { Thread.sleep(forTimeInterval: delay) }
     resolve(value)
   }
   promise.name = name
   return promise
 }
 
-func makePromise<T>(named name: String? = nil, in context: Context? = nil, token: InvalidationToken? = nil, error: Error) -> Promise<T> {
+func makePromise<T>(named name: String? = nil,
+                    in context: Context? = nil,
+                    token: InvalidationToken? = nil,
+                    error: Error,
+                    waitBeforeRejecting rejectionDelay: TimeInterval? = nil,
+                    waitBeforeCancelling cancelingDelay: TimeInterval? = nil) -> Promise<T> {
   let promise = Promise<T>(in: context, token: token) { _, reject, operation in
     if operation.isCancelled {
+      if let delay = cancelingDelay { Thread.sleep(forTimeInterval: delay) }
       operation.cancel()
       return
     }
+    if let delay = rejectionDelay { Thread.sleep(forTimeInterval: delay) }
     reject(error)
   }
   promise.name = name

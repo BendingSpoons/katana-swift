@@ -93,5 +93,33 @@ class PromiseTests: QuickSpec {
         }
       }
     }
+    
+    describe("A delayed promise") {
+      context("when has been resolved") {
+        it("calls `then` closure") {
+          
+          let promise: Promise<Int> = makePromise(value: 3, waitBeforeResolving: 5)
+          
+          var result = PromiseResult<Int>()
+          waitPromise(promise, timeout: 10, completion: {
+            result = $0
+          })
+          checkPromise(resolved: result, to: 3)
+        }
+      }
+      
+      context("when has been rejected") {
+        it("calls `catch` closure") {
+          
+          let promise: Promise<Int> = makePromise(error: MockPromiseError.unknown, waitBeforeRejecting: 5)
+          
+          var result = PromiseResult<Int>()
+          waitPromise(promise, timeout: 10, completion: {
+            result = $0
+          })
+          checkPromise(rejected: result, with: MockPromiseError.unknown)
+        }
+      }
+    }
   }
 }
