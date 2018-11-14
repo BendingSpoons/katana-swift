@@ -13,7 +13,7 @@ import Nimble
 
 class CancelComplexPromiseTests: QuickSpec {
   override func spec() {
-    describe("A complex promis") {
+    describe("A complex promise") {
       
       context("when has been resolved") {
         it("calls `then` closure") {

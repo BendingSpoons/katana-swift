@@ -22,11 +22,11 @@ class PromiseSequenceTests: QuickSpec {
           let firstPromise: Promise<Int> = makePromise(named: "\(char)1", value: 1)
           let secondPromise: Promise<Int> = makePromise(named: "\(char)2", value: 2)
           let thirdPromise: Promise<Int> = makePromise(named: "\(char)3", value: 3)
-          let forthPromise: Promise<Int> = makePromise(named: "\(char)4", value: 4)
+          let fourthPromise: Promise<Int> = makePromise(named: "\(char)4", value: 4)
           let fifthPromise: Promise<Int> = makePromise(named: "\(char)5", value: 5)
           let sixthPromise: Promise<Int> = makePromise(named: "\(char)6", value: 6)
           
-          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, forthPromise, fifthPromise, sixthPromise)
+          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, fourthPromise, fifthPromise, sixthPromise)
           
           var result = PromiseResult<[Int]>()
           waitPromise(sequencePromise, timeout: 10, completion: {
@@ -43,11 +43,11 @@ class PromiseSequenceTests: QuickSpec {
           let firstPromise: Promise<Int> = makePromise(named: "\(char)1", token: nil, value: 1)
           let secondPromise: Promise<Int> = makePromise(named: "\(char)2", token: nil, value: 2)
           let thirdPromise: Promise<Int> = makePromise(named: "\(char)3", token: nil, error: MockPromiseError.unknown)
-          let forthPromise: Promise<Int> = makePromise(named: "\(char)4", token: nil, value: 4)
+          let fourthPromise: Promise<Int> = makePromise(named: "\(char)4", token: nil, value: 4)
           let fifthPromise: Promise<Int> = makePromise(named: "\(char)5", token: nil, value: 5)
           let sixthPromise: Promise<Int> = makePromise(named: "\(char)6", token: nil, value: 6)
           
-          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, forthPromise, fifthPromise, sixthPromise)
+          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, fourthPromise, fifthPromise, sixthPromise)
           
           var result = PromiseResult<[Int]>()
           waitPromise(sequencePromise, timeout: 10, completion: {
@@ -67,11 +67,11 @@ class PromiseSequenceTests: QuickSpec {
           let firstPromise: Promise<Int> = makePromise(named: "\(char)1", token: nil, value: 1)
           let secondPromise: Promise<Int> = makePromise(named: "\(char)2", token: nil, value: 2)
           let thirdPromise: Promise<Int> = makePromise(named: "\(char)3", token: token, value: 3)
-          let forthPromise: Promise<Int> = makePromise(named: "\(char)4", token: nil, value: 4)
+          let fourthPromise: Promise<Int> = makePromise(named: "\(char)4", token: nil, value: 4)
           let fifthPromise: Promise<Int> = makePromise(named: "\(char)5", token: nil, value: 5)
           let sixthPromise: Promise<Int> = makePromise(named: "\(char)6", token: nil, value: 6)
           
-          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, forthPromise, fifthPromise, sixthPromise)
+          let sequencePromise: Promise<[Int]> = all(firstPromise, secondPromise, thirdPromise, fourthPromise, fifthPromise, sixthPromise)
           
           var result = PromiseResult<[Int]>()
           waitPromise(sequencePromise, timeout: 10, completion: {
