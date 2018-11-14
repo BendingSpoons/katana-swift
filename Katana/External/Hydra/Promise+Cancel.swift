@@ -54,6 +54,9 @@ public extension Promise {
 			})
 			self.add(observers: onResolve, onReject, onCancel)
 		}
+    if let name = self.name {
+      nextPromise.name = "\(name).cancel"
+    }
 		nextPromise.runBody()
 		self.runBody()
 		return nextPromise

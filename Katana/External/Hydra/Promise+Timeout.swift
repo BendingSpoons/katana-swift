@@ -63,6 +63,9 @@ public extension Promise {
 				timer.cancel() // cancel timeout timer and release promise
 			}, onReject: reject, onCancel: operation.cancel)
 		}
+    if let name = self.name {
+      nextPromise.name = "\(name).timeout"
+    }
 		nextPromise.runBody()
 		self.runBody()
 		return nextPromise
