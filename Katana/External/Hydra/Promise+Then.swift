@@ -86,7 +86,8 @@ public extension Promise {
 					// execute the promise's body and get the result of it
 					let pResolve = Promise<N>.Observer.onResolve(ctx, resolve)
 					let pReject = Promise<N>.Observer.onReject(ctx, reject)
-					chainedPromise.add(observers: pResolve, pReject)
+          let pCancel = Promise<N>.Observer.onCancel(ctx, operation.cancel)
+					chainedPromise.add(observers: pResolve, pReject, pCancel)
 					chainedPromise.runBody()
 				} catch let error {
 					reject(error)
