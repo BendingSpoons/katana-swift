@@ -2,8 +2,9 @@
 //  Promise+Utils.swift
 //  KatanaTests
 //
-//  Created by Alex Tosatto on 14/11/2018.
-//
+//  Copyright © 2016 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Nimble

@@ -1,6 +1,6 @@
 //
 //  SideEffectTests.swift
-//  Katana
+//  KatanaTests
 //
 //  Copyright © 2016 Bending Spoons.
 //  Distributed under the MIT License.
