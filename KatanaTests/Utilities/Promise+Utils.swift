@@ -37,6 +37,18 @@ func makePromise<T>(named name: String? = nil, in context: Context? = nil, token
   return promise
 }
 
+func makePromise<T>(named name: String? = nil, in context: Context? = nil, token: InvalidationToken? = nil, error: Error) -> Promise<T> {
+  let promise = Promise<T>(in: context, token: token) { _, reject, operation in
+    if operation.isCancelled {
+      operation.cancel()
+      return
+    }
+    reject(error)
+  }
+  promise.name = name
+  return promise
+}
+
 func waitPromise<T>(_ promise: Promise<T>, timeout: TimeInterval, completion: @escaping (PromiseResult<T>) -> ()) {
   waitUntil(timeout: timeout) { done in
     promise

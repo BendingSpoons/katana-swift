@@ -1,5 +1,5 @@
 //
-//  ChainedPromiseTests.swift
+//  PromiseChainingTests.swift
 //  KatanaTests
 //
 //  Created by Alex Tosatto on 14/11/2018.
@@ -10,7 +10,7 @@ import Quick
 import Nimble
 @testable import Katana
 
-class ChainedPromiseTests: QuickSpec {
+class PromiseChainingTests: QuickSpec {
   
   override func spec() {
     describe("A promise") {
@@ -88,6 +88,43 @@ class ChainedPromiseTests: QuickSpec {
             result = $0
           })
           checkPromise(cancelled: result)
+        }
+      }
+      
+      context("when has been chained to a promise that rejects") {
+        it("calls `catch` closure") {
+          
+          let char = "E"
+          let firstPromise: Promise<Int> = makePromise(named: "\(char)1", token: nil, value: 3)
+          let secondPromise: Promise<String> = firstPromise.then({ _ in
+            return makePromise(named: "\(char)2", token: nil, error: MockPromiseError.unknown)
+          })
+          
+          var result = PromiseResult<String>()
+          waitPromise(secondPromise, timeout: 10, completion: {
+            result = $0
+          })
+          checkPromise(rejected: result, with: MockPromiseError.unknown)
+        }
+      }
+      
+      context("when has been rejected before to be chained to another promise") {
+        it("calls `catch` closure") {
+          
+          let token = InvalidationToken()
+          token.invalidate()
+          
+          let char = "F"
+          let firstPromise: Promise<Int> = makePromise(named: "\(char)1", token: nil, error: MockPromiseError.unknown)
+          let secondPromise: Promise<String> = firstPromise.then({
+            return makePromise(named: "\(char)2", value: "\($0)")
+          })
+          
+          var result = PromiseResult<String>()
+          waitPromise(secondPromise, timeout: 10, completion: {
+            result = $0
+          })
+          checkPromise(rejected: result, with: MockPromiseError.unknown)
         }
       }
     }
