@@ -65,6 +65,12 @@ func waitPromise<T>(_ promise: Promise<T>, timeout: TimeInterval, completion: @e
   }
 }
 
+func checkPromise<T>(resolved result: PromiseResult<T>) {
+  expect(result.value).toNot(beNil())
+  expect(result.error).to(beNil())
+  expect(result.cancelled).to(beFalse())
+}
+
 func checkPromise<T: Equatable>(resolved result: PromiseResult<T>, to value: T) {
   expect(result.value).to(equal(value))
   expect(result.error).to(beNil())
