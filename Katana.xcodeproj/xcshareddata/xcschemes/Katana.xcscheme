@@ -7,69 +7,56 @@
       buildImplicitDependencies = "YES">
       <BuildActionEntries>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "NO"
-            buildForRunning = "YES"
-            buildForProfiling = "YES"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForRunning = "NO"
+            buildForProfiling = "NO"
+            buildForArchiving = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "2238B0AC5391FDC4EB931B7F"
-               BuildableName = "Katana.framework"
+               BlueprintIdentifier = "F38AC77327824220CEF11333"
                BlueprintName = "Katana"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               ReferencedContainer = "container:Katana.xcodeproj"
+               BuildableName = "Katana.framework">
             </BuildableReference>
          </BuildActionEntry>
          <BuildActionEntry
+            buildForAnalyzing = "YES"
             buildForTesting = "YES"
             buildForRunning = "NO"
             buildForProfiling = "NO"
-            buildForArchiving = "NO"
-            buildForAnalyzing = "YES">
+            buildForArchiving = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE7372C0D52C359B8ED5BA78"
-               BuildableName = "KatanaTests.xctest"
+               BlueprintIdentifier = "530F2CE64FF28BB764AE2BE4"
                BlueprintName = "KatanaTests"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               ReferencedContainer = "container:Katana.xcodeproj"
+               BuildableName = "KatanaTests.xctest">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
    </BuildAction>
    <TestAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      codeCoverageEnabled = "YES"
-      shouldUseLaunchSchemeArgsEnv = "YES">
+      shouldUseLaunchSchemeArgsEnv = "YES"
+      buildConfiguration = "Debug">
+      <AdditionalOptions>
+      </AdditionalOptions>
       <Testables>
          <TestableReference
-            skipped = "NO"
-            parallelizable = "YES"
-            testExecutionOrdering = "random">
+            skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "DE7372C0D52C359B8ED5BA78"
-               BuildableName = "KatanaTests.xctest"
+               BlueprintIdentifier = "530F2CE64FF28BB764AE2BE4"
                BlueprintName = "KatanaTests"
-               ReferencedContainer = "container:Katana.xcodeproj">
+               ReferencedContainer = "container:Katana.xcodeproj"
+               BuildableName = "KatanaTests.xctest">
             </BuildableReference>
          </TestableReference>
       </Testables>
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2238B0AC5391FDC4EB931B7F"
-            BuildableName = "Katana.framework"
-            BlueprintName = "Katana"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
-      <AdditionalOptions>
-      </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -77,34 +64,34 @@
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
+      buildConfiguration = "Debug"
       allowLocationSimulation = "YES">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2238B0AC5391FDC4EB931B7F"
-            BuildableName = "Katana.framework"
-            BlueprintName = "Katana"
-            ReferencedContainer = "container:Katana.xcodeproj">
-         </BuildableReference>
-      </BuildableProductRunnable>
       <AdditionalOptions>
       </AdditionalOptions>
-   </LaunchAction>
-   <ProfileAction
-      buildConfiguration = "Debug"
-      shouldUseLaunchSchemeArgsEnv = "YES"
-      savedToolIdentifier = ""
-      useCustomWorkingDirectory = "NO"
-      debugDocumentVersioning = "YES">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "2238B0AC5391FDC4EB931B7F"
-            BuildableName = "Katana.framework"
+            BlueprintIdentifier = "F38AC77327824220CEF11333"
             BlueprintName = "Katana"
-            ReferencedContainer = "container:Katana.xcodeproj">
+            ReferencedContainer = "container:Katana.xcodeproj"
+            BuildableName = "Katana.framework">
+         </BuildableReference>
+      </BuildableProductRunnable>
+   </LaunchAction>
+   <ProfileAction
+      savedToolIdentifier = ""
+      useCustomWorkingDirectory = "NO"
+      debugDocumentVersioning = "YES"
+      buildConfiguration = "Debug"
+      shouldUseLaunchSchemeArgsEnv = "YES">
+      <BuildableProductRunnable>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "F38AC77327824220CEF11333"
+            BlueprintName = "Katana"
+            ReferencedContainer = "container:Katana.xcodeproj"
+            BuildableName = "Katana.framework">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

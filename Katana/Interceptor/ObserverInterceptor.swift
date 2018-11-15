@@ -145,13 +145,16 @@ private struct ObserverLogic {
   
   
   fileprivate func handleDispatchable(_ dispatchable: Dispatchable, anyPrevState: State, anyCurrentState: State) {
+    
+    let isSideEffect = dispatchable is AnySideEffect
+    
     for item in self.items {
       switch item {
       case .onNotification, .onStart:
         continue // handled in a different way
         
       case let .whenStateChange(changeClosure, dispatchableItems):
-        self.handleStateChange(anyPrevState, anyCurrentState, changeClosure, dispatchableItems)
+        self.handleStateChange(anyPrevState, anyCurrentState, isSideEffect, changeClosure, dispatchableItems)
         
       case .whenDispatched:
         self.handleWhenDispatched(anyPrevState, anyCurrentState, dispatchable)
@@ -162,10 +165,11 @@ private struct ObserverLogic {
   fileprivate func handleStateChange(
     _ anyPrevState: State,
     _ anyCurrentState: State,
+    _ isSideEffect: Bool,
     _ changeClosure: ObserverInterceptor.ObserverType.StateChangeObserver,
     _ itemsToDispatch: [StateObserverDispatchable.Type]) {
     
-    guard changeClosure(anyPrevState, anyCurrentState) else {
+    guard !isSideEffect && changeClosure(anyPrevState, anyCurrentState) else {
       return
     }
     

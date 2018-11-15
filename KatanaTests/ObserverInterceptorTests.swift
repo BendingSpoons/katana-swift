@@ -132,6 +132,25 @@ class ObserverInterceptorTests: QuickSpec {
           expect(store.state.todo.todos.count).toEventually(equal(1))
           expect(store.state.user.users.count).toEventually(equal(1))
         }
+        
+        it("is is not triggered for side effects") {
+          
+          var invoked = false
+        
+          let interceptor = ObserverInterceptor.observe([
+            .whenStateChange({ (prev: State, curr: State) -> Bool in
+              invoked = true
+              return false
+            }, [])
+          ])
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          store.dispatch(MockSideEffet())
+          
+          expect(store.isReady).toEventually(beTrue())
+          expect(invoked).toEventually(beFalse())
+        }
       }
       
       // MARK: Dispatchable
@@ -336,5 +355,11 @@ private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchabl
   
   func updateState(_ state: inout AppState) {
     state.user.users.append(User(username: "the username"))
+  }
+}
+
+private struct MockSideEffet: TestSideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+    
   }
 }
