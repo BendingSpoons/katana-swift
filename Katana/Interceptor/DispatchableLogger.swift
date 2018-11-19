@@ -12,7 +12,6 @@ import Foundation
 /**
  Struct that makes an action logger middleware available
  */
-@available(*, deprecated, message: "Use ObserverInterceptor instead")
 public struct DispatchableLogger {
   
   /**
