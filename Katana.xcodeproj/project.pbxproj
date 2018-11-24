@@ -1,7 +1,8 @@
 // !$*UTF8*$!
 {
-	archiveVersion = "";
-	classes = "";
+	archiveVersion = 1;
+	classes = {
+	};
 	objectVersion = 46;
 	objects = {
 
@@ -49,6 +50,7 @@
 		9E7C16DBBDBBA3C827C97163 /* ActionWithSideEffect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 090DA62857724D6E9BAA6684 /* ActionWithSideEffect.swift */; };
 		A123BDA06F752361E5F5F8CF /* Promise+Validate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB92219DAE44AFE9283C5C2E /* Promise+Validate.swift */; };
 		A29DCF214F79FD489D5A6808 /* Promise+Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9AA9724BFB5E60AAEE9988 /* Promise+Map.swift */; };
+		A7D7BE0221A9900100B7901C /* SignpostLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D7BE0121A9900100B7901C /* SignpostLogger.swift */; };
 		ADDE91CCA55AB15EAD2596C7 /* Katana.h in Headers */ = {isa = PBXBuildFile; fileRef = 3750A7029C0115C65F0A5534 /* Katana.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		AE5ACDD75E48D4718CC4E363 /* Pods_Katana.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F03E6CD78289E0755B673139 /* Pods_Katana.framework */; };
 		B47542F884B7CE4998B961E8 /* Promise+All.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49FAC9CC994940C2C8EB6C19 /* Promise+All.swift */; };
@@ -131,6 +133,7 @@
 		A0D4233596D3E22FE648981C /* DispatchableLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = DispatchableLogger.swift; sourceTree = "<group>"; };
 		A6F47F5A021C9F87291FC645 /* Dispatchable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Dispatchable.swift; sourceTree = "<group>"; };
 		A78A701625C7722A5775F723 /* LegacyActionTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LegacyActionTests.swift; sourceTree = "<group>"; };
+		A7D7BE0121A9900100B7901C /* SignpostLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignpostLogger.swift; sourceTree = "<group>"; };
 		A9B4EE0103572E8E5C68CA14 /* KatanaTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = KatanaTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B06B7CDDD3CE8BB1434CE59B /* Store.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		B2381AA4A0BC4A81FA70CBEB /* Promise+Recover.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = "Promise+Recover.swift"; sourceTree = "<group>"; };
@@ -208,7 +211,6 @@
 				CB92219DAE44AFE9283C5C2E /* Promise+Validate.swift */,
 				45CA644EC31507E7FF19FC9B /* Promise+Then.swift */,
 			);
-			name = Hydra;
 			path = Hydra;
 			sourceTree = "<group>";
 		};
@@ -218,7 +220,6 @@
 				2232334161A4BA902AB4B5DF /* State.swift */,
 				751C88BC50563818CF2F07E7 /* TestDependenciesContainer.swift */,
 			);
-			name = Mocks;
 			path = Mocks;
 			sourceTree = "<group>";
 		};
@@ -231,7 +232,6 @@
 				090DA62857724D6E9BAA6684 /* ActionWithSideEffect.swift */,
 				CCE104953A502EBBCB33CF86 /* LegacyStoreTypealiases.swift */,
 			);
-			name = Legacy;
 			path = Legacy;
 			sourceTree = "<group>";
 		};
@@ -246,7 +246,6 @@
 				FA6CCCEAA9FF559CEDFAE15D /* SideEffectTests.swift */,
 				6DC82736E6BDC637D7C5027A /* StoreTests.swift */,
 			);
-			name = KatanaTests;
 			path = KatanaTests;
 			sourceTree = "<group>";
 		};
@@ -256,7 +255,6 @@
 				C683F6082ED241C14F7F9746 /* Core */,
 				DE6A94CCCE6B3CD28EFE1473 /* Models */,
 			);
-			name = Legacy;
 			path = Legacy;
 			sourceTree = "<group>";
 		};
@@ -275,8 +273,8 @@
 				DC1B4B7B40183A0940875000 /* Interceptor */,
 				0BAF5103D7FDBC5E4E0A5C3B /* Types.swift */,
 				3750A7029C0115C65F0A5534 /* Katana.h */,
+				A7D7BE0121A9900100B7901C /* SignpostLogger.swift */,
 			);
-			name = Katana;
 			path = Katana;
 			sourceTree = "<group>";
 		};
@@ -294,7 +292,6 @@
 			children = (
 				009CEB39E08D0B3A1E9C1CA3 /* Hydra */,
 			);
-			name = External;
 			path = External;
 			sourceTree = "<group>";
 		};
@@ -309,7 +306,6 @@
 				C6E27F699A91949D709ED069 /* LegacyActionDescriptionTests.swift */,
 				63E7C445BC23E46EDF108DB9 /* LegacyAsyncActionTests.swift */,
 			);
-			name = Core;
 			path = Core;
 			sourceTree = "<group>";
 		};
@@ -320,7 +316,6 @@
 				E3991D09BA66E8DE63F36FD5 /* ActionLinker.swift */,
 				FA8A5A310130458B96CC2E33 /* ActionLinks.swift */,
 			);
-			name = ActionLinker;
 			path = ActionLinker;
 			sourceTree = "<group>";
 		};
@@ -331,7 +326,6 @@
 				69B42A61AA42159BBA578188 /* ObserverInterceptor.swift */,
 				22C25A4C4ECD6CDA5BE6DF23 /* Interceptor.swift */,
 			);
-			name = Interceptor;
 			path = Interceptor;
 			sourceTree = "<group>";
 		};
@@ -341,7 +335,6 @@
 				CA357BC1B282CB9F8575F3ED /* LegacyActions.swift */,
 				C57F366A1B5FAF20774B71E7 /* LegacyDependencyContainer.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
@@ -392,7 +385,6 @@
 				8651931AFABF18B8307A0E40 /* ActionLogger.swift */,
 				CB4AD5257733A13261D1F512 /* ActionLinker */,
 			);
-			name = Middleware;
 			path = Middleware;
 			sourceTree = "<group>";
 		};
@@ -592,6 +584,7 @@
 				1A47FBCB4AB44711F0870717 /* Promise+Pass.swift in Sources */,
 				E74EC870524077DA8A55E5C2 /* Promise+Reduce.swift in Sources */,
 				E0C7BBC0B8174D2D28194AF5 /* Promise+Recover.swift in Sources */,
+				A7D7BE0221A9900100B7901C /* SignpostLogger.swift in Sources */,
 				C2BFF8506C1615372C355527 /* Promise+Cancel.swift in Sources */,
 				BD4289E60F7BE8A98F34C40A /* Promise+Catch.swift in Sources */,
 				780C8AA81F985EEED0215469 /* Promise+Async.swift in Sources */,
@@ -673,8 +666,7 @@
 				PRODUCT_NAME = Katana;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
@@ -757,8 +749,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				SDKROOT = iphoneos;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				VALIDATE_PRODUCT = YES;
 			};

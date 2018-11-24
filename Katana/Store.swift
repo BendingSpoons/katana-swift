@@ -275,7 +275,9 @@ fileprivate extension Store {
       return self.nonPromisableDispatch(dispatchable)
     }
     
+    let logEnd = SignpostLogger.shared.logStart(type: .stateUpdater, name: stateUpdater.debugDescription)
     let newState = stateUpdater.updatedState(currentState: self.state)
+    logEnd()
     
     guard let typedNewState = newState as? S else {
       preconditionFailure("Action updatedState returned a wrong state type")
@@ -311,7 +313,9 @@ fileprivate extension Store {
       return self.nonPromisableDispatch(dispatchable)
     }
     
+    let logEnd = SignpostLogger.shared.logStart(type: .sideEffect, name: dispatchable.debugDescription)
     try sideEffect.sideEffect(self.sideEffectContext)
+    logEnd()
   }
 }
 
@@ -338,6 +342,8 @@ fileprivate extension Store {
       return self.nonPromisableDispatch(dispatchable)
     }
     
+    let logEnd = SignpostLogger.shared.logStart(type: .action, name: dispatchable.debugDescription)
+    
     let newState = action.updatedState(currentState: self.state)
     
     guard let typedNewState = newState as? S else {
@@ -349,6 +355,8 @@ fileprivate extension Store {
     
     // executes the side effects, if needed
     self.triggerSideEffect(for: action, previousState: previousState, currentState: typedNewState)
+    
+    logEnd()
     
     // listener are always invoked in the main queue
     DispatchQueue.main.async {
