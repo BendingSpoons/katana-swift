@@ -18,38 +18,60 @@ struct SignpostLogger {
     case stateUpdater, sideEffect, action
   }
   
-  let stateUpdaterLog: OSLog?
-  let sideEffectLog: OSLog?
-  let actionLog: OSLog?
-  
-  func log(for logType: LogType) -> OSLog? {
-    switch logType {
-    case .stateUpdater:
-      return self.stateUpdaterLog
-    
-    case .sideEffect:
-      return self.sideEffectLog
-
-    case .action:
-      return self.actionLog
-    }
-  }
+  let katanaLogger: OSLog?
   
   func logStart(type: LogType, name: String) -> LogEndClosure {
-    guard let log = self.log(for: type) else {
+    guard let log = self.katanaLogger else {
       return SignpostLogger.noop
     }
     
     if #available(iOS 12.0, *) {
-      let signpostID = OSSignpostID(log: log)
-      os_signpost(.begin, log: log, name: "", signpostID: signpostID, "%{public}s", name)
-      
-      return {
-        os_signpost(.end, log: log, name: "", signpostID: signpostID, "%{public}s", name)
+      switch type {
+      case .stateUpdater:
+        return self.logStateUpdater(log: log, name: name)
+        
+      case .sideEffect:
+        return self.logSideEffect(log: log, name: name)
+        
+      case .action:
+        return self.logAction(log: log, name: name)
       }
     }
     
     return SignpostLogger.noop
+  }
+  
+  @available(iOS 12.0, *)
+  func logStateUpdater(log: OSLog, name: String) -> LogEndClosure {
+    let signpostID = OSSignpostID(log: log)
+    
+    os_signpost(.begin, log: log, name: "State Updater", signpostID: signpostID, "%{public}s", name)
+    
+    return {
+      os_signpost(.end, log: log, name: "State Updater", signpostID: signpostID, "%{public}s", name)
+    }
+  }
+  
+  @available(iOS 12.0, *)
+  func logSideEffect(log: OSLog, name: String) -> LogEndClosure {
+    let signpostID = OSSignpostID(log: log)
+    
+    os_signpost(.begin, log: log, name: "Side Effect", signpostID: signpostID, "%{public}s", name)
+    
+    return {
+      os_signpost(.end, log: log, name: "Side Effect", signpostID: signpostID, "%{public}s", name)
+    }
+  }
+  
+  @available(iOS 12.0, *)
+  func logAction(log: OSLog, name: String) -> LogEndClosure {
+    let signpostID = OSSignpostID(log: log)
+    
+    os_signpost(.begin, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
+    
+    return {
+      os_signpost(.end, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
+    }
   }
 }
 
@@ -57,14 +79,10 @@ struct SignpostLogger {
 extension SignpostLogger {
   private init() {
     if #available(iOS 10.0, *) {
-      self.stateUpdaterLog = OSLog(subsystem: "Katana", category: "State Updater")
-      self.sideEffectLog = OSLog(subsystem: "Katana", category: "Side Effect")
-      self.actionLog = OSLog(subsystem: "Katana", category: "Action")
+      self.katanaLogger = OSLog(subsystem: "Katana", category: "Katana")
       
     } else {
-      self.stateUpdaterLog = nil
-      self.sideEffectLog = nil
-      self.actionLog = nil
+      self.katanaLogger = nil
     }
   }
 }
