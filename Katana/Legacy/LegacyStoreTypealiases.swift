@@ -34,13 +34,20 @@ public func middlewareToInterceptor(_ middleware: @escaping StoreMiddleware) -> 
     let initialisedMiddleware = middleware(context.getAnyState, legacyDispatch)
     
     return { next in
-      
+      var sideEffectError: Error?
       let legacyNext: StoreMiddlewareNext = { action in
-        try? next(action)
+        do {
+          try next(action)
+        } catch {
+          // legacy next cannot throw
+          sideEffectError = error
+        }
       }
       
       return { dispatchable in
         initialisedMiddleware(legacyNext)(dispatchable)
+        // If an error occurred, throw to reject the dispatch Promise
+        if let error = sideEffectError { throw error }
       }
     }
   }
