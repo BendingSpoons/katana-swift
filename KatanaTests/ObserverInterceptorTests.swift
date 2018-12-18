@@ -182,6 +182,20 @@ class ObserverInterceptorTests: QuickSpec {
           expect(store.state.todo.todos.count).toEventually(equal(1))
           expect(store.state.user.users.count).toEventually(equal(2))
         }
+        it("works with multiple observes") {
+          let interceptor = ObserverInterceptor.observe([
+            .whenDispatched(AddTodo.self, [StateChangeAddUser.self]),
+            .whenDispatched(AddTodo.self, [NilStateChangeAddUser.self]),
+            ])
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          let todo = Todo(title: "title", id: "id")
+          store.dispatch(AddTodo(todo: todo))
+          
+          expect(store.state.todo.todos.count).toEventually(equal(1))
+          expect(store.state.user.users.count).toEventually(equal(1))
+        }
         
         it("handles nil init") {
           let interceptor = ObserverInterceptor.observe([
