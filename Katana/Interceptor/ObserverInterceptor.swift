@@ -72,27 +72,10 @@ public struct ObserverInterceptor {
 private struct ObserverLogic {
   let dispatch: PromisableStoreDispatch
   let items: [ObserverInterceptor.ObserverType]
-  let dispatchableDictionary: [String: [DispatchObserverDispatchable.Type]]
   
   init(dispatch: @escaping PromisableStoreDispatch, items: [ObserverInterceptor.ObserverType]) {
     self.dispatch = dispatch
     self.items = items
-    
-    var dictionary = [String: [DispatchObserverDispatchable.Type]]()
-    
-    for item in items {
-      guard case let .whenDispatched(origin, itemsToDispatch) = item else {
-        continue
-      }
-      
-      let dispatchableStringName = ObserverLogic.stringName(for: origin)
-      
-      var items = dictionary[dispatchableStringName] ?? []
-      items.append(contentsOf: itemsToDispatch)
-      dictionary[dispatchableStringName] = items
-    }
-    
-    self.dispatchableDictionary = dictionary
   }
   
   fileprivate func listenNotifications() {
@@ -156,8 +139,11 @@ private struct ObserverLogic {
       case let .whenStateChange(changeClosure, dispatchableItems):
         self.handleStateChange(anyPrevState, anyCurrentState, isSideEffect, changeClosure, dispatchableItems)
         
+      case .whenDispatched(let observedType, let dispatchableItems) where type(of: dispatchable) == observedType:
+        self.handleWhenDispatched(dispatchableItems, anyPrevState, anyCurrentState, dispatchable)
+        
       case .whenDispatched:
-        self.handleWhenDispatched(anyPrevState, anyCurrentState, dispatchable)
+        break // observedType mismatch
       }
     }
   }
@@ -183,19 +169,15 @@ private struct ObserverLogic {
   }
   
   fileprivate func handleWhenDispatched(
+    _ itemsToDispatch: [DispatchObserverDispatchable.Type],
     _ anyPrevState: State,
     _ anyCurrentState: State,
     _ dispatched: Dispatchable) {
-   
-    guard let itemsToDispatch = self.dispatchableDictionary[ObserverLogic.stringName(for: dispatched)] else {
-      return
-    }
     
     for item in itemsToDispatch {
       guard let dispatchable = item.init(dispatchedItem: dispatched, prevState: anyPrevState, currentState: anyCurrentState) else {
         continue
       }
-      
       _ = self.dispatch(dispatchable)
     }
   }
