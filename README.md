@@ -67,9 +67,9 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
     // when the number is recevied. At that point we dispatch a State Updater
     // that updates the state
-		context.dependencies.apiManager
-    	.getRandomNumber()
-    	.thenDispatch({ newValue in SetCounter(newValue: newValue) })
+    context.dependencies.apiManager
+        .getRandomNumber()
+        .thenDispatch({ newValue in SetCounter(newValue: newValue) })
   }
 }
 
@@ -90,13 +90,13 @@ struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
     // when the number is recevied.
-		let promise = context.dependencies.apiManager.getRandomNumber()
+    let promise = context.dependencies.apiManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
     let newValue = try await(promise)
 
     // then the state is updated using the proper state updater
-		try await(context.dispatch(SetCounter(newValue: newValue)))
+    try await(context.dispatch(SetCounter(newValue: newValue)))
   }
 }
 ```
@@ -169,7 +169,7 @@ In Bending Spoons, we are extensively using Katana. In these years, we've define
 
 We strongly suggest to upgrade to the new Katana. The new Katana, in fact, not only adds new very powerful capabilities to the library, but it has also been designed to be extremely compatible with the old logic. All the actions and middleware you wrote for Katana 2.x, will continue to work in the new Katana as well. The breaking changes are most of the time related to simple typing changes that are easily addressable.
 
-If you prefer to continue with Katana 2.x, however, you can still access to Katana 2.x in the [dedicated branch](https://github.com/BendingSpoons/katana-swift/tree/0.8.x).
+If you prefer to continue with Katana 2.x, however, you can still access to Katana 2.x in the [dedicated branch](https://github.com/BendingSpoons/katana-swift/tree/2.x).
 
 ### Middleware
 In Katana, the concept of `middleware`  has been replaced with the new concept of `interceptor`. You can still use your middleware by leveraging the `middlewareToInterceptor` method.
