@@ -161,6 +161,8 @@ Katana is meant to give structure to the logic part of your app. When it comes t
 
 Katana is automatically intergated with the [Signpost API](https://developer.apple.com/documentation/os/ossignpostid). This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.
 
+![](https://raw.githubusercontent.com/BendingSpoons/katana-swift/feature/documentation/.github/Assets/signpost.jpg)
+
 ## Bending Spoons Guidelines
 
 In Bending Spoons, we are extensively using Katana. In these years, we've defined some best pratices that have helped us write more readable and easier to debug code. We've decided to open source them so that everyone can have a starting point when using Katana. You can find them [here](https://github.com/BendingSpoons/katana-swift/blob/master/BSP_GUIDELINES.md).
