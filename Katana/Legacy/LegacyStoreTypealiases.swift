@@ -24,6 +24,13 @@ public typealias StoreMiddleware =
 @available(*, deprecated, message: "Use PromisableStoreDispatch instead")
 public typealias StoreDispatch = (_: Action) -> ()
 
+/**
+ Helper function that transforms a (deprecated) middleware into a logically equivalent
+ interceptor. This method can be used to keep old middleware working on the new Katana.
+ 
+ - parameter middleware: the middleware to transform
+ - returns: a logically equivalent interceptor
+*/
 public func middlewareToInterceptor(_ middleware: @escaping StoreMiddleware) -> StoreInterceptor {
   return { context in
     

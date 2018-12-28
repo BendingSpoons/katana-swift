@@ -9,18 +9,15 @@
 
 import Foundation
 
-/**
- Struct that makes an action logger middleware available
- */
+/// Interceptor that logs all the dispatched items in the XCode console.
 public struct DispatchableLogger {
   
   /**
    This function returns a `StoreInterceptor` that intercepts and logs not black-listed actions
    
-   - Parameters:
-   - blackList: list of dispatchable types that must not be logged
-   - Returns: store interceptor that logs not black-listed actions
-   - See: `StoreInterceptor` for details
+   - parameter blackList: list of dispatchable types that must not be logged
+   - returns: store interceptor that logs not black-listed actions
+   - seeAlso: `StoreInterceptor` for details
    */
   public static func interceptor(blackList: [Dispatchable.Type] = []) -> StoreInterceptor {
     return { context in
