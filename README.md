@@ -26,7 +26,7 @@ struct CounterState: State {
 }
 ```
 
-The app `State` can only be modified by a `StateUpdater`. A `StateUpdater` represents an event that leads to a change in the `State` of the app. You define the behaviour of the action implementing the `updateState(:)` method that changes the `State` based on the current app `State` and the `StateUpdater` itself. The `updateState` should be a pure function, which means that it only depends on the inputs (that is, the state and the state updater itself) and it doesn't have side effects, such as network interactions.
+The app `State` can only be modified by a `StateUpdater`. A `StateUpdater` represents an event that leads to a change in the `State` of the app. You define the behaviour of the `State Updater` by implementing the `updateState(:)` method that changes the `State` based on the current app `State` and the `StateUpdater` itself. The `updateState` should be a pure function, which means that it only depends on the inputs (that is, the state and the state updater itself) and it doesn't have side effects, such as network interactions.
 
 ```swift
 struct IncrementCounter: StateUpdater {
@@ -37,7 +37,7 @@ struct IncrementCounter: StateUpdater {
 }
 ```
 
-The `Store` contains and manages your entire app `State` and it is responsible for dispatching `Actions` and updating the `State`.
+The `Store` contains and manages your entire app `State`. It is responsible of managing the dispatched items (e.g., the just mentioned `State Updater`).
 
 ```swift
 // ignore AppDependencies for the time being, it will explained later on
@@ -115,7 +115,7 @@ final class AppDependencies: SideEffectDependencyContainer {
 
 ## Interceptors
 
-When defining a `Store` you can provide a list of interceptors that are triggered whenever an action is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
+When defining a `Store` you can provide a list of interceptors that are triggered whenever an item is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
 
 #### DispatchableLogger
 Katana comes with a built in `DispatchableLogger` interceptor that logs all the dispatchable, but the one listed in the black list parameter.
