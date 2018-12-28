@@ -202,6 +202,8 @@ Make awesome applications using Katana together with [Tempura](https://github.co
 
 [Documentation](http://katana.bendingspoons.com)
 
+You can also add Katana to [Dash](https://kapeli.com/dash) using the proper [docset](https://github.com/BendingSpoons/katana-swift/blob/master/docs/latest/docsets/Katana.tgz?raw=true).
+
 ## Installation
 
 Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your Xcode project.
