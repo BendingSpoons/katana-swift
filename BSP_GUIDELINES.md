@@ -130,12 +130,12 @@ ProjectName
     |-- Logic
           |-- AppDependenciesContainer.swift
           |-- Home
-                |-- Home.swift          
+                |-- HomeDispatchable.swift  // side effects and state updaters        
           |-- Login
-                |-- Login.swift // side effects and state updaters
+                |-- LoginDispatchable.swift // side effects and state updaters
                 |-- LoginManager.swift
           |-- PlanGenerator
-                |-- PlanGenerator.swift // side effects and state updaters
+                |-- PlanGeneratorDispatchable.swift // side effects and state updaters
                 |-- PlanGeneratorModels.swift 
                 |-- PlanGeneratorManager.swift 
     |-- UI
