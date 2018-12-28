@@ -14,7 +14,7 @@
             buildForArchiving = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "F38AC77327824220CEF11333"
+               BlueprintIdentifier = "76009DF05AC564628E00D8A0"
                BlueprintName = "Katana"
                ReferencedContainer = "container:Katana.xcodeproj"
                BuildableName = "Katana.framework">
@@ -28,7 +28,7 @@
             buildForArchiving = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "530F2CE64FF28BB764AE2BE4"
+               BlueprintIdentifier = "CD9BF7706775D25207B5EB75"
                BlueprintName = "KatanaTests"
                ReferencedContainer = "container:Katana.xcodeproj"
                BuildableName = "KatanaTests.xctest">
@@ -48,7 +48,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "530F2CE64FF28BB764AE2BE4"
+               BlueprintIdentifier = "CD9BF7706775D25207B5EB75"
                BlueprintName = "KatanaTests"
                ReferencedContainer = "container:Katana.xcodeproj"
                BuildableName = "KatanaTests.xctest">
@@ -72,7 +72,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F38AC77327824220CEF11333"
+            BlueprintIdentifier = "76009DF05AC564628E00D8A0"
             BlueprintName = "Katana"
             ReferencedContainer = "container:Katana.xcodeproj"
             BuildableName = "Katana.framework">
@@ -88,7 +88,7 @@
       <BuildableProductRunnable>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "F38AC77327824220CEF11333"
+            BlueprintIdentifier = "76009DF05AC564628E00D8A0"
             BlueprintName = "Katana"
             ReferencedContainer = "container:Katana.xcodeproj"
             BuildableName = "Katana.framework">
