@@ -262,7 +262,9 @@ fileprivate extension Store {
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    return promise.void
+    promise.then { _ in }
+    
+    return promise
   }
   
   private func manageUpdateState(_ dispatchable: Dispatchable) throws {
@@ -300,7 +302,10 @@ fileprivate extension Store {
       try interceptorsChain(sideEffect)
     }
     
-    return promise.void
+    // triggers the execution of the promise even though no one is listening for it
+    promise.then { _ in }
+    
+    return promise
   }
   
   private func manageSideEffect(_ dispatchable: Dispatchable) throws -> Void {
@@ -329,7 +334,9 @@ fileprivate extension Store {
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    return promise.void
+    promise.then { _ in }
+    
+    return promise
   }
   
   private func manageAction(_ dispatchable: Dispatchable) throws -> Void {
