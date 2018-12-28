@@ -11,6 +11,8 @@ import os.signpost
 struct SignpostLogger {
   typealias LogEndClosure = () -> Void
   
+  public static var isEnabled = false
+  
   static var shared: SignpostLogger = SignpostLogger()
   static var noop: LogEndClosure = { }
   
@@ -78,7 +80,7 @@ struct SignpostLogger {
 // MARK: Private
 extension SignpostLogger {
   private init() {
-    if #available(iOS 10.0, *) {
+    if #available(iOS 10.0, *), SignpostLogger.isEnabled {
       self.katanaLogger = OSLog(subsystem: "Katana", category: "Katana")
       
     } else {
