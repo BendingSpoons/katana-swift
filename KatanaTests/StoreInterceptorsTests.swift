@@ -9,6 +9,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import Katana
+import Hydra
 
 class StoreInterceptorsTests: QuickSpec {
   override func spec() {

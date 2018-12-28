@@ -10,6 +10,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import Katana
+import Hydra
 
 class SideEffectTests: QuickSpec {
   override func spec() {

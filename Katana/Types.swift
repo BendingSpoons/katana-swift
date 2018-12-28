@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import Hydra
 
 /// Typealias for a `Store` listener
 public typealias StoreListener = () -> ()

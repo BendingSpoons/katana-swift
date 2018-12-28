@@ -7,6 +7,7 @@
 
 import Foundation
 import Katana
+import Hydra
 
 final class TestDependenciesContainer: SideEffectDependencyContainer {
   

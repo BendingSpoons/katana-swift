@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import Hydra
 
 /**
  Type erasure for `SideEffectContext`

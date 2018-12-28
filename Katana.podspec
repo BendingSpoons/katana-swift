@@ -24,4 +24,6 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target = '8.3'
   s.source_files = ['Katana/**/*.{swift,h}']
+
+  s.dependency 'HydraAsync', '~> 1.2'
 end

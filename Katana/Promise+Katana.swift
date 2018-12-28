@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import Hydra
 
 /// Singleton container for the store
 struct SharedStoreContainer {
