@@ -11,8 +11,6 @@ import Foundation
 /**
  An action represents an event that leads to a change in the state of the application.
  It can be triggered from a user action, from a system event or any event in general.
- 
- In general this protocol should not be used directly.
 */
 @available(*, deprecated, message: "Use AnyStateUpdater instead")
 public protocol Action: Dispatchable {
