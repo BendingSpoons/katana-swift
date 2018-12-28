@@ -161,6 +161,7 @@ class SideEffectTests: QuickSpec {
           }
           expect(rejectionError).toEventuallyNot(beNil())
         }
+        
         it("propagates error when using middleware") {
           let middleware: StoreMiddleware = { getState, dispatch in
             return { next in
@@ -183,6 +184,24 @@ class SideEffectTests: QuickSpec {
               rejectionError = error
           }
           expect(rejectionError).toEventuallyNot(beNil())
+        }
+        
+        it("retries dispatched actions") {
+          store = Store<AppState, TestDependenciesContainer>()
+          
+          /// This sideEffect will fail the first time, but it will succeed if retried
+          struct RetryMe: SideEffect {
+            func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+              try context.awaitDispatch(AddTodo(todo: Todo(title: "test", id: "test")))
+              if context.getState().todo.todos.count < 2 {
+                throw NSError(domain: "Test error", code: -1, userInfo: nil)
+              }
+            }
+          }
+          
+          store.dispatch(RetryMe())
+            .retry(2)
+            .catch { _ in fail("Retry should succeed") }
         }
       }
     }
