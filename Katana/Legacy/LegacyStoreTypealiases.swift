@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Typealias for the
 public typealias StoreMiddlewareNext = (_: Dispatchable) -> Void
 
 /**

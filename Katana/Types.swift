@@ -9,7 +9,10 @@
 import Foundation
 import Hydra
 
-/// Typealias for a `Store` listener
+/**
+ Typealias for the function that is invoked to continues with the middleware
+ chains.
+ */
 public typealias StoreListener = () -> ()
 
 /// Typealias for the `Store` listener unsubscribe closure

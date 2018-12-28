@@ -104,10 +104,13 @@ public extension AnySideEffectContext {
 
 /// `SideEffectContext` conformance to `AnySideEffectContext`
 extension SideEffectContext: AnySideEffectContext {
+  
+  /// Implementation of the `anyDependencies` requirement for `AnySideEffectContext`
   public var anyDependencies: SideEffectDependencyContainer {
     return self.dependencies
   }
   
+  /// Implementation of the `getAnyState` requirement for `AnySideEffectContext`
   public func getAnyState() -> State {
     return self.getState()
   }
@@ -192,6 +195,7 @@ public protocol SideEffect: AnySideEffect {
 
 /// Conformance of `SideEffect` to `AnySideEffect`
 public extension SideEffect {
+  /// Implementation of the `sideEffect` requirement for `AnySideEffectContext`
   public func sideEffect(_ context: AnySideEffectContext) throws {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
