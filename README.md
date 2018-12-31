@@ -67,7 +67,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
     // when the number is recevied. At that point we dispatch a State Updater
     // that updates the state
-    context.dependencies.apiManager
+    context.dependencies.APIManager
         .getRandomNumber()
         .thenDispatch({ newValue in SetCounter(newValue: newValue) })
   }
@@ -90,7 +90,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
     // when the number is recevied.
-    let promise = context.dependencies.apiManager.getRandomNumber()
+    let promise = context.dependencies.APIManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
     let newValue = try await(promise)
@@ -103,7 +103,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 
 #### Dependencies
 
-The side effect example has used an `apiManager` method. To access the `apiManager`, the code has used the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
+The side effect example has used an `APIManager` method. To access the `APIManager`, the code has used the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
 
 ```swift
 final class AppDependencies: SideEffectDependencyContainer {
@@ -157,6 +157,7 @@ Katana is meant to give structure to the logic part of your app. When it comes t
   <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/tempura.png" alt="Tempura" width="240" /></a>
   <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
 </p>
+
 ## Signpost Logger
 
 Katana is automatically intergated with the [Signpost API](https://developer.apple.com/documentation/os/ossignpostid). This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.
@@ -276,7 +277,7 @@ Then drag the built `Katana.framework` into your Xcode project.
 
 - [Everyone at Bending Spoons](http://bendingspoons.com/team.html) for providing their priceless input;
 - [@orta](https://twitter.com/orta) for providing input on how to opensource the project.
-- [malcommac](https://github.com/malcommac/) for developing and maintaining [Hydra](https://github.com/malcommac/Hydra/)
+- [@danielemargutti](https://twitter.com/danielemargutti/) for developing and maintaining [Hydra](https://github.com/malcommac/Hydra/)
 
 ## Contribute
 
