@@ -8,7 +8,7 @@
 import Foundation
 
 /**
- Protocol that a dispatchable that wants to be dispatched in response to a notification
+ Protocol implemented by a dispatchable that wants to be dispatched in response to a notification
  should implement
 */
 public protocol NotificationObserverDispatchable: Dispatchable {
@@ -24,8 +24,7 @@ public protocol NotificationObserverDispatchable: Dispatchable {
 }
 
 /**
- Protocol that a dispatchable that wants to be dispatched in response to a change of the
- state should implement
+ Protocol implemented by a dispatchable that wants to be dispatched in response to a change to the state 
  */
 public protocol StateObserverDispatchable: Dispatchable {
   /**
@@ -33,7 +32,7 @@ public protocol StateObserverDispatchable: Dispatchable {
    that the dispatchable should not be sent to the Store, the init can fail
    (that is, returns nil)
    
-   - parameter prevState: the state before it has changed
+   - parameter prevState:  the last state before current changes
    - parameter currentState: the current state
    - returns: either the dispatchable item or nil
    */
@@ -41,8 +40,7 @@ public protocol StateObserverDispatchable: Dispatchable {
 }
 
 /**
- Protocol that a dispatchable that wants to be dispatched in response to the dispatch
- of another dispatchable item should implement
+Protocol implemented by a dispatchable that wants to be dispatched in response to the dispatch of another dispatchable
 */
 public protocol DispatchObserverDispatchable: Dispatchable {
   /**
@@ -51,7 +49,7 @@ public protocol DispatchObserverDispatchable: Dispatchable {
    (that is, returns nil)
    
    - parameter dispatchedItem: the item that triggered the init
-   - parameter prevState: the state before it has changed
+   - parameter prevState: the last state before current changes
    - parameter currentState: the current state
    - returns: either the dispatchable item or nil
    */
@@ -59,8 +57,7 @@ public protocol DispatchObserverDispatchable: Dispatchable {
 }
 
 /**
- Protocol that a dispatchable that wants to be dispatched when the store starts should
- implement
+ Protocol implemented by a dispatchable that wants to be dispatched when the store starts
 */
 public protocol OnStartObserverDispatchable: Dispatchable {
   /**
@@ -134,7 +131,7 @@ private struct ObserverLogic {
   }
   
   /**
-   Listen the notifications contained in the passed items.
+   Listens the notifications contained in the passed items.
    
    This should be invoked as early as possible
   */
@@ -152,7 +149,7 @@ private struct ObserverLogic {
   /**
    Handles the items that should be dispatched when the store starts
    
-   This should be invoked when the store initialise the interceptor
+   This should be invoked when the store initialises the interceptor
   */
   fileprivate func handleOnStart() {
     for item in self.items {
@@ -177,8 +174,8 @@ private struct ObserverLogic {
    Handles a specific notification by adding an observer (using NotificationCenter)
    that dispatches the given types
    
-   - parameter name: the name of the notification to listen
-   - parameter typesToDispatch: the types of dispatchable to instantiate annd dispatch when the
+   - parameter name: the name of the notification to listen to
+   - parameter typesToDispatch: the types of dispatchable to instantiate and dispatch when the
    notification is received
   */
   private func handleNotification(
@@ -302,7 +299,7 @@ public extension ObserverInterceptor {
     
     /**
      Observes a change in the state.
-     - parameter observer: a function that returns true if the change of state should trigger the dispatch of the items
+     - parameter observer: a function that should return true when the changes to the state should dispatch items
      - parameter dispatchable: a list of items to dispatch if the `observer` returns true
     */
     case whenStateChange(_ observer: StateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])

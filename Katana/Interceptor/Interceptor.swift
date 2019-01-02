@@ -10,19 +10,19 @@
 import Foundation
 
 /**
- Typealias for the function that is invoked to continues with the interceptors
+ Typealias for the function that is invoked to continue with the interceptors
  chains.
 */
 public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
 
 /**
  An interceptor is like a catch-all system that can be used to implement
- functionalities such as logging or to dynamically change the behaviour of
+ functionalities such as logging, or to dynamically change the behaviour of
  the store. An interceptor is invoked every time something has been dispatched and it is about to
  be handled.
  
  #### Initialization
- When the store is initialise, the first closure is invoked and the interceptor receives the
+ When the store is initialised, the first closure is invoked and the interceptor receives the
  context passed to the side effects. The interceptor can later use this context to retrieve the
  state or to dispatch new items.
  
@@ -41,7 +41,7 @@ public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
  Before handling the dispatchable (e.g., update the state in case of a `StateUpdater`). The last closure
  is invoked.
  
- Here the interceptor can do anything it needed to implement the desired behaviour. Eventually, though, it
+ Here the interceptor can do anything it needs to in order to implement the desired behaviour. Eventually, though, it
  should either invoke next passing the dispatchable (that is, the chain continues) or throw an error, which
  will reject the related promise and will make so that the operation related to the dispatchable is not performed.
  

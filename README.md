@@ -83,7 +83,7 @@ struct SetCounter: StateUpdater {
 }
 ```
 
-Moreover, you can leverage the `await` operato to write logic that mimic the [Async/Await](https://github.com/tc39/ecmascript-asyncawait) pattern, which allows you to write async code in sync manner.
+ Moreover, you can leverage the `await` operator to write logic that mimics the [Async/Await](https://github.com/tc39/ecmascript-asyncawait) pattern, which allows you to write async code in a sync manner.
 
 ```swift
 struct GenerateRandomNumberFromBackend: SideEffect {
@@ -118,7 +118,7 @@ final class AppDependencies: SideEffectDependencyContainer {
 When defining a `Store` you can provide a list of interceptors that are triggered whenever an item is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
 
 #### DispatchableLogger
-Katana comes with a built in `DispatchableLogger` interceptor that logs all the dispatchable, but the one listed in the black list parameter.
+ Katana comes with a built-in `DispatchableLogger` interceptor that logs all the dispatchables, except the ones listed in the blacklist parameter.
 
 ```swift
 let dispatchableLogger = DispatchableLogger.interceptor(blackList: [NotToLog.self])
@@ -172,10 +172,10 @@ In Bending Spoons, we are extensively using Katana. In these years, we've define
 
 We strongly suggest to upgrade to the new Katana. The new Katana, in fact, not only adds new very powerful capabilities to the library, but it has also been designed to be extremely compatible with the old logic. All the actions and middleware you wrote for Katana 2.x, will continue to work in the new Katana as well. The breaking changes are most of the time related to simple typing changes that are easily addressable.
 
-If you prefer to continue with Katana 2.x, however, you can still access to Katana 2.x in the [dedicated branch](https://github.com/BendingSpoons/katana-swift/tree/2.x).
+If you prefer to continue with Katana 2.x, however, you can still access Katana 2.x in the [dedicated branch](https://github.com/BendingSpoons/katana-swift/tree/2.x).
 
 ### Middleware
-In Katana, the concept of `middleware`  has been replaced with the new concept of `interceptor`. You can still use your middleware by leveraging the `middlewareToInterceptor` method.
+In Katana, the concept of `middleware` has been replaced with the new concept of `interceptor`. You can still use your middleware by leveraging the `middlewareToInterceptor` method.
 
 ## Swift Version
 Certain versions of Katana only support certain versions of Swift. Depending on wich version of Swift your project is using, you should use specific versions of Tempura.
