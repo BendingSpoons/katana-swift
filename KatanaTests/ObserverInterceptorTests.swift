@@ -26,7 +26,7 @@ class ObserverInterceptorTests: QuickSpec {
       describe("When listening for state changes") {
         it("works") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+            .onStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [StateChangeAddUser.self])
           ])
@@ -42,7 +42,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("works with multiple items to dispatch") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+            .onStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [StateChangeAddUser.self, StateChangeAddUser.self])
           ])
@@ -58,7 +58,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("handles nil init") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+            .onStateChange(ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
               return prev.todo.todos.count != curr.todo.todos.count
             }, [NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
@@ -78,7 +78,7 @@ class ObserverInterceptorTests: QuickSpec {
       describe("When listening for any state changes") {
         it("works") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange({ (prev: State, curr: State) -> Bool in
+            .onStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -97,7 +97,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("works with multiple items to dispatch") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange({ (prev: State, curr: State) -> Bool in
+            .onStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -116,7 +116,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("handles nil init") {
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange({ (prev: State, curr: State) -> Bool in
+            .onStateChange({ (prev: State, curr: State) -> Bool in
               guard let s = prev as? AppState, let c = curr as? AppState else {
                 return false
               }
@@ -138,7 +138,7 @@ class ObserverInterceptorTests: QuickSpec {
           var invoked = false
         
           let interceptor = ObserverInterceptor.observe([
-            .whenStateChange({ (prev: State, curr: State) -> Bool in
+            .onStateChange({ (prev: State, curr: State) -> Bool in
               invoked = true
               return false
             }, [])
@@ -157,7 +157,7 @@ class ObserverInterceptorTests: QuickSpec {
       describe("When listening for dispatchable") {
         it("works") {
           let interceptor = ObserverInterceptor.observe([
-            .whenDispatched(AddTodo.self, [StateChangeAddUser.self])
+            .onDispatch(AddTodo.self, [StateChangeAddUser.self])
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -171,7 +171,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("works with multiple items to dispatch") {
           let interceptor = ObserverInterceptor.observe([
-            .whenDispatched(AddTodo.self, [StateChangeAddUser.self, StateChangeAddUser.self])
+            .onDispatch(AddTodo.self, [StateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -184,8 +184,8 @@ class ObserverInterceptorTests: QuickSpec {
         }
         it("works with multiple observes") {
           let interceptor = ObserverInterceptor.observe([
-            .whenDispatched(AddTodo.self, [StateChangeAddUser.self]),
-            .whenDispatched(AddTodo.self, [NilStateChangeAddUser.self]),
+            .onDispatch(AddTodo.self, [StateChangeAddUser.self]),
+            .onDispatch(AddTodo.self, [NilStateChangeAddUser.self]),
             ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -199,7 +199,7 @@ class ObserverInterceptorTests: QuickSpec {
         
         it("handles nil init") {
           let interceptor = ObserverInterceptor.observe([
-            .whenDispatched(AddTodo.self, [NilStateChangeAddUser.self, StateChangeAddUser.self])
+            .onDispatch(AddTodo.self, [NilStateChangeAddUser.self, StateChangeAddUser.self])
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])

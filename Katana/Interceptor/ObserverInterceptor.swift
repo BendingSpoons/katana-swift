@@ -93,7 +93,7 @@ public struct ObserverInterceptor {
     return { context in
       
       let logic = ObserverLogic(dispatch: context.dispatch, items: items)
-      logic.listenNotifications()
+      logic.listenToNotifications()
       logic.handleOnStart()
       
       return { next in
@@ -138,7 +138,7 @@ private struct ObserverLogic {
    
    This should be invoked as early as possible
   */
-  fileprivate func listenNotifications() {
+  fileprivate func listenToNotifications() {
     for item in self.items {
       
       guard case let .onNotification(notificationName, itemsToDispatch) = item else {
@@ -204,7 +204,7 @@ private struct ObserverLogic {
   
   /**
    Handles the fact that a dispatchable has been received and it changed the state from `anyPrevState` to
-   `anyCurrentState`. The method dispatched the proper items.
+   `anyCurrentState`. The method takes care of dispatching proper items based on the observer configuration.
    
    - parameter dispatchable: the dispatchable that has been dispatched
    - parameter anyPrevState: the state before the execution of the dispatchable
@@ -219,19 +219,19 @@ private struct ObserverLogic {
       case .onNotification, .onStart:
         continue // handled in a different way
         
-      case let .whenStateChange(changeClosure, dispatchableItems):
-        self.handleStateChange(anyPrevState, anyCurrentState, isSideEffect, changeClosure, dispatchableItems)
+      case let .onStateChange(changeClosure, dispatchableItems):
+        self.handleOnStateChange(anyPrevState, anyCurrentState, isSideEffect, changeClosure, dispatchableItems)
         
-      case .whenDispatched(let observedType, let dispatchableItems) where type(of: dispatchable) == observedType:
-        self.handleWhenDispatched(dispatchableItems, anyPrevState, anyCurrentState, dispatchable)
+      case .onDispatch(let observedType, let dispatchableItems) where type(of: dispatchable) == observedType:
+        self.handleOnDispatched(dispatchableItems, anyPrevState, anyCurrentState, dispatchable)
         
-      case .whenDispatched:
+      case .onDispatch:
         break // observedType mismatch
       }
     }
   }
   
-  fileprivate func handleStateChange(
+  fileprivate func handleOnStateChange(
     _ anyPrevState: State,
     _ anyCurrentState: State,
     _ isSideEffect: Bool,
@@ -259,7 +259,7 @@ private struct ObserverLogic {
    - parameter anyCurrentState: the state after the execution of the dispatchable
    - parameter dispatched: the dispatchable that has been dispatched
   */
-  fileprivate func handleWhenDispatched(
+  fileprivate func handleOnDispatched(
     _ itemsToDispatch: [DispatchObserverDispatchable.Type],
     _ anyPrevState: State,
     _ anyCurrentState: State,
@@ -305,7 +305,7 @@ public extension ObserverInterceptor {
      - parameter observer: a function that returns true if the change of state should trigger the dispatch of the items
      - parameter dispatchable: a list of items to dispatch if the `observer` returns true
     */
-    case whenStateChange(_ observer: StateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
+    case onStateChange(_ observer: StateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
     
     /**
      Observes a notification.
@@ -319,7 +319,7 @@ public extension ObserverInterceptor {
      - parameter dispatchable: the type of the dispatchable to observe
      - parameter dispatchable: a list of items to dispatch when `dispatchable` is dispatched
     */
-    case whenDispatched(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
+    case onDispatch(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
     
     /**
      When the store starts
