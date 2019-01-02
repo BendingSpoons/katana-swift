@@ -8,7 +8,7 @@
 
 import Foundation
 
-/// Typealias for the
+/// Typealias for the middleware next function
 public typealias StoreMiddlewareNext = (_: Dispatchable) -> Void
 
 /**
