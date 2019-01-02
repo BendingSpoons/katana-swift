@@ -2,8 +2,9 @@
 //  StoreMiddlewareTests.swift
 //  KatanaTests
 //
-//  Created by Mauro Bolis on 22/10/2018.
-//
+//  Copyright © 2019 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Quick

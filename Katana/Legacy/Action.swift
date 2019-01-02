@@ -2,7 +2,7 @@
 //  Action.swift
 //  Katana
 //
-//  Copyright © 2016 Bending Spoons.
+//  Copyright © 2019 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
