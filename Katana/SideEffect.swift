@@ -143,7 +143,7 @@ public protocol AnySideEffect: Dispatchable {
  you can use `AnySideEffect`.
  
  ### App Tips & Tricks
- To futherly simplify the usage of a `StateUpdater` you can add to your application an helper protocol
+To further simplify the usage of a `StateUpdater` you can add to your application a helper protocol
  ```swift
  /// assuming `AppState` is the type of your application's state and `DependenciesContainer` is the
  /// container of your dependencies
@@ -156,17 +156,17 @@ public protocol SideEffect: AnySideEffect {
   /// The type of the state of the store
   associatedtype StateType: State
   
-  /// The type of the dependencies container that are used to passed dependencies to the side effect
+  /// The type of the dependencies container that is used to pass dependencies to the side effect
   associatedtype Dependencies: SideEffectDependencyContainer
 
   /**
    Block that implements the logic of the side effect.
    You can implement the logic, leveraging the technology you desire for threading and flow management.
    
-   Howoever, there are two patterns that Katana suggests to use: syncronous side effects and asyncronous side effects
+   However, there are two patterns that Katana suggests to use: synchronous side effects and asynchronous side effects
    
    #### Syncronous
-   A syncronous side effect is a side effect that finishes its execution when the `sideEffect(:)` method
+   A synchronous side effect is a side effect that finishes its execution when the `sideEffect(:)` method
    is completed. Since the related promise (that is, the promise that is returned when the side effect is dispatched)
    is resolved when this method ends, it means that the caller can safely assume that the operations are completed.
    
@@ -181,8 +181,8 @@ public protocol SideEffect: AnySideEffect {
    has been completed. This can be very helpful for very long running operations where you don't want to block
    other side effects in the queue.
    
-   In order to do use this approach, you can simply apply any asyncronous technique you know and that doesn't block the method
-   (e.g., promise, callback).
+   In order to do use this approach, you can simply apply any asynchronous technique you know that does not block the method
+   (e.g.: promise, callback).
    
    This approach is not suggested and should be used only in rare cases
    

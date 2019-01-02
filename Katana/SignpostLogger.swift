@@ -50,7 +50,7 @@ struct SignpostLogger {
    Starts to log an operation
    
    - parameter type: the type of operation
-   - parameter name: an unique name associated with the log
+   - parameter name: a unique name associated with the log
    - returns: a closure to invoke when the related operations ends
   */
   func logStart(type: LogType, name: String) -> LogEndClosure {
@@ -78,8 +78,8 @@ struct SignpostLogger {
    Starts to log a state updater operation
    
    - parameter log: the underlying log to use
-   - parameter name: an unique name associated with the log
-   - returns: a closure to invoke when the related operations ends
+   - parameter name: a unique name associated with the log
+   - returns: a closure to invoke when the related operations end
    */
   @available(iOS 12.0, *)
   func logStateUpdater(log: OSLog, name: String) -> LogEndClosure {
@@ -96,8 +96,8 @@ struct SignpostLogger {
    Starts to log a side effect operation
    
    - parameter log: the underlying log to use
-   - parameter name: an unique name associated with the log
-   - returns: a closure to invoke when the related operations ends
+   - parameter name: a unique name associated with the log
+   - returns: a closure to invoke when the related operation ends
   */
   @available(iOS 12.0, *)
   func logSideEffect(log: OSLog, name: String) -> LogEndClosure {
@@ -114,8 +114,8 @@ struct SignpostLogger {
    Starts to log an action operation
    
    - parameter log: the underlying log to use
-   - parameter name: an unique name associated with the log
-   - returns: a closure to invoke when the related operations ends
+   - parameter name: a unique name associated with the log
+   - returns: a closure to invoke when the related operation ends
    */
   @available(iOS 12.0, *)
   func logAction(log: OSLog, name: String) -> LogEndClosure {
