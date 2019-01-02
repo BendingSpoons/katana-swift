@@ -10,7 +10,6 @@ import Foundation
 
 /**
  Protocol implemented by a dispatchable that wants to be dispatched in response to a notification
- should implement
 */
 public protocol NotificationObserverDispatchable: Dispatchable {
   /**
