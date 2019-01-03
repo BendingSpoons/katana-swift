@@ -35,6 +35,9 @@
                 <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PartialStore.html">PartialStore</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Store.html">Store</a>
               </li>
             </ul>
@@ -44,6 +47,22 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Promise.html">Promise</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6Katana23middlewareToInterceptoryyAA12Dispatchable_pKcyAaC_pKccAA20AnySideEffectContext_pcyAaC_pcyAaC_pccAA5State_pyc_yAA6Action_pctcF">middlewareToInterceptor(_:)</a>
               </li>
             </ul>
           </li>
@@ -60,19 +79,49 @@
                 <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/AnySideEffect.html">AnySideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStateUpdater.html">AnyStateUpdater</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/AnyStore.html">AnyStore</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AsyncAction.html">AsyncAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Dispatchable.html">Dispatchable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffect.html">SideEffect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateObserverDispatchable.html">StateObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateUpdater.html">StateUpdater</a>
               </li>
             </ul>
           </li>
@@ -88,19 +137,46 @@
               <li class="nav-group-task">
                 <a href="../Structs/ActionLogger.html">ActionLogger</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DispatchableLogger.html">DispatchableLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObserverInterceptor.html">ObserverInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObserverInterceptor/ObserverType.html">– ObserverType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SideEffectContext.html">SideEffectContext</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana8GetStatea">GetState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/PromisableStoreDispatch">PromisableStoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20StoreInterceptorNexta">StoreInterceptorNext</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana19StoreMiddlewareNexta">StoreMiddlewareNext</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
@@ -115,95 +191,66 @@
             <h1>Store</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="o">&gt;</span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">open</span> <span class="kd">class</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">S</span><span class="p">,</span> <span class="kt">D</span><span class="o">&gt;</span> <span class="p">:</span> <span class="kt"><a href="../Classes/PartialStore.html">PartialStore</a></span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">S</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="kt">D</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span></code></pre>
 
                 </div>
               </div>
-            <p>The <code>Store</code> class contains and manages the state of the application and the
-updates to the state itself.</p>
+            <p>The <code>Store</code> is a sort of single entry point that handles the logic of your application.
+In Katana, all the various pieces of information that your application manages should be stored
+in a single atom, called state (see also <code><a href="../Protocols/State.html">State</a></code> protocol).</p>
 
-<p>In Katana, every relevant information in the application should be stored in the
-Store&rsquo;s state. The only way to update the state is to dispatch an <code><a href="../Protocols/Action.html">Action</a></code>. At this point
-the store will execute the following operations:</p>
+<p>The <code>Store</code>, however, doesn&rsquo;t really implements any application specific logic: this class
+only manages operations that are requsted by the application-specific logic. In particular,
+you can require the <code>Store</code> to execute something by <code>dispatching a dispatchable item</code>.</p>
+
+<p>Currently the store handles 3 types of dispatchable: <code>State Updater</code>, <code>Side Effect</code> and (deprecated) <code><a href="../Protocols/Action.html">Action</a></code>.</p>
+<h4 id='update-the-state' class='heading'>Update the state</h4>
+
+<p>As written before, in Katana every relevant information in the application should be stored in the
+Store&rsquo;s state. The only way to update the state is to dispatch a <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> (or the legacy <code><a href="../Protocols/Action.html">Action</a></code>).
+At this point the <code>Store</code> will execute the following operations:</p>
 
 <ul>
-<li>it executes the middleware</li>
-<li>it creates the new state, by invoking the <code>updateState</code> function of the action</li>
+<li>it executes the interceptors</li>
+<li>it creates the new state, by invoking the <code>updateState</code> function of the <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code></li>
 <li>it updates the state</li>
-<li>it executes the side effect of the action, if implemented (see <code><a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a></code>)</li>
-<li>it invokes all the listeners</li>
+<li>it resolves the promise</li>
 </ul>
-<h4 id='ui-integration' class='heading'>UI Integration</h4>
+<h4 id='handle-to-business-logic' class='heading'>Handle to Business Logic</h4>
 
-<p>You typically don&rsquo;t deal directly with the store in the UI.
-Katana will update the UI automatically when the state changes. It will also allow you to
-get pieces of information from the store&rsquo;s state when you need them.
-See <code>ConnectedNodeDescription</code> for more information about this topic</p>
+<p>Non trivial applications require to interact with external services and/or implement complex logics.
+The proper way to handle these is by dispatching a <code><a href="../Protocols/SideEffect.html">SideEffect</a></code>.
+The <code>Store</code> will execute the following operations:</p>
+
+<ul>
+<li>it executes the interceptors</li>
+<li>it executes the <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> body</li>
+<li>it resolves the promise</li>
+</ul>
+<h4 id='listen-for-updates' class='heading'>Listen for updates</h4>
+
+<p>You can attach a listener that is invoked every time the state changes by using <code>addListener</code>.</p>
+<h4 id='intercept-dispatchable' class='heading'>Intercept Dispatchable</h4>
+
+<p>It is possible to intercept and reshape the behaviour of the <code>Store</code> by using a <code><a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a></code>.
+A <code><a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a></code> is executed every time something has dispatched, and before it is actually
+managed by the <code>Store</code>. Here you implement behaviours like logging, blocking items before they&rsquo;re executed
+and even change dynamically which dispatchable items arrive to the <code>Store</code> itself.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> for more information about how to implement an update of the state
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> for more information about how to implement an complex/asyncronous logic
+
+</div>
 
           </section>
           <section class="section task-group-section">
             <div class="task-group">
               <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Katana5StoreC16StateInitializera"></a>
-                    <a name="//apple_ref/swift/Alias/StateInitializer" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC16StateInitializera">StateInitializer</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Closure that is used to initialize the state</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">StateInitializer</span><span class="o">&lt;</span><span class="kt">T</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="o">&gt;</span> <span class="o">=</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">T</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L63">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Katana5StoreC5statexvp"></a>
-                    <a name="//apple_ref/swift/Property/state" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC5statexvp">state</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>The current state of the application</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">open</span> <span class="nf">fileprivate</span><span class="p">(</span><span class="k">set</span><span class="p">)</span> <span class="k">var</span> <span class="nv">state</span><span class="p">:</span> <span class="kt">StateType</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L66">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
                 <li class="item">
                   <div>
                     <code>
@@ -224,12 +271,12 @@ See <code>ConnectedNodeDescription</code> for more information about this topic<
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">isReady</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">private(set)</span> <span class="k">var</span> <span class="nv">isReady</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L75">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L153">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -237,9 +284,9 @@ See <code>ConnectedNodeDescription</code> for more information about this topic<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana5StoreC12dependenciesAA29SideEffectDependencyContainer_pSgvp"></a>
+                    <a name="/s:6Katana5StoreC12dependenciesq_Sgvp"></a>
                     <a name="//apple_ref/swift/Property/dependencies" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC12dependenciesAA29SideEffectDependencyContainer_pSgvp">dependencies</a>
+                    <a class="token" href="#/s:6Katana5StoreC12dependenciesq_Sgvp">dependencies</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -259,12 +306,12 @@ See <code>ConnectedNodeDescription</code> for more information about this topic<
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="o">!</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="kt">D</span><span class="o">!</span></code></pre>
 
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L82">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L160">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -272,9 +319,9 @@ See <code>ConnectedNodeDescription</code> for more information about this topic<
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana5StoreCACyxGycfc"></a>
+                    <a name="/s:6Katana5StoreCACyxq_Gycfc"></a>
                     <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreCACyxGycfc">init()</a>
+                    <a class="token" href="#/s:6Katana5StoreCACyxq_Gycfc">init()</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -299,7 +346,7 @@ side effects. The state will be created using the default init of the state</p>
                         <p>An instance of store</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L110-L116">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L197-L199">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -307,9 +354,9 @@ side effects. The state will be created using the default init of the state</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana5StoreC10middleware12dependenciesACyxGSayyAA6Action_pcyAaG_pccAA5State_pyc_yAaG_pctcG_AA29SideEffectDependencyContainer_pXptcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(middleware:dependencies:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC10middleware12dependenciesACyxGSayyAA6Action_pcyAaG_pccAA5State_pyc_yAaG_pctcG_AA29SideEffectDependencyContainer_pXptcfc">init(middleware:dependencies:)</a>
+                    <a name="/s:6Katana5StoreC12interceptorsACyxq_GSayyAA12Dispatchable_pKcyAaF_pKccAA20AnySideEffectContext_pcG_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(interceptors:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana5StoreC12interceptorsACyxq_GSayyAA12Dispatchable_pKcyAaF_pKccAA20AnySideEffectContext_pcG_tcfc">init(interceptors:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -325,7 +372,7 @@ init of the state type.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="n">convenience</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">middleware</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a></span><span class="p">],</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="o">.</span><span class="k">Type</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="n">convenience</span> <span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">interceptors</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a></span><span class="p">])</span></code></pre>
 
                         </div>
                       </div>
@@ -336,24 +383,12 @@ init of the state type.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>middleware</em>
+                                <em>interceptors</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>the middleware to trigger when an action is dispatched</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>dependencies</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the dependencies to use in the actions side effects</p>
+                                  <p>a list of interceptors that are executed every time something is dispatched</p>
                                 </div>
                               </td>
                             </tr>
@@ -362,10 +397,10 @@ init of the state type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An instance of store configured with the given properties</p>
+                        <p>An instance of store</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L126-L132">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L208-L213">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -373,9 +408,9 @@ init of the state type.</p>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana5StoreC10middleware12dependencies16stateInitializerACyxGSayyAA6Action_pcyAaH_pccAA5State_pyc_yAaH_pctcG_AA29SideEffectDependencyContainer_pXpxyctcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(middleware:dependencies:stateInitializer:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC10middleware12dependencies16stateInitializerACyxGSayyAA6Action_pcyAaH_pccAA5State_pyc_yAaH_pctcG_AA29SideEffectDependencyContainer_pXpxyctcfc">init(middleware:dependencies:stateInitializer:)</a>
+                    <a name="/s:6Katana5StoreC12interceptors16stateInitializerACyxq_GSayyAA12Dispatchable_pKcyAaG_pKccAA20AnySideEffectContext_pcG_xyctcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(interceptors:stateInitializer:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana5StoreC12interceptors16stateInitializerACyxq_GSayyAA12Dispatchable_pKcyAaG_pKccAA20AnySideEffectContext_pcG_xyctcfc">init(interceptors:stateInitializer:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -384,13 +419,31 @@ init of the state type.</p>
                       <div class="pointer"></div>
                       <div class="abstract">
                         <p>The default init method for the Store.</p>
+<h4 id='initial-phases' class='heading'>Initial phases</h4>
+
+<p>When the store is created, it doesn&rsquo;t immediately start to handle dispatched items.
+Before that, in fact, the <code>Store</code> will (in order)</p>
+
+<ul>
+<li>create the dependencies</li>
+<li>create the first state version by using the given <code>stateInitializer</code></li>
+<li>initialise the interceptors</li>
+</ul>
+
+<p>Accessing the state before the <code>Store</code> is ready will lead to a crash of the application, as the
+state of the system is not well defined. You can check whether the <code>Store</code> is ready by leveraging the <code><a href="../Classes/Store.html#/s:6Katana5StoreC7isReadySbvp">isReady</a></code> property.</p>
+
+<p>A good pratice in case you have to interact with the <code>Store</code> (e.g., get the state) in the initial phases of your
+application is to dispatch a <code><a href="../Protocols/SideEffect.html">SideEffect</a></code>. When dispatching something, in fact, the <code>Store</code> guarantees that
+items are managed only after that the <code>Store</code> is ready. Items dispatched during the initialization are suspended
+and resumed as soon as the <code>Store</code> is ready.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">middleware</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a></span><span class="p">],</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="nv">stateInitializer</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Classes/Store.html#/s:6Katana5StoreC16StateInitializera">StateInitializer</a></span><span class="o">&lt;</span><span class="kt">StateType</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">(</span><span class="nv">interceptors</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a></span><span class="p">],</span> <span class="nv">stateInitializer</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">StateInitializer</span><span class="o">&lt;</span><span class="kt">S</span><span class="o">&gt;</span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -401,24 +454,12 @@ init of the state type.</p>
                             <tr>
                               <td>
                                 <code>
-                                <em>middleware</em>
+                                <em>interceptors</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>the middleware to trigger when an action is dispatched</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>dependencies</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the dependencies to use in the actions side effects</p>
+                                  <p>a list of interceptors that are executed every time something is dispatched</p>
                                 </div>
                               </td>
                             </tr>
@@ -439,10 +480,10 @@ init of the state type.</p>
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>An instance of store configured with the given properties</p>
+                        <p>An instance of store</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L142-L154">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L237-L259">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -468,7 +509,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">addListener</span><span class="p">(</span><span class="n">_</span> <span class="nv">listener</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a></span></code></pre>
+                          <pre class="highlight swift"><code><span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">addListener</span><span class="p">(</span><span class="n">_</span> <span class="nv">listener</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a></span></code></pre>
 
                         </div>
                       </div>
@@ -496,7 +537,7 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                         <p>a closure that can be used to remove the listener</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L187-L194">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L268-L275">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -504,9 +545,9 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana5StoreC8dispatchyyAA6Action_pF"></a>
+                    <a name="/"></a>
                     <a name="//apple_ref/swift/Method/dispatch(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC8dispatchyyAA6Action_pF">dispatch(_:)</a>
+                    <a class="token" href="#/">dispatch(_:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -514,14 +555,42 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Dispatches an action</p>
+                        <p>Dispatches a <code><a href="../Protocols/Dispatchable.html">Dispatchable</a></code> item</p>
+<h4 id='threading' class='heading'>Threading</h4>
+
+<p>The <code>Store</code> follows strict rules about the parallelism with which dispatched items are handled.
+At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+devices offer.</p>
+
+<p>When a <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
+executes one update of the state at the time, following the order in which it has received them. This is done
+to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
+queue is never a big problem as any operation that goes in a <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> is very lighweight.</p>
+
+<p>When it comes to <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> items, Katana will handle them in a parallel queue. A <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> is executed and considered
+done when its body finishes to be executed. This menas that side effects are not guaranteed to be run in isolation, and you
+should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+improve the performances of the system. Overall, this should not be a problem as you cannot really change
+the state of the system (that is, the store&rsquo;s state) without dispatching a <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code>.</p>
+
+<p>This version of the store keeps the support for <code><a href="../Protocols/Action.html">Action</a></code> items. Since actions both update the state and executes side effects,
+they are managed in the very same, serial and syncronous, queue of the <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code>. You are encouraged to move away from
+actions as soon as possible.</p>
+<h4 id='promise-resolution' class='heading'>Promise Resolution</h4>
+
+<p>When it comes to <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code>, the promise is resolved when the state is updated. For <code><a href="../Protocols/SideEffect.html">SideEffect</a></code>,
+the promise is resolved when the body of the <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> is executed entirely (see <code><a href="../Protocols/SideEffect.html">SideEffect</a></code> documentation for
+more information). For <code><a href="../Protocols/Action.html">Action</a></code>, finally, the promise is resolved when the state is updated and the sideEffect method
+is executed (note that this doesn&rsquo;t mean that the side effect is effectively done, as there&rsquo;s no simple mechanism to
+block the execution of a sideeffect in an action)</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">_</span> <span class="nv">action</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">@discardableResult</span>
+<span class="k">override</span> <span class="kd">public</span> <span class="kd">func</span> <span class="nf">dispatch</span><span class="p">(</span><span class="n">_</span> <span class="nv">dispatchable</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Dispatchable.html">Dispatchable</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Promise</span><span class="o">&lt;</span><span class="kt">Void</span><span class="o">&gt;</span></code></pre>
 
                         </div>
                       </div>
@@ -532,59 +601,24 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
                             <tr>
                               <td>
                                 <code>
-                                <em>action</em>
+                                <em>dispatchable</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>the action to dispatch</p>
+                                  <p>the dispatchable to dispatch</p>
                                 </div>
                               </td>
                             </tr>
                           </tbody>
                         </table>
                       </div>
-                      <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L201-L211">Show on GitHub</a>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:6Katana5StoreC8anyStateAA0D0_pvp"></a>
-                    <a name="//apple_ref/swift/Property/anyState" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana5StoreC8anyStateAA0D0_pvp">anyState</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Implementation of the AnyStore protocol.</p>
-<div class="aside aside-see-also">
-    <p class="aside-title">See also</p>
-    <code><a href="../Protocols/AnyStore.html">AnyStore</a></code>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">anyState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span></code></pre>
-
-                        </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>a promise that is resolved when the dispatchable is handled by the store</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/Store.swift#L305-L307">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Store.swift#L313-L329">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -594,8 +628,8 @@ every time the Store&rsquo;s state changes. The listener is always invoked in th
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-09-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2019-01-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

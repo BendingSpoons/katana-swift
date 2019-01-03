@@ -35,6 +35,9 @@
                 <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Classes/PartialStore.html">PartialStore</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Classes/Store.html">Store</a>
               </li>
             </ul>
@@ -44,6 +47,22 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/Promise.html">Promise</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Functions.html">Functions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Functions.html#/s:6Katana23middlewareToInterceptoryyAA12Dispatchable_pKcyAaC_pKccAA20AnySideEffectContext_pcyAaC_pcyAaC_pccAA5State_pyc_yAA6Action_pctcF">middlewareToInterceptor(_:)</a>
               </li>
             </ul>
           </li>
@@ -60,19 +79,49 @@
                 <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/AnySideEffect.html">AnySideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/AnyStateUpdater.html">AnyStateUpdater</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/AnyStore.html">AnyStore</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/AsyncAction.html">AsyncAction</a>
               </li>
               <li class="nav-group-task">
+                <a href="../Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/Dispatchable.html">Dispatchable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/SideEffect.html">SideEffect</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Protocols/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateObserverDispatchable.html">StateObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Protocols/StateUpdater.html">StateUpdater</a>
               </li>
             </ul>
           </li>
@@ -88,19 +137,46 @@
               <li class="nav-group-task">
                 <a href="../Structs/ActionLogger.html">ActionLogger</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Structs/DispatchableLogger.html">DispatchableLogger</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObserverInterceptor.html">ObserverInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/ObserverInterceptor/ObserverType.html">– ObserverType</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Structs/SideEffectContext.html">SideEffectContext</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana8GetStatea">GetState</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/PromisableStoreDispatch">PromisableStoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana20StoreInterceptorNexta">StoreInterceptorNext</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Typealiases.html#/s:6Katana19StoreMiddlewareNexta">StoreMiddlewareNext</a>
               </li>
               <li class="nav-group-task">
                 <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
@@ -115,7 +191,8 @@
             <h1>ActionWithSideEffect</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">@available(*, deprecated, message: "Use AnySideEffect instead")</span>
+<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ActionWithSideEffect</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Action.html">Action</a></span></code></pre>
 
                 </div>
               </div>
@@ -162,7 +239,7 @@ after the <code>updateState(currentState:action:)</code> function.</p>
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">previousState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt"><a href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a></span><span class="p">,</span> <span class="nv">dependencies</span><span class="p">:</span> <span class="kt"><a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></span><span class="p">)</span></code></pre>
 
                         </div>
                       </div>
@@ -224,7 +301,7 @@ after the <code>updateState(currentState:action:)</code> function.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/2.0.0/Katana/ActionWithSideEffect.swift#L42">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/Legacy/ActionWithSideEffect.swift#L43">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -234,8 +311,8 @@ after the <code>updateState(currentState:action:)</code> function.</p>
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2018-09-18)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.1</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2019 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2019-01-03)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
