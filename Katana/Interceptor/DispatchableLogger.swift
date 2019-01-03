@@ -2,25 +2,21 @@
 //  DispatchableLogger.swift
 //  Katana
 //
-//  Copyright © 2018 Bending Spoons.
+//  Copyright © 2019 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
-//
 
 import Foundation
 
-/**
- Struct that makes an action logger middleware available
- */
+/// Interceptor that logs all the dispatched items in the XCode console.
 public struct DispatchableLogger {
   
   /**
-   This function returns a `StoreInterceptor` that intercepts and logs not black-listed actions
+   This function returns a `StoreInterceptor` that intercepts and logs not black-listed dispatchable
    
-   - Parameters:
-   - blackList: list of dispatchable types that must not be logged
-   - Returns: store interceptor that logs not black-listed actions
-   - See: `StoreInterceptor` for details
+   - parameter blackList: list of dispatchable types that must not be logged
+   - returns: store interceptor that logs not black-listed dispatchable
+   - seeAlso: `StoreInterceptor` for details
    */
   public static func interceptor(blackList: [Dispatchable.Type] = []) -> StoreInterceptor {
     return { context in

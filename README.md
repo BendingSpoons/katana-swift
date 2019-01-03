@@ -8,18 +8,13 @@
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
-Katana is a modern Swift framework for writing iOS applications business logic that are testable and easy to reason about. Katana is strongly inspired by [Redux](http://redux.js.org/).
+Katana is a modern Swift framework for writing iOS applications' business logic that are testable and easy to reason about. Katana is strongly inspired by [Redux](http://redux.js.org/).
 
-In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch an action. An action is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
+In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch a `StateUpdater`. A `StateUpdater` is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 
 We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several milions of times and Katana really helped us scaling them quickly and efficiently. [Bending Spoons](http://www.bendingspoons.com)'s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. 
 
 We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
-
-## Experimental Branch
-**This is an experimental version of Katana. It is not guaranteed that APIs are stable or the documentation is updated. It may completely be that we will throw away all the work we've done because the result is not satisfying.**
-
-Part of the code has been taken from [Hydra](https://github.com/malcommac/Hydra/). The code has been copied in this repository to speed up the iteration process and understand better if Hydra is a good fit for Katana, as Katana may need some ad-hoc changes. All the credits for the Hydra code go to [malcommac](https://github.com/malcommac) and the other maintainers of the library.
 
 ## Overview
 
@@ -31,22 +26,21 @@ struct CounterState: State {
 }
 ```
 
-The app `State` can only be modified by an `Action`. An `Action` represents an event that leads to a change in the `State` of the app. You define the behaviour of the action implementing the `updatedState()` method that will return the new app `State` based on the current app `State` and the `Action` itself.
+The app `State` can only be modified by a `StateUpdater`. A `StateUpdater` represents an event that leads to a change in the `State` of the app. You define the behaviour of the `State Updater` by implementing the `updateState(:)` method that changes the `State` based on the current app `State` and the `StateUpdater` itself. The `updateState` should be a pure function, which means that it only depends on the inputs (that is, the state and the state updater itself) and it doesn't have side effects, such as network interactions.
 
 ```swift
-struct IncrementCounter: Action {
-  func updatedState(currentState: State) -> State {
-    guard var state = currentState as? CounterState else { return currentState }
+struct IncrementCounter: StateUpdater {
+  func updateState(_ state: inout CounterState) {
     state.counter += 1
-    return state
   }
 }
 ```
 
-The `Store` contains and manages your entire app `State` and it is responsible for dispatching `Actions` and updating the `State`.
+The `Store` contains and manages your entire app `State`. It is responsible of managing the dispatched items (e.g., the just mentioned `State Updater`).
 
 ```swift
-let store = Store<CounterState>()
+// ignore AppDependencies for the time being, it will be explained later on
+let store = Store<CounterState, AppDependencies>()
 store.dispatch(IncrementCounter())
 ```
 
@@ -62,46 +56,92 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other part of your applications and then dispatch new actions to update your state.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
 
-In order to leverage this functionality you have to adopt the `ActionWithSideEffect` protocol
+`Side Effect`s are implemented on top of [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
 
 ```swift
-struct IncrementCounter: ActionWithSideEffect {
-  func updatedState(currentState: State) -> State {
-	// some update state code here if needed
+struct GenerateRandomNumberFromBackend: SideEffect {
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
+    // invokes the `getRandomNumber` method that returns a promise that is fullfilled
+    // when the number is recevied. At that point we dispatch a State Updater
+    // that updates the state
+    context.dependencies.APIManager
+        .getRandomNumber()
+        .thenDispatch({ newValue in SetCounter(newValue: newValue) })
   }
+}
+
+struct SetCounter: StateUpdater {
+  let newValue: Int
+  
+  func updateState(_ state: inout CounterState) {
+    state.counter = self.newValue
+    return state
+  }
+}
+```
+
+ Moreover, you can leverage the `await` operator to write logic that mimics the [Async/Await](https://github.com/tc39/ecmascript-asyncawait) pattern, which allows you to write async code in a sync manner.
+
+```swift
+struct GenerateRandomNumberFromBackend: SideEffect {
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
+    // invokes the `getRandomNumber` method that returns a promise that is fullfilled
+    // when the number is recevied.
+    let promise = context.dependencies.APIManager.getRandomNumber()
     
-  func sideEffect(
-    currentState: State,
-    previousState: State,
-    dispatch: @escaping StoreDispatch,
-    dependencies: SideEffectDependencyContainer) {
-      
-    // your logic here (e.g., network call)
+    // we use await to wait for the promise to be fullfilled
+    let newValue = try await(promise)
+
+    // then the state is updated using the proper state updater
+    try await(context.dispatch(SetCounter(newValue: newValue)))
   }
 }
 ```
 
 #### Dependencies
 
-The last parameter of the side effect method signature is `dependencies`. This is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that implements the `SideEffectDependencyContainer` protocol and use it in the side effect
+The side effect example leverages an `APIManager` method. The `Side Effect` can get the `APIManager` by using the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
 
 ```swift
 final class AppDependencies: SideEffectDependencyContainer {
-    required init(dispatch: @escaping StoreDispatch, getState: @escaping () -> State) {
-       // initialize your dependencies here
-    }
+  required init(dispatch: @escaping PromisableStoreDispatch, getState: @escaping GetState) {
+		// initialize your dependencies here
+	}
 }
 ```
 
-## Middleware
+## Interceptors
 
-When defining a `Store` you can provide a list of middleware layers that are triggered whenever an action is dispatched. Katana comes with a built in `ActionLogger` middleware that logs all the actions, but the one listed in the black list parameter.
+When defining a `Store` you can provide a list of interceptors that are triggered whenever an item is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
+
+#### DispatchableLogger
+ Katana comes with a built-in `DispatchableLogger` interceptor that logs all the dispatchables, except the ones listed in the blacklist parameter.
 
 ```swift
-let actionLogger = ActionLogger.middleware(blackList: [NotToLogAction.self])
-let store = Store<CounterState>(middleware: [actionLogger], dependencies: AppDependencies.self)
+let dispatchableLogger = DispatchableLogger.interceptor(blackList: [NotToLog.self])
+let store = Store<CounterState>(interceptor: [dispatchableLogger])
+```
+
+#### ObserverInterceptor
+Sometimes it is useful to listen for events that occur in the system and react to them. Katana provides the `ObserverInterceptor` that can be used to achieve this result.
+
+In particular you instruct the interceptor to dispatch items when:
+
+* the store is initialized
+* the state changes in a particular way
+* a particular dispatchable item is managed by the store
+* a particular notification is sent to the default [NotificationCenter](https://developer.apple.com/documentation/foundation/nsnotificationcenter)
+
+```swift
+let observerInterceptor = ObserverInterceptor.observe([
+  .onStart([
+    // list of dispatchable items dispatched when the store is initialized
+  ])
+])
+
+let store = Store<CounterState>(interceptor: [observerInterceptor])
 ```
 
 ## What about the UI?
@@ -116,6 +156,35 @@ Katana is meant to give structure to the logic part of your app. When it comes t
   <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/tempura.png" alt="Tempura" width="240" /></a>
   <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
 </p>
+
+## Signpost Logger
+
+Katana is automatically integrated with the [Signpost API](https://developer.apple.com/documentation/os/ossignpostid). This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last, and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.
+
+![](https://raw.githubusercontent.com/BendingSpoons/katana-swift/feature/documentation/.github/Assets/signpost.jpg)
+
+## Bending Spoons Guidelines
+
+In Bending Spoons, we are extensively using Katana. In these years, we've defined some best pratices that have helped us write more readable and easier to debug code. We've decided to open source them so that everyone can have a starting point when using Katana. You can find them [here](https://github.com/BendingSpoons/katana-swift/blob/master/BSP_GUIDELINES.md).
+
+## Migration from 2.x
+
+We strongly suggest to upgrade to the new Katana. The new Katana, in fact, not only adds new very powerful capabilities to the library, but it has also been designed to be extremely compatible with the old logic. All the actions and middleware you wrote for Katana 2.x, will continue to work in the new Katana as well. The breaking changes are most of the time related to simple typing changes that are easily addressable.
+
+If you prefer to continue with Katana 2.x, however, you can still access Katana 2.x in the [dedicated branch](https://github.com/BendingSpoons/katana-swift/tree/2.x).
+
+### Middleware
+In Katana, the concept of `middleware` has been replaced with the new concept of `interceptor`. You can still use your middleware by leveraging the `middlewareToInterceptor` method.
+
+## Swift Version
+Certain versions of Katana only support certain versions of Swift. Depending on wich version of Swift your project is using, you should use specific versions of Tempura.
+Use this table in order to check which version of Tempura you need.
+
+| Swift Version  | Tempura Version |
+| ------------- | ------------- |
+| Swift 4.2 | Katana >= 2.0  |
+| Swift 4.1 | Katana < 2.0 |
+
 
 ## Where to go from here
 
@@ -133,13 +202,15 @@ Make awesome applications using Katana together with [Tempura](https://github.co
 
 [Documentation](http://katana.bendingspoons.com)
 
+You can also add Katana to [Dash](https://kapeli.com/dash) using the proper [docset](https://github.com/BendingSpoons/katana-swift/blob/master/docs/latest/docsets/Katana.tgz?raw=true).
+
 ## Installation
 
 Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your Xcode project.
 
 ### Requirements
 
-- iOS 8.4+ / macOS 10.10+
+- iOS 9.0+ / macOS 10.10+
 
 - Xcode 8.0+
 
@@ -160,7 +231,7 @@ For iOS platforms, this is the content
 ```ruby
 use_frameworks!
 source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.4'
+platform :ios, '9.0'
 
 target 'MyApp' do
   pod 'Katana'
@@ -172,8 +243,6 @@ Now, you just need to run:
 ```bash
 $ pod install
 ```
-
-
 
 ### Carthage
 
@@ -206,7 +275,8 @@ Then drag the built `Katana.framework` into your Xcode project.
 ## Special thanks
 
 - [Everyone at Bending Spoons](http://bendingspoons.com/team.html) for providing their priceless input;
-- [@orta](https://twitter.com/orta) for providing input on how to opensource the project.
+- [@orta](https://twitter.com/orta) for providing input on how to opensource the project;
+- [@danielemargutti](https://twitter.com/danielemargutti/) for developing and maintaining [Hydra](https://github.com/malcommac/Hydra/);
 
 ## Contribute
 

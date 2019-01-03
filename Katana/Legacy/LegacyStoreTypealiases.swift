@@ -2,12 +2,13 @@
 //  StoreTypealiases.swift
 //  Katana
 //
-//  Copyright © 2016 Bending Spoons.
+//  Copyright © 2019 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
 import Foundation
 
+/// Typealias for the middleware next function
 public typealias StoreMiddlewareNext = (_: Dispatchable) -> Void
 
 /**
@@ -24,6 +25,13 @@ public typealias StoreMiddleware =
 @available(*, deprecated, message: "Use PromisableStoreDispatch instead")
 public typealias StoreDispatch = (_: Action) -> ()
 
+/**
+ Helper function that transforms a (deprecated) middleware into a logically equivalent
+ interceptor. This method can be used to keep old middleware working on the new Katana.
+ 
+ - parameter middleware: the middleware to transform
+ - returns: a logically equivalent interceptor
+*/
 public func middlewareToInterceptor(_ middleware: @escaping StoreMiddleware) -> StoreInterceptor {
   return { context in
     

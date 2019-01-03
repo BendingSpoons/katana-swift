@@ -2,10 +2,9 @@
 //  ActionDescriptionTests.swift
 //  KatanaTests
 //
-//  Copyright © 2018 Bending Spoons.
+//  Copyright © 2019 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
-//
 
 import Foundation
 import Katana

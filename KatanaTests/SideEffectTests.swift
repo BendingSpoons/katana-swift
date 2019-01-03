@@ -2,7 +2,7 @@
 //  SideEffectTests.swift
 //  Katana
 //
-//  Copyright © 2016 Bending Spoons.
+//  Copyright © 2019 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
@@ -10,6 +10,7 @@ import Foundation
 import Quick
 import Nimble
 @testable import Katana
+import Hydra
 
 class SideEffectTests: QuickSpec {
   override func spec() {

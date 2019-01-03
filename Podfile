@@ -4,6 +4,8 @@ platform :ios, '8.3'
 target 'Katana' do
   use_frameworks!
 
+  podspec
+
   target 'KatanaTests' do
     inherit! :search_paths
     
