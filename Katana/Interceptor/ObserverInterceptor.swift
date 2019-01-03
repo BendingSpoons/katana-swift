@@ -24,7 +24,7 @@ public protocol NotificationObserverDispatchable: Dispatchable {
 }
 
 /**
- Protocol implemented by a dispatchable that wants to be dispatched in response to a change to the state 
+ Protocol implemented by a dispatchable that wants to be dispatched in response to a change of the state 
  */
 public protocol StateObserverDispatchable: Dispatchable {
   /**
@@ -32,7 +32,7 @@ public protocol StateObserverDispatchable: Dispatchable {
    that the dispatchable should not be sent to the Store, the init can fail
    (that is, returns nil)
    
-   - parameter prevState:  the last state before current changes
+   - parameter prevState: the last state before current changes
    - parameter currentState: the current state
    - returns: either the dispatchable item or nil
    */

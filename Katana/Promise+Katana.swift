@@ -24,7 +24,7 @@ public extension Promise {
    Promise.
    
    - parameter dispatchable: the dispatchable to dispatch
-   - Returns: a chainable promise that will be resolved when the store will handle the dispatchable
+   - returns: a chainable promise that will be resolved when the store will handle the dispatchable
   */
   @discardableResult
   func thenDispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
@@ -38,7 +38,7 @@ public extension Promise {
    Promise. The block can also throw and invalidate the chain of Promise.
    
    - parameter body: a block that can either return a new `Dispatchable` or throw
-   - Returns: a chainable promise that will be resolved when the store will handle the dispatchable
+   - returns: a chainable promise that will be resolved when the store will handle the dispatchable
   */
   @discardableResult
   public func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {

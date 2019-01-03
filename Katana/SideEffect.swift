@@ -39,7 +39,7 @@ public protocol AnySideEffectContext {
 /**
  Context passed to each side effect.
  
- The context is basically a way wo wrap a series of methods and utilities that the side effect
+ The context is basically a wrapper of methods and utilities that the side effect
  can leverage to implement its functionalities
 */
 public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {

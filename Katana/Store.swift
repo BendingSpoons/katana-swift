@@ -97,14 +97,14 @@ private func emptyStateInitializer<S: State>() -> S {
 
 /**
  The `Store` is a sort of single entry point that handles the logic of your application.
- In Katana, all the various pieces of information that your application manages should be store
+ In Katana, all the various pieces of information that your application manages should be stored
  in a single atom, called state (see also `State` protocol).
  
  The `Store`, however, doesn't really implements any application specific logic: this class
  only manages operations that are requsted by the application-specific logic. In particular,
  you can require the `Store` to execute something by `dispatching a dispatchable item`.
 
- Currently the stores handles 3 types of dispatchable: `State Updater`, `Side Effect` and (deprecated) `Action`.
+ Currently the store handles 3 types of dispatchable: `State Updater`, `Side Effect` and (deprecated) `Action`.
  
  #### Update the state
  As written before, in Katana every relevant information in the application should be stored in the
@@ -290,11 +290,11 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    
    When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
    done when its body finishes to be executed. This menas that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the time time. This decision has been taken to greately
-   improve the performances of the system of out the box. Overall, this should not be a problem as you cannot really change
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
    
-   This verison of the store keeps the support for `Action` items. Since actions both update the state and executes side effects,
+   This version of the store keeps the support for `Action` items. Since actions both update the state and executes side effects,
    they are managed in the very same, serial and syncronous, queue of the `StateUpdater`. You are encouraged to move away from
    actions as soon as possible.
    
@@ -480,7 +480,7 @@ fileprivate extension Store {
   /**
    Enqueues the action.
    
-   - parameter sideEffect: the action to manage
+   - parameter action: the action to manage
    - returns: a promise that is resolved when the action is managed
   */
   private func enqueueAction(_ action: Action) -> Promise<Void> {

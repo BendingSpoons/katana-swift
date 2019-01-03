@@ -8,7 +8,7 @@
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
-Katana is a modern Swift framework for writing iOS applications business logic that are testable and easy to reason about. Katana is strongly inspired by [Redux](http://redux.js.org/).
+Katana is a modern Swift framework for writing iOS applications' business logic that are testable and easy to reason about. Katana is strongly inspired by [Redux](http://redux.js.org/).
 
 In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch a `StateUpdater`. A `StateUpdater` is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 
@@ -32,7 +32,6 @@ The app `State` can only be modified by a `StateUpdater`. A `StateUpdater` repre
 struct IncrementCounter: StateUpdater {
   func updateState(_ state: inout CounterState) {
     state.counter += 1
-    return state
   }
 }
 ```
@@ -40,7 +39,7 @@ struct IncrementCounter: StateUpdater {
 The `Store` contains and manages your entire app `State`. It is responsible of managing the dispatched items (e.g., the just mentioned `State Updater`).
 
 ```swift
-// ignore AppDependencies for the time being, it will explained later on
+// ignore AppDependencies for the time being, it will be explained later on
 let store = Store<CounterState, AppDependencies>()
 store.dispatch(IncrementCounter())
 ```
@@ -57,9 +56,9 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other part of your applications and then dispatch new `StateUpdater` to update your state. For more complex situations, you can also dispatch other `side effects`.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
 
-`Side Effects` leverage [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
+`Side Effect`s are implemented on top of [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
 
 ```swift
 struct GenerateRandomNumberFromBackend: SideEffect {
@@ -103,7 +102,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 
 #### Dependencies
 
-The side effect example has used an `APIManager` method. To access the `APIManager`, the code has used the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
+The side effect example leverages an `APIManager` method. The `Side Effect` can get the `APIManager` by using the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
 
 ```swift
 final class AppDependencies: SideEffectDependencyContainer {
@@ -160,7 +159,7 @@ Katana is meant to give structure to the logic part of your app. When it comes t
 
 ## Signpost Logger
 
-Katana is automatically intergated with the [Signpost API](https://developer.apple.com/documentation/os/ossignpostid). This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.
+Katana is automatically integrated with the [Signpost API](https://developer.apple.com/documentation/os/ossignpostid). This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last, and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.
 
 ![](https://raw.githubusercontent.com/BendingSpoons/katana-swift/feature/documentation/.github/Assets/signpost.jpg)
 
@@ -276,8 +275,8 @@ Then drag the built `Katana.framework` into your Xcode project.
 ## Special thanks
 
 - [Everyone at Bending Spoons](http://bendingspoons.com/team.html) for providing their priceless input;
-- [@orta](https://twitter.com/orta) for providing input on how to opensource the project.
-- [@danielemargutti](https://twitter.com/danielemargutti/) for developing and maintaining [Hydra](https://github.com/malcommac/Hydra/)
+- [@orta](https://twitter.com/orta) for providing input on how to opensource the project;
+- [@danielemargutti](https://twitter.com/danielemargutti/) for developing and maintaining [Hydra](https://github.com/malcommac/Hydra/);
 
 ## Contribute
 
