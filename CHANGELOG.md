@@ -1,12 +1,11 @@
 # Change Log
 
-## [Unreleased](https://github.com/BendingSpoons/katana-swift/tree/HEAD)
-
-[Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/2.0.0...HEAD)
+## [3.0.0](https://github.com/BendingSpoons/katana-swift/tree/3.0.0) (2019-01-03)
+[Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/2.0.0...3.0.0)
 
 **Implemented enhancements:**
 
-- [PROPOSAL\] enhanced app structuring [\#159](https://github.com/BendingSpoons/katana-swift/pull/159) ([TheInkedEngineer](https://github.com/TheInkedEngineer))
+- \[PROPOSAL\] enhanced app structuring [\#159](https://github.com/BendingSpoons/katana-swift/pull/159) ([TheInkedEngineer](https://github.com/TheInkedEngineer))
 
 **Closed issues:**
 
@@ -18,6 +17,7 @@
 
 **Merged pull requests:**
 
+- \[FEAT\] Prepare for release [\#168](https://github.com/BendingSpoons/katana-swift/pull/168) ([bolismauro](https://github.com/bolismauro))
 - Fix dispatch retry [\#167](https://github.com/BendingSpoons/katana-swift/pull/167) ([fonesti](https://github.com/fonesti))
 - Fix dispatch Promise resolved even if sideEffects throws [\#166](https://github.com/BendingSpoons/katana-swift/pull/166) ([fonesti](https://github.com/fonesti))
 - Fix ObserverInterceptor items executed more than once [\#165](https://github.com/BendingSpoons/katana-swift/pull/165) ([fonesti](https://github.com/fonesti))
