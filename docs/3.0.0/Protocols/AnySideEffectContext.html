@@ -4,190 +4,213 @@
     <title>AnySideEffectContext Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
-    <meta charset='utf-8'>
+    <meta charset="utf-8">
     <script src="../js/jquery.min.js" defer></script>
     <script src="../js/jazzy.js" defer></script>
     
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
   </head>
   <body>
+
     <a name="//apple_ref/swift/Protocol/AnySideEffectContext" class="dashAnchor"></a>
+
     <a title="AnySideEffectContext Protocol Reference"></a>
-    <header>
-      <div class="content-wrapper">
-        <p><a href="../index.html">Katana Docs</a> (100% documented)</p>
-        <p class="header-right"><a href="https://github.com/BendingSpoons/katana-swift"><img src="../img/gh.png"/>View on GitHub</a></p>
-      </div>
-    </header>
-    <div class="content-wrapper">
-      <p id="breadcrumbs">
-        <a href="../index.html">Katana Reference</a>
-        <img id="carat" src="../img/carat.png" />
-        AnySideEffectContext Protocol Reference
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          Katana Docs
+        </a>
+         (100% documented)
       </p>
-    </div>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/BendingSpoons/katana-swift">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">Katana Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      AnySideEffectContext Protocol Reference
+    </p>
+
     <div class="content-wrapper">
-      <nav class="sidebar">
+      <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a href="../Classes.html">Classes</a>
+            <a class="nav-group-name-link" href="../Classes.html">Classes</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+                <a class="nav-group-task-link" href="../Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/PartialStore.html">PartialStore</a>
+                <a class="nav-group-task-link" href="../Classes/PartialStore.html">PartialStore</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Classes/Store.html">Store</a>
+                <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Enums.html">Enumerations</a>
+            <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Enums/AsyncActionState.html">AsyncActionState</a>
+                <a class="nav-group-task-link" href="../Enums/AsyncActionState.html">AsyncActionState</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Extensions.html">Extensions</a>
+            <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Extensions/Promise.html">Promise</a>
+                <a class="nav-group-task-link" href="../Extensions/Promise.html">Promise</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Functions.html">Functions</a>
+            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Functions.html#/s:6Katana23middlewareToInterceptoryyAA12Dispatchable_pKcyAaC_pKccAA20AnySideEffectContext_pcyAaC_pcyAaC_pccAA5State_pyc_yAA6Action_pctcF">middlewareToInterceptor(_:)</a>
+                <a class="nav-group-task-link" href="../Functions.html#/s:6Katana23middlewareToInterceptoryyAA12Dispatchable_pKcyAaC_pKccAA20AnySideEffectContext_pcyAaC_pcyAaC_pccAA5State_pyc_yAA6Action_pctcF">middlewareToInterceptor(_:)</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Protocols.html">Protocols</a>
+            <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Protocols/Action.html">Action</a>
+                <a class="nav-group-task-link" href="../Protocols/Action.html">Action</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
+                <a class="nav-group-task-link" href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
+                <a class="nav-group-task-link" href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnySideEffect.html">AnySideEffect</a>
+                <a class="nav-group-task-link" href="../Protocols/AnySideEffect.html">AnySideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a>
+                <a class="nav-group-task-link" href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyStateUpdater.html">AnyStateUpdater</a>
+                <a class="nav-group-task-link" href="../Protocols/AnyStateUpdater.html">AnyStateUpdater</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AnyStore.html">AnyStore</a>
+                <a class="nav-group-task-link" href="../Protocols/AnyStore.html">AnyStore</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/AsyncAction.html">AsyncAction</a>
+                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
+                <a class="nav-group-task-link" href="../Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/Dispatchable.html">Dispatchable</a>
+                <a class="nav-group-task-link" href="../Protocols/Dispatchable.html">Dispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/LinkeableAction.html">LinkeableAction</a>
+                <a class="nav-group-task-link" href="../Protocols/LinkeableAction.html">LinkeableAction</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
+                <a class="nav-group-task-link" href="../Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
+                <a class="nav-group-task-link" href="../Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/SideEffect.html">SideEffect</a>
+                <a class="nav-group-task-link" href="../Protocols/SideEffect.html">SideEffect</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+                <a class="nav-group-task-link" href="../Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/State.html">State</a>
+                <a class="nav-group-task-link" href="../Protocols/State.html">State</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/StateObserverDispatchable.html">StateObserverDispatchable</a>
+                <a class="nav-group-task-link" href="../Protocols/StateObserverDispatchable.html">StateObserverDispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Protocols/StateUpdater.html">StateUpdater</a>
+                <a class="nav-group-task-link" href="../Protocols/StateUpdater.html">StateUpdater</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Structs.html">Structures</a>
+            <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Structs/ActionLinker.html">ActionLinker</a>
+                <a class="nav-group-task-link" href="../Structs/ActionLinker.html">ActionLinker</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/ActionLinks.html">ActionLinks</a>
+                <a class="nav-group-task-link" href="../Structs/ActionLinks.html">ActionLinks</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/ActionLogger.html">ActionLogger</a>
+                <a class="nav-group-task-link" href="../Structs/ActionLogger.html">ActionLogger</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/DispatchableLogger.html">DispatchableLogger</a>
+                <a class="nav-group-task-link" href="../Structs/DispatchableLogger.html">DispatchableLogger</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/ObserverInterceptor.html">ObserverInterceptor</a>
+                <a class="nav-group-task-link" href="../Structs/ObserverInterceptor.html">ObserverInterceptor</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/ObserverInterceptor/ObserverType.html">– ObserverType</a>
+                <a class="nav-group-task-link" href="../Structs/ObserverInterceptor/ObserverType.html">– ObserverType</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Structs/SideEffectContext.html">SideEffectContext</a>
+                <a class="nav-group-task-link" href="../Structs/SideEffectContext.html">SideEffectContext</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
-            <a href="../Typealiases.html">Type Aliases</a>
+            <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana8GetStatea">GetState</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana8GetStatea">GetState</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/PromisableStoreDispatch">PromisableStoreDispatch</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/PromisableStoreDispatch">PromisableStoreDispatch</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana20StoreInterceptorNexta">StoreInterceptorNext</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana20StoreInterceptorNexta">StoreInterceptorNext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana19StoreMiddlewareNexta">StoreMiddlewareNext</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana19StoreMiddlewareNexta">StoreMiddlewareNext</a>
               </li>
               <li class="nav-group-task">
-                <a href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
               </li>
             </ul>
           </li>
         </ul>
       </nav>
       <article class="main-content">
-        <section>
-          <section class="section">
+
+        <section class="section">
+          <div class="section-content">
             <h1>AnySideEffectContext</h1>
               <div class="declaration">
                 <div class="language">
@@ -202,10 +225,13 @@
 
 </div>
 
-          </section>
-          <section class="section task-group-section">
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -231,7 +257,7 @@
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/SideEffect.swift#L20">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L20">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -265,7 +291,7 @@
                         <p>the type erased current configuration of the state</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/SideEffect.swift#L27">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L27">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -319,7 +345,7 @@
                         <p>a promise that is resolved when the store finishes handling the dispatched item</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/SideEffect.swift#L36">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L36">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -327,7 +353,7 @@
               </ul>
             </div>
             <div class="task-group">
-              <ul>
+              <ul class="item-container">
                 <li class="item">
                   <div>
                     <code>
@@ -376,21 +402,22 @@ This is a shortcut for <code>try await(dispatch(item))</code>.</p>
                         </table>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/tree/3.0.0/Katana/SideEffect.swift#L100-L102">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L100-L102">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
                 </li>
               </ul>
             </div>
-          </section>
+          </div>
         </section>
-        <section id="footer">
-          <p>&copy; 2019 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2019-01-03)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
-        </section>
+
       </article>
     </div>
+    <section class="footer">
+      <p>&copy; 2019 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2019-01-03)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
   </body>
 </div>
 </html>
