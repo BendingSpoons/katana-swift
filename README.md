@@ -77,7 +77,6 @@ struct SetCounter: StateUpdater {
   
   func updateState(_ state: inout CounterState) {
     state.counter = self.newValue
-    return state
   }
 }
 ```
@@ -177,10 +176,10 @@ If you prefer to continue with Katana 2.x, however, you can still access Katana 
 In Katana, the concept of `middleware` has been replaced with the new concept of `interceptor`. You can still use your middleware by leveraging the `middlewareToInterceptor` method.
 
 ## Swift Version
-Certain versions of Katana only support certain versions of Swift. Depending on wich version of Swift your project is using, you should use specific versions of Tempura.
-Use this table in order to check which version of Tempura you need.
+Certain versions of Katana only support certain versions of Swift. Depending on which version of Swift your project is using, you should use specific versions of Katana.
+Use this table in order to check which version of Katana you need.
 
-| Swift Version  | Tempura Version |
+| Swift Version  | Katana Version |
 | ------------- | ------------- |
 | Swift 4.2 | Katana >= 2.0  |
 | Swift 4.1 | Katana < 2.0 |
