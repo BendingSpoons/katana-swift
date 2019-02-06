@@ -17,7 +17,7 @@ import os.signpost
  
  - seeAlso: https://developer.apple.com/documentation/os/logging
 */
-struct SignpostLogger {
+public struct SignpostLogger {
   /// A closure that must be invoked when the operation is completed
   typealias LogEndClosure = () -> Void
   
