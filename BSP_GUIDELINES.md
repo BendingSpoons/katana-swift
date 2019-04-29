@@ -38,6 +38,8 @@ The dependency container is responsible of initiatiating these managers and expo
 * Managers shouldn't contain state. All the pieces of information that functions need to perform their calculations are passed as parameters.
 * Managers might need to use other managers to implement part of their logic. We call these subordinate managers dependencies. Dependencies should be passed as parameters when initializing the manager.
 
+When it comes to the naming convention, classes that act as Managers should be named with the `Manager` suffix. To make a concrete example, `Login` is not a valid manager's name, while `LoginManager` is.
+
 <a href="2"></a>
 #### 2. Event Observers
 
@@ -53,7 +55,10 @@ To address this particular use case, we introduce `EventObservers`. These classe
 
 While it may seem odd to separate Managers and `EventObservers`, this actually helps in keeping every piece simple and consistent. Use managers for simple cases and `EventObservers` for more complex.
 
+When it comes to the naming convention, classes that act as EventObservers should be named with the `Observer` suffix. To make a concrete example, `HealthKit` is not a valid manager's name, while `HealthKitObserver` is.
+
 <a href="3"></a>
+
 #### 3. Avoid complex Side Effects
 
 When writing the logic of the applications, the temptation would be to create some high flexible side effects that take several inputs (that is, the struct that implements the side effects has several parameters) and implements different things according to these inputs.
