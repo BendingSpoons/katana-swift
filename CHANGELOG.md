@@ -1,5 +1,12 @@
 # Change Log
 
+## [3.0.1](https://github.com/BendingSpoons/katana-swift/tree/3.0.1) (2019-05-08)
+[Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/3.0.0...3.0.1)
+
+**Merged pull requests:**
+
+- \[FIX\] Send update to listeners when the state is initialized [\#172](https://github.com/BendingSpoons/katana-swift/pull/172) ([smaramba](https://github.com/smaramba))
+
 ## [3.0.0](https://github.com/BendingSpoons/katana-swift/tree/3.0.0) (2019-01-03)
 [Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/2.0.0...3.0.0)
 
