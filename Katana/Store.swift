@@ -348,6 +348,10 @@ private extension Store {
   */
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
+    // invoke listeners (always in main queue)
+    DispatchQueue.main.async {
+      self.listeners.values.forEach { $0() }
+    }
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
     
     // and here we are finally able to start the queues

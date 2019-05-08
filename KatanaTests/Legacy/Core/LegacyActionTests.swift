@@ -12,10 +12,16 @@ import XCTest
 
 class LegacyActionTests: XCTestCase {
   func testSyncAction() {
+    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
     let store = Store<AppState, SimpleDependencyContainer>()
-    _ = store.addListener { expectation.fulfill() }
+    _ = store.addListener {
+      count += 1
+      if count == 2 {
+        expectation.fulfill()
+      }
+    }
     store.dispatch(AddTodoAction(title: "New Todo"))
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in

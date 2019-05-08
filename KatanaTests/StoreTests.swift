@@ -47,11 +47,14 @@ class StoreTest: QuickSpec {
         it("allows to remove listeners") {
           var firstState: AppState? = nil
           var secondState: AppState? = nil
+          var thirdState: AppState? = nil
           let todo1 = Todo(title: "title1", id: "id1")
           let todo2 = Todo(title: "title2", id: "id2")
           
           let unsubscribe = store.addListener {
-            if firstState != nil {
+            if secondState != nil {
+              thirdState = store.state
+            } else if firstState != nil {
               secondState = store.state
               
             } else {
@@ -68,10 +71,11 @@ class StoreTest: QuickSpec {
           }
           
           expect(firstState).toNot(beNil())
-          expect(secondState).to(beNil())
+          expect(secondState).toNot(beNil())
+          expect(thirdState).to(beNil())
           
-          expect(firstState?.todo.todos.first) == todo1
-          expect(firstState?.todo.todos.count) == 1
+          expect(secondState?.todo.todos.first) == todo1
+          expect(secondState?.todo.todos.count) == 1
 
           expect(store.state.todo.todos) == [todo1, todo2]
         }

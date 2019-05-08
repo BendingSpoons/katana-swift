@@ -20,10 +20,16 @@ class StoreTests: XCTestCase {
   }
 
   func testDispatch() {
+    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
     let store = Store<AppState, SimpleDependencyContainer>()
-    _ = store.addListener { expectation.fulfill() }
+    _ = store.addListener {
+      count += 1
+      if count == 2 {
+        expectation.fulfill()
+      }
+    }
     store.dispatch(AddTodoAction(title: "New Todo"))
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
@@ -60,18 +66,22 @@ class StoreTests: XCTestCase {
 //  }
 
   func testListener() {
+    var count = 0
     let expectation = self.expectation(description: "Store listener")
     let store = Store<AppState, SimpleDependencyContainer>()
     var newState: AppState? = nil
 
     _ = store.addListener { [unowned store] in
-      newState = store.state
-      
-      if #available(iOS 10.0, OSX 10.12, *) {
-        dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+      count += 1
+      if count == 2 {
+        newState = store.state
+        
+        if #available(iOS 10.0, OSX 10.12, *) {
+          dispatchPrecondition(condition: .onQueue(DispatchQueue.main))
+        }
+        
+        expectation.fulfill()
       }
-      
-      expectation.fulfill()
     }
 
     store.dispatch(AddTodoAction(title: "New Todo"))
@@ -83,31 +93,30 @@ class StoreTests: XCTestCase {
   }
 
   func testListenerRemove() {
+    var count = 0
     let expectation = self.expectation(description: "Store listener")
-    let secondExpectation = self.expectation(description: "Second Store listener")
-    var secondExpectationFullfilled: Bool = false
 
     let store = Store<AppState, SimpleDependencyContainer>()
     var firstState: AppState? = nil
     var secondState: AppState? = nil
+    var canFullfill: Bool = false
 
     // listener just to fullfill expectations
     _ = store.addListener {
-      if firstState != nil && !secondExpectationFullfilled {
-        secondExpectation.fulfill()
-        secondExpectationFullfilled = true
-
-      } else {
+      print(store.state)
+      if canFullfill {
         expectation.fulfill()
       }
     }
 
     let unsubscribe = store.addListener { [unowned store] in
-      if firstState != nil {
-        secondState = store.state
-
-      } else {
-        firstState = store.state
+      count += 1
+      if count > 1 {
+        if firstState == nil {
+          firstState = store.state
+        } else {
+          secondState = store.state
+        }
       }
     }
 
@@ -115,6 +124,7 @@ class StoreTests: XCTestCase {
 
     DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
       unsubscribe()
+      canFullfill = true
       store.dispatch(AddTodoAction(title: "Second Todo"))
     })
 

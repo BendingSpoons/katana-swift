@@ -14,9 +14,9 @@ final class TestDependenciesContainer: SideEffectDependencyContainer {
   
   
   func delay(of interval: TimeInterval) -> Promise<Void> {
-    return Promise { resolve, reject, _ in
-      DispatchQueue.global().asyncAfter(deadline: .now() + interval, execute: resolve)
-    }
+    return Promise<Void>({ resolve, reject, _ in
+      DispatchQueue.global().asyncAfter(deadline: .now() + interval, execute: { resolve(()) })
+    })
   }
   
   

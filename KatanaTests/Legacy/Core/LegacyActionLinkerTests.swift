@@ -58,6 +58,7 @@ class LegacyActionLinkerTests: XCTestCase {
   // MARK: Action
 
   func testNoChaining() {
+    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
     let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
@@ -66,7 +67,12 @@ class LegacyActionLinkerTests: XCTestCase {
       ]
     )
 
-    _ = store.addListener { expectation.fulfill() }
+    _ = store.addListener {
+      count += 1
+      if count == 2 {
+        expectation.fulfill()
+      }
+    }
     store.dispatch(BaseAction())
     XCTAssertTrue(true)
 
@@ -91,7 +97,7 @@ class LegacyActionLinkerTests: XCTestCase {
 
     _ = store.addListener {
       count += 1
-      if count == 2 {
+      if count == 3 {
         expectation.fulfill()
       }
     }
@@ -278,7 +284,7 @@ class LegacyActionLinkerTests: XCTestCase {
 
     _ = store.addListener {
       count += 1
-      if count == 2 {
+      if count == 3 {
         expectation.fulfill()
       }
     }
