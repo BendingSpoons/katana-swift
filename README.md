@@ -64,7 +64,7 @@ Updating the application's state using pure functions is nice and it has a lot o
 struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
-    // when the number is recevied. At that point we dispatch a State Updater
+    // when the number is received. At that point we dispatch a State Updater
     // that updates the state
     context.dependencies.APIManager
         .getRandomNumber()
@@ -87,7 +87,7 @@ struct SetCounter: StateUpdater {
 struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
     // invokes the `getRandomNumber` method that returns a promise that is fullfilled
-    // when the number is recevied.
+    // when the number is received.
     let promise = context.dependencies.APIManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
@@ -101,7 +101,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 
 #### Dependencies
 
-The side effect example leverages an `APIManager` method. The `Side Effect` can get the `APIManager` by using the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Create a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
+The side effect example leverages an `APIManager` method. The `Side Effect` can get the `APIManager` by using the `dependencies` parameter of the context.  The `dependencies container` is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Creating a dependency container is very easy: just create a class that conforms to the `SideEffectDependencyContainer` protocol, make the store generic to it, and use it in the side effect.
 
 ```swift
 final class AppDependencies: SideEffectDependencyContainer {
