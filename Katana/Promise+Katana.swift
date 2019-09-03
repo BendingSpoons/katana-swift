@@ -28,7 +28,7 @@ public extension Promise {
   */
   @discardableResult
   func thenDispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
-    return self.then { _ in
+    return self.then(in: .background) { _ in
       return SharedStoreContainer.sharedStore.dispatch(dispatchable)
     }
   }
