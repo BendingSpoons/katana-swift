@@ -397,7 +397,7 @@ fileprivate extension Store {
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    promise.then { _ in }
+    promise.then(in: .background) { _ in }
     
     return promise
   }
@@ -451,7 +451,7 @@ fileprivate extension Store {
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    promise.then { _ in }
+    promise.then(in: .background) { _ in }
     
     return promise
   }
@@ -495,7 +495,7 @@ fileprivate extension Store {
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    promise.then { _ in }
+    promise.then(in: .background) { _ in }
     
     return promise
   }
