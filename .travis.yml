@@ -5,6 +5,5 @@ xcode_scheme: Katana
 xcode_destination: platform=iOS Simulator,OS=12.0,name=iPhone 8
 
 before_install:
- - gem install cocoapods
- - pod repo update
- - pod install
+ - swift package update
+ - swift test
