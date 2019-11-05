@@ -205,7 +205,7 @@ You can also add Katana to [Dash](https://kapeli.com/dash) using the proper [doc
 
 ## Installation
 
-Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](https://github.com/Carthage/Carthage), you can also drop `Katana.project` into your Xcode project.
+Katana is available through [CocoaPods](https://cocoapods.org/), [Carthage](https://github.com/Carthage/Carthage) and [Swift Package Manager](https://swift.org/package-manager/), you can also drop `Katana.project` into your Xcode project.
 
 ### Requirements
 
@@ -214,6 +214,15 @@ Katana is available through [CocoaPods](https://cocoapods.org/) and [Carthage](h
 - Xcode 8.0+
 
 - Swift 4.0+
+
+### Swift Package Manager
+[Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
+
+There are two ways to integrate Katana in your project using Swift Package Manager:
+- Adding it to your `Package.swift`
+- Adding it directly from Xcode under `File` -> `Swift Packages` -> `Add Package dependency..`
+
+In both cases you only need to provide this URL: `git@github.com:BendingSpoons/katana-swift.git`
 
 ### CocoaPods
 
