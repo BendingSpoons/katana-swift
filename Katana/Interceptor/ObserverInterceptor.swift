@@ -289,7 +289,7 @@ private struct ObserverLogic {
 
 public extension ObserverInterceptor {
   /// Enum that contains the various events that can be observed
-  public enum ObserverType {
+  enum ObserverType {
     
     /// Type of closure that is used to check whether a state change should trigger the event
     public typealias StateChangeObserver = (_ prev: State, _ current: State) -> Bool

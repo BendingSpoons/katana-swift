@@ -41,7 +41,7 @@ public extension Promise {
    - returns: a chainable promise that will be resolved when the store will handle the dispatchable
   */
   @discardableResult
-  public func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {
+  func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {
     return self.then { value in
       let updater = try body(value)
       return SharedStoreContainer.sharedStore.dispatch(updater)

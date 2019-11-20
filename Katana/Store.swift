@@ -66,7 +66,7 @@ open class PartialStore<S: State>: AnyStore {
    Creates an instance of the `PartialStore` with the given initial state
    - parameter state: the initial state of the store
   */
-  fileprivate init(state: S) {
+  internal init(state: S) {
     self.state = state
   }
   
@@ -545,7 +545,7 @@ fileprivate extension Store {
    - parameter previousState: the previous state
    - parameter currentState: the current state
    */
-  fileprivate func triggerSideEffect(for action: Action, previousState: S, currentState: S) {
+  func triggerSideEffect(for action: Action, previousState: S, currentState: S) {
     guard let action = action as? ActionWithSideEffect else {
       return
     }
@@ -569,10 +569,10 @@ fileprivate extension Store {
     Type used internally to store partially applied interceptors.
     (that is, an interceptor to which the Store has already passed the context)
   */
-  fileprivate typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext) -> (_ dispatchable: Dispatchable) throws -> Void
+  typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext) -> (_ dispatchable: Dispatchable) throws -> Void
   
   /// Type used to define a dispatch that can throw
-  fileprivate typealias ThrowingDispatch = (_: Dispatchable) throws -> Void
+  typealias ThrowingDispatch = (_: Dispatchable) throws -> Void
   
   /**
    A function that initialises the given interceptors by binding the
@@ -581,7 +581,7 @@ fileprivate extension Store {
    - parameter interceptors: the interceptors to use to create the chain
    - returns: an array of initialised interceptors
    */
-  fileprivate static func initializedInterceptors(
+  static func initializedInterceptors(
     _ interceptors: [StoreInterceptor],
     sideEffectContext: SideEffectContext<S, D>) -> [InitializedInterceptor] {
     
@@ -598,7 +598,7 @@ fileprivate extension Store {
    - parameter lastStep: the function to execute when all the intercepts are executed
    - returns: a single function that invokes all the interceptors and then the last step
   */
-  fileprivate static func chainedInterceptors(
+  static func chainedInterceptors(
     _ interceptors: [InitializedInterceptor],
     with lastStep: @escaping ThrowingDispatch) -> ThrowingDispatch {
 
