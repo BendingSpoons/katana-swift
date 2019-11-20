@@ -210,7 +210,7 @@ public extension AsyncAction {
    - parameter state:  the current state
    - returns: the new state
   */
-  public func updatedState(currentState: State) -> State {
+  func updatedState(currentState: State) -> State {
     switch self.state {
     case .loading:
       return self.updatedStateForLoading(currentState: currentState)
@@ -236,7 +236,7 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided additional information
   */
-  public func completedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
+  func completedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
     var copy = self
     copy.state = .completed
     configuration(&copy)
@@ -253,7 +253,7 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the provided additional information
    */
-  public func failedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
+  func failedAction(_ configuration: (inout Self) -> () = { _ in }) -> Self {
     var copy = self
     copy.state = .failed
     configuration(&copy)
@@ -269,7 +269,7 @@ public extension AsyncAction {
    This new action will have the loading payload inerithed from the initial
    loading action and the defined progress value
   */
-  public func progressAction(percentage: Double) -> Self {
+  func progressAction(percentage: Double) -> Self {
     var copy = self
     copy.state = .progress(percentage: percentage)
     return copy

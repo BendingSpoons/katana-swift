@@ -196,7 +196,7 @@ public protocol SideEffect: AnySideEffect {
 /// Conformance of `SideEffect` to `AnySideEffect`
 public extension SideEffect {
   /// Implementation of the `sideEffect` requirement for `AnySideEffectContext`
-  public func sideEffect(_ context: AnySideEffectContext) throws {
+  func sideEffect(_ context: AnySideEffectContext) throws {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }

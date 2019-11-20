@@ -18,7 +18,7 @@ public protocol Dispatchable: CustomDebugStringConvertible {}
 
 /// Implementation of the `CustomDebugStringConvertible` protocol
 public extension Dispatchable {
-  public var debugDescription: String {
+  var debugDescription: String {
     return String(reflecting: type(of: self))
   }
 }
