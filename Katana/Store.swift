@@ -66,7 +66,7 @@ open class PartialStore<S: State>: AnyStore {
    Creates an instance of the `PartialStore` with the given initial state
    - parameter state: the initial state of the store
   */
-  fileprivate init(state: S) {
+  internal init(state: S) {
     self.state = state
   }
   
