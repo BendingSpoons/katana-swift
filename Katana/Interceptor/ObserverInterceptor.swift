@@ -113,7 +113,7 @@ public struct ObserverInterceptor {
 private struct ObserverLogic {
   
   /// The dispatch function of the store
-  let dispatch: PromisableStoreDispatch
+  let dispatch: Dispatch
   
   /// The items to observe
   let items: [ObserverInterceptor.ObserverType]
@@ -125,7 +125,7 @@ private struct ObserverLogic {
    - parameter items: the items to observe
    - returns: a structure that holds the logic to handle the given items
   */
-  init(dispatch: @escaping PromisableStoreDispatch, items: [ObserverInterceptor.ObserverType]) {
+  init(dispatch: @escaping Dispatch, items: [ObserverInterceptor.ObserverType]) {
     self.dispatch = dispatch
     self.items = items
   }

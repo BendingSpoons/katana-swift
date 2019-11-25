@@ -162,30 +162,6 @@ class SideEffectTests: QuickSpec {
           expect(rejectionError).toEventuallyNot(beNil())
         }
         
-        it("propagates error when using middleware") {
-          let middleware: StoreMiddleware = { getState, dispatch in
-            return { next in
-              return { dispatchable in
-                next(dispatchable)
-              }
-            }
-          }
-          
-          let interceptorFromMiddleware = middlewareToInterceptor(middleware)
-          store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptorFromMiddleware])
-          
-          let sideEffect = SideEffectWithBlock { context in
-            throw NSError(domain: "Test error", code: -1, userInfo: nil)
-          }
-          var rejectionError: Error?
-          store.dispatch(sideEffect).then {
-            fail("Promise should be rejected")
-            }.catch { error in
-              rejectionError = error
-          }
-          expect(rejectionError).toEventuallyNot(beNil())
-        }
-        
         it("retries dispatched actions") {
           store = Store<AppState, TestDependenciesContainer>()
           

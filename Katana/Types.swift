@@ -22,4 +22,4 @@ public typealias StoreUnsubscribe = () -> ()
 public typealias GetState = () -> State
 
 /// Typealias for the `Store` dispatch function with the ability of managing the output with a promise
-public typealias PromisableStoreDispatch = (_: Dispatchable) -> Promise<Void>
+public typealias Dispatch = (_: Dispatchable) -> Promise<Void>
