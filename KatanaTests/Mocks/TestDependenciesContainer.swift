@@ -13,7 +13,7 @@ import Hydra
 final class TestDependenciesContainer: SideEffectDependencyContainer {
   
   
-  func delay(of interval: TimeInterval) -> Promise<Void> {
+  func delay(of interval: TimeInterval) -> Promise<Any> {
     return Promise<Void>({ resolve, reject, _ in
       DispatchQueue.global().asyncAfter(deadline: .now() + interval, execute: { resolve(()) })
     })

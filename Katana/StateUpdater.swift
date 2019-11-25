@@ -41,6 +41,8 @@ public protocol AnyStateUpdater: Dispatchable {
  By conforming to `AppStateUpdater`, you will get better autocompletion
 */
 public protocol StateUpdater: AnyStateUpdater {
+  
+
   /// The concrete state type that the updater manages
   associatedtype StateType: State
   

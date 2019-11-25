@@ -29,7 +29,8 @@ public extension Promise {
   @discardableResult
   func thenDispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
     return self.then(in: .background) { _ in
-      return SharedStoreContainer.sharedStore.dispatch(dispatchable)
+//      return dispatchable.callDispatch()
+      fatalError()
     }
   }
   
@@ -43,9 +44,19 @@ public extension Promise {
   @discardableResult
   func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {
     return self.then { value in
-      let updater = try body(value)
-      return SharedStoreContainer.sharedStore.dispatch(updater)
+      fatalError()
+//      let updater = try body(value)
+//      return updater.callDispatch()
     }
+  }
+}
+
+extension Dispatchable {
+  func callDispatch() -> Promise<Void> {
+    // https://open.spotify.com/album/2cbbIQk2gIP2nlK0QGI7Nm
+    // https://stackoverflow.com/questions/33112559/protocol-doesnt-conform-to-itself/43408193#43408193
+    fatalError()
+    return SharedStoreContainer.sharedStore.dispatch(self)
   }
 }
 

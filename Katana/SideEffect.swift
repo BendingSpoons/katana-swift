@@ -128,7 +128,7 @@ public protocol AnySideEffect: Dispatchable {
    - throws: if the logic has an error. The related promise will be rejected
    - seeAlso: `SideEffect`
    */
-  func sideEffect(_ context: AnySideEffectContext) throws
+  func anySideEffect(_ context: AnySideEffectContext) throws -> Any
 }
 
 /**
@@ -158,6 +158,8 @@ public protocol SideEffect: AnySideEffect {
   
   /// The type of the dependencies container that is used to pass dependencies to the side effect
   associatedtype Dependencies: SideEffectDependencyContainer
+
+  associatedtype ReturnValue
 
   /**
    Block that implements the logic of the side effect.
@@ -190,17 +192,17 @@ public protocol SideEffect: AnySideEffect {
    - throws: if the logic has an error. The related promise will be rejected
    - seeAlso: https://github.com/malcommac/Hydra/#awaitasync
   */
-  func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws
+  func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws -> ReturnValue
 }
 
 /// Conformance of `SideEffect` to `AnySideEffect`
 public extension SideEffect {
   /// Implementation of the `sideEffect` requirement for `AnySideEffectContext`
-  func sideEffect(_ context: AnySideEffectContext) throws {
+  func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }
     
-    try self.sideEffect(typedSideEffect)
+    return try self.sideEffect(typedSideEffect)
   }
 }

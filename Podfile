@@ -14,3 +14,4 @@ target 'Katana' do
     pod 'HydraAsync', '~> 1.2'
   end
 end
+

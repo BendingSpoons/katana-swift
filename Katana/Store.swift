@@ -21,7 +21,10 @@ public protocol AnyStore: class {
    - returns: a promise that is resolved when the dispatchable is handled by the store
   */
   @discardableResult
-  func dispatch(_ dispatchable: Dispatchable) -> Promise<Void>
+  func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void>
+
+  @discardableResult
+  func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
@@ -76,7 +79,12 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
   */
   @discardableResult
-  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  public func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void> {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
+  }
+
+  @discardableResult
+  public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
   
@@ -241,7 +249,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
-    
+
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
     self.sideEffectContext = SideEffectContext<S, D>(
@@ -310,21 +318,41 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - returns: a promise that is resolved when the dispatchable is handled by the store
   */
   @discardableResult
-  override public func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.enqueueSideEffect(dispatchable).then { $0 as! T.ReturnValue }
+  }
+
+  @discardableResult
+  override public func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
     
     if let stateUpdater = dispatchable as? AnyStateUpdater {
-      return self.enqueueStateUpdater(stateUpdater)
+      return self.enqueueStateUpdater(stateUpdater).void
       
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect)
+      return self.enqueueSideEffect(sideEffect).void
       
-    } else if let action = dispatchable as? Action {
-      return self.enqueueAction(action)
     }
     
+    fatalError("Invalid parameter")
+  }
+
+  @discardableResult
+  func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+    if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
+      fatalError("The parameter cannot implement both the state updater and the side effect")
+    }
+
+    if let stateUpdater = dispatchable as? AnyStateUpdater {
+      return self.enqueueStateUpdater(stateUpdater).void
+
+    } else if let sideEffect = dispatchable as? AnySideEffect {
+      return self.enqueueSideEffect(sideEffect).void
+
+    }
+
     fatalError("Invalid parameter")
   }
   
@@ -389,8 +417,8 @@ fileprivate extension Store {
    - parameter stateUpdater: the state updater to manage
    - returns: a promise that is resolved when the state updater is managed
   */
-  private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
-    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+  private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Any> {
+    let promise = Promise<Any>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageUpdateState)
       try interceptorsChain(stateUpdater)
       resolve(())
@@ -444,14 +472,15 @@ fileprivate extension Store {
    - parameter sideEffect: the side effect to manage
    - returns: a promise that is resolved when the side effect is managed
   */
-  private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Void> {
-    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
-      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageSideEffect)
-      try interceptorsChain(sideEffect)
+  private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Any> {
+    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Any in
+//      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageSideEffect)
+//      try interceptorsChain(sideEffect)
+      return try self.manageSideEffect(sideEffect)
     }
     
     // triggers the execution of the promise even though no one is listening for it
-    promise.then(in: .background) { _ in }
+    promise.then(in: .background) { $0 }
     
     return promise
   }
@@ -462,7 +491,7 @@ fileprivate extension Store {
    
    - parameter dispatchable: the item to handle
   */
-  private func manageSideEffect(_ dispatchable: Dispatchable) throws -> Void {
+  private func manageSideEffect(_ dispatchable: Dispatchable) throws -> Any {
     guard self.isReady else {
       fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
     }
@@ -473,8 +502,9 @@ fileprivate extension Store {
     }
     
     let logEnd = SignpostLogger.shared.logStart(type: .sideEffect, name: dispatchable.debugDescription)
-    try sideEffect.sideEffect(self.sideEffectContext)
+    let res = try sideEffect.anySideEffect(self.sideEffectContext)
     logEnd()
+    return res
   }
 }
 
@@ -487,8 +517,8 @@ fileprivate extension Store {
    - parameter action: the action to manage
    - returns: a promise that is resolved when the action is managed
   */
-  private func enqueueAction(_ action: Action) -> Promise<Void> {
-    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+  private func enqueueAction(_ action: Action) -> Promise<Any> {
+    let promise = Promise<Any>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageAction)
       try interceptorsChain(action)
       resolve(())
