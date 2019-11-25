@@ -319,7 +319,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   */
   @discardableResult
   override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.enqueueSideEffect(dispatchable).then { $0 as! T.ReturnValue }
+    return self.enqueueSideEffect(dispatchable)
   }
 
   @discardableResult
@@ -332,7 +332,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       return self.enqueueStateUpdater(stateUpdater).void
       
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect).void
+      return self.enqueueSideEffect(sideEffect).then { (value: Any) in () }
       
     }
     
@@ -349,7 +349,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       return self.enqueueStateUpdater(stateUpdater).void
 
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect).void
+      return self.enqueueSideEffect(sideEffect).then { (value: Any) in () }
 
     }
 
@@ -472,17 +472,30 @@ fileprivate extension Store {
    - parameter sideEffect: the side effect to manage
    - returns: a promise that is resolved when the side effect is managed
   */
-  private func enqueueSideEffect(_ sideEffect: AnySideEffect) -> Promise<Any> {
-    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Any in
-//      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageSideEffect)
-//      try interceptorsChain(sideEffect)
-      return try self.manageSideEffect(sideEffect)
+  private func enqueueSideEffect<ReturnValue>(_ sideEffect: AnySideEffect) -> Promise<ReturnValue> {
+    var sideEffectValue: Any? = nil
+
+    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
+      let executeSideEffect: StoreInterceptorNext = {
+        sideEffectValue = try? self.manageSideEffect($0)
+      }
+
+      let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: executeSideEffect)
+      try interceptorsChain(sideEffect)
     }
     
-    // triggers the execution of the promise even though no one is listening for it
-    promise.then(in: .background) { $0 }
-    
-    return promise
+    return promise.then { () -> ReturnValue in
+      // TODO: check performance cost of this cast and potentially use #IF DEBUG to switch between a log in dev
+      // and a force cast in production
+      guard let value = sideEffectValue as? ReturnValue else {
+        fatalError("""
+          It looks like you've used an interceptor that either stopped the execution of the side effect or changed the executed side effect.
+          This is not longer supported as of Katana 4.0
+        """)
+      }
+
+      return value
+    }
   }
   
   /**
