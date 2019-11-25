@@ -340,7 +340,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
 
   @discardableResult
-  func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  private func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }

@@ -27,10 +27,16 @@ public extension Promise {
    - returns: a chainable promise that will be resolved when the store will handle the dispatchable
   */
   @discardableResult
-  func thenDispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  func thenDispatch(_ dispatchable: AnyStateUpdater) -> Promise<Void> {
     return self.then(in: .background) { _ in
-//      return dispatchable.callDispatch()
-      fatalError()
+      return dispatchable.callDispatch()
+    }
+  }
+
+  @discardableResult
+  func thenDispatch<SE: SideEffect>(_ dispatchable: SE) -> Promise<SE.ReturnValue> {
+    return self.then(in: .background) { _ in
+      return dispatchable.callDispatch()
     }
   }
   
@@ -42,20 +48,34 @@ public extension Promise {
    - returns: a chainable promise that will be resolved when the store will handle the dispatchable
   */
   @discardableResult
-  func thenDispatch(_ body: @escaping ( (Value) throws -> Dispatchable) ) -> Promise<Void> {
+  func thenDispatch(_ body: @escaping ( (Value) throws -> AnyStateUpdater) ) -> Promise<Void> {
     return self.then { value in
-      fatalError()
-//      let updater = try body(value)
-//      return updater.callDispatch()
+      let updater = try body(value)
+      return updater.callDispatch()
+    }
+  }
+
+  @discardableResult
+  func thenDispatch<SE: SideEffect>(_ body: @escaping ( (Value) throws -> SE) ) -> Promise<SE.ReturnValue> {
+    return self.then { value in
+      let updater = try body(value)
+      return updater.callDispatch()
     }
   }
 }
 
-extension Dispatchable {
+fileprivate extension SideEffect {
+  func callDispatch() -> Promise<Self.ReturnValue> {
+    // https://open.spotify.com/album/2cbbIQk2gIP2nlK0QGI7Nm
+    // https://stackoverflow.com/questions/33112559/protocol-doesnt-conform-to-itself/43408193#43408193
+    return SharedStoreContainer.sharedStore.dispatch(self)
+  }
+}
+
+fileprivate extension AnyStateUpdater {
   func callDispatch() -> Promise<Void> {
     // https://open.spotify.com/album/2cbbIQk2gIP2nlK0QGI7Nm
     // https://stackoverflow.com/questions/33112559/protocol-doesnt-conform-to-itself/43408193#43408193
-    fatalError()
     return SharedStoreContainer.sharedStore.dispatch(self)
   }
 }
