@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -8,30 +8,16 @@
       <BuildActionEntries>
          <BuildActionEntry
             buildForAnalyzing = "YES"
-            buildForTesting = "NO"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "45CF9A7F1842B897A8DBCE44"
-               BlueprintName = "Katana"
-               ReferencedContainer = "container:Katana.xcodeproj"
-               BuildableName = "Katana.framework">
-            </BuildableReference>
-         </BuildActionEntry>
-         <BuildActionEntry
-            buildForAnalyzing = "YES"
             buildForTesting = "YES"
-            buildForRunning = "NO"
-            buildForProfiling = "NO"
-            buildForArchiving = "NO">
+            buildForRunning = "YES"
+            buildForProfiling = "YES"
+            buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0EA2A8731D58C26BCE3F846"
-               BlueprintName = "KatanaTests"
-               ReferencedContainer = "container:Katana.xcodeproj"
-               BuildableName = "KatanaTests.xctest">
+               BlueprintIdentifier = "C9D027444D3ABA2DE6884713"
+               BuildableName = "Katana.framework"
+               BlueprintName = "Katana"
+               ReferencedContainer = "container:Katana.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -48,10 +34,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D0EA2A8731D58C26BCE3F846"
+               BlueprintIdentifier = "F3AA8202AC27595224A56577"
+               BuildableName = "KatanaTests.xctest"
                BlueprintName = "KatanaTests"
-               ReferencedContainer = "container:Katana.xcodeproj"
-               BuildableName = "KatanaTests.xctest">
+               ReferencedContainer = "container:Katana.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
@@ -68,16 +54,6 @@
       allowLocationSimulation = "YES">
       <AdditionalOptions>
       </AdditionalOptions>
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45CF9A7F1842B897A8DBCE44"
-            BlueprintName = "Katana"
-            ReferencedContainer = "container:Katana.xcodeproj"
-            BuildableName = "Katana.framework">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </LaunchAction>
    <ProfileAction
       savedToolIdentifier = ""
@@ -85,15 +61,6 @@
       debugDocumentVersioning = "YES"
       buildConfiguration = "Debug"
       shouldUseLaunchSchemeArgsEnv = "YES">
-      <BuildableProductRunnable>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "45CF9A7F1842B897A8DBCE44"
-            BlueprintName = "Katana"
-            ReferencedContainer = "container:Katana.xcodeproj"
-            BuildableName = "Katana.framework">
-         </BuildableReference>
-      </BuildableProductRunnable>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
