@@ -10,7 +10,7 @@ import Foundation
 
 /**
  Protocol implemented by a dispatchable that wants to be dispatched in response to a notification
-*/
+ */
 public protocol NotificationObserverDispatchable: Dispatchable {
   /**
    Creates the dispatchable item. If for any reason, the init decides
@@ -19,7 +19,7 @@ public protocol NotificationObserverDispatchable: Dispatchable {
    
    - parameter notification: the notification that triggered the init
    - returns: either the dispatchable item or nil
-  */
+   */
   init?(notification: Notification)
 }
 
@@ -40,8 +40,8 @@ public protocol StateObserverDispatchable: Dispatchable {
 }
 
 /**
-Protocol implemented by a dispatchable that wants to be dispatched in response to the dispatch of another dispatchable
-*/
+ Protocol implemented by a dispatchable that wants to be dispatched in response to the dispatch of another dispatchable
+ */
 public protocol DispatchObserverDispatchable: Dispatchable {
   /**
    Creates the dispatchable item. If for any reason, the init decides
@@ -58,13 +58,13 @@ public protocol DispatchObserverDispatchable: Dispatchable {
 
 /**
  Protocol implemented by a dispatchable that wants to be dispatched when the store starts
-*/
+ */
 public protocol OnStartObserverDispatchable: Dispatchable {
   /**
    Creates the dispatchable item. If for any reason, the init decides
    that the dispatchable should not be sent to the Store, the init can fail
    (that is, returns nil)
-
+   
    - returns: either the dispatchable item or nil
    */
   init?()
@@ -74,7 +74,7 @@ public protocol OnStartObserverDispatchable: Dispatchable {
  Interceptor that can be use to observe behaviours and dispatch items as a response.
  
  You can add as many `OnserverInterceptor` as you want to your application.
-*/
+ */
 public struct ObserverInterceptor {
   
   /// Creates the interceptor
@@ -85,7 +85,7 @@ public struct ObserverInterceptor {
    
    - parameter items: the list of events to observe
    - returns: the interceptor that observes the given items
-  */
+   */
   public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
     return { context in
       
@@ -124,7 +124,7 @@ private struct ObserverLogic {
    - parameter dispatch: the dispatch function of the store
    - parameter items: the items to observe
    - returns: a structure that holds the logic to handle the given items
-  */
+   */
   init(dispatch: @escaping Dispatch, items: [ObserverInterceptor.ObserverType]) {
     self.dispatch = dispatch
     self.items = items
@@ -134,7 +134,7 @@ private struct ObserverLogic {
    Listens the notifications contained in the passed items.
    
    This should be invoked as early as possible
-  */
+   */
   fileprivate func listenToNotifications() {
     for item in self.items {
       
@@ -150,7 +150,7 @@ private struct ObserverLogic {
    Handles the items that should be dispatched when the store starts
    
    This should be invoked when the store initialises the interceptor
-  */
+   */
   fileprivate func handleOnStart() {
     for item in self.items {
       
@@ -169,7 +169,7 @@ private struct ObserverLogic {
       }
     }
   }
-
+  
   /**
    Handles a specific notification by adding an observer (using NotificationCenter)
    that dispatches the given types
@@ -177,17 +177,17 @@ private struct ObserverLogic {
    - parameter name: the name of the notification to listen to
    - parameter typesToDispatch: the types of dispatchable to instantiate and dispatch when the
    notification is received
-  */
+   */
   private func handleNotification(
     with name: NSNotification.Name,
     _ typesToDispatch: [NotificationObserverDispatchable.Type]) {
-
+    
     NotificationCenter.default.addObserver(
       forName: name,
       object: nil,
       queue: nil,
       using: { notification in
-
+        
         for type in typesToDispatch {
           guard let dispatchable = type.init(notification: notification) else {
             continue
@@ -195,13 +195,13 @@ private struct ObserverLogic {
           
           _ = self.dispatch(dispatchable)
         }
-      }
+    }
     )
   }
   
   /**
    Handles the fact that a dispatchable has been received and it changed the state from `anyPrevState` to
-   `anyCurrentState`. The method takes care of dispatching proper items based on the observer configuration.
+   `anyCurrentState`. The method takes care of dispatching the proper items based on the observer configuration.
    
    - parameter dispatchable: the dispatchable that has been dispatched
    - parameter anyPrevState: the state before the execution of the dispatchable
@@ -255,7 +255,7 @@ private struct ObserverLogic {
    - parameter anyPrevState: the state before the execution of the dispatchable
    - parameter anyCurrentState: the state after the execution of the dispatchable
    - parameter dispatched: the dispatchable that has been dispatched
-  */
+   */
   fileprivate func handleOnDispatched(
     _ itemsToDispatch: [DispatchObserverDispatchable.Type],
     _ anyPrevState: State,
@@ -273,15 +273,15 @@ private struct ObserverLogic {
   /**
    String representation of the given dispatchable type
    - parameter dispatchable: the dispatchable type
-  */
+   */
   fileprivate static func stringName(for dispatchable: Dispatchable.Type) -> String {
     return String(reflecting:(type(of: dispatchable)))
   }
-
+  
   /**
    String representation of the given dispatchable
    - parameter dispatchable: the dispatchable
-  */
+   */
   fileprivate static func stringName(for dispatchable: Dispatchable) -> String {
     return self.stringName(for: type(of: dispatchable))
   }
@@ -301,27 +301,27 @@ public extension ObserverInterceptor {
      Observes a change in the state.
      - parameter observer: a function that should return true when the changes to the state should dispatch items
      - parameter dispatchable: a list of items to dispatch if the `observer` returns true
-    */
+     */
     case onStateChange(_ observer: StateChangeObserver, _ dispatchable: [StateObserverDispatchable.Type])
     
     /**
      Observes a notification.
      - parameter notification: the name of the notification to observe
      - parameter dispatchable: a list of items to dispatch when the noficiation is sent
-    */
+     */
     case onNotification(_ notification: Notification.Name, _ dispatchable: [NotificationObserverDispatchable.Type])
     
     /**
      Observes a dispatch
      - parameter dispatchable: the type of the dispatchable to observe
      - parameter dispatchable: a list of items to dispatch when `dispatchable` is dispatched
-    */
+     */
     case onDispatch(_ dispatchable: Dispatchable.Type, _ dispatchable: [DispatchObserverDispatchable.Type])
     
     /**
-     When the store starts
+     Observes when the store starts
      - parameter dispatchable: a list of items to dispatch when the store starts
-    */
+     */
     case onStart(_ dispatchable: [OnStartObserverDispatchable.Type])
     
     /**
@@ -329,7 +329,7 @@ public extension ObserverInterceptor {
      
      - parameter closure: the closure with type `TypedStateChangeObserver` to transform
      - returns: the closure with type `StateChangeObserver` that is logically equivalent to the given closure
-    */
+     */
     public static func typedStateChange<S: State>(_ closure: @escaping TypedStateChangeObserver<S>) -> StateChangeObserver {
       return { prev, current in
         guard let typedPrev = prev as? S, let typedCurr = current as? S else {

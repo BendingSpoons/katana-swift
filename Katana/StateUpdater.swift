@@ -12,14 +12,14 @@ import Foundation
  Type erasure for `StateUpdater`
  
  - seeAlso: `StateUpdater`
-*/
+ */
 public protocol AnyStateUpdater: Dispatchable {
   /**
    Creates the new state starting from the current state.
    - parameter currentState: the current configuration of the state
    - returns: the new version of the state
    - seeAlso: `StateUpdater`
-  */
+   */
   func updatedState(currentState: State) -> State
 }
 
@@ -39,10 +39,9 @@ public protocol AnyStateUpdater: Dispatchable {
  ```
  
  By conforming to `AppStateUpdater`, you will get better autocompletion
-*/
+ */
 public protocol StateUpdater: AnyStateUpdater {
   
-
   /// The concrete state type that the updater manages
   associatedtype StateType: State
   
@@ -55,7 +54,7 @@ public protocol StateUpdater: AnyStateUpdater {
    
    - parameter state: the current configuration of the state. The method is meant to update
    the value of the state in place
-  */
+   */
   func updateState(_ state: inout StateType)
 }
 

@@ -18,11 +18,17 @@ public protocol AnyStore: class {
    Dispatches a `Dispatchable` item
    
    - parameter dispatchable: the dispatchable to dispatch
-   - returns: a promise that is resolved when the dispatchable is handled by the store
-  */
+   - returns: a promise parameterized to void that is resolved when the dispatchable is handled by the store
+   */
   @discardableResult
   func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void>
-
+  
+  /**
+   Dispatches a `SideEffect` item
+   
+   - parameter dispatchable: the Side Effect to dispatch
+   - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the store
+   */
   @discardableResult
   func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
@@ -48,11 +54,11 @@ public protocol AnyStore: class {
  
  - warning: you should not create this class directly. The class is meant to be used as a partial type
  erasure system over `Store`
-*/
+ */
 open class PartialStore<S: State>: AnyStore {
   /// Closure that is used to initialize the state
   public typealias StateInitializer<T: State> = () -> T
-
+  
   /// The current state of the application
   open fileprivate(set) var state: S
   
@@ -68,7 +74,7 @@ open class PartialStore<S: State>: AnyStore {
   /**
    Creates an instance of the `PartialStore` with the given initial state
    - parameter state: the initial state of the store
-  */
+   */
   internal init(state: S) {
     self.state = state
   }
@@ -77,12 +83,17 @@ open class PartialStore<S: State>: AnyStore {
    Not implemented
    
    - warning: Not implemented. Instantiate a `Store` instead
-  */
+   */
   @discardableResult
   public func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
-
+  
+  /**
+   Not implemented
+   
+   - warning: Not implemented. Instantiate a `Store` instead
+   */
   @discardableResult
   public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
@@ -92,7 +103,7 @@ open class PartialStore<S: State>: AnyStore {
    Not implemented
    
    - warning: Not implemented. Instantiate a `Store` instead
-  */
+   */
   public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
@@ -111,12 +122,12 @@ private func emptyStateInitializer<S: State>() -> S {
  The `Store`, however, doesn't really implements any application specific logic: this class
  only manages operations that are requsted by the application-specific logic. In particular,
  you can require the `Store` to execute something by `dispatching a dispatchable item`.
-
- Currently the store handles 3 types of dispatchable: `State Updater`, `Side Effect` and (deprecated) `Action`.
+ 
+ Currently the store handles 2 types of dispatchable: `State Updater`, `Side Effect`
  
  #### Update the state
  As written before, in Katana every relevant information in the application should be stored in the
- Store's state. The only way to update the state is to dispatch a `StateUpdater` (or the legacy `Action`).
+ Store's state. The only way to update the state is to dispatch a `StateUpdater`.
  At this point the `Store` will execute the following operations:
  
  - it executes the interceptors
@@ -143,7 +154,7 @@ private func emptyStateInitializer<S: State>() -> S {
  and even change dynamically which dispatchable items arrive to the `Store` itself.
  
  - seeAlso: `StateUpdater` for more information about how to implement an update of the state
- - seeAlso: `SideEffect` for more information about how to implement an complex/asyncronous logic
+ - seeAlso: `SideEffect` for more information about how to implement a complex/asyncronous logic
  */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
@@ -211,7 +222,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    init of the state type.
    
    - parameter interceptors: a list of interceptors that are executed every time something is dispatched
-   - returns: An instance of store
+   - returns: An instance of the store
    */
   convenience public init(interceptors: [StoreInterceptor]) {
     self.init(
@@ -229,7 +240,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    * create the dependencies
    * create the first state version by using the given `stateInitializer`
    * initialise the interceptors
-
+   
    Accessing the state before the `Store` is ready will lead to a crash of the application, as the
    state of the system is not well defined. You can check whether the `Store` is ready by leveraging the `isReady` property.
    
@@ -249,7 +260,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
-
+    
     self.dependencies = D.init(dispatch: self.dispatch, getState: self.getState)
     
     self.sideEffectContext = SideEffectContext<S, D>(
@@ -283,6 +294,34 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
   
   /**
+   Dispatches a `SideEffect` item
+   
+   #### Threading
+   
+   The `Store` follows strict rules about the parallelism with which dispatched items are handled.
+   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   devices offer.
+   
+   When a `SideEffect` is dispatched, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
+   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   improve the performances of the system. Overall, this should not be a problem as you cannot really change
+   the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
+   
+   #### Promise Resolution
+   
+   When it comes to `SideEffect`s, the promise is resolved when the body of the `SideEffect` is executed entirely (see `SideEffect` documentation for
+   more information).
+   
+   - parameter dispatchable: the SideEffect to dispatch
+   - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
+   */
+  @discardableResult
+  override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.enqueueSideEffect(dispatchable)
+  }
+  
+  /**
    Dispatches a `Dispatchable` item
    
    #### Threading
@@ -297,31 +336,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
    
    When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
-   done when its body finishes to be executed. This menas that side effects are not guaranteed to be run in isolation, and you
+   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
    should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
-   
-   This version of the store keeps the support for `Action` items. Since actions both update the state and executes side effects,
-   they are managed in the very same, serial and syncronous, queue of the `StateUpdater`. You are encouraged to move away from
-   actions as soon as possible.
    
    #### Promise Resolution
    
    When it comes to `StateUpdater`, the promise is resolved when the state is updated. For `SideEffect`,
    the promise is resolved when the body of the `SideEffect` is executed entirely (see `SideEffect` documentation for
-   more information). For `Action`, finally, the promise is resolved when the state is updated and the sideEffect method
-   is executed (note that this doesn't mean that the side effect is effectively done, as there's no simple mechanism to
-   block the execution of a sideeffect in an action)
+   more information).
    
-   - parameter dispatchable: the dispatchable to dispatch
-   - returns: a promise that is resolved when the dispatchable is handled by the store
-  */
-  @discardableResult
-  override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.enqueueSideEffect(dispatchable)
-  }
-
+   - parameter dispatchable: the dispatchable to dispatch, it can be either a StateUpdater or a SideEffect
+   - returns: a promise parameterized to void that is resolved when the dispatchable is handled by the store
+   */
   @discardableResult
   override public func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Void> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
@@ -338,21 +366,21 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     fatalError("Invalid parameter")
   }
-
+  
   @discardableResult
   private func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
-
+    
     if let stateUpdater = dispatchable as? AnyStateUpdater {
       return self.enqueueStateUpdater(stateUpdater).void
-
+      
     } else if let sideEffect = dispatchable as? AnySideEffect {
       return self.enqueueSideEffect(sideEffect).then { (value: Any) in () }
-
+      
     }
-
+    
     fatalError("Invalid parameter")
   }
   
@@ -360,7 +388,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    Private version of the `Dispatch` that doesn't return any promise
    
    - parameter dispatchable: the dispatchable to dispatch
-  */
+   */
   fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
     self.dispatch(dispatchable)
   }
@@ -373,7 +401,7 @@ private extension Store {
    Store doesn't start to work (that is, actions are not dispatched) till this function is executed
    
    - parameter stateInitializer: the closure used to create the first configuration of the state
-  */
+   */
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
     // invoke listeners (always in main queue)
@@ -396,7 +424,7 @@ private extension Store {
    - returns: the current version of the state
    - warning: this method should not be invoked before the state is ready. The app will crash otherwise
    - seeAlso: `isReady`
-  */
+   */
   private func getState() -> S {
     assert(self.isReady, """
       The state is not ready yet. You should wait until the state is ready to invoke getState.
@@ -410,13 +438,13 @@ private extension Store {
 
 // MARK: State Updater management
 fileprivate extension Store {
-
+  
   /**
    Enqueues a state updater.
    
    - parameter stateUpdater: the state updater to manage
    - returns: a promise that is resolved when the state updater is managed
-  */
+   */
   private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Any> {
     let promise = Promise<Any>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageUpdateState)
@@ -435,14 +463,14 @@ fileprivate extension Store {
    the item is simply dispatched again and not handled here.
    
    - parameter dispatchable: the item to handle
-  */
+   */
   private func manageUpdateState(_ dispatchable: Dispatchable) throws {
     guard self.isReady else {
       fatalError("Something is wrong, the state updater queue has been started before the initialization has been completed")
     }
     
     guard let stateUpdater = dispatchable as? AnyStateUpdater else {
-      // interceptors changed the type.. let's re-dispatch it
+      // Interceptors changed the dispatchable type. Let's re-dispatch it
       return self.nonPromisableDispatch(dispatchable)
     }
     
@@ -470,16 +498,16 @@ fileprivate extension Store {
    Enqueues the side effect.
    
    - parameter sideEffect: the side effect to manage
-   - returns: a promise that is resolved when the side effect is managed
-  */
+   - returns: a promise parameterized to the side effect's return value that is resolved when the side effect is managed
+   */
   private func enqueueSideEffect<ReturnValue>(_ sideEffect: AnySideEffect) -> Promise<ReturnValue> {
     var sideEffectValue: Any? = nil
-
+    
     let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
       let executeSideEffect: StoreInterceptorNext = {
         sideEffectValue = try? self.manageSideEffect($0)
       }
-
+      
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: executeSideEffect)
       try interceptorsChain(sideEffect)
     }
@@ -493,7 +521,7 @@ fileprivate extension Store {
           This is not longer supported as of Katana 4.0
         """)
       }
-
+      
       return value
     }
   }
@@ -503,14 +531,14 @@ fileprivate extension Store {
    the item is simply dispatched again and not handled here.
    
    - parameter dispatchable: the item to handle
-  */
+   */
   private func manageSideEffect(_ dispatchable: Dispatchable) throws -> Any {
     guard self.isReady else {
       fatalError("Something is wrong, the side effect queue has been started before the initialization has been completed")
     }
     
     guard let sideEffect = dispatchable as? AnySideEffect else {
-      // interceptor changed the type. Let's dispatch it
+      // Interceptors changed the dispatchable type. Let's re-dispatch it
       return self.nonPromisableDispatch(dispatchable)
     }
     
@@ -524,9 +552,9 @@ fileprivate extension Store {
 // MARK: Middleware management
 fileprivate extension Store {
   /**
-    Type used internally to store partially applied interceptors.
-    (that is, an interceptor to which the Store has already passed the context)
-  */
+   Type used internally to store partially applied interceptors.
+   (that is, an interceptor to which the Store has already passed the context)
+   */
   typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext) -> (_ dispatchable: Dispatchable) throws -> Void
   
   /// Type used to define a dispatch that can throw
@@ -553,13 +581,13 @@ fileprivate extension Store {
    usually is the handling of the dispatchable items.
    
    - parameter interceptors: the interceptor to chain
-   - parameter lastStep: the function to execute when all the intercepts are executed
+   - parameter lastStep: the function to execute when all the interceptors have been executed
    - returns: a single function that invokes all the interceptors and then the last step
-  */
+   */
   static func chainedInterceptors(
     _ interceptors: [InitializedInterceptor],
     with lastStep: @escaping ThrowingDispatch) -> ThrowingDispatch {
-
+    
     guard !interceptors.isEmpty else {
       return lastStep
     }

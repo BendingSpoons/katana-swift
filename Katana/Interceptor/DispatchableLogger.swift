@@ -22,9 +22,9 @@ public struct DispatchableLogger {
     return { context in
       return { next in
         return { dispatchable in
-
+          
           try next(dispatchable)
-
+          
           DispatchQueue.global(qos: .utility).async {
             let actionType = type(of: dispatchable) as Dispatchable.Type
             guard !blackList.contains(where: { $0 == actionType }) else { return }
