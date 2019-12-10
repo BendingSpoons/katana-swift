@@ -516,10 +516,12 @@ fileprivate extension Store {
       // TODO: check performance cost of this cast and potentially use #IF DEBUG to switch between a log in dev
       // and a force cast in production
       guard let value = sideEffectValue as? ReturnValue else {
-        fatalError("""
+        print("""
+          [ERROR in \(#function) at line \(#line)]
           It looks like you've used an interceptor that either stopped the execution of the side effect or changed the executed side effect.
           This is not longer supported as of Katana 4.0
         """)
+        throw PromiseError.invalidInput
       }
       
       return value

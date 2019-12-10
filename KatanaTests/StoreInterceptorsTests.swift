@@ -176,6 +176,41 @@ class StoreInterceptorsTests: QuickSpec {
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(invoked).toEventually(beFalse())
         }
+        
+        it("invokes the middleware with returning side effects") {
+          let todo = Todo(title: "title", id: "id")
+          var dispatchedSideEffect: SideEffectWithBlock?
+          var stateBefore: AppState?
+          var stateAfter: AppState?
+          var returnedState: AppState?
+          
+          let interceptor: StoreInterceptor = { context in
+            return { next in
+              return { sideEffect in
+                if dispatchedSideEffect == nil {
+                  dispatchedSideEffect = sideEffect as? SideEffectWithBlock
+                  try context.awaitDispatch(AddTodo(todo: todo))
+                }
+                stateBefore = context.getAnyState() as? AppState
+                try next(sideEffect)
+                stateAfter = context.getAnyState() as? AppState
+              }
+            }
+          }
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          
+          expect(store.isReady).toEventually(beTrue())
+          
+          store.dispatch(SideEffectWithBlock(block: { context in
+            try context.awaitDispatch(AddTodo(todo: todo))
+          })).then { returnedState = $0 }
+          
+          expect(dispatchedSideEffect).toEventuallyNot(beNil())
+          expect(stateBefore?.todo.todos.count).toEventually(equal(0))
+          expect(stateAfter?.todo.todos.count).toEventually(equal(2), timeout: 200)
+          expect(returnedState?.todo.todos).toEventually(equal([todo, todo]))
+        }
       }
     }
   }
@@ -198,8 +233,9 @@ private struct DelaySideEffect: TestSideEffect {
 private struct SideEffectWithBlock: TestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     try block(context)
+    return context.getState()
   }
 }
 

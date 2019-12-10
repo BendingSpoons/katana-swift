@@ -92,7 +92,24 @@ class SideEffectTests: QuickSpec {
           expect(invocationResults) == ["1", "2", "3"]
         }
         
-        it("correctly mixes store updater and side effects") {
+        it("invokes a returning side effect which invokes a state updater and obtains the correct return value") {
+          let todo: Todo = Todo(title: "title", id: "id")
+          var appState: AppState?
+          let returningSideEffect = SideEffectWithBlock(block: { context in
+            context.dispatch(AddTodo(todo: todo))
+          })
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect).then { result in
+              appState = result
+              done()
+            }
+          }
+          
+          expect(appState?.todo.todos) == [todo]
+        }
+        
+        it("correctly mixes state updater and side effects") {
           let todo = Todo(title: "title", id: "id")
           let user = User(username: "username")
           
@@ -200,8 +217,9 @@ private struct SpySideEffect: TestSideEffect {
 private struct SideEffectWithBlock: TestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     try block(context)
+    return context.getState()
   }
 }
 
