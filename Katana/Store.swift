@@ -445,8 +445,8 @@ fileprivate extension Store {
    - parameter stateUpdater: the state updater to manage
    - returns: a promise that is resolved when the state updater is managed
    */
-  private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Any> {
-    let promise = Promise<Any>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+  private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
+    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageUpdateState)
       try interceptorsChain(stateUpdater)
       resolve(())
