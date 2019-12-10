@@ -172,9 +172,9 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   public private(set) var isReady: Bool
   
   /**
-   The dependencies used in the actions side effects
+   The dependencies used in the side effects
    
-   - seeAlso: `ActionWithSideEffect`
+   - seeAlso: `SideEffect`
    */
   public var dependencies: D!
   
@@ -187,20 +187,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     // queue is initially supended. The store will enable the queue when
     // all the setup is done.
-    // we basically enqueue all the dispatched actions until
+    // we basically enqueue all the dispatched dispatchables until
     // everything is needed to manage them is correctly sat up
     d.suspend()
     
     return d
   }()
   
-  /// The queue used to handle the `SideEffect` items (and the `Action` ones as well)
+  /// The queue used to handle the `SideEffect` items
   lazy fileprivate var sideEffectQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
     // queue is initially supended. The store will enable the queue when
     // all the setup is done.
-    // we basically enqueue all the dispatched actions until
+    // we basically enqueue all the dispatched dispatchables until
     // everything is needed to manage them is correctly sat up
     d.suspend()
     
@@ -208,8 +208,8 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }()
   
   /**
-   A convenience init method. The store won't have middleware nor dependencies for the actions
-   side effects. The state will be created using the default init of the state
+   A convenience init method. The store won't have middleware nor dependencies for the side effects.
+   The state will be created using the default init of the state
    
    - returns: An instance of store
    */
@@ -398,7 +398,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 private extension Store {
   /**
    Creates and initializes the internal values.
-   Store doesn't start to work (that is, actions are not dispatched) till this function is executed
+   Store doesn't start to work (that is, dispatchables are not dispatched) until this function is executed
    
    - parameter stateInitializer: the closure used to create the first configuration of the state
    */
@@ -479,7 +479,7 @@ fileprivate extension Store {
     logEnd()
     
     guard let typedNewState = newState as? S else {
-      preconditionFailure("Action updatedState returned a wrong state type")
+      preconditionFailure("StateUpdater updatedState returned a wrong state type")
     }
     
     self.state = typedNewState

@@ -11,7 +11,7 @@ import os.signpost
 
 /**
  Wrapper around the signpost API offered starting from iOS12.
- The logger will automatically track side effects, state updaters and actions
+ The logger will automatically track side effects, state updaters and side effects
  in Instruments. You will get a nice visualization of the operations that are ongoing,
  the parallelism level and the time that each operation requires.
  
@@ -101,24 +101,6 @@ public struct SignpostLogger {
     
     return {
       os_signpost(.end, log: log, name: "Side Effect", signpostID: signpostID, "%{public}s", name)
-    }
-  }
-  
-  /**
-   Starts to log an action operation
-   
-   - parameter log: the underlying log to use
-   - parameter name: a unique name associated with the log
-   - returns: a closure to invoke when the related operation ends
-   */
-  @available(iOS 12.0, *)
-  func logAction(log: OSLog, name: String) -> LogEndClosure {
-    let signpostID = OSSignpostID(log: log)
-    
-    os_signpost(.begin, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
-    
-    return {
-      os_signpost(.end, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
     }
   }
 }

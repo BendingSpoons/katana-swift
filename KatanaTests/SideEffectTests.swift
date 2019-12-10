@@ -162,7 +162,7 @@ class SideEffectTests: QuickSpec {
           expect(rejectionError).toEventuallyNot(beNil())
         }
         
-        it("retries dispatched actions") {
+        it("retries dispatched dispatchables") {
           store = Store<AppState, TestDependenciesContainer>()
           
           /// This sideEffect will fail the first time, but it will succeed if retried

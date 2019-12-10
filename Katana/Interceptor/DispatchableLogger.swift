@@ -26,8 +26,8 @@ public struct DispatchableLogger {
           try next(dispatchable)
           
           DispatchQueue.global(qos: .utility).async {
-            let actionType = type(of: dispatchable) as Dispatchable.Type
-            guard !blackList.contains(where: { $0 == actionType }) else { return }
+            let dispatchableType = type(of: dispatchable) as Dispatchable.Type
+            guard !blackList.contains(where: { $0 == dispatchableType }) else { return }
             print("[Dispatchable]: \(dispatchable.debugDescription)")
           }
         }

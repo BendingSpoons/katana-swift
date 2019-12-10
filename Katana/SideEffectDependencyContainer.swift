@@ -14,7 +14,7 @@ public protocol SideEffectDependencyContainer: class {
    Creates a new instance of the container.
    The container is instantiated when the store is instantiated
    
-   - parameter dispatch:  a closure that can be used to dispatch actions
+   - parameter dispatch:  a closure that can be used to dispatch dispatchables
    - parameter getState:  a closure that returns the current state
    - returns: an instance of the container
    */
@@ -26,7 +26,7 @@ public class EmptySideEffectDependencyContainer: SideEffectDependencyContainer {
   /**
    Creates an empty dependency container
    
-   - parameter dispatch:  a closure that can be used to dispatch actions
+   - parameter dispatch:  a closure that can be used to dispatch dispatchables
    - returns: an instance of the container
    */
   public required init(dispatch: @escaping Dispatch, getState: @escaping GetState) {}
