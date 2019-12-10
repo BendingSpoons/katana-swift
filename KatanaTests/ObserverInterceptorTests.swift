@@ -136,7 +136,7 @@ class ObserverInterceptorTests: QuickSpec {
         it("is is not triggered for side effects") {
           
           var invoked = false
-        
+          
           let interceptor = ObserverInterceptor.observe([
             .onStateChange({ (prev: State, curr: State) -> Bool in
               invoked = true
@@ -186,7 +186,7 @@ class ObserverInterceptorTests: QuickSpec {
           let interceptor = ObserverInterceptor.observe([
             .onDispatch(AddTodo.self, [StateChangeAddUser.self]),
             .onDispatch(AddTodo.self, [NilStateChangeAddUser.self]),
-            ])
+          ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
@@ -222,7 +222,7 @@ class ObserverInterceptorTests: QuickSpec {
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-
+          
           expect(store.isReady).toEventually(beTrue())
           NotificationCenter.default.post(name: testNotification, object: nil)
           
@@ -233,7 +233,7 @@ class ObserverInterceptorTests: QuickSpec {
         it("works with multiple items to dispatch") {
           let interceptor = ObserverInterceptor.observe([
             .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
-            ])
+          ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
@@ -328,13 +328,18 @@ private struct AddTodoWithDelay: TestStateUpdater {
   }
 }
 
-private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
+private struct StateChangeAddUser: TestStateUpdater,
+  StateObserverDispatchable,
+  DispatchObserverDispatchable,
+  NotificationObserverDispatchable,
+OnStartObserverDispatchable {
+  
   init?(prevState: State, currentState: State) {
     
   }
   
   init?(dispatchedItem: Dispatchable, prevState: State, currentState: State) {
-
+    
   }
   
   init?(notification: Notification) {
@@ -350,7 +355,11 @@ private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, 
   }
 }
 
-private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
+private struct NilStateChangeAddUser: TestStateUpdater,
+  StateObserverDispatchable,
+  DispatchObserverDispatchable,
+  NotificationObserverDispatchable,
+OnStartObserverDispatchable {
   init?(prevState: State, currentState: State) {
     return nil
   }
