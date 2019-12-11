@@ -501,29 +501,23 @@ fileprivate extension Store {
    - returns: a promise parameterized to the side effect's return value that is resolved when the side effect is managed
    */
   private func enqueueSideEffect<ReturnValue>(_ sideEffect: AnySideEffect) -> Promise<ReturnValue> {
-    var sideEffectValue: Any? = nil
-    
-    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> Void in
+    return async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> ReturnValue in
+      var sideEffectValue: Any? = nil
+
       let executeSideEffect: StoreInterceptorNext = {
-        sideEffectValue = try? self.manageSideEffect($0)
+        sideEffectValue = try self.manageSideEffect($0)
       }
       
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: executeSideEffect)
       try interceptorsChain(sideEffect)
-    }
-    
-    return promise.then { () -> ReturnValue in
-      // TODO: check performance cost of this cast and potentially use #IF DEBUG to switch between a log in dev
-      // and a force cast in production
+      
       guard let value = sideEffectValue as? ReturnValue else {
-        print("""
-          [ERROR in \(#function) at line \(#line)]
+        fatalError("""
           It looks like you've used an interceptor that either stopped the execution of the side effect or changed the executed side effect.
           This is not longer supported as of Katana 4.0
         """)
-        throw PromiseError.invalidInput
       }
-      
+            
       return value
     }
   }

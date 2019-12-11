@@ -94,19 +94,16 @@ class SideEffectTests: QuickSpec {
         
         it("invokes a returning side effect which invokes a state updater and obtains the correct return value") {
           let todo: Todo = Todo(title: "title", id: "id")
-          var appState: AppState?
           let returningSideEffect = SideEffectWithBlock(block: { context in
-            context.dispatch(AddTodo(todo: todo))
+            try context.awaitDispatch(AddTodo(todo: todo))
           })
           
           waitUntil(timeout: 10) { done in
             store.dispatch(returningSideEffect).then { result in
-              appState = result
+              expect(result.todo.todos) == [todo]
               done()
             }
           }
-          
-          expect(appState?.todo.todos) == [todo]
         }
         
         it("correctly mixes state updater and side effects") {
@@ -170,13 +167,14 @@ class SideEffectTests: QuickSpec {
           let sideEffect = SideEffectWithBlock { context in
             throw NSError(domain: "Test error", code: -1, userInfo: nil)
           }
-          var rejectionError: Error?
-          store.dispatch(sideEffect).then {
-            fail("Promise should be rejected")
-          }.catch { error in
-            rejectionError = error
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(sideEffect).then {
+              fail("Promise should be rejected")
+            }.catch { error in
+              done()
+            }
           }
-          expect(rejectionError).toEventuallyNot(beNil())
         }
         
         it("retries dispatched dispatchables") {
