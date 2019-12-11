@@ -36,12 +36,14 @@ class StoreTest: QuickSpec {
           }
           
           waitUntil { done in
-            store.dispatch(AddTodo(todo: todo)).then { done() }
+            store.dispatch(AddTodo(todo: todo)).then {
+              expect(listenerState).toNot(beNil())
+              expect(listenerState?.todo.todos.first) == todo
+              expect(listenerState?.todo.todos.count) == 1
+              
+              done()
+            }
           }
-          
-          expect(listenerState).toNot(beNil())
-          expect(listenerState?.todo.todos.first) == todo
-          expect(listenerState?.todo.todos.count) == 1
         }
         
         it("allows to remove listeners") {
@@ -67,17 +69,19 @@ class StoreTest: QuickSpec {
               .dispatch(AddTodo(todo: todo1))
               .then { unsubscribe() }
               .thenDispatch(AddTodo(todo: todo2))
-              .then { done() }
+              .then {
+                expect(firstState).toNot(beNil())
+                expect(secondState).toNot(beNil())
+                expect(thirdState).to(beNil())
+                
+                expect(secondState?.todo.todos.first) == todo1
+                expect(secondState?.todo.todos.count) == 1
+                
+                expect(store.state.todo.todos) == [todo1, todo2]
+                
+                done()
+            }
           }
-          
-          expect(firstState).toNot(beNil())
-          expect(secondState).toNot(beNil())
-          expect(thirdState).to(beNil())
-          
-          expect(secondState?.todo.todos.first) == todo1
-          expect(secondState?.todo.todos.count) == 1
-
-          expect(store.state.todo.todos) == [todo1, todo2]
         }
       }
     }

@@ -30,10 +30,12 @@ class SideEffectTests: QuickSpec {
           waitUntil { done in
             store
               .dispatch(sideEffect)
-              .then { done() }
+              .then {
+                expect(invoked) == true
+                
+                done()
+            }
           }
-          
-          expect(invoked) == true
         }
         
         it("invokes the side effect with the same dependencies container") {
@@ -47,10 +49,13 @@ class SideEffectTests: QuickSpec {
             store
               .dispatch(sideEffect1)
               .thenDispatch(sideEffect2)
-              .then { done() }
+              .then {
+                expect(firstDependenciesContainer) === secondDependenciesContainer
+                
+                done()
+            }
           }
           
-          expect(firstDependenciesContainer) === secondDependenciesContainer
         }
         
         it("invokes side effects in the proper order, waiting for results") {
@@ -61,10 +66,12 @@ class SideEffectTests: QuickSpec {
           let sideEffect3 = SpySideEffect(delay: 0) { context in invocationResults.append("3") }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3).then { done() }
+            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3).then {
+              expect(invocationResults) == ["1", "2", "3"]
+              
+              done()
+            }
           }
-          
-          expect(invocationResults) == ["1", "2", "3"]
         }
         
         it("allows to invoke side effects from side effects") {
@@ -86,10 +93,13 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store.dispatch(sideEffect2)
               .thenDispatch(sideEffect3)
-              .then { done() }
+              .then {
+                expect(invocationResults) == ["1", "2", "3"]
+                
+                done()
+            }
           }
           
-          expect(invocationResults) == ["1", "2", "3"]
         }
         
         it("invokes a returning side effect which invokes a state updater and obtains the correct return value") {
@@ -130,17 +140,19 @@ class SideEffectTests: QuickSpec {
               .thenDispatch(sideEffect1)
               .thenDispatch(addUser)
               .thenDispatch(sideEffect2)
-              .then { done() }
+              .then {
+                expect(step1State?.todo.todos.count) == 1
+                expect(step1State?.user.users.count) == 0
+                expect(step1State?.todo.todos.first) == todo
+                
+                expect(step2State?.todo.todos.count) == 1
+                expect(step2State?.user.users.count) == 1
+                expect(step2State?.todo.todos.first) == todo
+                expect(step2State?.user.users.first) == user
+                
+                done()
+            }
           }
-          
-          expect(step1State?.todo.todos.count) == 1
-          expect(step1State?.user.users.count) == 0
-          expect(step1State?.todo.todos.first) == todo
-          
-          expect(step2State?.todo.todos.count) == 1
-          expect(step2State?.user.users.count) == 1
-          expect(step2State?.todo.todos.first) == todo
-          expect(step2State?.user.users.first) == user
         }
         
         it("keeps getState updated within the side effect") {
@@ -155,12 +167,14 @@ class SideEffectTests: QuickSpec {
           }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect).then { done() }
+            store.dispatch(sideEffect).then {
+              expect(firstState?.todo.todos.count) == 0
+              expect(secondState?.todo.todos.count) == 1
+              expect(secondState?.todo.todos.first) == todo
+              
+              done()
+            }
           }
-          
-          expect(firstState?.todo.todos.count) == 0
-          expect(secondState?.todo.todos.count) == 1
-          expect(secondState?.todo.todos.first) == todo
         }
         
         it("propagates errors") {
