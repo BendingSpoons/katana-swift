@@ -20,7 +20,7 @@ class StoreInterceptorsTests: QuickSpec {
           var dispatchedStateUpdater: AddTodo?
           var stateBefore: AppState?
           var stateAfter: AppState?
-      
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -31,21 +31,19 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(stateBefore?.todo.todos.count).toEventually(be(0))
           expect(stateAfter?.todo.todos.count).toEventually(be(1))
         }
-        
+
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
-          
+
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -54,7 +52,7 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -63,17 +61,17 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
           expect(invokationOrder).toEventually(equal(["first", "second"]))
         }
-        
+
         it("allows the middleware to block the propagation") {
           var dispatchedStateUpdater: AddTodo?
-          
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -82,13 +80,11 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(store.state.todo.todos.count).toEventually(be(0))
         }
@@ -99,7 +95,7 @@ class StoreInterceptorsTests: QuickSpec {
           var dispatchedSideEffect: DelaySideEffect?
           var stateBefore: AppState?
           var stateAfter: AppState?
-          
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -110,21 +106,19 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(DelaySideEffect())
-          
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
           expect(stateBefore?.todo.todos.count).toEventually(equal(0))
           expect(stateAfter?.todo.todos.count).toEventually(equal(0), timeout: 200)
         }
-        
+
         it("invokes the middleware in the proper order") {
           var invokationOrder: [String] = []
-          
+
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -133,7 +127,7 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -142,10 +136,10 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
           store.dispatch(DelaySideEffect())
-          
+
           expect(store.isReady).toEventually(beTrue())
           expect(invokationOrder).toEventually(equal(["first", "second"]))
         }
@@ -164,7 +158,6 @@ class StoreInterceptorsTests: QuickSpec {
           }
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
           
           let sideEffect = SideEffectWithBlock { _ in
@@ -172,7 +165,6 @@ class StoreInterceptorsTests: QuickSpec {
           }
           
           store.dispatch(sideEffect)
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(invoked).toEventually(beFalse())
         }
@@ -183,7 +175,7 @@ class StoreInterceptorsTests: QuickSpec {
           var stateBefore: AppState?
           var stateAfter: AppState?
           var returnedState: AppState?
-          
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -197,15 +189,14 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(SideEffectWithBlock(block: { context in
             try context.awaitDispatch(AddTodo(todo: todo))
           })).then { returnedState = $0 }
-          
+
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
           expect(stateBefore?.todo.todos.count).toEventually(equal(0))
           expect(stateAfter?.todo.todos.count).toEventually(equal(2), timeout: 200)
