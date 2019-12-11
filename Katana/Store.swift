@@ -501,9 +501,9 @@ fileprivate extension Store {
    - returns: a promise parameterized to the side effect's return value that is resolved when the side effect is managed
    */
   private func enqueueSideEffect<ReturnValue>(_ sideEffect: AnySideEffect) -> Promise<ReturnValue> {
-    return async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> ReturnValue in
+    let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> ReturnValue in
       var sideEffectValue: Any? = nil
-
+      
       let executeSideEffect: StoreInterceptorNext = {
         sideEffectValue = try self.manageSideEffect($0)
       }
@@ -517,9 +517,13 @@ fileprivate extension Store {
           This is not longer supported as of Katana 4.0
         """)
       }
-            
+      
       return value
     }
+    
+    promise.then(in: .background) { _ in }
+    
+    return promise
   }
   
   /**
