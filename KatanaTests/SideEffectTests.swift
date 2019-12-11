@@ -204,9 +204,12 @@ class SideEffectTests: QuickSpec {
             }
           }
           
-          store.dispatch(RetryMe())
-            .retry(2)
-            .catch { _ in fail("Retry should succeed") }
+          waitUntil(timeout: 10) { done in
+            store.dispatch(RetryMe())
+              .retry(2)
+              .then { done() }
+              .catch { _ in fail("Retry should succeed") }
+          }
         }
       }
     }
