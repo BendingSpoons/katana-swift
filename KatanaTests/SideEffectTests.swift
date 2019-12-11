@@ -99,21 +99,6 @@ class SideEffectTests: QuickSpec {
                 done()
             }
           }
-          
-        }
-        
-        it("invokes a returning side effect which invokes a state updater and obtains the correct return value") {
-          let todo: Todo = Todo(title: "title", id: "id")
-          let returningSideEffect = SideEffectWithBlock(block: { context in
-            try context.awaitDispatch(AddTodo(todo: todo))
-          })
-          
-          waitUntil(timeout: 10) { done in
-            store.dispatch(returningSideEffect).then { result in
-              expect(result.todo.todos) == [todo]
-              done()
-            }
-          }
         }
         
         it("correctly mixes state updater and side effects") {
@@ -212,6 +197,46 @@ class SideEffectTests: QuickSpec {
           }
         }
       }
+      
+      describe("when managing a returning side effect") {
+        it("returns the wanted value") {
+          let returningSideEffect = LongOperation(input: 5)
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect).then { result in
+              expect(result) == 10
+              done()
+            }
+          }
+        }
+        
+        it("returns the correct value when retrying") {
+          let returningSideEffect = LongOperation(input: 5)
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect)
+              .retry(2)
+              .then { result in
+                expect(result) == 10
+                done()
+            }
+          }
+        }
+        
+        it("can return values from the state around state updater invocation") {
+          let todo: Todo = Todo(title: "title", id: "id")
+          let returningSideEffect = SideEffectWithBlock(block: { context in
+            try context.awaitDispatch(AddTodo(todo: todo))
+          })
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect).then { result in
+              expect(result.todo.todos) == [todo]
+              done()
+            }
+          }
+        }
+      }
     }
   }
 }
@@ -251,5 +276,31 @@ private struct AddUser: TestStateUpdater {
   
   func updateState(_ state: inout AppState) {
     state.user.users.append(self.user)
+  }
+}
+
+private struct LongOperation: TestSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
+    Thread.sleep(forTimeInterval: 1)
+    return self.input * 2
+  }
+}
+
+private struct FailingLongOperation: TestSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
+    let state = context.getState()
+    
+    guard state.todo.todos.count >= 2 else {
+      throw NSError(domain: "Retry!", code: -1, userInfo: nil)
+    }
+    
+    try context.awaitDispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString)))
+    
+    Thread.sleep(forTimeInterval: 1)
+    return self.input * 2
   }
 }
