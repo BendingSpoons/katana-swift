@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import Hydra
 
 /**
  Protocol implemented by a dispatchable that wants to be dispatched in response to a notification
@@ -111,6 +112,7 @@ public struct ObserverInterceptor {
 
 /// Internal implementation detail that implements the logic needed to observe the events
 private struct ObserverLogic {
+  typealias Dispatch = (Dispatchable) -> Promise<Any>
   
   /// The dispatch function of the store
   let dispatch: Dispatch

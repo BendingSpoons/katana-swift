@@ -179,16 +179,6 @@ class SideEffectTests: QuickSpec {
         it("retries dispatched dispatchables") {
           store = Store<AppState, TestDependenciesContainer>()
           
-          /// This sideEffect will fail the first time, but it will succeed if retried
-          struct RetryMe: SideEffect {
-            func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-              try context.awaitDispatch(AddTodo(todo: Todo(title: "test", id: "test")))
-              if context.getState().todo.todos.count < 2 {
-                throw NSError(domain: "Test error", code: -1, userInfo: nil)
-              }
-            }
-          }
-          
           waitUntil(timeout: 10) { done in
             store.dispatch(RetryMe())
               .retry(2)
@@ -215,7 +205,6 @@ class SideEffectTests: QuickSpec {
           
           waitUntil(timeout: 10) { done in
             store.dispatch(returningSideEffect)
-              .retry(2)
               .then { result in
                 expect(result) == 10
                 done()
@@ -232,6 +221,17 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store.dispatch(returningSideEffect).then { result in
               expect(result.todo.todos) == [todo]
+              done()
+            }
+          }
+        }
+        
+        it("can return values from inside other side effects") {
+          let se = ReentrantReturningSideEffect(input: 5)
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(se).then { result in
+              expect(result) == 5 * 2 * 2
               done()
             }
           }
@@ -288,6 +288,16 @@ private struct LongOperation: TestSideEffect {
   }
 }
 
+/// This sideEffect will fail the first time, but it will succeed if retried
+private struct RetryMe: SideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+    try context.awaitDispatch(AddTodo(todo: Todo(title: "test", id: "test")))
+    if context.getState().todo.todos.count < 2 {
+      throw NSError(domain: "Test error", code: -1, userInfo: nil)
+    }
+  }
+}
+
 private struct FailingLongOperation: TestSideEffect {
   let input: Int
   
@@ -302,5 +312,16 @@ private struct FailingLongOperation: TestSideEffect {
     
     Thread.sleep(forTimeInterval: 1)
     return self.input * 2
+  }
+}
+
+private struct ReentrantReturningSideEffect: TestSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
+    
+    let a: LongOperation.ReturnValue = try context.awaitDispatch(LongOperation(input: self.input))
+    
+    return a * 2
   }
 }

@@ -367,17 +367,18 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     fatalError("Invalid parameter")
   }
   
+  /// This is only used by katana's internals
   @discardableResult
-  private func dispatch(_ dispatchable: Dispatchable) -> Promise<Void> {
+  private func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
     
     if let stateUpdater = dispatchable as? AnyStateUpdater {
-      return self.enqueueStateUpdater(stateUpdater).void
+      return self.enqueueStateUpdater(stateUpdater).then { _ in }
       
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect).then { (value: Any) in () }
+      return self.enqueueSideEffect(sideEffect).then { (value: Any) in value }
       
     }
     
