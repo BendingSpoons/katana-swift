@@ -369,7 +369,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   
   /// This is only used by katana's internals
   @discardableResult
-  private func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
+  internal func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
