@@ -367,9 +367,37 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     fatalError("Invalid parameter")
   }
   
-  /// This is only used by katana's internals
+  /**
+   Dispatches a `Dispatchable` item
+   
+   #### Threading
+   
+   The `Store` follows strict rules about the parallelism with which dispatched items are handled.
+   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   devices offer.
+   
+   When a `StateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
+   executes one update of the state at the time, following the order in which it has received them. This is done
+   to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
+   queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
+   
+   When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
+   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   improve the performances of the system. Overall, this should not be a problem as you cannot really change
+   the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
+   
+   #### Promise Resolution
+   
+   When it comes to `StateUpdater`, the promise is resolved when the state is updated. For `SideEffect`,
+   the promise is resolved when the body of the `SideEffect` is executed entirely (see `SideEffect` documentation for
+   more information).
+   
+   - parameter dispatchable: the dispatchable to dispatch, it can be either a StateUpdater or a SideEffect
+   - returns: a promise that is resolved when the dispatchable is handled by the store
+   */
   @discardableResult
-  internal func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }

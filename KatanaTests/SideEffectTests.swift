@@ -193,7 +193,7 @@ class SideEffectTests: QuickSpec {
           let returningSideEffect = LongOperation(input: 5)
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(returningSideEffect).then { result in
+            store.dispatch(returningSideEffect).then { (result: Int) in
               expect(result) == 10
               done()
             }
@@ -205,7 +205,7 @@ class SideEffectTests: QuickSpec {
           
           waitUntil(timeout: 10) { done in
             store.dispatch(returningSideEffect)
-              .then { result in
+              .then { (result: Int) in
                 expect(result) == 10
                 done()
             }
@@ -219,7 +219,7 @@ class SideEffectTests: QuickSpec {
           })
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(returningSideEffect).then { result in
+            store.dispatch(returningSideEffect).then { (result: AppState) in
               expect(result.todo.todos) == [todo]
               done()
             }
@@ -230,7 +230,7 @@ class SideEffectTests: QuickSpec {
           let se = ReentrantReturningSideEffect(input: 5)
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(se).then { result in
+            store.dispatch(se).then { (result: Int) in
               expect(result) == 5 * 2 * 2
               done()
             }
