@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.0-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.0-beta) (2020-01-22)
+- The store `dispatch` method can now return a value
+
 ## [3.0.2](https://github.com/BendingSpoons/katana-swift/tree/3.0.2) (2019-09-05)
 - Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti) )
 
