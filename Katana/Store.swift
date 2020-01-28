@@ -32,6 +32,9 @@ public protocol AnyStore: class {
   @discardableResult
   func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
+  @discardableResult
+  func dispatch(_ dispatchable: Dispatchable) -> Promise<Any>
+  
   /**
    Adds a listener to the store. A listener is basically a closure that is invoked
    every time the Store's state changes
@@ -96,6 +99,11 @@ open class PartialStore<S: State>: AnyStore {
    */
   @discardableResult
   public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
+  }
+  
+  @discardableResult
+  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
   
@@ -397,7 +405,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - returns: a promise that is resolved when the dispatchable is handled by the store
    */
   @discardableResult
-  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
+  override public func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
     if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
