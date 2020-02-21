@@ -9,8 +9,9 @@
 import Foundation
 import Quick
 import Nimble
-@testable import Katana
 import Hydra
+
+@testable import Katana
 
 class SideEffectTests: QuickSpec {
   override func spec() {
@@ -48,7 +49,7 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store
               .dispatch(sideEffect1)
-              .thenDispatch(sideEffect2)
+              .then { store.dispatch(sideEffect2) }
               .then {
                 expect(firstDependenciesContainer) === secondDependenciesContainer
                 
@@ -66,10 +67,12 @@ class SideEffectTests: QuickSpec {
           let sideEffect3 = SpySideEffect(delay: 0) { context in invocationResults.append("3") }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3).then {
-              expect(invocationResults) == ["1", "2", "3"]
-              
-              done()
+            store.dispatch(sideEffect1)
+              .then { store.dispatch(sideEffect2) }
+              .then { store.dispatch(sideEffect3) }
+              .then {
+                expect(invocationResults) == ["1", "2", "3"]
+                done()
             }
           }
         }
@@ -92,10 +95,9 @@ class SideEffectTests: QuickSpec {
           
           waitUntil(timeout: 10) { done in
             store.dispatch(sideEffect2)
-              .thenDispatch(sideEffect3)
+              .then { store.dispatch(sideEffect3) }
               .then {
                 expect(invocationResults) == ["1", "2", "3"]
-                
                 done()
             }
           }
@@ -122,9 +124,9 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store
               .dispatch(addTodo)
-              .thenDispatch(sideEffect1)
-              .thenDispatch(addUser)
-              .thenDispatch(sideEffect2)
+              .then { store.dispatch(sideEffect1) }
+              .then { store.dispatch(addUser) }
+              .then { store.dispatch(sideEffect2) }
               .then {
                 expect(step1State?.todo.todos.count) == 1
                 expect(step1State?.user.users.count) == 0

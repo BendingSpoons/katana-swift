@@ -451,8 +451,6 @@ private extension Store {
     self.isReady = true
     self.sideEffectQueue.resume()
     self.stateUpdaterQueue.resume()
-    
-    SharedStoreContainer.sharedStore = self
   }
   
   /**

@@ -9,6 +9,7 @@
 import Foundation
 import Quick
 import Nimble
+
 @testable import Katana
 
 class StoreTest: QuickSpec {
@@ -68,7 +69,7 @@ class StoreTest: QuickSpec {
             store
               .dispatch(AddTodo(todo: todo1))
               .then { unsubscribe() }
-              .thenDispatch(AddTodo(todo: todo2))
+              .then { store.dispatch(AddTodo(todo: todo2)) }
               .then {
                 expect(firstState).toNot(beNil())
                 expect(secondState).toNot(beNil())

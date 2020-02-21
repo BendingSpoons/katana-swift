@@ -10,6 +10,7 @@
 import Foundation
 import Quick
 import Nimble
+
 @testable import Katana
 
 class StateUpdaterTests: QuickSpec {
@@ -53,15 +54,15 @@ class StateUpdaterTests: QuickSpec {
                 expect(store.state.todo.todos.count) == 1
                 expect(store.state.todo.todos.first) == todo
                 expect(store.state.user.users.count) == 0
-              }
-              .thenDispatch(AddUser(user: user))
-              .then {
-                expect(store.state.todo.todos.count) == 1
-                expect(store.state.todo.todos.first) == todo
-                expect(store.state.user.users.count) == 1
-                expect(store.state.user.users.first) == user
-                done()
-              }
+            }
+            .then { store.dispatch(AddUser(user: user)) }
+            .then {
+              expect(store.state.todo.todos.count) == 1
+              expect(store.state.todo.todos.first) == todo
+              expect(store.state.user.users.count) == 1
+              expect(store.state.user.users.first) == user
+              done()
+            }
           }
         }
         
