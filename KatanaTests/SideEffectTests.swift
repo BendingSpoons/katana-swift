@@ -154,7 +154,7 @@ class SideEffectTests: QuickSpec {
           }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect).then {
+            store.dispatch(sideEffect).then { _ in
               expect(firstState?.todo.todos.count) == 0
               expect(secondState?.todo.todos.count) == 1
               expect(secondState?.todo.todos.first) == todo
@@ -170,7 +170,7 @@ class SideEffectTests: QuickSpec {
           }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect).then {
+            store.dispatch(sideEffect).then { _ in
               fail("Promise should be rejected")
             }.catch { error in
               done()

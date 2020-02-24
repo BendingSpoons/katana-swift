@@ -33,7 +33,13 @@ public protocol AnySideEffectContext {
    - returns: a promise that is resolved when the store finishes handling the dispatched item
    */
   @discardableResult
-  func dispatch(_ dispatchable: Dispatchable) -> Promise<Any>
+  func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
+  
+  @discardableResult
+  func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void>
+  
+  @discardableResult
+  func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
 }
 
 /**
@@ -79,23 +85,33 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   }
   
   /**
-   Dispatches a `Dispatchable` item. This is the equivalent of the `Store` `dispatch`.
+   Dispatches a `SideEffect` item. This is the equivalent of the `Store` `dispatch`.
    
    - seeAlso: `Store` implementation of `dispatch`
    */
   @discardableResult
-  public func dispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
-    return self.dispatchClosure(dispatchable)
+  public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturnValue }
   }
   
   /**
-   Dispatches a `Dispatchable` item. This is the equivalent of the `Store` `dispatch`.
+   Dispatches a `StateUpdater` item. This is the equivalent of the `Store` `dispatch`.
    
    - seeAlso: `Store` implementation of `dispatch`
    */
   @discardableResult
-  public func dispatch<SE: SideEffect>(_ sideEffect: SE) -> Promise<SE.ReturnValue> {
-    return self.dispatch(sideEffect).then { $0 as! SE.ReturnValue }
+  public func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void> {
+    return self.dispatchClosure(dispatchable).void
+  }
+  
+  /**
+   Dispatches a `Dispatchable` item. This is the equivalent of the `Store` `anyDispatch`.
+   
+   - seeAlso: `Store` implementation of `anyDispatch`
+   */
+  @discardableResult
+  public func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
+    return self.dispatchClosure(dispatchable)
   }
 }
 
@@ -103,12 +119,12 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
 public extension AnySideEffectContext {
   /**
    Dispatches an item and wait for the related promise to be resolved.
-   This is a shortcut for `try await(dispatch(item))`.
+   This is a shortcut for `try await(anyDispatch(item))`.
    
    - parameter dispatchable: the item to dispatch
    */
   func awaitDispatch(_ dispatchable: Dispatchable) throws {
-    try await(self.dispatch(dispatchable))
+    try await(self.anyDispatch(dispatchable))
   }
   
   /**
@@ -118,7 +134,7 @@ public extension AnySideEffectContext {
    - parameter dispatchable: the item to dispatch
    */
   func awaitDispatch<SE: SideEffect>(_ dispatchable: SE) throws -> SE.ReturnValue {
-    return try await(self.dispatch(dispatchable).then { $0 as! SE.ReturnValue })
+    return try await(self.dispatch(dispatchable))
   }
 }
 

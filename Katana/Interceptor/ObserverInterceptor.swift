@@ -90,7 +90,7 @@ public struct ObserverInterceptor {
   public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
     return { context in
       
-      let logic = ObserverLogic(dispatch: context.dispatch, items: items)
+      let logic = ObserverLogic(dispatch: context.anyDispatch, items: items)
       logic.listenToNotifications()
       logic.handleOnStart()
       
