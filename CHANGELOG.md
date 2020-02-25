@@ -1,5 +1,8 @@
 # Change Log
 
+## [4.0.2-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.2-beta) (2020-02-25)
+- Clean-up of the dispatch method signatures
+
 ## [4.0.1-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.1-beta) (2020-01-28)
 - The AnyStore protocol now exposes a non generic dispatch accepting a Dispatchabe as input parameter
 
