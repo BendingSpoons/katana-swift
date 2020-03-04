@@ -27,19 +27,32 @@ public protocol AnySideEffectContext {
   func getAnyState() -> State
   
   /**
-   Dispatches a new item
+   Dispatches a `Dispatchable`. It will esentially call the `anyDispatch` method of the backing store.
    
    - parameter dispatchable: the item to dispatch
    - returns: a promise that is resolved when the store finishes handling the dispatched item
    */
   @discardableResult
+  func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
+  
+  /**
+   Dispatches a `SideEffect`. It the type-safe version of the `anyDispatch` method
+   
+   - parameter dispatchable: the side effect to dispatch
+   - returns: a promise that is resolved with the value returned by the side effect
+              when the store finishes handling the dispatched item
+   */
+  @discardableResult
   func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
+  /**
+   Dispatches a `StateUpdater`. It the type-safe version of the `anyDispatch` method
+   
+   - parameter dispatchable: the side effect to dispatch
+   - returns: a promise that is resolved when the store finishes updating the state
+   */
   @discardableResult
   func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void>
-  
-  @discardableResult
-  func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
 }
 
 /**
@@ -49,7 +62,6 @@ public protocol AnySideEffectContext {
  can leverage to implement its functionalities
  */
 public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyContainer {
-  typealias Dispatch = (Dispatchable) -> Promise<Any>
   /**
    The dependencies passed to the `Store`. You can use this as a mechanism for
    dependencies injection.
@@ -60,7 +72,7 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   private let getStateClosure: () -> S
   
   /// The closure that dispatches an item
-  private let dispatchClosure: Dispatch
+  private let dispatchClosure: AnyDispatch
   
   /**
    Creates a new context.
@@ -69,7 +81,7 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
    - parameter getState: a closure that returns the current configuration of the state
    - parameter dispatch: a closure that dispatches an item
    */
-  init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping Dispatch) {
+  init(dependencies: D, getState: @escaping () -> S, dispatch: @escaping AnyDispatch) {
     self.dependencies = dependencies
     self.dispatchClosure = dispatch
     self.getStateClosure = getState

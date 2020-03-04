@@ -112,10 +112,9 @@ public struct ObserverInterceptor {
 
 /// Internal implementation detail that implements the logic needed to observe the events
 private struct ObserverLogic {
-  typealias Dispatch = (Dispatchable) -> Promise<Any>
   
   /// The dispatch function of the store
-  let dispatch: Dispatch
+  let dispatch: AnyDispatch
   
   /// The items to observe
   let items: [ObserverInterceptor.ObserverType]
@@ -127,7 +126,7 @@ private struct ObserverLogic {
    - parameter items: the items to observe
    - returns: a structure that holds the logic to handle the given items
    */
-  init(dispatch: @escaping Dispatch, items: [ObserverInterceptor.ObserverType]) {
+  init(dispatch: @escaping AnyDispatch, items: [ObserverInterceptor.ObserverType]) {
     self.dispatch = dispatch
     self.items = items
   }
