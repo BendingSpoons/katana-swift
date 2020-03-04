@@ -1,5 +1,9 @@
 # Change Log
 
+## [4.0.3-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.2-beta) (2020-03-04)
+- Added documentation
+- Clean-up of closure types
+
 ## [4.0.2-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.2-beta) (2020-02-25)
 - Clean-up of the dispatch method signatures
 
