@@ -64,11 +64,39 @@ class StoreInterceptorsTests: QuickSpec {
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
+          let thirdInterceptor: StoreInterceptor = { context in
+            return { next in
+              return { stateUpdater in
+                invokationOrder.append("third")
+                try next(stateUpdater)
+              }
+            }
+          }
+          
+          let fourthInterceptor: StoreInterceptor = { context in
+            return { next in
+              return { stateUpdater in
+                invokationOrder.append("fourth")
+                try next(stateUpdater)
+              }
+            }
+          }
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [
+            firstInterceptor,
+            secondInterceptor,
+            thirdInterceptor,
+            fourthInterceptor,
+          ])
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
-          expect(invokationOrder).toEventually(equal(["first", "second"]))
+          expect(invokationOrder).toEventually(equal([
+            "first",
+            "second",
+            "third",
+            "fourth",
+          ]))
         }
         
         it("allows the middleware to block the propagation") {
