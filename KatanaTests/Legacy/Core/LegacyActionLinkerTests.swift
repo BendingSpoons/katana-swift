@@ -85,12 +85,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 1
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-
-      XCTAssertEqual(newState.int, 20)
+      XCTAssertEqual(store.state.int, 20)
     }
   }
 
@@ -109,12 +106,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
 
@@ -136,13 +130,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 3
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 10)
-      XCTAssertEqual(newState.int, 5)
+      XCTAssertEqual(store.state.int, 5)
     }
   }
 
@@ -162,14 +152,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Ten())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 40)
-      XCTAssertNotEqual(newState.int, 10)
-      XCTAssertEqual(newState.int, 5)
+      XCTAssertEqual(store.state.int, 5)
     }
   }
 
@@ -188,12 +173,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Ten())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 10)
-      XCTAssertEqual(newState.int, 100)
+      XCTAssertEqual(store.state.int, 100)
     }
   }
 
@@ -212,12 +194,10 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.expectedFulfillmentCount = 1
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
-    XCTAssertTrue(true)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
       let newState = store.state
-      XCTAssertEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 100)
+      XCTAssertEqual(store.state.int, 20)
     }
   }
 
@@ -253,9 +233,7 @@ class LegacyActionLinkerTests: XCTestCase {
     })
 
     self.waitForExpectations(timeout: 1.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 100)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
 
@@ -279,12 +257,9 @@ class LegacyActionLinkerTests: XCTestCase {
     expectation.assertForOverFulfill = true
     store.dispatch(baseAsyncAction)
 
-    XCTAssertTrue(true)
-
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
       let newState = store.state
-      XCTAssertNotEqual(newState.int, -100)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
 }
