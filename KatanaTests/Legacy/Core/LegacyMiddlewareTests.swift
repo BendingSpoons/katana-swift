@@ -61,6 +61,7 @@ class MiddlewareTests: XCTestCase {
         return { action in
           invocationOrder.append("basic")
           next(action)
+          expectation.fulfill()
         }
       }
     }
@@ -69,7 +70,15 @@ class MiddlewareTests: XCTestCase {
       return { next in
         return { action in
           invocationOrder.append("second")
-          expectation.fulfill()
+        }
+      }
+    }
+
+    let thirdMiddleware: StoreMiddleware = { getState, dispatch in
+      return { next in
+        return { action in
+          invocationOrder.append("third")
+          next(action)
         }
       }
     }
@@ -78,6 +87,7 @@ class MiddlewareTests: XCTestCase {
       interceptors: [
         middlewareToInterceptor(basicMiddleware),
         middlewareToInterceptor(secondMiddleware),
+        middlewareToInterceptor(thirdMiddleware),
       ]
     )
 
@@ -94,8 +104,6 @@ class MiddlewareTests: XCTestCase {
 
   func testMiddlewareChaining() {
     var dispatchedAction: Action?
-    var storeBefore: Any?
-    var storeAfter: Any?
     var invocationOrder: [String] = []
 
     let expectation = self.expectation(description: "Middleware")
@@ -105,9 +113,8 @@ class MiddlewareTests: XCTestCase {
         return { action in
           invocationOrder.append("basic")
           dispatchedAction = action as? Action
-          storeBefore = getState()
           next(action)
-          storeAfter = getState()
+          expectation.fulfill()
         }
       }
     }
@@ -116,7 +123,15 @@ class MiddlewareTests: XCTestCase {
       return { next in
         return { action in
           invocationOrder.append("second")
-          expectation.fulfill()
+          next(action)
+        }
+      }
+    }
+
+    let thirdMiddleware: StoreMiddleware = { getState, dispatch in
+      return { next in
+        return { action in
+          invocationOrder.append("third")
           next(action)
         }
       }
@@ -126,6 +141,7 @@ class MiddlewareTests: XCTestCase {
       interceptors: [
         middlewareToInterceptor(basicMiddleware),
         middlewareToInterceptor(secondMiddleware),
+        middlewareToInterceptor(thirdMiddleware),
       ]
     )
     
@@ -137,10 +153,9 @@ class MiddlewareTests: XCTestCase {
       XCTAssertNil(error)
 
       let newState = store.state
-      XCTAssertEqual(invocationOrder, ["basic", "second"])
+      XCTAssertEqual(invocationOrder, ["basic", "second", "third"])
       XCTAssertEqual(dispatchedAction as? AddTodoAction, action)
-      XCTAssertEqual(storeBefore as? AppState, initialState)
-      XCTAssertEqual(storeAfter as? AppState, newState)
+      XCTAssertEqual(initialState.todo.todos.count + 1, newState.todo.todos.count)
     }
   }
 
