@@ -36,7 +36,7 @@ public protocol ActionWithSideEffect: Action {
    - parameter currentState:    the current state. The one returned by the
                                 `updateState(currentState:action:)` method
    - parameter previousState:   the state of the store before the `updateState(currentState:action:)`
-                                invokation
+                                invocation
    - parameter dispatch:        a closure that can be used to dispatch new actions
    - parameter dependencies:    the dependencies of the side effect
   */

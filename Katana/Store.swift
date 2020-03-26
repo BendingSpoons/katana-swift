@@ -610,10 +610,13 @@ fileprivate extension Store {
       return interceptors.first!(lastStep)
     }
     
+    // reversing the chain to oppose the matryoshka effect of its execution
+    // so the interceptors will be executed in the same order they are given
+    
     var m = interceptors
     let last = m.removeLast()
     
-    return m.reduce(last(lastStep), { chain, middleware in
+    return m.reversed().reduce(last(lastStep), { chain, middleware in
       return middleware(chain)
     })
   }
