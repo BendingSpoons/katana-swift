@@ -82,6 +82,7 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: [])),
     ])
 
+    // Count only `BaseAction.Twenty`
     expectation.expectedFulfillmentCount = 1
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
@@ -103,6 +104,7 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
     ])
 
+    // Count `BaseAction.Twenty` and `LinkedAction.Halve`
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
@@ -127,6 +129,7 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
     ])
 
+    // Count `BaseAction.Twenty` and `LinkedAction.Halve` twice
     expectation.expectedFulfillmentCount = 3
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
@@ -149,6 +152,7 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
     ])
 
+    // Count `BaseAction.Ten` and `LinkedAction.Halve`
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Ten())
@@ -170,6 +174,7 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
     ])
 
+    // Count `BaseAction.Ten` and `LinkedAction.Hundred`
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Ten())
@@ -191,12 +196,12 @@ class LegacyActionLinkerTests: XCTestCase {
       middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
     ])
 
+    // Count only `BaseAction.Twenty`
     expectation.expectedFulfillmentCount = 1
     expectation.assertForOverFulfill = true
     store.dispatch(BaseAction.Twenty())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
       XCTAssertEqual(store.state.int, 20)
     }
   }
@@ -253,12 +258,12 @@ class LegacyActionLinkerTests: XCTestCase {
       $0.failedPayload = -100
     }
 
+    // Count only `BaseAsyncAction` and `LinkedAction.NegativeTenth`
     expectation.expectedFulfillmentCount = 2
     expectation.assertForOverFulfill = true
     store.dispatch(baseAsyncAction)
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
       XCTAssertEqual(store.state.int, 10)
     }
   }
