@@ -1,7 +1,8 @@
 # Change Log
 
-## [unreleased]
+## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
 - Perserve interceptors order during execution.
+  [\#189](https://github.com/BendingSpoons/katana-swift/pull/189) ([alextosatto](https://github.com/alextosatto) )
 
 ## [3.0.2](https://github.com/BendingSpoons/katana-swift/tree/3.0.2) (2019-09-05)
 - Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti) )
