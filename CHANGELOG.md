@@ -1,7 +1,7 @@
 # Change Log
 
 ## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
-- Perserve interceptors order during execution.
+- Preserve interceptors order during execution.
   [\#189](https://github.com/BendingSpoons/katana-swift/pull/189) ([alextosatto](https://github.com/alextosatto))
 - Fix tests
 
