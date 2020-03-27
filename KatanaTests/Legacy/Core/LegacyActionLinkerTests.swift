@@ -10,6 +10,8 @@ import Foundation
 import XCTest
 @testable import Katana
 
+fileprivate typealias ActionLinkerStore = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>
+
 class LegacyActionLinkerTests: XCTestCase {
 
   override func setUp() {
@@ -23,212 +25,184 @@ class LegacyActionLinkerTests: XCTestCase {
   // MARK: Creation tests
   func testReduceNothing() {
     let res = ActionLinker.reduceLinks(from: [])
+
     XCTAssertTrue(res.isEmpty)
   }
 
   func testReduceOneSourceActionOneLink() {
-    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])])
+    let res = ActionLinker.reduceLinks(from: [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.Halve.self])
+    ])
+
     XCTAssertEqual(res.count, 1)
-    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.Twenty.self)]!.count, 1)
 
   }
 
   func testCreationOneSourceActionTwoLinks() {
-    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self,
-                                                       links: [LinkedAction1.self, LinkedAction1.self])])
+    let res = ActionLinker.reduceLinks(from: [
+      ActionLinks(source: BaseAction.Twenty.self, links: [
+        LinkedAction.Halve.self,
+        LinkedAction.Halve.self,
+      ])
+    ])
+
     XCTAssertEqual(res.count, 1)
-    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.Twenty.self)]!.count, 2)
   }
 
   func testCreationTwoSourceActionOneLink() {
-    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
-                                            ActionLinks(source: BaseAction2.self, links: [LinkedAction1.self])])
+    let res = ActionLinker.reduceLinks(from: [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.Halve.self]),
+      ActionLinks(source: BaseAction.Ten.self, links: [LinkedAction.Halve.self]),
+    ])
+
     XCTAssertEqual(res.count, 2)
-    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 1)
-    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction2.self)]!.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.Twenty.self)]!.count, 1)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.Ten.self)]!.count, 1)
   }
 
   func testCreationTwoSameSourceActionOneLink() {
-    let res = ActionLinker.reduceLinks(from: [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
-                                            ActionLinks(source: BaseAction.self, links: [LinkedAction2.self])])
+    let res = ActionLinker.reduceLinks(from: [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.Halve.self]),
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.DoubleUp.self]),
+    ])
+
     XCTAssertEqual(res.count, 1)
-    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.self)]!.count, 2)
+    XCTAssertEqual(res[ActionLinker.stringName(for: BaseAction.Twenty.self)]!.count, 2)
   }
 
   // MARK: Action
 
   func testNoChaining() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: []))
-      ]
-    )
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: [])),
+    ])
 
-    _ = store.addListener {
-      count += 1
-      if count == 2 {
-        expectation.fulfill()
-      }
-    }
-    store.dispatch(BaseAction())
-    XCTAssertTrue(true)
+    // Count only `BaseAction.Twenty`
+    expectation.expectedFulfillmentCount = 1
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Twenty())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-
-      XCTAssertEqual(newState.int, 20)
+      XCTAssertEqual(store.state.int, 20)
     }
   }
 
   func testOneChain() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.Halve.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
-    _ = store.addListener {
-      count += 1
-      if count == 3 {
-        expectation.fulfill()
-      }
-    }
-
-    store.dispatch(BaseAction())
-    XCTAssertTrue(true)
+    // Count `BaseAction.Twenty` and `LinkedAction.Halve`
+    expectation.expectedFulfillmentCount = 2
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Twenty())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
 
   func testOneChainDoubleLength() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAction.self,
-                                  links: [LinkedAction1.self, LinkedAction1.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAction.Twenty.self, links: [
+        LinkedAction.Halve.self,
+        LinkedAction.Halve.self,
+      ]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
-  
-    _ = store.addListener {
-      count += 1
-      if count == 3 {
-        expectation.fulfill()
-      }
-    }
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
-    store.dispatch(BaseAction())
-    XCTAssertTrue(true)
+    // Count `BaseAction.Twenty` and `LinkedAction.Halve` twice
+    expectation.expectedFulfillmentCount = 3
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Twenty())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 10)
-      XCTAssertEqual(newState.int, 5)
+      XCTAssertEqual(store.state.int, 5)
     }
   }
 
   func testOneChainWithTwoLinks() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction1.self]),
-                      ActionLinks(source: BaseAction.self, links: [LinkedAction1.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.DoubleUp.self]),
+      ActionLinks(source: BaseAction.Ten.self, links: [LinkedAction.Halve.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
-    _ = store.addListener {
-      count += 1
-      if count == 3 {
-        expectation.fulfill()
-      }
-    }
-
-    store.dispatch(BaseAction())
-    XCTAssertTrue(true)
+    // Count `BaseAction.Ten` and `LinkedAction.Halve`
+    expectation.expectedFulfillmentCount = 2
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Ten())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 10)
-      XCTAssertEqual(newState.int, 5)
+      XCTAssertEqual(store.state.int, 5)
     }
   }
 
   func testOneChainFailableActionSuccess() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAction2.self, links: [LinkedAction3.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAction.Ten.self, links: [LinkedAction.Hundred.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
-    _ = store.addListener {
-      count += 1
-      if count == 2 {
-        expectation.fulfill()
-      }
-    }
-
-    store.dispatch(BaseAction2())
-    XCTAssertTrue(true)
+    // Count `BaseAction.Ten` and `LinkedAction.Hundred`
+    expectation.expectedFulfillmentCount = 2
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Ten())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 20)
-      XCTAssertEqual(newState.int, 100)
+      XCTAssertEqual(store.state.int, 100)
     }
   }
 
   func testOneChainFailableActionFailure() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAction.self, links: [LinkedAction3.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAction.Twenty.self, links: [LinkedAction.Hundred.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
-  
-    _ = store.addListener {
-      count += 1
-      if count == 1 {
-        expectation.fulfill()
-      }
-    }
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
-    store.dispatch(BaseAction())
-    XCTAssertTrue(true)
+    // Count only `BaseAction.Twenty`
+    expectation.expectedFulfillmentCount = 1
+    expectation.assertForOverFulfill = true
+    store.dispatch(BaseAction.Twenty())
 
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertEqual(newState.int, 20)
-      XCTAssertNotEqual(newState.int, 100)
+      XCTAssertEqual(store.state.int, 20)
     }
   }
 
@@ -238,13 +212,13 @@ class LegacyActionLinkerTests: XCTestCase {
     var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction4.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction.Tenth.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
+    let store = ActionLinkerStore(interceptors: [
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
+    ])
 
     var baseAsyncAction = BaseAsyncAction(payload: 10).completedAction {
       $0.completedPayload = 100
@@ -264,53 +238,35 @@ class LegacyActionLinkerTests: XCTestCase {
     })
 
     self.waitForExpectations(timeout: 1.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, 100)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
 
   func testAsyncFailed() {
-    var count = 0
     let expectation = self.expectation(description: "Store listener")
 
-    let linksArray = [ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction5.self])]
+    let linksArray = [
+      ActionLinks(source: BaseAsyncAction.self, links: [LinkedAction.NegativeTenth.self]),
+    ]
 
-    let store = Store<ActionLinkerAppState, EmptySideEffectDependencyContainer>(
-      interceptors: [
-        middlewareToInterceptor(ActionLinker.middleware(for: linksArray))
-      ]
-    )
-
-    _ = store.addListener {
-      count += 1
-      if count == 3 {
-        expectation.fulfill()
-      }
-    }
+    let store = ActionLinkerStore(interceptors: [
+      ExpectationInterceptor(expectation: expectation).katanaInterceptor,
+      middlewareToInterceptor(ActionLinker.middleware(for: linksArray)),
+    ])
 
     var baseAsyncAction = BaseAsyncAction(payload: 10).failedAction {
       $0.failedPayload = -100
     }
 
-    baseAsyncAction.invokedCompletedClosure = {
-      count += 1
-    }
-    baseAsyncAction.invokedFailedClosure = {
-      count += 1
-    }
-
+    // Count only `BaseAsyncAction` and `LinkedAction.NegativeTenth`
+    expectation.expectedFulfillmentCount = 2
+    expectation.assertForOverFulfill = true
     store.dispatch(baseAsyncAction)
 
-    XCTAssertTrue(true)
-
     self.waitForExpectations(timeout: 2.0) { (err: Error?) in
-      let newState = store.state
-      XCTAssertNotEqual(newState.int, -100)
-      XCTAssertEqual(newState.int, 10)
+      XCTAssertEqual(store.state.int, 10)
     }
   }
-
 }
 
 // MARK: Mocking
@@ -318,73 +274,79 @@ fileprivate struct ActionLinkerAppState: State {
   var int: Int = 0
 }
 
-fileprivate struct BaseAction: Action {
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int = 20
-    return newState
-  }
-}
-
-fileprivate struct BaseAction2: Action {
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int = 10
-    return newState
-  }
-}
-
-fileprivate struct LinkedAction1: LinkeableAction {
-  init() {
-
-  }
-
-  init?(oldState: State, newState: State, sourceAction: Action) {
-    self = LinkedAction1()
-  }
-
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int = newState.int/2
-    return newState
-  }
-}
-
-fileprivate struct LinkedAction2: LinkeableAction {
-  init() {
-
-  }
-
-  init?(oldState: State, newState: State, sourceAction: Action) {
-    self = LinkedAction2()
-  }
-
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int = newState.int*2
-    return newState
-  }
-
-}
-
-fileprivate struct LinkedAction3: LinkeableAction {
-  init() {
-
-  }
-
-  init?(oldState: State, newState: State, sourceAction: Action) {
-    let currentState = newState as! ActionLinkerAppState
-    if currentState.int <= 10 {
-      self = LinkedAction3()
-      return
+fileprivate enum BaseAction {
+  
+  struct Twenty: Action {
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int = 20
+      return newState
     }
-    return nil
   }
+  
+  fileprivate struct Ten: Action {
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int = 10
+      return newState
+    }
+  }
+}
 
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int = 100
-    return newState
+fileprivate enum LinkedAction {
+  
+  fileprivate struct Halve: LinkeableAction {
+    init() {
+      
+    }
+    
+    init?(oldState: State, newState: State, sourceAction: Action) {
+      self = Halve()
+    }
+    
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int = newState.int / 2
+      return newState
+    }
+  }
+  
+  fileprivate struct DoubleUp: LinkeableAction {
+    init() {
+      
+    }
+    
+    init?(oldState: State, newState: State, sourceAction: Action) {
+      self = DoubleUp()
+    }
+    
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int = newState.int * 2
+      return newState
+    }
+    
+  }
+  
+  struct Hundred: LinkeableAction {
+    init() {
+      
+    }
+    
+    init?(oldState: State, newState: State, sourceAction: Action) {
+      let currentState = newState as! ActionLinkerAppState
+      if currentState.int <= 10 {
+        self = Hundred()
+        return
+      }
+      return nil
+    }
+    
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int = 100
+      return newState
+    }
   }
 }
 
@@ -439,50 +401,80 @@ fileprivate struct BaseAsyncAction: AsyncAction {
   }
 }
 
-fileprivate struct LinkedAction4: LinkeableAction {
-  init() {
-
-  }
-
-  init?(oldState: State, newState: State, sourceAction: Action) {
-    guard let source = sourceAction as? BaseAsyncAction else {
+fileprivate extension LinkedAction {
+  
+  struct Tenth: LinkeableAction {
+    init() {
+      
+    }
+    
+    init?(oldState: State, newState: State, sourceAction: Action) {
+      guard let source = sourceAction as? BaseAsyncAction else {
+        return nil
+      }
+      
+      if source.state == .completed {
+        self = Tenth()
+        return
+      }
       return nil
     }
-
-    if source.state == .completed {
-      self = LinkedAction4()
-      return
+    
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int /= 10
+      return newState
     }
-    return nil
   }
-
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int /= 10
-    return newState
+  
+  fileprivate struct NegativeTenth: LinkeableAction {
+    init() {
+      
+    }
+    
+    init?(oldState: State, newState: State, sourceAction: Action) {
+      guard let source = sourceAction as? BaseAsyncAction else {
+        return nil
+      }
+      
+      if source.state == .failed {
+        self = NegativeTenth()
+        return
+      }
+      return nil
+    }
+    
+    func updatedState(currentState: State) -> State {
+      var newState = currentState as! ActionLinkerAppState
+      newState.int /= -10
+      return newState
+    }
   }
 }
 
-fileprivate struct LinkedAction5: LinkeableAction {
-  init() {
+// MARK: - Interceptor
 
+fileprivate final class ExpectationInterceptor {
+  let expectation: XCTestExpectation
+  
+  init(expectation: XCTestExpectation) {
+    self.expectation = expectation
   }
-
-  init?(oldState: State, newState: State, sourceAction: Action) {
-    guard let source = sourceAction as? BaseAsyncAction else {
-      return nil
+  
+  var katanaInterceptor: StoreInterceptor {
+    return { context in
+      return { next in
+        return { [weak self] action in
+          // count both successul and failing actions
+          do {
+            try next(action)
+            self?.expectation.fulfill()
+          } catch {
+            self?.expectation.fulfill()
+            throw error
+          }
+        }
+      }
     }
-
-    if source.state == .failed {
-      self = LinkedAction5()
-      return
-    }
-    return nil
-  }
-
-  func updatedState(currentState: State) -> State {
-    var newState = currentState as! ActionLinkerAppState
-    newState.int /= -10
-    return newState
   }
 }
