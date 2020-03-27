@@ -113,7 +113,7 @@ final class AppDependencies: SideEffectDependencyContainer {
 
 ## Interceptors
 
-When defining a `Store` you can provide a list of interceptors that are triggered whenever an item is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
+When defining a `Store` you can provide a list of interceptors that are triggered in the given order whenever an item is dispatched. An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
 
 #### DispatchableLogger
  Katana comes with a built-in `DispatchableLogger` interceptor that logs all the dispatchables, except the ones listed in the blacklist parameter.

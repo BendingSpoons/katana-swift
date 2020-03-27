@@ -52,15 +52,16 @@ class MiddlewareTests: XCTestCase {
   }
 
   func testMiddlewareCanBlockPropagation() {
-    var invokationOrder: [String] = []
+    var invocationOrder: [String] = []
 
     let expectation = self.expectation(description: "Middleware")
 
     let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("basic")
+          invocationOrder.append("basic")
           next(action)
+          expectation.fulfill()
         }
       }
     }
@@ -68,8 +69,16 @@ class MiddlewareTests: XCTestCase {
     let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("second")
-          expectation.fulfill()
+          invocationOrder.append("second")
+        }
+      }
+    }
+
+    let thirdMiddleware: StoreMiddleware = { getState, dispatch in
+      return { next in
+        return { action in
+          invocationOrder.append("third")
+          next(action)
         }
       }
     }
@@ -78,6 +87,7 @@ class MiddlewareTests: XCTestCase {
       interceptors: [
         middlewareToInterceptor(basicMiddleware),
         middlewareToInterceptor(secondMiddleware),
+        middlewareToInterceptor(thirdMiddleware),
       ]
     )
 
@@ -87,27 +97,24 @@ class MiddlewareTests: XCTestCase {
 
     self.waitForExpectations(timeout: 5) { (error) in
       XCTAssertNil(error)
-      XCTAssertEqual(invokationOrder, ["basic", "second"])
+      XCTAssertEqual(invocationOrder, ["basic", "second"])
       XCTAssertEqual(store.state, initialState)
     }
   }
 
   func testMiddlewareChaining() {
     var dispatchedAction: Action?
-    var storeBefore: Any?
-    var storeAfter: Any?
-    var invokationOrder: [String] = []
+    var invocationOrder: [String] = []
 
     let expectation = self.expectation(description: "Middleware")
 
     let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("basic")
+          invocationOrder.append("basic")
           dispatchedAction = action as? Action
-          storeBefore = getState()
           next(action)
-          storeAfter = getState()
+          expectation.fulfill()
         }
       }
     }
@@ -115,8 +122,16 @@ class MiddlewareTests: XCTestCase {
     let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("second")
-          expectation.fulfill()
+          invocationOrder.append("second")
+          next(action)
+        }
+      }
+    }
+
+    let thirdMiddleware: StoreMiddleware = { getState, dispatch in
+      return { next in
+        return { action in
+          invocationOrder.append("third")
           next(action)
         }
       }
@@ -126,6 +141,7 @@ class MiddlewareTests: XCTestCase {
       interceptors: [
         middlewareToInterceptor(basicMiddleware),
         middlewareToInterceptor(secondMiddleware),
+        middlewareToInterceptor(thirdMiddleware),
       ]
     )
     
@@ -137,22 +153,21 @@ class MiddlewareTests: XCTestCase {
       XCTAssertNil(error)
 
       let newState = store.state
-      XCTAssertEqual(invokationOrder, ["basic", "second"])
+      XCTAssertEqual(invocationOrder, ["basic", "second", "third"])
       XCTAssertEqual(dispatchedAction as? AddTodoAction, action)
-      XCTAssertEqual(storeBefore as? AppState, initialState)
-      XCTAssertEqual(storeAfter as? AppState, newState)
+      XCTAssertEqual(initialState.todo.todos.count + 1, newState.todo.todos.count)
     }
   }
 
   func testGenericMiddleware() {
-    var invokationOrder: [String] = []
+    var invocationOrder: [String] = []
 
     let expectation = self.expectation(description: "Middleware")
 
     let basicMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("basic")
+          invocationOrder.append("basic")
           next(action)
         }
       }
@@ -161,7 +176,7 @@ class MiddlewareTests: XCTestCase {
     let secondMiddleware: StoreMiddleware = { getState, dispatch in
       return { next in
         return { action in
-          invokationOrder.append("second")
+          invocationOrder.append("second")
           expectation.fulfill()
           next(action)
         }
@@ -180,7 +195,7 @@ class MiddlewareTests: XCTestCase {
 
     self.waitForExpectations(timeout: 5) { (error) in
       XCTAssertNil(error)
-      XCTAssertEqual(invokationOrder, ["basic", "second"])
+      XCTAssertEqual(invocationOrder, ["basic", "second"])
     }
   }
 

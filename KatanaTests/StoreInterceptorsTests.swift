@@ -44,12 +44,12 @@ class StoreInterceptorsTests: QuickSpec {
         }
         
         it("invokes the middleware in the proper order") {
-          var invokationOrder: [String] = []
+          var invocationOrder: [String] = []
           
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
-                invokationOrder.append("first")
+                invocationOrder.append("first")
                 try next(stateUpdater)
               }
             }
@@ -58,17 +58,45 @@ class StoreInterceptorsTests: QuickSpec {
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
-                invokationOrder.append("second")
+                invocationOrder.append("second")
                 try next(stateUpdater)
               }
             }
           }
           
-          let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
+          let thirdInterceptor: StoreInterceptor = { context in
+            return { next in
+              return { stateUpdater in
+                invocationOrder.append("third")
+                try next(stateUpdater)
+              }
+            }
+          }
+          
+          let fourthInterceptor: StoreInterceptor = { context in
+            return { next in
+              return { stateUpdater in
+                invocationOrder.append("fourth")
+                try next(stateUpdater)
+              }
+            }
+          }
+          
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [
+            firstInterceptor,
+            secondInterceptor,
+            thirdInterceptor,
+            fourthInterceptor,
+          ])
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
-          expect(invokationOrder).toEventually(equal(["first", "second"]))
+          expect(invocationOrder).toEventually(equal([
+            "first",
+            "second",
+            "third",
+            "fourth",
+          ]))
         }
         
         it("allows the middleware to block the propagation") {
@@ -123,12 +151,12 @@ class StoreInterceptorsTests: QuickSpec {
         }
         
         it("invokes the middleware in the proper order") {
-          var invokationOrder: [String] = []
+          var invocationOrder: [String] = []
           
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
-                invokationOrder.append("first")
+                invocationOrder.append("first")
                 try next(sideEffect)
               }
             }
@@ -137,7 +165,7 @@ class StoreInterceptorsTests: QuickSpec {
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
-                invokationOrder.append("second")
+                invocationOrder.append("second")
                 try next(sideEffect)
               }
             }
@@ -147,7 +175,7 @@ class StoreInterceptorsTests: QuickSpec {
           store.dispatch(DelaySideEffect())
           
           expect(store.isReady).toEventually(beTrue())
-          expect(invokationOrder).toEventually(equal(["first", "second"]))
+          expect(invocationOrder).toEventually(equal(["first", "second"]))
         }
         
         it("allows the middleware to block the propagation") {
