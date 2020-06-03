@@ -73,7 +73,7 @@ public protocol OnStartObserverDispatchable: Dispatchable {
 /**
  Interceptor that can be use to observe behaviours and dispatch items as a response.
  
- You can add as many `OnserverInterceptor` as you want to your application.
+ You can add as many `ObserverInterceptor` as you want to your application.
 */
 public struct ObserverInterceptor {
   
