@@ -373,7 +373,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
    should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
-   the state of the system (that is, the store's state) without dispatching a `ReturningStateUpdater`.
+   the state of the system (that is, the store's state) without dispatching a `ReturningSideEffect`.
 
    #### Promise Resolution
 
