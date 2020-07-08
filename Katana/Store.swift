@@ -377,7 +377,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
    #### Promise Resolution
 
-   When it comes to `ReturningSideEffect`s, the promise is resolved when the body of the `RetunringSideEffect` is executed entirely (see
+   When it comes to `ReturningSideEffect`s, the promise is resolved when the body of the `ReturningSideEffect` is executed entirely (see
    `ReturningSideEffect` documentation for more information).
 
    - parameter dispatchable: the side effect to dispatch
