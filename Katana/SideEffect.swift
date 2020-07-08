@@ -44,6 +44,16 @@ public protocol AnySideEffectContext {
    */
   @discardableResult
   func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
+
+  /**
+  Dispatches a `ReturningSideEffect`. It is a partially erased version the `dispatch<T: SideEffect>(_:)` where only the return value is typed.
+
+  - parameter dispatchable: the side effect to dispatch
+  - returns: a promise that is resolved with the value returned by the side effect
+             when the store finishes handling the dispatched item
+  */
+  @discardableResult
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
   /**
    Dispatches a `StateUpdater`. It the type-safe version of the `anyDispatch` method
@@ -103,6 +113,16 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
    */
   @discardableResult
   public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturnValue }
+  }
+
+  /**
+  Dispatches a `ReturningSideEffect` item. This is the equivalent of the `Store` `dispatch`.
+
+  - seeAlso: `Store` implementation of `dispatch`
+  */
+  @discardableResult
+  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     return self.dispatchClosure(dispatchable).then { $0 as! T.ReturnValue }
   }
   
@@ -181,6 +201,34 @@ public protocol AnySideEffect: Dispatchable {
 }
 
 /**
+ Partial type erasure for `SideEffect`. The return value is the only thing typed, while the context is erased
+
+ - seeAlso: `SideEffect`
+ */
+public protocol ReturningSideEffect: AnySideEffect {
+  /// The type of the return value
+  associatedtype ReturnValue
+
+  /**
+    Implements the logic of the side effect.
+    - parameter context: the context of the side effect
+    - throws: if the logic has an error. The related promise will be rejected
+    - returns: the side effect return value, if applicable
+    - seeAlso: `SideEffect`
+   */
+  func returningSideEffect(_ context: AnySideEffectContext) throws -> ReturnValue
+}
+
+/// Conformance of `ReturningSideEffect` to `AnySideEffect`
+public extension ReturningSideEffect {
+
+  /// Implementation of the `anySideEffect` requirement for `ReturningSideEffectContext`
+  func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
+    return try self.returningSideEffect(context)
+  }
+}
+
+/**
  A side effect is a single atom of the logic of your application.
  While you can actually use them as you desire, the idea is to implement in each side effect
  a meaningful, self contained, piece of logic that can be used from other pieces of you application
@@ -201,7 +249,7 @@ public protocol AnySideEffect: Dispatchable {
  
  By conforming to `AppSideEffect`, you will get better autocompletion
  */
-public protocol SideEffect: AnySideEffect {
+public protocol SideEffect: ReturningSideEffect {
   /// The type of the state of the store
   associatedtype StateType: State
   
@@ -246,10 +294,10 @@ public protocol SideEffect: AnySideEffect {
   func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws -> ReturnValue
 }
 
-/// Conformance of `SideEffect` to `AnySideEffect`
+/// Conformance of `SideEffect` to `ReturningSideEffect`
 public extension SideEffect {
-  /// Implementation of the `sideEffect` requirement for `AnySideEffectContext`
-  func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
+  /// Implementation of the `returningSideEffect` requirement for `ReturningSideEffectContext`
+  func returningSideEffect(_ context: AnySideEffectContext) throws -> Any {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }

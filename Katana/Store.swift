@@ -22,6 +22,15 @@ public protocol AnyStore: class {
    */
   @discardableResult
   func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
+
+  /**
+   Dispatches a `ReturningSideEffect` item
+
+   - parameter dispatchable: the Returning Side Effect to dispatch
+   - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the store
+   */
+  @discardableResult
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
   /**
    Dispatches a `StateUpdater` item
@@ -97,7 +106,18 @@ open class PartialStore<S: State>: AnyStore {
   public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
-  
+
+  /**
+   Not implemented
+
+   - warning: Not implemented. Instantiate a `Store` instead
+   */
+  @discardableResult
+  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
+  }
+
+
   /**
    Not implemented
    
@@ -337,6 +357,34 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    */
   @discardableResult
   override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.enqueueSideEffect(dispatchable)
+  }
+
+  /**
+   Dispatches a `ReturningSideEffect` item
+
+   #### Threading
+
+   The `Store` follows strict rules about the parallelism with which dispatched items are handled.
+   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   devices offer.
+
+   When a `ReturningSideEffect` is dispatched, Katana will handle them in a parallel queue. A `ReturningSideEffect` is executed and considered
+   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   improve the performances of the system. Overall, this should not be a problem as you cannot really change
+   the state of the system (that is, the store's state) without dispatching a `ReturningStateUpdater`.
+
+   #### Promise Resolution
+
+   When it comes to `ReturningSideEffect`s, the promise is resolved when the body of the `RetunringSideEffect` is executed entirely (see
+   `ReturningSideEffect` documentation for more information).
+
+   - parameter dispatchable: the side effect to dispatch
+   - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
+   */
+  @discardableResult
+  override public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     return self.enqueueSideEffect(dispatchable)
   }
   
