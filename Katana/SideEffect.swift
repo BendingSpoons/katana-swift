@@ -297,7 +297,7 @@ public protocol SideEffect: ReturningSideEffect {
 /// Conformance of `SideEffect` to `ReturningSideEffect`
 public extension SideEffect {
   /// Implementation of the `returningSideEffect` requirement for `ReturningSideEffectContext`
-  func returningSideEffect(_ context: AnySideEffectContext) throws -> Any {
+  func returningSideEffect(_ context: AnySideEffectContext) throws -> Self.ReturnValue {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }
