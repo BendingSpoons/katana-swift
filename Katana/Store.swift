@@ -33,13 +33,13 @@ public protocol AnyStore: class {
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
   /**
-   Dispatches a `StateUpdater` item
+   Dispatches an `AnyStateUpdater` item
    
    - parameter dispatchable: the State Updater to dispatch
    - returns: a promise that is resolved when the dispatchable is handled by the store
    */
   @discardableResult
-  func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void>
+  func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void>
   
   /**
    Dispatches a generic `Dispatchable` item. This is useful for customizing Katana's dispatchable, for example in other libraries.
@@ -124,7 +124,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
   
@@ -397,20 +397,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
    
-   When a `StateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
+   When an `AnyStateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
    executes one update of the state at the time, following the order in which it has received them. This is done
    to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
-   queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
+   queue is never a big problem as any operation that goes in an `AnyStateUpdater` is very lighweight.
    
    #### Promise Resolution
    
-   When it comes to `StateUpdater`, the promise is resolved when the state is updated.
+   When it comes to `AnyStateUpdater`, the promise is resolved when the state is updated.
    
    - parameter dispatchable: the state updater to dispatch
    - returns: a promise parameterized to void that is resolved when the state updater is handled by the store
    */
   @discardableResult
-  override public func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void> {
+  override public func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
     return self.enqueueStateUpdater(dispatchable)
   }
   

@@ -56,13 +56,14 @@ public protocol AnySideEffectContext {
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
   
   /**
-   Dispatches a `StateUpdater`. It the type-safe version of the `anyDispatch` method
+   Dispatches a `AnyStateUpdater`. By considering that all the `StateUpdater`s are also `AnyStateUpdater`s this dispatch
+   allows to dispatch all the possible `StateUpdaters` an app or a lib can implement.
    
    - parameter dispatchable: the side effect to dispatch
    - returns: a promise that is resolved when the store finishes updating the state
    */
   @discardableResult
-  func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void>
+  func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void>
 }
 
 /**
@@ -127,12 +128,12 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   }
   
   /**
-   Dispatches a `StateUpdater` item. This is the equivalent of the `Store` `dispatch`.
+   Dispatches an `AnyStateUpdater` item. This is the equivalent of the `Store` `dispatch`.
    
    - seeAlso: `Store` implementation of `dispatch`
    */
   @discardableResult
-  public func dispatch<T: StateUpdater>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
     return self.dispatchClosure(dispatchable).void
   }
   
