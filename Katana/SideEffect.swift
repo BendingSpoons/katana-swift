@@ -34,16 +34,6 @@ public protocol AnySideEffectContext {
    */
   @discardableResult
   func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
-  
-  /**
-   Dispatches a `SideEffect`. It the type-safe version of the `anyDispatch` method
-   
-   - parameter dispatchable: the side effect to dispatch
-   - returns: a promise that is resolved with the value returned by the side effect
-              when the store finishes handling the dispatched item
-   */
-  @discardableResult
-  func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
 
   /**
   Dispatches a `ReturningSideEffect`. It is a partially erased version the `dispatch<T: SideEffect>(_:)` where only the return value is typed.
@@ -106,16 +96,6 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   public func getState() -> S {
     return self.getStateClosure()
   }
-  
-  /**
-   Dispatches a `SideEffect` item. This is the equivalent of the `Store` `dispatch`.
-   
-   - seeAlso: `Store` implementation of `dispatch`
-   */
-  @discardableResult
-  public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturnValue }
-  }
 
   /**
   Dispatches a `ReturningSideEffect` item. This is the equivalent of the `Store` `dispatch`.
@@ -166,7 +146,7 @@ public extension AnySideEffectContext {
    
    - parameter dispatchable: the item to dispatch
    */
-  func awaitDispatch<SE: SideEffect>(_ dispatchable: SE) throws -> SE.ReturnValue {
+  func awaitDispatch<SE: ReturningSideEffect>(_ dispatchable: SE) throws -> SE.ReturnValue {
     return try await(self.dispatch(dispatchable))
   }
 }
