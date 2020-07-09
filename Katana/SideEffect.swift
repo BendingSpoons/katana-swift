@@ -56,6 +56,18 @@ public protocol AnySideEffectContext {
   func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void>
 }
 
+public extension AnySideEffectContext {
+  /// Default implementation of the `dispatch<T: AnyStateUpdater>`
+  func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
+    return self.anyDispatch(dispatchable).void
+  }
+
+  /// Default implementation of the `dispatch<T: ReturningSideEffect>`
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+    return self.anyDispatch(dispatchable).then { $0 as! T.ReturnValue }
+  }
+}
+
 /**
  Context passed to each side effect.
  
