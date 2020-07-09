@@ -13,15 +13,6 @@ import Hydra
 public protocol AnyStore: class {
   /// Type Erasure for the `Store` `state`
   var anyState: State { get }
-  
-  /**
-   Dispatches a `SideEffect` item
-   
-   - parameter dispatchable: the Side Effect to dispatch
-   - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the store
-   */
-  @discardableResult
-  func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
 
   /**
    Dispatches a `ReturningSideEffect` item
@@ -95,16 +86,6 @@ open class PartialStore<S: State>: AnyStore {
    */
   internal init(state: S) {
     self.state = state
-  }
-  
-  /**
-   Not implemented
-   
-   - warning: Not implemented. Instantiate a `Store` instead
-   */
-  @discardableResult
-  public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
   /**
@@ -331,34 +312,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
       _ = self?.listeners.removeValue(forKey: listenerID)
     }
   }
-  
-  /**
-   Dispatches a `SideEffect` item
-   
-   #### Threading
-   
-   The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
-   devices offer.
-   
-   When a `SideEffect` is dispatched, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
-   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
-   improve the performances of the system. Overall, this should not be a problem as you cannot really change
-   the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
-   
-   #### Promise Resolution
-   
-   When it comes to `SideEffect`s, the promise is resolved when the body of the `SideEffect` is executed entirely (see `SideEffect` documentation for
-   more information).
-   
-   - parameter dispatchable: the side effect to dispatch
-   - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
-   */
-  @discardableResult
-  override public func dispatch<T: SideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.enqueueSideEffect(dispatchable)
-  }
 
   /**
    Dispatches a `ReturningSideEffect` item
@@ -400,7 +353,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    When an `AnyStateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
    executes one update of the state at the time, following the order in which it has received them. This is done
    to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
-   queue is never a big problem as any operation that goes in an `AnyStateUpdater` is very lighweight.
+   queue is never a big problem as any operation that goes in an `AnyStateUpdater` is very lightweight.
    
    #### Promise Resolution
    
