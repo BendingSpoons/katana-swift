@@ -21,7 +21,7 @@ public protocol AnyStore: class {
    - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the store
    */
   @discardableResult
-  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue>
   
   /**
    Dispatches an `AnyStateUpdater` item
@@ -94,7 +94,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -337,7 +337,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
    */
   @discardableResult
-  override public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+  override public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
     return self.enqueueSideEffect(dispatchable)
   }
   

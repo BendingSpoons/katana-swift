@@ -43,7 +43,7 @@ public protocol AnySideEffectContext {
              when the store finishes handling the dispatched item
   */
   @discardableResult
-  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue>
   
   /**
    Dispatches a `AnyStateUpdater`. By considering that all the `StateUpdater`s are also `AnyStateUpdater`s this dispatch
@@ -63,8 +63,8 @@ public extension AnySideEffectContext {
   }
 
   /// Default implementation of the `dispatch<T: ReturningSideEffect>`
-  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.anyDispatch(dispatchable).then { $0 as! T.ReturnValue }
+  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
+    return self.anyDispatch(dispatchable).then { $0 as! T.ReturningValue }
   }
 }
 
@@ -115,8 +115,8 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   - seeAlso: `Store` implementation of `dispatch`
   */
   @discardableResult
-  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturnValue }
+  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
+    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturningValue }
   }
   
   /**
@@ -158,7 +158,7 @@ public extension AnySideEffectContext {
    
    - parameter dispatchable: the item to dispatch
    */
-  func awaitDispatch<SE: ReturningSideEffect>(_ dispatchable: SE) throws -> SE.ReturnValue {
+  func awaitDispatch<SE: ReturningSideEffect>(_ dispatchable: SE) throws -> SE.ReturningValue {
     return try await(self.dispatch(dispatchable))
   }
 }
@@ -200,7 +200,7 @@ public protocol AnySideEffect: Dispatchable {
  */
 public protocol ReturningSideEffect: AnySideEffect {
   /// The type of the return value
-  associatedtype ReturnValue
+  associatedtype ReturningValue
 
   /**
     Implements the logic of the side effect.
@@ -209,7 +209,7 @@ public protocol ReturningSideEffect: AnySideEffect {
     - returns: the side effect return value, if applicable
     - seeAlso: `SideEffect`
    */
-  func returningSideEffect(_ context: AnySideEffectContext) throws -> ReturnValue
+  func returningSideEffect(_ context: AnySideEffectContext) throws -> ReturningValue
 }
 
 /// Conformance of `ReturningSideEffect` to `AnySideEffect`
@@ -290,7 +290,7 @@ public protocol SideEffect: ReturningSideEffect {
 /// Conformance of `SideEffect` to `ReturningSideEffect`
 public extension SideEffect {
   /// Implementation of the `returningSideEffect` requirement for `ReturningSideEffectContext`
-  func returningSideEffect(_ context: AnySideEffectContext) throws -> Self.ReturnValue {
+  func returningSideEffect(_ context: AnySideEffectContext) throws -> ReturnValue {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }
