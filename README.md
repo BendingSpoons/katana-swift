@@ -121,10 +121,10 @@ struct GetRandomNumberFromServer: SideEffect {
 struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
     // await for the result of a side effect
-    let x = try await(context.dispatch(GetNumberFromServer(amplitude: 5, offset: 2)))
+    let x = try await(context.dispatch(GetRandomNumberFromServer(amplitude: 5, offset: 2)))
 
     // await for the result of another side effect
-    let y = try await(context.dispatch(GetNumberFromServer(amplitude: 2, offset: 5)))
+    let y = try await(context.dispatch(GetRandomNumberFromServer(amplitude: 2, offset: 5)))
 
     let randomNumber = Int(x + y)
     try await(context.dispatch(SetCounter(newValue: randomNumber)))
