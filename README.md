@@ -176,7 +176,7 @@ let observerInterceptor = ObserverInterceptor.observe([
 let store = Store<CounterState>(interceptor: [observerInterceptor])
 ```
 
-Note that when intercepting a side effect using an `ObserverInterceptor`, the return value of the dispatchable is not availble to the interceptor itself.
+Note that when intercepting a side effect using an `ObserverInterceptor`, the return value of the dispatchable is not available to the interceptor itself.
 
 ## What about the UI?
 
