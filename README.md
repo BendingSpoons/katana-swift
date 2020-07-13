@@ -56,7 +56,7 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
 
 `Side Effect`s are implemented on top of [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
 
@@ -68,7 +68,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // that updates the state
     context.dependencies.APIManager
         .getRandomNumber()
-        .thenDispatch({ newValue in SetCounter(newValue: newValue) })
+        .then({ randomNumber in context.dispatch(SetCounter(newValue: randomNumber)) })
   }
 }
 
@@ -91,10 +91,43 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     let promise = context.dependencies.APIManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
-    let newValue = try await(promise)
+    let randomNumber = try await(promise)
 
     // then the state is updated using the proper state updater
-    try await(context.dispatch(SetCounter(newValue: newValue)))
+    try await(context.dispatch(SetCounter(newValue: randomNumber)))
+  }
+}
+```
+
+In order to further improve the usability of side effects, they can also return values, as shown in the example below.
+
+```swift
+struct GetNumberFromServer: SideEffect {
+  let amplitude: Double
+  let offset: Double
+
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws -> Double {
+    // invokes the `getRandomNumber` method that returns a promise that is fullfilled
+    // when the number is received.
+    let promise = context.dependencies.APIManager.getRandomNumber()
+    
+    // we use await to wait for the promise to be fullfilled
+    let randomNumber = try await(promise)
+
+    return randomNumber * amplitude + offset
+  }
+}
+
+struct GenerateRandomNumberFromBackend: SideEffect {
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
+    // await for the result of a side effect
+    let x = try await(context.dispatch(GetNumberFromServer(amplitude: 5, offset: 2)))
+
+    // await for the result of another side effect
+    let y = try await(context.dispatch(GetNumberFromServer(amplitude: 2, offset: 5)))
+
+    let randomNumber = Int(x + y)
+    try await(context.dispatch(SetCounter(newValue: randomNumber)))
   }
 }
 ```
@@ -142,6 +175,8 @@ let observerInterceptor = ObserverInterceptor.observe([
 
 let store = Store<CounterState>(interceptor: [observerInterceptor])
 ```
+
+Note that when intercepting a side effect using an `ObserverInterceptor`, the return value of the dispatchable is not availble to the interceptor itself.
 
 ## What about the UI?
 
