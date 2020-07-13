@@ -102,7 +102,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 In order to further improve the usability of side effects, they can also return values, as shown in the example below.
 
 ```swift
-struct GetNumberFromServer: SideEffect {
+struct GetRandomNumberFromServer: SideEffect {
   let amplitude: Double
   let offset: Double
 
@@ -339,4 +339,3 @@ Katana is available under the [MIT license](https://github.com/BendingSpoons/kat
 Katana is maintained by Bending Spoons.
 We create our own tech products, used and loved by millions all around the world.
 Interested? [Check us out](http://bndspn.com/2fKggTa)!
-
