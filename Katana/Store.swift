@@ -202,7 +202,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   private var sideEffectContext: SideEffectContext<S, D>!
   
   /// The queue used to handle the `StateUpdater` items
-  lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
+  fileprivate var stateUpdaterQueue: DispatchQueue! = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
     
     // queue is initially supended. The store will enable the queue when
@@ -215,7 +215,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }()
   
   /// The queue used to handle the `SideEffect` items
-  lazy fileprivate var sideEffectQueue: DispatchQueue = {
+  fileprivate var sideEffectQueue: DispatchQueue! = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
     // queue is initially supended. The store will enable the queue when
@@ -226,7 +226,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     
     return d
   }()
-  
+
   /**
    A convenience init method. The store won't have middleware nor dependencies for the side effects.
    The state will be created using the default init of the state
@@ -420,6 +420,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    */
   fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
     self.anyDispatch(dispatchable)
+  }
+  
+  /// This method is used to free all the references, since the store has some reference loops
+  /// going on with various entities. This meant to be called only when you are no longer using
+  /// the store and you want it to be garbage collected. Keep in mind this is not a safe method,
+  /// if someone else still has a reference to the store and tries to dispatch something or
+  /// to access the state/dependencies the application will crash.
+  func releaseReferences() {
+    self.dependencies = nil
+    self.initializedInterceptors = []
+    self.sideEffectContext = nil
+    self.stateUpdaterQueue = nil
+    self.sideEffectQueue = nil
+    self.isReady = false
   }
 }
 
