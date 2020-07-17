@@ -423,10 +423,10 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     }
     
     if let stateUpdater = dispatchable as? AnyStateUpdater {
-      return self.enqueueStateUpdater(stateUpdater).then { _ in }
+      return self.enqueueStateUpdater(stateUpdater).then(in: .background) { _ in }
       
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect).then { (value: Any) in value }
+      return self.enqueueSideEffect(sideEffect).then(in: .background) { (value: Any) in value }
       
     }
     

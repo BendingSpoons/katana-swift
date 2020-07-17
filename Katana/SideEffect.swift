@@ -64,7 +64,7 @@ public extension AnySideEffectContext {
 
   /// Default implementation of the `dispatch<T: ReturningSideEffect>`
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
-    return self.anyDispatch(dispatchable).then { $0 as! T.ReturningValue }
+    return self.anyDispatch(dispatchable).then(in: .background) { $0 as! T.ReturningValue }
   }
 }
 
@@ -116,7 +116,7 @@ public struct SideEffectContext<S, D> where S: State, D: SideEffectDependencyCon
   */
   @discardableResult
   public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturningValue> {
-    return self.dispatchClosure(dispatchable).then { $0 as! T.ReturningValue }
+    return self.dispatchClosure(dispatchable).then(in: .background) { $0 as! T.ReturningValue }
   }
   
   /**
