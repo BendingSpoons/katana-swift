@@ -191,16 +191,29 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
   
-  /**
-   The dependencies used in the side effects
-   
-   - seeAlso: `SideEffect`
-   */
+  /// The dependencies used in the side effects
+  ///
+  ///- seeAlso: `SideEffect`
   public var dependencies: D!
+  
+  /// The dependencies used to initialize katana
+  public struct Configuration {
+    /// On this queue katana runs all the listeners
+    let mainAsyncProvider: AsyncProvider
+    
+    public init(
+      mainAsyncProvider: AsyncProvider = DispatchQueue.main
+    ) {
+      self.mainAsyncProvider = mainAsyncProvider
+    }
+  }
   
   /// The context passed to the side effect
   private var sideEffectContext: SideEffectContext<S, D>!
   
+  /// The queue used to handle the listeners
+  fileprivate var mainAsyncProvider: AsyncProvider!
+    
   /// The queue used to handle the `StateUpdater` items
   fileprivate var stateUpdaterQueue: DispatchQueue! = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
@@ -271,9 +284,16 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    
    - parameter interceptors: a list of interceptors that are executed every time something is dispatched
    - parameter stateInitializer: a closure invoked to define the first state's value
+   - parameter configuration: the configuration needed by the store to start properly
    - returns: An instance of store
    */
-  public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
+  public init(
+    interceptors: [StoreInterceptor],
+    stateInitializer: @escaping StateInitializer<S>,
+    configuration: Configuration = .init()
+  ) {
+    self.mainAsyncProvider = configuration.mainAsyncProvider
+    
     self.listeners = [:]
     self.interceptors = interceptors
     self.isReady = false
@@ -292,7 +312,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
     /// if the stateInitializer function takes too much to do its job and we block the app's startup
-    DispatchQueue.main.async {
+    self.mainAsyncProvider.execute { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
     }
   }
@@ -427,13 +447,14 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// the store and you want it to be garbage collected. Keep in mind this is not a safe method,
   /// if someone else still has a reference to the store and tries to dispatch something or
   /// to access the state/dependencies the application will crash.
-  func releaseReferences() {
+  func __unsafe_releaseReferences() {
+    self.isReady = false
     self.dependencies = nil
     self.initializedInterceptors = []
     self.sideEffectContext = nil
     self.stateUpdaterQueue = nil
     self.sideEffectQueue = nil
-    self.isReady = false
+    self.mainAsyncProvider = nil
   }
 }
 
@@ -448,7 +469,7 @@ private extension Store {
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
     // invoke listeners (always in main queue)
-    DispatchQueue.main.async {
+    self.mainAsyncProvider.execute { [unowned self] in
       self.listeners.values.forEach { $0() }
     }
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
@@ -526,7 +547,7 @@ fileprivate extension Store {
     self.state = typedNewState
     
     // listener are always invoked in the main queue
-    DispatchQueue.main.async {
+    self.mainAsyncProvider.execute { [unowned self] in
       self.listeners.values.forEach { $0() }
     }
   }
