@@ -468,16 +468,15 @@ private extension Store {
    */
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
-    // invoke listeners (always in main queue)
-    self.mainAsyncProvider.execute { [unowned self] in
-      self.listeners.values.forEach { $0() }
-    }
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
     
     // and here we are finally able to start the queues
     self.isReady = true
     self.sideEffectQueue.resume()
     self.stateUpdaterQueue.resume()
+    
+    // invoke listeners (we already are in the main queue)
+    self.listeners.values.forEach { $0() }
   }
   
   /**
