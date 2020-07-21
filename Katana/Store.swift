@@ -443,7 +443,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
   
   /// This method is used to free all the references, since the store has some reference loops
-  /// going on with various entities. This meant to be called only when you are no longer using
+  /// going on with various entities. This is meant to be called only when you are no longer using
   /// the store and you want it to be garbage collected. Keep in mind this is not a safe method,
   /// if someone else still has a reference to the store and tries to dispatch something or
   /// to access the state/dependencies the application will crash.
