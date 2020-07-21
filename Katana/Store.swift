@@ -215,7 +215,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   fileprivate var mainAsyncProvider: AsyncProvider!
     
   /// The queue used to handle the `StateUpdater` items
-  fileprivate var stateUpdaterQueue: DispatchQueue! = {
+  fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
     
     // queue is initially supended. The store will enable the queue when
@@ -228,7 +228,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }()
   
   /// The queue used to handle the `SideEffect` items
-  fileprivate var sideEffectQueue: DispatchQueue! = {
+  fileprivate var sideEffectQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
     // queue is initially supended. The store will enable the queue when
@@ -452,8 +452,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     self.dependencies = nil
     self.initializedInterceptors = []
     self.sideEffectContext = nil
-    self.stateUpdaterQueue = nil
-    self.sideEffectQueue = nil
     self.mainAsyncProvider = nil
   }
 }
