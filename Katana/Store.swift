@@ -473,7 +473,7 @@ private extension Store {
     self.sideEffectQueue.resume()
     self.stateUpdaterQueue.resume()
     
-    // invoke listeners (we already are in the main queue)
+    // invoke listeners
     self.listeners.values.forEach { $0() }
   }
   
