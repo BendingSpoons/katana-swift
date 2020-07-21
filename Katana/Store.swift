@@ -101,7 +101,7 @@ private func emptyStateInitializer<S: State>() -> S {
  in a single atom, called state (see also `State` protocol).
  
  The `Store`, however, doesn't really implements any application specific logic: this class
- only manages operations that are requsted by the application-specific logic. In particular,
+ only manages operations that are requested by the application-specific logic. In particular,
  you can require the `Store` to execute something by `dispatching a dispatchable item`.
 
  Currently the store handles 3 types of dispatchable: `State Updater`, `Side Effect` and (deprecated) `Action`.
@@ -135,7 +135,7 @@ private func emptyStateInitializer<S: State>() -> S {
  and even change dynamically which dispatchable items arrive to the `Store` itself.
  
  - seeAlso: `StateUpdater` for more information about how to implement an update of the state
- - seeAlso: `SideEffect` for more information about how to implement an complex/asyncronous logic
+ - seeAlso: `SideEffect` for more information about how to implement an complex/asynchronous logic
  */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
@@ -166,7 +166,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
     
-    // queue is initially supended. The store will enable the queue when
+    // queue is initially suspended. The store will enable the queue when
     // all the setup is done.
     // we basically enqueue all the dispatched actions until
     // everything is needed to manage them is correctly sat up
@@ -179,7 +179,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   lazy fileprivate var sideEffectQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
-    // queue is initially supended. The store will enable the queue when
+    // queue is initially suspended. The store will enable the queue when
     // all the setup is done.
     // we basically enqueue all the dispatched actions until
     // everything is needed to manage them is correctly sat up
@@ -225,7 +225,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    Accessing the state before the `Store` is ready will lead to a crash of the application, as the
    state of the system is not well defined. You can check whether the `Store` is ready by leveraging the `isReady` property.
    
-   A good pratice in case you have to interact with the `Store` (e.g., get the state) in the initial phases of your
+   A good practice in case you have to interact with the `Store` (e.g., get the state) in the initial phases of your
    application is to dispatch a `SideEffect`. When dispatching something, in fact, the `Store` guarantees that
    items are managed only after that the `Store` is ready. Items dispatched during the initialization are suspended
    and resumed as soon as the `Store` is ready.
@@ -280,7 +280,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    #### Threading
    
    The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
    
    When a `StateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
@@ -289,13 +289,13 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
    
    When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
-   done when its body finishes to be executed. This menas that side effects are not guaranteed to be run in isolation, and you
+   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
    should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
    
    This version of the store keeps the support for `Action` items. Since actions both update the state and executes side effects,
-   they are managed in the very same, serial and syncronous, queue of the `StateUpdater`. You are encouraged to move away from
+   they are managed in the very same, serial and synchronous, queue of the `StateUpdater`. You are encouraged to move away from
    actions as soon as possible.
    
    #### Promise Resolution
@@ -304,7 +304,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    the promise is resolved when the body of the `SideEffect` is executed entirely (see `SideEffect` documentation for
    more information). For `Action`, finally, the promise is resolved when the state is updated and the sideEffect method
    is executed (note that this doesn't mean that the side effect is effectively done, as there's no simple mechanism to
-   block the execution of a sideeffect in an action)
+   block the execution of a side effect in an action)
    
    - parameter dispatchable: the dispatchable to dispatch
    - returns: a promise that is resolved when the dispatchable is handled by the store
