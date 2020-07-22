@@ -200,7 +200,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   private var sideEffectContext: SideEffectContext<S, D>!
   
   /// AsyncProvider used to run all the listeners
-  private var listenersAsyncProvider: AsyncProvider!
+  private var listenersAsyncProvider: AsyncProvider
     
   /// The queue used to handle the `StateUpdater` items
   fileprivate var stateUpdaterQueue: DispatchQueue = {
@@ -289,12 +289,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
     
-    self.dependencies = D.init(dispatch: self.anyDispatch, getState: self.getState)
+    self.dependencies = D.init(dispatch: self.anyDispatchClosure, getState: self.getStateClosure)
     
     self.sideEffectContext = SideEffectContext<S, D>(
       dependencies: self.dependencies,
-      getState: self.getState,
-      dispatch: self.anyDispatch
+      getState: self.getStateClosure,
+      dispatch: self.anyDispatchClosure
     )
     
     /// Do the initialization operation async to avoid to block the store init caller
@@ -305,6 +305,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     }
     
     self.invokeListeners()
+  }
+  
+  /// The `anyDispatch` method as a closure which does not capture `self` to avoid reference loops
+  private var anyDispatchClosure: AnyDispatch {
+    return { [unowned self] dispatchable in
+      self.anyDispatch(dispatchable)
+    }
+  }
+  
+  /// The `getState` method as a closure which does not capture `self` to avoid reference loops
+  private var getStateClosure: () -> S {
+    return { [unowned self] in
+      self.getState()
+    }
   }
   
   /**
@@ -431,20 +445,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
     self.anyDispatch(dispatchable)
   }
-  
-  /// This method is used to free all the references, since the store has some reference loops
-  /// going on with various entities. This is meant to be called only when you are no longer using
-  /// the store and you want it to be garbage collected. Keep in mind this is not a safe method,
-  /// if someone else still has a reference to the store and tries to dispatch something or
-  /// to access the state/dependencies the application will crash.
-  func __unsafe_releaseReferences() {
-    self.isReady = false
-    self.dependencies = nil
-    self.initializedInterceptors = []
-    self.sideEffectContext = nil
-    self.listenersAsyncProvider = nil
-  }
-  
   /// The dependencies used to initialize katana
   public struct Configuration {
     /// AsyncProvider used to run the state initializer
