@@ -245,14 +245,14 @@ class SideEffectTests: QuickSpec {
 
 private struct SpySideEffect: TestSideEffect {
   var delay: TimeInterval
-  var invokationClosure: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
+  var invocationClosure: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
 
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
     if delay != 0 {
       try await(context.dependencies.delay(of: self.delay))
     }
     
-    try invokationClosure(context)
+    try invocationClosure(context)
   }
 }
 

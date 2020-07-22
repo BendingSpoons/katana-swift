@@ -55,7 +55,7 @@ To address this particular use case, we introduce `EventObservers`. These classe
 
 While it may seem odd to separate Managers and `EventObservers`, this actually helps in keeping every piece simple and consistent. Use managers for simple cases and `EventObservers` for more complex.
 
-When it comes to the naming convention, classes that act as EventObservers should be named with the `Observer` suffix. To make a concrete example, `HealthKit` is not a valid manager's name, while `HealthKitObserver` is.
+When it comes to the naming convention, classes that act as EventObservers should be named with the `Observer` suffix. To make a concrete example, `HealthKit` is not a valid observer's name, while `HealthKitObserver` is.
 
 <a href="3"></a>
 

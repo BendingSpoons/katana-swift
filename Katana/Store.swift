@@ -139,7 +139,7 @@ private func emptyStateInitializer<S: State>() -> S {
  in a single atom, called state (see also `State` protocol).
  
  The `Store`, however, doesn't really implements any application specific logic: this class
- only manages operations that are requsted by the application-specific logic. In particular,
+ only manages operations that are requested by the application-specific logic. In particular,
  you can require the `Store` to execute something by `dispatching a dispatchable item`.
  
  Currently the store handles 2 types of dispatchable: `State Updater`, `Side Effect`
@@ -204,7 +204,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
     
-    // queue is initially supended. The store will enable the queue when
+    // queue is initially suspended. The store will enable the queue when
     // all the setup is done.
     // we basically enqueue all the dispatched dispatchables until
     // everything is needed to manage them is correctly sat up
@@ -217,7 +217,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   lazy fileprivate var sideEffectQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
     
-    // queue is initially supended. The store will enable the queue when
+    // queue is initially suspended. The store will enable the queue when
     // all the setup is done.
     // we basically enqueue all the dispatched dispatchables until
     // everything is needed to manage them is correctly sat up
@@ -263,7 +263,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    Accessing the state before the `Store` is ready will lead to a crash of the application, as the
    state of the system is not well defined. You can check whether the `Store` is ready by leveraging the `isReady` property.
    
-   A good pratice in case you have to interact with the `Store` (e.g., get the state) in the initial phases of your
+   A good practice in case you have to interact with the `Store` (e.g., get the state) in the initial phases of your
    application is to dispatch a `SideEffect`. When dispatching something, in fact, the `Store` guarantees that
    items are managed only after that the `Store` is ready. Items dispatched during the initialization are suspended
    and resumed as soon as the `Store` is ready.
@@ -372,7 +372,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    #### Threading
    
    The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
    
    When a `StateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
@@ -622,10 +622,13 @@ fileprivate extension Store {
       return interceptors.first!(lastStep)
     }
     
+    // reversing the chain to oppose the matryoshka effect of its execution
+    // so the interceptors will be executed in the same order they are given
+    
     var m = interceptors
     let last = m.removeLast()
     
-    return m.reduce(last(lastStep), { chain, middleware in
+    return m.reversed().reduce(last(lastStep), { chain, middleware in
       return middleware(chain)
     })
   }

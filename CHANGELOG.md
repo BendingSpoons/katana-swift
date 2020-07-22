@@ -1,11 +1,15 @@
 # Change Log
-
 ## [4.1.0](https://github.com/BendingSpoons/katana-swift/tree/4.1.0) (TBD)
 - The store `dispatch` method can now return a value
-- The AnyStore protocol now exposes a non generic dispatch accepting a Dispatchabe as input parameter
+- The `AnyStore` protocol now exposes a non generic dispatch accepting a `Dispatchable` as input parameter
+
+## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
+- Preserve interceptors order during execution.
+  [\#189](https://github.com/BendingSpoons/katana-swift/pull/189) ([alextosatto](https://github.com/alextosatto))
+- Fix tests
 
 ## [3.0.2](https://github.com/BendingSpoons/katana-swift/tree/3.0.2) (2019-09-05)
-- Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti) )
+- Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti))
 
 ## [3.0.1](https://github.com/BendingSpoons/katana-swift/tree/3.0.1) (2019-05-08)
 [Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/3.0.0...3.0.1)
