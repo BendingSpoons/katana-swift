@@ -24,15 +24,6 @@ public protocol AnyStore: class {
   func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
 
   /**
-   Dispatches a `Dispatchable` item. This is useful for customizing Katana's dispatchable, for example in other libraries.
-
-   - parameter dispatchable: the item to dispatch
-   - returns: a promise that is resolved when the dispatchable is handled by the store, resolving to a value associated with the dispatchable
-   */
-  @discardableResult
-  func anyDispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Any>
-
-  /**
    Dispatches an `AnyStateUpdater` item
 
    - parameter dispatchable: the State Updater to dispatch
@@ -113,16 +104,6 @@ open class PartialStore<S: State>: AnyStore {
    */
   @discardableResult
   public func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
-    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
-  }
-
-  /**
-   Not implemented
-
-   - warning: Not implemented. Instantiate a `Store` instead
-   */
-  @discardableResult
-  public func anyDispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Any> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -401,6 +382,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - parameter dispatchable: the side effect to dispatch
    - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
    */
+  @discardableResult
   override public func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void> {
     self.enqueueSideEffect(dispatchable)
   }

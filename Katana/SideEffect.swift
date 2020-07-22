@@ -36,15 +36,6 @@ public protocol AnySideEffectContext {
   func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
 
   /**
-   Dispatches a `Dispatchable`.
-
-   - parameter dispatchable: the item to dispatch
-   - returns: a promise that is resolved when the store finishes handling the dispatched item
-   */
-  @discardableResult
-  func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Any>
-
-  /**
   Dispatches a `AnySideEffect`.
 
   - parameter dispatchable: the `AnySideEffect` to dispatch
@@ -75,11 +66,6 @@ public protocol AnySideEffectContext {
 }
 
 public extension AnySideEffectContext {
-  @discardableResult
-  func dispatch<T: Dispatchable>(_ dispatchable: T) -> Promise<Any> {
-    return self.anyDispatch(dispatchable)
-  }
-
   /// Default implementation of the `dispatch<T: AnyStateUpdater>`
   @discardableResult
   func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
@@ -96,50 +82,6 @@ public extension AnySideEffectContext {
   @discardableResult
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     return self.anyDispatch(dispatchable).then { $0 as! T.ReturnValue }
-  }
-}
-
-/// Extension that contains some helper method
-public extension AnySideEffectContext {
-  /**
-   Dispatches an item and wait for the related promise to be resolved.
-   This is a shortcut for `try await(anyDispatch(item))`.
-
-   - parameter dispatchable: the item to dispatch
-   */
-  func awaitDispatch<T: Dispatchable>(_ dispatchable: T) throws {
-    try await(self.anyDispatch(dispatchable))
-  }
-
-  /**
-   Dispatches an item and wait for the related promise to be resolved.
-   This is a shortcut for `try await(anyDispatch(item))`.
-
-   - parameter dispatchable: the item to dispatch
-   */
-  func awaitDispatch<T: AnySideEffect>(_ dispatchable: T) throws {
-    try await(self.anyDispatch(dispatchable))
-  }
-
-  /**
-   Dispatches an item and wait for the related promise to be resolved.
-   This is a shortcut for `try await(anyDispatch(item))`.
-
-   - parameter dispatchable: the item to dispatch
-   */
-  func awaitDispatch<T: AnyStateUpdater>(_ dispatchable: T) throws {
-    try await(self.anyDispatch(dispatchable))
-  }
-
-  /**
-   Dispatches an item and wait for the related promise to be resolved.
-   This is a shortcut for `try await(dispatch(item))`.
-
-   - parameter dispatchable: the item to dispatch
-   */
-  @discardableResult
-  func awaitDispatch<SE: ReturningSideEffect>(_ dispatchable: SE) throws -> SE.ReturnValue {
-    return try await(self.dispatch(dispatchable))
   }
 }
 
