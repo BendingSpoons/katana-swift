@@ -256,7 +256,7 @@ private struct SpySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
@@ -281,10 +281,10 @@ private struct AddUser: TestStateUpdater {
   }
 }
 
-private struct LongOperation: TestSideEffect {
+private struct LongOperation: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
     Thread.sleep(forTimeInterval: 1)
     return self.input * 2
   }
@@ -300,30 +300,32 @@ private struct RetryMe: SideEffect {
   }
 }
 
-private struct FailingLongOperation: TestSideEffect {
+private struct FailingLongOperation: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
-    let state = context.getState()
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    guard let typedContext = context as? SideEffectContext<AppState, TestDependenciesContainer> else {
+      fatalError()
+    }
+
+    let state = typedContext.getState()
     
     guard state.todo.todos.count >= 2 else {
       throw NSError(domain: "Retry!", code: -1, userInfo: nil)
     }
     
-    try context.awaitDispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString)))
+    try typedContext.awaitDispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString)))
     
     Thread.sleep(forTimeInterval: 1)
     return self.input * 2
   }
 }
 
-private struct ReentrantReturningSideEffect: TestSideEffect {
+private struct ReentrantReturningSideEffect: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
-    
-    let a: LongOperation.ReturnValue = try context.awaitDispatch(LongOperation(input: self.input))
-    
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    let a = try context.awaitDispatch(LongOperation(input: self.input))
     return a * 2
   }
 }

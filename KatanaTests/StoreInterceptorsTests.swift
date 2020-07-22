@@ -221,7 +221,7 @@ private struct DelaySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
