@@ -69,13 +69,13 @@ public extension AnySideEffectContext {
   /// Default implementation of the `dispatch<T: AnyStateUpdater>`
   @discardableResult
   func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
-    return self.anyDispatch(dispatchable).void
+    return self.anyDispatch(dispatchable).voidInBackground
   }
 
   /// Default implementation of the `dispatch<T: AnySideEffect>`
   @discardableResult
   func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void> {
-    return self.anyDispatch(dispatchable).void
+    return self.anyDispatch(dispatchable).voidInBackground
   }
 
   /// Default implementation of the `dispatch<T: ReturningSideEffect>`
@@ -265,5 +265,13 @@ public extension SideEffect {
 
     try self.sideEffect(typedSideEffect)
     return ()
+  }
+}
+
+extension Promise {
+  /// Maps a promise hiding the return type. Note that this new promise
+  /// runs in the background
+  fileprivate var voidInBackground: Promise<Void> {
+    return self.then(in: .background) { _ in }
   }
 }
