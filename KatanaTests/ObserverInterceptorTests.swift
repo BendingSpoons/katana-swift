@@ -381,7 +381,7 @@ OnStartObserverDispatchable {
   }
 }
 
-private struct MockSideEffet: TestSideEffect {
+private struct MockSideEffet: ReturningTestSideEffect {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     return context.getState()
   }
