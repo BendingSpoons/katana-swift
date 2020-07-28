@@ -217,42 +217,54 @@ class ObserverInterceptorTests: QuickSpec {
         let testNotification = Notification.Name("Test_Notification")
         
         it("works") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [StateChangeAddUser.self])
-          ])
-          
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
+
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(name: testNotification, object: nil)
-          
+          notificationCenter.post(name: testNotification, object: nil)
+
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(1))
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
-          ])
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
+
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(Notification(name: testNotification))
-          
+          notificationCenter.post(Notification(name: testNotification))
+
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(2))
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [NilStateChangeAddUser.self, StateChangeAddUser.self])
-          ])
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [NilStateChangeAddUser.self, StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
           
-          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor, DispatchableLogger.interceptor()])
           
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(Notification(name: testNotification))
+          notificationCenter.post(Notification(name: testNotification))
           
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(1))

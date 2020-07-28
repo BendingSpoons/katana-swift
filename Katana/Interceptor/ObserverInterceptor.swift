@@ -85,12 +85,16 @@ public struct ObserverInterceptor {
    Creates a new `ObserverInterceptor` that observes the passed events
    
    - parameter items: the list of events to observe
+   - parameter notificationCenter: the notificationCenter used to listen to notifications
    - returns: the interceptor that observes the given items
    */
-  public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
+  public static func observe(
+    _ items: [ObserverType],
+    notificationCenter: NotificationCenter = .default
+  ) -> StoreInterceptor {
     return { context in
       
-      let logic = ObserverLogic(dispatch: context.anyDispatch, items: items)
+      let logic = ObserverLogic(dispatch: context.anyDispatch, items: items, notificationCenter: notificationCenter)
       logic.listenToNotifications()
       logic.handleOnStart()
       
@@ -119,6 +123,9 @@ private struct ObserverLogic {
   /// The items to observe
   let items: [ObserverInterceptor.ObserverType]
   
+  /// The notification center to listen on for notifications
+  let notificationCenter: NotificationCenter
+  
   /**
    Creates a new logic.
    
@@ -126,9 +133,14 @@ private struct ObserverLogic {
    - parameter items: the items to observe
    - returns: a structure that holds the logic to handle the given items
    */
-  init(dispatch: @escaping AnyDispatch, items: [ObserverInterceptor.ObserverType]) {
+  init(
+    dispatch: @escaping AnyDispatch,
+    items: [ObserverInterceptor.ObserverType],
+    notificationCenter: NotificationCenter = .default
+  ) {
     self.dispatch = dispatch
     self.items = items
+    self.notificationCenter = notificationCenter
   }
   
   /**
@@ -170,7 +182,7 @@ private struct ObserverLogic {
       }
     }
   }
-  
+    
   /**
    Handles a specific notification by adding an observer (using NotificationCenter)
    that dispatches the given types
@@ -183,7 +195,7 @@ private struct ObserverLogic {
     with name: NSNotification.Name,
     _ typesToDispatch: [NotificationObserverDispatchable.Type]) {
     
-    NotificationCenter.default.addObserver(
+    self.notificationCenter.addObserver(
       forName: name,
       object: nil,
       queue: nil,
