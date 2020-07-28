@@ -263,7 +263,7 @@ class ObserverInterceptorTests: QuickSpec {
             notificationCenter: notificationCenter
           )
           
-          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor, DispatchableLogger.interceptor()])
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
           notificationCenter.post(Notification(name: testNotification))
