@@ -311,6 +311,29 @@ class ObserverInterceptorTests: QuickSpec {
           expect(store.state.user.users.count).toEventually(equal(1))
         }
       }
+      
+      // MARK: - Deallocation
+      describe("When deallocated") {
+        it("unregisters all the observers") {
+          let testNotification = Notification.Name("Test_Notification")
+          let notificationCenter = TestableNotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
+
+          var store: Store<AppState, TestDependenciesContainer>? = .init(interceptors: [interceptor])
+          
+          expect(store?.isReady).toEventually(beTrue())
+          expect(notificationCenter.observers).toEventually(haveCount(1))
+          
+          store = nil
+          
+          expect(notificationCenter.observers).toEventually(haveCount(0))
+        }
+      }
     }
   }
 }
@@ -398,5 +421,25 @@ OnStartObserverDispatchable {
 private struct MockSideEffect: ReturningTestSideEffect {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     return context.getState()
+  }
+}
+
+fileprivate class TestableNotificationCenter: NotificationCenter {
+  var observers: [NSObjectProtocol] = []
+  
+  override func addObserver(
+    forName name: NSNotification.Name?,
+    object obj: Any?,
+    queue: OperationQueue?,
+    using block: @escaping (Notification) -> Void
+  ) -> NSObjectProtocol {
+    let observer = super.addObserver(forName: name, object: obj, queue: queue, using: block)
+    self.observers.append(observer)
+    return observer
+  }
+  
+  override func removeObserver(_ observer: Any) {
+    super.removeObserver(observer)
+    self.observers.removeAll(where: { $0.isEqual(observer) })
   }
 }
