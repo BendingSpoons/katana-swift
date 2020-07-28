@@ -178,9 +178,7 @@ class SideEffectTests: QuickSpec {
           }
         }
         
-        it("retries dispatched dispatchables") {
-          store = Store<AppState, TestDependenciesContainer>()
-          
+        it("retries dispatched dispatchables") {          
           waitUntil(timeout: 10) { done in
             store.dispatch(RetryMe())
               .retry(2)
