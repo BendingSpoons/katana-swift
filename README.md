@@ -102,32 +102,27 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 In order to further improve the usability of side effects, they can also return values, as shown in the example below.
 
 ```swift
-struct GetRandomNumberFromServer: SideEffect {
-  let amplitude: Double
-  let offset: Double
+struct PurchaseProduct: SideEffect {
+  let productID: ProductID
 
-  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws -> Double {
-    // invokes the `getRandomNumber` method that returns a promise that is fullfilled
-    // when the number is received.
-    let promise = context.dependencies.APIManager.getRandomNumber()
-    
-    // we use await to wait for the promise to be fullfilled
-    let randomNumber = try await(promise)
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws -> Result<PurchaseResult, PurchaseError> {
 
-    return randomNumber * amplitude + offset
-  }
-}
+    // 1. purchase the product via storekit
+    let storekitResult = context.dependencies.monetization.purchase(self.productID)
+    if case .failure(let error) = storekitResult {
+      return .storekitRejected(error)
+    }
 
-struct GenerateRandomNumberFromBackend: SideEffect {
-  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
-    // await for the result of a side effect
-    let x = try await(context.dispatch(GetRandomNumberFromServer(amplitude: 5, offset: 2)))
+    // 2. get the receipt
+    let receipt = context.dependencies.monetization.getReceipt()
 
-    // await for the result of another side effect
-    let y = try await(context.dispatch(GetRandomNumberFromServer(amplitude: 2, offset: 5)))
+    // 3. validate the receipt
+    let validationResult = try await(context.dispatch(Monetization.Validate(receipt)))
 
-    let randomNumber = Int(x + y)
-    try await(context.dispatch(SetCounter(newValue: randomNumber)))
+    // 4. map error
+    return validationResult
+      .map { .init(validation: $0) }
+      .mapError { .validationRejected($0) }
   }
 }
 ```

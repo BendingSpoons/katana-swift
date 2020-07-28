@@ -217,7 +217,7 @@ class SideEffectTests: QuickSpec {
         it("can return values from the state around state updater invocation") {
           let todo: Todo = Todo(title: "title", id: "id")
           let returningSideEffect = SideEffectWithBlock(block: { context in
-            try context.awaitDispatch(AddTodo(todo: todo))
+            try await(context.dispatch(AddTodo(todo: todo)))
           })
           
           waitUntil(timeout: 10) { done in
@@ -256,7 +256,7 @@ private struct SpySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
@@ -281,10 +281,10 @@ private struct AddUser: TestStateUpdater {
   }
 }
 
-private struct LongOperation: TestSideEffect {
+private struct LongOperation: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
     Thread.sleep(forTimeInterval: 1)
     return self.input * 2
   }
@@ -293,37 +293,39 @@ private struct LongOperation: TestSideEffect {
 /// This sideEffect will fail the first time, but it will succeed if retried
 private struct RetryMe: SideEffect {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-    try context.awaitDispatch(AddTodo(todo: Todo(title: "test", id: "test")))
+    try await(context.dispatch(AddTodo(todo: Todo(title: "test", id: "test"))))
     if context.getState().todo.todos.count < 2 {
       throw NSError(domain: "Test error", code: -1, userInfo: nil)
     }
   }
 }
 
-private struct FailingLongOperation: TestSideEffect {
+private struct FailingLongOperation: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
-    let state = context.getState()
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    guard let typedContext = context as? SideEffectContext<AppState, TestDependenciesContainer> else {
+      fatalError()
+    }
+
+    let state = typedContext.getState()
     
     guard state.todo.todos.count >= 2 else {
       throw NSError(domain: "Retry!", code: -1, userInfo: nil)
     }
     
-    try context.awaitDispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString)))
+    try await(context.dispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString))))
     
     Thread.sleep(forTimeInterval: 1)
     return self.input * 2
   }
 }
 
-private struct ReentrantReturningSideEffect: TestSideEffect {
+private struct ReentrantReturningSideEffect: ReturningSideEffect {
   let input: Int
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Int {
-    
-    let a: LongOperation.ReturnValue = try context.awaitDispatch(LongOperation(input: self.input))
-    
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    let a = try await(context.dispatch(LongOperation(input: self.input)))
     return a * 2
   }
 }
