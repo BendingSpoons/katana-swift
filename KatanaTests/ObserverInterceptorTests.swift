@@ -9,6 +9,7 @@
 import Foundation
 import Quick
 import Nimble
+
 @testable import Katana
 
 class ObserverInterceptorTests: QuickSpec {
@@ -145,11 +146,12 @@ class ObserverInterceptorTests: QuickSpec {
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
-          store.dispatch(MockSideEffet())
+                    
+          let promise = store.dispatch(MockSideEffect())
           
           expect(store.isReady).toEventually(beTrue())
           expect(invoked).toEventually(beFalse())
+          expect(promise.isPending).toEventually(beFalse())
         }
       }
       
@@ -393,7 +395,7 @@ OnStartObserverDispatchable {
   }
 }
 
-private struct MockSideEffet: ReturningTestSideEffect {
+private struct MockSideEffect: ReturningTestSideEffect {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     return context.getState()
   }
