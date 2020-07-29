@@ -99,7 +99,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 }
 ```
 
-In order to further improve the usability of side effects, there is also a version which can return a value. Note that both the state and dependencies types are erased, to allow for more freedom when using for example in libraries.
+In order to further improve the usability of side effects, there is also a version which can return a value. Note that both the state and dependencies types are erased, to allow for more freedom when using it in libraries, for example.
 
 ```swift
 struct PurchaseProduct: ReturningSideEffect {
@@ -132,7 +132,7 @@ struct PurchaseProduct: ReturningSideEffect {
 }
 ```
 
-Note that the step `0` can be incapsulated in a protocol, should it be a prominent use case for the library/app.
+Note that the step `0` can be encapsulated in a protocol, should it be a prominent use case for the library/app.
 
 #### Dependencies
 

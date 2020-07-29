@@ -173,7 +173,7 @@ public protocol AnySideEffect: Dispatchable {
  the dependencies are erased. This helps tremendously when writing libraries and generic
  logic, and it can also be extended to be used in the apps.
  
- For example, if the app need to use a typed returning side effect it can define something like:
+ For example, if the app needs to use a typed returning side effect it can define something like:
 
  ```
  protocol AppReturningSideEffect: ReturningSideEffect {
