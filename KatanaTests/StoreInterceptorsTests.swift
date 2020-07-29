@@ -181,7 +181,7 @@ class StoreInterceptorsTests: QuickSpec {
               return { sideEffect in
                 if dispatchedSideEffect == nil {
                   dispatchedSideEffect = sideEffect as? SideEffectWithBlock
-                  try context.awaitDispatch(AddTodo(todo: todo))
+                  try await(context.dispatch(AddTodo(todo: todo)))
                 }
                 stateBefore = context.getAnyState() as? AppState
                 try next(sideEffect)
@@ -194,7 +194,7 @@ class StoreInterceptorsTests: QuickSpec {
           expect(store.isReady).toEventually(beTrue())
 
           store.dispatch(SideEffectWithBlock(block: { context in
-            try context.awaitDispatch(AddTodo(todo: todo))
+            try await(context.dispatch(AddTodo(todo: todo)))
           })).then { returnedState = $0 }
 
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
@@ -221,7 +221,7 @@ private struct DelaySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
