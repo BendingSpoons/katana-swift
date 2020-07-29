@@ -20,8 +20,8 @@ public protocol AnySideEffectContext {
   var anyDependencies: SideEffectDependencyContainer { get }
 
   /**
-   Type erased function that returns the current configuraiton of the state
-
+   Type erased function that returns the current configuration of the state
+   
    - returns: the type erased current configuration of the state
    */
   func getAnyState() -> State
@@ -200,7 +200,7 @@ public extension ReturningSideEffect {
  (e.g., dispatched by a View Controller or by another side effect).
 
  The `StateUpdater` is strongly tied to the state that it handles and the dependencies it has.
- This greatily simplifies the code written in normal situations.
+ This greatly simplifies the code written in normal situations.
  However, if you need to create updaters that are not strictly tied to a concrete types (e.g., in a library)
  you can use `AnySideEffect`.
 
@@ -226,8 +226,8 @@ public protocol SideEffect: AnySideEffect {
    You can implement the logic, leveraging the technology you desire for threading and flow management.
 
    However, there are two patterns that Katana suggests to use: synchronous side effects and asynchronous side effects
-
-   #### Syncronous
+   
+   #### Synchronous
    A synchronous side effect is a side effect that finishes its execution when the `sideEffect(:)` method
    is completed. Since the related promise (that is, the promise that is returned when the side effect is dispatched)
    is resolved when this method ends, it means that the caller can safely assume that the operations are completed.

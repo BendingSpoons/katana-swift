@@ -23,6 +23,7 @@ Pod::Spec.new do |s|
   s.social_media_url = 'https://twitter.com/katana_swift'
 
   s.ios.deployment_target = '8.3'
+  s.swift_version = File.read(".swift-version")
   s.source_files = ['Katana/**/*.{swift,h}']
 
   s.dependency 'HydraAsync', '~> 2.0'
