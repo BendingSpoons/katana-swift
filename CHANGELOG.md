@@ -1,6 +1,11 @@
 # Change Log
 
-## [4.0.3-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.2-beta) (2020-03-04)
+## [4.0.3-beta2](https://github.com/BendingSpoons/katana-swift/tree/4.0.3-beta2) (2020-03-04)
+- Added `ReturningSideEffect` protocol in the `SideEffect` protocol chain
+- Changed `dispatch<T: StateUpdater>(_:) -> Promise<Void>` to `dispatch<T: AnyStateUpdater>(_:) -> Promise<Void>` in both `SideEffectContext` and `Store`
+- Changed `dispatch<T: SideEffect>(_:) -> Promise<T.ReturnValue>` to `dispatch<T: ReturningSideEffect>(_:) -> Promise<T.ReturnValue>` in both `SideEffectContext` and `Store`
+
+## [4.0.3-beta](https://github.com/BendingSpoons/katana-swift/tree/4.0.3-beta) (2020-03-04)
 - Added documentation
 - Clean-up of closure types
 
