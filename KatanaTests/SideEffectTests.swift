@@ -9,8 +9,9 @@
 import Foundation
 import Quick
 import Nimble
-@testable import Katana
 import Hydra
+
+@testable import Katana
 
 class SideEffectTests: QuickSpec {
   override func spec() {
@@ -30,10 +31,12 @@ class SideEffectTests: QuickSpec {
           waitUntil { done in
             store
               .dispatch(sideEffect)
-              .then { done() }
+              .then {
+                expect(invoked) == true
+                
+                done()
+            }
           }
-          
-          expect(invoked) == true
         }
         
         it("invokes the side effect with the same dependencies container") {
@@ -46,11 +49,14 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store
               .dispatch(sideEffect1)
-              .thenDispatch(sideEffect2)
-              .then { done() }
+              .then { store.dispatch(sideEffect2) }
+              .then {
+                expect(firstDependenciesContainer) === secondDependenciesContainer
+                
+                done()
+            }
           }
           
-          expect(firstDependenciesContainer) === secondDependenciesContainer
         }
         
         it("invokes side effects in the proper order, waiting for results") {
@@ -61,10 +67,14 @@ class SideEffectTests: QuickSpec {
           let sideEffect3 = SpySideEffect(delay: 0) { context in invocationResults.append("3") }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect1).thenDispatch(sideEffect2).thenDispatch(sideEffect3).then { done() }
+            store.dispatch(sideEffect1)
+              .then { store.dispatch(sideEffect2) }
+              .then { store.dispatch(sideEffect3) }
+              .then {
+                expect(invocationResults) == ["1", "2", "3"]
+                done()
+            }
           }
-          
-          expect(invocationResults) == ["1", "2", "3"]
         }
         
         it("allows to invoke side effects from side effects") {
@@ -85,14 +95,15 @@ class SideEffectTests: QuickSpec {
           
           waitUntil(timeout: 10) { done in
             store.dispatch(sideEffect2)
-              .thenDispatch(sideEffect3)
-              .then { done() }
+              .then { store.dispatch(sideEffect3) }
+              .then {
+                expect(invocationResults) == ["1", "2", "3"]
+                done()
+            }
           }
-          
-          expect(invocationResults) == ["1", "2", "3"]
         }
         
-        it("correctly mixes store updater and side effects") {
+        it("correctly mixes state updater and side effects") {
           let todo = Todo(title: "title", id: "id")
           let user = User(username: "username")
           
@@ -113,20 +124,22 @@ class SideEffectTests: QuickSpec {
           waitUntil(timeout: 10) { done in
             store
               .dispatch(addTodo)
-              .thenDispatch(sideEffect1)
-              .thenDispatch(addUser)
-              .thenDispatch(sideEffect2)
-              .then { done() }
+              .then { store.dispatch(sideEffect1) }
+              .then { store.dispatch(addUser) }
+              .then { store.dispatch(sideEffect2) }
+              .then {
+                expect(step1State?.todo.todos.count) == 1
+                expect(step1State?.user.users.count) == 0
+                expect(step1State?.todo.todos.first) == todo
+                
+                expect(step2State?.todo.todos.count) == 1
+                expect(step2State?.user.users.count) == 1
+                expect(step2State?.todo.todos.first) == todo
+                expect(step2State?.user.users.first) == user
+                
+                done()
+            }
           }
-          
-          expect(step1State?.todo.todos.count) == 1
-          expect(step1State?.user.users.count) == 0
-          expect(step1State?.todo.todos.first) == todo
-          
-          expect(step2State?.todo.todos.count) == 1
-          expect(step2State?.user.users.count) == 1
-          expect(step2State?.todo.todos.first) == todo
-          expect(step2State?.user.users.first) == user
         }
         
         it("keeps getState updated within the side effect") {
@@ -141,67 +154,87 @@ class SideEffectTests: QuickSpec {
           }
           
           waitUntil(timeout: 10) { done in
-            store.dispatch(sideEffect).then { done() }
+            store.dispatch(sideEffect).then { _ in
+              expect(firstState?.todo.todos.count) == 0
+              expect(secondState?.todo.todos.count) == 1
+              expect(secondState?.todo.todos.first) == todo
+              
+              done()
+            }
           }
-          
-          expect(firstState?.todo.todos.count) == 0
-          expect(secondState?.todo.todos.count) == 1
-          expect(secondState?.todo.todos.first) == todo
         }
         
         it("propagates errors") {
           let sideEffect = SideEffectWithBlock { context in
             throw NSError(domain: "Test error", code: -1, userInfo: nil)
           }
-          var rejectionError: Error?
-          store.dispatch(sideEffect).then {
-            fail("Promise should be rejected")
-          }.catch { error in
-            rejectionError = error
-          }
-          expect(rejectionError).toEventuallyNot(beNil())
-        }
-        
-        it("propagates error when using middleware") {
-          let middleware: StoreMiddleware = { getState, dispatch in
-            return { next in
-              return { dispatchable in
-                next(dispatchable)
-              }
-            }
-          }
           
-          let interceptorFromMiddleware = middlewareToInterceptor(middleware)
-          store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptorFromMiddleware])
-          
-          let sideEffect = SideEffectWithBlock { context in
-            throw NSError(domain: "Test error", code: -1, userInfo: nil)
-          }
-          var rejectionError: Error?
-          store.dispatch(sideEffect).then {
-            fail("Promise should be rejected")
+          waitUntil(timeout: 10) { done in
+            store.dispatch(sideEffect).then { _ in
+              fail("Promise should be rejected")
             }.catch { error in
-              rejectionError = error
-          }
-          expect(rejectionError).toEventuallyNot(beNil())
-        }
-        
-        it("retries dispatched actions") {
-          store = Store<AppState, TestDependenciesContainer>()
-          
-          /// This sideEffect will fail the first time, but it will succeed if retried
-          struct RetryMe: SideEffect {
-            func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-              try context.awaitDispatch(AddTodo(todo: Todo(title: "test", id: "test")))
-              if context.getState().todo.todos.count < 2 {
-                throw NSError(domain: "Test error", code: -1, userInfo: nil)
-              }
+              done()
             }
           }
+        }
+        
+        it("retries dispatched dispatchables") {          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(RetryMe())
+              .retry(2)
+              .then { done() }
+              .catch { _ in fail("Retry should succeed") }
+          }
+        }
+      }
+      
+      describe("when managing a returning side effect") {
+        it("returns the wanted value") {
+          let returningSideEffect = LongOperation(input: 5)
           
-          store.dispatch(RetryMe())
-            .retry(2)
-            .catch { _ in fail("Retry should succeed") }
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect).then { (result: Int) in
+              expect(result) == 10
+              done()
+            }
+          }
+        }
+        
+        it("returns the correct value when retrying") {
+          let returningSideEffect = LongOperation(input: 5)
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect)
+              .then { (result: Int) in
+                expect(result) == 10
+                done()
+            }
+          }
+        }
+        
+        it("can return values from the state around state updater invocation") {
+          let todo: Todo = Todo(title: "title", id: "id")
+          let returningSideEffect = SideEffectWithBlock(block: { context in
+            try await(context.dispatch(AddTodo(todo: todo)))
+          })
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(returningSideEffect).then { (result: AppState) in
+              expect(result.todo.todos) == [todo]
+              done()
+            }
+          }
+        }
+        
+        it("can return values from inside other side effects") {
+          let se = ReentrantReturningSideEffect(input: 5)
+          
+          waitUntil(timeout: 10) { done in
+            store.dispatch(se).then { (result: Int) in
+              expect(result) == 5 * 2 * 2
+              done()
+            }
+          }
         }
       }
     }
@@ -221,11 +254,12 @@ private struct SpySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     try block(context)
+    return context.getState()
   }
 }
 
@@ -242,5 +276,54 @@ private struct AddUser: TestStateUpdater {
   
   func updateState(_ state: inout AppState) {
     state.user.users.append(self.user)
+  }
+}
+
+private struct LongOperation: ReturningSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    Thread.sleep(forTimeInterval: 1)
+    return self.input * 2
+  }
+}
+
+/// This sideEffect will fail the first time, but it will succeed if retried
+private struct RetryMe: SideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+    try await(context.dispatch(AddTodo(todo: Todo(title: "test", id: "test"))))
+    if context.getState().todo.todos.count < 2 {
+      throw NSError(domain: "Test error", code: -1, userInfo: nil)
+    }
+  }
+}
+
+private struct FailingLongOperation: ReturningSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    guard let typedContext = context as? SideEffectContext<AppState, TestDependenciesContainer> else {
+      fatalError()
+    }
+
+    let state = typedContext.getState()
+    
+    guard state.todo.todos.count >= 2 else {
+      throw NSError(domain: "Retry!", code: -1, userInfo: nil)
+    }
+    
+    try await(context.dispatch(AddTodo(todo: Todo(title: "New todo", id: UUID().uuidString))))
+    
+    Thread.sleep(forTimeInterval: 1)
+    return self.input * 2
+  }
+}
+
+private struct ReentrantReturningSideEffect: ReturningSideEffect {
+  let input: Int
+  
+  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+    let a = try await(context.dispatch(LongOperation(input: self.input)))
+    return a * 2
   }
 }

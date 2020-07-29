@@ -20,7 +20,7 @@ class StoreInterceptorsTests: QuickSpec {
           var dispatchedStateUpdater: AddTodo?
           var stateBefore: AppState?
           var stateAfter: AppState?
-      
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -31,21 +31,18 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(stateBefore?.todo.todos.count).toEventually(be(0))
           expect(stateAfter?.todo.todos.count).toEventually(be(1))
         }
-        
+
         it("invokes the middleware in the proper order") {
           var invocationOrder: [String] = []
-          
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -54,7 +51,7 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -88,6 +85,7 @@ class StoreInterceptorsTests: QuickSpec {
             thirdInterceptor,
             fourthInterceptor,
           ])
+
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
 
           expect(store.isReady).toEventually(beTrue())
@@ -98,10 +96,10 @@ class StoreInterceptorsTests: QuickSpec {
             "fourth",
           ]))
         }
-        
+
         it("allows the middleware to block the propagation") {
           var dispatchedStateUpdater: AddTodo?
-          
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { stateUpdater in
@@ -110,13 +108,11 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(store.state.todo.todos.count).toEventually(be(0))
         }
@@ -127,7 +123,7 @@ class StoreInterceptorsTests: QuickSpec {
           var dispatchedSideEffect: DelaySideEffect?
           var stateBefore: AppState?
           var stateAfter: AppState?
-          
+
           let interceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -138,21 +134,19 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
-          
+
           store.dispatch(DelaySideEffect())
-          
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
           expect(stateBefore?.todo.todos.count).toEventually(equal(0))
           expect(stateAfter?.todo.todos.count).toEventually(equal(0), timeout: 200)
         }
-        
+
         it("invokes the middleware in the proper order") {
           var invocationOrder: [String] = []
-          
+
           let firstInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -161,7 +155,7 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let secondInterceptor: StoreInterceptor = { context in
             return { next in
               return { sideEffect in
@@ -170,10 +164,10 @@ class StoreInterceptorsTests: QuickSpec {
               }
             }
           }
-          
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
           store.dispatch(DelaySideEffect())
-          
+
           expect(store.isReady).toEventually(beTrue())
           expect(invocationOrder).toEventually(equal(["first", "second"]))
         }
@@ -192,7 +186,6 @@ class StoreInterceptorsTests: QuickSpec {
           }
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
           expect(store.isReady).toEventually(beTrue())
           
           let sideEffect = SideEffectWithBlock { _ in
@@ -200,9 +193,42 @@ class StoreInterceptorsTests: QuickSpec {
           }
           
           store.dispatch(sideEffect)
-          
           expect(dispatchedStateUpdater).toEventuallyNot(beNil())
           expect(invoked).toEventually(beFalse())
+        }
+        
+        it("invokes the middleware with returning side effects") {
+          let todo = Todo(title: "title", id: "id")
+          var dispatchedSideEffect: SideEffectWithBlock?
+          var stateBefore: AppState?
+          var stateAfter: AppState?
+          var returnedState: AppState?
+
+          let interceptor: StoreInterceptor = { context in
+            return { next in
+              return { sideEffect in
+                if dispatchedSideEffect == nil {
+                  dispatchedSideEffect = sideEffect as? SideEffectWithBlock
+                  try await(context.dispatch(AddTodo(todo: todo)))
+                }
+                stateBefore = context.getAnyState() as? AppState
+                try next(sideEffect)
+                stateAfter = context.getAnyState() as? AppState
+              }
+            }
+          }
+
+          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+          expect(store.isReady).toEventually(beTrue())
+
+          store.dispatch(SideEffectWithBlock(block: { context in
+            try await(context.dispatch(AddTodo(todo: todo)))
+          })).then { returnedState = $0 }
+
+          expect(dispatchedSideEffect).toEventuallyNot(beNil())
+          expect(stateBefore?.todo.todos.count).toEventually(equal(0))
+          expect(stateAfter?.todo.todos.count).toEventually(equal(2), timeout: 200)
+          expect(returnedState?.todo.todos).toEventually(equal([todo, todo]))
         }
       }
     }
@@ -223,11 +249,12 @@ private struct DelaySideEffect: TestSideEffect {
   }
 }
 
-private struct SideEffectWithBlock: TestSideEffect {
+private struct SideEffectWithBlock: ReturningTestSideEffect {
   var block: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> Void
   
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
     try block(context)
+    return context.getState()
   }
 }
 

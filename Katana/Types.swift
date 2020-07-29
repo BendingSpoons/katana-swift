@@ -21,5 +21,18 @@ public typealias StoreUnsubscribe = () -> ()
 /// Typealias for a type that returns the `Store`'s state
 public typealias GetState = () -> State
 
-/// Typealias for the `Store` dispatch function with the ability of managing the output with a promise
-public typealias PromisableStoreDispatch = (_: Dispatchable) -> Promise<Void>
+/// Typealias for the `Store.anyDispatch` function with the ability of managing the output with a promise
+public typealias AnyDispatch = (_: Dispatchable) -> Promise<Any>
+
+/// Entity capable of executing task asynchronously. This can be useful in tests to control asyncrhonous tasks
+public protocol AsyncProvider {
+  /// Calling this method will enqueue a closure to be executed asynchronously
+  func execute(_ closure: @escaping () -> Void)
+}
+
+/// DispatchQueue conformance to `AsyncProvider` so that `DispatchQueue.main` can be used
+extension DispatchQueue: AsyncProvider {
+  public func execute(_ closure: @escaping () -> Void) {
+    self.async(execute: closure)
+  }
+}

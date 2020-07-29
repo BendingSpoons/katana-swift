@@ -1,4 +1,11 @@
 # Change Log
+## [4.0.3](https://github.com/BendingSpoons/katana-swift/tree/4.0.3) (2020-07-29)
+- Added `ReturningSideEffect` protocol, in parallel to the already existing `SideEffect`
+- Added a proper `dispatch` method for `ReturningSideEffect`s to return the values
+- Updated the README with explanations for the new behaviours
+- changed `Dispatch` to `AnyDispach`
+- removed the `Action` (and `ActionWithSideEffect`) entities
+- bumped Hydra to `2.0`
 
 ## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
 - Preserve interceptors order during execution.

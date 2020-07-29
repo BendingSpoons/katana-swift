@@ -11,12 +11,12 @@ import os.signpost
 
 /**
  Wrapper around the signpost API offered starting from iOS12.
- The logger will automatically track side effects, state updaters and actions
+ The logger will automatically track side effects, state updaters and side effects
  in Instruments. You will get a nice visualization of the operations that are ongoing,
  the parallelism level and the time that each operation requires.
  
  - seeAlso: https://developer.apple.com/documentation/os/logging
-*/
+ */
 public struct SignpostLogger {
   /// A closure that must be invoked when the operation is completed
   typealias LogEndClosure = () -> Void
@@ -38,9 +38,6 @@ public struct SignpostLogger {
     
     /// Log a side effect operation
     case sideEffect
-    
-    /// Log an action operation
-    case action
   }
   
   /// The `OSLog` instance that backs the logger
@@ -52,7 +49,7 @@ public struct SignpostLogger {
    - parameter type: the type of operation
    - parameter name: a unique name associated with the log
    - returns: a closure to invoke when the related operations ends
-  */
+   */
   func logStart(type: LogType, name: String) -> LogEndClosure {
     guard let log = self.katanaLogger else {
       return SignpostLogger.noop
@@ -65,9 +62,6 @@ public struct SignpostLogger {
         
       case .sideEffect:
         return self.logSideEffect(log: log, name: name)
-        
-      case .action:
-        return self.logAction(log: log, name: name)
       }
     }
     
@@ -98,7 +92,7 @@ public struct SignpostLogger {
    - parameter log: the underlying log to use
    - parameter name: a unique name associated with the log
    - returns: a closure to invoke when the related operation ends
-  */
+   */
   @available(iOS 12.0, *)
   func logSideEffect(log: OSLog, name: String) -> LogEndClosure {
     let signpostID = OSSignpostID(log: log)
@@ -107,24 +101,6 @@ public struct SignpostLogger {
     
     return {
       os_signpost(.end, log: log, name: "Side Effect", signpostID: signpostID, "%{public}s", name)
-    }
-  }
-  
-  /**
-   Starts to log an action operation
-   
-   - parameter log: the underlying log to use
-   - parameter name: a unique name associated with the log
-   - returns: a closure to invoke when the related operation ends
-   */
-  @available(iOS 12.0, *)
-  func logAction(log: OSLog, name: String) -> LogEndClosure {
-    let signpostID = OSSignpostID(log: log)
-    
-    os_signpost(.begin, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
-    
-    return {
-      os_signpost(.end, log: log, name: "Action", signpostID: signpostID, "%{public}s", name)
     }
   }
 }

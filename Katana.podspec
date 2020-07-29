@@ -26,5 +26,5 @@ Pod::Spec.new do |s|
   s.swift_version = File.read(".swift-version")
   s.source_files = ['Katana/**/*.{swift,h}']
 
-  s.dependency 'HydraAsync', '~> 1.2'
+  s.dependency 'HydraAsync', '~> 2.0'
 end
