@@ -151,9 +151,9 @@ extension SideEffectContext: AnySideEffectContext {
 }
 
 /**
- Type erasure for `SideEffect`
+ Type erasure for `SideEffect` and `ReturningSideEffect`
 
- - seeAlso: `SideEffect`
+ - seeAlso: `SideEffect`, `ReturningSideEffect`
  */
 public protocol AnySideEffect: Dispatchable {
   /**
@@ -167,8 +167,34 @@ public protocol AnySideEffect: Dispatchable {
 }
 
 /**
- A `SideEffect` that is capable of returning a value.
- - seeAlso: `AnySideEffect`
+ A `AnySideEffect` that is capable of returning a typed value.
+
+ In order to promote reusability of the logic written using this type, both the state and
+ the dependencies are erased. This helps tremendously when writing libraries and generic
+ logic, and it can also be extended to be used in the apps.
+ 
+ For example, if the app need to use a typed returning side effect it can define something like:
+
+ ```
+ protocol AppReturningSideEffect: ReturningSideEffect {
+   typealias StateType = AppState
+   typealias Dependencies = AppDependencies
+
+   func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws -> ReturnType
+ }
+
+ extension AppReturningSideEffect {
+   func sideEffect(_ context: AnySideEffectContext) throws -> ReturnValue {
+     guard let typedContext = context as? SideEffectContext<StateType, Dependencies> else {
+       fatalError("Invalid context pased to side effect")
+     }
+
+     return try self.sideEffect(typedContext)
+   }
+ }
+ ```
+
+ - seeAlso: `AnySideEffect`, `SideEffect`
  */
 public protocol ReturningSideEffect: AnySideEffect {
   /// The type of the return value
@@ -199,13 +225,13 @@ public extension ReturningSideEffect {
  a meaningful, self contained, piece of logic that can be used from other pieces of you application
  (e.g., dispatched by a View Controller or by another side effect).
 
- The `StateUpdater` is strongly tied to the state that it handles and the dependencies it has.
+ The `SideEffect` is strongly tied to the state that it handles and the dependencies it has.
  This greatly simplifies the code written in normal situations.
  However, if you need to create updaters that are not strictly tied to a concrete types (e.g., in a library)
  you can use `AnySideEffect`.
 
  ### App Tips & Tricks
- To further simplify the usage of a `StateUpdater` you can add to your application a helper protocol
+ To further simplify the usage of a `SideEffect` you can add to your application a helper protocol
  ```swift
  /// assuming `AppState` is the type of your application's state and `DependenciesContainer` is the
  /// container of your dependencies
