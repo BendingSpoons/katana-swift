@@ -99,13 +99,18 @@ struct GenerateRandomNumberFromBackend: SideEffect {
 }
 ```
 
-In order to further improve the usability of side effects, they can also return values, as shown in the example below.
+In order to further improve the usability of side effects, there is also a version which can return a value. Note that both the state and dependencies types are erased, to allow for more freedom when using for example in libraries.
 
 ```swift
-struct PurchaseProduct: SideEffect {
+struct PurchaseProduct: ReturningSideEffect {
   let productID: ProductID
 
-  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws -> Result<PurchaseResult, PurchaseError> {
+  func sideEffect(_ context: AnySideEffectContext) throws -> Result<PurchaseResult, PurchaseError> {
+
+    // 0. Get the typed version of the context
+    guard let context = AnySideEffectContext as? SideEffectContext<CounterState, AppDependencies> else {
+      fatalError("Invalid context type")
+    }
 
     // 1. purchase the product via storekit
     let storekitResult = context.dependencies.monetization.purchase(self.productID)
@@ -126,6 +131,8 @@ struct PurchaseProduct: SideEffect {
   }
 }
 ```
+
+Note that the step `0` can be incapsulated in a protocol, should it be a prominent use case for the library/app.
 
 #### Dependencies
 
