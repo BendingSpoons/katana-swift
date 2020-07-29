@@ -206,14 +206,20 @@ class StoreInterceptorsTests: QuickSpec {
 
           let interceptor: StoreInterceptor = { context in
             return { next in
-              return { sideEffect in
-                if dispatchedSideEffect == nil {
-                  dispatchedSideEffect = sideEffect as? SideEffectWithBlock
+              return { dispatchable in
+                
+                if let dispatched = dispatchable as? SideEffectWithBlock {
+                  dispatchedSideEffect = dispatched
+                  
                   try await(context.dispatch(AddTodo(todo: todo)))
+                  
+                  stateBefore = context.getAnyState() as? AppState
+                  try next(dispatchable)
+                  stateAfter = context.getAnyState() as? AppState
+                  
+                } else {
+                  try next(dispatchable)
                 }
-                stateBefore = context.getAnyState() as? AppState
-                try next(sideEffect)
-                stateAfter = context.getAnyState() as? AppState
               }
             }
           }
@@ -226,7 +232,7 @@ class StoreInterceptorsTests: QuickSpec {
           })).then { returnedState = $0 }
 
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
-          expect(stateBefore?.todo.todos.count).toEventually(equal(0))
+          expect(stateBefore?.todo.todos.count).toEventually(equal(1))
           expect(stateAfter?.todo.todos.count).toEventually(equal(2), timeout: 200)
           expect(returnedState?.todo.todos).toEventually(equal([todo, todo]))
         }
