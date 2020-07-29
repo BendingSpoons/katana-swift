@@ -132,7 +132,7 @@ struct PurchaseProduct: ReturningSideEffect {
 }
 ```
 
-Note that the step `0` can be incapsulated in a protocol, should it be a prominent use case for the library/app.
+Note that, if this is a prominent use case for the library/app, the step `0` can be incapsulated in a protocol.
 
 #### Dependencies
 
