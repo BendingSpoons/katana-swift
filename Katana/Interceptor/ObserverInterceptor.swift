@@ -85,12 +85,16 @@ public struct ObserverInterceptor {
    Creates a new `ObserverInterceptor` that observes the passed events
    
    - parameter items: the list of events to observe
+   - parameter notificationCenter: the notificationCenter used to listen to notifications
    - returns: the interceptor that observes the given items
    */
-  public static func observe(_ items: [ObserverType]) -> StoreInterceptor {
+  public static func observe(
+    _ items: [ObserverType],
+    notificationCenter: NotificationCenter = .default
+  ) -> StoreInterceptor {
     return { context in
       
-      let logic = ObserverLogic(dispatch: context.anyDispatch, items: items)
+      let logic = ObserverLogic(dispatch: context.anyDispatch, items: items, notificationCenter: notificationCenter)
       logic.listenToNotifications()
       logic.handleOnStart()
       
@@ -111,13 +115,19 @@ public struct ObserverInterceptor {
 }
 
 /// Internal implementation detail that implements the logic needed to observe the events
-private struct ObserverLogic {
+private class ObserverLogic {
   
   /// The dispatch function of the store
   let dispatch: AnyDispatch
   
   /// The items to observe
   let items: [ObserverInterceptor.ObserverType]
+  
+  /// The notification center to listen on for notifications
+  let notificationCenter: NotificationCenter
+  
+  /// The observer registered on the notification center
+  var registeredObservers: [NSObjectProtocol] = []
   
   /**
    Creates a new logic.
@@ -126,9 +136,19 @@ private struct ObserverLogic {
    - parameter items: the items to observe
    - returns: a structure that holds the logic to handle the given items
    */
-  init(dispatch: @escaping AnyDispatch, items: [ObserverInterceptor.ObserverType]) {
+  init(
+    dispatch: @escaping AnyDispatch,
+    items: [ObserverInterceptor.ObserverType],
+    notificationCenter: NotificationCenter = .default
+  ) {
     self.dispatch = dispatch
     self.items = items
+    self.notificationCenter = notificationCenter
+  }
+  
+  /// Remove all attached observers
+  deinit {
+    self.registeredObservers.forEach(self.notificationCenter.removeObserver)
   }
   
   /**
@@ -170,7 +190,7 @@ private struct ObserverLogic {
       }
     }
   }
-  
+    
   /**
    Handles a specific notification by adding an observer (using NotificationCenter)
    that dispatches the given types
@@ -183,11 +203,16 @@ private struct ObserverLogic {
     with name: NSNotification.Name,
     _ typesToDispatch: [NotificationObserverDispatchable.Type]) {
     
-    NotificationCenter.default.addObserver(
+    let observer = self.notificationCenter.addObserver(
       forName: name,
       object: nil,
       queue: nil,
-      using: { notification in
+      using: { [weak self] notification in
+        
+        guard let self = self else {
+          // If the observer has been deinitialized no action will be carried out
+          return
+        }
         
         for type in typesToDispatch {
           guard let dispatchable = type.init(notification: notification) else {
@@ -198,6 +223,8 @@ private struct ObserverLogic {
         }
     }
     )
+    
+    self.registeredObservers.append(observer)
   }
   
   /**

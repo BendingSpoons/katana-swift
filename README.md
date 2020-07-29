@@ -56,7 +56,7 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
 
 `Side Effect`s are implemented on top of [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
 
@@ -68,7 +68,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // that updates the state
     context.dependencies.APIManager
         .getRandomNumber()
-        .thenDispatch({ newValue in SetCounter(newValue: newValue) })
+        .then({ randomNumber in context.dispatch(SetCounter(newValue: randomNumber)) })
   }
 }
 
@@ -91,10 +91,38 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     let promise = context.dependencies.APIManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
-    let newValue = try await(promise)
+    let randomNumber = try await(promise)
 
     // then the state is updated using the proper state updater
-    try await(context.dispatch(SetCounter(newValue: newValue)))
+    try await(context.dispatch(SetCounter(newValue: randomNumber)))
+  }
+}
+```
+
+In order to further improve the usability of side effects, they can also return values, as shown in the example below.
+
+```swift
+struct PurchaseProduct: SideEffect {
+  let productID: ProductID
+
+  func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws -> Result<PurchaseResult, PurchaseError> {
+
+    // 1. purchase the product via storekit
+    let storekitResult = context.dependencies.monetization.purchase(self.productID)
+    if case .failure(let error) = storekitResult {
+      return .storekitRejected(error)
+    }
+
+    // 2. get the receipt
+    let receipt = context.dependencies.monetization.getReceipt()
+
+    // 3. validate the receipt
+    let validationResult = try await(context.dispatch(Monetization.Validate(receipt)))
+
+    // 4. map error
+    return validationResult
+      .map { .init(validation: $0) }
+      .mapError { .validationRejected($0) }
   }
 }
 ```
@@ -142,6 +170,8 @@ let observerInterceptor = ObserverInterceptor.observe([
 
 let store = Store<CounterState>(interceptor: [observerInterceptor])
 ```
+
+Note that when intercepting a side effect using an `ObserverInterceptor`, the return value of the dispatchable is not available to the interceptor itself.
 
 ## What about the UI?
 
@@ -304,4 +334,3 @@ Katana is available under the [MIT license](https://github.com/BendingSpoons/kat
 Katana is maintained by Bending Spoons.
 We create our own tech products, used and loved by millions all around the world.
 Interested? [Check us out](http://bndspn.com/2fKggTa)!
-
