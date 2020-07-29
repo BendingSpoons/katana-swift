@@ -208,19 +208,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
-
-  /**
-   The dependencies used in the side effects
-
-   - seeAlso: `SideEffect`
-   */
+  
+  /// The dependencies used in the side effects
+  ///
+  ///- seeAlso: `SideEffect`
   public var dependencies: D!
 
   /// The context passed to the side effect
   private var sideEffectContext: SideEffectContext<S, D>!
-
+  
+  /// AsyncProvider used to run all the listeners
+  private var listenersAsyncProvider: AsyncProvider
+    
   /// The queue used to handle the `StateUpdater` items
-  lazy fileprivate var stateUpdaterQueue: DispatchQueue = {
+  fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
 
     // queue is initially supended. The store will enable the queue when
@@ -233,7 +234,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }()
 
   /// The queue used to handle the `SideEffect` items
-  lazy fileprivate var sideEffectQueue: DispatchQueue = {
+  fileprivate var sideEffectQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.sideEffect", qos: .userInteractive, attributes: .concurrent)
 
     // queue is initially supended. The store will enable the queue when
@@ -289,29 +290,52 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
    - parameter interceptors: a list of interceptors that are executed every time something is dispatched
    - parameter stateInitializer: a closure invoked to define the first state's value
+   - parameter configuration: the configuration needed by the store to start properly
    - returns: An instance of store
    */
-  public init(interceptors: [StoreInterceptor], stateInitializer: @escaping StateInitializer<S>) {
+  public init(
+    interceptors: [StoreInterceptor],
+    stateInitializer: @escaping StateInitializer<S>,
+    configuration: Configuration = .init()
+  ) {
+    self.listenersAsyncProvider = configuration.listenersAsyncProvider
+    
     self.listeners = [:]
     self.interceptors = interceptors
     self.isReady = false
 
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
-
-    self.dependencies = D.init(dispatch: self.anyDispatch, getState: self.getState)
-
+    
+    self.dependencies = D.init(dispatch: self.anyDispatchClosure, getState: self.getStateClosure)
+    
     self.sideEffectContext = SideEffectContext<S, D>(
       dependencies: self.dependencies,
-      getState: self.getState,
-      dispatch: self.anyDispatch
+      getState: self.getStateClosure,
+      dispatch: self.anyDispatchClosure
     )
 
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
     /// if the stateInitializer function takes too much to do its job and we block the app's startup
-    DispatchQueue.main.async {
+    configuration.stateInitializerAsyncProvider.execute { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
+    }
+    
+    self.invokeListeners()
+  }
+  
+  /// The `anyDispatch` method as a closure which does not capture `self` to avoid reference loops
+  private var anyDispatchClosure: AnyDispatch {
+    return { [unowned self] dispatchable in
+      self.anyDispatch(dispatchable)
+    }
+  }
+  
+  /// The `getState` method as a closure which does not capture `self` to avoid reference loops
+  private var getStateClosure: () -> S {
+    return { [unowned self] in
+      self.getState()
     }
   }
 
@@ -449,10 +473,10 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     }
 
     if let stateUpdater = dispatchable as? AnyStateUpdater {
-      return self.enqueueStateUpdater(stateUpdater).then { _ in }
+      return self.enqueueStateUpdater(stateUpdater).then(in: .background) { _ in }
 
     } else if let sideEffect = dispatchable as? AnySideEffect {
-      return self.enqueueSideEffect(sideEffect).then { (value: Any) in value }
+      return self.enqueueSideEffect(sideEffect).then(in: .background) { (value: Any) in value }
 
     }
 
@@ -467,6 +491,22 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
     self.anyDispatch(dispatchable)
   }
+  /// The dependencies used to initialize katana
+  public struct Configuration {
+    /// AsyncProvider used to run the state initializer
+    let stateInitializerAsyncProvider: AsyncProvider
+    
+    /// AsyncProvider used to run all the listeners
+    let listenersAsyncProvider: AsyncProvider
+    
+    public init(
+      stateInitializerAsyncProvider: AsyncProvider = DispatchQueue.main,
+      listenersAsyncProvider: AsyncProvider = DispatchQueue.main
+    ) {
+      self.stateInitializerAsyncProvider = stateInitializerAsyncProvider
+      self.listenersAsyncProvider = listenersAsyncProvider
+    }
+  }
 }
 
 // MARK: Private utilities
@@ -479,10 +519,6 @@ private extension Store {
    */
   private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
     self.state = stateInizializer()
-    // invoke listeners (always in main queue)
-    DispatchQueue.main.async {
-      self.listeners.values.forEach { $0() }
-    }
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
 
     // and here we are finally able to start the queues
@@ -490,7 +526,14 @@ private extension Store {
     self.sideEffectQueue.resume()
     self.stateUpdaterQueue.resume()
   }
-
+  
+  /// Invoke all the registered listeners in the configured async provider
+  private func invokeListeners() {
+    self.listenersAsyncProvider.execute { [unowned self] () in
+      self.listeners.values.forEach { $0() }
+    }
+  }
+  
   /**
    Returns the current version of the state
 
@@ -556,11 +599,8 @@ fileprivate extension Store {
     }
 
     self.state = typedNewState
-
-    // listener are always invoked in the main queue
-    DispatchQueue.main.async {
-      self.listeners.values.forEach { $0() }
-    }
+    
+    self.invokeListeners()
   }
 }
 
