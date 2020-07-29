@@ -528,7 +528,9 @@ private extension Store {
   
   /// Invoke all the registered listeners in the configured async provider
   private func invokeListeners() {
-    self.listenersAsyncProvider.execute { [unowned self] () in
+    self.listenersAsyncProvider.execute { [weak self] () in
+      guard let self = self else { return }
+      
       self.listeners.values.forEach { $0() }
     }
   }
