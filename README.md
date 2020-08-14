@@ -108,7 +108,7 @@ struct PurchaseProduct: ReturningSideEffect {
   func sideEffect(_ context: AnySideEffectContext) throws -> Result<PurchaseResult, PurchaseError> {
 
     // 0. Get the typed version of the context
-    guard let context = AnySideEffectContext as? SideEffectContext<CounterState, AppDependencies> else {
+    guard let context = context as? SideEffectContext<CounterState, AppDependencies> else {
       fatalError("Invalid context type")
     }
 
