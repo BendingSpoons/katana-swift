@@ -108,7 +108,7 @@ struct PurchaseProduct: ReturningSideEffect {
   func sideEffect(_ context: AnySideEffectContext) throws -> Result<PurchaseResult, PurchaseError> {
 
     // 0. Get the typed version of the context
-    guard let context = AnySideEffectContext as? SideEffectContext<CounterState, AppDependencies> else {
+    guard let context = context as? SideEffectContext<CounterState, AppDependencies> else {
       fatalError("Invalid context type")
     }
 
@@ -132,7 +132,23 @@ struct PurchaseProduct: ReturningSideEffect {
 }
 ```
 
-Note that, if this is a prominent use case for the library/app, the step `0` can be encapsulated in a protocol.
+Note that, if this is a prominent use case for the library/app, the step `0` can be encapsulated in a protocol like this:
+
+```swift
+protocol AppReturningSideEffect: ReturningSideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, DependenciesContainer>) -> Void
+}
+
+extension AppReturningSideEffect {
+  func sideEffect(_ context: AnySideEffectContext) throws -> Void {
+    guard let context = context as? SideEffectContext<AppState, DependenciesContainer> else {
+      fatalError("Invalid context type")
+    }
+    
+    self.sideEffect(context)
+  }
+}
+```
 
 #### Dependencies
 
