@@ -1,4 +1,9 @@
 # Change Log
+## [5.0.0](https://github.com/BendingSpoons/katana-swift/tree/5.0.0) (2020-10-09)
+- bumped minDeploymentTarget from `8.3` to `11.0`
+- fixed `Package.swift`
+- pinned Hydra minimum version to `2.0.5`
+
 ## [4.0.0](https://github.com/BendingSpoons/katana-swift/tree/4.0.0) (2020-07-29)
 - Added `ReturningSideEffect` protocol, in parallel to the already existing `SideEffect`
 - Added a proper `dispatch` method for `ReturningSideEffect`s to return the values
