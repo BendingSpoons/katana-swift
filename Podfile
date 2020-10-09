@@ -11,7 +11,6 @@ target 'Katana' do
 
     pod 'Quick', '~> 2.2'
     pod 'Nimble', '~> 8.0'
-    pod 'HydraAsync', '~> 2.0'
   end
 end
 
