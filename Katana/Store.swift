@@ -195,6 +195,9 @@ private func emptyStateInitializer<S: State>() -> S {
  - seeAlso: `SideEffect` for more information about how to implement a complex/asyncronous logic
  */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
+  /// Closure that is used to initialize the dependencies
+  public typealias DependenciesInitializer = (_ dispatch: @escaping AnyDispatch, _ getState: @escaping StateInitializer<S>) -> D
+
   typealias ListenerID = String
 
   /// The  array of registered listeners
@@ -270,6 +273,27 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
 
   /**
+   A convenience init method for the Store. The dependencies will be created using the default init of the dependency type.
+
+   - parameter interceptors: a list of interceptors that are executed every time something is dispatched
+   - parameter stateInitializer: a closure invoked to define the first state's value
+   - parameter configuration: the configuration needed by the store to start properly
+   - returns: An instance of the store
+   */
+  convenience public init(
+    interceptors: [StoreInterceptor],
+    stateInitializer: @escaping StateInitializer<S>,
+    configuration: Configuration = .init()
+  ) {
+    self.init(
+      interceptors: interceptors,
+      stateInitializer: stateInitializer,
+      dependenciesInitializer: { dispatch, getState in D(dispatch: dispatch, getState: getState) },
+      configuration: configuration
+    )
+  }
+
+  /**
    The default init method for the Store.
 
    #### Initial phases
@@ -289,12 +313,14 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
    - parameter interceptors: a list of interceptors that are executed every time something is dispatched
    - parameter stateInitializer: a closure invoked to define the first state's value
+   - parameter dependenciesInitializer: a closure invoked to instantiate the dependencies
    - parameter configuration: the configuration needed by the store to start properly
    - returns: An instance of store
    */
   public init(
     interceptors: [StoreInterceptor],
     stateInitializer: @escaping StateInitializer<S>,
+    dependenciesInitializer: @escaping DependenciesInitializer,
     configuration: Configuration = .init()
   ) {
     self.listenersAsyncProvider = configuration.listenersAsyncProvider
@@ -306,7 +332,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
     
-    self.dependencies = D.init(dispatch: self.anyDispatchClosure, getState: self.getStateClosure)
+    self.dependencies = dependenciesInitializer(self.anyDispatchClosure, self.getStateClosure)
     
     self.sideEffectContext = SideEffectContext<S, D>(
       dependencies: self.dependencies,
