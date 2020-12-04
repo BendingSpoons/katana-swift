@@ -1,7 +1,7 @@
 # Change Log
 
 
-## [5.1.0-beta.1](https://github.com/BendingSpoons/katana-swift/tree/5.1.0-beta.1) (2020-11-27)
+## [5.1.0](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2020-11-27)
 - Add `dependenciesInitializer` parameter to `Store` initializer
 
 ## [5.0.0](https://github.com/BendingSpoons/katana-swift/tree/5.0.0) (2020-10-09)
