@@ -1,6 +1,6 @@
 # Changelog
 
-## [5.1.0](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2021-02-09)
+## [5.1.1](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2021-02-09)
 - Make codebase compile with Swift 5.4 [#210](https://github.com/BendingSpoons/katana-swift/pull/210)
 - Fix typos in documentation [#207](https://github.com/BendingSpoons/katana-swift/pull/207)
 
