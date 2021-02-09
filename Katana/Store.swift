@@ -192,7 +192,7 @@ private func emptyStateInitializer<S: State>() -> S {
  and even change dynamically which dispatchable items arrive to the `Store` itself.
 
  - seeAlso: `StateUpdater` for more information about how to implement an update of the state
- - seeAlso: `SideEffect` for more information about how to implement a complex/asyncronous logic
+ - seeAlso: `SideEffect` for more information about how to implement a complex/asynchronous logic
  */
 open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// Closure that is used to initialize the dependencies
@@ -386,12 +386,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    #### Threading
 
    The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
 
    When a `ReturningSideEffect` is dispatched, Katana will handle them in a parallel queue. A `ReturningSideEffect` is executed and considered
    done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greatly
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `ReturningSideEffect`.
 
@@ -414,12 +414,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    #### Threading
 
    The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
 
    When a `AnySideEffect` is dispatched, Katana will handle them in a parallel queue. A `AnySideEffect` is executed and considered
    done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greatly
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `AnySideEffect`.
 
@@ -442,12 +442,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    #### Threading
 
    The `Store` follows strict rules about the parallelism with which dispatched items are handled.
-   At the sime time, it tries to leverages as much as possible the modern multi-core systems that our
+   At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
 
-   When an `AnyStateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
+   When an `AnyStateUpdater` is dispatched, the Store enqueues it in a serial and synchronous queue. This means that the Store
    executes one update of the state at the time, following the order in which it has received them. This is done
-   to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
+   to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a synchronous
    queue is never a big problem as any operation that goes in an `AnyStateUpdater` is very lightweight.
 
    #### Promise Resolution
@@ -471,14 +471,14 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
 
-   When a `StateUpdater` is dispatched, the Store enqueues it in a serial and syncronous queue. This means that the Store
+   When a `StateUpdater` is dispatched, the Store enqueues it in a serial and synchronous queue. This means that the Store
    executes one update of the state at the time, following the order in which it has received them. This is done
-   to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a syncronous
+   to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a synchronous
    queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
 
    When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
    done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greately
+   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greatly
    improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `StateUpdater`.
 

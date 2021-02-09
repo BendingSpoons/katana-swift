@@ -27,7 +27,7 @@ public protocol AnySideEffectContext {
   func getAnyState() -> State
 
   /**
-   Dispatches a `Dispatchable`. It will esentially call the `anyDispatch` method of the backing store.
+   Dispatches a `Dispatchable`. It will essentially call the `anyDispatch` method of the backing store.
 
    - parameter dispatchable: the item to dispatch
    - returns: a promise that is resolved when the store finishes handling the dispatched item
