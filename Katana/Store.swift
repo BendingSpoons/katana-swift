@@ -329,7 +329,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     self.interceptors = interceptors
     self.isReady = false
 
-    let emptyState: S = emptyStateInitializer()
+    let emptyState: S = configuration.emptyStateInitializer()
     super.init(state: emptyState)
     
     self.dependencies = dependenciesInitializer(self.anyDispatchClosure, self.getStateClosure)
@@ -524,12 +524,17 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     /// AsyncProvider used to run all the listeners
     let listenersAsyncProvider: AsyncProvider
     
+    /// Creates an intial empty state
+    let emptyStateInitializer: (() -> S)
+    
     public init(
       stateInitializerAsyncProvider: AsyncProvider = DispatchQueue.main,
-      listenersAsyncProvider: AsyncProvider = DispatchQueue.main
+      listenersAsyncProvider: AsyncProvider = DispatchQueue.main,
+      emptyStateInitializer: @escaping (() -> S) = { S() }
     ) {
       self.stateInitializerAsyncProvider = stateInitializerAsyncProvider
       self.listenersAsyncProvider = listenersAsyncProvider
+      self.emptyStateInitializer = emptyStateInitializer
     }
   }
 }
