@@ -258,7 +258,7 @@ public protocol SideEffect: AnySideEffect {
    is completed. Since the related promise (that is, the promise that is returned when the side effect is dispatched)
    is resolved when this method ends, it means that the caller can safely assume that the operations are completed.
 
-   The easier way to achieve this behaviour is by using `await` offered by the `Hydra` library. You can use `await`
+   The easier way to achieve this behaviour is by using `Hydra.await` offered by the `Hydra` library. You can use `Hydra.await`
    with any API that returns a promise (e.g., the dispatch) and it blocks the execution of the method until the
    promise is resolved (you can find more documentation here https://github.com/malcommac/Hydra/#awaitasync).
 
