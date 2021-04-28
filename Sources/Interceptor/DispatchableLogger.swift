@@ -21,7 +21,6 @@ public enum DispatchableLogger {
     return { _ in
       return { next in
         return { dispatchable in
-
           try next(dispatchable)
 
           DispatchQueue.global(qos: .utility).async {

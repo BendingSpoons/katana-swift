@@ -24,7 +24,7 @@ public typealias GetState = () -> State
 /// Typealias for the `Store.anyDispatch` function with the ability of managing the output with a promise
 public typealias AnyDispatch = (_: Dispatchable) -> Promise<Any>
 
-/// Entity capable of executing task asynchronously. This can be useful in tests to control asyncrhonous tasks
+/// Entity capable of executing task asynchronously. This can be useful in tests to control asynchronous tasks
 public protocol AsyncProvider {
   /// Calling this method will enqueue a closure to be executed asynchronously
   func execute(_ closure: @escaping () -> Void)

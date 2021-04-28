@@ -11,7 +11,7 @@ import XCTest
 
 extension XCTestCase {
   func waitForPromise<T>(_ promise: Promise<T>) -> T {
-    var promiseResult: T!
+    var promiseResult: T! // swiftlint:disable:this implicitly_unwrapped_optional
     let expectation = XCTestExpectation(description: "Promise completed")
     promise.then(in: .main) { result in
       promiseResult = result

@@ -92,14 +92,12 @@ public struct ObserverInterceptor {
     notificationCenter: NotificationCenter = .default
   ) -> StoreInterceptor {
     return { context in
-
       let logic = ObserverLogic(dispatch: context.anyDispatch, items: items, notificationCenter: notificationCenter)
       logic.listenToNotifications()
       logic.handleOnStart()
 
       return { next in
         return { dispatchable in
-
           let anyPrevState = context.getAnyState()
           try next(dispatchable)
           let anyCurrState = context.getAnyState()
@@ -202,7 +200,6 @@ private class ObserverLogic {
       object: nil,
       queue: nil,
       using: { [weak self] notification in
-
         guard let self = self else {
           // If the observer has been deinitialized no action will be carried out
           return
@@ -328,7 +325,7 @@ extension ObserverInterceptor {
     /**
      Observes a notification.
      - parameter notification: the name of the notification to observe
-     - parameter dispatchable: a list of items to dispatch when the noficiation is sent
+     - parameter dispatchable: a list of items to dispatch when the notification is sent
      */
     case onNotification(_ notification: Notification.Name, _ dispatchable: [NotificationObserverDispatchable.Type])
 

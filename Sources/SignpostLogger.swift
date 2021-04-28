@@ -114,7 +114,6 @@ extension SignpostLogger {
   private init() {
     if #available(iOS 10.0, *), SignpostLogger.isEnabled {
       self.katanaLogger = OSLog(subsystem: "Katana", category: "Katana")
-
     } else {
       self.katanaLogger = nil
     }

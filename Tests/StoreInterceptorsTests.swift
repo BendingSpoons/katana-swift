@@ -115,7 +115,6 @@ class StoreInterceptorsTests: XCTestCase {
             stateBefore = context.getAnyState() as? AppState
             try next(dispatchable)
             stateAfter = context.getAnyState() as? AppState
-
           } else {
             try next(dispatchable)
           }

@@ -80,7 +80,7 @@ extension AnySideEffectContext {
   /// Default implementation of the `dispatch<T: ReturningSideEffect>`
   @discardableResult
   public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
-    return self.anyDispatch(dispatchable).then(in: .background) { $0 as! T.ReturnValue }
+    return self.anyDispatch(dispatchable).then(in: .background) { $0 as! T.ReturnValue } // swiftlint:disable:this force_cast
   }
 }
 
@@ -185,7 +185,7 @@ public protocol AnySideEffect: Dispatchable {
  extension AppReturningSideEffect {
    func sideEffect(_ context: AnySideEffectContext) throws -> ReturnValue {
      guard let typedContext = context as? SideEffectContext<StateType, Dependencies> else {
-       fatalError("Invalid context pased to side effect")
+       fatalError("Invalid context passed to side effect")
      }
 
      return try self.sideEffect(typedContext)
@@ -280,11 +280,11 @@ public protocol SideEffect: AnySideEffect {
   func sideEffect(_ context: SideEffectContext<StateType, Dependencies>) throws
 }
 
-/// Conformance of `SideEffect` to `ReturningSideEffect`
 extension SideEffect {
+  /// Conformance of `SideEffect` to `ReturningSideEffect`
   public func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
-      fatalError("Invalid context pased to side effect")
+      fatalError("Invalid context passed to side effect")
     }
 
     try self.sideEffect(typedSideEffect)

@@ -57,8 +57,8 @@ public protocol StateUpdater: AnyStateUpdater {
   func updateState(_ state: inout StateType)
 }
 
-/// Conformance of `StateUpdater` to `AnyStateUpdater`
 extension StateUpdater {
+  /// Conformance of `StateUpdater` to `AnyStateUpdater`
   public func updatedState(currentState: State) -> State {
     guard var typedState = currentState as? StateType else {
       fatalError("[Katana] updateState invoked with the wrong state type")

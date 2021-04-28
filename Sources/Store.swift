@@ -18,7 +18,8 @@ public protocol AnyStore: AnyObject {
    Dispatches a generic `Dispatchable` item. This is useful for customizing Katana's dispatchable, for example in other libraries.
 
    - parameter dispatchable: the item to dispatch
-   - returns: a promise that is resolved when the dispatchable is handled by the store, resolving to a value associated with the dispatchable
+   - returns: a promise that is resolved when the dispatchable is handled by the store, resolving to a value associated with the
+     dispatchable
    */
   @discardableResult
   func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
@@ -45,7 +46,8 @@ public protocol AnyStore: AnyObject {
    Dispatches a `ReturningSideEffect` item
 
    - parameter dispatchable: the Returning Side Effect to dispatch
-   - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the store
+   - returns: a promise parameterized to the side effect's return value, that is resolved when the dispatchable is handled by the
+     store
    */
   @discardableResult
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
@@ -207,7 +209,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   fileprivate let interceptors: [StoreInterceptor]
 
   /// The initialized interceptors
-  fileprivate var initializedInterceptors: [InitializedInterceptor]!
+  fileprivate var initializedInterceptors: [InitializedInterceptor]! // swiftlint:disable:this implicitly_unwrapped_optional
 
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
@@ -215,10 +217,10 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// The dependencies used in the side effects
   ///
   /// - seeAlso: `SideEffect`
-  public var dependencies: D!
+  public var dependencies: D! // swiftlint:disable:this implicitly_unwrapped_optional
 
   /// The context passed to the side effect
-  private var sideEffectContext: SideEffectContext<S, D>!
+  private var sideEffectContext: SideEffectContext<S, D>! // swiftlint:disable:this implicitly_unwrapped_optional
 
   /// AsyncProvider used to run all the listeners
   private var listenersAsyncProvider: AsyncProvider
@@ -389,16 +391,16 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    At the same time, it tries to leverages as much as possible the modern multi-core systems that our
    devices offer.
 
-   When a `ReturningSideEffect` is dispatched, Katana will handle them in a parallel queue. A `ReturningSideEffect` is executed and considered
-   done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
-   should take into account the fact that multiple side effects can run at the same time. This decision has been taken to greatly
-   improve the performances of the system. Overall, this should not be a problem as you cannot really change
+   When a `ReturningSideEffect` is dispatched, Katana will handle them in a parallel queue. A `ReturningSideEffect` is executed
+   and considered done when its body finishes to be executed. This means that side effects are not guaranteed to be run in
+   isolation, and you should take into account the fact that multiple side effects can run at the same time. This decision has
+   been taken to greatly improve the performances of the system. Overall, this should not be a problem as you cannot really change
    the state of the system (that is, the store's state) without dispatching a `ReturningSideEffect`.
 
    #### Promise Resolution
 
-   When it comes to `ReturningSideEffect`s, the promise is resolved when the body of the `ReturningSideEffect` is executed entirely (see
-   `ReturningSideEffect` documentation for more information).
+   When it comes to `ReturningSideEffect`s, the promise is resolved when the body of the `ReturningSideEffect` is executed
+   entirely (see `ReturningSideEffect` documentation for more information).
 
    - parameter dispatchable: the side effect to dispatch
    - returns: a promise parameterized to SideEffect's return value, that is resolved when the SideEffect is handled by the store
@@ -474,7 +476,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    When a `StateUpdater` is dispatched, the Store enqueues it in a serial and synchronous queue. This means that the Store
    executes one update of the state at the time, following the order in which it has received them. This is done
    to guarantee the predictability of the changes to the state and avoid any race condition. In general, using a synchronous
-   queue is never a big problem as any operation that goes in a `StateUpdater` is very lighweight.
+   queue is never a big problem as any operation that goes in a `StateUpdater` is very lightweight.
 
    When it comes to `SideEffect` items, Katana will handle them in a parallel queue. A `SideEffect` is executed and considered
    done when its body finishes to be executed. This means that side effects are not guaranteed to be run in isolation, and you
@@ -493,13 +495,12 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    */
   @discardableResult
   override public func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
-    if let _ = dispatchable as? AnyStateUpdater & AnySideEffect {
+    if dispatchable as? AnyStateUpdater & AnySideEffect != nil {
       fatalError("The parameter cannot implement both the state updater and the side effect")
     }
 
     if let stateUpdater = dispatchable as? AnyStateUpdater {
       return self.enqueueStateUpdater(stateUpdater).then(in: .background) { _ in }
-
     } else if let sideEffect = dispatchable as? AnySideEffect {
       return self.enqueueSideEffect(sideEffect).then(in: .background) { (value: Any) in value }
     }
@@ -543,8 +544,8 @@ extension Store {
 
    - parameter stateInitializer: the closure used to create the first configuration of the state
    */
-  private func initializeInternalState(using stateInizializer: StateInitializer<S>) {
-    self.state = stateInizializer()
+  private func initializeInternalState(using stateInitializer: StateInitializer<S>) {
+    self.state = stateInitializer()
     self.initializedInterceptors = Store.initializedInterceptors(self.interceptors, sideEffectContext: self.sideEffectContext)
 
     // and here we are finally able to start the queues
@@ -653,10 +654,13 @@ extension Store {
       try interceptorsChain(sideEffect)
 
       guard let value = sideEffectValue as? ReturnValue else {
-        fatalError("""
-          It looks like you've used an interceptor that either stopped the execution of the side effect or changed the executed side effect.
+        fatalError(
+          """
+          It looks like you've used an interceptor that either stopped the execution of the side effect or changed the executed \
+          side effect.
           This is not longer supported as of Katana 4.0
-        """)
+          """
+        )
       }
 
       return value
@@ -736,7 +740,7 @@ extension Store {
     }
 
     guard interceptors.count > 1 else {
-      return interceptors.first!(lastStep)
+      return interceptors.first!(lastStep) // swiftlint:disable:this force_unwrapping
     }
 
     // reversing the chain to oppose the matryoshka effect of its execution
