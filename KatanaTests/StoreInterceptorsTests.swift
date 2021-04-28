@@ -211,7 +211,7 @@ class StoreInterceptorsTests: QuickSpec {
                 if let dispatched = dispatchable as? SideEffectWithBlock {
                   dispatchedSideEffect = dispatched
                   
-                  try await(context.dispatch(AddTodo(todo: todo)))
+                  try Hydra.await(context.dispatch(AddTodo(todo: todo)))
                   
                   stateBefore = context.getAnyState() as? AppState
                   try next(dispatchable)
@@ -228,7 +228,7 @@ class StoreInterceptorsTests: QuickSpec {
           expect(store.isReady).toEventually(beTrue())
 
           store.dispatch(SideEffectWithBlock(block: { context in
-            try await(context.dispatch(AddTodo(todo: todo)))
+            try Hydra.await(context.dispatch(AddTodo(todo: todo)))
           })).then { returnedState = $0 }
 
           expect(dispatchedSideEffect).toEventuallyNot(beNil())
@@ -251,7 +251,7 @@ private struct AddTodo: TestStateUpdater {
 
 private struct DelaySideEffect: TestSideEffect {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-    try await(context.dependencies.delay(of: 1))
+    try Hydra.await(context.dependencies.delay(of: 1))
   }
 }
 

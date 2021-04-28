@@ -81,20 +81,20 @@ struct SetCounter: StateUpdater {
 }
 ```
 
- Moreover, you can leverage the `await` operator to write logic that mimics the [Async/Await](https://github.com/tc39/ecmascript-asyncawait) pattern, which allows you to write async code in a sync manner.
+ Moreover, you can leverage the `Hydra.await` operator to write logic that mimics the [async/await](https://github.com/tc39/ecmascript-asyncawait) pattern, which allows you to write async code in a sync manner.
 
 ```swift
 struct GenerateRandomNumberFromBackend: SideEffect {
   func sideEffect(_ context: SideEffectContext<CounterState, AppDependencies>) throws {
-    // invokes the `getRandomNumber` method that returns a promise that is fullfilled
+    // invokes the `getRandomNumber` method that returns a promise that is fulfilled
     // when the number is received.
     let promise = context.dependencies.APIManager.getRandomNumber()
     
-    // we use await to wait for the promise to be fullfilled
-    let randomNumber = try await(promise)
+    // we use Hydra.await to wait for the promise to be fulfilled
+    let randomNumber = try Hydra.await(promise)
 
     // then the state is updated using the proper state updater
-    try await(context.dispatch(SetCounter(newValue: randomNumber)))
+    try Hydra.await(context.dispatch(SetCounter(newValue: randomNumber)))
   }
 }
 ```
@@ -122,7 +122,7 @@ struct PurchaseProduct: ReturningSideEffect {
     let receipt = context.dependencies.monetization.getReceipt()
 
     // 3. validate the receipt
-    let validationResult = try await(context.dispatch(Monetization.Validate(receipt)))
+    let validationResult = try Hydra.await(context.dispatch(Monetization.Validate(receipt)))
 
     // 4. map error
     return validationResult
