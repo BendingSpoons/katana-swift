@@ -77,148 +77,82 @@ class StoreInterceptorsTests: XCTestCase {
     XCTAssertEqual(store.state.todo.todos, [todo])
   }
 
-//        it("allows the middleware to block the propagation") {
-//          var dispatchedStateUpdater: AddTodo?
-//
-//          let interceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { stateUpdater in
-//                dispatchedStateUpdater = stateUpdater as? AddTodo
-//                throw StoreInterceptorChainBlocked()
-//              }
-//            }
-//          }
-//
-//          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-//          expect(store.isReady).toEventually(beTrue())
-//
-//          store.dispatch(AddTodo(todo: Todo(title: "test", id: "id")))
-//          expect(dispatchedStateUpdater).toEventuallyNot(beNil())
-//          expect(store.state.todo.todos.count).toEventually(be(0))
-//        }
-//      }
-//
-//      describe("when dealing with side effect") {
-//        it("invokes the middleware") {
-//          var dispatchedSideEffect: DelaySideEffect?
-//          var stateBefore: AppState?
-//          var stateAfter: AppState?
-//
-//          let interceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { sideEffect in
-//                dispatchedSideEffect = sideEffect as? DelaySideEffect
-//                stateBefore = context.getAnyState() as? AppState
-//                try next(sideEffect)
-//                stateAfter = context.getAnyState() as? AppState
-//              }
-//            }
-//          }
-//
-//          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-//          expect(store.isReady).toEventually(beTrue())
-//
-//          store.dispatch(DelaySideEffect())
-//          expect(dispatchedSideEffect).toEventuallyNot(beNil())
-//          expect(stateBefore?.todo.todos.count).toEventually(equal(0))
-//          expect(stateAfter?.todo.todos.count).toEventually(equal(0), timeout: 200)
-//        }
-//
-//        it("invokes the middleware in the proper order") {
-//          var invocationOrder: [String] = []
-//
-//          let firstInterceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { sideEffect in
-//                invocationOrder.append("first")
-//                try next(sideEffect)
-//              }
-//            }
-//          }
-//
-//          let secondInterceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { sideEffect in
-//                invocationOrder.append("second")
-//                try next(sideEffect)
-//              }
-//            }
-//          }
-//
-//          let store = Store<AppState, TestDependenciesContainer>(interceptors: [firstInterceptor, secondInterceptor])
-//          store.dispatch(DelaySideEffect())
-//
-//          expect(store.isReady).toEventually(beTrue())
-//          expect(invocationOrder).toEventually(equal(["first", "second"]))
-//        }
-//
-//        it("allows the middleware to block the propagation") {
-//          var dispatchedStateUpdater: SideEffectWithBlock?
-//          var invoked = false
-//
-//          let interceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { sideEffect in
-//                dispatchedStateUpdater = sideEffect as? SideEffectWithBlock
-//                throw StoreInterceptorChainBlocked()
-//              }
-//            }
-//          }
-//
-//          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-//          expect(store.isReady).toEventually(beTrue())
-//
-//          let sideEffect = SideEffectWithBlock { _ in
-//            invoked = true
-//          }
-//
-//          store.dispatch(sideEffect)
-//          expect(dispatchedStateUpdater).toEventuallyNot(beNil())
-//          expect(invoked).toEventually(beFalse())
-//        }
-//
-//        it("invokes the middleware with returning side effects") {
-//          let todo = Todo(title: "title", id: "id")
-//          var dispatchedSideEffect: SideEffectWithBlock?
-//          var stateBefore: AppState?
-//          var stateAfter: AppState?
-//          var returnedState: AppState?
-//
-//          let interceptor: StoreInterceptor = { context in
-//            return { next in
-//              return { dispatchable in
-//
-//                if let dispatched = dispatchable as? SideEffectWithBlock {
-//                  dispatchedSideEffect = dispatched
-//
-//                  try Hydra.await(context.dispatch(AddTodo(todo: todo)))
-//
-//                  stateBefore = context.getAnyState() as? AppState
-//                  try next(dispatchable)
-//                  stateAfter = context.getAnyState() as? AppState
-//
-//                } else {
-//                  try next(dispatchable)
-//                }
-//              }
-//            }
-//          }
-//
-//          let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-//          expect(store.isReady).toEventually(beTrue())
-//
-//          store.dispatch(SideEffectWithBlock(block: { context in
-//            try Hydra.await(context.dispatch(AddTodo(todo: todo)))
-//          })).then { returnedState = $0 }
-//
-//          expect(dispatchedSideEffect).toEventuallyNot(beNil())
-//          expect(stateBefore?.todo.todos.count).toEventually(equal(1))
-//          expect(stateAfter?.todo.todos.count).toEventually(equal(2), timeout: 200)
-//          expect(returnedState?.todo.todos).toEventually(equal([todo, todo]))
-//        }
-//      }
-//    }
-//  }
+  func testStoreInterceptor_whenInterceptorThrows_propagationIsBlocked() {
+    let todo = Todo(title: "test", id: "id")
+
+    var dispatchedStateUpdater: AddTodo?
+
+    let interceptor: StoreInterceptor = { context in
+      return { next in
+        return { stateUpdater in
+          dispatchedStateUpdater = stateUpdater as? AddTodo
+          throw StoreInterceptorChainBlocked()
+        }
+      }
+    }
+
+    let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+    store.dispatch(AddTodo(todo: todo))
+
+    self.waitFor { dispatchedStateUpdater != nil }
+    XCTAssertEqual(store.state.todo.todos.count, 0)
+  }
+
+  func testStoreInterceptor_whenReturningSideEffect_re() {
+    let todo = Todo(title: "title", id: "id")
+    var dispatchedSideEffect: ReturningClosureSideEffect?
+    var stateBefore: AppState?
+    var stateAfter: AppState?
+
+    let interceptor: StoreInterceptor = { context in
+      return { next in
+        return { dispatchable in
+          if let dispatched = dispatchable as? ReturningClosureSideEffect {
+            dispatchedSideEffect = dispatched
+
+            try Hydra.await(context.dispatch(AddTodo(todo: todo)))
+
+            stateBefore = context.getAnyState() as? AppState
+            try next(dispatchable)
+            stateAfter = context.getAnyState() as? AppState
+
+          } else {
+            try next(dispatchable)
+          }
+        }
+      }
+    }
+
+    let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
+    let returnedState = self.waitForPromise(
+      store
+        .dispatch(
+          ReturningClosureSideEffect { context in
+            try Hydra.await(context.dispatch(AddTodo(todo: todo)))
+            return context.getState()
+          }
+        )
+    )
+
+    XCTAssertNotNil(dispatchedSideEffect)
+    XCTAssertEqual(stateBefore?.todo.todos, [todo])
+    XCTAssertEqual(stateAfter?.todo.todos, [todo, todo])
+    XCTAssertEqual(returnedState.todo.todos, [todo, todo])
+  }
+}
+
+struct ReturningClosureSideEffect: ReturningTestSideEffect {
+  var invocationClosure: (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState
+
+  init(
+    invocationClosure: @escaping (_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState
+  ) {
+    self.invocationClosure = invocationClosure
+  }
+
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
+    return try self.invocationClosure(context)
+  }
 }
 
 struct StoreInterceptorChainBlocked: Error {}
