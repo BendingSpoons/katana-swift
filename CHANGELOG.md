@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- Bump Swift version to `5.0`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 - Pin Hydra minimum version to `2.0.6`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 
 ## [5.1.1](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2021-02-09)
