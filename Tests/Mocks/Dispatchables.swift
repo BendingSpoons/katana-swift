@@ -1,10 +1,10 @@
 //
 //  Dispatchables.swift
-//  KatanaTests
+//  Katana
 //
-//  Created by Daniele Formichelli on 28/04/21.
-//  Copyright © 2021 BendingSpoons. All rights reserved.
-//
+//  Copyright © 2021 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Hydra

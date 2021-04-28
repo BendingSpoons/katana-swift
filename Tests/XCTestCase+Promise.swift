@@ -1,6 +1,6 @@
 //
 //  XCTestCase+Promise.swift
-//  KatanaTests
+//  Katana
 //
 //  Copyright © 2021 Bending Spoons.
 //  Distributed under the MIT License.

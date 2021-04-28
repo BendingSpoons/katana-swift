@@ -49,8 +49,8 @@
 --extensionacl on-declarations
 
 # Use specified source file header template for all files.
-# --rules fileHeader
-# --header "// Copyright © {year} Bending Spoons S.p.A. All rights reserved."
+--rules fileHeader
+--header "//\n//  {file}\n//  Katana\n//\n//  Copyright © {year} Bending Spoons.\n//  Distributed under the MIT License.\n//  See the LICENSE file for more information."
 
 # Reposition let or var bindings within pattern.
 --rules hoistPatternLet
