@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 /// Type Erasure for `Store`
-public protocol AnyStore: class {
+public protocol AnyStore: AnyObject {
   /// Type Erasure for the `Store` `state`
   var anyState: State { get }
 
@@ -103,7 +103,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any> {
+  public func anyDispatch(_: Dispatchable) -> Promise<Any> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -113,7 +113,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnyStateUpdater>(_: T) -> Promise<Void> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -123,7 +123,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnySideEffect>(_: T) -> Promise<Void> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -133,7 +133,7 @@ open class PartialStore<S: State>: AnyStore {
    - warning: Not implemented. Instantiate a `Store` instead
    */
   @discardableResult
-  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+  public func dispatch<T: ReturningSideEffect>(_: T) -> Promise<T.ReturnValue> {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 
@@ -142,7 +142,7 @@ open class PartialStore<S: State>: AnyStore {
 
    - warning: Not implemented. Instantiate a `Store` instead
    */
-  public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
+  public func addListener(_: @escaping StoreListener) -> StoreUnsubscribe {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 }
@@ -211,22 +211,22 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
   /// Whether the store is ready to execute operations
   public private(set) var isReady: Bool
-  
+
   /// The dependencies used in the side effects
   ///
-  ///- seeAlso: `SideEffect`
+  /// - seeAlso: `SideEffect`
   public var dependencies: D!
 
   /// The context passed to the side effect
   private var sideEffectContext: SideEffectContext<S, D>!
-  
+
   /// AsyncProvider used to run all the listeners
   private var listenersAsyncProvider: AsyncProvider
-    
+
   /// The queue used to handle the `StateUpdater` items
   fileprivate var stateUpdaterQueue: DispatchQueue = {
     let d = DispatchQueue(label: "katana.stateupdater", qos: .userInteractive)
-    
+
     // queue is initially suspended. The store will enable the queue when
     // all the setup is done.
     // we basically enqueue all the dispatched dispatchables until
@@ -254,7 +254,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
    - returns: An instance of store
    */
-  convenience public init() {
+  public convenience init() {
     self.init(interceptors: [], stateInitializer: emptyStateInitializer)
   }
 
@@ -265,7 +265,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - parameter interceptors: a list of interceptors that are executed every time something is dispatched
    - returns: An instance of the store
    */
-  convenience public init(interceptors: [StoreInterceptor]) {
+  public convenience init(interceptors: [StoreInterceptor]) {
     self.init(
       interceptors: interceptors,
       stateInitializer: emptyStateInitializer
@@ -280,7 +280,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - parameter configuration: the configuration needed by the store to start properly
    - returns: An instance of the store
    */
-  convenience public init(
+  public convenience init(
     interceptors: [StoreInterceptor],
     stateInitializer: @escaping StateInitializer<S>,
     configuration: Configuration = .init()
@@ -305,7 +305,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
    Accessing the state before the `Store` is ready will lead to a crash of the application, as the
    state of the system is not well defined. You can check whether the `Store` is ready by leveraging the `isReady` property.
-   
+
    A good practice in case you have to interact with the `Store` (e.g., get the state) in the initial phases of your
    application is to dispatch a `SideEffect`. When dispatching something, in fact, the `Store` guarantees that
    items are managed only after that the `Store` is ready. Items dispatched during the initialization are suspended
@@ -324,16 +324,16 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     configuration: Configuration = .init()
   ) {
     self.listenersAsyncProvider = configuration.listenersAsyncProvider
-    
+
     self.listeners = [:]
     self.interceptors = interceptors
     self.isReady = false
 
     let emptyState: S = emptyStateInitializer()
     super.init(state: emptyState)
-    
+
     self.dependencies = dependenciesInitializer(self.anyDispatchClosure, self.getStateClosure)
-    
+
     self.sideEffectContext = SideEffectContext<S, D>(
       dependencies: self.dependencies,
       getState: self.getStateClosure,
@@ -346,17 +346,17 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     configuration.stateInitializerAsyncProvider.execute { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
     }
-    
+
     self.invokeListeners()
   }
-  
+
   /// The `anyDispatch` method as a closure which does not capture `self` to avoid reference loops
   private var anyDispatchClosure: AnyDispatch {
     return { [unowned self] dispatchable in
       self.anyDispatch(dispatchable)
     }
   }
-  
+
   /// The `getState` method as a closure which does not capture `self` to avoid reference loops
   private var getStateClosure: () -> S {
     return { [unowned self] in
@@ -502,7 +502,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 
     } else if let sideEffect = dispatchable as? AnySideEffect {
       return self.enqueueSideEffect(sideEffect).then(in: .background) { (value: Any) in value }
-
     }
 
     fatalError("Invalid parameter")
@@ -516,14 +515,15 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   fileprivate func nonPromisableDispatch(_ dispatchable: Dispatchable) {
     self.anyDispatch(dispatchable)
   }
+
   /// The dependencies used to initialize katana
   public struct Configuration {
     /// AsyncProvider used to run the state initializer
     let stateInitializerAsyncProvider: AsyncProvider
-    
+
     /// AsyncProvider used to run all the listeners
     let listenersAsyncProvider: AsyncProvider
-    
+
     public init(
       stateInitializerAsyncProvider: AsyncProvider = DispatchQueue.main,
       listenersAsyncProvider: AsyncProvider = DispatchQueue.main
@@ -535,7 +535,8 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
 }
 
 // MARK: Private utilities
-private extension Store {
+
+extension Store {
   /**
    Creates and initializes the internal values.
    Store doesn't start to work (that is, dispatchables are not dispatched) until this function is executed
@@ -551,16 +552,16 @@ private extension Store {
     self.sideEffectQueue.resume()
     self.stateUpdaterQueue.resume()
   }
-  
+
   /// Invoke all the registered listeners in the configured async provider
   private func invokeListeners() {
     self.listenersAsyncProvider.execute { [weak self] () in
       guard let self = self else { return }
-      
+
       self.listeners.values.forEach { $0() }
     }
   }
-  
+
   /**
    Returns the current version of the state
 
@@ -580,8 +581,8 @@ private extension Store {
 }
 
 // MARK: State Updater management
-fileprivate extension Store {
 
+extension Store {
   /**
    Enqueues a state updater.
 
@@ -589,7 +590,7 @@ fileprivate extension Store {
    - returns: a promise that is resolved when the state updater is managed
    */
   private func enqueueStateUpdater(_ stateUpdater: AnyStateUpdater) -> Promise<Void> {
-    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, reject, _ in
+    let promise = Promise<Void>(in: .custom(queue: self.stateUpdaterQueue)) { [unowned self] resolve, _, _ in
       let interceptorsChain = Store.chainedInterceptors(self.initializedInterceptors, with: self.manageUpdateState)
       try interceptorsChain(stateUpdater)
       resolve(())
@@ -626,14 +627,14 @@ fileprivate extension Store {
     }
 
     self.state = typedNewState
-    
+
     self.invokeListeners()
   }
 }
 
 // MARK: Side Effect management
-fileprivate extension Store {
 
+extension Store {
   /**
    Enqueues the side effect.
 
@@ -642,7 +643,7 @@ fileprivate extension Store {
    */
   private func enqueueSideEffect<ReturnValue>(_ sideEffect: AnySideEffect) -> Promise<ReturnValue> {
     let promise = async(in: .custom(queue: self.sideEffectQueue), token: nil) { [unowned self] _ -> ReturnValue in
-      var sideEffectValue: Any? = nil
+      var sideEffectValue: Any?
 
       let executeSideEffect: StoreInterceptorNext = {
         sideEffectValue = try self.manageSideEffect($0)
@@ -690,15 +691,17 @@ fileprivate extension Store {
 }
 
 // MARK: Middleware management
-fileprivate extension Store {
+
+extension Store {
   /**
    Type used internally to store partially applied interceptors.
    (that is, an interceptor to which the Store has already passed the context)
    */
-  typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext) -> (_ dispatchable: Dispatchable) throws -> Void
+  fileprivate typealias InitializedInterceptor = (_ next: @escaping StoreInterceptorNext)
+    -> (_ dispatchable: Dispatchable) throws -> Void
 
   /// Type used to define a dispatch that can throw
-  typealias ThrowingDispatch = (_: Dispatchable) throws -> Void
+  fileprivate typealias ThrowingDispatch = (_: Dispatchable) throws -> Void
 
   /**
    A function that initialises the given interceptors by binding the
@@ -707,10 +710,10 @@ fileprivate extension Store {
    - parameter interceptors: the interceptors to use to create the chain
    - returns: an array of initialised interceptors
    */
-  static func initializedInterceptors(
+  fileprivate static func initializedInterceptors(
     _ interceptors: [StoreInterceptor],
-    sideEffectContext: SideEffectContext<S, D>) -> [InitializedInterceptor] {
-
+    sideEffectContext: SideEffectContext<S, D>
+  ) -> [InitializedInterceptor] {
     return interceptors.map { interceptor in
       return interceptor(sideEffectContext)
     }
@@ -724,10 +727,10 @@ fileprivate extension Store {
    - parameter lastStep: the function to execute when all the interceptors have been executed
    - returns: a single function that invokes all the interceptors and then the last step
    */
-  static func chainedInterceptors(
+  fileprivate static func chainedInterceptors(
     _ interceptors: [InitializedInterceptor],
-    with lastStep: @escaping ThrowingDispatch) -> ThrowingDispatch {
-
+    with lastStep: @escaping ThrowingDispatch
+  ) -> ThrowingDispatch {
     guard !interceptors.isEmpty else {
       return lastStep
     }
@@ -735,15 +738,15 @@ fileprivate extension Store {
     guard interceptors.count > 1 else {
       return interceptors.first!(lastStep)
     }
-    
+
     // reversing the chain to oppose the matryoshka effect of its execution
     // so the interceptors will be executed in the same order they are given
-    
+
     var m = interceptors
     let last = m.removeLast()
-    
-    return m.reversed().reduce(last(lastStep), { chain, middleware in
+
+    return m.reversed().reduce(last(lastStep)) { chain, middleware in
       return middleware(chain)
-    })
+    }
   }
 }

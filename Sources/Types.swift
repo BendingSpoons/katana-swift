@@ -13,10 +13,10 @@ import Hydra
  Typealias for the function that is invoked to continues with the middleware
  chains.
  */
-public typealias StoreListener = () -> ()
+public typealias StoreListener = () -> Void
 
 /// Typealias for the `Store` listener unsubscribe closure
-public typealias StoreUnsubscribe = () -> ()
+public typealias StoreUnsubscribe = () -> Void
 
 /// Typealias for a type that returns the `Store`'s state
 public typealias GetState = () -> State

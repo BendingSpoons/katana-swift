@@ -41,9 +41,9 @@ class SideEffectTests: XCTestCase {
 
   func testDispatch_whenUsingThen_invokesTheSideEffectsInProperOrder() {
     var invocationResults: [String] = []
-    let sideEffect1 = ClosureSideEffect(delay: 3) { context in invocationResults.append("1") }
-    let sideEffect2 = ClosureSideEffect(delay: 1) { context in invocationResults.append("2") }
-    let sideEffect3 = ClosureSideEffect(delay: 0) { context in invocationResults.append("3") }
+    let sideEffect1 = ClosureSideEffect(delay: 3) { _ in invocationResults.append("1") }
+    let sideEffect2 = ClosureSideEffect(delay: 1) { _ in invocationResults.append("2") }
+    let sideEffect3 = ClosureSideEffect(delay: 0) { _ in invocationResults.append("3") }
 
     let store = Store<AppState, TestDependenciesContainer>()
 
@@ -59,12 +59,12 @@ class SideEffectTests: XCTestCase {
 
   func testDispatch_whenDispatchingFromSideEffect_dispatchesCorrectly() {
     var invocationResults: [String] = []
-    let sideEffect1 = ClosureSideEffect(delay: 3) { context in invocationResults.append("1") }
+    let sideEffect1 = ClosureSideEffect(delay: 3) { _ in invocationResults.append("1") }
     let sideEffect2 = ClosureSideEffect(delay: 1) { context in
       try Hydra.await(context.dispatch(sideEffect1))
       invocationResults.append("2")
     }
-    let sideEffect3 = ClosureSideEffect(delay: 0) { context in invocationResults.append("3") }
+    let sideEffect3 = ClosureSideEffect(delay: 0) { _ in invocationResults.append("3") }
 
     let store = Store<AppState, TestDependenciesContainer>()
 
@@ -139,7 +139,7 @@ class SideEffectTests: XCTestCase {
     let expectation = self.expectation(description: "SideEffects and StatUpdaters are invoked")
 
     store
-      .dispatch(ClosureSideEffect { context in throw expectedError })
+      .dispatch(ClosureSideEffect { _ in throw expectedError })
       .then {
         XCTFail("then should not be invoked")
       }
@@ -209,7 +209,7 @@ private struct Multiply: ReturningSideEffect {
   let a: Int
   let b: Int
 
-  func sideEffect(_ context: AnySideEffectContext) throws -> Int {
+  func sideEffect(_: AnySideEffectContext) throws -> Int {
     return self.a * self.b
   }
 }

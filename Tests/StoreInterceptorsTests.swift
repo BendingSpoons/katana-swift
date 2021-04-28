@@ -43,7 +43,7 @@ class StoreInterceptorsTests: XCTestCase {
 
     var invocationOrder: [String] = []
 
-    let firstInterceptor: StoreInterceptor = { context in
+    let firstInterceptor: StoreInterceptor = { _ in
       return { next in
         return { stateUpdater in
           invocationOrder.append("1")
@@ -52,7 +52,7 @@ class StoreInterceptorsTests: XCTestCase {
       }
     }
 
-    let secondInterceptor: StoreInterceptor = { context in
+    let secondInterceptor: StoreInterceptor = { _ in
       return { next in
         return { stateUpdater in
           invocationOrder.append("2")
@@ -61,7 +61,7 @@ class StoreInterceptorsTests: XCTestCase {
       }
     }
 
-    let thirdInterceptor: StoreInterceptor = { context in
+    let thirdInterceptor: StoreInterceptor = { _ in
       return { next in
         return { stateUpdater in
           invocationOrder.append("3")
@@ -82,8 +82,8 @@ class StoreInterceptorsTests: XCTestCase {
 
     var dispatchedStateUpdater: AddTodo?
 
-    let interceptor: StoreInterceptor = { context in
-      return { next in
+    let interceptor: StoreInterceptor = { _ in
+      return { _ in
         return { stateUpdater in
           dispatchedStateUpdater = stateUpdater as? AddTodo
           throw StoreInterceptorChainBlocked()

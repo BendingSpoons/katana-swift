@@ -13,17 +13,16 @@ import XCTest
 @testable import Katana
 
 class ObserverInterceptorTests: XCTestCase {
-
   // MARK: AppState StateChangeObserver
 
   func testObserveOnStateChange_whenUsingAppStateChangeObserver_dispatchesDispatchable() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [StateChangeAddUser.self]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -38,7 +37,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserverAndMultipleDispatchables_dispatchesAllOfThem() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [
@@ -46,7 +45,7 @@ class ObserverInterceptorTests: XCTestCase {
           StateChangeAddUser.self,
           StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -61,14 +60,14 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserverAndNillableInitDispatchables_discardsNilOnes() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [
           NilStateChangeAddUser.self,
           StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -83,12 +82,12 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserver_doesNotInterceptSideEffects() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) -> Bool in
+        ObserverInterceptor.ObserverType.typedStateChange { _, _ in
           XCTFail("StateChangeObserver must not be called for side effects")
           return false
         },
         []
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -101,14 +100,14 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingStateChangeObserver_dispatchesDispatchable() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        { prev, curr -> Bool in
+        { prev, curr in
           guard let prevState = prev as? AppState, let currState = curr as? AppState else {
             return false
           }
           return prevState.todo.todos.count != currState.todo.todos.count
         },
         [StateChangeAddUser.self]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -123,7 +122,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingStateChangeObserverAndMultipleDispatchables_dispatchesAllOfThem() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        { prev, curr -> Bool in
+        { prev, curr in
           guard let prevState = prev as? AppState, let currState = curr as? AppState else {
             return false
           }
@@ -134,7 +133,7 @@ class ObserverInterceptorTests: XCTestCase {
           StateChangeAddUser.self,
           StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -149,7 +148,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingStateChangeObserverAndNillableInitDispatchables_discardsNilOnes() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        { prev, curr -> Bool in
+        { prev, curr in
           guard let prevState = prev as? AppState, let currState = curr as? AppState else {
             return false
           }
@@ -159,7 +158,7 @@ class ObserverInterceptorTests: XCTestCase {
           NilStateChangeAddUser.self,
           StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -174,13 +173,13 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingStateChangeObserver_doesNotInterceptSideEffects() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        { (prev: State, curr: State) -> Bool in
+        { _, _ in
           XCTFail("StateChangeObserver must not be called for side effects")
           return false
         },
         [
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -195,7 +194,7 @@ class ObserverInterceptorTests: XCTestCase {
       .onDispatch(
         AddTodo.self,
         [StateChangeAddUser.self]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -213,9 +212,9 @@ class ObserverInterceptorTests: XCTestCase {
         AddTodo.self,
         [
           StateChangeAddUser.self,
-          StateChangeAddUser.self
+          StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -233,9 +232,9 @@ class ObserverInterceptorTests: XCTestCase {
         AddTodo.self,
         [
           NilStateChangeAddUser.self,
-          StateChangeAddUser.self
+          StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -256,7 +255,7 @@ class ObserverInterceptorTests: XCTestCase {
       .onDispatch(
         AddTodo.self,
         [StateChangeAddUser.self]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -264,7 +263,7 @@ class ObserverInterceptorTests: XCTestCase {
     let todo = Todo(title: "title", id: "id")
     store.dispatch(AddTodo(todo: todo))
 
-    self.waitFor { store.state.user.users.count == 2 }  
+    self.waitFor { store.state.user.users.count == 2 }
     XCTAssertEqual(store.state.todo.todos, [todo])
   }
 
@@ -277,7 +276,7 @@ class ObserverInterceptorTests: XCTestCase {
         .onNotification(
           testNotification.self,
           [StateChangeAddUser.self]
-        )
+        ),
       ],
       notificationCenter: notificationCenter
     )
@@ -298,9 +297,9 @@ class ObserverInterceptorTests: XCTestCase {
           testNotification.self,
           [
             StateChangeAddUser.self,
-            StateChangeAddUser.self
+            StateChangeAddUser.self,
           ]
-        )
+        ),
       ],
       notificationCenter: notificationCenter
     )
@@ -321,9 +320,9 @@ class ObserverInterceptorTests: XCTestCase {
           testNotification.self,
           [
             NilStateChangeAddUser.self,
-            StateChangeAddUser.self
+            StateChangeAddUser.self,
           ]
-        )
+        ),
       ],
       notificationCenter: notificationCenter
     )
@@ -342,7 +341,7 @@ class ObserverInterceptorTests: XCTestCase {
     let interceptor = ObserverInterceptor.observe([
       .onStart(
         [StateChangeAddUser.self]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -352,12 +351,12 @@ class ObserverInterceptorTests: XCTestCase {
 
   func testObserveOnStart_whenMultipleDispatchables_dispatchesAllOfThem() throws {
     let interceptor = ObserverInterceptor.observe([
-        .onStart(
-          [
-            StateChangeAddUser.self,
-            StateChangeAddUser.self
-          ]
-        )
+      .onStart(
+        [
+          StateChangeAddUser.self,
+          StateChangeAddUser.self,
+        ]
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -370,9 +369,9 @@ class ObserverInterceptorTests: XCTestCase {
       .onStart(
         [
           NilStateChangeAddUser.self,
-          StateChangeAddUser.self
+          StateChangeAddUser.self,
         ]
-      )
+      ),
     ])
 
     let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
@@ -389,7 +388,7 @@ class ObserverInterceptorTests: XCTestCase {
         .onNotification(
           testNotification,
           [StateChangeAddUser.self]
-        )
+        ),
       ],
       notificationCenter: notificationCenter
     )
@@ -414,7 +413,7 @@ private let testNotification = Notification.Name("Test_Notification")
 private struct AddTodoWithDelay: TestStateUpdater {
   let todo: Todo
   let waitingTime: TimeInterval
-  
+
   func updateState(_ state: inout AppState) {
     // Note: this is just for testing, never do things like this in real apps
     Thread.sleep(forTimeInterval: self.waitingTime)
@@ -427,23 +426,14 @@ private struct StateChangeAddUser: TestStateUpdater,
   DispatchObserverDispatchable,
   NotificationObserverDispatchable,
   OnStartObserverDispatchable {
-  
-  init?(prevState: State, currentState: State) {
-    
-  }
-  
-  init?(dispatchedItem: Dispatchable, prevState: State, currentState: State) {
-    
-  }
-  
-  init?(notification: Notification) {
-    
-  }
-  
-  init?() {
-    
-  }
-  
+  init?(prevState _: State, currentState _: State) {}
+
+  init?(dispatchedItem _: Dispatchable, prevState _: State, currentState _: State) {}
+
+  init?(notification _: Notification) {}
+
+  init?() {}
+
   func updateState(_ state: inout AppState) {
     state.user.users.append(User(username: "the username"))
   }
@@ -454,30 +444,30 @@ private struct NilStateChangeAddUser: TestStateUpdater,
   DispatchObserverDispatchable,
   NotificationObserverDispatchable,
   OnStartObserverDispatchable {
-  init?(prevState: State, currentState: State) {
+  init?(prevState _: State, currentState _: State) {
     return nil
   }
-  
-  init?(dispatchedItem: Dispatchable, prevState: State, currentState: State) {
+
+  init?(dispatchedItem _: Dispatchable, prevState _: State, currentState _: State) {
     return nil
   }
-  
-  init?(notification: Notification) {
+
+  init?(notification _: Notification) {
     return nil
   }
-  
+
   init?() {
     return nil
   }
-  
+
   func updateState(_ state: inout AppState) {
     state.user.users.append(User(username: "the username"))
   }
 }
 
-fileprivate class TestableNotificationCenter: NotificationCenter {
+private class TestableNotificationCenter: NotificationCenter {
   var observers: [NSObjectProtocol] = []
-  
+
   override func addObserver(
     forName name: NSNotification.Name?,
     object obj: Any?,
@@ -488,7 +478,7 @@ fileprivate class TestableNotificationCenter: NotificationCenter {
     self.observers.append(observer)
     return observer
   }
-  
+
   override func removeObserver(_ observer: Any) {
     super.removeObserver(observer)
     self.observers.removeAll(where: { $0.isEqual(observer) })

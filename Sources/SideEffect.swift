@@ -15,13 +15,12 @@ import Hydra
  - seeAlso: `SideEffectContext`
  */
 public protocol AnySideEffectContext {
-
   /// Type erased dependencies of the side effect
   var anyDependencies: SideEffectDependencyContainer { get }
 
   /**
    Type erased function that returns the current configuration of the state
-   
+
    - returns: the type erased current configuration of the state
    */
   func getAnyState() -> State
@@ -36,12 +35,12 @@ public protocol AnySideEffectContext {
   func anyDispatch(_ dispatchable: Dispatchable) -> Promise<Any>
 
   /**
-  Dispatches a `AnySideEffect`.
+   Dispatches a `AnySideEffect`.
 
-  - parameter dispatchable: the `AnySideEffect` to dispatch
-  - returns: a promise that is resolved with the value returned by the side effect
-             when the store finishes handling the dispatched item
-  */
+   - parameter dispatchable: the `AnySideEffect` to dispatch
+   - returns: a promise that is resolved with the value returned by the side effect
+              when the store finishes handling the dispatched item
+   */
   @discardableResult
   func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void>
 
@@ -55,32 +54,32 @@ public protocol AnySideEffectContext {
   func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void>
 
   /**
-  Dispatches a `ReturningSideEffect`
+   Dispatches a `ReturningSideEffect`
 
-  - parameter dispatchable: the `ReturningSideEffect` to dispatch
-  - returns: a promise that is resolved with the value returned by the side effect
-             when the store finishes handling the dispatched item
-  */
+   - parameter dispatchable: the `ReturningSideEffect` to dispatch
+   - returns: a promise that is resolved with the value returned by the side effect
+              when the store finishes handling the dispatched item
+   */
   @discardableResult
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
 }
 
-public extension AnySideEffectContext {
+extension AnySideEffectContext {
   /// Default implementation of the `dispatch<T: AnyStateUpdater>`
   @discardableResult
-  func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnyStateUpdater>(_ dispatchable: T) -> Promise<Void> {
     return self.anyDispatch(dispatchable).voidInBackground
   }
 
   /// Default implementation of the `dispatch<T: AnySideEffect>`
   @discardableResult
-  func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void> {
+  public func dispatch<T: AnySideEffect>(_ dispatchable: T) -> Promise<Void> {
     return self.anyDispatch(dispatchable).voidInBackground
   }
 
   /// Default implementation of the `dispatch<T: ReturningSideEffect>`
   @discardableResult
-  func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
+  public func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue> {
     return self.anyDispatch(dispatchable).then(in: .background) { $0 as! T.ReturnValue }
   }
 }
@@ -172,7 +171,7 @@ public protocol AnySideEffect: Dispatchable {
  In order to promote reusability of the logic written using this type, both the state and
  the dependencies are erased. This helps tremendously when writing libraries and generic
  logic, and it can also be extended to be used in the apps.
- 
+
  For example, if the app needs to use a typed returning side effect it can define something like:
 
  ```
@@ -211,10 +210,9 @@ public protocol ReturningSideEffect: AnySideEffect {
 }
 
 /// Conformance of `ReturningSideEffect` to `AnySideEffect`
-public extension ReturningSideEffect {
-
+extension ReturningSideEffect {
   /// Implementation of the `anySideEffect` requirement for `ReturningSideEffectContext`
-  func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
+  public func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
     return try self.sideEffect(context)
   }
 }
@@ -252,7 +250,7 @@ public protocol SideEffect: AnySideEffect {
    You can implement the logic, leveraging the technology you desire for threading and flow management.
 
    However, there are two patterns that Katana suggests to use: synchronous side effects and asynchronous side effects
-   
+
    #### Synchronous
    A synchronous side effect is a side effect that finishes its execution when the `sideEffect(:)` method
    is completed. Since the related promise (that is, the promise that is returned when the side effect is dispatched)
@@ -283,8 +281,8 @@ public protocol SideEffect: AnySideEffect {
 }
 
 /// Conformance of `SideEffect` to `ReturningSideEffect`
-public extension SideEffect {
-  func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
+extension SideEffect {
+  public func anySideEffect(_ context: AnySideEffectContext) throws -> Any {
     guard let typedSideEffect = context as? SideEffectContext<StateType, Dependencies> else {
       fatalError("Invalid context pased to side effect")
     }

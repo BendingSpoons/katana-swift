@@ -21,7 +21,7 @@ let mainTarget = Target(
   infoPlist: .default,
   sources: ["Sources/**"],
   dependencies: [
-    .cocoapods(path: ".")
+    .cocoapods(path: "."),
   ]
 )
 

@@ -1,0 +1,274 @@
+# Please, read the following conventions before to edit this file:
+# - Rules are sorted alphabetically according to the documentation (https://github.com/nicklockwood/SwiftFormat/blob/master/Rules.md)
+# - Add a comment to disable a rule, don't delete it
+# - Every rule must have a short description
+
+# Prefer comma over && in if, guard or while conditions.
+--rules andOperator
+
+# Prefer AnyObject over class in protocol definitions.
+--rules anyObjectProtocol
+
+# Insert blank line before and after MARK: comments.
+--rules blankLinesAroundMark
+
+# Remove trailing blank line at the end of a scope.
+--rules blankLinesAtEndOfScope
+
+# Remove leading blank line at the start of a scope.
+--rules blankLinesAtStartOfScope
+
+# Insert blank line before class, struct, enum, extension, protocol or function declarations.
+--rules blankLinesBetweenScopes
+
+# Wrap braces in accordance with selected style (K&R or Allman).
+--rules braces
+--allman false
+
+# Replace consecutive blank lines with a single blank line.
+--rules consecutiveBlankLines
+
+# Replace consecutive spaces with a single space.
+--rules consecutiveSpaces
+
+# Remove duplicate import statements.
+--rules duplicateImports
+
+# Place else, catch or while keyword in accordance with current style (same or next line).
+--rules elseOnSameLine
+--elseposition same-line
+
+# Remove whitespace inside empty braces.
+--rules emptyBraces
+
+# Converts types used for hosting only static members into enums.
+--rules enumNamespaces
+
+# Configure the placement of an extension's access control keyword.
+--rules extensionAccessControl
+--extensionacl on-declarations
+
+# Use specified source file header template for all files.
+# --rules fileHeader
+# --header "// Copyright © {year} Bending Spoons S.p.A. All rights reserved."
+
+# Reposition let or var bindings within pattern.
+--rules hoistPatternLet
+--patternlet inline
+
+# Indent code in accordance with the scope level.
+--rules indent
+--indent 2
+--tabwidth 2
+--indentcase false
+--ifdef indent
+--xcodeindentation disabled
+
+# Add @available(*, unavailable) attribute to required init(coder:) when it hasn't been implemented.
+#--rules initCoderUnavailable
+
+# Prefer isEmpty over comparing count against zero.
+--rules isEmpty
+
+# Move leading delimiters to the end of the previous line.
+--rules leadingDelimiters
+
+# Add empty blank line at end of file.
+--rules linebreakAtEndOfFile
+
+# Use specified linebreak character for all linebreaks (CR, LF or CRLF).
+--rules linebreaks
+--linebreaks lf
+
+# Adds a mark comment before top-level types and extensions.
+#--rules markTypes
+
+# Use consistent ordering for member modifiers.
+--rules modifierOrder
+
+# Use consistent grouping for numeric literals. Groups will be separated by _ delimiters to improve readability.
+# For each numeric type you can specify a group size (the number of digits in each group) and a threshold
+# (the minimum number of digits in a number before grouping is applied).
+--rules numberFormatting
+--binarygrouping 4,8
+--decimalgrouping 3,6
+--hexgrouping 2,4
+--octalgrouping 4,8
+--fractiongrouping disabled
+--exponentgrouping enabled
+--hexliteralcase uppercase
+--exponentcase lowercase
+
+# Organizes declarations within class, struct, and enum bodies.
+#--rules organizeDeclarations
+
+# Convert trivial map { $0.foo } closures to keyPath-based syntax.
+--rules preferKeyPath
+
+# Remove redundant backticks around identifiers.
+--rules redundantBackticks
+
+# Remove redundant break in switch case.
+--rules redundantBreak
+
+# Remove redundant access control modifiers.
+--rules redundantExtensionACL
+
+# Prefer private over fileprivate where equivalent.
+--rules redundantFileprivate
+
+# Remove unneeded get clause inside computed properties.
+--rules redundantGet
+
+# Remove explicit init if not required.
+--rules redundantInit
+
+# Remove redundant let/var from ignored variables.
+--rules redundantLet
+
+# Remove redundant let error from catch clause.
+--rules redundantLetError
+
+# Remove redundant nil default value (Optional vars are nil by default).
+--rules redundantNilInit
+
+# Remove redundant @objc annotations.
+--rules redundantObjc
+
+# Remove redundant parentheses.
+--rules redundantParens
+
+# Remove redundant pattern matching parameter syntax.
+--rules redundantPattern
+
+# Remove redundant raw string values for enum cases.
+--rules redundantRawValues
+
+# Remove unneeded return keyword.
+#--rules redundantReturn
+
+# Insert/remove explicit self where applicable.
+--rules redundantSelf
+--self insert
+--selfrequired
+
+# Remove redundant type from variable declarations.
+--rules redundantType
+
+# Remove explicit Void return type.
+--rules redundantVoidReturnType
+
+# Remove semicolons.
+--rules semicolons
+--semicolons inline
+
+# Sort import statements alphabetically.
+--rules sortedImports
+--importgrouping testable-bottom
+
+# Sorts switch cases alphabetically.
+#--rules sortedSwitchCases
+
+# Add or remove space around curly braces.
+--rules spaceAroundBraces
+
+# Add or remove space around square brackets.
+--rules spaceAroundBrackets
+
+# Add space before and/or after comments.
+--rules spaceAroundComments
+
+# Remove space around angle brackets.
+--rules spaceAroundGenerics
+
+# Add or remove space around operators or delimiters.
+--rules spaceAroundOperators
+--operatorfunc spaced
+
+# Add or remove space around parentheses.
+--rules spaceAroundParens
+
+# Add space inside curly braces.
+--rules spaceInsideBraces
+
+# Remove space inside square brackets.
+--rules spaceInsideBrackets
+
+# Add leading and/or trailing space inside comments.
+--rules spaceInsideComments
+
+# Remove space inside angle brackets.
+--rules spaceInsideGenerics
+
+# Remove space inside parentheses.
+--rules spaceInsideParens
+
+# Remove weak modifier from @IBOutlet properties.
+#--rules strongOutlets
+
+# Remove backticks around self in Optional unwrap expressions.
+--rules strongifiedSelf
+
+# Use correct formatting for TODO:, MARK: or FIXME: comments.
+--rules todos
+
+# Use trailing closure syntax where applicable.
+--rules trailingClosures
+--trailingclosures
+
+# Add or remove trailing comma from the last item in a collection literal.
+--rules trailingCommas
+--commas always
+
+# Remove trailing space at end of a line.
+--rules trailingSpace
+--trimwhitespace always
+
+# Prefer shorthand syntax for Arrays, Dictionaries and Optionals.
+--rules typeSugar
+
+# Mark unused function arguments with _.
+--rules unusedArguments
+--stripunusedargs always
+
+# Use Void for type declarations and () for values.
+--rules void
+--empty void
+
+# Wrap lines that exceed the specified maximum width.
+--rules wrap
+--maxwidth 130
+
+# Align wrapped function arguments or collection elements.
+--rules wrapArguments
+--wraparguments before-first
+--wrapparameters before-first
+--wrapcollections before-first
+--wrapconditions after-first
+--closingparen balanced
+
+# Wrap @attributes onto a separate line, or keep them on the same line.
+#--rules wrapAttributes
+
+# Writes one enum case per line.
+--rules wrapEnumCases
+
+# Wrap the opening brace of multiline statements.
+#--rules wrapMultilineStatementBraces
+
+# Writes one switch case per line.
+#--rules wrapSwitchCases
+
+# Prefer constant values to be on the right-hand-side of expressions.
+--rules yodaConditions
+
+# Optionally ignore conflict markers (e.g. if they clash with a custom operator)
+--conflictmarkers reject
+
+# Support for formatting partial file fragments
+--fragment false
+
+# Some rules depended on the swiftversion and will be disabled automatically if it's not specified or supported
+--swiftversion 5
+
+--exclude Pods
