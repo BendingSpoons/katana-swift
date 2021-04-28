@@ -49,25 +49,3 @@ extension AppState {
     self.user = UserState()
   }
 }
-
-protocol TestStateUpdater: StateUpdater where StateType == AppState {
-  
-}
-
-protocol TestSideEffect: SideEffect where StateType == AppState, Dependencies == TestDependenciesContainer {
-  
-}
-
-protocol ReturningTestSideEffect: ReturningSideEffect where ReturnValue == AppState {
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> ReturnValue
-}
-
-extension ReturningTestSideEffect {
-  func sideEffect(_ context: AnySideEffectContext) throws -> ReturnValue {
-    guard let typedContext = context as? SideEffectContext<AppState, TestDependenciesContainer> else {
-      fatalError()
-    }
-
-    return try self.sideEffect(typedContext)
-  }
-}

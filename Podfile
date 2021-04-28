@@ -7,10 +7,6 @@ target 'Katana' do
   podspec
 
   target 'KatanaTests' do
-    inherit! :search_paths
-
-    pod 'Quick', '~> 2.2'
-    pod 'Nimble', '~> 8.0'
+    inherit! :complete
   end
 end
-
