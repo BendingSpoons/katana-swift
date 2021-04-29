@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 /// Type Erasure for `Store`
-public protocol AnyStore: class {
+public protocol AnyStore: AnyObject {
   /// Type Erasure for the `Store` `state`
   var anyState: State { get }
 
@@ -346,7 +346,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     configuration.stateInitializerAsyncProvider.execute { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
     }
-    
+
     self.invokeListeners()
   }
   

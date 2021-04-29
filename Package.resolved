@@ -6,26 +6,8 @@
         "repositoryURL": "https://github.com/malcommac/Hydra.git",
         "state": {
           "branch": null,
-          "revision": "b8e32af60009b2648099c15bfbf1175d39b23da8",
-          "version": "2.0.5"
-        }
-      },
-      {
-        "package": "Nimble",
-        "repositoryURL": "https://github.com/Quick/Nimble.git",
-        "state": {
-          "branch": null,
-          "revision": "7a46a5fc86cb917f69e3daf79fcb045283d8f008",
-          "version": "8.1.2"
-        }
-      },
-      {
-        "package": "Quick",
-        "repositoryURL": "https://github.com/Quick/Quick.git",
-        "state": {
-          "branch": null,
-          "revision": "09b3becb37cb2163919a3842a4c5fa6ec7130792",
-          "version": "2.2.1"
+          "revision": "1d508bc909b1e7c334c1720a4b7d93a5b2d3012a",
+          "version": "2.0.6"
         }
       }
     ]
