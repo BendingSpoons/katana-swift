@@ -1,6 +1,12 @@
 {
   "warnings": [
-
+    {
+      "file": "/Users/df/Developer/katana-swift/Sources/Store.swift",
+      "line": 551,
+      "symbol": "Store.Configuration.init(stateInitializerAsyncProvider:listenersAsyncProvider:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    }
   ],
-  "source_directory": "/Users/maurobolis/BendingSpoons/katana-swift"
+  "source_directory": "/Users/df/Developer/katana-swift"
 }

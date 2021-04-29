@@ -4,7 +4,6 @@
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
 [![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg)]()
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
 
@@ -12,9 +11,9 @@ Katana is a modern Swift framework for writing iOS applications' business logic 
 
 In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch a `StateUpdater`. A `StateUpdater` is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.
 
-We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several milions of times and Katana really helped us scaling them quickly and efficiently. [Bending Spoons](http://www.bendingspoons.com)'s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. 
+We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several millions of times and Katana really helped us scaling them quickly and efficiently. [Bending Spoons](http://www.bendingspoons.com)'s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. 
 
-We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️ 
+We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️
 
 ## Overview
 
@@ -52,8 +51,6 @@ store.addListener() { oldState, newState in
 }
 ```
 
-
-
 ## Side Effects
 
 Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
@@ -68,7 +65,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // that updates the state
     context.dependencies.APIManager
         .getRandomNumber()
-        .then({ randomNumber in context.dispatch(SetCounter(newValue: randomNumber)) })
+        .then { randomNumber in context.dispatch(SetCounter(newValue: randomNumber)) }
   }
 }
 
@@ -233,9 +230,10 @@ Certain versions of Katana only support certain versions of Swift. Depending on 
 Use this table in order to check which version of Katana you need.
 
 | Swift Version  | Katana Version |
-| ------------- | ------------- |
-| Swift 4.2 | Katana >= 2.0  |
-| Swift 4.1 | Katana < 2.0 |
+| -------------- | -------------- |
+| Swift 5.0      | Katana >= 6.0  |
+| Swift 4.2      | Katana >= 2.0  |
+| Swift 4.1      | Katana < 2.0   |
 
 
 ## Where to go from here
@@ -258,15 +256,15 @@ You can also add Katana to [Dash](https://kapeli.com/dash) using the proper [doc
 
 ## Installation
 
-Katana is available through [CocoaPods](https://cocoapods.org/), [Carthage](https://github.com/Carthage/Carthage) and [Swift Package Manager](https://swift.org/package-manager/), you can also drop `Katana.project` into your Xcode project.
+Katana is available through [CocoaPods](https://cocoapods.org/) and [Swift Package Manager](https://swift.org/package-manager/), you can also drop `Katana.project` into your Xcode project.
 
 ### Requirements
 
-- iOS 9.0+ / macOS 10.10+
+- iOS 11.0+ / macOS 10.10+
 
-- Xcode 8.0+
+- Xcode 9.0+
 
-- Swift 4.0+
+- Swift 5.0+
 
 ### Swift Package Manager
 [Swift Package Manager](https://swift.org/package-manager/) is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.
@@ -304,30 +302,6 @@ Now, you just need to run:
 ```bash
 $ pod install
 ```
-
-### Carthage
-
-[Carthage](https://github.com/Carthage/Carthage) is a decentralized dependency manager for Cocoa projects. 
-You can install Carthage downloading and running the `Carthage.pkg` file you can download from [here](https://github.com/Carthage/Carthage/releases) or you can install it using [Homebrew](http://brew.sh/) simply by running:
-
-```bash
-$ brew update
-$ brew install carthage
-```
-
-To integrate Katana into your Xcode project using Carthage, add it to your `Cartfile`:
-
-```
-github "Bendingspoons/katana-swift"
-```
-
-And Run:
-
-```bash
-$ carthage update
-```
-
-Then drag the built `Katana.framework` into your Xcode project.
 
 ## Get in touch 
 
