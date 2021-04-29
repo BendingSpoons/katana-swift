@@ -3,6 +3,8 @@
 ## [6.0.0](https://github.com/BendingSpoons/katana-swift/tree/6.0.0) (2021-04-29)
 
 - [BREAKING] Provide old and new state to `StoreListener`s. [#216](https://github.com/BendingSpoons/katana-swift/pull/216)
+- Rewrite all tests to use XCTest instead of Quick and Nimble. [#213](https://github.com/BendingSpoons/katana-swift/pull/213)
+- Drop Xcake in favour of Tuist. [#213](https://github.com/BendingSpoons/katana-swift/pull/213)
 - [BREAKING] Bump Swift version to `5.0`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 - [BREAKING] Pin Hydra minimum version to `2.0.6`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 
