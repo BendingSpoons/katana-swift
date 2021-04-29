@@ -4,27 +4,31 @@ Please read it before you start participating.
 
 **Topics**
 
-* [Pull Request Submissions](#pull-request-submissions)
-* [Asking Questions](#asking-questions)
-* [Reporting Issues](#reporting-issues)
-* [Developers Certificate of Origin](#developers-certificate-of-origin)
-* [Code of Conduct](#code-of-conduct)
+- [Contributing Guidelines](#contributing-guidelines)
+  - [Project generation](#project-generation)
+  - [Pull Request Submissions](#pull-request-submissions)
+  - [Asking Questions](#asking-questions)
+  - [Reporting Issues](#reporting-issues)
+  - [Developer's Certificate of Origin 1.1](#developers-certificate-of-origin-11)
 
-<a href="#pull-request-submissions"></a>
-## Pull Request Submissions.
+## Project generation
+The `Xcode` project is generated using [Tuist](https://tuist.io/). To generate and open the project in Xcode, you just need to run:
+```
+tuist generate --open
+```
+
+## Pull Request Submissions
 Pull Requests should contain the issue you are solving as well as a description about your implementation/solution. Before submitting a pull request, please check that merge issues are resolved.
 
-We use [Swiftlint](https://github.com/realm/SwiftLint) to enforce coding rules. The rules can be found in the `.swiftlint.yml` file in the root folder of the project. Please make sure you don't have any warning or error before submitting the Pull Request.
+We use [SwiftLint](https://github.com/realm/SwiftLint) and [SwiftFormat](https://github.com/nicklockwood/SwiftFormat/) to enforce coding rules. The rules can be found in the `.swiftlint.yml` and `.swiftformat` file in the root folder of the project. Please make sure you don't have any warning or error before submitting the Pull Request. Both `SwiftLint` and `SwiftFormat` are run when building the project generated with `Tuist`.
 
 Documentation and tests are very important. When you submit a Pull Request, please keep the documentation updated and Implement the appropriated tests. For instance, if you fix a bug, a good idea is to add tests that are aimed to confirm that the issue has been solved and avoid future regressions.
 
-<a href="#asking-questions"></a>
 ## Asking Questions
 Feel free to [open an issue](https://github.com/BendingSpoons/katana-swift/issues/new) for any doubt or feature request related to Katana.
 
 For any usage questions that are not specific to the project itself (e.g., issus related to Swift), please ask on [Stack Overflow](http://stackoverflow.com/questions/tagged/swift) instead. By doing so, you'll be more likely to quickly solve your problem, and you'll allow anyone else with the same question to find the answer. This also allows maintainers to focus on improving the project for others.
 
-<a href="#reporting-issues"></a>
 ## Reporting Issues
 A great way to contribute to the project
 is to send a detailed issue when you encounter a problem.
@@ -45,7 +49,6 @@ When reporting issues, please include the following:
 
 This information will help us review and fix your issue faster.
 
-<a href="#developers-certificate-of-origin"></a>
 ## Developer's Certificate of Origin 1.1
 By making a contribution to this project, I certify that:
 

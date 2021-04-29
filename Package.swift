@@ -7,18 +7,16 @@ let package = Package(
   name: "Katana",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_15)
+    .macOS(.v10_10),
   ],
   products: [
     .library(name: "Katana", targets: ["Katana"]),
   ],
   dependencies: [
-    .package(url: "https://github.com/malcommac/Hydra.git", .upToNextMinor(from: "2.0.5")),
-    .package(url: "https://github.com/Quick/Quick.git", .upToNextMajor(from: "2.2.0")),
-    .package(url: "https://github.com/Quick/Nimble.git", .upToNextMajor(from: "8.0.0"))
+    .package(url: "https://github.com/malcommac/Hydra.git", .upToNextMinor(from: "2.0.6")),
   ],
   targets: [
-    .target(name: "Katana", dependencies: ["Hydra"], path: "Katana"),
-    .testTarget(name: "KatanaTests", dependencies: ["Katana", "Quick", "Nimble"], path: "KatanaTests")
+    .target(name: "Katana", dependencies: ["Hydra"], path: "Sources"),
+    .testTarget(name: "KatanaTests", dependencies: ["Katana"], path: "Tests"),
   ]
 )
