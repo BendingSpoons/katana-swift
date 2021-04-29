@@ -1,7 +1,32 @@
-# Change Log
+# Changelog
+
+## [5.1.1](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2021-02-09)
+- Make codebase compile with Swift 5.4 [#210](https://github.com/BendingSpoons/katana-swift/pull/210)
+- Fix typos in documentation [#207](https://github.com/BendingSpoons/katana-swift/pull/207)
+
+## [5.1.0](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2020-11-27)
+- Add `dependenciesInitializer` parameter to `Store` initializer
+
+## [5.0.0](https://github.com/BendingSpoons/katana-swift/tree/5.0.0) (2020-10-09)
+- bumped minDeploymentTarget from `8.3` to `11.0`
+- fixed `Package.swift`
+- pinned Hydra minimum version to `2.0.5`
+
+## [4.0.0](https://github.com/BendingSpoons/katana-swift/tree/4.0.0) (2020-07-29)
+- Added `ReturningSideEffect` protocol, in parallel to the already existing `SideEffect`
+- Added a proper `dispatch` method for `ReturningSideEffect`s to return the values
+- Updated the README with explanations for the new behaviours
+- changed `Dispatch` to `AnyDispach`
+- removed the `Action` (and `ActionWithSideEffect`) entities
+- bumped Hydra to `2.0`
+
+## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
+- Preserve interceptors order during execution.
+  [\#189](https://github.com/BendingSpoons/katana-swift/pull/189) ([alextosatto](https://github.com/alextosatto))
+- Fix tests
 
 ## [3.0.2](https://github.com/BendingSpoons/katana-swift/tree/3.0.2) (2019-09-05)
-- Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti) )
+- Avoid `Promise.then()` on the main thread when possibile [\#175](https://github.com/BendingSpoons/katana-swift/pull/175) ([fonesti](https://github.com/fonesti))
 
 ## [3.0.1](https://github.com/BendingSpoons/katana-swift/tree/3.0.1) (2019-05-08)
 [Full Changelog](https://github.com/BendingSpoons/katana-swift/compare/3.0.0...3.0.1)

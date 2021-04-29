@@ -22,9 +22,10 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/BendingSpoons/katana-swift.git', :tag => s.version.to_s }
   s.social_media_url = 'https://twitter.com/katana_swift'
 
-  s.ios.deployment_target = '8.3'
+  s.ios.deployment_target = '11.0'
   s.osx.deployment_target  = '10.10'
+  s.swift_version = File.read(".swift-version")
   s.source_files = ['Katana/**/*.{swift,h}']
 
-  s.dependency 'HydraAsync', '~> 1.2'
+  s.dependency 'HydraAsync', '>= 2.0.5', '< 3'
 end

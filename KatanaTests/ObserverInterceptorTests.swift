@@ -9,6 +9,7 @@
 import Foundation
 import Quick
 import Nimble
+
 @testable import Katana
 
 class ObserverInterceptorTests: QuickSpec {
@@ -136,7 +137,7 @@ class ObserverInterceptorTests: QuickSpec {
         it("is is not triggered for side effects") {
           
           var invoked = false
-        
+          
           let interceptor = ObserverInterceptor.observe([
             .onStateChange({ (prev: State, curr: State) -> Bool in
               invoked = true
@@ -145,11 +146,12 @@ class ObserverInterceptorTests: QuickSpec {
           ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
-          store.dispatch(MockSideEffet())
+                    
+          let promise = store.dispatch(MockSideEffect())
           
           expect(store.isReady).toEventually(beTrue())
           expect(invoked).toEventually(beFalse())
+          expect(promise.isPending).toEventually(beFalse())
         }
       }
       
@@ -186,7 +188,7 @@ class ObserverInterceptorTests: QuickSpec {
           let interceptor = ObserverInterceptor.observe([
             .onDispatch(AddTodo.self, [StateChangeAddUser.self]),
             .onDispatch(AddTodo.self, [NilStateChangeAddUser.self]),
-            ])
+          ])
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
@@ -217,42 +219,54 @@ class ObserverInterceptorTests: QuickSpec {
         let testNotification = Notification.Name("Test_Notification")
         
         it("works") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [StateChangeAddUser.self])
-          ])
-          
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
+
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
 
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(name: testNotification, object: nil)
-          
+          notificationCenter.post(name: testNotification, object: nil)
+
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(1))
         }
         
         it("works with multiple items to dispatch") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
-            ])
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self, StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
-          
+
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(Notification(name: testNotification))
-          
+          notificationCenter.post(Notification(name: testNotification))
+
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(2))
         }
         
         it("handles nil init") {
-          let interceptor = ObserverInterceptor.observe([
-            .onNotification(testNotification, [NilStateChangeAddUser.self, StateChangeAddUser.self])
-          ])
+          let notificationCenter = NotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [NilStateChangeAddUser.self, StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
           
           let store = Store<AppState, TestDependenciesContainer>(interceptors: [interceptor])
           
           expect(store.isReady).toEventually(beTrue())
-          NotificationCenter.default.post(Notification(name: testNotification))
+          notificationCenter.post(Notification(name: testNotification))
           
           expect(store.state.todo.todos.count).toEventually(equal(0))
           expect(store.state.user.users.count).toEventually(equal(1))
@@ -297,6 +311,29 @@ class ObserverInterceptorTests: QuickSpec {
           expect(store.state.user.users.count).toEventually(equal(1))
         }
       }
+      
+      // MARK: - Deallocation
+      describe("When deallocated") {
+        it("unregisters all the observers") {
+          let testNotification = Notification.Name("Test_Notification")
+          let notificationCenter = TestableNotificationCenter()
+          let interceptor = ObserverInterceptor.observe(
+            [
+              .onNotification(testNotification, [StateChangeAddUser.self])
+            ],
+            notificationCenter: notificationCenter
+          )
+
+          var store: Store<AppState, TestDependenciesContainer>? = .init(interceptors: [interceptor])
+          
+          expect(store?.isReady).toEventually(beTrue())
+          expect(notificationCenter.observers).toEventually(haveCount(1))
+          
+          store = nil
+          
+          expect(notificationCenter.observers).toEventually(haveCount(0))
+        }
+      }
     }
   }
 }
@@ -328,13 +365,18 @@ private struct AddTodoWithDelay: TestStateUpdater {
   }
 }
 
-private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
+private struct StateChangeAddUser: TestStateUpdater,
+  StateObserverDispatchable,
+  DispatchObserverDispatchable,
+  NotificationObserverDispatchable,
+OnStartObserverDispatchable {
+  
   init?(prevState: State, currentState: State) {
     
   }
   
   init?(dispatchedItem: Dispatchable, prevState: State, currentState: State) {
-
+    
   }
   
   init?(notification: Notification) {
@@ -350,7 +392,11 @@ private struct StateChangeAddUser: TestStateUpdater, StateObserverDispatchable, 
   }
 }
 
-private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchable, DispatchObserverDispatchable, NotificationObserverDispatchable, OnStartObserverDispatchable {
+private struct NilStateChangeAddUser: TestStateUpdater,
+  StateObserverDispatchable,
+  DispatchObserverDispatchable,
+  NotificationObserverDispatchable,
+OnStartObserverDispatchable {
   init?(prevState: State, currentState: State) {
     return nil
   }
@@ -372,8 +418,28 @@ private struct NilStateChangeAddUser: TestStateUpdater, StateObserverDispatchabl
   }
 }
 
-private struct MockSideEffet: TestSideEffect {
-  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-    
+private struct MockSideEffect: ReturningTestSideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> AppState {
+    return context.getState()
+  }
+}
+
+fileprivate class TestableNotificationCenter: NotificationCenter {
+  var observers: [NSObjectProtocol] = []
+  
+  override func addObserver(
+    forName name: NSNotification.Name?,
+    object obj: Any?,
+    queue: OperationQueue?,
+    using block: @escaping (Notification) -> Void
+  ) -> NSObjectProtocol {
+    let observer = super.addObserver(forName: name, object: obj, queue: queue, using: block)
+    self.observers.append(observer)
+    return observer
+  }
+  
+  override func removeObserver(_ observer: Any) {
+    super.removeObserver(observer)
+    self.observers.removeAll(where: { $0.isEqual(observer) })
   }
 }

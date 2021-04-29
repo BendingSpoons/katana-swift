@@ -1,24 +1,24 @@
 PODS:
-  - HydraAsync (1.2.1)
-  - Nimble (7.3.4)
-  - Quick (1.3.4)
+  - HydraAsync (2.0.5)
+  - Nimble (8.1.2)
+  - Quick (2.2.1)
 
 DEPENDENCIES:
-  - HydraAsync (~> 1.2)
-  - Nimble (~> 7.3)
-  - Quick (~> 1.3)
+  - HydraAsync (< 3, >= 2.0.5)
+  - Nimble (~> 8.0)
+  - Quick (~> 2.2)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - HydraAsync
     - Nimble
     - Quick
 
 SPEC CHECKSUMS:
-  HydraAsync: 8f2ab62d57e140b4ca587ae0f66e1eb04e8e6965
-  Nimble: 051e3d8912d40138fa5591c78594f95fb172af37
-  Quick: f4f7f063c524394c73ed93ac70983c609805d481
+  HydraAsync: 6b74390f143e7edfb8bd3c706262b67bbefc09df
+  Nimble: 3864815b4703c7ebffba875973c70e854489fbae
+  Quick: f5754d69b7013f5864c29aab9ae6f0c79c5bc200
 
-PODFILE CHECKSUM: 02050a6e4aebe0534f0b88f05df416ee1adb6dea
+PODFILE CHECKSUM: 258d8f2b7deeb68eddc7d646a30d12520ea91344
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.0

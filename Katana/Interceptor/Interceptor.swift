@@ -11,7 +11,7 @@ import Foundation
 /**
  Typealias for the function that is invoked to continue with the interceptors
  chains.
-*/
+ */
 public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
 
 /**
@@ -41,14 +41,14 @@ public typealias StoreInterceptorNext = (_: Dispatchable) throws -> Void
  is invoked.
  
  Here the interceptor can do anything it needs to in order to implement the desired behaviour. Eventually, though, it
- should either invoke next passing the dispatchable (that is, the chain continues) or throw an error, which
+ should either invoke `next` passing the dispatchable (that is, the chain continues) or throw an error, which
  will reject the related promise and will make so that the operation related to the dispatchable is not performed.
  
  The `next` method can be also invoked with a different dispatchable with respect to the received one.
  
  This step is performed multiple times in the store lifetime, once for each dispatchable item handled
  by the store.
-*/
+ */
 public typealias StoreInterceptor =
   (_ sideEffectContext: AnySideEffectContext) ->
   (_ next: @escaping StoreInterceptorNext) ->

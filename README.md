@@ -56,7 +56,7 @@ store.addListener() {
 
 ## Side Effects
 
-Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of  `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
+Updating the application's state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of `side effects`. Side effects can be used to interact with other parts of your applications and then dispatch new `StateUpdater`s to update your state. For more complex situations, you can also dispatch other `side effects`.
 
 `Side Effect`s are implemented on top of [Hydra](https://github.com/malcommac/Hydra/), and allow you to write your logic using [promises](https://promisesaplus.com/). In order to leverage this functionality you have to adopt the `SideEffect` protocol
 
@@ -68,7 +68,7 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     // that updates the state
     context.dependencies.APIManager
         .getRandomNumber()
-        .thenDispatch({ newValue in SetCounter(newValue: newValue) })
+        .then({ randomNumber in context.dispatch(SetCounter(newValue: randomNumber)) })
   }
 }
 
@@ -91,10 +91,61 @@ struct GenerateRandomNumberFromBackend: SideEffect {
     let promise = context.dependencies.APIManager.getRandomNumber()
     
     // we use await to wait for the promise to be fullfilled
-    let newValue = try await(promise)
+    let randomNumber = try await(promise)
 
     // then the state is updated using the proper state updater
-    try await(context.dispatch(SetCounter(newValue: newValue)))
+    try await(context.dispatch(SetCounter(newValue: randomNumber)))
+  }
+}
+```
+
+In order to further improve the usability of side effects, there is also a version which can return a value. Note that both the state and dependencies types are erased, to allow for more freedom when using it in libraries, for example.
+
+```swift
+struct PurchaseProduct: ReturningSideEffect {
+  let productID: ProductID
+
+  func sideEffect(_ context: AnySideEffectContext) throws -> Result<PurchaseResult, PurchaseError> {
+
+    // 0. Get the typed version of the context
+    guard let context = context as? SideEffectContext<CounterState, AppDependencies> else {
+      fatalError("Invalid context type")
+    }
+
+    // 1. purchase the product via storekit
+    let storekitResult = context.dependencies.monetization.purchase(self.productID)
+    if case .failure(let error) = storekitResult {
+      return .storekitRejected(error)
+    }
+
+    // 2. get the receipt
+    let receipt = context.dependencies.monetization.getReceipt()
+
+    // 3. validate the receipt
+    let validationResult = try await(context.dispatch(Monetization.Validate(receipt)))
+
+    // 4. map error
+    return validationResult
+      .map { .init(validation: $0) }
+      .mapError { .validationRejected($0) }
+  }
+}
+```
+
+Note that, if this is a prominent use case for the library/app, the step `0` can be encapsulated in a protocol like this:
+
+```swift
+protocol AppReturningSideEffect: ReturningSideEffect {
+  func sideEffect(_ context: SideEffectContext<AppState, DependenciesContainer>) -> Void
+}
+
+extension AppReturningSideEffect {
+  func sideEffect(_ context: AnySideEffectContext) throws -> Void {
+    guard let context = context as? SideEffectContext<AppState, DependenciesContainer> else {
+      fatalError("Invalid context type")
+    }
+    
+    self.sideEffect(context)
   }
 }
 ```
@@ -113,7 +164,7 @@ final class AppDependencies: SideEffectDependencyContainer {
 
 ## Interceptors
 
-When defining a `Store` you can provide a list of interceptors that are triggered whenever an item is dispatched.  An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
+When defining a `Store` you can provide a list of interceptors that are triggered in the given order whenever an item is dispatched. An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.
 
 #### DispatchableLogger
  Katana comes with a built-in `DispatchableLogger` interceptor that logs all the dispatchables, except the ones listed in the blacklist parameter.
@@ -142,6 +193,8 @@ let observerInterceptor = ObserverInterceptor.observe([
 
 let store = Store<CounterState>(interceptor: [observerInterceptor])
 ```
+
+Note that when intercepting a side effect using an `ObserverInterceptor`, the return value of the dispatchable is not available to the interceptor itself.
 
 ## What about the UI?
 
@@ -304,4 +357,3 @@ Katana is available under the [MIT license](https://github.com/BendingSpoons/kat
 Katana is maintained by Bending Spoons.
 We create our own tech products, used and loved by millions all around the world.
 Interested? [Check us out](http://bndspn.com/2fKggTa)!
-

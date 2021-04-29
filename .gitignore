@@ -20,3 +20,5 @@ Carthage/
 /build
 
 .build
+/Katana.xcodeproj/xcshareddata/xcschemes/Katana.xcscheme
+/Katana.xcodeproj/project.pbxproj
