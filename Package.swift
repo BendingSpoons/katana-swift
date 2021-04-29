@@ -16,7 +16,7 @@ let package = Package(
     .package(url: "https://github.com/malcommac/Hydra.git", .upToNextMinor(from: "2.0.6")),
   ],
   targets: [
-    .target(name: "Katana", dependencies: ["Hydra"], path: "Katana"),
-    .testTarget(name: "KatanaTests", dependencies: ["Katana"], path: "KatanaTests")
+    .target(name: "Katana", dependencies: ["Hydra"], path: "Sources"),
+    .testTarget(name: "KatanaTests", dependencies: ["Katana"], path: "Tests")
   ]
 )
