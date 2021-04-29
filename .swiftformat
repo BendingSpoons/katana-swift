@@ -271,4 +271,4 @@
 # Some rules depended on the swiftversion and will be disabled automatically if it's not specified or supported
 --swiftversion 5
 
---exclude Pods
+--exclude DerivedData, Pods
