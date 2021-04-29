@@ -2,7 +2,7 @@
 ![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png)
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
-[![Build Status](https://github.com/BendingSpoons/katana-swift/workflows/Build%20and%20Test/badge.svg)](https://github.com/BendingSpoons/katana-swift/workflows/Build%20and%20Test/)
+[![Build Status](https://github.com/BendingSpoons/katana-swift/workflows/Build%20and%20Test/badge.svg)](https://github.com/BendingSpoons/katana-swift/actions/workflows/build_and_test.yml)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg)]()
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
@@ -304,4 +304,3 @@ Katana is available under the [MIT license](https://github.com/BendingSpoons/kat
 Katana is maintained by Bending Spoons.
 We create our own tech products, used and loved by millions all around the world.
 Interested? [Check us out](http://bndspn.com/2fKggTa)!
-
