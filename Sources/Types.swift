@@ -10,10 +10,20 @@ import Foundation
 import Hydra
 
 /**
- Typealias for the function that is invoked to continues with the middleware
- chains.
+ Typealias for the function that is invoked when the state changes.
+
+ - parameter oldState: the state before the update
+ - parameter newState: the state after the update
  */
-public typealias StoreListener = () -> Void
+public typealias AnyStoreListener = (_ oldState: State, _ newState: State) -> Void
+
+/**
+ Typealias for the function that is invoked when the state changes.
+
+ - parameter oldState: the state before the update
+ - parameter newState: the state after the update
+ */
+public typealias StoreListener<S: State> = (_ oldState: S, _ newState: S) -> Void
 
 /// Typealias for the `Store` listener unsubscribe closure
 public typealias StoreUnsubscribe = () -> Void

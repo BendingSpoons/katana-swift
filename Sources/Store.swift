@@ -59,7 +59,7 @@ public protocol AnyStore: AnyObject {
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
    */
-  func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe
+  func addAnyListener(_ listener: @escaping AnyStoreListener) -> StoreUnsubscribe
 }
 
 /**
@@ -144,7 +144,19 @@ open class PartialStore<S: State>: AnyStore {
 
    - warning: Not implemented. Instantiate a `Store` instead
    */
-  public func addListener(_: @escaping StoreListener) -> StoreUnsubscribe {
+  public func addAnyListener(_: @escaping AnyStoreListener) -> StoreUnsubscribe {
+    fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
+  }
+
+  /**
+   Adds a listener to the store. A listener is basically a closure that is invoked
+   every time the Store's state changes
+
+   - parameter listener: the listener closure
+   - returns: a closure that can be used to remove the listener
+   - warning: Not implemented. Instantiate a `Store` instead
+   */
+  public func addListener(_: @escaping StoreListener<S>) -> StoreUnsubscribe {
     fatalError("This should not be invoked, as PartialStore should never be used directly. Use Store instead")
   }
 }
@@ -203,7 +215,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   typealias ListenerID = String
 
   /// The  array of registered listeners
-  fileprivate var listeners: [ListenerID: StoreListener]
+  fileprivate var listeners: [ListenerID: StoreListener<S>]
 
   /// The array of middleware of the store
   fileprivate let interceptors: [StoreInterceptor]
@@ -348,8 +360,6 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     configuration.stateInitializerAsyncProvider.execute { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
     }
-
-    self.invokeListeners()
   }
 
   /// The `anyDispatch` method as a closure which does not capture `self` to avoid reference loops
@@ -373,7 +383,20 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
    */
-  override public func addListener(_ listener: @escaping StoreListener) -> StoreUnsubscribe {
+  override public func addAnyListener(_ listener: @escaping AnyStoreListener) -> StoreUnsubscribe {
+    self.addListener { oldState, newState in
+      listener(oldState, newState)
+    }
+  }
+
+  /**
+   Adds a typed listener to the store. A listener is basically a closure that is invoked
+   every time the Store's state changes
+
+   - parameter listener: the listener closure
+   - returns: a closure that can be used to remove the listener
+   */
+  override public func addListener(_ listener: @escaping StoreListener<S>) -> StoreUnsubscribe {
     let listenerID: ListenerID = UUID().uuidString
     self.listeners[listenerID] = listener
 
@@ -555,11 +578,11 @@ extension Store {
   }
 
   /// Invoke all the registered listeners in the configured async provider
-  private func invokeListeners() {
+  private func invokeListeners(oldState: S, newState: S) {
     self.listenersAsyncProvider.execute { [weak self] () in
       guard let self = self else { return }
 
-      self.listeners.values.forEach { $0() }
+      self.listeners.values.forEach { $0(oldState, newState) }
     }
   }
 
@@ -620,7 +643,8 @@ extension Store {
     }
 
     let logEnd = SignpostLogger.shared.logStart(type: .stateUpdater, name: stateUpdater.debugDescription)
-    let newState = stateUpdater.updatedState(currentState: self.state)
+    let oldState = self.state
+    let newState = stateUpdater.updatedState(currentState: oldState)
     logEnd()
 
     guard let typedNewState = newState as? S else {
@@ -629,7 +653,7 @@ extension Store {
 
     self.state = typedNewState
 
-    self.invokeListeners()
+    self.invokeListeners(oldState: oldState, newState: typedNewState)
   }
 }
 
