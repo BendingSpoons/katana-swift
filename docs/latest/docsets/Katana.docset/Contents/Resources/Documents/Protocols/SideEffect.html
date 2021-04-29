@@ -21,9 +21,9 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../index.html">
-          Katana Docs
+          Katana 5.1.1 Docs
         </a>
-         (100% documented)
+         (99% documented)
       </p>
     
       <p class="header-col--secondary">
@@ -62,13 +62,16 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Classes/Store.html">Store</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Store/Configuration.html">– Configuration</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Enums/AsyncActionState.html">AsyncActionState</a>
+                <a class="nav-group-task-link" href="../Enums/DispatchableLogger.html">DispatchableLogger</a>
               </li>
             </ul>
           </li>
@@ -76,30 +79,13 @@
             <a class="nav-group-name-link" href="../Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Extensions/Promise.html">Promise</a>
-              </li>
-            </ul>
-          </li>
-          <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../Functions.html">Functions</a>
-            <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Functions.html#/s:6Katana23middlewareToInterceptoryyAA12Dispatchable_pKcyAaC_pKccAA20AnySideEffectContext_pcyAaC_pcyAaC_pccAA5State_pyc_yAA6Action_pctcF">middlewareToInterceptor(_:)</a>
+                <a class="nav-group-task-link" href="../Extensions/DispatchQueue.html">DispatchQueue</a>
               </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/Action.html">Action</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/ActionWithSideEffect.html">ActionWithSideEffect</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/AnyAsyncAction.html">AnyAsyncAction</a>
-              </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/AnySideEffect.html">AnySideEffect</a>
               </li>
@@ -113,7 +99,7 @@
                 <a class="nav-group-task-link" href="../Protocols/AnyStore.html">AnyStore</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/AsyncAction.html">AsyncAction</a>
+                <a class="nav-group-task-link" href="../Protocols/AsyncProvider.html">AsyncProvider</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
@@ -122,13 +108,13 @@
                 <a class="nav-group-task-link" href="../Protocols/Dispatchable.html">Dispatchable</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Protocols/LinkeableAction.html">LinkeableAction</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/ReturningSideEffect.html">ReturningSideEffect</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Protocols/SideEffect.html">SideEffect</a>
@@ -151,18 +137,6 @@
             <a class="nav-group-name-link" href="../Structs.html">Structures</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ActionLinker.html">ActionLinker</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ActionLinks.html">ActionLinks</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/ActionLogger.html">ActionLogger</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Structs/DispatchableLogger.html">DispatchableLogger</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/ObserverInterceptor.html">ObserverInterceptor</a>
               </li>
               <li class="nav-group-task">
@@ -171,19 +145,22 @@
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Structs/SideEffectContext.html">SideEffectContext</a>
               </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/SignpostLogger.html">SignpostLogger</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
             <a class="nav-group-name-link" href="../Typealiases.html">Type Aliases</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana11AnyDispatcha">AnyDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana16AnyStoreListenera">AnyStoreListener</a>
+              </li>
+              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana8GetStatea">GetState</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/PromisableStoreDispatch">PromisableStoreDispatch</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana13StoreDispatcha">StoreDispatch</a>
               </li>
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
@@ -195,12 +172,6 @@
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
               </li>
               <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana15StoreMiddlewarea">StoreMiddleware</a>
-              </li>
-              <li class="nav-group-task">
-                <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana19StoreMiddlewareNexta">StoreMiddlewareNext</a>
-              </li>
-              <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
               </li>
             </ul>
@@ -210,33 +181,37 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             <h1>SideEffect</h1>
               <div class="declaration">
                 <div class="language">
+                  
                   <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">SideEffect</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></span></code></pre>
 
                 </div>
               </div>
             <p>A side effect is a single atom of the logic of your application.
- While you can actually use them as you desire, the idea is to implement in each side effect
- a meaningful, self contained, piece of logic that can be used from other pieces of you application
- (e.g., dispatched by a View Controller or by another side effect).</p>
+While you can actually use them as you desire, the idea is to implement in each side effect
+a meaningful, self contained, piece of logic that can be used from other pieces of you application
+(e.g., dispatched by a View Controller or by another side effect).</p>
 
-<p>The <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> is strongly tied to the state that it handles and the dependencies it has.
- This greatily simplifies the code written in normal situations.
- However, if you need to create updaters that are not strictly tied to a concrete types (e.g., in a library)
- you can use <code><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></code>.</p>
+<p>The <code>SideEffect</code> is strongly tied to the state that it handles and the dependencies it has.
+This greatly simplifies the code written in normal situations.
+However, if you need to create updaters that are not strictly tied to a concrete types (e.g., in a library)
+you can use <code><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></code>.</p>
+<h3 id='app-tips-amp-tricks' class='heading'>App Tips &amp; Tricks</h3>
 
-<p>### App Tips &amp; Tricks
-To further simplify the usage of a <code><a href="../Protocols/StateUpdater.html">StateUpdater</a></code> you can add to your application a helper protocol</p>
-<pre class="highlight swift"><code> <span class="c1">/// assuming `AppState` is the type of your application's state and `DependenciesContainer` is the</span>
- <span class="c1">/// container of your dependencies</span>
- <span class="kd">protocol</span> <span class="kt">AppSideEffect</span><span class="p">:</span> <span class="kt">SideEffect</span> <span class="k">where</span> <span class="kt">StateType</span> <span class="o">==</span> <span class="kt">AppState</span><span class="p">,</span> <span class="kt">Dependencies</span> <span class="o">==</span> <span class="kt">DependenciesContainer</span> <span class="p">{}</span>
+<p>To further simplify the usage of a <code>SideEffect</code> you can add to your application a helper protocol</p>
+<pre class="highlight swift"><code><span class="c1">/// assuming `AppState` is the type of your application's state and `DependenciesContainer` is the</span>
+<span class="c1">/// container of your dependencies</span>
+<span class="kd">protocol</span> <span class="kt">AppSideEffect</span><span class="p">:</span> <span class="kt">SideEffect</span> <span class="k">where</span> <span class="kt">StateType</span> <span class="o">==</span> <span class="kt">AppState</span><span class="p">,</span> <span class="kt">Dependencies</span> <span class="o">==</span> <span class="kt">DependenciesContainer</span> <span class="p">{}</span>
 </code></pre>
 
 <p>By conforming to <code>AppSideEffect</code>, you will get better autocompletion</p>
 
+              <div class="slightly-smaller">
+                <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L241-L281">Show on GitHub</a>
+              </div>
           </div>
         </section>
 
@@ -269,7 +244,7 @@ To further simplify the usage of a <code><a href="../Protocols/StateUpdater.html
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L157">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L243">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -299,7 +274,7 @@ To further simplify the usage of a <code><a href="../Protocols/StateUpdater.html
                         </div>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L160">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L246">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -309,11 +284,8 @@ To further simplify the usage of a <code><a href="../Protocols/StateUpdater.html
                     <code>
                     <a name="/s:6Katana10SideEffectP04sideC0yyAA0bC7ContextVy9StateTypeQz12DependenciesQzGKF"></a>
                     <a name="//apple_ref/swift/Method/sideEffect(_:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana10SideEffectP04sideC0yyAA0bC7ContextVy9StateTypeQz12DependenciesQzGKF">sideEffect(_:)</a>
+                    <a class="token" href="#/s:6Katana10SideEffectP04sideC0yyAA0bC7ContextVy9StateTypeQz12DependenciesQzGKF">sideEffect(_:<wbr>)</a>
                     </code>
-                      <span class="declaration-note">
-                        Default implementation
-                      </span>
                   </div>
                   <div class="height-container">
                     <div class="pointer-container"></div>
@@ -324,13 +296,13 @@ To further simplify the usage of a <code><a href="../Protocols/StateUpdater.html
 You can implement the logic, leveraging the technology you desire for threading and flow management.</p>
 
 <p>However, there are two patterns that Katana suggests to use: synchronous side effects and asynchronous side effects</p>
-<h4 id='syncronous' class='heading'>Syncronous</h4>
+<h4 id='synchronous' class='heading'>Synchronous</h4>
 
 <p>A synchronous side effect is a side effect that finishes its execution when the <code>sideEffect(:)</code> method
 is completed. Since the related promise (that is, the promise that is returned when the side effect is dispatched)
 is resolved when this method ends, it means that the caller can safely assume that the operations are completed.</p>
 
-<p>The easier way to achieve this behaviour is by using <code>await</code> offered by the <code>Hydra</code> library. You can use <code>await</code>
+<p>The easier way to achieve this behaviour is by using <code>Hydra.await</code> offered by the <code>Hydra</code> library. You can use <code>Hydra.await</code>
 with any API that returns a promise (e.g., the dispatch) and it blocks the execution of the method until the
 promise is resolved (you can find more documentation here <a href="https://github.com/malcommac/Hydra/#awaitasync">https://github.com/malcommac/Hydra/#awaitasync</a>).</p>
 
@@ -349,17 +321,11 @@ other side effects in the queue.</p>
     <p class="aside-title">Throws</p>
     if the logic has an error. The related promise will be rejected
 
-</div>
-<div class="aside aside-see-also">
+</div><div class="aside aside-see-also">
     <p class="aside-title">See also</p>
     <a href="https://github.com/malcommac/Hydra/#awaitasync">https://github.com/malcommac/Hydra/#awaitasync</a>
 
 </div>
-
-                      </div>
-                      <h4>Default Implementation</h4>
-                      <div class="default_impl abstract">
-                        <p>Implementation of the <code>sideEffect</code> requirement for <code>AnySideEffectContext</code></p>
 
                       </div>
                       <div class="declaration">
@@ -389,8 +355,45 @@ other side effects in the queue.</p>
                           </tbody>
                         </table>
                       </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>the side effect return value that will be used to parameterize the related promise</p>
+                      </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Katana/SideEffect.swift#L193">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L280">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana10SideEffectPAAE03anybC0yypAA03AnybC7Context_pKF"></a>
+                    <a name="//apple_ref/swift/Method/anySideEffect(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana10SideEffectPAAE03anybC0yypAA03AnybC7Context_pKF">anySideEffect(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Conformance of <code>SideEffect</code> to <code><a href="../Protocols/ReturningSideEffect.html">ReturningSideEffect</a></code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">anySideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L285-L292">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
@@ -403,8 +406,8 @@ other side effects in the queue.</p>
       </article>
     </div>
     <section class="footer">
-      <p>&copy; 2019 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2019-01-03)</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>&copy; 2021 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2021-04-29)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>

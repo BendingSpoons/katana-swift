@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>DispatchObserverDispatchable Protocol Reference</title>
+    <title>ReturningSideEffect Protocol Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Protocol/DispatchObserverDispatchable" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Protocol/ReturningSideEffect" class="dashAnchor"></a>
 
-    <a title="DispatchObserverDispatchable Protocol Reference"></a>
+    <a title="ReturningSideEffect Protocol Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="../index.html">Katana Reference</a>
       <img class="carat" src="../img/carat.png" />
-      DispatchObserverDispatchable Protocol Reference
+      ReturningSideEffect Protocol Reference
     </p>
 
     <div class="content-wrapper">
@@ -182,18 +182,46 @@
 
         <section class="section">
           <div class="section-content top-matter">
-            <h1>DispatchObserverDispatchable</h1>
+            <h1>ReturningSideEffect</h1>
               <div class="declaration">
                 <div class="language">
                   
-                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">DispatchObserverDispatchable</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/Dispatchable.html">Dispatchable</a></span></code></pre>
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">ReturningSideEffect</span> <span class="p">:</span> <span class="kt"><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></span></code></pre>
 
                 </div>
               </div>
-            <p>Protocol implemented by a dispatchable that wants to be dispatched in response to the dispatch of another dispatchable</p>
+            <p>A <code><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></code> that is capable of returning a typed value.</p>
+
+<p>In order to promote reusability of the logic written using this type, both the state and
+the dependencies are erased. This helps tremendously when writing libraries and generic
+logic, and it can also be extended to be used in the apps.</p>
+
+<p>For example, if the app needs to use a typed returning side effect it can define something like:</p>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppReturningSideEffect</span><span class="p">:</span> <span class="kt">ReturningSideEffect</span> <span class="p">{</span>
+  <span class="kd">typealias</span> <span class="kt">StateType</span> <span class="o">=</span> <span class="kt">AppState</span>
+  <span class="kd">typealias</span> <span class="kt">Dependencies</span> <span class="o">=</span> <span class="kt">AppDependencies</span>
+
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="p">,</span> <span class="kt">Dependencies</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ReturnType</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">AppReturningSideEffect</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">AnySideEffectContext</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">ReturnValue</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">typedContext</span> <span class="o">=</span> <span class="n">context</span> <span class="k">as?</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">StateType</span><span class="p">,</span> <span class="kt">Dependencies</span><span class="o">&gt;</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Invalid context passed to side effect"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">return</span> <span class="k">try</span> <span class="k">self</span><span class="o">.</span><span class="nf">sideEffect</span><span class="p">(</span><span class="n">typedContext</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></code>, <code><a href="../Protocols/SideEffect.html">SideEffect</a></code>
+
+</div>
 
               <div class="slightly-smaller">
-                <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/Interceptor/ObserverInterceptor.swift#L46-L58">Show on GitHub</a>
+                <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L198-L210">Show on GitHub</a>
               </div>
           </div>
         </section>
@@ -205,9 +233,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:6Katana28DispatchObserverDispatchableP14dispatchedItem9prevState07currentH0xSgAA0D0_p_AA0H0_pAaI_ptcfc"></a>
-                    <a name="//apple_ref/swift/Method/init(dispatchedItem:prevState:currentState:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:6Katana28DispatchObserverDispatchableP14dispatchedItem9prevState07currentH0xSgAA0D0_p_AA0H0_pAaI_ptcfc">init(dispatchedItem:<wbr>prevState:<wbr>currentState:<wbr>)</a>
+                    <a name="/s:6Katana19ReturningSideEffectP11ReturnValueQa"></a>
+                    <a name="//apple_ref/swift/Alias/ReturnValue" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana19ReturningSideEffectP11ReturnValueQa">ReturnValue</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -215,16 +243,53 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Creates the dispatchable item. If for any reason, the init decides
-that the dispatchable should not be sent to the Store, the init can fail
-(that is, returns nil)</p>
+                        <p>The type of the return value</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="nf">init</span><span class="p">?(</span><span class="nv">dispatchedItem</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Dispatchable.html">Dispatchable</a></span><span class="p">,</span> <span class="nv">prevState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">,</span> <span class="nv">currentState</span><span class="p">:</span> <span class="kt"><a href="../Protocols/State.html">State</a></span><span class="p">)</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">associatedtype</span> <span class="kt">ReturnValue</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L200">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana19ReturningSideEffectP04sideD0y11ReturnValueQzAA03AnycD7Context_pKF"></a>
+                    <a name="//apple_ref/swift/Method/sideEffect(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana19ReturningSideEffectP04sideD0y11ReturnValueQzAA03AnycD7Context_pKF">sideEffect(_:<wbr>)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implements the logic of the side effect.</p>
+<div class="aside aside-throws">
+    <p class="aside-title">Throws</p>
+    if the logic has an error. The related promise will be rejected
+
+</div><div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Protocols/AnySideEffect.html">AnySideEffect</a></code>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Protocols/ReturningSideEffect.html#/s:6Katana19ReturningSideEffectP11ReturnValueQa">ReturnValue</a></span></code></pre>
 
                         </div>
                       </div>
@@ -235,36 +300,12 @@ that the dispatchable should not be sent to the Store, the init can fail
                             <tr>
                               <td>
                                 <code>
-                                <em>dispatchedItem</em>
+                                <em>context</em>
                                 </code>
                               </td>
                               <td>
                                 <div>
-                                  <p>the item that triggered the init</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>prevState</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the last state before current changes</p>
-                                </div>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>currentState</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>the current state</p>
+                                  <p>the context of the side effect</p>
                                 </div>
                               </td>
                             </tr>
@@ -273,10 +314,43 @@ that the dispatchable should not be sent to the Store, the init can fail
                       </div>
                       <div>
                         <h4>Return Value</h4>
-                        <p>either the dispatchable item or nil</p>
+                        <p>the side effect return value, if applicable</p>
                       </div>
                       <div class="slightly-smaller">
-                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/Interceptor/ObserverInterceptor.swift#L57">Show on GitHub</a>
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L209">Show on GitHub</a>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:6Katana19ReturningSideEffectPAAE03anycD0yypAA03AnycD7Context_pKF"></a>
+                    <a name="//apple_ref/swift/Method/anySideEffect(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:6Katana19ReturningSideEffectPAAE03anycD0yypAA03AnycD7Context_pKF">anySideEffect(_:<wbr>)</a>
+                    </code>
+                      <span class="declaration-note">
+                        Extension method
+                      </span>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Implementation of the <code>anySideEffect</code> requirement for <code>ReturningSideEffectContext</code></p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">anySideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt"><a href="../Protocols/AnySideEffectContext.html">AnySideEffectContext</a></span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Any</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div class="slightly-smaller">
+                        <a href="https://github.com/BendingSpoons/katana-swift/blob/master//Sources/SideEffect.swift#L215-L217">Show on GitHub</a>
                       </div>
                     </section>
                   </div>
