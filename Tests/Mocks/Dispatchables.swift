@@ -1,22 +1,18 @@
 //
 //  Dispatchables.swift
-//  KatanaTests
+//  Katana
 //
-//  Created by Daniele Formichelli on 28/04/21.
-//  Copyright © 2021 BendingSpoons. All rights reserved.
-//
+//  Copyright © 2021 Bending Spoons.
+//  Distributed under the MIT License.
+//  See the LICENSE file for more information.
 
 import Foundation
 import Hydra
 import Katana
 
-protocol TestStateUpdater: StateUpdater where StateType == AppState {
+protocol TestStateUpdater: StateUpdater where StateType == AppState {}
 
-}
-
-protocol TestSideEffect: SideEffect where StateType == AppState, Dependencies == TestDependenciesContainer {
-
-}
+protocol TestSideEffect: SideEffect where StateType == AppState, Dependencies == TestDependenciesContainer {}
 
 protocol ReturningTestSideEffect: ReturningSideEffect where ReturnValue == AppState {
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws -> ReturnValue
@@ -61,10 +57,10 @@ struct ClosureSideEffect: TestSideEffect {
   }
 
   func sideEffect(_ context: SideEffectContext<AppState, TestDependenciesContainer>) throws {
-    if delay != 0 {
+    if self.delay != 0 {
       try Hydra.await(context.dependencies.delay(of: self.delay))
     }
 
-    try invocationClosure(context)
+    try self.invocationClosure(context)
   }
 }

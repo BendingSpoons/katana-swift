@@ -2,7 +2,7 @@
 //  Dispatchable.swift
 //  Katana
 //
-//  Copyright © 2019 Bending Spoons.
+//  Copyright © 2021 Bending Spoons.
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
@@ -14,11 +14,11 @@ import Foundation
  simply mark a category of items. Currently the `Store` is able to manage 2 types
  of `Dispatchable`: `SideEffect`, `StateUpdater`.
  */
-public protocol Dispatchable: CustomDebugStringConvertible {}
+public protocol Dispatchable {}
 
-/// Implementation of the `CustomDebugStringConvertible` protocol
-public extension Dispatchable {
-  var debugDescription: String {
+extension Dispatchable {
+  /// Implementation of the `CustomDebugStringConvertible` protocol
+  public var debugDescription: String {
     return String(reflecting: type(of: self))
   }
 }

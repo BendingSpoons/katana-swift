@@ -7,7 +7,7 @@ let package = Package(
   name: "Katana",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_10)
+    .macOS(.v10_10),
   ],
   products: [
     .library(name: "Katana", targets: ["Katana"]),
@@ -17,6 +17,6 @@ let package = Package(
   ],
   targets: [
     .target(name: "Katana", dependencies: ["Hydra"], path: "Sources"),
-    .testTarget(name: "KatanaTests", dependencies: ["Katana"], path: "Tests")
+    .testTarget(name: "KatanaTests", dependencies: ["Katana"], path: "Tests"),
   ]
 )
