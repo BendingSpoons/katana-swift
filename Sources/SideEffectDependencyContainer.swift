@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 /// Protocol that the side effect dependencies container should implement
-public protocol SideEffectDependencyContainer: class {
+public protocol SideEffectDependencyContainer: AnyObject {
   /**
    Creates a new instance of the container.
    The container is instantiated when the store is instantiated
