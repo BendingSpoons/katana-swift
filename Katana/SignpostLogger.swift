@@ -55,7 +55,7 @@ public struct SignpostLogger {
       return SignpostLogger.noop
     }
     
-    if #available(iOS 12.0, *) {
+    if #available(iOS 12.0, OSX 10.14, *) {
       switch type {
       case .stateUpdater:
         return self.logStateUpdater(log: log, name: name)
@@ -75,7 +75,7 @@ public struct SignpostLogger {
    - parameter name: a unique name associated with the log
    - returns: a closure to invoke when the related operations end
    */
-  @available(iOS 12.0, *)
+  @available(iOS 12.0, OSX 10.14, *)
   func logStateUpdater(log: OSLog, name: String) -> LogEndClosure {
     let signpostID = OSSignpostID(log: log)
     
@@ -93,7 +93,7 @@ public struct SignpostLogger {
    - parameter name: a unique name associated with the log
    - returns: a closure to invoke when the related operation ends
    */
-  @available(iOS 12.0, *)
+  @available(iOS 12.0, OSX 10.14, *)
   func logSideEffect(log: OSLog, name: String) -> LogEndClosure {
     let signpostID = OSSignpostID(log: log)
     
@@ -111,7 +111,7 @@ extension SignpostLogger {
   /// If the `isEnabled` flag is false, then an empty logger is created
   /// (that is, a logger that does nothing)
   private init() {
-    if #available(iOS 10.0, *), SignpostLogger.isEnabled {
+    if #available(iOS 10.0, OSX 10.12, *), SignpostLogger.isEnabled {
       self.katanaLogger = OSLog(subsystem: "Katana", category: "Katana")
       
     } else {
