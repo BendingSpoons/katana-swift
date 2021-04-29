@@ -2,6 +2,7 @@
 
 ## unreleased
 
+- Provide old and new state to `StoreListener`s. [#216](https://github.com/BendingSpoons/katana-swift/pull/216)
 - Bump Swift version to `5.0`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 - Pin Hydra minimum version to `2.0.6`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
 

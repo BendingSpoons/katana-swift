@@ -47,7 +47,7 @@ store.dispatch(IncrementCounter())
 You can ask the `Store` to be notified about every change in the app `State`.
 
 ```swift
-store.addListener() {
+store.addListener() { oldState, newState in
   // the app state has changed
 }
 ```
