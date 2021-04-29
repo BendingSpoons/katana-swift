@@ -10,6 +10,21 @@ import ProjectDescription
 
 let iOSTargetVersion = "11.0"
 
+// MARK: - Actions
+
+let actions: [TargetAction] = [
+  .pre(
+    tool: "swiftlint",
+    arguments: ["--lenient"],
+    name: "SwiftLint"
+  ),
+  .pre(
+    tool: "swiftformat",
+    arguments: ["."],
+    name: "SwiftFormat"
+  ),
+]
+
 // MARK: - Main Target
 
 let mainTarget = Target(
@@ -20,6 +35,7 @@ let mainTarget = Target(
   deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone, .ipad, .mac]),
   infoPlist: .default,
   sources: ["Sources/**"],
+  actions: actions,
   dependencies: [
     .cocoapods(path: "."),
   ]
@@ -34,7 +50,11 @@ let testsTarget = Target(
   bundleId: "com.bendingspoonsapps.KatanaTests",
   deploymentTarget: .iOS(targetVersion: iOSTargetVersion, devices: [.iphone, .ipad, .mac]),
   infoPlist: .default,
-  sources: ["Tests/**"]
+  sources: ["Tests/**"],
+  actions: actions,
+  dependencies: [
+    .target(name: mainTarget.name),
+  ]
 )
 
 // MARK: - Project Definition
