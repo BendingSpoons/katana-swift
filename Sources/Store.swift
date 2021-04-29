@@ -384,7 +384,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    - returns: a closure that can be used to remove the listener
    */
   override public func addAnyListener(_ listener: @escaping AnyStoreListener) -> StoreUnsubscribe {
-    self.addListener { oldState, newState in
+    return self.addListener { oldState, newState in
       listener(oldState, newState)
     }
   }

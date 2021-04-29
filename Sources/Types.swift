@@ -10,7 +10,7 @@ import Foundation
 import Hydra
 
 /**
- Typealias for the function that is invoked when the state changes.
+ Typealias for the type erased function that is invoked when the state changes.
 
  - parameter oldState: the state before the update
  - parameter newState: the state after the update
