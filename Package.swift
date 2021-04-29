@@ -7,7 +7,7 @@ let package = Package(
   name: "Katana",
   platforms: [
     .iOS(.v11),
-    .macOS(.v10_15)
+    .macOS(.v10_10)
   ],
   products: [
     .library(name: "Katana", targets: ["Katana"]),
