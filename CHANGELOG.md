@@ -1,5 +1,10 @@
 # Changelog
 
+## unreleased
+
+- Bump Swift version to `5.0`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
+- Pin Hydra minimum version to `2.0.6`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
+
 ## [5.1.1](https://github.com/BendingSpoons/katana-swift/tree/5.1.0) (2021-02-09)
 - Make codebase compile with Swift 5.4 [#210](https://github.com/BendingSpoons/katana-swift/pull/210)
 - Fix typos in documentation [#207](https://github.com/BendingSpoons/katana-swift/pull/207)
@@ -8,17 +13,17 @@
 - Add `dependenciesInitializer` parameter to `Store` initializer
 
 ## [5.0.0](https://github.com/BendingSpoons/katana-swift/tree/5.0.0) (2020-10-09)
-- bumped minDeploymentTarget from `8.3` to `11.0`
-- fixed `Package.swift`
-- pinned Hydra minimum version to `2.0.5`
+- Bump minDeploymentTarget from `8.3` to `11.0`
+- Fix `Package.swift`
+- Pin Hydra minimum version to `2.0.5`
 
 ## [4.0.0](https://github.com/BendingSpoons/katana-swift/tree/4.0.0) (2020-07-29)
-- Added `ReturningSideEffect` protocol, in parallel to the already existing `SideEffect`
-- Added a proper `dispatch` method for `ReturningSideEffect`s to return the values
-- Updated the README with explanations for the new behaviours
-- changed `Dispatch` to `AnyDispach`
-- removed the `Action` (and `ActionWithSideEffect`) entities
-- bumped Hydra to `2.0`
+- Add `ReturningSideEffect` protocol, in parallel to the already existing `SideEffect`
+- Add a proper `dispatch` method for `ReturningSideEffect`s to return the values
+- Update the README with explanations for the new behaviours
+- Change `Dispatch` to `AnyDispach`
+- Remove the `Action` (and `ActionWithSideEffect`) entities
+- Bump Hydra to `2.0`
 
 ## [3.1.1](https://github.com/BendingSpoons/katana-swift/tree/3.1.1) (2019-03-26)
 - Preserve interceptors order during execution.
