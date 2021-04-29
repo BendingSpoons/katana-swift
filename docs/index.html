@@ -1,13 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Katana  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
 
-                <!DOCTYPE HTML>
-                <html lang="en-US">
-                    <head>
-                        <meta charset="UTF-8">
-                        <meta http-equiv="refresh" content="0; url=latest/index.html" />
-                        <title>Documentation</title>
-                    </head>
-                    <body>
-                        If you are not redirected automatically, follow the <a href='latest/index.html'>link to the latest available version</a>
-                    </body>
-                </html>
+
+    <a title="Katana  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          Katana 5.1.1 Docs
+        </a>
+         (99% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/BendingSpoons/katana-swift">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">Katana Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Katana  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/EmptySideEffectDependencyContainer.html">EmptySideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/PartialStore.html">PartialStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Store.html">Store</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Store/Configuration.html">– Configuration</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enums.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/DispatchableLogger.html">DispatchableLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/DispatchQueue.html">DispatchQueue</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/AnySideEffect.html">AnySideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/AnySideEffectContext.html">AnySideEffectContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/AnyStateUpdater.html">AnyStateUpdater</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/AnyStore.html">AnyStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/AsyncProvider.html">AsyncProvider</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/DispatchObserverDispatchable.html">DispatchObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Dispatchable.html">Dispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/NotificationObserverDispatchable.html">NotificationObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OnStartObserverDispatchable.html">OnStartObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/ReturningSideEffect.html">ReturningSideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SideEffect.html">SideEffect</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/State.html">State</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StateObserverDispatchable.html">StateObserverDispatchable</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StateUpdater.html">StateUpdater</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Structs.html">Structures</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ObserverInterceptor.html">ObserverInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/ObserverInterceptor/ObserverType.html">– ObserverType</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/SideEffectContext.html">SideEffectContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/SignpostLogger.html">SignpostLogger</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Typealiases.html">Type Aliases</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana11AnyDispatcha">AnyDispatch</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana16AnyStoreListenera">AnyStoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana8GetStatea">GetState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana16StoreInterceptora">StoreInterceptor</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana20StoreInterceptorNexta">StoreInterceptorNext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana13StoreListenera">StoreListener</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Typealiases.html#/s:6Katana16StoreUnsubscribea">StoreUnsubscribe</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content top-matter">
             
+            <p><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png" alt="Katana"></p>
+
+<p><a href="https://twitter.com/katana_swift"><img src="https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift" alt="Twitter URL"></a>
+<a href="https://travis-ci.org/BendingSpoons/katana-swift"><img src="https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master" alt="Build Status"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg" alt="Docs"></a>
+<a href=""><img src="https://img.shields.io/cocoapods/v/Katana.svg" alt="CocoaPods"></a>
+<a href="https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE"><img src="https://img.shields.io/badge/Licence-MIT-lightgrey.svg" alt="Licence"></a></p>
+
+<p>Katana is a modern Swift framework for writing iOS applications&rsquo; business logic that are testable and easy to reason about. Katana is strongly inspired by <a href="http://redux.js.org/">Redux</a>.</p>
+
+<p>In few words, the app state is entirely described by a single serializable data structure, and the only way to change the state is to dispatch a <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code>. A <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code> is an intent to transform the state, and contains all the information to do so. Because all the changes are centralized and are happening in a strict order, there are no subtle race conditions to watch out for.</p>
+
+<p>We feel that Katana helped us a lot since we started using it in production. Our applications have been downloaded several millions of times and Katana really helped us scaling them quickly and efficiently. <a href="http://www.bendingspoons.com">Bending Spoons</a>&rsquo;s engineers leverage Katana capabilities to design, implement and test complex applications very quickly without any compromise to the final result. </p>
+
+<p>We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️</p>
+<h2 id='overview' class='heading'>Overview</h2>
+
+<p>Your entire app <code><a href="Protocols/State.html">State</a></code> is defined in a single struct, all the relevant application information should be placed here.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">CounterState</span><span class="p">:</span> <span class="kt">State</span> <span class="p">{</span>
+  <span class="k">var</span> <span class="nv">counter</span><span class="p">:</span> <span class="kt">Int</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The app <code><a href="Protocols/State.html">State</a></code> can only be modified by a <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code>. A <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code> represents an event that leads to a change in the <code><a href="Protocols/State.html">State</a></code> of the app. You define the behaviour of the <code>State Updater</code> by implementing the <code>updateState(:)</code> method that changes the <code><a href="Protocols/State.html">State</a></code> based on the current app <code><a href="Protocols/State.html">State</a></code> and the <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code> itself. The <code>updateState</code> should be a pure function, which means that it only depends on the inputs (that is, the state and the state updater itself) and it doesn&rsquo;t have side effects, such as network interactions.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">IncrementCounter</span><span class="p">:</span> <span class="kt">StateUpdater</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">updateState</span><span class="p">(</span><span class="n">_</span> <span class="nv">state</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">CounterState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>The <code><a href="Classes/Store.html">Store</a></code> contains and manages your entire app <code><a href="Protocols/State.html">State</a></code>. It is responsible of managing the dispatched items (e.g., the just mentioned <code>State Updater</code>).</p>
+<pre class="highlight swift"><code><span class="c1">// ignore AppDependencies for the time being, it will be explained later on</span>
+<span class="k">let</span> <span class="nv">store</span> <span class="o">=</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="p">,</span> <span class="kt">AppDependencies</span><span class="o">&gt;</span><span class="p">()</span>
+<span class="n">store</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="kt">IncrementCounter</span><span class="p">())</span>
+</code></pre>
+
+<p>You can ask the <code><a href="Classes/Store.html">Store</a></code> to be notified about every change in the app <code><a href="Protocols/State.html">State</a></code>.</p>
+<pre class="highlight swift"><code><span class="n">store</span><span class="o">.</span><span class="nf">addListener</span><span class="p">()</span> <span class="p">{</span> <span class="n">oldState</span><span class="p">,</span> <span class="n">newState</span> <span class="k">in</span>
+  <span class="c1">// the app state has changed</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='side-effects' class='heading'>Side Effects</h2>
+
+<p>Updating the application&rsquo;s state using pure functions is nice and it has a lot of benefits. Applications have to deal with the external world though (e.g., API call, disk files management, …). For all this kind of operations, Katana provides the concept of <code>side effects</code>. Side effects can be used to interact with other parts of your applications and then dispatch new <code><a href="Protocols/StateUpdater.html">StateUpdater</a></code>s to update your state. For more complex situations, you can also dispatch other <code>side effects</code>.</p>
+
+<p><code>Side Effect</code>s are implemented on top of <a href="https://github.com/malcommac/Hydra/">Hydra</a>, and allow you to write your logic using <a href="https://promisesaplus.com/">promises</a>. In order to leverage this functionality you have to adopt the <code><a href="Protocols/SideEffect.html">SideEffect</a></code> protocol</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">GenerateRandomNumberFromBackend</span><span class="p">:</span> <span class="kt">SideEffect</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="p">,</span> <span class="kt">AppDependencies</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="c1">// invokes the `getRandomNumber` method that returns a promise that is fullfilled</span>
+    <span class="c1">// when the number is received. At that point we dispatch a State Updater</span>
+    <span class="c1">// that updates the state</span>
+    <span class="n">context</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="kt">APIManager</span>
+        <span class="o">.</span><span class="nf">getRandomNumber</span><span class="p">()</span>
+        <span class="o">.</span><span class="n">then</span> <span class="p">{</span> <span class="n">randomNumber</span> <span class="k">in</span> <span class="n">context</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="kt">SetCounter</span><span class="p">(</span><span class="nv">newValue</span><span class="p">:</span> <span class="n">randomNumber</span><span class="p">))</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">struct</span> <span class="kt">SetCounter</span><span class="p">:</span> <span class="kt">StateUpdater</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">newValue</span><span class="p">:</span> <span class="kt">Int</span>
+
+  <span class="kd">func</span> <span class="nf">updateState</span><span class="p">(</span><span class="n">_</span> <span class="nv">state</span><span class="p">:</span> <span class="k">inout</span> <span class="kt">CounterState</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">state</span><span class="o">.</span><span class="n">counter</span> <span class="o">=</span> <span class="k">self</span><span class="o">.</span><span class="n">newValue</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Moreover, you can leverage the <code>Hydra.await</code> operator to write logic that mimics the <a href="https://github.com/tc39/ecmascript-asyncawait">async/await</a> pattern, which allows you to write async code in a sync manner.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">GenerateRandomNumberFromBackend</span><span class="p">:</span> <span class="kt">SideEffect</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="p">,</span> <span class="kt">AppDependencies</span><span class="o">&gt;</span><span class="p">)</span> <span class="k">throws</span> <span class="p">{</span>
+    <span class="c1">// invokes the `getRandomNumber` method that returns a promise that is fulfilled</span>
+    <span class="c1">// when the number is received.</span>
+    <span class="k">let</span> <span class="nv">promise</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="kt">APIManager</span><span class="o">.</span><span class="nf">getRandomNumber</span><span class="p">()</span>
+
+    <span class="c1">// we use Hydra.await to wait for the promise to be fulfilled</span>
+    <span class="k">let</span> <span class="nv">randomNumber</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Hydra</span><span class="o">.</span><span class="nf">await</span><span class="p">(</span><span class="n">promise</span><span class="p">)</span>
+
+    <span class="c1">// then the state is updated using the proper state updater</span>
+    <span class="k">try</span> <span class="kt">Hydra</span><span class="o">.</span><span class="nf">await</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="kt">SetCounter</span><span class="p">(</span><span class="nv">newValue</span><span class="p">:</span> <span class="n">randomNumber</span><span class="p">)))</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>In order to further improve the usability of side effects, there is also a version which can return a value. Note that both the state and dependencies types are erased, to allow for more freedom when using it in libraries, for example.</p>
+<pre class="highlight swift"><code><span class="kd">struct</span> <span class="kt">PurchaseProduct</span><span class="p">:</span> <span class="kt">ReturningSideEffect</span> <span class="p">{</span>
+  <span class="k">let</span> <span class="nv">productID</span><span class="p">:</span> <span class="kt">ProductID</span>
+
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">AnySideEffectContext</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">PurchaseResult</span><span class="p">,</span> <span class="kt">PurchaseError</span><span class="o">&gt;</span> <span class="p">{</span>
+
+    <span class="c1">// 0. Get the typed version of the context</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">context</span> <span class="k">as?</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="p">,</span> <span class="kt">AppDependencies</span><span class="o">&gt;</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Invalid context type"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 1. purchase the product via storekit</span>
+    <span class="k">let</span> <span class="nv">storekitResult</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">monetization</span><span class="o">.</span><span class="nf">purchase</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">productID</span><span class="p">)</span>
+    <span class="k">if</span> <span class="k">case</span> <span class="o">.</span><span class="nf">failure</span><span class="p">(</span><span class="k">let</span> <span class="nv">error</span><span class="p">)</span> <span class="o">=</span> <span class="n">storekitResult</span> <span class="p">{</span>
+      <span class="k">return</span> <span class="o">.</span><span class="nf">storekitRejected</span><span class="p">(</span><span class="n">error</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="c1">// 2. get the receipt</span>
+    <span class="k">let</span> <span class="nv">receipt</span> <span class="o">=</span> <span class="n">context</span><span class="o">.</span><span class="n">dependencies</span><span class="o">.</span><span class="n">monetization</span><span class="o">.</span><span class="nf">getReceipt</span><span class="p">()</span>
+
+    <span class="c1">// 3. validate the receipt</span>
+    <span class="k">let</span> <span class="nv">validationResult</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">Hydra</span><span class="o">.</span><span class="nf">await</span><span class="p">(</span><span class="n">context</span><span class="o">.</span><span class="nf">dispatch</span><span class="p">(</span><span class="kt">Monetization</span><span class="o">.</span><span class="kt">Validate</span><span class="p">(</span><span class="n">receipt</span><span class="p">)))</span>
+
+    <span class="c1">// 4. map error</span>
+    <span class="k">return</span> <span class="n">validationResult</span>
+      <span class="o">.</span><span class="n">map</span> <span class="p">{</span> <span class="o">.</span><span class="nf">init</span><span class="p">(</span><span class="nv">validation</span><span class="p">:</span> <span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+      <span class="o">.</span><span class="n">mapError</span> <span class="p">{</span> <span class="o">.</span><span class="nf">validationRejected</span><span class="p">(</span><span class="nv">$0</span><span class="p">)</span> <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+
+<p>Note that, if this is a prominent use case for the library/app, the step <code>0</code> can be encapsulated in a protocol like this:</p>
+<pre class="highlight swift"><code><span class="kd">protocol</span> <span class="kt">AppReturningSideEffect</span><span class="p">:</span> <span class="kt">ReturningSideEffect</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">AppState</span><span class="p">,</span> <span class="kt">DependenciesContainer</span><span class="o">&gt;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Void</span>
+<span class="p">}</span>
+
+<span class="kd">extension</span> <span class="kt">AppReturningSideEffect</span> <span class="p">{</span>
+  <span class="kd">func</span> <span class="nf">sideEffect</span><span class="p">(</span><span class="n">_</span> <span class="nv">context</span><span class="p">:</span> <span class="kt">AnySideEffectContext</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">Void</span> <span class="p">{</span>
+    <span class="k">guard</span> <span class="k">let</span> <span class="nv">context</span> <span class="o">=</span> <span class="n">context</span> <span class="k">as?</span> <span class="kt">SideEffectContext</span><span class="o">&lt;</span><span class="kt">AppState</span><span class="p">,</span> <span class="kt">DependenciesContainer</span><span class="o">&gt;</span> <span class="k">else</span> <span class="p">{</span>
+      <span class="nf">fatalError</span><span class="p">(</span><span class="s">"Invalid context type"</span><span class="p">)</span>
+    <span class="p">}</span>
+
+    <span class="k">self</span><span class="o">.</span><span class="nf">sideEffect</span><span class="p">(</span><span class="n">context</span><span class="p">)</span>
+  <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h4 id='dependencies' class='heading'>Dependencies</h4>
+
+<p>The side effect example leverages an <code>APIManager</code> method. The <code>Side Effect</code> can get the <code>APIManager</code> by using the <code>dependencies</code> parameter of the context.  The <code>dependencies container</code> is the Katana way of doing dependency injection. We test our side effects, and because of this we need to get rid of singletons or other bad pratices that prevent us from writing tests. Creating a dependency container is very easy: just create a class that conforms to the <code><a href="Protocols/SideEffectDependencyContainer.html">SideEffectDependencyContainer</a></code> protocol, make the store generic to it, and use it in the side effect.</p>
+<pre class="highlight swift"><code><span class="kd">final</span> <span class="kd">class</span> <span class="kt">AppDependencies</span><span class="p">:</span> <span class="kt">SideEffectDependencyContainer</span> <span class="p">{</span>
+  <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="nv">dispatch</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">PromisableStoreDispatch</span><span class="p">,</span> <span class="nv">getState</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="kt">GetState</span><span class="p">)</span> <span class="p">{</span>
+        <span class="c1">// initialize your dependencies here</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre>
+<h2 id='interceptors' class='heading'>Interceptors</h2>
+
+<p>When defining a <code><a href="Classes/Store.html">Store</a></code> you can provide a list of interceptors that are triggered in the given order whenever an item is dispatched. An interceptor is like a catch-all system that can be used to implement functionalities such as logging or to dynamically change the behaviour of the store. An interceptor is invoked every time a dispatchable item is about to be handled.</p>
+<h4 id='dispatchablelogger' class='heading'>DispatchableLogger</h4>
+
+<p>Katana comes with a built-in <code><a href="Enums/DispatchableLogger.html">DispatchableLogger</a></code> interceptor that logs all the dispatchables, except the ones listed in the blacklist parameter.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">dispatchableLogger</span> <span class="o">=</span> <span class="kt">DispatchableLogger</span><span class="o">.</span><span class="nf">interceptor</span><span class="p">(</span><span class="nv">blackList</span><span class="p">:</span> <span class="p">[</span><span class="kt">NotToLog</span><span class="o">.</span><span class="k">self</span><span class="p">])</span>
+<span class="k">let</span> <span class="nv">store</span> <span class="o">=</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">interceptor</span><span class="p">:</span> <span class="p">[</span><span class="n">dispatchableLogger</span><span class="p">])</span>
+</code></pre>
+<h4 id='observerinterceptor' class='heading'>ObserverInterceptor</h4>
+
+<p>Sometimes it is useful to listen for events that occur in the system and react to them. Katana provides the <code><a href="Structs/ObserverInterceptor.html">ObserverInterceptor</a></code> that can be used to achieve this result.</p>
+
+<p>In particular you instruct the interceptor to dispatch items when:</p>
+
+<ul>
+<li>the store is initialized</li>
+<li>the state changes in a particular way</li>
+<li>a particular dispatchable item is managed by the store</li>
+<li>a particular notification is sent to the default <a href="https://developer.apple.com/documentation/foundation/nsnotificationcenter">NotificationCenter</a></li>
+</ul>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">observerInterceptor</span> <span class="o">=</span> <span class="kt">ObserverInterceptor</span><span class="o">.</span><span class="nf">observe</span><span class="p">([</span>
+  <span class="o">.</span><span class="nf">onStart</span><span class="p">([</span>
+    <span class="c1">// list of dispatchable items dispatched when the store is initialized</span>
+  <span class="p">])</span>
+<span class="p">])</span>
+
+<span class="k">let</span> <span class="nv">store</span> <span class="o">=</span> <span class="kt">Store</span><span class="o">&lt;</span><span class="kt">CounterState</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">interceptor</span><span class="p">:</span> <span class="p">[</span><span class="n">observerInterceptor</span><span class="p">])</span>
+</code></pre>
+
+<p>Note that when intercepting a side effect using an <code><a href="Structs/ObserverInterceptor.html">ObserverInterceptor</a></code>, the return value of the dispatchable is not available to the interceptor itself.</p>
+<h2 id='what-about-the-ui' class='heading'>What about the UI?</h2>
+
+<p>Katana is meant to give structure to the logic part of your app. When it comes to UI we propose two alternatives:</p>
+
+<ul>
+<li><p><a href="https://github.com/BendingSpoons/tempura-swift">Tempura</a>: an MVVC framework we built on top of Katana and that we happily use to develop the UI of all our apps at Bending Spoons.  Tempura is a lightweight, UIKit-friendly library that allows you to keep the UI automatically in sync with the state of your app. This is our suggested choice.</p></li>
+<li><p><a href="https://github.com/BendingSpoons/katana-ui-swift">Katana-UI</a>: With this library, we aimed to port React to UIKit, it allows you to create your app using a declarative approach. The library was initially bundled together with Katana, we decided to split it as internally we don&rsquo;t use it anymore. In retrospect, we found that the impedance mismatch between the React-like approach and the imperative reality of UIKit was a no go for us.</p></li>
+</ul>
+
+<p align="center">
+  <a href="https://github.com/BendingSpoons/tempura-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/tempura.png" alt="Tempura" width="240" /></a>
+  <a href="https://github.com/BendingSpoons/katana-ui-swift"><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katanaUI.png" alt="Katana UI" width="240" /></a>
+</p>
+<h2 id='signpost-logger' class='heading'>Signpost Logger</h2>
+
+<p>Katana is automatically integrated with the <a href="https://developer.apple.com/documentation/os/ossignpostid">Signpost API</a>. This integration layer allows you to see in Instruments all the items that have been dispatched, how long they last, and useful pieces of information such as the parallelism degree. Moreover, you can analyse the cpu impact of the items you dispatch to furtherly optimise your application performances.</p>
+
+<p><img src="https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/signpost.jpg" alt=""></p>
+<h2 id='bending-spoons-guidelines' class='heading'>Bending Spoons Guidelines</h2>
+
+<p>In Bending Spoons, we are extensively using Katana. In these years, we&rsquo;ve defined some best pratices that have helped us write more readable and easier to debug code. We&rsquo;ve decided to open source them so that everyone can have a starting point when using Katana. You can find them <a href="https://github.com/BendingSpoons/katana-swift/blob/master/BSP_GUIDELINES.md">here</a>.</p>
+<h2 id='migration-from-2-x' class='heading'>Migration from 2.x</h2>
+
+<p>We strongly suggest to upgrade to the new Katana. The new Katana, in fact, not only adds new very powerful capabilities to the library, but it has also been designed to be extremely compatible with the old logic. All the actions and middleware you wrote for Katana 2.x, will continue to work in the new Katana as well. The breaking changes are most of the time related to simple typing changes that are easily addressable.</p>
+
+<p>If you prefer to continue with Katana 2.x, however, you can still access Katana 2.x in the <a href="https://github.com/BendingSpoons/katana-swift/tree/2.x">dedicated branch</a>.</p>
+<h3 id='middleware' class='heading'>Middleware</h3>
+
+<p>In Katana, the concept of <code>middleware</code> has been replaced with the new concept of <code>interceptor</code>. You can still use your middleware by leveraging the <code>middlewareToInterceptor</code> method.</p>
+<h2 id='swift-version' class='heading'>Swift Version</h2>
+
+<p>Certain versions of Katana only support certain versions of Swift. Depending on which version of Swift your project is using, you should use specific versions of Katana.
+Use this table in order to check which version of Katana you need.</p>
+
+<table><thead>
+<tr>
+<th>Swift Version</th>
+<th>Katana Version</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Swift 5.0</td>
+<td>Katana &gt;= 6.0</td>
+</tr>
+<tr>
+<td>Swift 4.2</td>
+<td>Katana &gt;= 2.0</td>
+</tr>
+<tr>
+<td>Swift 4.1</td>
+<td>Katana &lt; 2.0</td>
+</tr>
+</tbody></table>
+<h2 id='where-to-go-from-here' class='heading'>Where to go from here</h2>
+<h3 id='give-it-a-shot' class='heading'>Give it a shot</h3>
+<pre class="highlight plaintext"><code>pod try Katana
+</code></pre>
+<h3 id='tempura' class='heading'>Tempura</h3>
+
+<p>Make awesome applications using Katana together with <a href="https://github.com/BendingSpoons/tempura-lib-swift">Tempura</a></p>
+<h3 id='check-out-the-documentation' class='heading'>Check out the documentation</h3>
+
+<p><a href="http://katana.bendingspoons.com">Documentation</a></p>
+
+<p>You can also add Katana to <a href="https://kapeli.com/dash">Dash</a> using the proper <a href="https://github.com/BendingSpoons/katana-swift/blob/master/docs/latest/docsets/Katana.tgz?raw=true">docset</a>.</p>
+<h2 id='installation' class='heading'>Installation</h2>
+
+<p>Katana is available through <a href="https://cocoapods.org/">CocoaPods</a> and <a href="https://swift.org/package-manager/">Swift Package Manager</a>, you can also drop <code>Katana.project</code> into your Xcode project.</p>
+<h3 id='requirements' class='heading'>Requirements</h3>
+
+<ul>
+<li><p>iOS 11.0+ / macOS 10.10+</p></li>
+<li><p>Xcode 9.0+</p></li>
+<li><p>Swift 5.0+</p></li>
+</ul>
+<h3 id='swift-package-manager' class='heading'>Swift Package Manager</h3>
+
+<p><a href="https://swift.org/package-manager/">Swift Package Manager</a> is a tool for managing the distribution of Swift code. It’s integrated with the Swift build system to automate the process of downloading, compiling, and linking dependencies.</p>
+
+<p>There are two ways to integrate Katana in your project using Swift Package Manager:</p>
+
+<ul>
+<li>Adding it to your <code>Package.swift</code></li>
+<li>Adding it directly from Xcode under <code>File</code> -&gt; <code>Swift Packages</code> -&gt; <code>Add Package dependency..</code></li>
+</ul>
+
+<p>In both cases you only need to provide this URL: <code>git@github.com:BendingSpoons/katana-swift.git</code></p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p><a href="https://cocoapods.org/">CocoaPods</a> is a dependency manager for Cocoa projects. You can install it with the following command:</p>
+<pre class="highlight shell"><code><span class="nv">$ </span><span class="nb">sudo </span>gem <span class="nb">install </span>cocoapods
+</code></pre>
+
+<p>To integrate Katana into your Xcode project using CocoaPods you need to create a <code>Podfile</code>.</p>
+
+<p>For iOS platforms, this is the content</p>
+<pre class="highlight ruby"><code><span class="n">use_frameworks!</span>
+<span class="n">source</span> <span class="s1">'https://github.com/CocoaPods/Specs.git'</span>
+<span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'9.0'</span>
+
+<span class="n">target</span> <span class="s1">'MyApp'</span> <span class="k">do</span>
+  <span class="n">pod</span> <span class="s1">'Katana'</span>
+<span class="k">end</span>
+</code></pre>
+
+<p>Now, you just need to run:</p>
+<pre class="highlight shell"><code><span class="nv">$ </span>pod <span class="nb">install</span>
+</code></pre>
+<h2 id='get-in-touch' class='heading'>Get in touch</h2>
+
+<ul>
+<li>if you have <strong>any questions</strong> you can find us on twitter: <a href="https://twitter.com/maurobolis">@maurobolis</a>, <a href="https://twitter.com/luca_1987">@luca_1987</a>, <a href="https://twitter.com/smaramba">@smaramba</a></li>
+</ul>
+<h2 id='special-thanks' class='heading'>Special thanks</h2>
+
+<ul>
+<li><a href="http://bendingspoons.com/team.html">Everyone at Bending Spoons</a> for providing their priceless input;</li>
+<li><a href="https://twitter.com/orta">@orta</a> for providing input on how to opensource the project;</li>
+<li><a href="https://twitter.com/danielemargutti/">@danielemargutti</a> for developing and maintaining <a href="https://github.com/malcommac/Hydra/">Hydra</a>;</li>
+</ul>
+<h2 id='contribute' class='heading'>Contribute</h2>
+
+<ul>
+<li>If you&rsquo;ve <strong>found a bug</strong>, open an issue;</li>
+<li>If you have a <strong>feature request</strong>, open an issue;</li>
+<li>If you <strong>want to contribute</strong>, submit a pull request;</li>
+<li>If you <strong>have an idea</strong> on how to improve the framework or how to spread the word, please <a href="#get-in-touch">get in touch</a>;</li>
+<li>If you want to <strong>try the framework</strong> for your project or to write a demo, please send us the link of the repo.</li>
+</ul>
+<h2 id='license' class='heading'>License</h2>
+
+<p>Katana is available under the <a href="https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE">MIT license</a>.</p>
+<h2 id='about' class='heading'>About</h2>
+
+<p>Katana is maintained by Bending Spoons.
+We create our own tech products, used and loved by millions all around the world.
+Interested? <a href="http://bndspn.com/2fKggTa">Check us out</a>!</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>&copy; 2021 <a class="link" href="http://bendingspoons.com" target="_blank" rel="external">Bending Spoons Team</a>. All rights reserved. (Last updated: 2021-04-29)</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

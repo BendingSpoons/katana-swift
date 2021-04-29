@@ -4,4 +4,5 @@ jazzy \
   --github_url https://github.com/BendingSpoons/katana-swift \
   --github-file-prefix https://github.com/BendingSpoons/katana-swift/blob/master/ \
   --module Katana \
+  --swift-build-tool spm \
   --theme fullwidth
