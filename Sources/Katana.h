@@ -6,7 +6,7 @@
 //  Distributed under the MIT License.
 //  See the LICENSE file for more information.
 
-@import UIKit;
+#import <Foundation/Foundation.h>
 
 //! Project version number for Katana.
 FOUNDATION_EXPORT double KatanaVersionNumber;
