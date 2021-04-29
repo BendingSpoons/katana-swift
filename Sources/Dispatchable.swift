@@ -16,8 +16,8 @@ import Foundation
  */
 public protocol Dispatchable {}
 
-/// Implementation of the `CustomDebugStringConvertible` protocol
-extension Dispatchable: CustomDebugStringConvertible {
+extension Dispatchable {
+  /// Implementation of the `CustomDebugStringConvertible` protocol
   public var debugDescription: String {
     return String(reflecting: type(of: self))
   }

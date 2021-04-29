@@ -18,7 +18,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserver_dispatchesDispatchable() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
+        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [StateChangeAddUser.self]
@@ -37,7 +37,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserverAndMultipleDispatchables_dispatchesAllOfThem() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
+        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [
@@ -60,7 +60,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserverAndNillableInitDispatchables_discardsNilOnes() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { prev, curr in
+        ObserverInterceptor.ObserverType.typedStateChange { (prev: AppState, curr: AppState) in
           return prev.todo.todos.count != curr.todo.todos.count
         },
         [
@@ -82,7 +82,7 @@ class ObserverInterceptorTests: XCTestCase {
   func testObserveOnStateChange_whenUsingAppStateChangeObserver_doesNotInterceptSideEffects() throws {
     let interceptor = ObserverInterceptor.observe([
       .onStateChange(
-        ObserverInterceptor.ObserverType.typedStateChange { _, _ in
+        ObserverInterceptor.ObserverType.typedStateChange { (_: AppState, _: AppState) in
           XCTFail("StateChangeObserver must not be called for side effects")
           return false
         },
