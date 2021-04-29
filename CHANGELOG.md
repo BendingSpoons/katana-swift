@@ -1,6 +1,6 @@
 # Changelog
 
-## unreleased
+## [6.0.0](https://github.com/BendingSpoons/katana-swift/tree/6.0.0) (2021-04-29)
 
 - Provide old and new state to `StoreListener`s. [#216](https://github.com/BendingSpoons/katana-swift/pull/216)
 - Bump Swift version to `5.0`. [#212](https://github.com/BendingSpoons/katana-swift/pull/212)
