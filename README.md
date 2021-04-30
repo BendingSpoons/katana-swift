@@ -2,7 +2,7 @@
 ![Katana](https://raw.githubusercontent.com/BendingSpoons/katana-swift/master/.github/Assets/katana_header.png)
 
 [![Twitter URL](https://img.shields.io/twitter/url/https/twitter.com/fold_left.svg?style=social&label=Follow%20katana_swift)](https://twitter.com/katana_swift)
-[![Build Status](https://travis-ci.org/BendingSpoons/katana-swift.svg?branch=master)](https://travis-ci.org/BendingSpoons/katana-swift)
+[![Build Status](https://github.com/BendingSpoons/katana-swift/workflows/Build%20and%20Test/badge.svg)](https://github.com/BendingSpoons/katana-swift/actions/workflows/build_and_test.yml)
 [![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Katana.svg)]()
 [![CocoaPods](https://img.shields.io/cocoapods/v/Katana.svg)]()
 [![Licence](https://img.shields.io/badge/Licence-MIT-lightgrey.svg)](https://github.com/BendingSpoons/katana-swift/blob/master/LICENSE)
