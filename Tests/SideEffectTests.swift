@@ -36,7 +36,7 @@ class SideEffectTests: XCTestCase {
         .then { store.dispatch(sideEffect2) }
     )
 
-    XCTAssertIdentical(firstDependenciesContainer, secondDependenciesContainer)
+    XCTAssertTrue(firstDependenciesContainer === secondDependenciesContainer)
   }
 
   func testDispatch_whenUsingThen_invokesTheSideEffectsInProperOrder() {
