@@ -53,8 +53,10 @@ public protocol AnyStore: AnyObject {
   func dispatch<T: ReturningSideEffect>(_ dispatchable: T) -> Promise<T.ReturnValue>
 
   /**
-   Adds a listener to the store. A listener is basically a closure that is invoked
-   every time the Store's state changes
+   Adds a listener to the store. A listener is basically a closure that is invoked every time the Store's state changes.
+
+   - warning: The listener is always invoked in the main queue, and hence the provided `newState` might be older than the state
+     accessible with `self.anyState`.
 
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
@@ -149,8 +151,10 @@ open class PartialStore<S: State>: AnyStore {
   }
 
   /**
-   Adds a listener to the store. A listener is basically a closure that is invoked
-   every time the Store's state changes
+   Adds a listener to the store. A listener is basically a closure that is invoked every time the Store's state changes.
+
+   - warning: The listener is always invoked in the main queue, and hence the provided `newState` might be older than the state
+     accessible with `self.state`.
 
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
@@ -377,8 +381,10 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
 
   /**
-   Adds a listener to the store. A listener is basically a closure that is invoked
-   every time the Store's state changes. The listener is always invoked in the main queue
+   Adds a listener to the store. A listener is basically a closure that is invoked every time the Store's state changes.
+
+   - warning: The listener is always invoked in the main queue, and hence the provided `newState` might be older than the state
+     accessible with `self.state`.
 
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener
@@ -390,8 +396,10 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   }
 
   /**
-   Adds a typed listener to the store. A listener is basically a closure that is invoked
-   every time the Store's state changes
+   Adds a typed listener to the store. A listener is basically a closure that is invoked every time the Store's state changes.
+
+   - warning: The listener is always invoked in the main queue, and hence the provided `newState` might be older than the state
+     accessible with `self.state`.
 
    - parameter listener: the listener closure
    - returns: a closure that can be used to remove the listener

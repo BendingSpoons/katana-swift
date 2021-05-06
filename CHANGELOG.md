@@ -1,7 +1,9 @@
 # Changelog
 
-## [6.0.0](https://github.com/BendingSpoons/katana-swift/tree/6.0.0) (2021-04-29)
+## [6.0.1](https://github.com/BendingSpoons/katana-swift/tree/6.0.1) (2021-05-06)
+- Improve `StoreListener` documentation. [#218](https://github.com/BendingSpoons/katana-swift/pull/218)
 
+## [6.0.0](https://github.com/BendingSpoons/katana-swift/tree/6.0.0) (2021-04-29)
 - [BREAKING] Provide old and new state to `StoreListener`s. [#216](https://github.com/BendingSpoons/katana-swift/pull/216)
 - Rewrite all tests to use XCTest instead of Quick and Nimble. [#213](https://github.com/BendingSpoons/katana-swift/pull/213)
 - Drop Xcake in favour of Tuist. [#213](https://github.com/BendingSpoons/katana-swift/pull/213)
