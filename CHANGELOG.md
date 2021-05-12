@@ -1,5 +1,8 @@
 # Changelog
 
+## [6.0.2](https://github.com/BendingSpoons/katana-swift/tree/6.0.2) (2021-05-12)
+- Make listener dictionary access thread safe [#219](https://github.com/BendingSpoons/katana-swift/pull/219)
+
 ## [6.0.1](https://github.com/BendingSpoons/katana-swift/tree/6.0.1) (2021-05-06)
 - Improve `StoreListener` documentation. [#218](https://github.com/BendingSpoons/katana-swift/pull/218)
 
