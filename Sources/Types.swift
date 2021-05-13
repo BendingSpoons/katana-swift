@@ -64,19 +64,17 @@ extension Executor {
   }
 
   /// Calling this method will immediately execute a task, blocking the current thread until the task is
-  /// finished
+  /// finished.
   ///
-  /// This is an inefficient default implementation made to avoid having a breaking change in the code. It
+  /// Note: this default implementation will not use the underlying context for executing the closure. It
+  /// will not use `executeAsync` under the hood, so you should not use this implementation if you need, for
+  /// example, to execute the closure on a specific thread/queue.
+  ///
+  /// This is an default implementation made to avoid having a breaking change in the code. It
   /// will be removed in the future.
   @available(*, deprecated, message: "Use a proper primitive given by your underlying implementation")
   public func executeSync<T>(_ closure: @escaping () -> T) -> T {
-    let promise = Promise<T>()
-
-    self.executeAsync {
-      promise.resolve(closure())
-    }
-
-    return try! Hydra.await(promise) // swiftlint:disable:this force_try
+    return closure()
   }
 }
 
@@ -96,6 +94,9 @@ extension DispatchQueue: Executor {
 
     let key = DispatchSpecificKey<Void>()
     self.setSpecific(key: key, value: ())
+    defer {
+      self.setSpecific(key: key, value: nil)
+    }
 
     if DispatchQueue.getSpecific(key: key) != nil {
       return closure()
