@@ -239,7 +239,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   private var sideEffectContext: SideEffectContext<S, D>! // swiftlint:disable:this implicitly_unwrapped_optional
 
   /// AsyncProvider used to run all the listeners
-  private var listenersAsyncProvider: AsyncProvider
+  private var listenersAsyncProvider: Executor
 
   /// The queue used to handle the `StateUpdater` items
   fileprivate var stateUpdaterQueue: DispatchQueue = {
@@ -361,7 +361,7 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
     /// Do the initialization operation async to avoid to block the store init caller
     /// which in a standard application is the AppDelegate. WatchDog may decide to kill the app
     /// if the stateInitializer function takes too much to do its job and we block the app's startup
-    configuration.stateInitializerAsyncProvider.execute { [unowned self] in
+    configuration.stateInitializerAsyncProvider.executeAsync { [unowned self] in
       self.initializeInternalState(using: stateInitializer)
     }
   }
@@ -406,10 +406,15 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
    */
   override public func addListener(_ listener: @escaping StoreListener<S>) -> StoreUnsubscribe {
     let listenerID: ListenerID = UUID().uuidString
-    self.listeners[listenerID] = listener
+
+    self.listenersAsyncProvider.executeSync {
+      self.listeners[listenerID] = listener
+    }
 
     return { [weak self] in
-      _ = self?.listeners.removeValue(forKey: listenerID)
+      self?.listenersAsyncProvider.executeSync { [weak self] in
+        self?.listeners.removeValue(forKey: listenerID)
+      }
     }
   }
 
@@ -551,14 +556,14 @@ open class Store<S: State, D: SideEffectDependencyContainer>: PartialStore<S> {
   /// The dependencies used to initialize katana
   public struct Configuration {
     /// AsyncProvider used to run the state initializer
-    let stateInitializerAsyncProvider: AsyncProvider
+    let stateInitializerAsyncProvider: Executor
 
     /// AsyncProvider used to run all the listeners
-    let listenersAsyncProvider: AsyncProvider
+    let listenersAsyncProvider: Executor
 
     public init(
-      stateInitializerAsyncProvider: AsyncProvider = DispatchQueue.main,
-      listenersAsyncProvider: AsyncProvider = DispatchQueue.main
+      stateInitializerAsyncProvider: Executor = DispatchQueue.main,
+      listenersAsyncProvider: Executor = DispatchQueue.main
     ) {
       self.stateInitializerAsyncProvider = stateInitializerAsyncProvider
       self.listenersAsyncProvider = listenersAsyncProvider
@@ -587,7 +592,7 @@ extension Store {
 
   /// Invoke all the registered listeners in the configured async provider
   private func invokeListeners(oldState: S, newState: S) {
-    self.listenersAsyncProvider.execute { [weak self] () in
+    self.listenersAsyncProvider.executeAsync { [weak self] () in
       guard let self = self else { return }
 
       self.listeners.values.forEach { $0(oldState, newState) }

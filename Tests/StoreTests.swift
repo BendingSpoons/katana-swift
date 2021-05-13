@@ -7,6 +7,7 @@
 //  See the LICENSE file for more information.
 
 import Foundation
+import Hydra
 import XCTest
 
 @testable import Katana
@@ -58,5 +59,30 @@ class StoreTest: XCTestCase {
         XCTAssertEqual(listenerOldState?.todo.todos, [])
         XCTAssertEqual(listenerNewState?.todo.todos, [todo])
       }
+  }
+
+  func testStoreListener_whenMultipleConcurrentOperations_itWillNotCrash() throws {
+    let store = Store<AppState, TestDependenciesContainer>(
+      interceptors: [],
+      stateInitializer: { .init() },
+      configuration: .init(
+        stateInitializerAsyncProvider: DispatchQueue(label: "other"),
+        listenersAsyncProvider: DispatchQueue(label: "test")
+      )
+    )
+
+    let queue = OperationQueue()
+    for i in 0 ..< 10 {
+      queue.addOperation {
+        let unsubscribe = store.addListener { _, _ in }
+        try! Hydra.await( // swiftlint:disable:this force_try
+          in: .background,
+          store.dispatch(AddTodo(todo: .init(title: "Title", id: "\(i)")))
+        )
+        unsubscribe()
+      }
+    }
+
+    queue.waitUntilAllOperationsAreFinished()
   }
 }
