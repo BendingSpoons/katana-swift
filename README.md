@@ -15,6 +15,10 @@ We feel that Katana helped us a lot since we started using it in production. Our
 
 We use a lot of open source projects ourselves and we wanted to give something back to the community, hoping you will find this useful and possibly contribute. ❤️
 
+## State of the project
+
+We wrote several successful applications using the layer that `Katana` and `Tempura` provide. We still think that their approach is really a good one for medium-sized applications but, as our app grows, it becomes increasingly important to have a more modular architecture. For this reason, we have migrated our applications to use [The Composable Architecture](https://github.com/pointfreeco/swift-composable-architecture).
+
 ## Overview
 
 Your entire app `State` is defined in a single struct, all the relevant application information should be placed here.
